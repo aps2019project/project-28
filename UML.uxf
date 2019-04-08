@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>252</x>
+      <y>84</y>
+      <w>357</w>
+      <h>203</h>
+    </coordinates>
+    <panel_attributes>/Card/
+--
+_-cards : ArrayList&lt;Card&gt;_
+#cardID : int
+#name : String
+#price : int  
+#manaPoint : int
+--
++Card(ID : int , name : String , price : int) : void
+_+hasCard(ID : int) : boolean_
+_+hasCard(name : String) : boolean_
+_+getCardByID(ID : int) : Card_
+_+getCardType(ID : int) : String_
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>77</x>
+      <y>357</y>
+      <w>259</w>
+      <h>217</h>
+    </coordinates>
+    <panel_attributes>/Hermione/
+--
+#healthPoint : int
+#attackPoint : int 
+#specialPower : SpecialPower
+#appliedSpells : ArrayList&lt;Spell&gt;
+#type : String
+#range : int
+#moveTurn : boolean
+#attackTurn : boolean
+#isDeployed : boolean
+#location : Cell
+#counterAttackAble : boolean
+#flagsInHand : int
+--
++Hermione(hp:int ,ap:int ,sp:SpecialPower ,type:int)
+/+counterAttack(enemyAttackPoint : int) : void/
+/+attack(opponentCardId : int) : void/
+/+move(x : int, y: int) : void/
++applySpecialPower() : void
++handleAppliedSpells() : void/
+/+deploy()/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>182</x>
+      <y>280</y>
+      <w>189</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>250.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1869</x>
+      <y>224</y>
+      <w>224</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Cell
+--
+-x :int
+-y : int
+-appliedSpells : ArrayList&lt;Spell&gt;
+-flag : boolean
+-isFull : boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>665</x>
+      <y>224</y>
+      <w>182</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>SpecialPower
+--
+-owner : Hermione
+--
++deploy()
+//reflection based on spells static functions for each mode</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>588</y>
+      <w>224</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>Hero
+--
+-cooldown : int
+--
++counterAttack(enemyAttackPoint : int) : void
++attack(opponentCardId : int) : void
++move(x : int, y: int) : void
++deploy() : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>588</y>
+      <w>224</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>Minion
+--
+SPActivationTime : String
+--
++counterAttack(enemyAttackPoint : int) : void
++attack(opponentCardId : int) : void
++move(x : int, y: int) : void
++die() : void
++deploy() : void
++isItTime() : boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>105</x>
+      <y>567</y>
+      <w>140</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>180.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>238</x>
+      <y>567</y>
+      <w>119</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>574</x>
+      <y>350</y>
+      <w>266</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Spell
+--
+#target : String
+#range : int
+--
++deploy() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>518</x>
+      <y>280</y>
+      <w>182</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>651</x>
+      <y>490</y>
+      <w>84</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Buff
+--
+duration : int
+type : String 
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>686</x>
+      <y>455</y>
+      <w>21</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1106</x>
+      <y>0</y>
+      <w>175</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>/Item/
+--
+#name : String
+#effect : String
+--
+/deploy() : void/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>994</x>
+      <y>147</y>
+      <w>119</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Flag
+--
+location : Cell
+--
+deploy() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1288</x>
+      <y>147</y>
+      <w>119</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Collectable
+--
+_-collectables : ArrayList&lt;Collectable&gt;_
+location : Cell
+--
+deploy() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1141</x>
+      <y>147</y>
+      <w>112</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Usable
+--
+_-usables : ArrayList&lt;Usable&gt;_
+-price : int
+--
+deploy() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1064</x>
+      <y>427</y>
+      <w>280</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>Collection
+--
+-cards : AarrayList&lt;Card&gt;
+-collectables : ArrayList&lt;Collectable&gt;
+-decks : ArrayList&lt;Deck&gt;
+-mainDeck : Deck
+-MAXCOLLECTABLES = &lt;3&gt; : int
+--
++addNewDeck(Deck) : void
++hasCard(cardID : int) : boolean
++getCard(cardID : int) : Card
++hasItem(itemID : int) : boolean
++getItem(itemID : int) : Item
++setMainDeck(deck : Deck) : void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1365</x>
+      <y>357</y>
+      <w>217</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Deck
+--
+-hero : Hero
+-deckName : String
+-cards : ArrayList&lt;Card&gt;
+-items : ArrayList&lt;Item&gt;
+_-SIZE : int_
+--
+-shuffle() : void
+-removeFromDeck(Card): void 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1183</x>
+      <y>91</y>
+      <w>21</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>91</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>180.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1190</x>
+      <y>91</y>
+      <w>168</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;220.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1372</x>
+      <y>518</y>
+      <w>182</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Hand
+--
+-cards : ArrayList&lt;Card&gt;
+_-SIZE :  int_
+-nextCard : Card
+--
++addCard() : void ;
++removeCard(card : Card) : void ;
++handleHand() : void ;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1113</x>
+      <y>623</y>
+      <w>147</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>GraveYard
+--
+cards : ArrayList&lt;Card&gt;
+--
+addCard(card : Card) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1883</x>
+      <y>105</y>
+      <w>189</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Map
+--
+_-maps : ArrayLst&lt;Map&gt;_
+_+HEIGHT : int_
+_+WIDTH : int_
+-board : cell[height][width]
+-flags : ArrayList&lt;Flag&gt;
+--
++getDistance(cell1:Cell , cell2:Cell) : int
++getCell(x : int,y: int) : Cell
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2282</x>
+      <y>91</y>
+      <w>196</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Battle
+--
+-players : Player[2] 
+-turn : int
+-map : Map
+-hasEnded : boolean
+
+--
+changeTurn() : void ;
+checkState() : void ;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2702</x>
+      <y>98</y>
+      <w>245</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>Account
+--
+_-players : ArrayList&lt;Player&gt;_
+-name : String
+-username : String
+-password : String
+-ID : int 
+-money : int
+-hand : Hand
+-collectables : ArrayList&lt;Collactable&gt;
+-maxMana : int
+-mana : int
+-matchHistory : ArrayList&lt;Battle&gt;
+--
+saveMatchHistory() : void 
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3150</x>
+      <y>119</y>
+      <w>70</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Controller
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
