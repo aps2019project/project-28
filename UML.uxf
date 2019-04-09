@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>522</x>
-      <y>126</y>
+      <y>108</y>
       <w>459</w>
       <h>261</h>
     </coordinates>
@@ -32,7 +32,7 @@ _+getCardType(ID : int) : String_
     <id>UMLClass</id>
     <coordinates>
       <x>297</x>
-      <y>468</y>
+      <y>450</y>
       <w>351</w>
       <h>351</h>
     </coordinates>
@@ -67,7 +67,7 @@ _+getCardType(ID : int) : String_
     <id>Relation</id>
     <coordinates>
       <x>432</x>
-      <y>378</y>
+      <y>360</y>
       <w>243</w>
       <h>108</h>
     </coordinates>
@@ -78,7 +78,7 @@ _+getCardType(ID : int) : String_
     <id>UMLClass</id>
     <coordinates>
       <x>2601</x>
-      <y>306</y>
+      <y>288</y>
       <w>288</w>
       <h>108</h>
     </coordinates>
@@ -96,7 +96,7 @@ _+getCardType(ID : int) : String_
     <id>UMLClass</id>
     <coordinates>
       <x>1053</x>
-      <y>306</y>
+      <y>288</y>
       <w>234</w>
       <h>72</h>
     </coordinates>
@@ -112,7 +112,7 @@ _+getCardType(ID : int) : String_
     <id>UMLClass</id>
     <coordinates>
       <x>198</x>
-      <y>963</y>
+      <y>945</y>
       <w>288</w>
       <h>207</h>
     </coordinates>
@@ -130,7 +130,7 @@ _+getCardType(ID : int) : String_
     <id>UMLClass</id>
     <coordinates>
       <x>513</x>
-      <y>963</y>
+      <y>945</y>
       <w>288</w>
       <h>207</h>
     </coordinates>
@@ -149,7 +149,7 @@ SPActivationTime : String
     <id>Relation</id>
     <coordinates>
       <x>333</x>
-      <y>810</y>
+      <y>792</y>
       <w>180</w>
       <h>171</h>
     </coordinates>
@@ -160,7 +160,7 @@ SPActivationTime : String
     <id>Relation</id>
     <coordinates>
       <x>504</x>
-      <y>810</y>
+      <y>792</y>
       <w>153</w>
       <h>171</h>
     </coordinates>
@@ -171,7 +171,7 @@ SPActivationTime : String
     <id>UMLClass</id>
     <coordinates>
       <x>936</x>
-      <y>468</y>
+      <y>450</y>
       <w>342</w>
       <h>144</h>
     </coordinates>
@@ -188,7 +188,7 @@ SPActivationTime : String
     <id>Relation</id>
     <coordinates>
       <x>864</x>
-      <y>378</y>
+      <y>360</y>
       <w>234</w>
       <h>108</h>
     </coordinates>
@@ -199,7 +199,7 @@ SPActivationTime : String
     <id>UMLClass</id>
     <coordinates>
       <x>1035</x>
-      <y>648</y>
+      <y>630</y>
       <w>108</w>
       <h>72</h>
     </coordinates>
@@ -215,7 +215,7 @@ type : String
     <id>Relation</id>
     <coordinates>
       <x>1080</x>
-      <y>603</y>
+      <y>585</y>
       <w>27</w>
       <h>63</h>
     </coordinates>
@@ -226,7 +226,7 @@ type : String
     <id>UMLClass</id>
     <coordinates>
       <x>1620</x>
-      <y>18</y>
+      <y>0</y>
       <w>225</w>
       <h>126</h>
     </coordinates>
@@ -243,7 +243,7 @@ type : String
     <id>UMLClass</id>
     <coordinates>
       <x>1476</x>
-      <y>207</y>
+      <y>189</y>
       <w>153</w>
       <h>126</h>
     </coordinates>
@@ -258,7 +258,7 @@ deploy() : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1854</x>
-      <y>207</y>
+      <y>189</y>
       <w>153</w>
       <h>126</h>
     </coordinates>
@@ -274,7 +274,7 @@ deploy() : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1665</x>
-      <y>207</y>
+      <y>189</y>
       <w>144</w>
       <h>126</h>
     </coordinates>
@@ -290,7 +290,7 @@ deploy() : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1521</x>
-      <y>567</y>
+      <y>549</y>
       <w>405</w>
       <h>423</h>
     </coordinates>
@@ -328,7 +328,7 @@ _-MAXUSABLES = &lt;3&gt; : int_
     <id>Relation</id>
     <coordinates>
       <x>1719</x>
-      <y>135</y>
+      <y>117</y>
       <w>27</w>
       <h>90</h>
     </coordinates>
@@ -339,7 +339,7 @@ _-MAXUSABLES = &lt;3&gt; : int_
     <id>Relation</id>
     <coordinates>
       <x>1548</x>
-      <y>135</y>
+      <y>117</y>
       <w>180</w>
       <h>90</h>
     </coordinates>
@@ -350,7 +350,7 @@ _-MAXUSABLES = &lt;3&gt; : int_
     <id>Relation</id>
     <coordinates>
       <x>1728</x>
-      <y>135</y>
+      <y>117</y>
       <w>216</w>
       <h>90</h>
     </coordinates>
@@ -361,7 +361,7 @@ _-MAXUSABLES = &lt;3&gt; : int_
     <id>UMLClass</id>
     <coordinates>
       <x>1962</x>
-      <y>684</y>
+      <y>666</y>
       <w>234</w>
       <h>126</h>
     </coordinates>
@@ -380,7 +380,7 @@ _-SIZE :  int_
     <id>UMLClass</id>
     <coordinates>
       <x>1980</x>
-      <y>837</y>
+      <y>819</y>
       <w>189</w>
       <h>72</h>
     </coordinates>
@@ -395,7 +395,7 @@ addCard(card : Card) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2574</x>
-      <y>36</y>
+      <y>18</y>
       <w>279</w>
       <h>171</h>
     </coordinates>
@@ -417,7 +417,7 @@ _+WIDTH : int_
     <id>UMLClass</id>
     <coordinates>
       <x>3645</x>
-      <y>135</y>
+      <y>117</y>
       <w>315</w>
       <h>324</h>
     </coordinates>
@@ -443,7 +443,7 @@ _- sortAccounts() : void_
     <id>UMLClass</id>
     <coordinates>
       <x>4248</x>
-      <y>225</y>
+      <y>207</y>
       <w>531</w>
       <h>459</h>
     </coordinates>
@@ -463,13 +463,18 @@ _- sortAccounts() : void_
 + showHand() : void
 + insert (cardID : int , x : int ,y :int) : void
 + endTurn () : void
+
 + showCollectable() : void
 + showItemInfo(): void
 + useItem (x : int, y : int) : void
+
 + showNextCard() :void
+
 + enterGraveYard(): void
 + showGraveYardInfo() : void
-+ show
++ showGraveYardCards() : void
++ showGraveYardHelp() : void
+
 
 
 
@@ -505,7 +510,7 @@ _- sortAccounts() : void_
     <id>UMLClass</id>
     <coordinates>
       <x>4014</x>
-      <y>153</y>
+      <y>135</y>
       <w>261</w>
       <h>306</h>
     </coordinates>
@@ -525,7 +530,7 @@ _- sortAccounts() : void_
     <id>UMLInterface</id>
     <coordinates>
       <x>3132</x>
-      <y>729</y>
+      <y>711</y>
       <w>378</w>
       <h>90</h>
     </coordinates>
@@ -539,7 +544,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void
     <id>UMLClass</id>
     <coordinates>
       <x>2673</x>
-      <y>882</y>
+      <y>864</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -552,7 +557,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2889</x>
-      <y>1044</y>
+      <y>1026</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -565,7 +570,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3096</x>
-      <y>558</y>
+      <y>540</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -578,7 +583,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2700</x>
-      <y>774</y>
+      <y>756</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -591,7 +596,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3591</x>
-      <y>738</y>
+      <y>720</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -604,7 +609,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3501</x>
-      <y>873</y>
+      <y>855</y>
       <w>369</w>
       <h>54</h>
     </coordinates>
@@ -617,7 +622,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2862</x>
-      <y>630</y>
+      <y>612</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -630,7 +635,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3564</x>
-      <y>810</y>
+      <y>792</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -643,7 +648,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3411</x>
-      <y>621</y>
+      <y>603</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -656,7 +661,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2700</x>
-      <y>972</y>
+      <y>954</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -669,7 +674,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3510</x>
-      <y>675</y>
+      <y>657</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -682,7 +687,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2754</x>
-      <y>702</y>
+      <y>684</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -695,7 +700,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3195</x>
-      <y>666</y>
+      <y>648</y>
       <w>144</w>
       <h>108</h>
     </coordinates>
@@ -706,7 +711,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3303</x>
-      <y>711</y>
+      <y>693</y>
       <w>288</w>
       <h>54</h>
     </coordinates>
@@ -717,7 +722,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3312</x>
-      <y>729</y>
+      <y>711</y>
       <w>207</w>
       <h>180</h>
     </coordinates>
@@ -728,7 +733,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3069</x>
-      <y>729</y>
+      <y>711</y>
       <w>270</w>
       <h>333</h>
     </coordinates>
@@ -739,7 +744,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3303</x>
-      <y>630</y>
+      <y>612</y>
       <w>126</w>
       <h>144</h>
     </coordinates>
@@ -750,7 +755,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3303</x>
-      <y>738</y>
+      <y>720</y>
       <w>279</w>
       <h>108</h>
     </coordinates>
@@ -761,7 +766,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3312</x>
-      <y>729</y>
+      <y>711</y>
       <w>324</w>
       <h>72</h>
     </coordinates>
@@ -772,7 +777,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3033</x>
-      <y>729</y>
+      <y>711</y>
       <w>306</w>
       <h>261</h>
     </coordinates>
@@ -783,7 +788,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3060</x>
-      <y>738</y>
+      <y>720</y>
       <w>288</w>
       <h>81</h>
     </coordinates>
@@ -794,7 +799,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3267</x>
-      <y>594</y>
+      <y>576</y>
       <w>81</w>
       <h>171</h>
     </coordinates>
@@ -805,7 +810,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3033</x>
-      <y>738</y>
+      <y>720</y>
       <w>315</w>
       <h>180</h>
     </coordinates>
@@ -816,7 +821,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3114</x>
-      <y>711</y>
+      <y>693</y>
       <w>234</w>
       <h>54</h>
     </coordinates>
@@ -827,7 +832,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLInterface</id>
     <coordinates>
       <x>3249</x>
-      <y>1224</y>
+      <y>1206</y>
       <w>54</w>
       <h>81</h>
     </coordinates>
@@ -840,7 +845,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3285</x>
-      <y>1044</y>
+      <y>1026</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -853,7 +858,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3303</x>
-      <y>729</y>
+      <y>711</y>
       <w>180</w>
       <h>333</h>
     </coordinates>
@@ -864,7 +869,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3519</x>
-      <y>963</y>
+      <y>945</y>
       <w>369</w>
       <h>45</h>
     </coordinates>
@@ -877,7 +882,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3303</x>
-      <y>738</y>
+      <y>720</y>
       <w>234</w>
       <h>270</h>
     </coordinates>
@@ -888,7 +893,7 @@ deploy(player : Player , enemy : Player , cell : Cell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>4635</x>
-      <y>657</y>
+      <y>639</y>
       <w>693</w>
       <h>1035</h>
     </coordinates>
@@ -905,7 +910,7 @@ _- menu : Menu_
     <id>UMLClass</id>
     <coordinates>
       <x>1971</x>
-      <y>405</y>
+      <y>387</y>
       <w>531</w>
       <h>261</h>
     </coordinates>
@@ -936,7 +941,7 @@ _+ validateDeck(deckName : String) : boolean_
     <id>UMLClass</id>
     <coordinates>
       <x>4788</x>
-      <y>72</y>
+      <y>54</y>
       <w>531</w>
       <h>351</h>
     </coordinates>
@@ -976,7 +981,7 @@ _+ validateDeck(deckName : String) : boolean_
     <id>UMLClass</id>
     <coordinates>
       <x>4860</x>
-      <y>567</y>
+      <y>549</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -991,7 +996,7 @@ _+ validateDeck(deckName : String) : boolean_
     <id>UMLClass</id>
     <coordinates>
       <x>4995</x>
-      <y>567</y>
+      <y>549</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -1006,7 +1011,7 @@ _+ validateDeck(deckName : String) : boolean_
     <id>UMLClass</id>
     <coordinates>
       <x>5112</x>
-      <y>567</y>
+      <y>549</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -1021,7 +1026,7 @@ _+ validateDeck(deckName : String) : boolean_
     <id>Relation</id>
     <coordinates>
       <x>4914</x>
-      <y>414</y>
+      <y>396</y>
       <w>261</w>
       <h>171</h>
     </coordinates>
@@ -1032,7 +1037,7 @@ _+ validateDeck(deckName : String) : boolean_
     <id>Relation</id>
     <coordinates>
       <x>4905</x>
-      <y>414</y>
+      <y>396</y>
       <w>135</w>
       <h>171</h>
     </coordinates>
@@ -1043,7 +1048,7 @@ _+ validateDeck(deckName : String) : boolean_
     <id>Relation</id>
     <coordinates>
       <x>4887</x>
-      <y>414</y>
+      <y>396</y>
       <w>36</w>
       <h>171</h>
     </coordinates>
@@ -1054,7 +1059,7 @@ _+ validateDeck(deckName : String) : boolean_
     <id>UMLClass</id>
     <coordinates>
       <x>5427</x>
-      <y>459</y>
+      <y>441</y>
       <w>306</w>
       <h>153</h>
     </coordinates>
@@ -1075,7 +1080,7 @@ _+ validateDeck(deckName : String) : boolean_
     <id>UMLClass</id>
     <coordinates>
       <x>5427</x>
-      <y>171</y>
+      <y>153</y>
       <w>657</w>
       <h>225</h>
     </coordinates>
@@ -1094,7 +1099,7 @@ ParrentMenu : Menu
     <id>UMLClass</id>
     <coordinates>
       <x>5427</x>
-      <y>648</y>
+      <y>630</y>
       <w>306</w>
       <h>171</h>
     </coordinates>
@@ -1112,7 +1117,7 @@ ParrentMenu : Menu
     <id>Relation</id>
     <coordinates>
       <x>5472</x>
-      <y>387</y>
+      <y>369</y>
       <w>288</w>
       <h>81</h>
     </coordinates>
@@ -1123,7 +1128,7 @@ ParrentMenu : Menu
     <id>Relation</id>
     <coordinates>
       <x>5634</x>
-      <y>387</y>
+      <y>369</y>
       <w>144</w>
       <h>279</h>
     </coordinates>
@@ -1134,7 +1139,7 @@ ParrentMenu : Menu
     <id>UMLClass</id>
     <coordinates>
       <x>5787</x>
-      <y>459</y>
+      <y>441</y>
       <w>297</w>
       <h>360</h>
     </coordinates>
@@ -1170,7 +1175,7 @@ _-Items : ArrayList&lt;Usable&gt;_
     <id>Relation</id>
     <coordinates>
       <x>5778</x>
-      <y>387</y>
+      <y>369</y>
       <w>171</w>
       <h>90</h>
     </coordinates>
@@ -1181,7 +1186,7 @@ _-Items : ArrayList&lt;Usable&gt;_
     <id>UMLNote</id>
     <coordinates>
       <x>0</x>
-      <y>576</y>
+      <y>558</y>
       <w>297</w>
       <h>225</h>
     </coordinates>
@@ -1197,7 +1202,7 @@ bg=red
     <id>UMLClass</id>
     <coordinates>
       <x>3996</x>
-      <y>495</y>
+      <y>477</y>
       <w>234</w>
       <h>135</h>
     </coordinates>
@@ -1213,7 +1218,7 @@ bg=red
     <id>UMLInterface</id>
     <coordinates>
       <x>3069</x>
-      <y>1719</y>
+      <y>1701</y>
       <w>333</w>
       <h>90</h>
     </coordinates>
@@ -1227,7 +1232,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void
     <id>UMLClass</id>
     <coordinates>
       <x>2880</x>
-      <y>1503</y>
+      <y>1485</y>
       <w>315</w>
       <h>45</h>
     </coordinates>
@@ -1240,7 +1245,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3231</x>
-      <y>1494</y>
+      <y>1476</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1253,7 +1258,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3375</x>
-      <y>1548</y>
+      <y>1530</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1266,7 +1271,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3438</x>
-      <y>1611</y>
+      <y>1593</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1279,7 +1284,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3492</x>
-      <y>1665</y>
+      <y>1647</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1292,7 +1297,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3501</x>
-      <y>1719</y>
+      <y>1701</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1305,7 +1310,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3447</x>
-      <y>1773</y>
+      <y>1755</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1318,7 +1323,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3375</x>
-      <y>1836</y>
+      <y>1818</y>
       <w>315</w>
       <h>45</h>
     </coordinates>
@@ -1331,7 +1336,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>3249</x>
-      <y>1899</y>
+      <y>1881</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1344,7 +1349,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2889</x>
-      <y>1899</y>
+      <y>1881</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1357,7 +1362,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2790</x>
-      <y>1836</y>
+      <y>1818</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1370,7 +1375,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2718</x>
-      <y>1773</y>
+      <y>1755</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1383,7 +1388,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2682</x>
-      <y>1719</y>
+      <y>1701</y>
       <w>315</w>
       <h>45</h>
     </coordinates>
@@ -1396,7 +1401,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2700</x>
-      <y>1611</y>
+      <y>1593</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1409,7 +1414,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2763</x>
-      <y>1557</y>
+      <y>1539</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1422,7 +1427,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3231</x>
-      <y>1530</y>
+      <y>1512</y>
       <w>108</w>
       <h>234</h>
     </coordinates>
@@ -1433,7 +1438,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3231</x>
-      <y>1557</y>
+      <y>1539</y>
       <w>162</w>
       <h>207</h>
     </coordinates>
@@ -1444,7 +1449,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3231</x>
-      <y>1620</y>
+      <y>1602</y>
       <w>225</w>
       <h>144</h>
     </coordinates>
@@ -1455,7 +1460,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3240</x>
-      <y>1737</y>
+      <y>1719</y>
       <w>279</w>
       <h>27</h>
     </coordinates>
@@ -1466,7 +1471,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3231</x>
-      <y>1674</y>
+      <y>1656</y>
       <w>279</w>
       <h>90</h>
     </coordinates>
@@ -1477,7 +1482,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3231</x>
-      <y>1719</y>
+      <y>1701</y>
       <w>234</w>
       <h>90</h>
     </coordinates>
@@ -1488,7 +1493,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3231</x>
-      <y>1728</y>
+      <y>1710</y>
       <w>162</w>
       <h>144</h>
     </coordinates>
@@ -1499,7 +1504,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3240</x>
-      <y>1719</y>
+      <y>1701</y>
       <w>90</w>
       <h>198</h>
     </coordinates>
@@ -1510,7 +1515,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3123</x>
-      <y>1719</y>
+      <y>1701</y>
       <w>144</w>
       <h>198</h>
     </coordinates>
@@ -1521,7 +1526,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3069</x>
-      <y>1719</y>
+      <y>1701</y>
       <w>207</w>
       <h>135</h>
     </coordinates>
@@ -1532,7 +1537,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3033</x>
-      <y>1728</y>
+      <y>1710</y>
       <w>243</w>
       <h>81</h>
     </coordinates>
@@ -1543,7 +1548,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2988</x>
-      <y>1728</y>
+      <y>1710</y>
       <w>288</w>
       <h>27</h>
     </coordinates>
@@ -1554,7 +1559,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>2988</x>
-      <y>1683</y>
+      <y>1665</y>
       <w>288</w>
       <h>72</h>
     </coordinates>
@@ -1565,7 +1570,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3015</x>
-      <y>1620</y>
+      <y>1602</y>
       <w>261</w>
       <h>144</h>
     </coordinates>
@@ -1576,7 +1581,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3078</x>
-      <y>1566</y>
+      <y>1548</y>
       <w>198</w>
       <h>198</h>
     </coordinates>
@@ -1587,7 +1592,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>3168</x>
-      <y>1539</y>
+      <y>1521</y>
       <w>99</w>
       <h>225</h>
     </coordinates>
@@ -1598,7 +1603,7 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>2673</x>
-      <y>1665</y>
+      <y>1647</y>
       <w>324</w>
       <h>45</h>
     </coordinates>
@@ -1611,14 +1616,14 @@ deploy(cells : ArrayList&lt;Cell&gt; , spell : Spell) : void</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>4302</x>
-      <y>45</y>
+      <y>27</y>
       <w>270</w>
       <h>117</h>
     </coordinates>
     <panel_attributes>GraveYardMenu
 --
 showInfo(): void
-</panel_attributes>
+showCards() : </panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
