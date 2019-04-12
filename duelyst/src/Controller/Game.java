@@ -9,6 +9,8 @@ public class Game {
 
     public static void main(String[] args) {
 
+        //just wanna make sure everything is alright with vcs !
+
     }
 
 }
