@@ -1,4 +1,4 @@
 package Model.item;
 
-public class Flag {
+public class Flag extends Item{
 }

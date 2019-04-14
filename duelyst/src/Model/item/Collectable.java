@@ -1,4 +1,4 @@
 package Model.item;
 
-public class Collectable {
+public class Collectable extends Item {
 }
