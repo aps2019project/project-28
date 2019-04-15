@@ -6,13 +6,15 @@ import Model.item.Usable;
 
 import java.util.ArrayList;
 
-public class Collection {
-
+public class Collection{
     private ArrayList<Deck> decks = new ArrayList<>();
+    private ArrayList<Deck> tempDecks = new ArrayList<>(decks);
     private ArrayList<Card> cards = new ArrayList<>();
+    private ArrayList<Card> tempCards = new ArrayList<>(cards);
     private ArrayList<Usable> usables;
     private Account owner;
     private Deck mainDeck;
+    private Deck tempMainDeck;
     private final int MAX_USABLES = 3;
 
     private boolean hasDeck(String name){
@@ -33,24 +35,6 @@ public class Collection {
             }
         }
         return null;
-    }
-
-    private boolean addNewDeck(String name){
-        if(!this.hasDeck(name)) {
-            Deck newDeck = new Deck(name);
-            decks.add(newDeck);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    public void deleteDeck(String name){
-        if(this.hasDeck(name)){
-            Deck delete = getDeckByName(name);
-            decks.remove(delete);
-        }
     }
 
     public ArrayList<Card> getCards() {
@@ -139,14 +123,32 @@ public class Collection {
         return null;
     }
 
-    public void setMainDeck(String deckName) {
+    private boolean addNewDeck(String name){
+        if(!this.hasDeck(name)) {
+            Deck newDeck = new Deck(name);
+            this.tempDecks.add(newDeck);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void deleteDeck(String name){
+        if(this.hasDeck(name)){
+            Deck delete = getDeckByName(name);
+            tempDecks.remove(delete);
+        }
+    }
+
+    public void setMainDeck(String deckName){
         Deck mainDeck = getDeck(deckName);
-        this.mainDeck = mainDeck;
+        this.tempMainDeck = mainDeck;
     }
 
     public boolean addCardToCollection(Card card){
         if(!hasCard(card)){
-            cards.add(card);
+            tempCards.add(card);
             return true;
         }
         return false;
@@ -157,6 +159,11 @@ public class Collection {
     }
 
     public void save(){
-
+        decks = tempDecks;
+        tempMainDeck = null;
+        cards = tempCards;
+        tempCards = null;
+        mainDeck = tempMainDeck;
+        tempMainDeck = null;
     }
 }

@@ -5,7 +5,7 @@ import Model.item.Item;
 
 import java.util.ArrayList;
 
-public class Deck {
+public class Deck{
 
     private ArrayList<Card> cards = new ArrayList<>();
     private Item item;
