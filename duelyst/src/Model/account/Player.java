@@ -1,6 +1,9 @@
 package Model.account;
 
+import Model.item.Collectable;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Player {
     private Account user;
@@ -15,4 +18,15 @@ public class Player {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return player.user.equals(this.user);
+    }
+
+    public Account getUser() {
+        return user;
+    }
 }

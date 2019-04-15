@@ -13,6 +13,11 @@ public class Cell {
     private boolean hasFlag = false;
     private boolean isFull = false;
 
+    public Cell(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public int getX() {
         return x;
     }
