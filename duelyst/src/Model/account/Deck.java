@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Deck{
-
+    Collection collection;
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
     private Hero hero;
@@ -18,6 +18,10 @@ public class Deck{
 
     public Deck(String name){
         this.name = name;
+    }
+
+    public void setCollection(Collection collection) {
+        this.collection = collection;
     }
 
     private ArrayList<Card> getCards() {
@@ -117,8 +121,8 @@ public class Deck{
     }
 
     public void addToDeck(int ID){
-        addCardToDeck(Card.getCardByID(ID));
-        addItemToDeck(Item.getItemByID(ID));
+        addCardToDeck(collection.getCard(ID));
+        addItemToDeck(collection.getItem(ID));
     }
 
 }

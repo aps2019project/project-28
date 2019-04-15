@@ -1,9 +1,9 @@
 package Model.card;
 
 public class Card {
-    public static Card getCardByID(int id) {
-    }
+    private int cardID;
 
     public int getCardID() {
+        return cardID;
     }
 }
