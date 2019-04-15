@@ -25,7 +25,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0aa2c937-186d-4bd4-b889-0e251daac6ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/Model/account/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/account/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/Card.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,52 +33,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Model/account/Deck.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="70" column="38" lean-forward="true" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#hasCard#0;class#Deck#0" />
-                <element signature="method#hasItem#0;class#Deck#0" />
-                <element signature="method#validateDeck#0;class#Deck#0" />
-                <element signature="method#removeCardFromDeck#0;class#Deck#0" />
-                <element signature="method#removeItemFromDeck#0;class#Deck#0" />
-                <element signature="method#addCardToDeck#0;class#Deck#0" />
-                <element signature="method#addItemToDeck#0;class#Deck#0" />
-                <element signature="method#addToDeck#0;class#Deck#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="75" column="10" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#hasDeck#0;class#Collection#0" />
-                <element signature="method#getDeckByName#0;class#Collection#0" />
-                <element signature="method#hasCard#0;class#Collection#0" />
-                <element signature="method#hasCard#1;class#Collection#0" />
-                <element signature="method#getCard#0;class#Collection#0" />
-                <element signature="method#getCard#1;class#Collection#0" />
-                <element signature="method#hasItem#0;class#Collection#0" />
-                <element signature="method#getDeck#0;class#Collection#0" />
-                <element signature="method#addNewDeck#0;class#Collection#0" />
-                <element signature="method#deleteDeck#0;class#Collection#0" />
-                <element signature="method#addCardToCollection#0;class#Collection#0" />
-                <element signature="method#save#0;class#Collection#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -176,7 +130,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555312768128" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555313228437" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.file-colors" />
   </component>
@@ -212,7 +166,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.260745" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -289,16 +242,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Hand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="44" lean-forward="true" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/item/Usable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -327,28 +270,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="75" column="10" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#hasDeck#0;class#Collection#0" />
-            <element signature="method#getDeckByName#0;class#Collection#0" />
-            <element signature="method#hasCard#0;class#Collection#0" />
-            <element signature="method#hasCard#1;class#Collection#0" />
-            <element signature="method#getCard#0;class#Collection#0" />
-            <element signature="method#getCard#1;class#Collection#0" />
-            <element signature="method#hasItem#0;class#Collection#0" />
-            <element signature="method#getDeck#0;class#Collection#0" />
-            <element signature="method#addNewDeck#0;class#Collection#0" />
-            <element signature="method#deleteDeck#0;class#Collection#0" />
-            <element signature="method#addCardToCollection#0;class#Collection#0" />
-            <element signature="method#save#0;class#Collection#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/card/Card.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -360,10 +281,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="75" column="10" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#hasDeck#0;class#Collection#0" />
+            <element signature="method#getDeckByName#0;class#Collection#0" />
+            <element signature="method#hasCard#0;class#Collection#0" />
+            <element signature="method#hasCard#1;class#Collection#0" />
+            <element signature="method#getCard#0;class#Collection#0" />
+            <element signature="method#getCard#1;class#Collection#0" />
+            <element signature="method#hasItem#0;class#Collection#0" />
+            <element signature="method#getItem#0;class#Collection#0" />
+            <element signature="method#getDeck#0;class#Collection#0" />
+            <element signature="method#addNewDeck#0;class#Collection#0" />
+            <element signature="method#deleteDeck#0;class#Collection#0" />
+            <element signature="method#addCardToCollection#0;class#Collection#0" />
+            <element signature="method#save#0;class#Collection#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Hand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/account/Deck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="70" column="38" lean-forward="true" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
+        <state relative-caret-position="256">
+          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#hasCard#0;class#Deck#0" />

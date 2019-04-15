@@ -24,7 +24,7 @@ public class Deck{
         this.collection = collection;
     }
 
-    private ArrayList<Card> getCards() {
+    public ArrayList<Card> getCards() {
         return cards;
     }
 
