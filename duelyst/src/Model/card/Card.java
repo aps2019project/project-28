@@ -4,7 +4,7 @@ import Model.account.Collection;
 
 import java.util.ArrayList;
 
-public class Card {
+public abstract class Card {
     private static ArrayList<Card> cards=new ArrayList<>();
 
     protected Collection superCollection;
@@ -19,6 +19,7 @@ public class Card {
         this.price = price;
         this.manaPoint = manaPoint;
     }
+
 
     public static Card getCard(int cardID) {
         for (Card card : Card.cards) {
@@ -41,36 +42,23 @@ public class Card {
     }
 
 
+
+
     public int getCardID() {
         return cardID;
-    }
-
-    public void setCardID(int cardID) {
-        this.cardID = cardID;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getPrice() {
         return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public int getManaPoint() {
         return manaPoint;
     }
 
-    public void setManaPoint(int manaPoint) {
-        this.manaPoint = manaPoint;
-    }
 }
 

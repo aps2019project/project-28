@@ -4,13 +4,12 @@ import Controller.Game;
 import Model.Map.Cell;
 import Model.Map.Map;
 import Model.card.Card;
-import Model.card.spell.AttackType;
 import Model.card.spell.SpecialPower;
 import Model.card.spell.Spell;
 
 import java.util.ArrayList;
 
-public class Hermione extends Card {
+public abstract class Hermione extends Card {
 
     protected int healthPoint;
     protected int attackPoint;
@@ -19,13 +18,13 @@ public class Hermione extends Card {
     protected AttackType attackType;
     protected int range;
     protected int moveRange;
-    protected boolean canAttack;
-    protected boolean canMove;
+    protected int actionTurn;//0 move    1 attack
     protected Cell location;
     protected boolean canCounterattack;
     protected int numberOfFlags;
 
-    public Hermione(int cardID, String name, int price, int manaPoint, int healthPoint, int attackPoint, SpecialPower specialPower, AttackType attackType, int range, int moveRange) {
+    public Hermione(int cardID, String name, int price, int manaPoint, int healthPoint, int attackPoint
+            , SpecialPower specialPower, AttackType attackType, int range, int moveRange) {
         super(cardID, name, price, manaPoint);
         this.healthPoint = healthPoint;
         this.attackPoint = attackPoint;
@@ -35,8 +34,16 @@ public class Hermione extends Card {
         this.moveRange = moveRange;
     }
 
+
+    public void attack(Cell cell){
+        this.attackType.attack(cell.getCardOnCell());
+    }
+    public void counterAttack(Card enemyCard){
+        this.attackType.counterAttack(enemyCard);
+    }
+
     private boolean canMove(int x,int y){
-        if(!this.canMove)return false;
+        if(this.actionTurn==1)return false;
 
         if(Map.getManhattanDistance(this.location,new Cell(x,y))<=this.moveRange)return true;
         return false;
@@ -48,10 +55,8 @@ public class Hermione extends Card {
         return true;
     }
 
-    public boolean applySpecialPower(Cell cell){
-        // TODO: 4/14/19 saE's job
-        return true;
-    }
+    public  abstract boolean applySpecialPower();// TODO: 4/15/19 saE
+
     private void handleAppliedSpells(){
         for (Spell appliedSpell : this.appliedSpells) {
             appliedSpell.deploy(Game.battle.getMe(this.superCollection.getOwner())
