@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Deck{
-    Collection collection;
+    private Collection collection ;
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
+
     private Hero hero;
     private String name;
     private int ID;

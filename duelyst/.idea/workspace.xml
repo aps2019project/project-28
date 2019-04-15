@@ -24,8 +24,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0aa2c937-186d-4bd4-b889-0e251daac6ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/account/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/account/Deck.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,12 +34,48 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
+            <state relative-caret-position="870">
+              <caret line="167" column="5" selection-start-line="167" selection-start-column="5" selection-end-line="167" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#hasDeck#0;class#Collection#0" />
+                <element signature="method#getDeckByName#0;class#Collection#0" />
+                <element signature="method#hasCard#0;class#Collection#0" />
+                <element signature="method#hasCard#1;class#Collection#0" />
+                <element signature="method#getCard#0;class#Collection#0" />
+                <element signature="method#getCard#1;class#Collection#0" />
+                <element signature="method#hasItem#0;class#Collection#0" />
+                <element signature="method#getItem#0;class#Collection#0" />
+                <element signature="method#getDeck#0;class#Collection#0" />
+                <element signature="method#addNewDeck#0;class#Collection#0" />
+                <element signature="method#deleteDeck#0;class#Collection#0" />
+                <element signature="method#addCardToCollection#0;class#Collection#0" />
+                <element signature="method#save#0;class#Collection#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Model/account/Deck.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#555#556#0" expanded="true" />
+                <element signature="e#599#600#0" expanded="true" />
+                <element signature="method#hasCard#0;class#Deck#0" />
+                <element signature="method#hasItem#0;class#Deck#0" />
+                <element signature="method#validateDeck#0;class#Deck#0" />
+                <element signature="method#removeCardFromDeck#0;class#Deck#0" />
+                <element signature="method#removeItemFromDeck#0;class#Deck#0" />
+                <element signature="method#addCardToDeck#0;class#Deck#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -71,9 +107,9 @@
         <option value="$PROJECT_DIR$/../../../TA/src/AP.java" />
         <option value="$PROJECT_DIR$/src/Model/item/Item.java" />
         <option value="$PROJECT_DIR$/src/Model/card/Card.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/Model/account/Collection.java" />
         <option value="$PROJECT_DIR$/src/Model/account/Deck.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -87,17 +123,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
               <item name="duelyst" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
-              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
@@ -143,11 +175,10 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555316729775" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555316861868" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -182,13 +213,21 @@
       <option name="presentableId" value="Default" />
       <updated>1555164028662</updated>
     </task>
+    <task id="LOCAL-00001" summary="Collection 1.0.0&#10;final touches&#10;&#10;written by fatteme">
+      <created>1555316831501</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1555316831501</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26432666" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27292264" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -203,7 +242,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="TeamCity" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32899868" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32899868" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -247,6 +286,10 @@
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Key Promoter X" order="9" />
     </layout-to-restore>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Collection 1.0.0&#10;final touches&#10;&#10;written by fatteme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Collection 1.0.0&#10;final touches&#10;&#10;written by fatteme" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Model/item/Collectable.java">
@@ -302,10 +345,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Hand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="75" column="10" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
+        <state relative-caret-position="870">
+          <caret line="167" column="5" selection-start-line="167" selection-start-column="5" selection-end-line="167" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#hasDeck#0;class#Collection#0" />
@@ -325,38 +385,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Hand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/account/Deck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+        <state relative-caret-position="345">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#555#556#0" expanded="true" />
+            <element signature="e#599#600#0" expanded="true" />
             <element signature="method#hasCard#0;class#Deck#0" />
             <element signature="method#hasItem#0;class#Deck#0" />
             <element signature="method#validateDeck#0;class#Deck#0" />
             <element signature="method#removeCardFromDeck#0;class#Deck#0" />
             <element signature="method#removeItemFromDeck#0;class#Deck#0" />
             <element signature="method#addCardToDeck#0;class#Deck#0" />
-            <element signature="method#addItemToDeck#0;class#Deck#0" />
-            <element signature="method#addToDeck#0;class#Deck#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
         </state>
       </provider>
     </entry>
