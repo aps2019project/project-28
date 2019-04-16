@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class Map {
     private static ArrayList<Map> maps;
-    private static final int HEIGHT = 5;
-    private static final int WIDTH = 9;
+    public static final int HEIGHT = 5;
+    public static final int WIDTH = 9;
     private Cell[][] board=new Cell[Map.HEIGHT][Map.WIDTH];
     private ArrayList<Flag> flags;
 
