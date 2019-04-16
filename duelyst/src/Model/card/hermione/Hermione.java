@@ -60,6 +60,7 @@ public abstract class Hermione extends Card {
     private void handleAppliedSpells(){
         for (Spell appliedSpell : this.appliedSpells) {
             appliedSpell.deploy(Game.battle.getMe(this.superCollection.getOwner())
+
                     ,Game.battle.getEnemy(super.superCollection.getOwner()));
             // TODO: 4/15/19 im not sure if its implemented correctly
         }
