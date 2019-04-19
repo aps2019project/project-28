@@ -1,35 +1,52 @@
 package Model.card.spell;
 
+import Controller.Battle;
 import Controller.Game;
+import Controller.Match;
 import Model.account.Player;
 import Model.card.Card;
 import Model.Map.*;
+import Model.card.hermione.Hermione;
 import Model.card.hermione.Minion;
 
 import javax.swing.text.View;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-interface Target {
-    public void deploy(Player player, Player enemy, Cell cell, Spell spell);
-}
-
-interface Action {
-    public void deploy(Spell spell, Cell... cells);
-}
 
 public class Spell extends Card {
     protected Target target;
     protected Action action;
-    protected int range;
+    protected int duration ;
+    protected int perk ;
 
     public Spell(int cardID, String name, int price, int manaPoint) {
         super(cardID, name, price, manaPoint);
     }
 
+    public int getDuration() {
+        return duration;
+    }
+
+    public void decreaseDuration() {duration--;}
+
     public void deploy(Player player, Player enemy, Cell cell) {
         this.target.deploy(player, enemy, cell, this);
     }
+
+    public void reverseChanges(Player player , Player enemy){return;}
+
+    public void deployAction(Cell... cells){
+        this.action.deploy(this , cells);
+    }
+}
+
+
+
+
+
+interface Target {
+    public void deploy(Player player, Player enemy, Cell cell, Spell spell);
 }
 
 class TargetSingleCell implements Target {
@@ -229,3 +246,136 @@ class TargetEnemyHeroColumn implements Target {
 }
 
 
+
+
+interface Action {
+    public void deploy(Spell spell, Cell... cells);
+}
+
+class ActionDisarm implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+        for (Cell cell : cells){
+            cell.getCardOnCell().setCanCounterattack(false);
+        }
+    }
+}
+
+class ActionBuffDistroyer implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+
+    }
+}
+
+class ActionChangeAP implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+        for (Cell cell : cells){
+            Hermione card = cell.getCardOnCell() ;
+            card.setAttackPoint(card.getAttackPoint() + spell.perk);
+        }
+    }
+}
+
+class ActionChangeHP implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+        for (Cell cell : cells){
+            Hermione card = cell.getCardOnCell() ;
+            card.setHealthPoint(card.getHealthPoint() + spell.perk);
+        }
+    }
+}
+
+class ActionFireCell implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+        for (Cell cell : cells){
+            cell.
+        }
+    }
+}
+
+class ActionMakeFireCell implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+        Spell
+        for (Cell cell : cells){
+            cell.applySpellOnCard();
+        }
+    }
+}
+
+class ActionPoisonCell implements Action {
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+
+    }
+}
+
+class ActionDisarmAndAddAP implements Action{
+    //has duration
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+        spell.decreaseDuration();
+        ActionDisarm disarm = new ActionDisarm();
+        disarm.deploy(spell , cells);
+        ActionChangeAP addap = new ActionChangeAP() ;
+        addap.deploy(spell , cells);
+    }
+}
+
+class ActionPoison implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+
+    }
+}
+
+class ActionDispel implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+
+    }
+}
+
+class ActionHealthWithProfit implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+
+    }
+}
+
+class ActionGhazaBokhor implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+
+    }
+}
+
+class ActionSacrifice implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+        for (Cell cell : cells){
+            int mhp = cell.getCardOnCell().getHealthPoint() ;
+            cell.getCardOnCell().setHealthPoint(0);
+            Player player = Game.battle.getPlayer();
+            player.getHero().setHealthPoint(player.getHero().getHealthPoint() + mhp);
+        }
+    }
+}
+
+class ActionKillMinion implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+        cells[0].getCardOnCell().setHealthPoint(0);
+    }
+}
+
+class ActionStun implements Action{
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+
+    }
+}

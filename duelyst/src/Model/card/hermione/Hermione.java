@@ -20,7 +20,7 @@ public abstract class Hermione extends Card {
     protected int moveRange;
     protected int actionTurn;//0 move    1 attack
     protected Cell location;
-    protected boolean canCounterattack;
+    protected boolean canCounterattack = true ;
     protected int numberOfFlags;
 
     public Hermione(int cardID, String name, int price, int manaPoint, int healthPoint, int attackPoint
@@ -38,8 +38,9 @@ public abstract class Hermione extends Card {
     public void attack(Cell cell){
         this.attackType.attack(cell.getCardOnCell());
     }
+
     public void counterAttack(Card enemyCard){
-        this.attackType.counterAttack(enemyCard);
+        if (this.canCounterattack) this.attackType.counterAttack(enemyCard);
     }
 
     private boolean canMove(int x,int y){
@@ -156,4 +157,6 @@ public abstract class Hermione extends Card {
     public void setNumberOfFlags(int numberOfFlags) {
         this.numberOfFlags = numberOfFlags;
     }
+
+
 }
