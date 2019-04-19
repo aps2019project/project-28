@@ -11,7 +11,7 @@ public class Map {
     private Cell[][] board=new Cell[Map.HEIGHT][Map.WIDTH];
     private ArrayList<Flag> flags;
 
-    public static int getDistance(Cell cell1, Cell cell2) {
+    public static int getManhattanDistance(Cell cell1, Cell cell2) {
         return Math.abs(cell1.getX()-cell2.getX())+Math.abs(cell1.getY()-cell2.getY());
     }
     public Cell getCell(int x, int y){

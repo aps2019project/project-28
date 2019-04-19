@@ -1,7 +1,9 @@
 package Model.account;
 
 import Model.card.Card;
+import Model.card.hermione.Hero;
 import Model.item.Item;
+import Model.item.Usable;
 
 import java.util.ArrayList;
 import java.util.Collections;
