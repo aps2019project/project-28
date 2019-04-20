@@ -14,8 +14,15 @@ public class Map {
     public static int getManhattanDistance(Cell cell1, Cell cell2) {
         return Math.abs(cell1.getX()-cell2.getX())+Math.abs(cell1.getY()-cell2.getY());
     }
+    public static int getRadiusDistance(Cell cell1, Cell cell2) {
+        return Integer.max(Math.abs(cell1.getX()-cell2.getX()),Math.abs(cell1.getY()-cell2.getY()));
+
+    }
     public Cell getCell(int x, int y){
         return board[x][y];
+    }
+    public Cell getCell(Cell cell){
+        return board[cell.getX()][cell.getY()];
     }
 
 }

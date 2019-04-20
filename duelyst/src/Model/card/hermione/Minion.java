@@ -13,7 +13,7 @@ public class Minion extends Hermione{
 
     @Override
     public void spawn(Cell cell){
-        this.setLocation(cell);
+        super.spawn(cell);
         this.itIsTime("spawn");
     }
 
@@ -30,7 +30,7 @@ public class Minion extends Hermione{
     }
 
     @Override
-    public void counterAttack(Card enemyCard) {
+    public void counterAttack(Hermione enemyCard) {
         this.itIsTime("defend");
         super.counterAttack(enemyCard);
     }
