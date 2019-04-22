@@ -86,7 +86,6 @@ public abstract class Hermione extends Card {
     }
     public void die(){
         Game.battle.getMap().getCell(this.getLocation()).setFull(false);
-
     }
 
 
