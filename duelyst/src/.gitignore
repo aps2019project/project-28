@@ -22,9 +22,10 @@
 *.rar
 
 #git ignore
-*.misc.xml
-*.modules.xml
-*.uiDesigner.xml
+.idea/uiDesigner.xml
+.idea/workspace.xml
+.idea/misc.xml
+.idea/modules.xml
 
 *workspace.xml
 
