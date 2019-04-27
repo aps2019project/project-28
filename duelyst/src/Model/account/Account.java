@@ -1,10 +1,15 @@
 package Model.account;
 
+import Controller.Match;
+
 import java.util.ArrayList;
 public class Account {
     private static ArrayList<Account> accounts=new ArrayList<>();
     private static int unique =0;
     private static final int INITIAL_MONEY = 1500;
+
+    private Player player;
+
     private String name;
     private String username;
     private String password;
@@ -127,5 +132,24 @@ public class Account {
     }
     public void setStoryModeSPX(int storyModeSPX) {
         this.storyModeSPX = storyModeSPX;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Account account=(Account)obj;
+
+        return this.ID==account.ID;
+    }
+
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
