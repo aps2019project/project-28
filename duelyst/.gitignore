@@ -15,6 +15,7 @@
 # Package Files #
 *.jar
 *.war
+*.ss
 *.nar
 *.ear
 *.zip
@@ -22,11 +23,16 @@
 *.rar
 
 #git ignore
-*.encodings.xml
-*.misc.xml
-*.modules.xml
-*.workspace.xml
+
+.idea/codeStyles/*
+.idea/codeStyles
+
+.idea/dictionaries/*
+.idea/dictionaries
+
 .idea/*
+duelyst.iml
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 

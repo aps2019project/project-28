@@ -15,7 +15,6 @@
 # Package Files #
 *.jar
 *.war
-*.ss
 *.nar
 *.ear
 *.zip
@@ -23,12 +22,11 @@
 *.rar
 
 #git ignore
-.idea/uiDesigner.xml
-.idea/workspace.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/vcs.xml
-.idea/dictionaries/ksus.xml
+*.misc.xml
+*.modules.xml
+*.uiDesigner.xml
+
+*workspace.xml
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
