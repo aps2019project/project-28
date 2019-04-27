@@ -59,6 +59,7 @@ public abstract class Hermione extends Card {
         return false;
     }
 
+
     public boolean move (int x, int y){
         if(!canMove(x,y))return false;
         Game.battle.getMap().getCell(this.location).clear();

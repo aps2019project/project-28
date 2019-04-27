@@ -13,6 +13,13 @@ public class Player {
     private ArrayList<Collectable> collectables;
     private Deck deck;
 
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+    public int getMana() {
+        return mana;
+    }
 
     public void handleWin(){
 
