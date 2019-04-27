@@ -72,9 +72,6 @@ public class Collection{
         }
         return false;
     }
-    public void setOwner(Account owner) {
-        this.owner = owner;
-    }
 
     public Card getCard(int cardID){
         for (Card card:
