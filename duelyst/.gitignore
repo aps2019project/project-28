@@ -26,11 +26,11 @@
 hs_err_pid*
 
 
-.DS_Store
-output/production/*
-.idea/uiDesigner.xml
-.idea/duelyst.iml
-.idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/workspace.xml
+#.DS_Store
+#output/production/*
+#.idea/uiDesigner.xml
+#.idea/duelyst.iml
+#.idea/encodings.xml
+#.idea/misc.xml
+#.idea/modules.xml
+#.idea/workspace.xml
