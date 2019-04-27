@@ -16,7 +16,7 @@ import java.util.Arrays;
 
 public class Spell extends Card {
     protected Target target;
-    protected Action action;
+    protected ArrayList<Action> action = new ArrayList<>();
     protected int duration;
     protected int perk;
 
