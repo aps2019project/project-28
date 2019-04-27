@@ -25,12 +25,20 @@
 #git ignore
 
 .idea/codeStyles/*
-.idea/codeStyles
+.idea/codeStylesgit
+
 
 .idea/dictionaries/*
 .idea/dictionaries
 
-.idea/*
+.idea/encodings.xml
+.idea/duelyst.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/uiDesigner.xml
+.idea/workspace.xml
+
+
 duelyst.iml
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
