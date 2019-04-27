@@ -2,17 +2,22 @@ package Model.Map;
 
 import Model.card.Card;
 import Model.card.hermione.Hermione;
+import Model.card.spell.Buff;
 import Model.card.spell.Spell;
 
 import java.util.ArrayList;
+
+
 
 public class Cell {
     private int x;
     private int y;
     private Hermione cardOnCell;
     private ArrayList<Spell> appliedSpells;
+    private ArrayList<Buff> appliedBuffs ;
     private boolean hasFlag = false;
     private boolean isFull = false;
+    private CellAffects cellAffect = CellAffects.normal ;
 
     public Cell(int x, int y) {
         this.x = x;
@@ -36,7 +41,7 @@ public class Cell {
         this.cardOnCell = cardOnCell;
     }
 
-    public void applySpellOnCard(Spell spell){
+    public void applySpellOnCell(Spell spell){
         this.appliedSpells.add(spell) ;
     }
 
@@ -61,4 +66,25 @@ public class Cell {
     public void setFull(boolean full) {
         isFull = full;
     }
+
+    public ArrayList<Buff> getAppliedBuffs() {
+        return appliedBuffs;
+    }
+
+    public ArrayList<Spell> getAppliedSpells() {
+        return appliedSpells;
+    }
+
+    public void applyBuffOnCell(Buff buff){
+        this.appliedBuffs.add(buff);
+    }
+
+    public CellAffects getCellAffect() {
+        return cellAffect;
+    }
+
+    public void setCellAffect(CellAffects cellAffect) {
+        this.cellAffect = cellAffect;
+    }
+
 }

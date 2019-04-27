@@ -13,6 +13,7 @@ public abstract class Hermione extends Card {
 
     protected int healthPoint;
     protected int attackPoint;
+    protected int originalAttackPoint ;
     protected Model.card.spell.SpecialPower SpecialPower;
     protected ArrayList<Spell> appliedSpells;
     protected AttackType attackType;
@@ -21,6 +22,7 @@ public abstract class Hermione extends Card {
     protected int actionTurn;//0 move    1 attack
     protected Cell location;
     protected boolean canCounterattack = true ;
+    protected boolean canAttack = true ;
     protected int numberOfFlags;
 
     public Hermione(int cardID, String name, int price, int manaPoint, int healthPoint, int attackPoint
@@ -28,6 +30,7 @@ public abstract class Hermione extends Card {
         super(cardID, name, price, manaPoint);
         this.healthPoint = healthPoint;
         this.attackPoint = attackPoint;
+        this.originalAttackPoint = attackPoint ;
         SpecialPower = specialPower;
         this.attackType = attackType;
         this.range = range;
@@ -77,12 +80,19 @@ public abstract class Hermione extends Card {
     public void setHealthPoint(int healthPoint) {
         this.healthPoint = healthPoint;
     }
+    public void changeHealthPoint(int healthPoint) {
+        this.healthPoint += healthPoint;
+    }
 
     public int getAttackPoint() {
         return attackPoint;
     }
 
     public void setAttackPoint(int attackPoint) {
+        this.attackPoint = attackPoint;
+    }
+
+    public void changeAttackPoint(int attackPoint) {
         this.attackPoint = attackPoint;
     }
 
@@ -158,5 +168,5 @@ public abstract class Hermione extends Card {
         this.numberOfFlags = numberOfFlags;
     }
 
-
+    public void reverseChanges(){} //TODO: Arshia
 }

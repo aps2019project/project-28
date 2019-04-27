@@ -1,5 +1,6 @@
 package Model.card;
 
+import Model.account.Account;
 import Model.account.Collection;
 
 import java.util.ArrayList;
@@ -12,12 +13,14 @@ public abstract class Card {
     private String name;
     private int price;
     private int manaPoint;
+    private Account owner ;
 
-    public Card(int cardID, String name, int price, int manaPoint) {
+    public Card(int cardID, String name, int price, int manaPoint , Account owner) {
         this.cardID = cardID;
         this.name = name;
         this.price = price;
         this.manaPoint = manaPoint;
+        this.owner = owner ;
     }
 
 
