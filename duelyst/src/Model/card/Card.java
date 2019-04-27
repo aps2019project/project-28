@@ -13,6 +13,7 @@ public abstract class Card {
     private int price;
     private int manaPoint;
 
+
     public Card(int cardID, String name, int price, int manaPoint) {
         this.cardID = cardID;
         this.name = name;
