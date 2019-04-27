@@ -26,9 +26,9 @@
 hs_err_pid*
 
 
-.DS_Store
-output/production/*
-src/.DS_Store
+#.DS_Store
+#output/production/*
+#src/.DS_Store
 .idea/uiDesigner.xml
 .idea/duelyst.iml
 .idea/encodings.xml
