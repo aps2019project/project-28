@@ -1,6 +1,7 @@
 package Model.Map;
 
 import Model.card.Card;
+import Model.card.hermione.Hermione;
 import Model.card.spell.Spell;
 
 import java.util.ArrayList;
@@ -8,10 +9,15 @@ import java.util.ArrayList;
 public class Cell {
     private int x;
     private int y;
-    private Card cardOnCell;
+    private Hermione cardOnCell;
     private ArrayList<Spell> appliedSpells;
     private boolean hasFlag = false;
     private boolean isFull = false;
+
+    public Cell(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
     public int getX() {
         return x;
@@ -21,12 +27,13 @@ public class Cell {
         return y;
     }
 
-    public Card getCardOnCell() {
+    public Hermione getCardOnCell() {
         return cardOnCell;
     }
 
-    public void setCardOnCell(Card cardOnCell) {
+    public void setCardOnCell(Hermione cardOnCell) {
         this.cardOnCell = cardOnCell;
+        this.isFull=true;
     }
 
     public boolean isHasFlag() {
@@ -43,5 +50,10 @@ public class Cell {
 
     public void setFull(boolean full) {
         isFull = full;
+    }
+
+    public void clear(){
+        this.cardOnCell=null;
+        this.isFull=false;
     }
 }
