@@ -21,13 +21,15 @@
 *.tar.gz
 *.rar
 
-#git ignore
-*.misc.xml
-*.modules.xml
-*.uiDesigner.xml
-
-*workspace.xml
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+.DS_Store
+output/
+src/.DS_Store
+.idea/duelyst.iml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
