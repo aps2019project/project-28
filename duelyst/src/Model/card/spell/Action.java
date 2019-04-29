@@ -7,7 +7,7 @@ import Model.account.Player;
 import Model.card.hermione.Hermione;
 
 public interface Action {
-    public void deploy(Spell spell, Cell... cells);
+     void deploy(Spell spell, Cell... cells);
 }
 
 class ActionDisarm implements Action {
@@ -21,7 +21,7 @@ class ActionDisarm implements Action {
     @Override
     public void deploy(Spell spell, Cell... cells) {
         for (Cell cell : cells) {
-            cell.getCardOnCell().setCanCounterAttack(false);
+            cell.getCardOnCell().setCanCounterattack(false);
         }
     }
 }
@@ -124,10 +124,8 @@ class ActionDisarmAndAddAP implements Action {
     @Override
     public void deploy(Spell spell, Cell... cells) {
         spell.decreaseDuration();
-        ActionDisarm disarm = new ActionDisarm();
         ActionDisarm.getAction().deploy(spell, cells);
-        ActionChangeAP addap = new ActionChangeAP();
-        addap.deploy(spell, cells);
+        ActionChangeAP.getAction().deploy(spell, cells);
     }
 }
 
