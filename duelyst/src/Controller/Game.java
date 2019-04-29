@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.Map.Cell;
 import Model.account.Account;
 import Controller.menu.Menu;
 
@@ -17,3 +16,4 @@ public class Game {
     }
 
 }
+

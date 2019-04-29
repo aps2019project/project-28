@@ -166,4 +166,8 @@ public class Collection{
         mainDeck = tempMainDeck;
         tempMainDeck = null;
     }
+
+    public void setOwner(Account owner) {
+        this.owner = owner;
+    }
 }

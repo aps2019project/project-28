@@ -13,6 +13,7 @@ public abstract class Hermione extends Card {
 
     protected int healthPoint;
     protected int attackPoint;
+    protected int originalAttackPoint ;
     protected Model.card.spell.SpecialPower SpecialPower;
     protected ArrayList<Spell> appliedSpells;
     protected AttackType attackType;
@@ -20,19 +21,23 @@ public abstract class Hermione extends Card {
     protected int moveRange;
     protected int actionTurn;//0 move    1 attack
     protected Cell location;
-    protected boolean canCounterAttack;
+    protected boolean canCounterattack = true ;
+    protected boolean canAttack = true ;
     protected int numberOfFlags;
+    private boolean canCounterAttack;
 
     public Hermione(int cardID, String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range, int moveRange) {
         super(cardID, name, price, manaPoint);
         this.healthPoint = healthPoint;
         this.attackPoint = attackPoint;
+        this.originalAttackPoint = attackPoint ;
         SpecialPower = specialPower;
         this.attackType = attackType;
         this.range = range;
         this.moveRange = moveRange;
     }
+
 
 
     public void attack(Cell cell){
@@ -89,11 +94,20 @@ public abstract class Hermione extends Card {
         Game.battle.getMap().getCell(this.getLocation()).setFull(false);
     }
 
+    public void reverseChanges(){
+        this.attackPoint=this.originalAttackPoint;
+        // TODO: 4/29/19 age chizi munde
+    }
 
 
 
 
-
+    public void changeHealthPoint(int healthPoint) {
+        this.healthPoint += healthPoint;
+    }
+    public void changeAttackPoint(int attackPoint) {
+        this.attackPoint = attackPoint;
+    }
     public int getHealthPoint() {
         return healthPoint;
     }
@@ -175,4 +189,10 @@ public abstract class Hermione extends Card {
         this.numberOfFlags = numberOfFlags;
     }
 
+    public boolean CanAttack() {		    
+        return canAttack;
+    }
+    public void setCanAttack(boolean canAttack) {
+        this.canAttack = canAttack;
+    }
 }
