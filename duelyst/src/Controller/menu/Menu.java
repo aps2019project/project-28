@@ -1,9 +1,12 @@
 package Controller.menu;
 
+import Model.account.Account;
+
 import java.util.ArrayList;
 
 public abstract class Menu {
 
+    protected Account account;
     private String name;
     private Menu parentMenu;
     private ArrayList<Menu> subMenus;
