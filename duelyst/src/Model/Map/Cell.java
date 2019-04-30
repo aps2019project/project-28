@@ -13,8 +13,6 @@ public class Cell {
     private int x;
     private int y;
     private Hermione cardOnCell;
-    private ArrayList<Spell> appliedSpells;
-    private ArrayList<Buff> appliedBuffs ;
     private boolean hasFlag = false;
     private boolean isFull = false;
     private CellAffects cellAffect = CellAffects.normal ;
@@ -45,15 +43,6 @@ public class Cell {
         this.cardOnCell=null;
         this.isFull=false;
     }
-    public void applySpellOnCell(Spell spell){
-        this.appliedSpells.add(spell) ;
-    }
-
-    public void applyAllSpells(){
-        for (Spell spell : appliedSpells){
-            spell.deployAction(this);
-        }
-    }
 
     public boolean isHasFlag() {
         return hasFlag;
@@ -69,18 +58,6 @@ public class Cell {
 
     public void setFull(boolean full) {
         isFull = full;
-    }
-
-    public ArrayList<Buff> getAppliedBuffs() {
-        return appliedBuffs;
-    }
-
-    public ArrayList<Spell> getAppliedSpells() {
-        return appliedSpells;
-    }
-
-    public void applyBuffOnCell(Buff buff){
-        this.appliedBuffs.add(buff);
     }
 
     public CellAffects getCellAffect() {
