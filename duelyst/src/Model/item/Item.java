@@ -3,8 +3,11 @@ package Model.item;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
 
+import java.util.ArrayList;
+
 public abstract class Item {
 
+    private static ArrayList<Item> item=new ArrayList<>();
     String name;
     String effect;//no ha ba space joda mishan
     int itemID;
@@ -13,6 +16,11 @@ public abstract class Item {
         this.name = name;
         this.effect = effect;
         this.itemID = itemID;
+    }
+
+
+    public static boolean hasItem(int itemID){
+
     }
 
     public String getName() {
