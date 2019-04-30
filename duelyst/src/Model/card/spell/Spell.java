@@ -1,22 +1,16 @@
 package Model.card.spell;
 
-import Controller.Battle;
-import Controller.Game;
-import Controller.Match;
 import Model.account.Player;
 import Model.card.Card;
 import Model.Map.*;
-import Model.card.hermione.Hermione;
-import Model.card.hermione.Minion;
 
-import javax.swing.text.View;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class Spell extends Card {
+    protected ArrayList<Spell> activeSpells = new ArrayList<>() ;
     protected Target target;
-    protected ArrayList<Action> action = new ArrayList<>();
+    protected ArrayList<Action> actions = new ArrayList<>();
     protected int duration;
     protected int perk;
 
@@ -29,10 +23,18 @@ public class Spell extends Card {
     }
 
     public void deploy(Player player, Player enemy, Cell cell) {
-        this.target.deploy(player, enemy, cell, this);
+        activeSpells.add(this);
+        this.target.getTarget(player, enemy, cell, this);
+        this.duration--;
+        if (this.duration == 0) activeSpells.remove(this);
     }
 
     public void deployAction(Cell... cells) {
-        this.action.deploy(this, cells);
+        for (Action action : this.actions)
+            action.deploy(this, cells);
+    }
+
+    public void reverseChanges(Player player , Player enemy , Cell cell){
+
     }
 }
