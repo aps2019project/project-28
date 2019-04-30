@@ -43,10 +43,21 @@ public class Player {
     }
 
 
+    public Hand getHand() {
+        return hand;
+    }
 
+    public int getMaxMana() {
+        return maxMana;
+    }
 
+    public ArrayList<Collectable> getCollectables() {
+        return collectables;
+    }
 
-
+    public Deck getDeck() {
+        return deck;
+    }
 
     public List<Minion> getMinionsInGame() {
         return Collections.unmodifiableList(minionsInGame) ;

@@ -6,11 +6,12 @@ import Model.Map.Cell;
 import Model.Map.Map;
 import Model.account.Player;
 import Model.card.hermione.Minion;
+import exeption.InvalidCellException;
 
 import javax.swing.text.View;
 
 public interface Target {
-    Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell);
+    Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws Throwable;
 }
 
 class TargetSingleCell implements Target {
@@ -25,13 +26,14 @@ class TargetSingleCell implements Target {
 
     @Override
     public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
-        for (Action action : spell.actions)
-            action.deploy(spell, cell);
+        Cell[] cells = new Cell[1] ;
+        cells[0] = cell ;
+        return cells ;
     }
 }
 
 class TargetAllCards{
-    public Cell[] getTarget(Player player, Cell cell, Spell spell){
+     static Cell[] getTarget(Player player, Cell cell, Spell spell){
         Minion[] minions = player.getMinionsInGame().toArray(new Minion[0]);
         Cell[] cells = new Cell[minions.length + 1];
         cells[0] = player.getDeck().getHero().getLocation();
@@ -43,7 +45,7 @@ class TargetAllCards{
     }
 }
 
-class TargetAllEnemyCards extends TargetAllCards implements Target {
+class TargetAllEnemyCards  implements Target {
     private static TargetAllEnemyCards obj;
 
     public static TargetAllEnemyCards getTarget() {
@@ -53,17 +55,16 @@ class TargetAllEnemyCards extends TargetAllCards implements Target {
         return obj ;
     }
 
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
+    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws Throwable {
         if (cell != player.getDeck().getHero().getLocation()) {
-            View.;
-            return;
+            throw new InvalidCellException();
         }
-        super.deploy(enemy, cell, spell);
+        return TargetAllCards.getTarget(enemy, cell, spell);
 
     }
 }
 
-class TargetAllOwnCards extends TargetAllCards implements Target {
+class TargetAllOwnCards implements Target {
     private static TargetAllOwnCards obj;
 
     public static TargetAllOwnCards getTarget() {
@@ -74,12 +75,11 @@ class TargetAllOwnCards extends TargetAllCards implements Target {
     }
 
     @Override
-    public  Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
+    public  Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws Throwable {
         if (cell != player.getDeck().getHero().getLocation()) {
-            View.;
-            return;
+            throw new InvalidCellException();
         }
-        super.deploy(player, cell, spell);
+        TargetAllCards.getTarget(player, cell, spell);
     }
 }
 
@@ -93,14 +93,13 @@ class TargetEnemyHero implements Target {
         return obj ;
     }
     @Override
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
-        if (cell.getCardOnCell() == enemy.getHero()) {
-            View.;
-            return;
+    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws Exception {
+        if (cell.getCardOnCell() == enemy.getDeck().getHero()) {
+            throw new InvalidCellException();
         }
-        for (Action action : spell.actions)
-            action.deploy(spell, cell);
-
+        Cell[] cells = new Cell[1] ;
+        cells[0] = cell ;
+        return cells ;
     }
 }
 
@@ -114,15 +113,13 @@ class TargetEnemyMinion implements Target {
         return obj ;
     }
     @Override
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
-        for (Minion mini : enemy.getMinionsInGame()) {
-            if (mini.getLocation() == cell) {
-                for (Action action : spell.actions)
-                    action.deploy(spell, cell);
-                return;
-            }
+    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws Throwable{
+        if (enemy.getMinionsInGame().contains(cell.getCardOnCell())){
+            Cell[] cells = new Cell[1] ;
+            cells[0] = cell ;
+            return cells ;
         }
-        View.;
+        else throw new InvalidCellException();
     }
 }
 
@@ -136,13 +133,13 @@ class TargetEnemyCard implements Target {
         return obj ;
     }
     @Override
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
-        if (cell.getCardOnCell() != enemy.getHero() && !enemy.getMinionsInGame().contains(cell.getCardOnCell())) {
-            View.;
-            return;
+    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws Throwable{
+        if (cell.getCardOnCell() != enemy.getDeck().getHero() && !enemy.getMinionsInGame().contains(cell.getCardOnCell())) {
+            throw new InvalidCellException();
         }
-        for (Action action : spell.actions)
-            action.deploy(spell, cell);
+        Cell[] cells = new Cell[1] ;
+        cells[0] = cell ;
+        return cells ;
     }
 }
 
@@ -156,13 +153,13 @@ class TargetOwnHero implements Target {
         return obj ;
     }
     @Override
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
+    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws Throwable{
         if (cell != player.getDeck().getHero().getLocation()) {
-            View.;
-            return;
+            throw new InvalidCellException();
         }
-        for (Action action : spell.actions)
-            action.deploy(spell, cell);
+        Cell[] cells = new Cell[1] ;
+        cells[0] = cell ;
+        return cells ;
     }
 }
 
@@ -176,13 +173,13 @@ class TargetOwnMinion implements Target {
         return obj ;
     }
     @Override
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
+    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws Throwable {
         if (!player.getMinionsInGame().contains(cell.getCardOnCell())) {
-            View.;
-            return;
+            throw new InvalidCellException();
         }
-        for (Action action : spell.actions)
-            action.deploy(spell, cell);
+        Cell[] cells = new Cell[1] ;
+        cells[0] = cell ;
+        return cells ;
     }
 }
 
@@ -196,13 +193,13 @@ class TargetOwnCard implements Target {
         return obj ;
     }
     @Override
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
+    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws Throwable {
         if (player.getDeck().getHero().getLocation() != cell && !player.getMinionsInGame().contains(cell.getCardOnCell())) {
-            View.;
-            return;
+            throw new InvalidCellException();
         }
-        for (Action action : spell.actions)
-            action.deploy(spell, cell);
+        Cell[] cells = new Cell[1] ;
+        cells[0] = cell ;
+        return cells ;
     }
 }
 
@@ -216,17 +213,17 @@ class TargetTwoByTwo implements Target {
         return obj ;
     }
     @Override
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
+    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws Throwable {
         int x = cell.getX();
         int y = cell.getY();
         Map map = Game.battle.getMap();
         if (x == Map.WIDTH || y == Map.HEIGHT) {
-            View.;
-            return;
+            throw new InvalidCellException();
         }
         Cell[] cells = {cell, map.getCell(x, y + 1), map.getCell(x + 1, y), map.getCell(x + 1, y + 1)};
-        for (Action action : spell.actions) 
-            action.deploy(spell, cells);
+        Cell[] cells = new Cell[1] ;
+        cells[0] = cell ;
+        return cells ;
     }
 }
 
@@ -240,20 +237,18 @@ class TargetThreeByThree implements Target {
         return obj ;
     }
     @Override
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
+    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws Throwable{
         int x = cell.getX();
         int y = cell.getY();
         Map map = Game.battle.getMap();
         if (x > Map.WIDTH - 2 || y > Map.HEIGHT - 2) {
-            View.;
-            return;
+            throw new InvalidCellException();
         }
         Cell[] cells = {cell, map.getCell(x, y + 1), map.getCell(x, y + 2), map.getCell(x + 1, y),
                 map.getCell(x + 2, y), map.getCell(x + 1, y + 1), map.getCell(x + 1, y + 2),
                 map.getCell(x + 2, y + 1), map.getCell(x + 2, y + 2)};
 
-        for (Action action : spell.actions) 
-            action.deploy(spell, cells);
+        return cells ;
     }
 }
 
@@ -269,7 +264,7 @@ class TargetHeroSurroundings implements Target {
     @Override
     public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
         if (cell != player.getDeck().getHero().getLocation()) {
-            View.;
+            throw new InvalidCellException();
             return;
         }
         Map map = Game.battle.getMap();
@@ -296,7 +291,7 @@ class TargetOwnHeroRow implements Target {
     @Override
     public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
         if (cell != player.getDeck().getHero().getLocation()) {
-            View.;
+            throw new InvalidCellException();
             return;
         }
         Map map = Game.battle.getMap();
@@ -322,7 +317,7 @@ class TargetEnemyHeroColumn implements Target {
     @Override
     public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) {
         if (cell != enemy.getHero().getLocation()) {
-            View.;
+            throw new InvalidCellException();
             return;
         }
         Map map = Game.battle.getMap();
