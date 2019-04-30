@@ -1,17 +1,14 @@
 package Controller.menu;
 
-import com.sun.jdi.ArrayReference;
-
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public abstract class Menu {
 
     private String name;
     private Menu parentMenu;
     private ArrayList<Menu> subMenus;
-    private ArrayList<OnMenuPresentedListener> menuPresenters;
-    private ArrayList<Pattern>patterns;
+    private ArrayList<OnMenuClickedListener> menuPresenters;
+    private ArrayList<String>patterns;
 
 
 
@@ -22,23 +19,28 @@ public abstract class Menu {
     }
 
 
-    public void addPattern(Pattern pattern){
-        this.patterns.add(pattern);t
+    public void addPattern(String pattern){
+        this.patterns.add(pattern);
     }
     public void addSubMenu(Menu subMenu){
         this.subMenus.add(subMenu);
     }
-    public void addMenuPresenteListener(OnMenuPresentedListener presenter){
+    public void addMenuClickListener(OnMenuClickedListener presenter){
         this.menuPresenters.add(presenter);
     }
 
-    public abstract boolean allowsCommand(String command);
+    public boolean allowsCommand(String command){
+        for (String pattern : this.patterns) {
+            if(command.matches(pattern))return true;
+        }
+        return false;
+    }
 
     public abstract void help();
 
     public void init(){
-        for (OnMenuPresentedListener menuPresenter : this.menuPresenters) {
-            menuPresenter.onMenuPresented();
+        for (OnMenuClickedListener presenter : this.menuPresenters) {
+            presenter.show();
         }
     }
 

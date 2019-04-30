@@ -1,6 +1,7 @@
 package Model.account;
 
 import Controller.Match;
+import exeption.AccountDoesntExistException;
 
 import java.util.ArrayList;
 public class Account {
@@ -25,10 +26,11 @@ public class Account {
     public void saveMatchHistory(Match match){
     }
 
-    public void addNewAccount(Account account){
+    public static void addNewAccount(Account account){
         if(Account.hasAccount(account))return;
         Account.getAccounts().add(account);
     }
+
     public Account(String name, String username, String password) {
         this.name = name;
         this.username = username;
@@ -41,27 +43,45 @@ public class Account {
         this.storyModeSPX = 0;
     }
 
-    public static Account getAccount(String username){
+    public static Account getAccount(String username) throws AccountDoesntExistException {
         for (Account account : Account.getAccounts()) {
             if(account.getUsername().equals(username))return account;
         }
-        return null;
+        throw new AccountDoesntExistException();
     }
-    public static Account getAccount(int ID){
+    public static Account getAccount(int ID) throws AccountDoesntExistException {
         for (Account account : Account.getAccounts()) {
             if(account.getID()==ID)return account;
         }
-        return null;
+        throw new AccountDoesntExistException();
     }
 
     public static boolean hasAccount(String username){
-        return Account.getAccount(username)!=null;
+        try {
+            Account.getAccount(username);
+            return true;
+        }
+        catch (AccountDoesntExistException e){
+            return false;
+        }
     }
     public static boolean hasAccount(int ID){
-        return Account.getAccount(ID)!=null;
+        try {
+            Account.getAccount(ID);
+            return true;
+        }
+        catch (AccountDoesntExistException e){
+            return false;
+        }
     }
     public static boolean hasAccount(Account account){
-        return Account.getAccount(account.getID())!=null;
+        try {
+            Account.getAccount(account.getID());
+            return true;
+        }
+        catch (AccountDoesntExistException e){
+            return false;
+        }
     }
 
 
