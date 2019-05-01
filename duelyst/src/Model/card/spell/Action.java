@@ -2,12 +2,12 @@ package Model.card.spell;
 
 
 import Controller.Game;
-import Model.Map.* ;
+import Model.Map.*;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
 
 public interface Action {
-     void deploy(Spell spell, Cell... cells);
+    void deploy(Spell spell, Cell... cells);
 }
 
 class ActionDisarm implements Action {
@@ -21,23 +21,24 @@ class ActionDisarm implements Action {
     @Override
     public void deploy(Spell spell, Cell... cells) {
         for (Cell cell : cells) {
-            cell.getCardOnCell().setCanCounterattack(false);
+            Buff buff = new Buff(spell.duration, false, BuffActionDisarm.getBuffAction());
+            buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
         }
     }
 }
 
-class ActionBuffDistroyer implements Action {
-    private static ActionBuffDistroyer obj;
+class ActionDispel implements Action {
+    private static ActionDispel obj;
 
-    public static ActionBuffDistroyer getAction() {
-        if (obj == null) obj = new ActionBuffDistroyer();
+    public static ActionDispel getAction() {
+        if (obj == null) obj = new ActionDispel();
         return obj;
     }
 
     @Override
     public void deploy(Spell spell, Cell... cells) {
         for (Cell cell : cells) {
-            for (Buff buff : cell.getAppliedBuffs()) {
+            for (Buff buff : cell.getCardOnCell().getAppliedBuffs()) {
                 if (buff.isItPositive() ^ buff.getPlayer() == Game.battle.getPlayer()) {
                     buff.destroy();
                 }
@@ -58,7 +59,8 @@ class ActionChangeAP implements Action {
     public void deploy(Spell spell, Cell... cells) {
         for (Cell cell : cells) {
             Hermione card = cell.getCardOnCell();
-            card.setAttackPoint(card.getAttackPoint() + spell.perk);
+            Buff buff = new Buff(spell.duration, spell.getPerk() > 0, BuffActionAP.getBuffAction());
+            buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
         }
     }
 }
@@ -75,7 +77,8 @@ class ActionChangeHP implements Action {
     public void deploy(Spell spell, Cell... cells) {
         for (Cell cell : cells) {
             Hermione card = cell.getCardOnCell();
-            card.setHealthPoint(card.getHealthPoint() + spell.perk);
+            Buff buff = new Buff(spell.duration, spell.getPerk() > 0, BuffActionHP.getBuffAction());
+            buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
         }
     }
 }
@@ -129,33 +132,22 @@ class ActionDisarmAndAddAP implements Action {
     }
 }
 
-class ActionPoison implements Action {
-    private static ActionPoison obj;
+class ActionAllPoison implements Action {
+    private static ActionAllPoison obj;
 
-    public static ActionPoison getAction() {
-        if (obj == null) obj = new ActionPoison();
+    public static ActionAllPoison getAction() {
+        if (obj == null) obj = new ActionAllPoison();
         return obj;
     }
 
     @Override
     public void deploy(Spell spell, Cell... cells) {
         for (Cell cell : cells) {
-            cell.setCardOnCell();
+            //cell.getCardOnCell().changeHealthPoint(-1);
+            Buff poisonBuff = new Buff(4, false, BuffActionPoison.getBuffAction());
+            poisonBuff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
+
         }
-    }
-}
-
-class ActionDispel implements Action {
-    private static ActionDispel obj;
-
-    public static ActionDispel getAction() {
-        if (obj == null) obj = new ActionDispel();
-        return obj;
-    }
-
-    @Override
-    public void deploy(Spell spell, Cell... cells) {
-
     }
 }
 
@@ -169,7 +161,7 @@ class ActionHealthWithProfit implements Action {
 
     @Override
     public void deploy(Spell spell, Cell... cells) {
-
+        //TODO
     }
 }
 
@@ -183,7 +175,10 @@ class ActionGhazaBokhor implements Action {
 
     @Override
     public void deploy(Spell spell, Cell... cells) {
-
+        for (Cell cell : cells) {
+            Buff buff = new Buff(-1, true, BuffActionAP.getBuffAction() , cell.getCardOnCell().getHealthPoint());
+            buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
+        }
     }
 }
 
@@ -199,9 +194,9 @@ class ActionSacrifice implements Action {
     public void deploy(Spell spell, Cell... cells) {
         for (Cell cell : cells) {
             int mhp = cell.getCardOnCell().getHealthPoint();
-            cell.getCardOnCell().setHealthPoint(0);
+            cell.getCardOnCell().die();
             Player player = Game.battle.getPlayer();
-            player.getHero().setHealthPoint(player.getHero().getHealthPoint() + mhp);
+            player.getDeck().getHero().setHealthPoint(player.getDeck().getHero().getHealthPoint() + mhp);
         }
     }
 }
@@ -216,7 +211,7 @@ class ActionKillMinion implements Action {
 
     @Override
     public void deploy(Spell spell, Cell... cells) {
-        cells[0].getCardOnCell().setHealthPoint(0);
+        cells[0].getCardOnCell().die();
     }
 }
 
@@ -230,7 +225,10 @@ class ActionStun implements Action {
 
     @Override
     public void deploy(Spell spell, Cell... cells) {
-
+        for (Cell cell : cells) {
+            Buff buff = new Buff(spell.duration, false, BuffActionStun.getBuffAction());
+            buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
+        }
     }
 }
 
