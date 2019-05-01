@@ -1,7 +1,7 @@
 package Model.account;
 
 import Controller.Match;
-import exeption.AccountDoesntExistException;
+import exeption.InvalidAccountException;
 
 import java.util.ArrayList;
 public class Account {
@@ -43,17 +43,17 @@ public class Account {
         this.storyModeSPX = 0;
     }
 
-    public static Account getAccount(String username) throws AccountDoesntExistException {
+    public static Account getAccount(String username) throws InvalidAccountException {
         for (Account account : Account.getAccounts()) {
             if(account.getUsername().equals(username))return account;
         }
-        throw new AccountDoesntExistException();
+        throw new InvalidAccountException();
     }
-    public static Account getAccount(int ID) throws AccountDoesntExistException {
+    public static Account getAccount(int ID) throws InvalidAccountException {
         for (Account account : Account.getAccounts()) {
             if(account.getID()==ID)return account;
         }
-        throw new AccountDoesntExistException();
+        throw new InvalidAccountException();
     }
 
     public static boolean hasAccount(String username){
@@ -61,7 +61,7 @@ public class Account {
             Account.getAccount(username);
             return true;
         }
-        catch (AccountDoesntExistException e){
+        catch (InvalidAccountException e){
             return false;
         }
     }
@@ -70,7 +70,7 @@ public class Account {
             Account.getAccount(ID);
             return true;
         }
-        catch (AccountDoesntExistException e){
+        catch (InvalidAccountException e){
             return false;
         }
     }
@@ -79,7 +79,7 @@ public class Account {
             Account.getAccount(account.getID());
             return true;
         }
-        catch (AccountDoesntExistException e){
+        catch (InvalidAccountException e){
             return false;
         }
     }

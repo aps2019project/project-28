@@ -2,12 +2,14 @@ package Model.item;
 
 import Model.account.Player;
 import Model.card.hermione.Hermione;
+import exeption.InvalidItemException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public abstract class Item {
 
-    private static ArrayList<Item> item=new ArrayList<>();
+    private static ArrayList<Item> items =new ArrayList<>();
     String name;
     String effect;//no ha ba space joda mishan
     int itemID;
@@ -19,15 +21,43 @@ public abstract class Item {
     }
 
 
-    public static boolean hasItem(int itemID){
+    public static Item getItem(int itemID) throws InvalidItemException {
+        for (Item item : Item.getItems()) {
+            if(item.getID()==itemID)return item;
+        }
+        throw new InvalidItemException();
+    }
 
+    public static boolean hasItem(int itemID){
+        try{
+            Item.getItem(itemID);
+            return true;
+        } catch (InvalidItemException e) {
+            return false;
+        }
+    }
+
+    public static Item getItem(String name) throws InvalidItemException {
+        for (Item item : Item.getItems()) {
+            if(item.getName().equals(name))return item;
+        }
+        throw new InvalidItemException();
+    }
+
+    public static boolean hasItem(String name){
+        try{
+            Item.getItem(name);
+            return true;
+        } catch (InvalidItemException e) {
+            return false;
+        }
     }
 
     public String getName() {
         return name;
     }
 
-    public int getItemID() {
+    public int getID() {
         return itemID;
     }
 
@@ -51,5 +81,9 @@ public abstract class Item {
 
     public void damage(int number, Hermione hermione){
         hermione.setHealthPoint(hermione.getHealthPoint() + number);
+    }
+
+    public static ArrayList<Item> getItems() {
+        return (ArrayList<Item>) Collections.unmodifiableList(items);
     }
 }

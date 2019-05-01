@@ -31,7 +31,7 @@ public class CollectionMenu extends Menu {
     public boolean search(String name){
         Collection collection=this.account.getCollection();
         Card card= Card.getCard();
-        Item item= Item.hasItem()
+        Item item= Item.hasItem();
     }
 
     public void addCollectionPresentedListener(OnCollectionPresentedListener presenter){

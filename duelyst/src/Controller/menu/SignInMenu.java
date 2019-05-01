@@ -3,7 +3,7 @@ package Controller.menu;
 import Controller.Game;
 import Model.account.Account;
 import exeption.AccountAlreadyExistsException;
-import exeption.AccountDoesntExistException;
+import exeption.InvalidAccountException;
 import exeption.WrongPassException;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class SignInMenu extends Menu{
         temporaryAccount =new Account(name,username,password);
     }
 
-    public void logIn(String username,String password) throws AccountDoesntExistException, WrongPassException {
+    public void logIn(String username,String password) throws InvalidAccountException, WrongPassException {
             Account account=Account.getAccount(username);
             if(account.getPassword().equals(password)) {
                 Game.accounts[0] =account;

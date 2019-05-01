@@ -1,10 +1,8 @@
 package Model.account;
 
 import Model.card.Card;
-import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
 import Model.item.Item;
-import Model.item.Usable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,7 +46,7 @@ public class Deck{
     private boolean hasItem(int itemID){
         for (Item item:
              items) {
-            if(item.getItemID() == itemID) {
+            if(item.getID() == itemID) {
                 return true;
             }
         }
@@ -98,7 +96,7 @@ public class Deck{
         if (this.hasItem(itemID)) {
             for (Item item :
                     items) {
-                if(item.getItemID() == itemID){
+                if(item.getID() == itemID){
                     willBeRemoved = item;
                 }
             }
@@ -117,7 +115,7 @@ public class Deck{
     }
 
     private boolean addItemToDeck(Item item){
-        if(!this.hasItem(item.getItemID())) {
+        if(!this.hasItem(item.getID())) {
             items.add(item);
             return true;
         }
