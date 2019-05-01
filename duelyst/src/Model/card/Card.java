@@ -6,16 +6,17 @@ import java.util.ArrayList;
 
 public abstract class Card {
     private static ArrayList<Card> cards=new ArrayList<>();
+    private static long uniqueID =0;
 
     protected Collection superCollection;
-    private int cardID;
+    private long cardID;
     private String name;
     private int price;
     private int manaPoint;
 
 
-    public Card(int cardID, String name, int price, int manaPoint) {
-        this.cardID = cardID;
+    public Card( String name, int price, int manaPoint) {
+        this.cardID = uniqueID++;
         this.name = name;
         this.price = price;
         this.manaPoint = manaPoint;
@@ -45,7 +46,7 @@ public abstract class Card {
 
 
 
-    public int getCardID() {
+    public long getCardID() {
         return cardID;
     }
 

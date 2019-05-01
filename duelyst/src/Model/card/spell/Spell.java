@@ -20,8 +20,8 @@ public class Spell extends Card {
         this.duration--;
     }
 
-    public Spell(int cardID, String name, int price, int manaPoint) {
-        super(cardID, name, price, manaPoint);
+    public Spell(String name, int price, int manaPoint) {
+        super( name, price, manaPoint);
     }
 
     public ArrayList<Spell> getActiveSpells() {

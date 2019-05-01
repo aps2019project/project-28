@@ -28,9 +28,9 @@ public abstract class Hermione extends Card {
     protected boolean canMove;
 
 
-    public Hermione(int cardID, String name, int price, int manaPoint, int healthPoint, int attackPoint
+    public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range, int moveRange) {
-        super(cardID, name, price, manaPoint);
+        super(name, price, manaPoint);
         this.healthPoint = healthPoint;
         this.attackPoint = attackPoint;
         this.originalAttackPoint = attackPoint ;
