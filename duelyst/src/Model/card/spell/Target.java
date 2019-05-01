@@ -8,8 +8,6 @@ import Model.account.Player;
 import Model.card.hermione.Minion;
 import exeption.InvalidCellException;
 
-import javax.swing.text.View;
-
 public interface Target {
     Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws InvalidCellException;
 }
