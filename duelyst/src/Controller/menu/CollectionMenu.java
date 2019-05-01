@@ -4,6 +4,7 @@ import Controller.Game;
 import Model.account.Account;
 import Model.account.Collection;
 import Model.card.Card;
+import Model.item.Item;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class CollectionMenu extends Menu {
     public boolean search(String name){
         Collection collection=this.account.getCollection();
         Card card= Card.getCard();
-        Item item=Item
+        Item item= Item.hasItem()
     }
 
     public void addCollectionPresentedListener(OnCollectionPresentedListener presenter){
