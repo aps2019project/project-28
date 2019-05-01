@@ -83,6 +83,7 @@ public abstract class Item {
         hermione.setHealthPoint(hermione.getHealthPoint() + number);
     }
 
+
     public static ArrayList<Item> getItems() {
         return (ArrayList<Item>) Collections.unmodifiableList(items);
     }

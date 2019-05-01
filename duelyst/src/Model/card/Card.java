@@ -33,6 +33,7 @@ public abstract class Card {
         for (Card card : Card.cards) {
             if(card.getName().equals(name))return card;
         }
+
         return null;
     }
 
