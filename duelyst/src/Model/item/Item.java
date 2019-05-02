@@ -1,6 +1,5 @@
 package Model.item;
 
-import Model.account.Collection;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
 import exeption.InvalidItemException;
@@ -11,14 +10,13 @@ import java.util.Collections;
 public abstract class Item {
 
     private static ArrayList<Item> items =new ArrayList<>();
-    String name;
-    String effect;//no ha ba space joda mishan
-    int itemID;
+    private String name;
+    private ItemAction action ;
+    private int itemID;
     private ArrayList<OnItemDetailPresentedListener>itemDeatailPresenters=new ArrayList<>();
-
-    public Item(String name, String effect, int itemID){
+    public Item(String name, ItemAction action, int itemID){
         this.name = name;
-        this.effect = effect;
+        this.action = action;
         this.itemID = itemID;
     }
 
@@ -30,7 +28,7 @@ public abstract class Item {
         throw new InvalidItemException();
     }
 
-    public static boolean hasItem(int itemID){
+    public static boolean hasItem (int itemID){
         try{
             Item.getItem(itemID);
             return true;
@@ -63,11 +61,13 @@ public abstract class Item {
         return itemID;
     }
 
-    public String getEffect() {
-        return effect;
+    public ItemAction getAction() {
+        return action;
     }
 
-    public abstract void deploy();
+    public void deploy(){
+
+    }
 
     public void increaseHealth(int number, Hermione target){
         target.setHealthPoint(target.getHealthPoint() + number);

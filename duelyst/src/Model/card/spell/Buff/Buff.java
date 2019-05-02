@@ -1,6 +1,5 @@
-package Model.card.spell;
+package Model.card.spell.Buff;
 
-import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
 
@@ -12,15 +11,15 @@ public class Buff {
     private Hermione target ;
     private boolean isPositive;
     private Player player;
-    private BuffActions action;
+    private Model.card.spell.BuffActions action;
     private int perk ;
 
-    public Buff(int duration, boolean isPositive,  BuffActions action) {
+    public Buff(int duration, boolean isPositive,  Model.card.spell.BuffActions action) {
         this.action = action;
         this.duration = duration;
         this.isPositive = isPositive;
     }
-    public Buff(int duration, boolean isPositive,  BuffActions action , int perk) {
+    public Buff(int duration, boolean isPositive, Model.card.spell.BuffActions action , int perk) {
         this.action = action;
         this.duration = duration;
         this.isPositive = isPositive;
@@ -60,7 +59,7 @@ public class Buff {
         return duration;
     }
 
-    public BuffActions getAction() {
+    public Model.card.spell.BuffActions getAction() {
         return action;
     }
 
