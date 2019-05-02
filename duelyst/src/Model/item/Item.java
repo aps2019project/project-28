@@ -1,5 +1,6 @@
 package Model.item;
 
+import Model.account.Collection;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
 import exeption.InvalidItemException;
@@ -13,6 +14,7 @@ public abstract class Item {
     String name;
     String effect;//no ha ba space joda mishan
     int itemID;
+    private ArrayList<OnItemDetailPresentedListener>itemDeatailPresenters=new ArrayList<>();
 
     public Item(String name, String effect, int itemID){
         this.name = name;
@@ -86,5 +88,13 @@ public abstract class Item {
 
     public static ArrayList<Item> getItems() {
         return (ArrayList<Item>) Collections.unmodifiableList(items);
+    }
+
+    public void addNewOnItemDeatilPresentedListener(OnItemDetailPresentedListener presenter){
+        this.itemDeatailPresenters.add(presenter);
+    }
+
+    public ArrayList<OnItemDetailPresentedListener> getItemDeatailPresenters() {
+        return (ArrayList<OnItemDetailPresentedListener>) Collections.unmodifiableList(itemDeatailPresenters);
     }
 }

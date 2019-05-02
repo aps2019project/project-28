@@ -3,6 +3,7 @@ package Model.account;
 import Model.card.Card;
 import Model.card.hermione.Hero;
 import Model.item.Item;
+import exeption.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +12,7 @@ public class Deck{
     private Collection collection ;
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
-
+    private ArrayList<OnDeckPresentedListener>deckPresenters=new ArrayList<OnDeckPresentedListener>();
     private Hero hero;
     private String name;
     private int ID;
@@ -70,63 +71,74 @@ public class Deck{
         Collections.shuffle(cards);
     }
 
-    public void removeFromDeck(int ID){
-        removeCardFromDeck(ID);
-        removeItemFromDeck(ID);
+    public void removeFromDeck(int ID) throws InvalidCardException, InvalidItemException {
+        if(Card.hasCard(ID))
+            removeCardFromDeck(ID);
+        if(Item.hasItem(ID))
+            removeItemFromDeck(ID);
     }
 
-    private boolean removeCardFromDeck(int cardID){
+    private boolean removeCardFromDeck(int cardID) throws InvalidCardException {
         Card willBeRemoved = null;
-        if(this.hasCard(cardID)) {
-            for (Card card :
-                    cards) {
-                if (card.getCardID() == cardID) {
-                    willBeRemoved = card;
-                    break;
-                }
+
+        if(!this.hasCard(cardID))throw new InvalidCardException();
+        for (Card card : cards) {
+            if (card.getCardID() == cardID) {
+                willBeRemoved = card;
+                break;
             }
-            cards.remove(willBeRemoved);
-            return true;
         }
-        return false;
+        cards.remove(willBeRemoved);
+        if(willBeRemoved.getClass().equals(hero.getClass()))hero=null;
+        return true;
     }
 
-    private boolean removeItemFromDeck(int itemID) {
+    private boolean removeItemFromDeck(int itemID) throws InvalidItemException {
         Item willBeRemoved = null;
-        if (this.hasItem(itemID)) {
-            for (Item item :
-                    items) {
-                if(item.getID() == itemID){
-                    willBeRemoved = item;
-                }
+        if(!this.hasItem(itemID))throw new InvalidItemException();
+        for (Item item : items) {
+            if(item.getID() == itemID){
+                willBeRemoved = item;
             }
-            items.remove(willBeRemoved);
-            return true;
         }
-        return false;
+        items.remove(willBeRemoved);
+        return true;
     }
 
-    private boolean addCardToDeck(Card card){
-        if(!this.hasCard(card.getCardID())) {
-            cards.add(card);
-            return true;
-        }
-        return false;
+
+    public boolean addCardToDeck(Card card) throws DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasAHeroException {
+        if(this.hasCard(card.getCardID()))throw new DeckAlreadyHasThisCardException();
+        if(this.cards.size()>=CARD_SIZE)throw new FullDeckException();
+        if(card.getClass().equals(hero.getClass()) && hero!=null)throw new DeckAlreadyHasAHeroException();
+
+        cards.add(card);
+        if(card.getClass().equals(hero.getClass()))hero=(Hero)card;
+        return true;
     }
 
-    private boolean addItemToDeck(Item item){
-        if(!this.hasItem(item.getID())) {
-            items.add(item);
-            return true;
-        }
-        return false;
+    public boolean addItemToDeck(Item item) throws DeckAlreadyHasThisItemException, FullDeckException {
+        if(this.hasItem(item.getID()))throw new DeckAlreadyHasThisItemException();
+        if(this.items.size()>=ITEM_SIZE)throw new FullDeckException();
+
+
+        items.add(item);
+        return true;
     }
 
-    public void addToDeck(int ID){
-        addCardToDeck(collection.getCard(ID));
-        addItemToDeck(collection.getItem(ID));
+    public void addToDeck(int ID) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException {
+            if(Card.hasCard(ID))
+                addCardToDeck(collection.getCard(ID));
+            else if(Item.hasItem(ID))
+                addItemToDeck(collection.getItem(ID));
     }
 
+    public void addNewOnDeckPresentedListener(OnDeckPresentedListener presenter){
+        this.deckPresenters.add(presenter);
+    }
+
+    public ArrayList<OnDeckPresentedListener> getDeckPresenters() {
+        return (ArrayList<OnDeckPresentedListener>) Collections.unmodifiableList(deckPresenters);
+    }
 
     public Hero getHero() {
         return hero ;

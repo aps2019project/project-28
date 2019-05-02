@@ -1,18 +1,22 @@
 package Model.card;
 
 import Model.account.Collection;
+import exeption.InvalidCardException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public abstract class Card {
     private static ArrayList<Card> cards=new ArrayList<>();
-    private static long uniqueID =0;
+    private static int uniqueID =0;
 
     protected Collection superCollection;
-    private long cardID;
+    private int cardID;
     private String name;
     private int price;
     private int manaPoint;
+    private ArrayList<OnCardDetailsPresentedListener>cardDetailsPresenters=new ArrayList<>();
+
 
 
     public Card( String name, int price, int manaPoint) {
@@ -23,31 +27,41 @@ public abstract class Card {
     }
 
 
-    public static Card getCard(int cardID) {
+    public static Card getCard(int cardID) throws InvalidCardException {
         for (Card card : Card.cards) {
             if(card.getCardID()==cardID)return card;
         }
-        return null;
+        throw new InvalidCardException();
     }
-    public static Card getCard(String name) {
+    public static Card getCard(String name) throws InvalidCardException {
         for (Card card : Card.cards) {
             if(card.getName().equals(name))return card;
         }
-
-        return null;
+        throw new InvalidCardException();
     }
 
     public static boolean hasCard(int cardID){
-        return Card.getCard(cardID)!=null;
+        try {
+            Card.getCard(cardID);
+            return true;
+        } catch (InvalidCardException e) {
+            return false;
+        }
+
     }
     public static boolean hasCard(String name){
-        return Card.getCard(name)!=null;
+        try {
+            Card.getCard(name);
+            return true;
+        } catch (InvalidCardException e) {
+            return false;
+        }
     }
 
 
 
 
-    public long getCardID() {
+    public int getCardID() {
         return cardID;
     }
 
@@ -62,6 +76,13 @@ public abstract class Card {
     public int getManaPoint() {
         return manaPoint;
     }
+    
+    public void addOnCardDetailPresented(OnCardDetailsPresentedListener presenter){
+        this.cardDetailsPresenters.add(presenter);
+    }
 
+    public ArrayList<OnCardDetailsPresentedListener> getCardDetailsPresenters() {
+        return (ArrayList<OnCardDetailsPresentedListener>) Collections.unmodifiableList(cardDetailsPresenters);
+    }
 }
 
