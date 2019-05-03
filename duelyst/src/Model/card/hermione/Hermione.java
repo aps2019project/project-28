@@ -4,7 +4,7 @@ import Controller.Game;
 import Model.Map.Cell;
 import Model.Map.Map;
 import Model.card.Card;
-import Model.card.spell.Buff;
+import Model.card.spell.Buff.Buff;
 import Model.card.spell.SpecialPower;
 
 import java.util.ArrayList;

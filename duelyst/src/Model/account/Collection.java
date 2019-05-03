@@ -3,6 +3,9 @@ package Model.account;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
+import exeption.InvalidCardException;
+import exeption.InvalidDeckException;
+import exeption.InvalidItemException;
 
 import java.util.ArrayList;
 
@@ -17,7 +20,7 @@ public class Collection{
     private Deck tempMainDeck;
     private final int MAX_USABLES = 3;
 
-    private boolean hasDeck(String name){
+    public boolean hasDeck(String name){
         for (Deck deck:
              decks) {
             if(deck.getName().compareTo(name) == 0){
@@ -27,14 +30,13 @@ public class Collection{
         return false;
     }
 
-    public Deck getDeckByName(String name){
-        for (Deck deck:
-             decks) {
+    public Deck getDeckByName(String name) throws InvalidDeckException {
+        for (Deck deck: decks) {
             if(deck.getName().compareTo(name) == 0){
                 return deck;
             }
         }
-        return null;
+        throw new InvalidDeckException();
     }
 
     public ArrayList<Card> getCards() {
@@ -73,14 +75,14 @@ public class Collection{
         return false;
     }
 
-    public Card getCard(int cardID){
+    public Card getCard(int cardID) throws InvalidCardException {
         for (Card card:
              cards) {
             if(card.getCardID() == cardID){
                 return card;
             }
         }
-        return null;
+        throw new InvalidCardException();
     }
 
     public Card getCard(Card card){
@@ -96,7 +98,7 @@ public class Collection{
     public boolean hasItem(int itemID){
         for (Usable item:
              usables) {
-            if(item.getItemID() == itemID){
+            if(item.getID() == itemID){
                 return true;
             }
         }
@@ -106,24 +108,24 @@ public class Collection{
     public Item getItem(int itemID){
         for (Usable item:
              usables) {
-            if(item.getItemID() == itemID){
+            if(item.getID() == itemID){
                 return item;
             }
         }
         return null;
     }
 
-    private Deck getDeck(String deckName){
+    private Deck getDeck(String deckName) throws InvalidDeckException {
         for (Deck deck:
              decks) {
             if(deck.getName().compareTo(deckName) == 0){
                 return deck;
             }
         }
-        return null;
+        throw new InvalidDeckException();
     }
 
-    private boolean addNewDeck(String name){
+    public boolean addNewDeck(String name){
         if(!this.hasDeck(name)) {
             Deck newDeck = new Deck(name);
             this.tempDecks.add(newDeck);
@@ -140,8 +142,14 @@ public class Collection{
             tempDecks.remove(delete);
         }
     }
-
-    public void setMainDeck(String deckName){
+    public void addCardToDeck(int cardID,String deckName) throws InvalidDeckException, InvalidCardException {
+        try{
+            Deck deck=this.getDeck(deckName);
+            Card card=this.getCard(cardID);
+            deck.addCardToDeck(card);
+        }
+    }
+    public void setMainDeck(String deckName) throws InvalidDeckException {
         Deck mainDeck = getDeck(deckName);
         this.tempMainDeck = mainDeck;
     }
@@ -167,7 +175,41 @@ public class Collection{
         tempMainDeck = null;
     }
 
+    public ArrayList<Card>getAllCardsByID(int ID){
+        ArrayList<Card> returnArray=new ArrayList<>();
+        for (Card card : this.cards) {
+            if(card.getCardID()==ID)returnArray.add(card);
+        }
+        return returnArray;
+    }
+    public ArrayList<Card>getAllCardsByName(String name){
+        try {
+            return this.getAllCardsByID(Card.getCard(name).getCardID());
+        } catch (InvalidCardException e) {
+            return new ArrayList<>();
+        }
+    }
+
+
+    public ArrayList<Item>getAllItemsByName(String name){
+        try{
+            return this.getAllItemsByID(Item.getItem(name).getID());
+        } catch (InvalidItemException e) {
+            return new ArrayList<>();
+        }
+    }
+
+
+    public ArrayList<Item>getAllItemsByID(int ID){
+        ArrayList<Item> returnArray=new ArrayList<>();
+        for (Usable usable : this.usables) {
+            if(usable.getID()==ID)returnArray.add(usable);
+        }
+        return returnArray;
+    }
+
     public void setOwner(Account owner) {
         this.owner = owner;
     }
+
 }

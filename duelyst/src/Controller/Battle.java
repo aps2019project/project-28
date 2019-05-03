@@ -33,8 +33,8 @@ public class Battle {
         return player[turn] ;
     }
 
-    public void nextTurn(){turn = 1 - turn ; }
+    public void nextTurn(){turn++ ; }
 
-    public int getTurn() {return turn ; }
-
+    public int getTurn() {return turn%2 ; }
+    public int getOriginalTurn(){ return this.turn; }
 }
