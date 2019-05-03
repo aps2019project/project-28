@@ -13,10 +13,12 @@ public class Battle {
     private int turn = 0 ;
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
 
-    public Player getEnemy(Account me){
-        if(player[0].getUser().equals(me))return player[1];
+    public Player getEnemy(Account me) {
+        if (player[0].getUser().equals(me)) return player[1];
         return player[0];
+
     }
+
     public Player getMe(Account me){
         if(player[0].getUser().equals(me))return player[0];
         return player[1];

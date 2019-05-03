@@ -1,5 +1,6 @@
 package Model.card.spell;
 
+import Model.account.Account;
 import Model.account.Player;
 import Model.card.Card;
 import Model.Map.*;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 
 
 public class Spell extends Card {
+
     protected ArrayList<Spell> activeSpells = new ArrayList<>() ;
     protected Target target;
     protected Cell[] targetCells ;
@@ -20,7 +22,7 @@ public class Spell extends Card {
         this.duration--;
     }
 
-    public Spell(String name, int price, int manaPoint) {
+    public Spell(String name, int price, int manaPoint, Action ... actions) {
         super( name, price, manaPoint);
     }
 
