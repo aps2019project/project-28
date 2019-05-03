@@ -14,10 +14,11 @@ public abstract class Item {
     private ItemAction action ;
     private int itemID;
     private ArrayList<OnItemDetailPresentedListener>itemDeatailPresenters=new ArrayList<>();
-    public Item(String name, ItemAction action, int itemID){
+
+    public Item(String name, ItemAction action){
         this.name = name;
         this.action = action;
-        this.itemID = itemID;
+//        this.itemID = itemID;TODO ITEMID
     }
 
 

@@ -4,6 +4,7 @@ import Model.account.Account;
 import Model.account.Player;
 import Model.card.Card;
 import Model.Map.*;
+import Model.card.spell.SpellAction.Action;
 import exeption.InvalidCellException;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class Spell extends Card {
         this.duration--;
     }
 
-    public Spell(String name, int price, int manaPoint, Action ... actions) {
+    public Spell(String name, int price, int manaPoint, Action... actions) {
         super( name, price, manaPoint);
     }
 
