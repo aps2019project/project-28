@@ -106,7 +106,8 @@ public class Deck{
     }
 
 
-    public boolean addCardToDeck(Card card) throws DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasAHeroException {
+    public boolean addCardToDeck(Card card) throws DeckAlreadyHasThisCardException, FullDeckException,
+            DeckAlreadyHasAHeroException {
         if(this.hasCard(card.getCardID()))throw new DeckAlreadyHasThisCardException();
         if(this.cards.size()>=CARD_SIZE)throw new FullDeckException();
         if(card.getClass().equals(hero.getClass()) && hero!=null)throw new DeckAlreadyHasAHeroException();
@@ -125,7 +126,8 @@ public class Deck{
         return true;
     }
 
-    public void addToDeck(int ID) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException {
+    public void addToDeck(int ID) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException,
+            FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidItemException {
             if(Card.hasCard(ID))
                 addCardToDeck(collection.getCard(ID));
             else if(Item.hasItem(ID))
