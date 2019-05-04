@@ -4,7 +4,7 @@ import Controller.Game;
 import Model.Map.Cell;
 import Model.Map.Map;
 import Model.card.Card;
-import Model.card.spell.Buff;
+import Model.card.spell.Buff.Buff;
 import Model.card.spell.SpecialPower;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public abstract class Hermione extends Card {
     private boolean hasHollyBuff = false ;
     protected AttackType attackType;
     protected int range;
-    protected int moveRange;
+    public static final int MOVE_RANGE = 2;
     protected int actionTurn;//0 move    1 attack
     protected Cell location;
     protected boolean canCounterAttack = true ;
@@ -29,7 +29,7 @@ public abstract class Hermione extends Card {
 
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
-            , SpecialPower specialPower, AttackType attackType, int range, int moveRange) {
+            , SpecialPower specialPower, AttackType attackType, int range) {
         super(name, price, manaPoint);
         this.healthPoint = healthPoint;
         this.attackPoint = attackPoint;
@@ -37,7 +37,6 @@ public abstract class Hermione extends Card {
         SpecialPower = specialPower;
         this.attackType = attackType;
         this.range = range;
-        this.moveRange = moveRange;
     }
 
     public void setOriginalAttackPoint(int originalAttackPoint) {
@@ -72,7 +71,7 @@ public abstract class Hermione extends Card {
         if(this.actionTurn==1)return false;
         if(Game.battle.getMap().getCell(x,y).isFull())return false;
 
-        if(Map.getManhattanDistance(this.location,new Cell(x,y))<=this.moveRange)return true;
+        if(Map.getManhattanDistance(this.location,new Cell(x,y)) <= MOVE_RANGE)return true;
         return false;
     }
 
@@ -162,11 +161,7 @@ public abstract class Hermione extends Card {
     }
 
     public int getMoveRange() {
-        return moveRange;
-    }
-
-    public void setMoveRange(int moveRange) {
-        this.moveRange = moveRange;
+        return MOVE_RANGE;
     }
 
     public int getActionTurn(){return this.actionTurn;}

@@ -1,14 +1,18 @@
 package Model.card.spell;
 
+import Model.account.Account;
 import Model.account.Player;
 import Model.card.Card;
 import Model.Map.*;
+import Model.card.spell.SpellAction.Action;
 import exeption.InvalidCellException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class Spell extends Card {
+
     protected ArrayList<Spell> activeSpells = new ArrayList<>() ;
     protected Target target;
     protected Cell[] targetCells ;
@@ -20,8 +24,10 @@ public class Spell extends Card {
         this.duration--;
     }
 
-    public Spell(String name, int price, int manaPoint) {
+    public Spell(String name, int price, int manaPoint, Target target,  Action... actions) {
         super( name, price, manaPoint);
+        this.actions = actions;
+        this.target = target;
     }
 
     public ArrayList<Spell> getActiveSpells() {

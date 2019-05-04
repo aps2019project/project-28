@@ -1,12 +1,6 @@
 package Model.Map;
 
-import Model.card.Card;
 import Model.card.hermione.Hermione;
-import Model.card.spell.Buff;
-import Model.card.spell.Spell;
-
-import java.util.ArrayList;
-
 
 
 public class Cell {

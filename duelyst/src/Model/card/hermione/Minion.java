@@ -6,8 +6,8 @@ import Model.card.Card;
 public class Minion extends Hermione{
     private String SPActivationTime;
 
-    public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint, Model.card.spell.SpecialPower specialPower, AttackType attackType, int range, int moveRange,String SPActivationTime) {
-        super(name, price, manaPoint, healthPoint, attackPoint, specialPower, attackType, range, moveRange);
+    public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint, AttackType attackType, int range, Model.card.spell.SpecialPower specialPower,String SPActivationTime) {
+        super(name, price, manaPoint, healthPoint, attackPoint, specialPower, attackType, range);
         this.SPActivationTime=SPActivationTime;
     }
 

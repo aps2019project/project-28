@@ -14,30 +14,14 @@ public class Battle extends Menu {
     private int turn = 0 ;
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
 
+    public Player getEnemy(Account me) {
+        if (player[0].getUser().equals(me)) return player[1];
+        return player[0];
+
     public void setPlayer(Player fistPlayer, Player secondPlayer){
         this.players[0]=fistPlayer;
         this.players[1]=secondPlayer;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public Battle(Menu parentMenu) {
         super(parentMenu);
     }
@@ -46,6 +30,7 @@ public class Battle extends Menu {
         if(players[0].getUser().equals(me))return players[1];
         return players[0];
     }
+
     public Player getMe(Account me){
         if(players[0].getUser().equals(me))return players[0];
         return players[1];
