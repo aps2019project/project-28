@@ -142,10 +142,30 @@ public class Collection{
         return false;
     }
 
-    public Item getItem(int itemID) throws InvalidItemException{
+    public boolean hasItem(Item item){
+        for (Usable usable:
+                usables) {
+            if(usable.equals(item)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Usable getItem(int itemID) throws InvalidItemException{
         for (Usable item:
              usables) {
             if(item.getID() == itemID){
+                return item;
+            }
+        }
+        throw new InvalidItemException();
+    }
+
+    public Usable getItem(String name) throws InvalidItemException{
+        for (Usable item:
+                usables) {
+            if(item.getName().equals(name)){
                 return item;
             }
         }
@@ -190,12 +210,32 @@ public class Collection{
         this.tempMainDeck = mainDeck;
     }
 
-    public boolean addCardToCollection(Card card) throws InvalidCardException{
+    public void addCardToCollection(Card card) throws CardExistException{
         if(!hasCard(card)){
             tempCards.add(card);
-            return true;
         }
-        throw new InvalidCardException();
+        throw new CardExistException();
+    }
+
+    public void removeCardFromCollection(Card card) throws CardDeoesntExistException{
+        if(hasCard(card)){
+            this.cards.remove(card);
+        }
+        throw new CardDeoesntExistException();
+    }
+
+    public void addItemToCollection(Usable item) throws ItemExistExeption{
+        if(!hasItem(item)){
+            this.usables.add(item);
+        }
+        throw new ItemExistExeption();
+    }
+
+    public void removeItemFromCollection(Usable item) throws  ItemDoesntExistException{
+        if(hasItem(item)){
+            usables.remove(item);
+        }
+        throw new ItemDoesntExistException();
     }
 
     public boolean has(int ID){
