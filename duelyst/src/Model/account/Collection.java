@@ -8,6 +8,7 @@ import exeption.*;
 import java.util.ArrayList;
 
 public class Collection{
+
     private ArrayList<Deck> decks = new ArrayList<>();
     private ArrayList<Deck> tempDecks = new ArrayList<>(decks);
     private ArrayList<Card> cards = new ArrayList<>();
@@ -16,7 +17,7 @@ public class Collection{
     private Account owner;
     private Deck mainDeck;
     private Deck tempMainDeck;
-    private final int MAX_USABLES = 3;
+    public static final int MAX_USABLES = 3;
 
     public boolean hasDeck(String name){
         for (Deck deck:
@@ -41,6 +42,10 @@ public class Collection{
         return cards;
     }
 
+    public void setOwner(Account owner) {
+        this.owner = owner;
+    }
+
     public ArrayList<Deck> getDecks() {
         return decks;
     }
@@ -51,6 +56,10 @@ public class Collection{
 
     public Deck getMainDeck() {
         return mainDeck;
+    }
+
+    public ArrayList<Usable> getUsables() {
+        return usables;
     }
 
     public boolean hasCard(int cardID){
@@ -73,6 +82,16 @@ public class Collection{
         return false;
     }
 
+    public boolean hasCard(String name){
+        for (Card collectionCard:
+                cards) {
+            if(collectionCard.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Card getCard(int cardID) throws InvalidCardException {
         for (Card card:
              cards) {
@@ -83,14 +102,24 @@ public class Collection{
         throw new InvalidCardException();
     }
 
-    public Card getCard(Card card){
+    public Card getCard(Card card) throws InvalidCardException{
         for (Card collectionCard:
              cards) {
             if(collectionCard.equals(card)){
                 return card;
             }
         }
-        return null;
+        throw new InvalidCardException();
+    }
+
+    public Card getCard(String name) throws InvalidCardException{
+        for (Card card:
+                cards) {
+            if(card.getName().equals(name)){
+                return card;
+            }
+        }
+        throw new InvalidCardException();
     }
 
     public boolean hasItem(int itemID){
@@ -103,14 +132,24 @@ public class Collection{
         return false;
     }
 
-    public Item getItem(int itemID){
+    public boolean hasItem(String name) {
+        for (Usable item:
+                usables) {
+            if(item.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Item getItem(int itemID) throws InvalidItemException{
         for (Usable item:
              usables) {
             if(item.getID() == itemID){
                 return item;
             }
         }
-        return null;
+        throw new InvalidItemException();
     }
 
     private Deck getDeck(String deckName) throws InvalidDeckException {
@@ -123,15 +162,13 @@ public class Collection{
         throw new InvalidDeckException();
     }
 
-    public boolean addNewDeck(String name){
+    public boolean addNewDeck(String name) throws DeckAlreadyExistException{
         if(!this.hasDeck(name)) {
             Deck newDeck = new Deck(name);
             this.tempDecks.add(newDeck);
             return true;
         }
-        else {
-            return false;
-        }
+        throw  new DeckAlreadyExistException();
     }
 
     public void deleteDeck(String name) throws InvalidDeckException {
@@ -139,24 +176,26 @@ public class Collection{
             Deck delete = getDeckByName(name);
             tempDecks.remove(delete);
         }
+        throw new InvalidDeckException();
     }
-    public void addCardToDeck(int cardID,String deckName) throws InvalidDeckException, InvalidCardException, DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException {
-            Deck deck=this.getDeck(deckName);
-            Card card=this.getCard(cardID);
-            deck.addCardToDeck(card);
 
+    public void addCardToDeck(int cardID,String deckName) throws InvalidDeckException, InvalidCardException, DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException {
+            Deck deck = this.getDeck(deckName);
+            Card card = this.getCard(cardID);
+            deck.addCardToDeck(card);
     }
+
     public void setMainDeck(String deckName) throws InvalidDeckException {
         Deck mainDeck = getDeck(deckName);
         this.tempMainDeck = mainDeck;
     }
 
-    public boolean addCardToCollection(Card card){
+    public boolean addCardToCollection(Card card) throws InvalidCardException{
         if(!hasCard(card)){
             tempCards.add(card);
             return true;
         }
-        return false;
+        throw new InvalidCardException();
     }
 
     public boolean has(int ID){
@@ -173,12 +212,13 @@ public class Collection{
     }
 
     public ArrayList<Card>getAllCardsByID(int ID){
-        ArrayList<Card> returnArray=new ArrayList<>();
+        ArrayList<Card> returnArray = new ArrayList<>();
         for (Card card : this.cards) {
             if(card.getCardID()==ID)returnArray.add(card);
         }
         return returnArray;
     }
+
     public ArrayList<Card>getAllCardsByName(String name){
         try {
             return this.getAllCardsByID(Card.getCard(name).getCardID());
@@ -186,7 +226,6 @@ public class Collection{
             return new ArrayList<>();
         }
     }
-
 
     public ArrayList<Item>getAllItemsByName(String name){
         try{
@@ -196,7 +235,6 @@ public class Collection{
         }
     }
 
-
     public ArrayList<Item>getAllItemsByID(int ID){
         ArrayList<Item> returnArray=new ArrayList<>();
         for (Usable usable : this.usables) {
@@ -204,9 +242,4 @@ public class Collection{
         }
         return returnArray;
     }
-
-    public void setOwner(Account owner) {
-        this.owner = owner;
-    }
-
 }
