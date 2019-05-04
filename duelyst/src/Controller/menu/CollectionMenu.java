@@ -13,13 +13,14 @@ import exeption.*;
 import java.util.ArrayList;
 
 public class CollectionMenu extends Menu {
+
     private Collection tempCollection;
-    private ArrayList<OnCollectionPresentedListener>collectionPresenters;
+    private ArrayList<OnCollectionPresenterListener> collectionPresenters;
 
     public CollectionMenu(Menu parentMenu) {
         super(parentMenu);
-        this.tempCollection=new Collection();
-        this.collectionPresenters=new ArrayList<>();
+        this.tempCollection = new Collection();
+        this.collectionPresenters = new ArrayList<>();
     }
 
     public void save (Account account){
@@ -27,8 +28,8 @@ public class CollectionMenu extends Menu {
     }
 
     public void showCollection(){
-        for (OnCollectionPresentedListener presenter : this.collectionPresenters) {
-            presenter.showCollection(this.account.getCollection());
+        for (OnCollectionPresenterListener presenter : this.collectionPresenters) {
+            presenter.show(this.account.getCollection());
         }
     }
 
@@ -55,7 +56,8 @@ public class CollectionMenu extends Menu {
         this.account.getCollection().deleteDeck(deckName);
     }
 
-    public void addToDeck(int ID,String deckName) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidDeckException {
+    public void addToDeck(int ID,String deckName) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException,
+            FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidDeckException, InvalidItemException {
         this.account.getCollection().getDeckByName(deckName).addToDeck(ID);
     }
 
@@ -63,7 +65,7 @@ public class CollectionMenu extends Menu {
         this.account.getCollection().getDeckByName(deckName).removeFromDeck(ID);
     }
 
-    public void addCollectionPresentedListener(OnCollectionPresentedListener presenter){
+    public void addCollectionPresenterListener(OnCollectionPresenterListener presenter){
         this.collectionPresenters.add(presenter);
     }
 
