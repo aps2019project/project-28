@@ -10,30 +10,32 @@ import java.util.ArrayList;
 
 public class Battle extends Menu {
     private Map map;
-    private Player[] players =new Player[2];
+    private Player[] player =new Player[2];
     private int turn = 0 ;
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
+
+    public Battle(Menu parentMenu) {
+        super(parentMenu);
+    }
 
     public Player getEnemy(Account me) {
         if (player[0].getUser().equals(me)) return player[1];
         return player[0];
 
-    public void setPlayer(Player fistPlayer, Player secondPlayer){
-        this.players[0]=fistPlayer;
-        this.players[1]=secondPlayer;
-    }
-    public Battle(Menu parentMenu) {
-        super(parentMenu);
+    public void setPlayer(Player firstPlayer, Player secondPlayer){
+        }
+        this.player[0]=firstPlayer;
+        this.player[1]=secondPlayer;
     }
 
     public Player getEnemy(Account me){
-        if(players[0].getUser().equals(me))return players[1];
-        return players[0];
+        if(player[0].getUser().equals(me))return player[1];
+        return player[0];
     }
 
     public Player getMe(Account me){
-        if(players[0].getUser().equals(me))return players[0];
-        return players[1];
+        if(player[0].getUser().equals(me))return player[0];
+        return player[1];
 
     }
 
@@ -42,7 +44,7 @@ public class Battle extends Menu {
     }
 
     public Player getPlayers(){
-        return players[turn] ;
+        return player[turn] ;
     }
 
     public void nextTurn(){turn++ ; }
