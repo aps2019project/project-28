@@ -2,8 +2,6 @@ package Controller.menu;
 
 import Model.account.Collection;
 
-public class OnCollectionPresentedListener {
-    void showCollection(Collection collection){
-
-    }
+public interface OnCollectionPresentedListener {
+    void showCollection(Collection collection);
 }
