@@ -3,9 +3,7 @@ package Model.account;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
-import exeption.InvalidCardException;
-import exeption.InvalidDeckException;
-import exeption.InvalidItemException;
+import exeption.*;
 
 import java.util.ArrayList;
 
@@ -136,18 +134,17 @@ public class Collection{
         }
     }
 
-    public void deleteDeck(String name){
+    public void deleteDeck(String name) throws InvalidDeckException {
         if(this.hasDeck(name)){
             Deck delete = getDeckByName(name);
             tempDecks.remove(delete);
         }
     }
-    public void addCardToDeck(int cardID,String deckName) throws InvalidDeckException, InvalidCardException {
-        try{
+    public void addCardToDeck(int cardID,String deckName) throws InvalidDeckException, InvalidCardException, DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException {
             Deck deck=this.getDeck(deckName);
             Card card=this.getCard(cardID);
             deck.addCardToDeck(card);
-        }
+
     }
     public void setMainDeck(String deckName) throws InvalidDeckException {
         Deck mainDeck = getDeck(deckName);
