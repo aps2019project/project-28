@@ -2,15 +2,26 @@ package Model.card;
 
 import Model.Map.Cell;
 import Model.card.hermione.*;
+import Model.card.spell.*;
 import Model.card.spell.Buff.BuffActions.BuffActionHolly;
 import Model.card.spell.SpellAction.*;
 import Model.card.spell.Buff.BuffActions.BuffActionPoison;
-import Model.card.spell.SpecialPower;
-import Model.card.spell.Spell;
 import Model.card.spell.SpellAction.ActionChangeAP;
 import Model.card.spell.SpellAction.ActionChangeHP;
 import Model.card.spell.SpellAction.ActionDisarm;
 import Model.card.spell.SpellAction.ActionStun;
+import Model.card.spell.TargetAllCards;
+import Model.card.spell.TargetAllEnemyCards;
+import Model.card.spell.TargetAllOwnCards;
+import Model.card.spell.TargetEnemyCard;
+import Model.card.spell.TargetEnemyHero;
+import Model.card.spell.TargetEnemyHeroColumn;
+import Model.card.spell.TargetEnemyMinion;
+import Model.card.spell.TargetOwnCard;
+import Model.card.spell.TargetOwnHeroRow;
+import Model.card.spell.TargetOwnMinion;
+import Model.card.spell.TargetThreeByThree;
+import Model.card.spell.TargetTwoByTwo;
 import Model.item.Collectable;
 import Model.item.Item;
 import Model.item.Usable;
@@ -27,26 +38,26 @@ public class PreProcess{
         //Spell
 
         ArrayList<Spell> spells = new ArrayList<>();
-        spells.add(new Spell("Total Disarm", 1000, 0));
-        spells.add(new Spell("Area Dispel", 1500, 2));
-        spells.add(new Spell("Empower", 250, 1));
-        spells.add(new Spell("Fireball", 400, 1));
-        spells.add(new Spell("God Strength", 450, 2));
-        spells.add(new Spell("Hell Fire", 600, 3));
-        spells.add(new Spell("Lightning Bolt", 1250, 2));
-        spells.add(new Spell("Poison Lake", 900, 5));
-        spells.add(new Spell("Madness", 650, 0));
-        spells.add(new Spell("All Disarm", 2000, 9));
-        spells.add(new Spell("All Poison", 1500, 8));
-        spells.add(new Spell("Dispel", 2100, 0));
-        spells.add(new Spell("Health With Profit", 2250, 0));
-        spells.add(new Spell("Power Up", 2500, 2));
-        spells.add(new Spell("All Power", 2000, 4));
-        spells.add(new Spell("All Attack", 1500, 4));
-        spells.add(new Spell("Weakening", 1000, 1));
-        spells.add(new Spell("Sacrifice", 1600, 2));
-        spells.add(new Spell("Kings Guard", 1750, 9));
-        spells.add(new Spell("Shock", 1200, 1));
+        spells.add(new Spell("Total Disarm", 1000, 0, new TargetEnemyCard(), ));
+        spells.add(new Spell("Area Dispel", 1500, 2, new TargetTwoByTwo(), ));
+        spells.add(new Spell("Empower", 250, 1, new TargetOwnCard(), ));
+        spells.add(new Spell("Fireball", 400, 1, new TargetEnemyCard(), ));
+        spells.add(new Spell("God Strength", 450, 2, new TargetOwnCard(), ));
+        spells.add(new Spell("Hell Fire", 600, 3, new TargetTwoByTwo(),));
+        spells.add(new Spell("Lightning Bolt", 1250, 2, new TargetEnemyHero(),));
+        spells.add(new Spell("Poison Lake", 900, 5, new TargetThreeByThree(),));
+        spells.add(new Spell("Madness", 650, 0, new TargetOwnCard(), ));
+        spells.add(new Spell("All Disarm", 2000, 9, new TargetAllEnemyCards(),));
+        spells.add(new Spell("All Poison", 1500, 8, new TargetAllEnemyCards(),));
+        spells.add(new Spell("Dispel", 2100, 0, (Target) new TargetAllCards(),));//
+        spells.add(new Spell("Health With Profit", 2250, 0, new TargetOwnCard(),));
+        spells.add(new Spell("Power Up", 2500, 2, new TargetOwnCard(),));
+        spells.add(new Spell("All Power", 2000, 4, new TargetAllOwnCards(),));
+        spells.add(new Spell("All Attack", 1500, 4, ));//
+        spells.add(new Spell("Weakening", 1000, 1, new TargetEnemyMinion(),));
+        spells.add(new Spell("Sacrifice", 1600, 2, new TargetOwnMinion(),));
+        spells.add(new Spell("Kings Guard", 1750, 9, ));//
+        spells.add(new Spell("Shock", 1200, 1, new TargetEnemyCard(),));
 
         for (Spell spell:
              spells) {
@@ -215,7 +226,4 @@ public class PreProcess{
             gson.toJson(collectable, new FileWriter("Card.Json", true));
         }
     }
-
-
-
 }

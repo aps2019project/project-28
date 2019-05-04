@@ -8,6 +8,7 @@ import Model.card.spell.SpellAction.Action;
 import exeption.InvalidCellException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class Spell extends Card {
@@ -23,8 +24,10 @@ public class Spell extends Card {
         this.duration--;
     }
 
-    public Spell(String name, int price, int manaPoint, Action... actions) {
+    public Spell(String name, int price, int manaPoint, Target target,  Action... actions) {
         super( name, price, manaPoint);
+        this.actions = actions;
+        this.target = target;
     }
 
     public ArrayList<Spell> getActiveSpells() {
