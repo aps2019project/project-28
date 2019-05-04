@@ -1,4 +1,7 @@
 package exeption;
 
-public class InvalidItemException extends Throwable {
+import java.lang.reflect.Executable;
+
+public class InvalidItemException extends Exception {
+
 }
