@@ -58,15 +58,17 @@ public class Spell extends Card {
         return perk;
     }
 
-    public void deploy(Player player, Player enemy, Cell cell) throws InvalidCellException {
+    public void deploy (Cell cell) throws Exception {
+        try{
             activeSpells.add(this);
-            if(targetCells.length == 0) targetCells = this.target.getTarget(player, enemy, cell, this);
+            if(targetCells.length == 0) targetCells = this.target.getTarget(cell);
             for (Action action : actions){
                 action.deploy(this , targetCells);
             }
             this.duration--;
             if (this.duration == 0) activeSpells.remove(this);
-        } catch(InvalidCellException e){
+        } catch(Exception e ){
+            activeSpells.remove(this) ;
             throw e ;
         }
     }

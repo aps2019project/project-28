@@ -18,7 +18,8 @@ public class TargetOwnHeroRow implements Target {
         return obj ;
     }
     @Override
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws InvalidCellException {
+    public Cell[] getTarget(Cell cell) throws InvalidCellException {
+        Player player = Game.battle.getPlayer() ;
         if (cell != player.getDeck().getHero().getLocation()) {
             throw new InvalidCellException();
         }
