@@ -39,8 +39,7 @@ public class Player {
     }
 
     private void hardCopy(Account user){
-        for (Card card:
-             user.getCollection().getCards()) {
+        for (Card card: user.getCollection().getCards()) {
             if(card instanceof Minion){
                 this.minionsInGame.add(new Minion((Minion)card));
             }

@@ -2,17 +2,17 @@ package Model.card.hermione;
 
 import Controller.Game;
 import Model.Map.Cell;
-import Model.card.spell.SpecialPower;
 import Model.Map.Map;
 import exeption.CantAttackException;
 import exeption.DestinationOutOfreachException;
+import exeption.InvalidCardException;
 
 public class Minion extends Hermione{
     // TODO: 5/5/19 enom for SPAtime
 
-    private String SPActivationTime;
+    private SPATime SPActivationTime;
 
-    public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint, AttackType attackType, int range, Model.card.spell.SpecialPower specialPower,String SPActivationTime) {
+    public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint, AttackType attackType, int range, Model.card.spell.SpecialPower specialPower,SPATime SPActivationTime) {
         super(name, price, manaPoint, healthPoint, attackPoint, specialPower, attackType, range);
         this.SPActivationTime=SPActivationTime;
     }
@@ -20,11 +20,13 @@ public class Minion extends Hermione{
     @Override
     public void spawn(Cell cell){
         super.spawn(cell);
-        this.itIsTime("spawn");
+        Game.battle.getAccount().getPlayer().getMinionsInGame().add(this);
+        this.itIsTime(SPATime.valueOf("SPAWN"));
+
     }
 
     @Override
-    public void die() {
+    public void die() throws InvalidCardException {
         if (this.hasTheDeathCurse){
             int distance = Map.getManhattanDistance(location , Game.battle.getEnemyPlayer().getDeck().getHero().getLocation()) ;
             Hermione theTarget = Game.battle.getEnemyPlayer().getDeck().getHero() ;
@@ -42,26 +44,25 @@ public class Minion extends Hermione{
                 //TODO
             }
         }
-        this.itIsTime("death");
+        this.itIsTime(SPATime.valueOf("DEATH"));
         super.die();
     }
 
         @Override
-        public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException {
-            this.itIsTime("attack");
+        public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCardException {
+            this.itIsTime(SPATime.valueOf("ATTACK"));
             super.attack(enemyCard);
         }
 
         @Override
         public void counterAttack(Hermione enemyCard) {
-            this.itIsTime("defend");
+            this.itIsTime(SPATime.valueOf("DEFEND"));
             super.counterAttack(enemyCard);
         }
 
-        private boolean itIsTime(String currentState){
-            if(!this.SPActivationTime.equals(currentState))return false;
-            this.applySpecialPower(this.getLocation().getX(),this.getLocation().getY());
-            return true;
+        private void itIsTime(SPATime currentState){
+            if(!this.SPActivationTime.equals(currentState))return;
+            this.applySpecialPower(this.getLocation().getX(), this.getLocation().getY());
         }
 
 
@@ -70,11 +71,7 @@ public class Minion extends Hermione{
             return false;
         }
 
-    public SPATime getSPActivationTime() {
+        public SPATime getSPActivationTime() {
         return SPActivationTime;
-    }
-    @Override
-    public boolean applySpecialPower(int x, int y) {
-        return false;
     }
 }
