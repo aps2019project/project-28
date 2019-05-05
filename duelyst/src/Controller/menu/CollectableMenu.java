@@ -1,7 +1,8 @@
 package Controller.menu;
 
-public class MainMenu extends Menu {
-    public MainMenu(Menu parentMenu) {
+public class CollectableMenu extends Menu{
+
+    public CollectableMenu(Menu parentMenu) {
         super(parentMenu);
         this.account=parentMenu.getAccount();
     }

@@ -1,6 +1,8 @@
 package Model.account;
 
 import Model.card.Card;
+import exeption.DeckIsEmptyException;
+import exeption.HandFullException;
 import exeption.InvalidCardException;
 
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.Collections;
 public class Hand {
 
     private ArrayList<Card> deck;
-    private ArrayList<OnHandPresentedListener>handPresenters=new ArrayList<>();
+    private ArrayList<OnHandPresentedListener> handPresenters = new ArrayList<>();
     private static final int SIZE = 5;
     private Card[] cards = new Card[SIZE];
     private Card nextCard;
@@ -22,7 +24,15 @@ public class Hand {
         this.nextCard = this.deck.get(SIZE);
     }
 
-    private void addCard(){
+    public void updateHand() throws DeckIsEmptyException, HandFullException{
+        for (int i = 0 ; i < SIZE ; i++) {
+            if(cards[i] == null){
+                this.addCard();
+            }
+        }
+    }
+
+    private void addCard() throws DeckIsEmptyException, HandFullException {
         if(nextCard != null){
             for (int i = 0; i < SIZE; i++){
                 if(cards[i] == null){
@@ -31,7 +41,9 @@ public class Hand {
                     return;
                 }
             }
+            throw new HandFullException();
         }
+        throw new DeckIsEmptyException();
     }
 
     private void setNextCard() {
@@ -52,7 +64,7 @@ public class Hand {
         }
     }
 
-    public void handleHand(Card card){
+    public void handleHand(Card card) throws DeckIsEmptyException, HandFullException{
         removeCard(card);
         addCard();
     }
@@ -70,5 +82,9 @@ public class Hand {
             if(card.getCardID()==cardID)return card;
         }
         throw new InvalidCardException();
+    }
+
+    public Card getNextCard() {
+        return nextCard;
     }
 }

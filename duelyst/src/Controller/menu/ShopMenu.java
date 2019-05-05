@@ -17,6 +17,7 @@ public class ShopMenu extends Menu {
 
     public ShopMenu(Menu parentMenu){
         super(parentMenu);
+        this.account=parentMenu.getAccount();
         tempCollection = this.account.getCollection();
     }
 

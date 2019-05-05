@@ -7,9 +7,9 @@ import Model.card.spell.Target;
 import exeption.InvalidCellException;
 
 public class TargetSingleCell implements Target {
-    TargetSingleCell obj;
+    private static TargetSingleCell obj;
 
-    public TargetSingleCell getTargetInstance() {
+    public static TargetSingleCell getTargetInstance() {
         if (obj == null) {
             obj =  new TargetSingleCell();
         }
