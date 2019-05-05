@@ -7,7 +7,9 @@ import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Spell;
+import Model.item.Collectable;
 import Model.item.Item;
+import Model.item.OnItemDetailPresentedListener;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class Battle extends Menu {
     private Player[] player =new Player[2];
     private int turn = 0 ;
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
+    private static final int[] MAX_MANA_PER_TURN={2,3,3,4,4,5,5,6,6,7,7,8,8,9};
 
     private ArrayList<OnGameInfoPresentedListener>gameInfoPresenters=new ArrayList<>();
 
@@ -62,9 +65,8 @@ public class Battle extends Menu {
         if(deck.hasCard(ID)) {
             Card card = deck.getCard(ID);
             this.account.getPlayer().setSelectedCard(card);
-        }else if(deck.hasItem(ID)){
-            Item item=deck.getItem(ID);
-            // TODO: 5/5/19 I DONT KNOW WHAT TO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO PAGE 20 OF THE DOC
+        }else if(this.account.getPlayer().hasItem(ID)){
+            this.account.getPlayer().setSelectedItem(this.account.getPlayer().getItem(ID));
         }
     }
 
@@ -105,12 +107,49 @@ public class Battle extends Menu {
         // TODO: 5/5/19 one more exception  (read the doc)
     }
 
-    public void endTurn(){
-        // TODO: 5/5/19 change max mana and stuff
-        turn++ ;
-        this.account=this.getEnemy(this.account).getUser();
+    public void endTurn() {
+
+        /*updating hand*/
+        this.account.getPlayer().getHand().updateHand();
+        // TODO: 5/5/19 fatteme updateHand
+
+        /*changing turn*/
+        turn++;
+        this.account = this.getEnemy(this.account).getUser();
+
+        /*handling Mana*/
+        this.account.getPlayer().setMaxMana(MAX_MANA_PER_TURN[Integer.min(turn, MAX_MANA_PER_TURN.length - 1)]);
+        this.account.getPlayer().reFillMana();
+
+        // TODO: 5/5/19 @SaE beBn bayad kari vasse Spell ha ya  SpecialPower ha beshe ya na
+
+        /*handling coolDown*/
+        this.player[0].getDeck().getHero().increaseRemainCoolDown();
+        this.player[1].getDeck().getHero().increaseRemainCoolDown();
+        // TODO: 5/5/19 other stuff maybe?
 
     }
+
+    public void showCollectable(){
+        for (Collectable collectable : this.account.getPlayer().getCollectables()) {
+            for (OnItemDetailPresentedListener presenter : collectable.getItemDeatailPresenters()) {
+                presenter.showItemDetail(collectable);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void setPlayer(Player firstPlayer, Player secondPlayer){
         this.player[0]=firstPlayer;

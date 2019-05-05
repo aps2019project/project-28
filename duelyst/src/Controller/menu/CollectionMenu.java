@@ -19,6 +19,7 @@ public class CollectionMenu extends Menu {
 
     public CollectionMenu(Menu parentMenu) {
         super(parentMenu);
+        this.account=parentMenu.getAccount();
         this.tempCollection = new Collection();
         this.collectionPresenters = new ArrayList<>();
     }

@@ -8,10 +8,7 @@ import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
 import Model.item.Item;
-import exeption.DestinationIsFullException;
-import exeption.InvalidCellException;
-import exeption.NoCardHasBeenSelectedException;
-import exeption.NotEnoughManaException;
+import exeption.*;
 
 import javax.print.attribute.standard.Destination;
 import java.util.ArrayList;
@@ -40,6 +37,7 @@ public class Player {
     }
 
     public void handleWin(){
+        // TODO: 5/5/19 ArshiA bezan
     }
 
     public void spawn(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException, InvalidCellException {
@@ -124,5 +122,27 @@ public class Player {
         this.hand = new Hand(this.deck);
         this.selectedCard = null;
         this.selectedItem = null;
+    }
+
+    public void setMaxMana(int maxMana) {
+        this.maxMana = maxMana;
+    }
+
+    public void reFillMana() {
+        this.mana=maxMana;
+    }
+
+    public Item getItem(int ID) throws InvalidItemException {
+        for (Collectable collectable : this.collectables) {
+            if(collectable.getID()==id)return collectable;
+        }
+        throw new InvalidItemException();
+    }
+
+    public boolean hasItem(int id) {
+        for (Collectable collectable : this.getCollectables()) {
+            if(collectable.getID()==id)return true;
+        }
+        return false;
     }
 }
