@@ -2,6 +2,7 @@ package Model.item;
 
 import Model.account.Player;
 import Model.card.hermione.Hermione;
+import Model.card.spell.Target;
 import exeption.InvalidItemException;
 
 import java.util.ArrayList;
@@ -11,13 +12,15 @@ public abstract class Item {
 
     private static ArrayList<Item> items =new ArrayList<>();
     private String name;
+    private Target target ;
     private ItemAction action ;
     private int itemID;
     private ArrayList<OnItemDetailPresentedListener>itemDeatailPresenters=new ArrayList<>();
 
-    public Item(String name, ItemAction action){
+    public Item(String name, ItemAction action , Target target){
         this.name = name;
         this.action = action;
+        this.target = target ;
 //        this.itemID = itemID;TODO ITEMID
     }
 

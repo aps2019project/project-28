@@ -1,5 +1,6 @@
 package Model.card.spell.Targets;
 
+import Controller.Game;
 import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
@@ -22,10 +23,10 @@ public class RandomMinionInSurrounding implements Target {
     }
 
     @Override
-    public  Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws InvalidCellException {
+    public  Cell[] getTarget(Cell cell) throws InvalidCellException {
         Cell[] cells ;
         try {
-            cells = TargetHeroSurroundings.getTargetInstance().getTarget(player, enemy, cell, spell);
+            cells = TargetHeroSurroundings.getTargetInstance().getTarget(cell);
         } catch (InvalidCellException e){
             throw e ;
         }

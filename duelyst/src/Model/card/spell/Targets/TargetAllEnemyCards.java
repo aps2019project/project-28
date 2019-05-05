@@ -1,5 +1,6 @@
 package Model.card.spell.Targets;
 
+import Controller.Game;
 import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.spell.Spell;
@@ -16,7 +17,9 @@ public class TargetAllEnemyCards  implements Target {
         return obj ;
     }
 
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws InvalidCellException {
+    public Cell[] getTarget(Cell cell) throws InvalidCellException {
+        Player player = Game.battle.getPlayer() ;
+        Player enemy = Game.battle.getEnemyPlayer() ;
         if (cell != player.getDeck().getHero().getLocation()) {
             throw new InvalidCellException();
         }

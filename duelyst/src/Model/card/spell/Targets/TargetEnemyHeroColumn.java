@@ -18,7 +18,8 @@ public class TargetEnemyHeroColumn implements Target {
         return obj ;
     }
     @Override
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws InvalidCellException {
+    public Cell[] getTarget(Cell cell) throws InvalidCellException {
+        Player enemy = Game.battle.getEnemyPlayer() ;
         if (cell != enemy.getDeck().getHero().getLocation()) {
             throw new InvalidCellException();
         }
