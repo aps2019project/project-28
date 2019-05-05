@@ -72,5 +72,7 @@ public class Hand {
         throw new InvalidCardException();
     }
 
-
+    public Card getNextCard() {
+        return nextCard;
+    }
 }

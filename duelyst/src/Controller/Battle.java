@@ -130,6 +130,13 @@ public class Battle extends Menu {
 
     }
 
+    public void showNextCard(){
+        Card card=this.account.getPlayer().getHand().getNextCard();
+        for (OnCardDetailsPresentedListener presenter :card.getCardDetailsPresenters()) {
+            presenter.showCardDetail(card);
+        }
+    }
+
     public void showCollectable(){
         for (Collectable collectable : this.account.getPlayer().getCollectables()) {
             for (OnItemDetailPresentedListener presenter : collectable.getItemDeatailPresenters()) {
