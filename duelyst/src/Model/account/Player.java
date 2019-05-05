@@ -134,7 +134,7 @@ public class Player {
 
     public Item getItem(int ID) throws InvalidItemException {
         for (Collectable collectable : this.collectables) {
-            if(collectable.getID()==id)return collectable;
+            if(collectable.getID()==ID)return collectable;
         }
         throw new InvalidItemException();
     }

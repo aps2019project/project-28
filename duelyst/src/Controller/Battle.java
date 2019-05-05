@@ -111,7 +111,6 @@ public class Battle extends Menu {
 
         /*updating hand*/
         this.account.getPlayer().getHand().updateHand();
-        // TODO: 5/5/19 fatteme updateHand
 
         /*changing turn*/
         turn++;
@@ -139,7 +138,7 @@ public class Battle extends Menu {
 
     public void showCollectable(){
         for (Collectable collectable : this.account.getPlayer().getCollectables()) {
-            for (OnItemDetailPresentedListener presenter : collectable.getItemDeatailPresenters()) {
+            for (OnItemDetailPresentedListener presenter : collectable.getItemDetailPresenters()) {
                 presenter.showItemDetail(collectable);
             }
         }
@@ -192,4 +191,5 @@ public class Battle extends Menu {
     public void help() {
 
     }
+
 }

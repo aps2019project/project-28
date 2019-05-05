@@ -230,11 +230,11 @@ public class Collection{
         throw new ItemExistExeption();
     }
 
-    public void removeItemFromCollection(Usable item) throws  ItemDoesntExistException{
+    public void removeItemFromCollection(Usable item) throws InvalidItemException{
         if(hasItem(item)){
             usables.remove(item);
         }
-        throw new ItemDoesntExistException();
+        throw new InvalidItemException();
     }
 
     public boolean has(int ID){
