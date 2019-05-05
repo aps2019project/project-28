@@ -15,7 +15,7 @@ public abstract class Item {
     private int itemID;
     private ArrayList<OnItemDetailPresentedListener>itemDeatailPresenters=new ArrayList<>();
 
-    public Item(String name, ItemAction action){
+    public Item(String name, ItemTarget target, ItemAction action){
         this.name = name;
         this.action = action;
 //        this.itemID = itemID;TODO ITEMID
