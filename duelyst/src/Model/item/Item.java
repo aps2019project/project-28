@@ -1,5 +1,6 @@
 package Model.item;
 
+import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Target;
@@ -69,9 +70,9 @@ public abstract class Item {
         return action;
     }
 
-    public void deploy(){
+    public void deploy() {}
 
-    }
+    public void deploy(Cell cell) {}
 
     public void increaseHealth(int number, Hermione target){
         target.setHealthPoint(target.getHealthPoint() + number);
