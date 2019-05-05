@@ -107,7 +107,7 @@ public class Battle extends Menu {
         // TODO: 5/5/19 one more exception  (read the doc)
     }
 
-    public void endTurn() {
+    public void endTurn() throws HandFullException, DeckIsEmptyException{
 
         /*updating hand*/
         this.account.getPlayer().getHand().updateHand();
