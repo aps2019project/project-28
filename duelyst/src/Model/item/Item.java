@@ -4,6 +4,7 @@ import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Target;
+import exeption.InvalidCellException;
 import exeption.InvalidItemException;
 
 import java.util.ArrayList;
@@ -13,15 +14,18 @@ public abstract class Item {
 
     private static ArrayList<Item> items =new ArrayList<>();
     private String name;
-    private ItemTarget target ;
-    private ItemAction action ;
+    private Target target ;
+    private int perk ;
+    private int perk2 ;
+    private ArrayList<ItemAction> actions = new ArrayList<>() ;
     private int itemID;
     private ArrayList<OnItemDetailPresentedListener>itemDeatailPresenters=new ArrayList<>();
 
-    public Item(String name, ItemAction action , ItemTarget target){
+    public Item(String name, ArrayList<ItemAction> actions , Target target , int perk){
         this.name = name;
-        this.action = action;
+        this.actions = actions;
         this.target = target ;
+        this.perk = perk ;
 //        this.itemID = itemID;TODO ITEMID
     }
 
@@ -66,13 +70,30 @@ public abstract class Item {
         return itemID;
     }
 
-    public ItemAction getAction() {
-        return action;
+    public ArrayList<ItemAction> getAction() {
+        return actions;
     }
 
-    public void deploy() {}
+    public void deploy() {
+        for (ItemAction action : actions ){
+            action.deploy(this);
+        }
+    }
 
-    public void deploy(Cell cell) {}
+    public void deploy(Cell cell) throws InvalidCellException{
+            try {
+                target.getTarget(cell);
+            }catch(InvalidCellException e){
+                throw e ;
+            }
+        for (ItemAction action : actions) {
+            try {
+                action.deploy(this , target.getTarget(cell));
+            }catch(InvalidCellException e){
+                throw e ;
+            }
+        }
+    }
 
     public void increaseHealth(int number, Hermione target){
         target.setHealthPoint(target.getHealthPoint() + number);
@@ -99,7 +120,19 @@ public abstract class Item {
         this.itemDeatailPresenters.add(presenter);
     }
 
-    public ArrayList<OnItemDetailPresentedListener> getItemDeatailPresenters() {
+    public ArrayList<OnItemDetailPresentedListener> getItemDetailPresenters() {
         return (ArrayList<OnItemDetailPresentedListener>) Collections.unmodifiableList(itemDeatailPresenters);
+    }
+
+    public int getPerk() {
+        return perk;
+    }
+
+    public void setPerk(int perk) {
+        this.perk = perk;
+    }
+
+    public void setPerk2(int perk) {
+        this.perk2 = perk;
     }
 }
