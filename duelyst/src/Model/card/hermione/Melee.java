@@ -10,5 +10,10 @@ public class Melee implements AttackType {
         if(Map.getRadiusDistance(champCard.getLocation(),enemyCard.getLocation())==1)return true;
         return false;
     }
+    public Melee(){
 
+    }
+    public Melee(Melee melee){
+
+    }
 }

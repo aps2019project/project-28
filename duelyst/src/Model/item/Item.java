@@ -29,6 +29,9 @@ public abstract class Item {
 //        this.itemID = itemID;TODO ITEMID
     }
 
+    public Item(Item item){
+
+    }
 
     public static Item getItem(int itemID) throws InvalidItemException {
         for (Item item : Item.getItems()) {

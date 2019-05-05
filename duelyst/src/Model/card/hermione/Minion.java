@@ -10,6 +10,10 @@ public class Minion extends Hermione{
 
     private SPATime SPActivationTime;
 
+    public Minion(Minion minion){
+        super(minion);
+        this.SPActivationTime = minion.getSPActivationTime();
+    }
     public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint,  AttackType attackType, int range,Model.card.spell.SpecialPower specialPower,SPATime SPActivationTime) {
         super(name, price, manaPoint, healthPoint, attackPoint, specialPower, attackType, range);
         this.SPActivationTime=SPActivationTime;
@@ -52,4 +56,7 @@ public class Minion extends Hermione{
             return false;
         }
 
+    public SPATime getSPActivationTime() {
+        return SPActivationTime;
     }
+}

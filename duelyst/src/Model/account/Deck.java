@@ -2,7 +2,10 @@ package Model.account;
 
 import Model.card.Card;
 import Model.card.hermione.Hero;
+import Model.card.hermione.Minion;
+import Model.item.Collectable;
 import Model.item.Item;
+import Model.item.Usable;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -13,7 +16,7 @@ public class Deck{
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Card> graveYard = new ArrayList<>();
-    private ArrayList<OnDeckPresentedListener>deckPresenters=new ArrayList<OnDeckPresentedListener>();
+    private ArrayList<OnDeckPresentedListener> deckPresenters=new ArrayList<OnDeckPresentedListener>();
     private Hero hero;
     private String name;
     private int ID;
@@ -24,6 +27,43 @@ public class Deck{
         this.name = name;
     }
 
+    public Deck(Deck deck){
+        this.name = deck.getName();
+        this.collection = new Collection(deck.getCollection());
+        for (Card card:
+             deck.getCards()) {
+            if(card instanceof Hero) {
+                this.cards.add(new Hero((Hero) card));
+            }
+            else if(card instanceof Minion) {
+                this.cards.add(new Minion((Minion) card));
+            }
+        }
+
+        for (Item item:
+             deck.getItems()) {
+            if(item instanceof Usable){
+                this.items.add(new Usable((Usable)item));
+            }
+        }
+
+        for (Card card:
+                deck.getGraveYard()) {
+            if(card instanceof Hero) {
+                this.graveYard.add(new Hero((Hero) card));
+            }
+            else if(card instanceof Minion) {
+                this.graveYard.add(new Minion((Minion) card));
+            }
+        }
+        this.hero = new Hero(deck.getHero());
+        this.ID = deck.getID();
+    }
+
+    public ArrayList<Card> getGraveYard() {
+        return graveYard;
+    }
+
     public void setCollection(Collection collection) {
         this.collection = collection;
     }
@@ -32,8 +72,20 @@ public class Deck{
         return cards;
     }
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public Collection getCollection() {
+        return collection;
     }
 
     public boolean hasCard(int cardID){

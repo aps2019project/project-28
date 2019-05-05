@@ -24,9 +24,30 @@ public class Player {
     private ArrayList<Minion> minionsInGame ;//this players minions
     private ArrayList<Collectable> collectables;
     private Deck deck;
-
     private Card selectedCard;
     private Item selectedItem;
+
+    public Player(Account user, int maxMana, int mana) {
+        this.user = user;
+        this.maxMana = maxMana;
+        this.mana = mana;
+        this.minionsInGame = new ArrayList<>();
+        this.collectables = new ArrayList<>();
+        this.selectedCard = null;
+        this.selectedItem = null;
+        this.hardCopy(user);
+    }
+
+    private void hardCopy(Account user){
+        for (Card card:
+             user.getCollection().getCards()) {
+            if(card instanceof Minion){
+                this.minionsInGame.add(new Minion((Minion)card));
+            }
+        }
+        this.deck = new Deck(user.getCollection().getMainDeck());
+        this.hand = new Hand(this.deck);
+    }
 
     public void setMana(int mana) {
         this.mana = mana;
@@ -109,19 +130,6 @@ public class Player {
 
     public void setDeck(Deck deck) {
         this.deck = deck;
-    }
-
-    public Player(Account user, int maxMana, int mana) {
-        // TODO: 5/5/19 hardCopy
-        this.user = user;
-        this.maxMana = maxMana;
-        this.mana = mana;
-        this.minionsInGame = new ArrayList<>();
-        this.collectables = new ArrayList<>();
-        this.deck = this.user.getCollection().getMainDeck();
-        this.hand = new Hand(this.deck);
-        this.selectedCard = null;
-        this.selectedItem = null;
     }
 
     public void setMaxMana(int maxMana) {

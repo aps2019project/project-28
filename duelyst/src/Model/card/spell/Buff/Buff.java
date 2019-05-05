@@ -19,6 +19,10 @@ public class Buff {
         this.duration = duration;
         this.isPositive = isPositive;
     }
+
+    public Buff(Buff buff){
+
+    }
     public Buff(int duration, boolean isPositive, Model.card.spell.BuffActions action , int perk) {
         this.action = action;
         this.duration = duration;
