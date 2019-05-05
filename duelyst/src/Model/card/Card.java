@@ -6,7 +6,7 @@ import exeption.InvalidCardException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public abstract class Card {
+public abstract class Card implements Cloneable {
     private static ArrayList<Card> cards=new ArrayList<>();
     private static int uniqueID =0;
 

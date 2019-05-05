@@ -12,6 +12,7 @@ public class Deck{
     private Collection collection ;
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Card> graveYard = new ArrayList<>();
     private ArrayList<OnDeckPresentedListener>deckPresenters=new ArrayList<OnDeckPresentedListener>();
     private Hero hero;
     private String name;
@@ -94,8 +95,8 @@ public class Deck{
 
     private boolean removeCardFromDeck(int cardID) throws InvalidCardException {
         Card willBeRemoved = null;
-
-        if(!this.hasCard(cardID))throw new InvalidCardException();
+        if(!this.hasCard(cardID))
+            throw new InvalidCardException();
         for (Card card : cards) {
             if (card.getCardID() == cardID) {
                 willBeRemoved = card;
@@ -105,6 +106,10 @@ public class Deck{
         cards.remove(willBeRemoved);
         if(willBeRemoved.getClass().equals(hero.getClass()))hero=null;
         return true;
+    }
+
+    public void moveToGraveYard(Card card){
+        this.graveYard.add(card);
     }
 
     private boolean removeItemFromDeck(int itemID) throws InvalidItemException {

@@ -49,7 +49,6 @@ public class Collection{
     public ArrayList<Deck> getDecks() {
         return decks;
     }
-
     public Account getOwner() {
         return owner;
     }
@@ -217,11 +216,11 @@ public class Collection{
         throw new CardExistException();
     }
 
-    public void removeCardFromCollection(Card card) throws CardDeoesntExistException{
+    public void removeCardFromCollection(Card card) throws InvalidCardException{
         if(hasCard(card)){
             this.cards.remove(card);
         }
-        throw new CardDeoesntExistException();
+        throw new InvalidCardException();
     }
 
     public void addItemToCollection(Usable item) throws ItemExistExeption{
