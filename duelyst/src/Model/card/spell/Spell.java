@@ -26,12 +26,11 @@ public class Spell extends Card {
         this.duration--;
     }
 
-    public Spell(String name, int price , int manaPoint, int duration , int perk , Action ... actions ) {
+    public Spell(String name, int price , int manaPoint, int duration , int perk , Target target,Action ... actions ) {
         super( name, price, manaPoint);
         this.duration = duration ;
         this.perk = perk ;
         Collections.addAll(this.actions , actions) ;
-        this.actions = actions;
         this.target = target;
     }
 
@@ -59,15 +58,17 @@ public class Spell extends Card {
         return perk;
     }
 
-    public void deploy(Player player, Player enemy, Cell cell) throws InvalidCellException {
+    public void deploy (Cell cell) throws Exception {
+        try{
             activeSpells.add(this);
-            if(targetCells.length == 0) targetCells = this.target.getTarget(player, enemy, cell, this);
+            if(targetCells.length == 0) targetCells = this.target.getTarget(cell);
             for (Action action : actions){
                 action.deploy(this , targetCells);
             }
             this.duration--;
             if (this.duration == 0) activeSpells.remove(this);
-        } catch(InvalidCellException e){
+        } catch(Exception e ){
+            activeSpells.remove(this) ;
             throw e ;
         }
     }

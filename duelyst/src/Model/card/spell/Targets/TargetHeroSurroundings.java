@@ -3,10 +3,14 @@ package Model.card.spell.Targets;
 import Controller.Game;
 import Model.Map.Cell;
 import Model.Map.Map;
+import Model.account.Collection;
 import Model.account.Player;
 import Model.card.spell.Spell;
 import Model.card.spell.Target;
 import exeption.InvalidCellException;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class TargetHeroSurroundings implements Target {
     private static TargetHeroSurroundings obj;
@@ -18,7 +22,9 @@ public class TargetHeroSurroundings implements Target {
         return obj ;
     }
     @Override
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws InvalidCellException {
+    public Cell[] getTarget(Cell cell) throws InvalidCellException {
+        Player player = Game.battle.getPlayer() ;
+        Player enemy = Game.battle.getEnemyPlayer() ;
         if (cell != player.getDeck().getHero().getLocation())  {
             throw new InvalidCellException();
         }
@@ -29,6 +35,18 @@ public class TargetHeroSurroundings implements Target {
                 map.getCell(x - 1, y), map.getCell(x + 1, y), map.getCell(x - 1, y + 1),
                 map.getCell(x, y + 1), map.getCell(x + 1, y + 1)};
 
+        ArrayList<Cell> cells2 = new ArrayList<>() ;
+        for (Cell cel : cells){
+            if (cel.getCardOnCell() != null && cel.getCardOnCell().getSuperCollection().getOwner().getPlayer().equals(enemy)){
+                cells2.add(cel) ;
+            }
+        }
+        cells = new Cell[cells2.size()] ;
+        int index = 0 ;
+        for (Cell cel : cells2){
+            cells[index] = cel ;
+            index++ ;
+        }
         return cells ;
     }
 }

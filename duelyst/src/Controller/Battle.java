@@ -173,8 +173,11 @@ public class Battle extends Menu {
     public Map getMap() {
         return map;
     }
-    public Player getPlayers(){
-        return player[turn] ;
+    public Player getPlayer(){
+        return player[getTurn()] ;
+    }
+    public Player getEnemyPlayer(){
+        return player[1 - getTurn()] ;
     }
     public int getTurn() {return turn%2 ; }
     public int getOriginalTurn(){ return this.turn; }

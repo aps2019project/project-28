@@ -4,6 +4,7 @@ import Model.card.spell.Buff.Buff;
 
 public class BuffActionHolly implements Model.card.spell.BuffActions {
     private static BuffActionHolly obj ;
+
     public static BuffActionHolly getBuffAction(){
         if (obj==null) obj = new BuffActionHolly() ;
         return obj;

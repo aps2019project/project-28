@@ -19,7 +19,7 @@ public class TargetThreeByThree implements Target {
         return obj ;
     }
     @Override
-    public Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws InvalidCellException {
+    public Cell[] getTarget(Cell cell) throws InvalidCellException {
         int x = cell.getX();
         int y = cell.getY();
         Map map = Game.battle.getMap();

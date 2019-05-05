@@ -9,7 +9,7 @@ import Model.card.hermione.Minion;
 import exeption.InvalidCellException;
 
 public interface Target {
-    Cell[] getTarget(Player player, Player enemy, Cell cell, Spell spell) throws InvalidCellException;
+    Cell[] getTarget(Cell cell) throws InvalidCellException;
 }
 
 
