@@ -8,6 +8,7 @@ import Model.card.spell.Buff.Buff;
 import Model.card.spell.SpecialPower;
 import exeption.CantAttackException;
 import exeption.DestinationOutOfreachException;
+import exeption.InvalidCellException;
 import exeption.MoveTrunIsOverException;
 
 import java.util.ArrayList;
@@ -29,7 +30,6 @@ public abstract class Hermione extends Card {
     protected boolean canAttack = true ;
     protected int numberOfFlags;
     protected boolean canMove;
-
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range) {
@@ -73,7 +73,7 @@ public abstract class Hermione extends Card {
         }
     }
 
-    private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException {
+    private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
         if(this.actionTurn==1)throw new MoveTrunIsOverException();
         if(Game.battle.getMap().getCell(x,y).isFull())throw new DestinationOutOfreachException();
 
@@ -84,7 +84,7 @@ public abstract class Hermione extends Card {
     }
 
 
-    public boolean move (int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException {
+    public boolean move (int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
         if(!canMove(x,y))return false;
         Game.battle.getMap().getCell(this.location).clear();
 

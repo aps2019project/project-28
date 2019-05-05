@@ -54,8 +54,7 @@ public class Spell extends Card {
         return perk;
     }
 
-    public void deploy(Player player, Player enemy, Cell cell) throws Exception {
-        try {
+    public void deploy(Player player, Player enemy, Cell cell) throws InvalidCellException {
             activeSpells.add(this);
             if(targetCells.length == 0) targetCells = this.target.getTarget(player, enemy, cell, this);
             for (Action action : actions){
@@ -63,9 +62,7 @@ public class Spell extends Card {
             }
             this.duration--;
             if (this.duration == 0) activeSpells.remove(this);
-        } catch(InvalidCellException e){
-            throw e ;
-        }
+
     }
 
     public void deployAction(Cell... cells) {

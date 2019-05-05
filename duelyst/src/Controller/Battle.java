@@ -7,6 +7,7 @@ import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Spell;
+import Model.item.Item;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -56,17 +57,24 @@ public class Battle extends Menu {
         }
     }
 
-    public void select(int cardID) throws InvalidCardException {
-        Card card=this.account.getPlayer().getDeck().getCard(cardID);
-        this.account.getPlayer().setSelectedCard(card);
+    public void select(int ID) throws InvalidCardException, InvalidItemException {
+        Deck deck=this.account.getPlayer().getDeck();
+        if(deck.hasCard(ID)) {
+            Card card = deck.getCard(ID);
+            this.account.getPlayer().setSelectedCard(card);
+        }else if(deck.hasItem(ID)){
+            Item item=deck.getItem(ID);
+            // TODO: 5/5/19 I DONT KNOW WHAT TO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO PAGE 20 OF THE DOC
+        }
     }
 
-    public void move(int x,int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException {
+
+    public void move(int x,int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
         try {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
             hermione.move(x,y);
         }catch (ClassCastException e){
-            throw new CardCantBeMovedException();
+            throw new CardCantBeMovedException();//because its Spell
         }
     }
 
@@ -92,6 +100,18 @@ public class Battle extends Menu {
         }
     }
 
+    public void insert(int cardID,int x,int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
+        this.account.getPlayer().spawn(this.account.getPlayer().getHand().getCard(cardID),this.map.getCell(x,y));
+        // TODO: 5/5/19 one more exception  (read the doc)
+    }
+
+    public void endTurn(){
+        // TODO: 5/5/19 change max mana and stuff
+        turn++ ;
+        this.account=this.getEnemy(this.account).getUser();
+
+    }
+
 
 
 
@@ -110,7 +130,6 @@ public class Battle extends Menu {
         this.player[0]=firstPlayer;
         this.player[1]=secondPlayer;
     }
-
     public void addGameInfoPresentedListener(OnGameInfoPresentedListener presenter){
         this.gameInfoPresenters.add(presenter);
     }
@@ -131,10 +150,6 @@ public class Battle extends Menu {
     }
     public Player getPlayers(){
         return player[turn] ;
-    }
-    public void nextTurn(){
-        turn++ ;
-        this.account=this.getEnemy(this.account).getUser();
     }
     public int getTurn() {return turn%2 ; }
     public int getOriginalTurn(){ return this.turn; }

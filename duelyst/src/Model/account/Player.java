@@ -1,11 +1,19 @@
 package Model.account;
 
+import Controller.Game;
+import Model.Map.Cell;
 import Model.card.Card;
+import Model.card.hermione.Hermione;
 import Model.card.hermione.Minion;
+import Model.card.spell.Spell;
 import Model.item.Collectable;
 import Model.item.Item;
+import exeption.DestinationIsFullException;
+import exeption.InvalidCellException;
 import exeption.NoCardHasBeenSelectedException;
+import exeption.NotEnoughManaException;
 
+import javax.print.attribute.standard.Destination;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +40,19 @@ public class Player {
     }
 
     public void handleWin(){
+    }
 
+    public void spawn(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException, InvalidCellException {
+        if(this.mana< card.getManaPoint())throw new NotEnoughManaException();
+        if(cell.isFull())throw new DestinationIsFullException();
+        // TODO: 5/5/19 better implementation maybe by using .getClass?
+        try {
+            Hermione hermione = (Hermione) card;
+            hermione.spawn(cell);
+        } catch (ClassCastException e) {
+            Spell spell=(Spell) card;
+                spell.deploy(this, Game.battle.getEnemy(this.user),cell);
+        }
     }
 
     @Override

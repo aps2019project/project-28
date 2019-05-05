@@ -1,6 +1,7 @@
 package Model.account;
 
 import Model.card.Card;
+import exeption.InvalidCardException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,5 +63,12 @@ public class Hand {
 
     public void addOnHandPresentedListener(OnHandPresentedListener handPresenter) {
         this.handPresenters.add(handPresenter);
+    }
+
+    public Card getCard(int cardID) throws InvalidCardException {
+        for (Card card : this.cards) {
+            if(card.getCardID()==cardID)return card;
+        }
+        throw new InvalidCardException();
     }
 }

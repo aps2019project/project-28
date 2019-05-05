@@ -35,13 +35,20 @@ public class Deck{
         return name;
     }
 
-    private boolean hasCard(int cardID){
+    public boolean hasCard(int cardID){
         for (Card card:
              cards) {
             if(card.getCardID() == cardID)
                 return true;
         }
         return false;
+    }
+
+    public Item getItem(int id) throws InvalidItemException {
+        for (Item item : this.items) {
+            if(item.getID()==id)return item;
+        }
+        throw new InvalidItemException();
     }
 
     public Card getCard(int cardID) throws InvalidCardException {
@@ -51,7 +58,7 @@ public class Deck{
         throw new InvalidCardException();
     }
 
-    private boolean hasItem(int itemID){
+    public boolean hasItem(int itemID){
         for (Item item:
              items) {
             if(item.getID() == itemID) {

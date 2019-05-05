@@ -1,6 +1,8 @@
 package Model.card.hermione;
 
 import Model.Map.Cell;
+import exeption.CantAttackException;
+import exeption.DestinationOutOfreachException;
 
 public class Minion extends Hermione{
     // TODO: 5/5/19 enom for SPAtime
@@ -25,9 +27,9 @@ public class Minion extends Hermione{
     }
 
     @Override
-    public void attack(Cell cell) {
+    public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException {
         this.itIsTime("attack");
-        super.attack(cell);
+        super.attack(enemyCard);
     }
 
     @Override
@@ -38,7 +40,7 @@ public class Minion extends Hermione{
 
     private boolean itIsTime(String currentState){
         if(!this.SPActivationTime.equals(currentState))return false;
-        this.applySpecialPower(x, y);
+        this.applySpecialPower(this.getLocation().getX(),this.getLocation().getY());
         return true;
     }
 
