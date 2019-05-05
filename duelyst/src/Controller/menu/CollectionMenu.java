@@ -41,7 +41,7 @@ public class CollectionMenu extends Menu {
             }
         }
         for (Item item : collection.getAllItemsByName(name)) {
-            for (OnItemDetailPresentedListener presenter : item.getItemDeatailPresenters()) {
+            for (OnItemDetailPresentedListener presenter : item.getItemDetailPresenters()) {
                 presenter.showItemDetail(item);
             }
         }
