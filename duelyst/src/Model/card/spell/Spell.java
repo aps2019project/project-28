@@ -26,11 +26,11 @@ public class Spell extends Card {
         this.duration--;
     }
 
-    public Spell(String name, int price , int manaPoint, int duration , int perk , Target target,Action ... actions ) {
+    public Spell(String name, int price , int manaPoint, int duration , int perk , Target target, Action... actions ) {
         super( name, price, manaPoint);
         this.duration = duration ;
         this.perk = perk ;
-        Collections.addAll(this.actions , actions) ;
+        Collections.addAll(this.actions, actions) ;
         this.target = target;
     }
 
