@@ -5,12 +5,11 @@ import exeption.InvalidAccountException;
 
 import java.util.ArrayList;
 public class Account {
+
     private static ArrayList<Account> accounts=new ArrayList<>();
     private static int unique =0;
     private static final int INITIAL_MONEY = 1500;
-
     private Player player;
-
     private String name;
     private String username;
     private String password;

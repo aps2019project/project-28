@@ -132,7 +132,8 @@ public class Deck{
         return true;
     }
 
-    public void addToDeck(int ID) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidItemException {
+    public void addToDeck(int ID) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException,
+            FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidItemException {
             if(Card.hasCard(ID))
                 addCardToDeck(collection.getCard(ID));
             else if(Item.hasItem(ID))

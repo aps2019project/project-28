@@ -14,34 +14,30 @@ public class SignInMenu extends Menu{
     private ArrayList<OnLeaderBoardClickedListener> leaderBoardPresenters;
 
     public void creatAccount (String name,String username,String password) throws AccountAlreadyExistsException {
-
-        if(Account.hasAccount(username))throw new AccountAlreadyExistsException();
-        temporaryAccount =new Account(name,username,password);
+        if(Account.hasAccount(username))
+            throw new AccountAlreadyExistsException();
+        temporaryAccount = new Account(name,username,password);
     }
 
     public void logIn(String username,String password) throws InvalidAccountException, WrongPassException {
-            Account account=Account.getAccount(username);
+            Account account = Account.getAccount(username);
             if(account.getPassword().equals(password)) {
-                Game.accounts[0] =account;
-                Game.hasLoggedIn=true;
+                Game.accounts[0] = account;
+                Game.hasLoggedIn = true;
             }
-            else{
+            else {
                 throw new WrongPassException();
             }
-
     }
 
     public void logOut(){
-        Game.hasLoggedIn=false;
-        Game.accounts[0]=null;
+        Game.hasLoggedIn = false;
+        Game.accounts[0] = null;
     }
-
-
-
 
     public void save(){
         Account.addNewAccount(temporaryAccount);
-        temporaryAccount =null;
+        temporaryAccount = null;
     }
 
     public void showLeaderBoard(){

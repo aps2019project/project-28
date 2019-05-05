@@ -38,10 +38,10 @@ public class PreProcess{
         //Spell
 
         ArrayList<Spell> spells = new ArrayList<>();
-        spells.add(new Spell("Total Disarm", 1000, 0, new TargetEnemyCard(), ));
-        spells.add(new Spell("Area Dispel", 1500, 2, new TargetTwoByTwo(), ));
-        spells.add(new Spell("Empower", 250, 1, new TargetOwnCard(), ));
-        spells.add(new Spell("Fireball", 400, 1, new TargetEnemyCard(), ));
+        spells.add(new Spell("Total Disarm", 1000, 0, TargetEnemyCard.getTargetInstance(), ));
+        spells.add(new Spell("Area Dispel", 1500, 2, TargetTwoByTwo.getTargetInstance(), ));
+        spells.add(new Spell("Empower", 250, 1, TargetOwnCard.getTargetInstance(), ));
+        spells.add(new Spell("Fireball", 400, 1, TargetEnemyCard.getTargetInstance(), ));
         spells.add(new Spell("God Strength", 450, 2, new TargetOwnCard(), ));
         spells.add(new Spell("Hell Fire", 600, 3, new TargetTwoByTwo(),));
         spells.add(new Spell("Lightning Bolt", 1250, 2, new TargetEnemyHero(),));
@@ -193,8 +193,8 @@ public class PreProcess{
         //item
 
         ArrayList<Usable> usables = new ArrayList<>();
-        usables.add(new Usable("Wisdom Crown", 300, new ItemActionExtraMana()));
-        usables.add(new Usable("Shield AF", 4000, new ItemActionSheildAF()));
+        usables.add(new Usable("Wisdom Crown", 300, ));
+        usables.add(new Usable("Shield AF", 4000,));
         usables.add(new Usable("Damool's Arc", 30000, ));
         usables.add(new Usable("Simorgh's feather", 3500,));
         usables.add(new Usable("Terror Hood", 5000,));
