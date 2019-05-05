@@ -96,7 +96,7 @@ public class PreProcess{
                 6, new Melee(), 0,
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, 5,
                         , ActionChangeAP.getAction()), "On Attack"));
-        
+
         minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
                 ,"Combo"));

@@ -30,6 +30,7 @@ public abstract class Hermione extends Card {
     protected boolean canAttack = true ;
     protected int numberOfFlags;
     protected boolean canMove;
+    protected boolean hasTheDeathCurse = false ;
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range) {
@@ -252,5 +253,13 @@ public abstract class Hermione extends Card {
 
     public int getHollyBuffLevel() {
         return HollyBuffLevel;
+    }
+
+    public boolean isHasTheDeathCurse() {
+        return hasTheDeathCurse;
+    }
+
+    public void setHasTheDeathCurse(boolean hasTheDeathCurse) {
+        this.hasTheDeathCurse = hasTheDeathCurse;
     }
 }
