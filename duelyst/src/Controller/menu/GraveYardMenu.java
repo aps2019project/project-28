@@ -10,4 +10,8 @@ public class GraveYardMenu extends Menu {
     public void help() {
 
     }
+
+    public void showInfo(int cardID){
+        this.account.getPlayer()
+    }
 }

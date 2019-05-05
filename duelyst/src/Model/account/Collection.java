@@ -217,11 +217,11 @@ public class Collection{
         throw new CardExistException();
     }
 
-    public void removeCardFromCollection(Card card) throws CardDeoesntExistException{
+    public void removeCardFromCollection(Card card) throws InvalidCardException{
         if(hasCard(card)){
             this.cards.remove(card);
         }
-        throw new CardDeoesntExistException();
+        throw new InvalidCardException();
     }
 
     public void addItemToCollection(Usable item) throws ItemExistExeption{
@@ -231,11 +231,11 @@ public class Collection{
         throw new ItemExistExeption();
     }
 
-    public void removeItemFromCollection(Usable item) throws  ItemDoesntExistException{
+    public void removeItemFromCollection(Usable item) throws InvalidItemException{
         if(hasItem(item)){
             usables.remove(item);
         }
-        throw new ItemDoesntExistException();
+        throw new InvalidItemException();
     }
 
     public boolean has(int ID){
