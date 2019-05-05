@@ -41,7 +41,7 @@ public abstract class Menu {
 
     public abstract void help();
 
-    public void init(){
+    public void showMenu(){
         for (OnMenuClickedListener presenter : this.menuPresenters) {
             presenter.show();
         }

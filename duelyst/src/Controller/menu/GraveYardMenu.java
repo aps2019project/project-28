@@ -1,28 +1,28 @@
 package Controller.menu;
 
-import java.util.ArrayList;
+import Model.card.Card;
+import Model.card.OnCardDetailsPresentedListener;
+import exeption.InvalidCardException;
 
 public class GraveYardMenu extends Menu {
-
-    private ArrayList<OnGraveYardInfoClickedListener> graveYardInfoClickedListeners;
-    private ArrayList<OnGraveYardCardInfoClickedListener> graveYardCardInfoClickedListeners;
-
     public GraveYardMenu(Menu parentMenu) {
         super(parentMenu);
+        this.account=parentMenu.getAccount();
         this.account = parentMenu.getAccount();
     }
 
-    void showInfo(int cardID){
-        for (OnGraveYardCardInfoClickedListener presenter:
-                graveYardCardInfoClickedListeners) {
-            presenter.show(account.getCollection(), cardID);
+    void showCardInfo(int cardID) throws InvalidCardException {
+        Card card=this.account.getPlayer().getDeck().getCard(cardID);
+        for (OnCardDetailsPresentedListener presenter : card.getCardDetailsPresenters()) {
+            presenter.showCardDetail(card);
         }
     }
 
     void showCards(){
-        for (OnGraveYardInfoClickedListener presenter:
-                graveYardInfoClickedListeners) {
-            presenter.Show(account.getCollection());
+        for (Card card : this.account.getPlayer().getDeck().getGraveYard()) {
+            for (OnCardDetailsPresentedListener presenter : card.getCardDetailsPresenters()) {
+                presenter.showCardDetail(card);
+            }
         }
     }
 
@@ -30,5 +30,4 @@ public class GraveYardMenu extends Menu {
     public void help() {
 
     }
-
 }

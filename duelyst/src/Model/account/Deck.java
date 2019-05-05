@@ -226,6 +226,10 @@ public class Deck{
         return (ArrayList<OnDeckPresentedListener>) Collections.unmodifiableList(deckPresenters);
     }
 
+    public ArrayList<Card> getGraveYard() {
+        return (ArrayList<Card>) Collections.unmodifiableList(graveYard);
+    }
+
     public Hero getHero() {
         return hero ;
     }
