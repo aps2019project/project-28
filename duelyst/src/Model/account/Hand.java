@@ -3,10 +3,12 @@ package Model.account;
 import Model.card.Card;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Hand {
 
     private ArrayList<Card> deck;
+    private ArrayList<OnHandPresentedListener>handPresenters=new ArrayList<>();
     private static final int SIZE = 5;
     private Card[] cards = new Card[SIZE];
     private Card nextCard;
@@ -52,5 +54,13 @@ public class Hand {
     public void handleHand(Card card){
         removeCard(card);
         addCard();
+    }
+
+    public ArrayList<OnHandPresentedListener> getHandPresenters() {
+        return (ArrayList<OnHandPresentedListener>) Collections.unmodifiableList(handPresenters);
+    }
+
+    public void addOnHandPresentedListener(OnHandPresentedListener handPresenter) {
+        this.handPresenters.add(handPresenter);
     }
 }

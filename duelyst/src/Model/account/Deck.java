@@ -44,6 +44,13 @@ public class Deck{
         return false;
     }
 
+    public Card getCard(int cardID) throws InvalidCardException {
+        for (Card card : this.getCards()) {
+            if(card.getCardID()==cardID)return card;
+        }
+        throw new InvalidCardException();
+    }
+
     private boolean hasItem(int itemID){
         for (Item item:
              items) {
@@ -125,7 +132,7 @@ public class Deck{
         return true;
     }
 
-    public void addToDeck(int ID) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException {
+    public void addToDeck(int ID) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidItemException {
             if(Card.hasCard(ID))
                 addCardToDeck(collection.getCard(ID));
             else if(Item.hasItem(ID))

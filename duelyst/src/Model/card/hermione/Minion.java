@@ -1,9 +1,10 @@
 package Model.card.hermione;
 
 import Model.Map.Cell;
-import Model.card.Card;
 
 public class Minion extends Hermione{
+    // TODO: 5/5/19 enom for SPAtime
+
     private String SPActivationTime;
 
     public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint, AttackType attackType, int range, Model.card.spell.SpecialPower specialPower,String SPActivationTime) {
@@ -37,13 +38,13 @@ public class Minion extends Hermione{
 
     private boolean itIsTime(String currentState){
         if(!this.SPActivationTime.equals(currentState))return false;
-        this.applySpecialPower();
+        this.applySpecialPower(x, y);
         return true;
     }
 
 
     @Override
-    public boolean applySpecialPower() {
+    public boolean applySpecialPower(int x, int y) {
         return false;
     }
 }

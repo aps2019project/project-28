@@ -6,6 +6,9 @@ import Model.Map.Map;
 import Model.card.Card;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.SpecialPower;
+import exeption.CantAttackException;
+import exeption.DestinationOutOfreachException;
+import exeption.MoveTrunIsOverException;
 
 import java.util.ArrayList;
 
@@ -51,32 +54,37 @@ public abstract class Hermione extends Card {
         this.canCounterAttack = canCounterAttack;
     }
 
-    public void attack(Cell cell){
-        Hermione enemyCard= cell.getCardOnCell();
-        if(this.attackType.canReach(this,enemyCard)){
+    public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException {
+        if(!this.canAttack)throw new CantAttackException();
+      if(this.attackType.canReach(this,enemyCard)){
             enemyCard.setHealthPoint(enemyCard.healthPoint-this.attackPoint);
             enemyCard.counterAttack(this);
             if(enemyCard.getHealthPoint()<=0){
                 enemyCard.die();
             }
+            return;
         }
+      throw new DestinationOutOfreachException();
     }
     public void counterAttack(Hermione enemyCard){
+        if(!this.canCounterAttack)return;
         if(this.attackType.canReach(this,enemyCard)){
             this.setHealthPoint(Integer.min(this.healthPoint+this.attackPoint,enemyCard.getAttackPoint()));
         }
     }
 
-    private boolean canMove(int x,int y){
-        if(this.actionTurn==1)return false;
-        if(Game.battle.getMap().getCell(x,y).isFull())return false;
+    private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException {
+        if(this.actionTurn==1)throw new MoveTrunIsOverException();
+        if(Game.battle.getMap().getCell(x,y).isFull())throw new DestinationOutOfreachException();
 
+        // TODO: 5/5/19 if the path is not blocked by enemies
         if(Map.getManhattanDistance(this.location,new Cell(x,y)) <= MOVE_RANGE)return true;
-        return false;
+
+        throw new DestinationOutOfreachException();
     }
 
 
-    public boolean move (int x, int y){
+    public boolean move (int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException {
         if(!canMove(x,y))return false;
         Game.battle.getMap().getCell(this.location).clear();
 
@@ -87,7 +95,7 @@ public abstract class Hermione extends Card {
     }
 
 
-    public  abstract boolean applySpecialPower();// TODO: 4/15/19 saE
+    public  abstract boolean applySpecialPower(int x, int y);// TODO: 4/15/19 saE
 
     private void handleAppliedBuffs(){
         for (Buff appliedBuff : this.appliedBuffs) {

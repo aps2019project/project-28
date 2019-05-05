@@ -18,6 +18,12 @@ public class Map {
         return Integer.max(Math.abs(cell1.getX()-cell2.getX()),Math.abs(cell1.getY()-cell2.getY()));
 
     }
+
+    public static Map generate() {
+        // TODO: 5/5/19 generate Map
+    }
+
+
     public Cell getCell(int x, int y){
         return board[x][y];
     }

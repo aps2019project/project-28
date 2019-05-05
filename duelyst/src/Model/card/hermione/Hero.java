@@ -15,7 +15,7 @@ public class Hero extends Hermione {
     }
 
     @Override
-    public boolean applySpecialPower() {
+    public boolean applySpecialPower(int x, int y) {
 
         // TODO: 4/15/19 saE
 
