@@ -1,6 +1,8 @@
 package Model.account;
 
 import Model.card.Card;
+import Model.card.hermione.Hero;
+import Model.card.hermione.Minion;
 import Model.item.Item;
 import Model.item.Usable;
 import exeption.*;
@@ -10,18 +12,56 @@ import java.util.ArrayList;
 public class Collection{
 
     private ArrayList<Deck> decks = new ArrayList<>();
-    private ArrayList<Deck> tempDecks = new ArrayList<>(decks);
+    private ArrayList<Deck> tempDecks = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
-    private ArrayList<Card> tempCards = new ArrayList<>(cards);
-    private ArrayList<Usable> usables;
+    private ArrayList<Card> tempCards = new ArrayList<>();
+    private ArrayList<Usable> usables = new ArrayList<>();
     private Account owner;
     private Deck mainDeck;
     private Deck tempMainDeck;
     public static final int MAX_USABLES = 3;
 
+    public Collection(){}
+
     public Collection(Collection collection){
+        this.tempMainDeck = new Deck(collection.getTempMainDeck());
+        this.mainDeck = new Deck(collection.getMainDeck());
+        this.owner = new Account(collection.getOwner());
+        for (Usable usable:
+             collection.getUsables()) {
+            this.usables.add(new Usable(usable));
+        }
+        for (Card card:
+             collection.getTempCards()) {
+            if(card instanceof Hero) {
+                this.tempCards.add(new Hero((Hero)card));
+            }
+            else if(card instanceof Minion){
+                this.tempCards.add(new Minion((Minion)card));
+            }
+        }
+        for (Card card:
+                collection.getCards()) {
+            if(card instanceof Hero) {
+                this.cards.add(new Hero((Hero)card));
+            }
+            else if(card instanceof Minion){
+                this.cards.add(new Minion((Minion)card));
+            }
+        }
+
+        for(Deck deck:
+            collection.getTempDecks()){
+            this.getTempDecks().add(new Deck(deck));
+        }
+
+        for (Deck deck:
+                collection.getDecks()){
+            this.getDecks().add(new Deck(deck));
+        }
 
     }
+
     public boolean hasDeck(String name){
         for (Deck deck:
              decks) {
@@ -39,6 +79,14 @@ public class Collection{
             }
         }
         throw new InvalidDeckException();
+    }
+
+    public ArrayList<Card> getTempCards() {
+        return tempCards;
+    }
+
+    public ArrayList<Deck> getTempDecks() {
+        return tempDecks;
     }
 
     public ArrayList<Card> getCards() {
@@ -172,6 +220,10 @@ public class Collection{
             }
         }
         throw new InvalidItemException();
+    }
+
+    public Deck getTempMainDeck() {
+        return tempMainDeck;
     }
 
     private Deck getDeck(String deckName) throws InvalidDeckException {
