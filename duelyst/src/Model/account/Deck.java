@@ -45,6 +45,15 @@ public class Deck{
         return false;
     }
 
+    public boolean hasCard(Card wantedCard){
+        for (Card card:
+                cards) {
+            if(card.equals(wantedCard))
+                return true;
+        }
+        return false;
+    }
+
     public Item getItem(int id) throws InvalidItemException {
         for (Item item : this.items) {
             if(item.getID()==id)return item;
@@ -108,8 +117,14 @@ public class Deck{
         return true;
     }
 
-    public void moveToGraveYard(Card card){
-        this.graveYard.add(card);
+    public void moveToGraveYard(Card card) throws InvalidCardException{
+        if(this.hasCard(card)) {
+            this.graveYard.add(card);
+        }
+        else {
+            throw new InvalidCardException();
+        }
+
     }
 
     private boolean removeItemFromDeck(int itemID) throws InvalidItemException {
