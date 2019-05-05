@@ -5,6 +5,15 @@ import Model.account.Player;
 import Model.card.hermione.Minion;
 
 public class TargetAllCards{
+    private static TargetAllCards obj;
+
+    public static TargetAllCards getTargetInstance() {
+        if (obj == null) {
+            obj = new TargetAllCards();
+        }
+        return obj ;
+    }
+
      static Cell[] getTarget(Player player){
         Minion[] minions = player.getMinionsInGame().toArray(new Minion[0]);
         Cell[] cells = new Cell[minions.length + 1];
