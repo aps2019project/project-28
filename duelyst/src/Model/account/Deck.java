@@ -124,7 +124,6 @@ public class Deck{
         else {
             throw new InvalidCardException();
         }
-
     }
 
     private boolean removeItemFromDeck(int itemID) throws InvalidItemException {

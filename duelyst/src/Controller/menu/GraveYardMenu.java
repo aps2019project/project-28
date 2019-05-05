@@ -12,10 +12,10 @@ public class GraveYardMenu extends Menu {
         this.account = parentMenu.getAccount();
     }
 
-    void showInfo(int cardid){
+    void showInfo(int cardID){
         for (OnGraveYardCardInfoClickedListener presenter:
-             graveYardCardInfoClickedListeners) {
-            presenter.show(account.getCollection(), cardid);
+                graveYardCardInfoClickedListeners) {
+            presenter.show(account.getCollection(), cardID);
         }
     }
 
@@ -29,11 +29,6 @@ public class GraveYardMenu extends Menu {
     @Override
     public void help() {
 
-    }
-
-    // TODO: 5/5/19 grave Yard
-    
-    public void showInfo(int cardID){
     }
 
 }
