@@ -27,6 +27,7 @@ public abstract class Hermione extends Card {
     protected boolean canAttack = true ;
     protected int numberOfFlags;
     protected boolean canMove;
+    protected boolean hasTheDeathCurse = false ;
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range) {
@@ -37,6 +38,35 @@ public abstract class Hermione extends Card {
         SpecialPower = specialPower;
         this.attackType = attackType;
         this.range = range;
+    }
+
+    public Hermione(Hermione hermione){
+        super(hermione);
+        this.setHealthPoint(hermione.getHealthPoint());
+        this.setAttackPoint(hermione.getAttackPoint());
+        this.setOriginalAttackPoint(hermione.getOriginalAttackPoint());
+        this.setSpecialPower(hermione.getSpecialPower());
+        for (Buff buff:
+             hermione.getAppliedBuffs()) {
+            this.appliedBuffs.add(new Buff(buff));
+        }
+        this.setHollyBuffLevel(hermione.getHollyBuffLevel());
+        if(hermione.getAttackType() instanceof Hybrid){
+            this.setAttackType(new Hybrid((Hybrid)hermione.getAttackType()));
+        }
+        else if(hermione.getAttackType() instanceof Melee){
+            this.setAttackType(new Melee((Melee)hermione.getAttackType()));
+        }
+        else if(hermione.getAttackType() instanceof Range){
+            this.setAttackType(new Range((Range)hermione.getAttackType()));
+        }
+        this.setRange(hermione.getRange());
+        this.setActionTurn(hermione.getActionTurn());
+        this.setLocation(new Cell(hermione.getLocation()));
+        this.setCanCounterAttack(hermione.isCanCounterAttack());
+        this.setCanAttack(hermione.isCanAttack());
+        this.setNumberOfFlags(hermione.getNumberOfFlags());
+        this.setCanMove(hermione.isCanMove());
     }
 
     public void setOriginalAttackPoint(int originalAttackPoint) {
@@ -220,5 +250,13 @@ public abstract class Hermione extends Card {
 
     public int getHollyBuffLevel() {
         return HollyBuffLevel;
+    }
+
+    public boolean isHasTheDeathCurse() {
+        return hasTheDeathCurse;
+    }
+
+    public void setHasTheDeathCurse(boolean hasTheDeathCurse) {
+        this.hasTheDeathCurse = hasTheDeathCurse;
     }
 }

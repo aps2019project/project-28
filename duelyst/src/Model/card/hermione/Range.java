@@ -11,4 +11,12 @@ public class Range implements AttackType {
         if(Map.getRadiusDistance(champCard.getLocation(),enemyCard.getLocation())==1)return false;
         return true;
     }
+
+    public Range(){
+
+    }
+
+    public Range(Range range){
+
+    }
 }

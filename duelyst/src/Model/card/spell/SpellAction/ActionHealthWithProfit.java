@@ -1,6 +1,9 @@
 package Model.card.spell.SpellAction;
 
+import Controller.Game;
 import Model.Map.Cell;
+import Model.card.spell.Buff.Buff;
+import Model.card.spell.Buff.BuffActions.* ;
 import Model.card.spell.Spell;
 
 public class ActionHealthWithProfit implements Action {
@@ -13,6 +16,11 @@ public class ActionHealthWithProfit implements Action {
 
     @Override
     public void deploy(Spell spell, Cell... cells) {
-        //TODO
+        Buff weaknessBuff = new Buff (1 , false , BuffActionHP.getBuffAction() , 6 ) ;
+        Buff hollyBuff = new Buff(3 , true , BuffActionHolly.getBuffAction() , 2) ;
+        for (Cell cell : cells ) {
+            weaknessBuff.deploy(Game.battle.getPlayer() , cell.getCardOnCell());
+            hollyBuff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
+        }
     }
 }

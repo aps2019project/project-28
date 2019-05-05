@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public abstract class Card implements Cloneable {
+
     private static ArrayList<Card> cards=new ArrayList<>();
     private static int uniqueID =0;
 
@@ -15,14 +16,40 @@ public abstract class Card implements Cloneable {
     private String name;
     private int price;
     private int manaPoint;
-    private ArrayList<OnCardDetailsPresentedListener>cardDetailsPresenters=new ArrayList<>();
-
-
+    private ArrayList<OnCardDetailsPresentedListener> cardDetailsPresenters=new ArrayList<>();
 
     public Card( String name, int price, int manaPoint) {
         this.cardID = uniqueID++;
         this.name = name;
         this.price = price;
+        this.manaPoint = manaPoint;
+    }
+
+    public Card(Card card){
+        this.setSuperCollection(card.getSuperCollection());
+        this.setCardID(card.getCardID());
+        this.setName(String.copyValueOf(card.getName().toCharArray()));
+        this.setManaPoint(card.getManaPoint());
+        this.setPrice(card.getPrice());
+    }
+
+    public void setSuperCollection(Collection superCollection) {
+        this.superCollection = superCollection;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCardID(int cardID) {
+        this.cardID = cardID;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setManaPoint(int manaPoint) {
         this.manaPoint = manaPoint;
     }
 

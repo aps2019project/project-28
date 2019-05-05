@@ -2,14 +2,18 @@ package Model.item;
 
 import Controller.Game;
 import Model.Map.Cell;
+import Model.Map.Map;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
+import Model.card.hermione.Minion;
 import Model.card.spell.Buff.Buff;
+import Model.card.spell.Buff.BuffActions.BuffActionAP;
 import Model.card.spell.Buff.BuffActions.BuffActionHolly;
+import exeption.CantAttackException;
 
 public interface ItemAction {
-   default void deploy(Item item, Cell[] target){}
-    default void deploy(Item item){}
+   default void deploy(Item item, Cell[] target) throws Exception{}
+    default void deploy(Item item) throws  Exception {}
 }
 
 class ItemActionExtraMana implements ItemAction {
@@ -131,5 +135,83 @@ class ItemActionManaGiver implements ItemAction {
     public void deploy(Item item){
         Player player = Game.battle.getPlayer();
         player.setMana(player.getMana() + item.getPerk());
+    }
+}
+
+class ItemActionRooEnTan implements ItemAction {
+    static private ItemActionRooEnTan obj;
+
+    public ItemActionRooEnTan getItemAction() {
+        if (obj == null) obj = new ItemActionRooEnTan();
+        return obj;
+    }
+
+    public void deploy(Item item , Cell[] target){
+       for (Cell cell : target) {
+           Buff buff = new Buff (2 , true , BuffActionHolly.getBuffAction() , 10) ;
+           buff.deploy(Game.battle.getPlayer() , cell.getCardOnCell());
+       }
+    }
+}
+
+//TODO move the Action below to special powers  ! and activate it from here ! !!!!!!!
+
+class ItemActionMinionRandomAttacker implements ItemAction {
+    static private ItemActionMinionRandomAttacker obj;
+
+    public ItemActionMinionRandomAttacker getItemAction() {
+        if (obj == null) obj = new ItemActionMinionRandomAttacker();
+        return obj;
+    }
+
+    public void deploy(Item item , Cell[] target) {
+        for (Cell cell : target) {
+            cell.getCardOnCell().setHasTheDeathCurse(true);
+        }
+    }
+}
+
+class ItemActionRandomDamage implements ItemAction {
+    static private ItemActionRandomDamage obj;
+
+    public ItemActionRandomDamage getItemAction() {
+        if (obj == null) obj = new ItemActionRandomDamage();
+        return obj;
+    }
+
+    public void deploy(Item item , Cell[] target){
+        for (Cell cell : target) {
+            cell.getCardOnCell().changeHealthPoint(item.getPerk());
+        }
+    }
+}
+
+class ItemActionChangeAP implements ItemAction {
+    static private ItemActionChangeAP obj;
+
+    public ItemActionChangeAP getItemAction() {
+        if (obj == null) obj = new ItemActionChangeAP();
+        return obj;
+    }
+
+    public void deploy(Item item , Cell[] target){
+        for (Cell cell : target) {
+            Buff buff = new Buff(1 , false , BuffActionAP.getBuffAction() , 2) ;
+            buff.deploy(Game.battle.getPlayer() , cell.getCardOnCell());
+        }
+    }
+}
+
+class ItemActionKingSlayer implements ItemAction {
+    static private ItemActionChangeAP obj;
+
+    public ItemActionChangeAP getItemAction() {
+        if (obj == null) obj = new ItemActionChangeAP();
+        return obj;
+    }
+
+    public void deploy(Item item){
+        Game.battle.getPlayer().setMaxMana(Game.battle.getPlayer().getMaxMana());
+
     }
 }

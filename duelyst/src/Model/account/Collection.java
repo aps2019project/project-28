@@ -19,6 +19,9 @@ public class Collection{
     private Deck tempMainDeck;
     public static final int MAX_USABLES = 3;
 
+    public Collection(Collection collection){
+
+    }
     public boolean hasDeck(String name){
         for (Deck deck:
              decks) {
