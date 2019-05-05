@@ -31,5 +31,7 @@ class ItemActionShieldAF implements ItemAction {
 
     public void deploy(Item item) {
         Buff buff = new Buff(-1, true, BuffActionHolly.getBuffAction()) ;
+        Buff buff2 = new Buff(-1, true, BuffActionHolly.getBuffAction()) ;
+        buff.deploy(Game.battle.getPlayer() , );
     }
 }

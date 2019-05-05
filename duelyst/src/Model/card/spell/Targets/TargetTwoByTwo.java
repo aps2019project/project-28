@@ -1,17 +1,19 @@
-package Model.card.spell;
+package Model.card.spell.Targets;
 
 import Controller.Game;
 import Model.Map.Cell;
 import Model.Map.Map;
 import Model.account.Player;
+import Model.card.spell.Spell;
+import Model.card.spell.Target;
 import exeption.InvalidCellException;
 
 public class TargetTwoByTwo implements Target {
-    private static TargetEnemyCard obj;
+    private static TargetTwoByTwo obj;
 
-    public static TargetEnemyCard getTargetInstance() {
+    public static TargetTwoByTwo getTargetInstance() {
         if (obj == null) {
-            obj = new TargetEnemyCard();
+            obj = new TargetTwoByTwo();
         }
         return obj ;
     }

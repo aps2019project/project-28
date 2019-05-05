@@ -1,6 +1,7 @@
 package Model.card.spell;
 
 import Model.account.Account;
+import Model.account.Collection;
 import Model.account.Player;
 import Model.card.Card;
 import Model.Map.*;
@@ -9,6 +10,7 @@ import exeption.InvalidCellException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 
 public class Spell extends Card {
@@ -24,8 +26,11 @@ public class Spell extends Card {
         this.duration--;
     }
 
-    public Spell(String name, int price, int manaPoint, Target target,  Action... actions) {
+    public Spell(String name, int price , int manaPoint, int duration , int perk , Action ... actions ) {
         super( name, price, manaPoint);
+        this.duration = duration ;
+        this.perk = perk ;
+        Collections.addAll(this.actions , actions) ;
         this.actions = actions;
         this.target = target;
     }
@@ -62,15 +67,13 @@ public class Spell extends Card {
             }
             this.duration--;
             if (this.duration == 0) activeSpells.remove(this);
-
+        } catch(InvalidCellException e){
+            throw e ;
+        }
     }
 
     public void deployAction(Cell... cells) {
         for (Action action : this.actions)
             action.deploy(this, cells);
-    }
-
-    public void reverseChanges(Player player , Player enemy , Cell cell){
-
     }
 }

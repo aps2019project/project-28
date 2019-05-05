@@ -49,4 +49,5 @@ public class Minion extends Hermione{
     public boolean applySpecialPower(int x, int y) {
         return false;
     }
+
 }

@@ -1,4 +1,4 @@
-package Model.card.spell;
+package Model.card.spell.Targets;
 
 import Model.Map.Cell;
 import Model.account.Player;

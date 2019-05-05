@@ -1,15 +1,17 @@
-package Model.card.spell;
+package Model.card.spell.Targets;
 
 import Model.Map.Cell;
 import Model.account.Player;
+import Model.card.spell.Spell;
+import Model.card.spell.Target;
 import exeption.InvalidCellException;
 
 public class TargetOwnCard implements Target {
-    private static TargetEnemyCard obj;
+    private static TargetOwnCard obj;
 
-    public static TargetEnemyCard getTargetInstance() {
+    public static TargetOwnCard getTargetInstance() {
         if (obj == null) {
-            obj = new TargetEnemyCard();
+            obj = new TargetOwnCard();
         }
         return obj ;
     }

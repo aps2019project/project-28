@@ -26,6 +26,13 @@ public abstract class Card {
         this.manaPoint = manaPoint;
     }
 
+    public static ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public Collection getSuperCollection() {
+        return superCollection;
+    }
 
     public static Card getCard(int cardID) throws InvalidCardException {
         for (Card card : Card.cards) {

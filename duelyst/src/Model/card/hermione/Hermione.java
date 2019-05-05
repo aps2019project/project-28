@@ -20,7 +20,7 @@ public abstract class Hermione extends Card {
     protected int originalAttackPoint ;
     protected Model.card.spell.SpecialPower SpecialPower;
     private ArrayList<Buff> appliedBuffs ;
-    private boolean hasHollyBuff = false ;
+    private int HollyBuffLevel = 0 ;
     protected AttackType attackType;
     protected int range;
     public static final int MOVE_RANGE = 2;
@@ -216,7 +216,11 @@ public abstract class Hermione extends Card {
         return canAttack;
     }
 
-    public void setHasHollyBuff(boolean hasHollyBuff) {
-         this.hasHollyBuff = hasHollyBuff;
+    public void setHollyBuffLevel (int level) {
+         this.HollyBuffLevel = level;
+    }
+
+    public int getHollyBuffLevel() {
+        return HollyBuffLevel;
     }
 }
