@@ -1,4 +1,4 @@
-package Model.card;
+package Model;
 
 import Model.Map.Cell;
 import Model.card.hermione.*;
@@ -25,6 +25,7 @@ import Model.card.spell.TargetTwoByTwo;
 import Model.card.spell.Targets.*;
 import Model.item.Collectable;
 import Model.item.Item;
+import Model.item.ItemAction;
 import Model.item.Usable;
 import com.google.gson.*;
 
@@ -255,17 +256,17 @@ public class PreProcess{
         //item
 
         ArrayList<Usable> usables = new ArrayList<>();
-        usables.add(new Usable("Wisdom Crown", 300, ));
-        usables.add(new Usable("Shield AF", 4000,));
+        usables.add(new Usable("Wisdom Crown", 300,3, 1, null, ActionIncreaseMana));
+        usables.add(new Usable("Shield AF", 4000, 1, 12, ItemTargetOwnHero));
         usables.add(new Usable("Damool's Arc", 30000, ));
-        usables.add(new Usable("Simorgh's feather", 3500,));
-        usables.add(new Usable("Terror Hood", 5000,));
-        usables.add(new Usable("King Wisdom", 9000,));
-        usables.add(new Usable("Assassination Dagger", 15000,));
-        usables.add(new Usable("Poisonous Dagger", 7000,));
-        usables.add(new Usable("Shock Hammer", 15000, ));
-        usables.add(new Usable("Soul Eater", 25000, ));
-        usables.add(new Usable("‌Baptism", 20000, ));
+        usables.add(new Usable("Simorgh's feather", 3500, 1, 6, ItemTargetOwnCard, ItemActionIncreaseAP));
+        usables.add(new Usable("Terror Hood", 5000, 1, -2, ));
+        usables.add(new Usable("King Wisdom", 9000, -1, 6, ));
+        usables.add(new Usable("Assassination Dagger", 15000, 1, 1, ));
+        usables.add(new Usable("Poisonous Dagger", 7000, 1, 0, ));
+        usables.add(new Usable("Shock Hammer", 15000, 2, 0, ));
+        usables.add(new Usable("Soul Eater", 25000, 1, 1, ));
+        usables.add(new Usable("‌Baptism", 20000, 2, 0, ));
 
         for (Usable usable:
              usables) {

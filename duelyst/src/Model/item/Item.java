@@ -1,5 +1,6 @@
 package Model.item;
 
+import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Target;
@@ -12,12 +13,12 @@ public abstract class Item {
 
     private static ArrayList<Item> items =new ArrayList<>();
     private String name;
-    private Target target ;
+    private ItemTarget target ;
     private ItemAction action ;
     private int itemID;
     private ArrayList<OnItemDetailPresentedListener>itemDeatailPresenters=new ArrayList<>();
 
-    public Item(String name, ItemAction action , Target target){
+    public Item(String name, ItemAction action , ItemTarget target){
         this.name = name;
         this.action = action;
         this.target = target ;
