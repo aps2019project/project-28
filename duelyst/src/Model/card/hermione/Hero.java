@@ -29,4 +29,8 @@ public class Hero extends Hermione {
         this.cooldown=cooldown;
     }
 
+    public void increaseRemainCoolDown() {
+        this.remainCoolDOwnTime--;
+        if(this.remainCoolDOwnTime==0)this.remainCoolDOwnTime=this.cooldown;
+    }
 }
