@@ -27,38 +27,6 @@ public class Deck{
         this.name = name;
     }
 
-    public Deck(Deck deck){
-        this.name = new String(deck.getName());
-        this.collection = new Collection(deck.getCollection());
-        for (Card card: deck.getCards()) {
-            if(card instanceof Hero) {
-                this.cards.add(new Hero((Hero) card));
-            }
-            else if(card instanceof Minion) {
-                this.cards.add(new Minion((Minion) card));
-            }
-        }
-
-        for (Item item:
-             deck.getItems()) {
-            if(item instanceof Usable){
-                this.items.add(new Usable((Usable)item));
-            }
-        }
-
-        for (Card card:
-                deck.getGraveYard()) {
-            if(card instanceof Hero) {
-                this.graveYard.add(new Hero((Hero) card));
-            }
-            else if(card instanceof Minion) {
-                this.graveYard.add(new Minion((Minion) card));
-            }
-        }
-        this.hero = new Hero(deck.getHero());
-        this.ID = deck.getID();
-    }
-
     public void setCollection(Collection collection) {
         this.collection = collection;
     }
@@ -219,10 +187,6 @@ public class Deck{
 
     public ArrayList<OnDeckPresentedListener> getDeckPresenters() {
         return (ArrayList<OnDeckPresentedListener>) Collections.unmodifiableList(deckPresenters);
-    }
-
-    public ArrayList<Card> getGraveYard() {
-        return (ArrayList<Card>) Collections.unmodifiableList(graveYard);
     }
 
     public Hero getHero() {

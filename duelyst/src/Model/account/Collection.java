@@ -10,10 +10,10 @@ import java.util.ArrayList;
 public class Collection{
 
     private ArrayList<Deck> decks = new ArrayList<>();
-    private ArrayList<Deck> tempDecks = new ArrayList<>(decks);
+    private ArrayList<Deck> tempDecks = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
-    private ArrayList<Card> tempCards = new ArrayList<>(cards);
-    private ArrayList<Usable> usables;
+    private ArrayList<Card> tempCards = new ArrayList<>();
+    private ArrayList<Usable> usables = new ArrayList<>();
     private Account owner;
     private Deck mainDeck;
     private Deck tempMainDeck;
@@ -36,6 +36,14 @@ public class Collection{
             }
         }
         throw new InvalidDeckException();
+    }
+
+    public ArrayList<Card> getTempCards() {
+        return tempCards;
+    }
+
+    public ArrayList<Deck> getTempDecks() {
+        return tempDecks;
     }
 
     public ArrayList<Card> getCards() {
@@ -169,6 +177,10 @@ public class Collection{
             }
         }
         throw new InvalidItemException();
+    }
+
+    public Deck getTempMainDeck() {
+        return tempMainDeck;
     }
 
     private Deck getDeck(String deckName) throws InvalidDeckException {

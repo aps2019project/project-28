@@ -29,11 +29,6 @@ public class Hero extends Hermione {
         this.cooldown=cooldown;
     }
 
-    public Hero(Hero hero){
-        super(hero);
-        this.setCooldown(hero.getCooldown());
-    }
-
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
     }

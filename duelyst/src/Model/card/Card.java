@@ -6,7 +6,7 @@ import exeption.InvalidCardException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public abstract class Card implements Cloneable {
+public abstract class Card {
 
     private static ArrayList<Card> cards=new ArrayList<>();
     private static int uniqueID =0;
@@ -23,14 +23,6 @@ public abstract class Card implements Cloneable {
         this.name = name;
         this.price = price;
         this.manaPoint = manaPoint;
-    }
-
-    public Card(Card card){
-        this.setSuperCollection(card.getSuperCollection());
-        this.setCardID(card.getCardID());
-        this.setName(String.copyValueOf(card.getName().toCharArray()));
-        this.setManaPoint(card.getManaPoint());
-        this.setPrice(card.getPrice());
     }
 
     public void setSuperCollection(Collection superCollection) {

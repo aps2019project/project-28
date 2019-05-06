@@ -29,10 +29,6 @@ public abstract class Item {
 //        this.itemID = itemID;TODO ITEMID
     }
 
-    public Item(Item item){
-
-    }
-
     public static Item getItem(int itemID) throws InvalidItemException {
         for (Item item : Item.getItems()) {
             if (item.getID() == itemID) return item;
@@ -77,7 +73,7 @@ public abstract class Item {
         return actions;
     }
 
-    public void deploy() {
+    public void deploy(){
         for (ItemAction action : actions) {
             action.deploy(this);
         }
