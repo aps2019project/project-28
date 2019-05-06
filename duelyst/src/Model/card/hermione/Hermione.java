@@ -28,6 +28,7 @@ public abstract class Hermione extends Card {
     protected int numberOfFlags;
     protected boolean canMove;
     protected boolean hasTheDeathCurse = false ;
+    protected int attackCounter = 0 ;
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range) {
