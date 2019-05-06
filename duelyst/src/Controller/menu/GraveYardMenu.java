@@ -34,4 +34,10 @@ public class GraveYardMenu extends Menu {
         }
     }
 
+    @Override
+    public void help() {
+        super.help();
+        System.out.println("4)Show info [card id]     5)Show cards     ");
+
+    }
 }

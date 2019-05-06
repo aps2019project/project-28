@@ -73,7 +73,7 @@ public class CollectionMenu extends Menu {
         this.account.getCollection().getDeckByName(deckName).removeFromDeck(ID);
     }
 
-    public void addCollectionPresenterListener(OnCollectionPresentedListener presenter) {
+    public void addCollectionPresentedListener(OnCollectionPresentedListener presenter) {
         this.collectionPresenters.add(presenter);
     }
 
@@ -97,4 +97,12 @@ public class CollectionMenu extends Menu {
         }
     }
 
+    @Override
+    public void help() {
+        super.help();
+        System.out.println("4)show     5)search [card name | item name]    6)save");
+        System.out.println("7)create deck[deck name]     8)delete deck [deck name]     9)add [card id | card id | hero id] to deck [deck name]");
+        System.out.println("10)remove [card id | card id| hero id] from deck [deck name]     11)validate deck [deck name]     12)select deck [deck name]");
+        System.out.println("13)show all decks     14)show deck [deck name]     15)enter[MenuName]");
+    }
 }

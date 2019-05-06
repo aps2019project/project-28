@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public abstract class Card {
-
     private static ArrayList<Card> cards=new ArrayList<>();
+
     public static int uniqueID =0;
 
     protected Collection superCollection;
@@ -16,7 +16,8 @@ public abstract class Card {
     private String name;
     private int price;
     private int manaPoint;
-    private ArrayList<OnCardDetailsPresentedListener> cardDetailsPresenters=new ArrayList<>();
+    private static ArrayList<OnCardDetailsPresentedListener> cardDetailsPresenters=new ArrayList<>();
+    private String comment;
 
     public Card( String name, int price, int manaPoint) {
         this.cardID = uniqueID++;
@@ -100,13 +101,20 @@ public abstract class Card {
     public int getManaPoint() {
         return manaPoint;
     }
-    
-    public void addOnCardDetailPresented(OnCardDetailsPresentedListener presenter){
-        this.cardDetailsPresenters.add(presenter);
+
+    public static void addOnCardDetailPresented(OnCardDetailsPresentedListener presenter){
+        Card.cardDetailsPresenters.add(presenter);
     }
 
-    public ArrayList<OnCardDetailsPresentedListener> getCardDetailsPresenters() {
+    public static ArrayList<OnCardDetailsPresentedListener> getCardDetailsPresenters() {
         return (ArrayList<OnCardDetailsPresentedListener>) Collections.unmodifiableList(cardDetailsPresenters);
+    }
+
+    public String getComment() {
+        return this.comment;
+    }
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }
 

@@ -306,4 +306,7 @@ public class Collection {
         return (ArrayList<OnCollectionPresentedListener>) Collections.unmodifiableList(this.collectionPresentedListeners);
     }
 
+    public ArrayList<Usable> getItems() {
+        return usables;
+    }
 }

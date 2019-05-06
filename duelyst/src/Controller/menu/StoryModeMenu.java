@@ -2,6 +2,7 @@ package Controller.menu;
 
 public class StoryModeMenu extends Menu {
     private static StoryModeMenu menu;
+
     private StoryModeMenu(String name) {
         super(name);
     }

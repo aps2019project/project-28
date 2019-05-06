@@ -11,11 +11,5 @@ public class Game {
     public static Battle battle= Battle.getMenu();
     public static boolean hasLoggedIn = false;
 
-    public static void main(String[] args) {
-        PreProcess.preProcess();
-        //just wanna make sure everything is alright with vcs !
-
-    }
-
 }
 

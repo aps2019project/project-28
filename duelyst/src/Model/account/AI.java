@@ -15,20 +15,121 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class AI extends Account {
-    int level;
-    String heroName = new String();
-    ArrayList<String> minionNames = new ArrayList<>();
-    ArrayList<String> usableNames = new ArrayList<>();
-    ArrayList<String> spellNames = new ArrayList<>();
+    int level ;
+    Deck mode1 = new Deck("mode1");
+    Deck mode2 = new Deck("mode2");
+    Deck mode3 = new Deck("mode3");
+    {
+        try {
+            mode1.addCardToDeck(PreProcess.getHeroes().get(0));
 
-    public AI(int level) throws Exception {
+            mode1.addCardToDeck(PreProcess.getMinions().get(0));
+            mode1.addCardToDeck(PreProcess.getMinions().get(8));
+            mode1.addCardToDeck(PreProcess.getMinions().get(10));
+            mode1.addCardToDeck(PreProcess.getMinions().get(10));
+            mode1.addCardToDeck(PreProcess.getMinions().get(12));
+            mode1.addCardToDeck(PreProcess.getMinions().get(16));
+            mode1.addCardToDeck(PreProcess.getMinions().get(17));
+            mode1.addCardToDeck(PreProcess.getMinions().get(20));
+            mode1.addCardToDeck(PreProcess.getMinions().get(21));
+            mode1.addCardToDeck(PreProcess.getMinions().get(25));
+            mode1.addCardToDeck(PreProcess.getMinions().get(33));
+            mode1.addCardToDeck(PreProcess.getMinions().get(35));
+
+            mode1.addCardToDeck(PreProcess.getSpells().get(0));
+            mode1.addCardToDeck(PreProcess.getSpells().get(6));
+            mode1.addCardToDeck(PreProcess.getSpells().get(9));
+            mode1.addCardToDeck(PreProcess.getSpells().get(10));
+            mode1.addCardToDeck(PreProcess.getSpells().get(11));
+            mode1.addCardToDeck(PreProcess.getSpells().get(17));
+            mode1.addCardToDeck(PreProcess.getSpells().get(19));
+
+            mode1.addItemToDeck(PreProcess.getUsables().get(0));
+
+        }catch (FullDeckException e){}
+        catch (DeckAlreadyHasThisCardException e) {}
+        catch (DeckAlreadyHasAHeroException e) {}
+        catch (DeckAlreadyHasThisItemException e) {}
+
+
+        try {
+            mode2.addCardToDeck(PreProcess.getHeroes().get(4));
+
+            mode2.addCardToDeck(PreProcess.getMinions().get(1));
+            mode2.addCardToDeck(PreProcess.getMinions().get(2));
+            mode2.addCardToDeck(PreProcess.getMinions().get(4));
+            mode2.addCardToDeck(PreProcess.getMinions().get(7));
+            mode2.addCardToDeck(PreProcess.getMinions().get(11));
+            mode2.addCardToDeck(PreProcess.getMinions().get(14));
+            mode2.addCardToDeck(PreProcess.getMinions().get(14));
+            mode2.addCardToDeck(PreProcess.getMinions().get(18));
+            mode2.addCardToDeck(PreProcess.getMinions().get(22));
+            mode2.addCardToDeck(PreProcess.getMinions().get(26));
+            mode2.addCardToDeck(PreProcess.getMinions().get(29));
+            mode2.addCardToDeck(PreProcess.getMinions().get(32));
+            mode2.addCardToDeck(PreProcess.getMinions().get(34));
+
+            mode2.addCardToDeck(PreProcess.getSpells().get(1));
+            mode2.addCardToDeck(PreProcess.getSpells().get(2));
+            mode2.addCardToDeck(PreProcess.getSpells().get(4));
+            mode2.addCardToDeck(PreProcess.getSpells().get(7));
+            mode2.addCardToDeck(PreProcess.getSpells().get(8));
+            mode2.addCardToDeck(PreProcess.getSpells().get(12));
+            mode2.addCardToDeck(PreProcess.getSpells().get(18));
+
+            mode2.addItemToDeck(PreProcess.getUsables().get(9));
+
+        }catch (FullDeckException e){}
+        catch (DeckAlreadyHasThisCardException e) {}
+        catch (DeckAlreadyHasAHeroException e) {}
+        catch (DeckAlreadyHasThisItemException e) {}
+
+        try {
+            mode3.addCardToDeck(PreProcess.getHeroes().get(6));
+
+            mode3.addCardToDeck(PreProcess.getMinions().get(5));
+            mode3.addCardToDeck(PreProcess.getMinions().get(6));
+            mode3.addCardToDeck(PreProcess.getMinions().get(9));
+            mode3.addCardToDeck(PreProcess.getMinions().get(13));
+            mode3.addCardToDeck(PreProcess.getMinions().get(15));
+            mode3.addCardToDeck(PreProcess.getMinions().get(15));
+            mode3.addCardToDeck(PreProcess.getMinions().get(19));
+            mode3.addCardToDeck(PreProcess.getMinions().get(23));
+            mode3.addCardToDeck(PreProcess.getMinions().get(24));
+            mode3.addCardToDeck(PreProcess.getMinions().get(27));
+            mode3.addCardToDeck(PreProcess.getMinions().get(28));
+            mode3.addCardToDeck(PreProcess.getMinions().get(30));
+            mode3.addCardToDeck(PreProcess.getMinions().get(33));
+
+            mode3.addCardToDeck(PreProcess.getSpells().get(4));
+            mode3.addCardToDeck(PreProcess.getSpells().get(9));
+            mode3.addCardToDeck(PreProcess.getSpells().get(11));
+            mode3.addCardToDeck(PreProcess.getSpells().get(13));
+            mode3.addCardToDeck(PreProcess.getSpells().get(14));
+            mode3.addCardToDeck(PreProcess.getSpells().get(15));
+            mode3.addCardToDeck(PreProcess.getSpells().get(16));
+
+            mode3.addItemToDeck(PreProcess.getUsables().get(4));
+
+        }catch (FullDeckException e){}
+        catch (DeckAlreadyHasThisCardException e) {}
+        catch (DeckAlreadyHasAHeroException e) {}
+        catch (DeckAlreadyHasThisItemException e) {}
+
+
+    }
+    public AI() throws Exception {
         super("AI", "itsAI", "imAnAIgirlInAnAIWorld");
         this.level = level;
         try {
             this.collection = new Collection();
             collection.setOwner(this);
 
-            Deck deck = getDeck();
+            Deck deck;
+            if (level == 1) deck = mode1 ;
+            else if (level == 2) deck = mode2 ;
+            else  deck = mode3 ;
+
             deck.setCollection(collection);
 
 
@@ -45,155 +146,5 @@ public class AI extends Account {
         Map map = Game.battle.getMap();
 
         return null;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    private Deck getDeck(String heroName, ArrayList<String> usableNames, ArrayList<String> minionNames) throws FullDeckException, DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException
-            , DeckAlreadyHasThisItemException {
-        Deck deck = new Deck("AIDeck");
-        ArrayList<Minion> minions = PreProcess.getMinions();
-        ArrayList<Usable> items = PreProcess.getUsables();
-        ArrayList<Hero> heroes = PreProcess.getHeroes();
-        ArrayList<Spell> spells = PreProcess.getSpells();
-
-
-        for (Hero hero : heroes) {
-            if (hero.getName().equals(heroName)) {
-                try {
-                    deck.addCardToDeck(hero);
-                } catch (FullDeckException | DeckAlreadyHasAHeroException | DeckAlreadyHasThisCardException e) {
-                    throw e;
-                }
-                break;
-            }
-        }
-        for (String usableName : usableNames) {
-            for (Item item : items) {
-                if (item.getName().equals(usableName)) {
-                    try {
-                        deck.addItemToDeck(item);
-                    } catch (DeckAlreadyHasThisItemException e) {
-                        throw e;
-                    }
-                    break;
-                }
-            }
-        }
-        for (String minionName : minionNames) {
-            for (Minion minion : minions) {
-                if (minion.getName().equals(minionName)) {
-                    try {
-                        deck.addCardToDeck(minion);
-                    } catch (FullDeckException | DeckAlreadyHasAHeroException | DeckAlreadyHasThisCardException e) {
-                        throw e;
-                    }
-                    break;
-                }
-            }
-        }
-
-        for (String spellName : spellNames){
-            for (Spell spell : spells){
-                if (spell.getName().equals(spellName)){
-                    try{
-                        deck.addCardToDeck(spell) ;
-                    }catch (FullDeckException | DeckAlreadyHasAHeroException | DeckAlreadyHasThisCardException e) {
-                        throw e;
-                    }
-                }
-            }
-        }
-
-        return deck;
-    }
-
-    private void setDeckNames(int level){
-        switch(level){
-            case 1:
-                heroName = "White Demon" ;
-
-                minionNames.add("Persian Archer") ;
-                minionNames.add("Turanian Lancer") ;
-                minionNames.add("Turanian MaceBearer") ;
-                minionNames.add("Turanian MaceBearer") ;
-                minionNames.add("Stone Thrower Giant") ;
-                minionNames.add("Black Demon") ;
-                minionNames.add("One Eye Giant") ;
-                minionNames.add("Venomous Snake") ;
-                minionNames.add("Giant Snake") ;
-                minionNames.add("White Wolf") ;
-                minionNames.add("The Wizard") ;
-                minionNames.add("Siavash") ;
-                minionNames.add("Arzhang Div") ;
-
-                usableNames.add("Wisdom Crown") ;
-
-                spellNames.add("Total Disarm") ;
-                spellNames.add("Lightning Bolt") ;
-                spellNames.add("All Disarm") ;
-                spellNames.add("All Poison") ;
-                spellNames.add("Dispel") ;
-                spellNames.add("Sacrifice") ;
-                spellNames.add("Shock") ;
-
-            case 2:
-                heroName = "Zahak" ;
-
-                minionNames.add("Persian Swordsman") ;
-                minionNames.add("Persian Lancer") ;
-                minionNames.add("Persian Warrior") ;
-                minionNames.add("Turanian Slinger") ;
-                minionNames.add("Turanian Prince") ;
-                minionNames.add("Eagle") ;
-                minionNames.add("Eagle") ;
-                minionNames.add("Fire Dragon") ;
-                minionNames.add("Leopard") ;
-                minionNames.add("Genie") ;
-                minionNames.add("Giv") ;
-                minionNames.add("Ashkbus") ;
-                minionNames.add("Eurymedon") ;
-
-
-                usableNames.add("Soul Eater") ;
-
-                spellNames.add("Area Dispel") ;
-                spellNames.add("Empower") ;
-                spellNames.add("God Strength") ;
-                spellNames.add("Madness") ;
-                spellNames.add("Poison Lake") ;
-                spellNames.add("Health With Profit") ;
-                spellNames.add("Kings Guard") ;
-
-            case 3:
-                heroName = "Arash" ;
-
-                minionNames.add("Persian General") ;
-                minionNames.add("Turanian Archer") ;
-                minionNames.add("Stone Thrower Giant") ;
-                minionNames.add("Hog Rider Demon") ;
-                minionNames.add("Hog Rider Demon") ;
-                minionNames.add("Fierce Lion") ;
-                minionNames.add("Wolf") ;
-                minionNames.add("The Wizard") ;
-                minionNames.add("Wild Goraz") ;
-                minionNames.add("Piran") ;
-                minionNames.add("Bahman") ;
-                minionNames.add("Great Giant") ;
-
-
-                usableNames.add("Terror Hood") ;
-
-                spellNames.add("Hell Fire") ;
-                spellNames.add("All Disarm") ;
-                spellNames.add("Dispel") ;
-                spellNames.add("Power Up") ;
-                spellNames.add("All Power") ;
-                spellNames.add("All Attack") ;
-                spellNames.add("Weakening") ;
-
-        }
     }
 }
