@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ShopMenu extends Menu {
 
     Shop shop = Shop.getInstance();
-    Collection tempCollection=this.account.getTempCollection();
+    Collection tempCollection=this.account.getCollection().getTempCollection();
     private ArrayList<OnSearchClickedListener> searchClickedListeners;
     private ArrayList<OnSearchCollectionClickedListener> searchCollectionClickedListeners;
     private ArrayList<OnShowClickedListener> showClickedListeners;
