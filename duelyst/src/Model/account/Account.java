@@ -21,9 +21,6 @@ public class Account {
     private int wins;
     private int storyModeSPX;
 
-    public Account(Account account){
-    }
-
     public static void sort(){
     }
 
