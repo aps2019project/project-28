@@ -1,21 +1,23 @@
 package Model.account;
 
 import Controller.Game;
+import Model.Map.Cell;
 import Model.Map.Map;
 import Model.PreProcess;
-import Model.card.hermione.Hermione;
-import Model.card.hermione.Hero;
+import Model.card.Card;
+
 import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
-import Model.item.Item;
-import Model.item.Usable;
+import Model.card.spell.Target;
 import exeption.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
+
+import java.util.Random;
 
 public class AI extends Account {
     int level ;
+    Map map ;
+    Player enemy ;
     Deck mode1 = new Deck("mode1");
     Deck mode2 = new Deck("mode2");
     Deck mode3 = new Deck("mode3");
@@ -118,23 +120,19 @@ public class AI extends Account {
 
 
     }
-    public AI() throws Exception {
+    public AI(int level) throws Exception {
         super("AI", "itsAI", "imAnAIgirlInAnAIWorld");
         this.level = level;
+
         try {
             this.collection = new Collection();
             collection.setOwner(this);
-
             Deck deck;
             if (level == 1) deck = mode1 ;
             else if (level == 2) deck = mode2 ;
             else  deck = mode3 ;
-
             deck.setCollection(collection);
-
-
-            //TODO
-            collection.setMainDeck("AIMainDeck");
+            collection.setMainDeck(deck.getName());
 
 
         } catch (InvalidDeckException e) {
@@ -143,8 +141,65 @@ public class AI extends Account {
     }
 
     public String play() {
-        Map map = Game.battle.getMap();
+        map = Game.battle.getMap();
+        enemy = Game.battle.getEnemyPlayer() ;
+        Random randTypeCard = new Random();
+        int randCard = randTypeCard.nextInt(2) ;
+        if (randCard == 0){
+            insertMinion() ;
+        }else{
+            insertSpell() ;
+        }
 
         return null;
+    }
+
+    private String insertMinion(){
+        String command = "";
+        for (Card card : this.player.getHand().getCards()) {
+            if (card.getClass().equals(Minion.class)) {
+                if (player.getMana() >= card.getPrice()) {
+                    command = "Insert " + card.getName() + " in (";
+                    break;
+                }
+            }
+        }
+        if (command.isEmpty()) return command ;
+        for (int i = 1 ; i < 8 ; i++){
+            Cell[] cells = this.map.getCellsInDistance(this.collection.getMainDeck().getHero().getLocation() , i) ;
+            for (Cell cell : cells){
+                if (cell.getCardOnCell() == null){
+                    command = command + cell.getX() + ", " + cell.getY()+")" ;
+                    return command ;
+                }
+            }
+        }
+        return null ;
+    }
+
+    private String insertSpell(){
+        String command = "";
+        Spell spell = null ;
+        for (Card card : this.player.getHand().getCards()) {
+            if (card.getClass().equals(Spell.class)) {
+                if (player.getMana() >= card.getPrice()) {
+                    command = "Insert " + card.getName() + " in (";
+                    spell = (Spell) card ;
+                    break;
+                }
+            }
+        }
+        if (command.isEmpty() || spell == null) return command ;
+        Target target = spell.getTarget() ;
+        for (Cell cell : map.getCells()){
+            try{
+                target.getTarget(cell);
+                command = command + cell.getX() + ", " + cell.getY()+")" ;
+                return command ;
+            }catch (InvalidCellException e){
+                continue;
+            }
+        }
+        return null ;
     }
 }
