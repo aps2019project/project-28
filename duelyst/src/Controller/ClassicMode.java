@@ -1,15 +1,23 @@
 package Controller;
 
+import Controller.menu.GameMode;
 import Controller.menu.Menu;
+import Model.Map.Map;
+import Model.card.hermione.Hero;
 
-public class ClassicMode extends Battle{
-    public ClassicMode(Menu parentMenu) {
-        super(parentMenu);
+public class ClassicMode implements GameMode {
+
+
+    @Override
+    public boolean checkState() {
+        if(Game.accounts[0].getPlayer().getDeck().getHero()==null)return true;
+
+        return false;
     }
 
     @Override
-    public void checkState() {
-        // TODO: 5/5/19 checkState
+    public Map mapGenerator() {
+        return null;
     }
 }
 

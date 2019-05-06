@@ -1,15 +1,17 @@
 package Controller;
 
-import Controller.menu.Menu;
+import Controller.menu.GameMode;
+import Model.Map.Map;
 
-public class flagMode extends Battle {
-    public flagMode(Menu parentMenu) {
-        super(parentMenu);
+public class flagMode implements GameMode{
+
+    @Override
+    public boolean checkState() {
+        return false;
     }
 
     @Override
-    public void checkState() {
-        // TODO: 5/5/19 checkstate
-
+    public Map mapGenerator() {
+        return null;
     }
 }

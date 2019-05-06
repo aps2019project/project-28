@@ -192,5 +192,9 @@ public class Deck{
     public Hero getHero() {
         return hero ;
     }
+
+    public void killHero() {
+        this.hero=null;
+    }
 }
 

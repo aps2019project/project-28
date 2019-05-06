@@ -197,10 +197,6 @@ public class Collection{
         throw new InvalidDeckException();
     }
 
-    public ArrayList<OnCollectionPresentedListener> getCollectionPresentedListeners() {
-        return collectionPresentedListeners;
-    }
-
     public boolean addNewDeck(String name) throws DeckAlreadyExistException{
         if(!this.hasDeck(name)) {
             Deck newDeck = new Deck(name);
