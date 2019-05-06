@@ -26,6 +26,7 @@ public class Player {
     private Deck deck;
     private Card selectedCard;
     private Item selectedItem;
+    private int flagVariable=0;
     private int manaTheriac = 0 ;
     private int maxManaTheriac = 0 ;
     private boolean hasAssasinationDagger = false ;

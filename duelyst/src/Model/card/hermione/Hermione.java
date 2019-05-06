@@ -23,7 +23,8 @@ public abstract class Hermione extends Card {
     protected Cell location;
     protected boolean canCounterAttack = true ;
     protected boolean canAttack = true ;
-    protected int numberOfFlags;
+    protected int numberOfFlags=0;
+    protected boolean hasFlag=false;
     protected boolean canMove;
     protected int attackCounter = 0 ;
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione();
@@ -87,6 +88,11 @@ public abstract class Hermione extends Card {
         Game.battle.getMap().getCell(this.location).clear();
 
         this.setLocation(Game.battle.getMap().getCell(x,y));
+        if(Game.battle.getMap().getCell(x,y).hasFlag()){
+            this.numberOfFlags++;
+            this.hasFlag=true;
+        }
+
 
         Game.battle.getMap().getCell(x,y).setCardOnCell(this);
         return true;
