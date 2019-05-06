@@ -103,4 +103,5 @@ public class Spell extends Card {
         for (Action action : this.actions)
             action.deploy(this, cells);
     }
+
 }

@@ -73,7 +73,7 @@ public class CollectionMenu extends Menu {
         this.account.getCollection().getDeckByName(deckName).removeFromDeck(ID);
     }
 
-    public void addCollectionPresenterListener(OnCollectionPresentedListener presenter) {
+    public void addCollectionPresentedListener(OnCollectionPresentedListener presenter) {
         this.collectionPresenters.add(presenter);
     }
 

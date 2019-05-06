@@ -55,7 +55,7 @@ public abstract class Menu {
     }
 
     public void help(){
-        System.err.println("HELP");
+        System.err.println("HELP:");
         System.out.println("these are the commands you can use");
         System.out.println("1)exit     2)show menu     3)enter[MenuName]");
     }
