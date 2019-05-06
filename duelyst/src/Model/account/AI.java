@@ -16,6 +16,7 @@ public class AI extends Account {
         Player player = Game.battle.getMe(this) ;
         ArrayList<Hermione> myPlayers = new ArrayList<>() ;
         myPlayers.add(player.getDeck().getHero()) ;
-        Collections
+        //Collections
+        return null;
     }
 }

@@ -1,9 +1,9 @@
 package Controller.menu;
 
 public class MainMenu extends Menu {
-    public MainMenu(Menu parentMenu, String name) {
+    public MainMenu(String name) {
         super(name);
-        this.account = parentMenu.getAccount();
+//        this.account = parentMenu.getAccount();
     }
 
     @Override

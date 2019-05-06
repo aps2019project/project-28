@@ -47,7 +47,7 @@ public class SignInMenu extends Menu {
     }
 
     public SignInMenu(Menu parentMenu, String name) {
-        super(parentMenu, name);
+        super(name);
         this.account = parentMenu.getAccount();
         this.leaderBoardPresenters = new ArrayList<>();
     }
