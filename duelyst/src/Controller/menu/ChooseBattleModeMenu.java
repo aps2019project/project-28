@@ -16,8 +16,4 @@ public class ChooseBattleModeMenu extends Menu {
         return menu;
     }
 
-    @Override
-    public void help() {
-
-    }
 }

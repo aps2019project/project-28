@@ -11,11 +11,11 @@ public class AI extends Account {
     public AI() {
         super("AI", "itsAI", "imAnAIgirlInAnAIWorld");
     }
-    public String play(){
-        Map map = Game.battle.getMap();
-        Player player = Game.battle.getMe(this) ;
-        ArrayList<Hermione> myPlayers = new ArrayList<>() ;
-        myPlayers.add(player.getDeck().getHero()) ;
-        Collections
-    }
+//    public String play(){
+//        Map map = Game.battle.getMap();
+//        Player player = Game.battle.getMe(this) ;
+//        ArrayList<Hermione> myPlayers = new ArrayList<>() ;
+//        myPlayers.add(player.getDeck().getHero()) ;
+//        Collections
+//    }
 }

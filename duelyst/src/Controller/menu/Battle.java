@@ -1,7 +1,7 @@
 package Controller.menu;
 
 import Controller.Game;
-import Controller.menu.GameMode;
+import Controller.GameMode.GameMode;
 import Controller.menu.Menu;
 import View.Listeners.OnGameInfoPresentedListener;
 import Model.Map.Map;
@@ -107,7 +107,7 @@ public class Battle extends Menu {
         }
     }
 
-    public void attack(int cardID) throws NoCardHasBeenSelectedException, InvalidCardException, DestinationOutOfreachException, CantAttackException {
+    public void attack(int cardID) throws NoCardHasBeenSelectedException, InvalidCardException, DestinationOutOfreachException, CantAttackException, InvalidCellException {
         Hermione myHermione = (Hermione) this.account.getPlayer().getSelectedCard();
         Hermione enemyCard = (Hermione) this.getEnemy(this.account).getDeck().getCard(cardID);
 
@@ -249,10 +249,6 @@ public class Battle extends Menu {
         return this.turn;
     }
 
-    @Override
-    public void help() {
-
-    }
 
     public ArrayList<Spell> getOngoingSpells() {
         return ongoingSpells;

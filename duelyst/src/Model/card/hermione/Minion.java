@@ -6,6 +6,7 @@ import Model.Map.Map;
 import exeption.CantAttackException;
 import exeption.DestinationOutOfreachException;
 import exeption.InvalidCardException;
+import exeption.InvalidCellException;
 
 public class Minion extends Hermione{
     private SPATime SPActivationTime;
@@ -40,6 +41,8 @@ public class Minion extends Hermione{
                 //TODO
             }catch (DestinationOutOfreachException e){
                 //TODO
+            } catch (InvalidCellException e) {
+                e.printStackTrace();
             }
         }
         this.itIsTime(SPATime.ATTACK);
@@ -47,7 +50,7 @@ public class Minion extends Hermione{
     }
 
         @Override
-        public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCardException {
+        public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCardException, InvalidCellException {
             this.itIsTime(SPATime.ATTACK);
             super.attack(enemyCard);
         }

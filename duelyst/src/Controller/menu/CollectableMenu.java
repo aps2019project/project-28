@@ -33,9 +33,4 @@ public class CollectableMenu extends Menu {
         // TODO: 5/5/19 saE doroste dg?
     }
 
-
-    @Override
-    public void help() {
-
-    }
 }
