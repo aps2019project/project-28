@@ -1,7 +1,7 @@
 package Controller.menu;
 
-public class StoryModeMenu extends Menu {
-    public StoryModeMenu(Menu parentMenu, String name) {
+public class SinglePlayerModeMenu extends Menu {
+    public SinglePlayerModeMenu(Menu parentMenu, String name) {
         super(parentMenu, name);
     }
 

@@ -1,5 +1,9 @@
 package Controller.menu;
 
+import View.Listeners.OnCollectionPresentedListener;
+import View.Listeners.OnSearchClickedListener;
+import View.Listeners.OnSearchCollectionClickedListener;
+import View.Listeners.OnShowClickedListener;
 import Model.account.Account;
 import Model.account.Collection;
 import Model.account.Shop;
@@ -20,14 +24,15 @@ public class ShopMenu extends Menu {
     private ArrayList<OnSearchCollectionClickedListener> searchCollectionClickedListeners;
     private ArrayList<OnShowClickedListener> showClickedListeners;
 
-    public ShopMenu(Menu parentMenu) {
-        super(parentMenu);
+    public ShopMenu(Menu parentMenu, String name) {
+        super(parentMenu, name);
         this.account = parentMenu.getAccount();
         tempCollection = this.account.getCollection();
     }
 
     public void showCollection() {
-        for (OnCollectionPresentedListener presenter : this.shop.getCollection().getCollectionPresentedListeners()) {
+        for (OnCollectionPresentedListener presenter :
+                this.shop.getCollection().getCollectionPresentedListeners()) {
             presenter.show(this.account.getCollection());
         }
     }
@@ -40,7 +45,8 @@ public class ShopMenu extends Menu {
         searchInGivenCollection(name, this.account.getCollection());
     }
 
-    private void searchInGivenCollection(String name, Collection collection) throws InvalidCardException, InvalidItemException {
+    private void searchInGivenCollection(String name, Collection collection) throws InvalidCardException,
+            InvalidItemException {
         if (collection.hasCard(name)) {
             Card card = collection.getCard(name);
             for (OnCardDetailsPresentedListener presenter : card.getCardDetailsPresenters()) {
@@ -55,18 +61,19 @@ public class ShopMenu extends Menu {
         throw new InvalidCardException();
     }
 
-    public void buy(String name) throws CardExistException, ItemExistExeption, InvalidCardException, InvalidItemException, NotEnoughMoneyException, FullCollectionException {
-        if (!this.shop.getCollection().hasCard(name) && !this.shop.getCollection().hasItem(name) ) {
-             throw new InvalidCardException();
+    public void buy(String name) throws CardExistException, ItemExistExeption, InvalidCardException,
+            InvalidItemException, NotEnoughMoneyException, FullCollectionException {
+        if (!this.shop.getCollection().hasCard(name) && !this.shop.getCollection().hasItem(name)) {
+            throw new InvalidCardException();
         }
-        if(this.shop.getCollection().hasCard(name)) {
+        if (this.shop.getCollection().hasCard(name)) {
             if (this.shop.getCollection().getCard(name).getPrice() > this.account.getMoney()) {
                 throw new NotEnoughMoneyException();
             } else {
-                 tempCollection.addCardToCollection(this.shop.getCollection().getCard(name));
+                tempCollection.addCardToCollection(this.shop.getCollection().getCard(name));
             }
         }
-        if(this.shop.getCollection().hasItem(name)) {
+        if (this.shop.getCollection().hasItem(name)) {
             if (this.shop.getCollection().getItem(name).getPrice() > this.account.getMoney()) {
                 throw new NotEnoughMoneyException();
             } else if (account.getCollection().getUsables().size() >= Collection.MAX_USABLES) {

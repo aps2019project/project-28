@@ -110,6 +110,7 @@ public abstract class Hermione extends Card {
     public void spawn(Cell cell){
         this.setLocation(cell);
     }
+
     public void die() throws InvalidCardException {
         Game.battle.getMap().getCell(this.getLocation()).setFull(false);
         Game.battle.getEnemyPlayer().getDeck().moveToGraveYard(this);

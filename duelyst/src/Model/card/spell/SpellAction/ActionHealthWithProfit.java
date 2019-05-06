@@ -5,6 +5,7 @@ import Model.Map.Cell;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.Buff.BuffActions.* ;
 import Model.card.spell.Spell;
+import exeption.InvalidCellException;
 
 public class ActionHealthWithProfit implements Action {
     private static ActionHealthWithProfit obj;
@@ -15,7 +16,7 @@ public class ActionHealthWithProfit implements Action {
     }
 
     @Override
-    public void deploy(Spell spell, Cell... cells) {
+    public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         Buff weaknessBuff = new Buff (1 , false , BuffActionHP.getBuffAction() , 6 ) ;
         Buff hollyBuff = new Buff(3 , true , BuffActionHolly.getBuffAction() , 2) ;
         for (Cell cell : cells ) {

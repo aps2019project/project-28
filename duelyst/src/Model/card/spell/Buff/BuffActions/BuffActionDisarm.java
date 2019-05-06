@@ -2,7 +2,7 @@ package Model.card.spell.Buff.BuffActions;
 
 import Model.card.spell.Buff.Buff;
 
-public class BuffActionDisarm implements Model.card.spell.BuffActions {
+public class BuffActionDisarm implements BuffActions {
     private static BuffActionDisarm obj ;
     public static BuffActionDisarm getBuffAction(){
         if (obj==null) obj = new BuffActionDisarm() ;

@@ -2,6 +2,7 @@ package Model.card.spell.Buff;
 
 import Model.account.Player;
 import Model.card.hermione.Hermione;
+import Model.card.spell.Buff.BuffActions.BuffActions;
 import exeption.InvalidCellException;
 
 import java.util.ArrayList;
@@ -12,10 +13,10 @@ public class Buff {
     private Hermione target ;
     private boolean isPositive;
     private Player player;
-    private Model.card.spell.BuffActions action;
+    private BuffActions action;
     private int perk ;
 
-    public Buff(int duration, boolean isPositive,  Model.card.spell.BuffActions action) {
+    public Buff(int duration, boolean isPositive,  BuffActions action) {
         this.action = action;
         this.duration = duration;
         this.isPositive = isPositive;
@@ -24,7 +25,7 @@ public class Buff {
     public Buff(Buff buff){
 
     }
-    public Buff(int duration, boolean isPositive, Model.card.spell.BuffActions action , int perk) {
+    public Buff(int duration, boolean isPositive, BuffActions action , int perk) {
         this.action = action;
         this.duration = duration;
         this.isPositive = isPositive;
@@ -64,7 +65,7 @@ public class Buff {
         return duration;
     }
 
-    public Model.card.spell.BuffActions getAction() {
+    public BuffActions getAction() {
         return action;
     }
 

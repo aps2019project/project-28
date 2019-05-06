@@ -6,6 +6,7 @@ import Model.card.hermione.Hermione;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.Buff.BuffActions.BuffActionHP;
 import Model.card.spell.Spell;
+import exeption.InvalidCellException;
 
 public class ActionChangeHP implements Action {
     private static ActionChangeHP obj;
@@ -16,7 +17,7 @@ public class ActionChangeHP implements Action {
     }
 
     @Override
-    public void deploy(Spell spell, Cell... cells) {
+    public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
             Hermione card = cell.getCardOnCell();
             Buff buff = new Buff(spell.getDuration(), spell.getPerk() > 0, BuffActionHP.getBuffAction());

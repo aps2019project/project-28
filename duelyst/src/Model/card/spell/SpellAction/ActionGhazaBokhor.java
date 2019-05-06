@@ -5,6 +5,7 @@ import Model.Map.Cell;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.Buff.BuffActions.BuffActionAP;
 import Model.card.spell.Spell;
+import exeption.InvalidCellException;
 
 public class ActionGhazaBokhor implements Action {
     private static ActionGhazaBokhor obj;
@@ -15,7 +16,7 @@ public class ActionGhazaBokhor implements Action {
     }
 
     @Override
-    public void deploy(Spell spell, Cell... cells) {
+    public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
             Buff buff = new Buff(-1, true, BuffActionAP.getBuffAction() , cell.getCardOnCell().getHealthPoint());
             buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());

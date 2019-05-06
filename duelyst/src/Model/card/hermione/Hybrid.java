@@ -9,7 +9,8 @@ public class Hybrid implements AttackType {
 
     @Override
     public boolean canReach(Hermione champCard, Hermione enemyCard) {
-        if(Map.getManhattanDistance(champCard.getLocation(),enemyCard.getLocation())<=champCard.getRange())return true;
+        if (Map.getManhattanDistance(champCard.getLocation(), enemyCard.getLocation()) <= champCard.getRange())
+            return true;
         return false;
     }
 }

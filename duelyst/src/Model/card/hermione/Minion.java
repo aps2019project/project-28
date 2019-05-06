@@ -25,7 +25,7 @@ public class Minion extends Hermione{
 
     @Override
     public void die() throws InvalidCardException {
-        if (this.hasTheDeathCurse){
+        if (this.buffEffects.isHasTheDeathCurse()){
             int distance = Map.getManhattanDistance(location , Game.battle.getEnemyPlayer().getDeck().getHero().getLocation()) ;
             Hermione theTarget = Game.battle.getEnemyPlayer().getDeck().getHero() ;
             for (Minion minion : Game.battle.getEnemyPlayer().getMinionsInGame()){

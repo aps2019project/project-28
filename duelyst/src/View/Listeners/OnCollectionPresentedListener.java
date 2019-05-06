@@ -1,7 +1,7 @@
-package Controller.menu;
+package View.Listeners;
 
 import Model.account.Collection;
 
-public interface OnShowClickedListener {
+public interface OnCollectionPresentedListener {
     void show(Collection collection);
 }

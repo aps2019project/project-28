@@ -1,4 +1,4 @@
-package Controller.menu;
+package View.Listeners;
 
 import Model.account.Collection;
 
