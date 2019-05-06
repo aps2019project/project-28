@@ -15,17 +15,18 @@ public abstract class Hermione extends Card {
     protected int healthPoint;
     protected int attackPoint;
     protected Model.card.spell.SpecialPower SpecialPower;
-    protected ArrayList<Buff> appliedBuffs;
+    protected ArrayList<Buff> appliedBuffs ;
     protected AttackType attackType;
     protected int range;
     public static final int MOVE_RANGE = 2;
     protected int actionTurn;//0 move    1 attack
     protected Cell location;
-    protected boolean canCounterAttack = true;
-    protected boolean canAttack = true;
-    protected int numberOfFlags;
+    protected boolean canCounterAttack = true ;
+    protected boolean canAttack = true ;
+    protected int numberOfFlags=0;
+    protected boolean hasFlag=false;
     protected boolean canMove;
-    protected int attackCounter = 0;
+    protected int attackCounter = 0 ;
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione();
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
@@ -33,7 +34,7 @@ public abstract class Hermione extends Card {
         super(name, price, manaPoint);
         this.healthPoint = healthPoint;
         this.attackPoint = attackPoint;
-        this.buffEffects.setOriginalAttackPoint(attackPoint);
+        this.buffEffects.setOriginalAttackPoint(attackPoint) ;
         SpecialPower = specialPower;
         this.attackType = attackType;
         this.range = range;
@@ -52,57 +53,61 @@ public abstract class Hermione extends Card {
     }
 
     public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCardException {
-        if (!this.canAttack) throw new CantAttackException();
-        if (this.attackType.canReach(this, enemyCard)) {
-            this.attackCounter++;
-            enemyCard.setHealthPoint(enemyCard.healthPoint - this.attackPoint);
+        if(!this.canAttack)throw new CantAttackException();
+      if(this.attackType.canReach(this,enemyCard)){
+          this.attackCounter++ ;
+            enemyCard.setHealthPoint(enemyCard.healthPoint-this.attackPoint);
             enemyCard.counterAttack(this);
-            if (enemyCard.getHealthPoint() <= 0) {
+            if(enemyCard.getHealthPoint()<=0){
                 enemyCard.die();
             }
             return;
         }
-        throw new DestinationOutOfreachException();
+      throw new DestinationOutOfreachException();
     }
-
-    public void counterAttack(Hermione enemyCard) {
-        if (!this.canCounterAttack) return;
-        if (this.attackType.canReach(this, enemyCard)) {
-            this.setHealthPoint(Integer.min(this.healthPoint + this.attackPoint, enemyCard.getAttackPoint()));
+    public void counterAttack(Hermione enemyCard){
+        if(!this.canCounterAttack)return;
+        if(this.attackType.canReach(this,enemyCard)){
+            this.setHealthPoint(Integer.min(this.healthPoint+this.attackPoint,enemyCard.getAttackPoint()));
         }
     }
 
     private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
-        if (this.actionTurn == 1) throw new MoveTrunIsOverException();
-        if (Game.battle.getMap().getCell(x, y).isFull()) throw new DestinationOutOfreachException();
+        if(this.actionTurn==1)throw new MoveTrunIsOverException();
+        if(Game.battle.getMap().getCell(x,y).isFull())throw new DestinationOutOfreachException();
 
         // TODO: 5/5/19 if the path is not blocked by enemies
-        if (Map.getManhattanDistance(this.location, new Cell(x, y)) <= MOVE_RANGE) return true;
+        if(Map.getManhattanDistance(this.location,new Cell(x,y)) <= MOVE_RANGE)return true;
 
         throw new DestinationOutOfreachException();
     }
 
 
-    public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
-        if (!canMove(x, y)) return false;
+    public boolean move (int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
+        if(!canMove(x,y))return false;
         Game.battle.getMap().getCell(this.location).clear();
 
-        this.setLocation(Game.battle.getMap().getCell(x, y));
+        this.setLocation(Game.battle.getMap().getCell(x,y));
+        if(Game.battle.getMap().getCell(x,y).hasFlag()){
+            this.numberOfFlags++;
+            this.hasFlag=true;
+        }
 
-        Game.battle.getMap().getCell(x, y).setCardOnCell(this);
+
+        Game.battle.getMap().getCell(x,y).setCardOnCell(this);
         return true;
     }
 
 
-    public abstract boolean applySpecialPower(int x, int y);// TODO: 4/15/19 saE
+    public  abstract boolean applySpecialPower(int x, int y);// TODO: 4/15/19 saE
 
-    private void handleAppliedBuffs() throws InvalidCellException {
+    private void handleAppliedBuffs() throws InvalidCellException{
         for (Buff appliedBuff : this.appliedBuffs) {
             appliedBuff.affect();
         }
     }
 
-    public void spawn(Cell cell) {
+    public void spawn(Cell cell){
         this.setLocation(cell);
     }
 
@@ -111,23 +116,22 @@ public abstract class Hermione extends Card {
         Game.battle.getEnemyPlayer().getDeck().moveToGraveYard(this);
     }
 
-    public void reverseAP() {
-        this.attackPoint = this.buffEffects.getOriginalAttackPoint();
+    public void reverseAP(){
+        this.attackPoint=this.buffEffects.getOriginalAttackPoint();
     }
 
-    public void reverseHP() {
-        this.healthPoint += this.buffEffects.getLostHealthPointDueToBuff();
+    public void reverseHP(){
+        this.healthPoint+=this.buffEffects.getLostHealthPointDueToBuff();
     }
+
 
 
     public void changeHealthPoint(int healthPoint) {
         this.healthPoint += healthPoint;
     }
-
     public void changeAttackPoint(int attackPoint) {
         this.attackPoint = attackPoint;
     }
-
     public int getHealthPoint() {
         return healthPoint;
     }
@@ -176,10 +180,7 @@ public abstract class Hermione extends Card {
         return MOVE_RANGE;
     }
 
-    public int getActionTurn() {
-        return this.actionTurn;
-    }
-
+    public int getActionTurn(){return this.actionTurn;}
     public Cell getLocation() {
         return location;
     }
@@ -204,10 +205,9 @@ public abstract class Hermione extends Card {
         this.numberOfFlags = numberOfFlags;
     }
 
-    public boolean CanAttack() {
+    public boolean CanAttack() {		    
         return canAttack;
     }
-
     public void setCanAttack(boolean canAttack) {
         this.canAttack = canAttack;
     }
@@ -224,8 +224,8 @@ public abstract class Hermione extends Card {
         return canAttack;
     }
 
-    public void setHollyBuffLevel(int level) {
-        this.buffEffects.setHollyBuffLevel(level);
+    public void setHollyBuffLevel (int level) {
+         this.buffEffects.setHollyBuffLevel(level) ;
     }
 
     public int getHollyBuffLevel() {
@@ -242,9 +242,5 @@ public abstract class Hermione extends Card {
 
     public void setLostHealthPointDueToBuff(int lostHealthPointDueToBuff) {
         this.buffEffects.setLostHealthPointDueToBuff(lostHealthPointDueToBuff);
-    }
-
-    public BuffEffectsOnHermione getBuffEffects() {
-        return buffEffects;
     }
 }

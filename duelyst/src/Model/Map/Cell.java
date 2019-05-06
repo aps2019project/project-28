@@ -37,11 +37,11 @@ public class Cell {
         this.isFull=false;
     }
 
-    public boolean isHasFlag() {
+    public boolean hasFlag() {
         return hasFlag;
     }
 
-    public void setHasFlag(boolean hasFlag) {
+    public void setFlag(boolean hasFlag) {
         this.hasFlag = hasFlag;
     }
 
