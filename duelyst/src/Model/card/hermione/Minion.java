@@ -8,8 +8,6 @@ import exeption.DestinationOutOfreachException;
 import exeption.InvalidCardException;
 
 public class Minion extends Hermione{
-    // TODO: 5/5/19 enom for SPAtime
-
     private SPATime SPActivationTime;
 
     public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint, AttackType attackType, int range, Model.card.spell.SpecialPower specialPower,SPATime SPActivationTime) {
@@ -21,7 +19,7 @@ public class Minion extends Hermione{
     public void spawn(Cell cell){
         super.spawn(cell);
         Game.battle.getAccount().getPlayer().getMinionsInGame().add(this);
-        this.itIsTime(SPATime.valueOf("SPAWN"));
+        this.itIsTime(SPATime.SPAWN);
 
     }
 
@@ -44,19 +42,19 @@ public class Minion extends Hermione{
                 //TODO
             }
         }
-        this.itIsTime(SPATime.valueOf("DEATH"));
+        this.itIsTime(SPATime.ATTACK);
         super.die();
     }
 
         @Override
         public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCardException {
-            this.itIsTime(SPATime.valueOf("ATTACK"));
+            this.itIsTime(SPATime.ATTACK);
             super.attack(enemyCard);
         }
 
         @Override
         public void counterAttack(Hermione enemyCard) {
-            this.itIsTime(SPATime.valueOf("DEFEND"));
+            this.itIsTime(SPATime.DEFEND);
             super.counterAttack(enemyCard);
         }
 
