@@ -121,13 +121,25 @@ public abstract class Battle extends Menu {
         /*updating hand*/
         this.account.getPlayer().getHand().updateHand();
 
-        /*minions passive and onTurn SP handling*/
+        /*current player minions onTurn SP handling*/
+        for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
+            minion.itIsTime(SPATime.ON_TURN);
+        }
         for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
             minion.itIsTime(SPATime.PASSIVE);
         }
-        for (Minion minion : this.getEnemyPlayer(this.account.getPlayer()).getMinionsInGame()) {
-            minion.itIsTime(SPATime.ON_TURN);
+
+        /*enemy player passive Handling*/
+        turn++;
+        for (Minion minion : this.getEnemy(this.account).getMinionsInGame()) {
+            minion.itIsTime(SPATime.PASSIVE);
         }
+        //----------start-----------
+            // TODO: 5/6/19 SaE passive buff
+        //-------------end----------
+        turn--;
+
+
 
         /*changing turn*/
         turn++;
@@ -201,10 +213,6 @@ public abstract class Battle extends Menu {
     }
     public Player getPlayer(){
         return player[getTurn()] ;
-    }
-    public Player getEnemyPlayer(Player player){
-         if(this.player[0].equals(player))return this.player[1];
-         return this.player[0];
     }
     public Player getEnemyPlayer(){
         return player[1-getTurn()] ;
