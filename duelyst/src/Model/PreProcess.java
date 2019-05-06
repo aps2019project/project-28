@@ -103,6 +103,10 @@ public class PreProcess {
         return collectables;
     }
 
+    public static ArrayList<Spell> getSpells() {
+        return spells;
+    }
+
     public static void preProcess() {
         Gson gson = new Gson();
 
@@ -148,7 +152,7 @@ public class PreProcess {
         spells.add(new Spell("Shock", 1200, 1, 2, 0,
                 TargetEnemyCard.getTargetInstance(), ActionStun.getAction()));
 
-        FileWriter fileWriter = null;
+       FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter("Spell.json");
         } catch (IOException e) {
@@ -181,9 +185,10 @@ public class PreProcess {
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, 5,
                         null, ActionChangeAP.getAction()), SPATime.ATTACK));
 
-        /*minions.add(new Minion("Persian General",800, 7, 12,
+        minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
-                , SPATime.NULL));*/ //combo
+                new SpecialPower("Persian General SpecialPower", 0, 0, 0, 0,
+                        null, ActionCombo.getAction()), SPATime.NULL));
         minions.add(new Minion("Turanian Archer", 500, 1, 3,
                 4, new Range(), 5,
                 null, null));
@@ -202,9 +207,10 @@ public class PreProcess {
         minions.add(new Minion("Turanian MaceBearer", 450, 2, 3,
                 10, new Melee(), 0,
                 null, null));
-        /*minions.add(new Minion("Turanian Prince",800, 6, 6,
+        minions.add(new Minion("Turanian Prince",800, 6, 6,
                 10, new Melee(), 0,
-                , null));*///combo
+                new SpecialPower("Turanian Prince", 0, 0, 0, 0,
+                        null, ActionCombo.getAction()), null));
         minions.add(new Minion("Black Demon", 300, 9, 14,
                 10, new Hybrid(), 7,
                 null, null));
@@ -230,10 +236,10 @@ public class PreProcess {
         minions.add(new Minion("Fire Dragon", 250, 5, 9,
                 5, new Range(), 4,
                 null, null));
-        /*minions.add(new Minion("Fierce Lion",600, 2, 1,
+        minions.add(new Minion("Fierce Lion",600, 2, 1,
                 8, new Melee(), 0,
                 new SpecialPower("Fierce Lion SpecialPower", 0, 0, 0, 0,
-                        null, ), SPATime.ATTACK));*/
+                        null, ActionDispel.getAction()), SPATime.ATTACK));
 
         minions.add(new Minion("Giant Snake", 500, 8, 14,
                 7, new Range(), 5,
@@ -243,9 +249,10 @@ public class PreProcess {
                 2, new Melee(), 0,
                 new SpecialPower("White Wolf SpecialPower", 0, 0, 2, -6,
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK));//unhandled
-        /*minions.add(new Minion("Leopard",400, 4, 6,
+        minions.add(new Minion("Leopard",400, 4, 6,
                 2, new Melee(), 0,
-                ,SPATime.ATTACK));*/
+                new SpecialPower("Leopard SpecialPower", 0, 0, 1, -8,
+                        TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()),SPATime.ATTACK));
         minions.add(new Minion("Wolf", 400, 3, 6,
                 1, new Melee(), 0,
                 new SpecialPower("Wolf SpecialPower", 0, 0, 0, -6,
@@ -256,9 +263,10 @@ public class PreProcess {
                         RandomMinionInSurrounding.getTargetInstance(), ActionChangeHP.getAction(), ActionChangeAP.getAction()),
                 SPATime.PASSIVE));
 
-        /*minions.add(new Minion("The Great Wizard",550, 6, 6,
-                6, new Range(), 5,
-                ,SPATime.PASSIVE));*/
+        minions.add(new Minion("The Great Wizard",550, 6, 6,
+                6, new Range(), 5,new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2,
+                OwnMinionAndItsSurrounfing.getTargetInstance(), ActionChangeAP.getAction(), ActionDeployHollyBuff.getAction())
+                ,SPATime.PASSIVE));
         minions.add(new Minion("Genie", 500, 5, 10,
                 4, new Range(), 4,
                 new SpecialPower("Genie SpecialPower", 0, 0, -1, 1,
@@ -286,9 +294,10 @@ public class PreProcess {
         minions.add(new Minion("Great Giant", 600, 9, 30,
                 8, new Hybrid(), 2,
                 null, null));
-        /*minions.add(new Minion("Two Headed Giant",550, 4, 10,
+        minions.add(new Minion("Two Headed Giant",550, 4, 10,
                 4, new Melee(), 0,
-                new SpecialPower(), SPATime.ATTACK));*/
+                new SpecialPower("Two Headed Giant SpecialPower", 0, 0, 1, 0,
+                        TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction()), SPATime.ATTACK));
 
         minions.add(new Minion("Mother Ice", 500, 3, 3,
                 4, new Range(), 5,
@@ -302,14 +311,16 @@ public class PreProcess {
                 5, new Melee(), 0,
                 new SpecialPower("Siavash SpecialPower", 0, 0, 0, 6,
                         TargetEnemyHero.getTargetInstance(), ActionChangeAP.getAction()), SPATime.DEATH));
-        /*minions.add(new Minion("Eurymedon",600, 5, 10,
+        minions.add(new Minion("Eurymedon",600, 5, 10,
                 4, new Melee(), 0,
-                , SPATime.NULL));*/ // combo
-        /*minions.add(new Minion("Arzhang Div",600, 3, 6,
-                6, new Melee(), 0,
-                , SPATime.NULL));*/ //combo
+                new SpecialPower("Eurymedon SpecialPower", 0, 0, 0, 0,
+                        null, ActionCombo.getAction()), SPATime.NULL));
+        minions.add(new Minion("Arzhang Div",600, 3, 6,
+                6, new Melee(), 0, new SpecialPower("Arzhangs SpecialPower", 0, 0, 0, 0,
+                null, ActionCombo.getAction())
+                , SPATime.NULL));
 
-        fileWriter = null;
+        /*fileWriter = null;
         try {
             fileWriter = new FileWriter("Minion.json", true);
         } catch (IOException e) {
@@ -323,7 +334,7 @@ public class PreProcess {
             fileWriter.close();
         } catch (IOException e) {
 
-        }
+        }*/
 
         //Hero
 
@@ -367,7 +378,7 @@ public class PreProcess {
         heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4,
                 null, 0, 0));
 
-        fileWriter = null;
+        /*fileWriter = null;
         try {
             fileWriter = new FileWriter("Hero.json", true);
         } catch (IOException e) {
@@ -382,7 +393,7 @@ public class PreProcess {
             fileWriter.close();
         } catch (IOException e) {
 
-        }
+        }*/
 
 
         //item
@@ -409,7 +420,7 @@ public class PreProcess {
         usables.add(new Usable("‌Baptism", 20000, 2, 0,
                 ));*/
 
-        fileWriter = null;
+        /*fileWriter = null;
         try {
             fileWriter = new FileWriter("Usables.json", true);
         } catch (IOException e) {
@@ -422,7 +433,7 @@ public class PreProcess {
         try {
             fileWriter.close();
         } catch (IOException e) {
-        }
+        }*/
 
         collectables.add(new Collectable("NooshDaru", 1, 6,
                 TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
@@ -443,7 +454,7 @@ public class PreProcess {
         collectables.add(new Collectable("Chineese Sword", 1, 5,
                 TargetMelee.getTargetClass(), ItemActionChangeAP.getItemAction()));
 
-        fileWriter = null;
+        /*fileWriter = null;
         try {
             fileWriter = new FileWriter("Collectables.json", true);
         } catch (IOException e) {
@@ -455,7 +466,7 @@ public class PreProcess {
         try {
             fileWriter.close();
         } catch (IOException e) {
-        }
+        }*/
     }
 
 }

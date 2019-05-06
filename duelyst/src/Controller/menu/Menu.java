@@ -54,13 +54,12 @@ public abstract class Menu {
         // TODO: 5/6/19 in bayad return false bashe
     }
 
-//    public abstract void help();
-// TODO: 5/6/19 comment bala bayad solve she
     public void help(){
         System.err.println("HELP");
         System.out.println("these are the commands you can use");
         System.out.println("1)exit     2)show menu     3)enter[MenuName]");
     }
+
     public void showMenu() {
         for (OnMenuClickedListener presenter : this.menuPresenters) {
             presenter.show(this);

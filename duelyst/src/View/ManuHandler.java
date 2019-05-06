@@ -2,6 +2,7 @@ package View;
 
 import Controller.menu.Battle;
 import Controller.menu.*;
+import Model.PreProcess;
 import Model.account.Account;
 import View.Listeners.OnMenuClickedListener;
 import exeption.AccountAlreadyExistsException;
@@ -31,7 +32,6 @@ public class ManuHandler {
 
     private static Menu currentMenu;
 
-    //preprocess
     static{
         initMenus();
         setListener();
