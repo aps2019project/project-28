@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Collection{
 
-    private TempCollection tempCollection;
+    private Collection tempCollection;
     private ArrayList<Deck> decks = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Usable> usables = new ArrayList<>();
@@ -35,7 +35,8 @@ public class Collection{
 
     public Collection(Collection collection){
         Gson gson = new Gson();
-        this.tempCollection = gson.fromJson(gson.toJson(collection), TempCollection.class);
+        this.tempCollection = gson.fromJson(gson.toJson(collection), Collection.class);
+        tempCollection.tempCollection = null;//DirtyAF
     }
 
     public Deck getDeckByName(String name) throws InvalidDeckException {
@@ -255,7 +256,7 @@ public class Collection{
     }
 
     public void save(){
-        = tempCollection;
+       this.owner.setCollection(tempCollection);
     }
 
     public ArrayList<Card>getAllCardsByID(int ID){
