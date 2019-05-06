@@ -2,6 +2,7 @@ package View;
 
 import Controller.menu.Battle;
 import Controller.menu.*;
+import Model.PreProcess;
 import Model.account.Account;
 import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
@@ -41,7 +42,6 @@ public class ManuHandler {
 
     private static Menu currentMenu;
 
-    //preprocess
     static{
         initMenus();
         setListener();
