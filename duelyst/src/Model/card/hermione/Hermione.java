@@ -6,10 +6,7 @@ import Model.Map.Map;
 import Model.card.Card;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.SpecialPower;
-import exeption.CantAttackException;
-import exeption.DestinationOutOfreachException;
-import exeption.InvalidCellException;
-import exeption.MoveTrunIsOverException;
+import exeption.*;
 
 import java.util.ArrayList;
 
@@ -30,6 +27,7 @@ public abstract class Hermione extends Card {
     protected boolean canAttack = true ;
     protected int numberOfFlags;
     protected boolean canMove;
+    protected boolean hasTheDeathCurse = false ;
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range) {
@@ -83,7 +81,7 @@ public abstract class Hermione extends Card {
         this.canCounterAttack = canCounterAttack;
     }
 
-    public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException {
+    public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCardException {
         if(!this.canAttack)throw new CantAttackException();
       if(this.attackType.canReach(this,enemyCard)){
             enemyCard.setHealthPoint(enemyCard.healthPoint-this.attackPoint);
@@ -135,7 +133,7 @@ public abstract class Hermione extends Card {
     public void spawn(Cell cell){
         this.setLocation(cell);
     }
-    public void die(){
+    public void die() throws InvalidCardException {
         Game.battle.getMap().getCell(this.getLocation()).setFull(false);
         Game.battle.getEnemyPlayer().getDeck().moveToGraveYard(this);
     }
@@ -252,5 +250,13 @@ public abstract class Hermione extends Card {
 
     public int getHollyBuffLevel() {
         return HollyBuffLevel;
+    }
+
+    public boolean isHasTheDeathCurse() {
+        return hasTheDeathCurse;
+    }
+
+    public void setHasTheDeathCurse(boolean hasTheDeathCurse) {
+        this.hasTheDeathCurse = hasTheDeathCurse;
     }
 }

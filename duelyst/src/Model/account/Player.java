@@ -28,6 +28,7 @@ public class Player {
     private Item selectedItem;
 
     public Player(Account user, int maxMana, int mana) {
+        // TODO: 5/6/19 FATTEME LISTEN CAREFULLY 1)make a json string from Accunt(user)'s main deck   2)make a deck object from that json string file and put its refrence in the player """"that way we always have a hard copy of main deck and no need to get hard on our selves:D"""""t
         this.user = user;
         this.maxMana = maxMana;
         this.mana = mana;
@@ -35,18 +36,7 @@ public class Player {
         this.collectables = new ArrayList<>();
         this.selectedCard = null;
         this.selectedItem = null;
-        this.hardCopy(user);
-    }
-
-    private void hardCopy(Account user){
-        for (Card card:
-             user.getCollection().getCards()) {
-            if(card instanceof Minion){
-                this.minionsInGame.add(new Minion((Minion)card));
-            }
-        }
-        this.deck = new Deck(user.getCollection().getMainDeck());
-        this.hand = new Hand(this.deck);
+//        this.hardCopy(user);
     }
 
     public void setMana(int mana) {

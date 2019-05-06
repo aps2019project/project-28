@@ -1,8 +1,6 @@
 package Model.account;
 
 import Model.card.Card;
-import Model.card.hermione.Hero;
-import Model.card.hermione.Minion;
 import Model.item.Item;
 import Model.item.Usable;
 import exeption.*;
@@ -21,47 +19,9 @@ public class Collection{
     private Deck tempMainDeck;
     public static final int MAX_USABLES = 3;
 
-    public Collection(){}
-
     public Collection(Collection collection){
-        this.tempMainDeck = new Deck(collection.getTempMainDeck());
-        this.mainDeck = new Deck(collection.getMainDeck());
-        this.owner = new Account(collection.getOwner());
-        for (Usable usable:
-             collection.getUsables()) {
-            this.usables.add(new Usable(usable));
-        }
-        for (Card card:
-             collection.getTempCards()) {
-            if(card instanceof Hero) {
-                this.tempCards.add(new Hero((Hero)card));
-            }
-            else if(card instanceof Minion){
-                this.tempCards.add(new Minion((Minion)card));
-            }
-        }
-        for (Card card:
-                collection.getCards()) {
-            if(card instanceof Hero) {
-                this.cards.add(new Hero((Hero)card));
-            }
-            else if(card instanceof Minion){
-                this.cards.add(new Minion((Minion)card));
-            }
-        }
-
-        for(Deck deck:
-            collection.getTempDecks()){
-            this.getTempDecks().add(new Deck(deck));
-        }
-
-        for (Deck deck:
-                collection.getDecks()){
-            this.getDecks().add(new Deck(deck));
-        }
 
     }
-
     public boolean hasDeck(String name){
         for (Deck deck:
              decks) {

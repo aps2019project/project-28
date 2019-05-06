@@ -1,6 +1,7 @@
 package Controller;
 
 import Controller.menu.Menu;
+import Controller.menu.OnGameInfoPresentedListener;
 import Model.Map.Map;
 import Model.account.*;
 import Model.card.Card;
@@ -8,7 +9,7 @@ import Model.card.OnCardDetailsPresentedListener;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
-import Model.item.Item;
+import Model.item.KingSlayerCounter;
 import Model.item.OnItemDetailPresentedListener;
 import exeption.*;
 
@@ -21,6 +22,8 @@ public abstract class Battle extends Menu {
     private int turn = 0 ;
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
     private static final int[] MAX_MANA_PER_TURN={2,3,3,4,4,5,5,6,6,7,7,8,8,9};
+    private KingSlayerCounter[] kingSlayerCountDown =
+            {new KingSlayerCounter(player[0]) , new KingSlayerCounter(player[1]) } ;
 
     private ArrayList<OnGameInfoPresentedListener>gameInfoPresenters=new ArrayList<>();
 
@@ -28,6 +31,10 @@ public abstract class Battle extends Menu {
         super(parentMenu);
         this.map=Map.generate();
     }
+
+//    void init(Player player1,Player player2){
+//        this.setPlayer();
+//    }
 
     public void gameInfo(){
         for (OnGameInfoPresentedListener presenter : this.gameInfoPresenters) {
@@ -111,6 +118,7 @@ public abstract class Battle extends Menu {
 
         /*updating hand*/
         this.account.getPlayer().getHand().updateHand();
+        // TODO: 5/5/19 fatteme updateHand
 
         /*changing turn*/
         turn++;
@@ -126,6 +134,17 @@ public abstract class Battle extends Menu {
         this.player[0].getDeck().getHero().increaseRemainCoolDown();
         this.player[1].getDeck().getHero().increaseRemainCoolDown();
         // TODO: 5/5/19 other stuff maybe?
+
+        for (int i = 0 ; i < 2 ; i++){
+            KingSlayerCounter ksc = kingSlayerCountDown[i] ;
+            if (ksc.isActive()){
+                ksc.increaseCounter() ;
+            }
+            if (ksc.getCounter() == 15){
+                player[i].getDeck().getHero().die() ;
+                //TODO @arshia game over mishe inja !
+            }
+        }
 
     }
 
@@ -143,19 +162,6 @@ public abstract class Battle extends Menu {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void setPlayer(Player firstPlayer, Player secondPlayer){
         this.player[0]=firstPlayer;
@@ -195,4 +201,27 @@ public abstract class Battle extends Menu {
 
     }
 
+    public ArrayList<Spell> getOngoingSpells() {
+        return ongoingSpells;
+    }
+
+    public static int[] getMaxManaPerTurn() {
+        return MAX_MANA_PER_TURN;
+    }
+
+    public KingSlayerCounter getKingSlayerCountDown(Player player) {
+        if (player.equals(this.player[0])) return kingSlayerCountDown[0];
+        else if(player.equals(this.player[1])) return kingSlayerCountDown[1] ;
+        return null ;
+    }
+
+
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+
+
+    public void setGameInfoPresenters(ArrayList<OnGameInfoPresentedListener> gameInfoPresenters) {
+        this.gameInfoPresenters = gameInfoPresenters;
+    }
 }

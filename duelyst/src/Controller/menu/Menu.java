@@ -58,7 +58,7 @@ public abstract class Menu {
         return null;
     }
 
-    protected Account getAccount(){
+    public Account getAccount(){
         return this.account;
     }
 }

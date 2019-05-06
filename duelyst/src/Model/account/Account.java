@@ -167,6 +167,8 @@ public class Account {
 
 
     public Player getPlayer() {
+        if(this.player==null)
+            this.player=new Player(this,2,2);
         return player;
     }
 

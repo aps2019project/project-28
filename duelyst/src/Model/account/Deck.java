@@ -28,10 +28,9 @@ public class Deck{
     }
 
     public Deck(Deck deck){
-        this.name = deck.getName();
+        this.name = new String(deck.getName());
         this.collection = new Collection(deck.getCollection());
-        for (Card card:
-             deck.getCards()) {
+        for (Card card: deck.getCards()) {
             if(card instanceof Hero) {
                 this.cards.add(new Hero((Hero) card));
             }
@@ -58,10 +57,6 @@ public class Deck{
         }
         this.hero = new Hero(deck.getHero());
         this.ID = deck.getID();
-    }
-
-    public ArrayList<Card> getGraveYard() {
-        return graveYard;
     }
 
     public void setCollection(Collection collection) {
