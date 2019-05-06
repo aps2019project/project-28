@@ -25,10 +25,12 @@ public class Targetwithin2ManhattanDistance implements Target {
         Cell[] cells = new Cell[12] ;
         int index = 0 ;
         for (int i = -2 ; i <= 2 ; i++) {
-            for (int j = 0 ; abs(j+i) <= 2 ; j++){
+            for (int j = -2 ; abs(j+i) <= 2 ; j++){
                 if (j==0 && i == 0) continue;
-                cells[index] = map.getCell(x+i , y + j) ;
+                if (Map.getManhattanDistance(cell , map.getCell(x+i , y + j)) <= 2 )
+                    cells[index] = map.getCell(x+i , y + j) ;
             }
         }
+        return cells ;
     }
 }
