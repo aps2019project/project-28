@@ -99,7 +99,7 @@ public class PreProcess{
         
         minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
-                ,"Combo"));
+                ,SPATime.NULL));
         minions.add(new Minion("Turanian Archer",500, 1, 3,
                 4, new Range(), 5,
                 null, null));
@@ -118,7 +118,7 @@ public class PreProcess{
                 10, new Melee(), 0, null, null));
         minions.add(new Minion("Turanian Prince",800, 6, 6,
                 10, new Melee(), 0,
-                , "Combo"));
+                , null));
         minions.add(new Minion("Black Demon",300, 9, 14,
                 10, new Hybrid(), 7, null, null));
         minions.add(new Minion("Stone Thrower Giant",300, 9, 12,
@@ -126,7 +126,7 @@ public class PreProcess{
         minions.add(new Minion("Eagle",200, 2, 0,
                 2, new Range(), 3,
                 new SpecialPower("Eagle SpecialPower", 0, 0, 0, 10,
-                        null, ActionChangeHP.getAction()),"Passive"));
+                        null, ActionChangeHP.getAction()),SPATime.PASSIVE));
 
         minions.add(new Minion("Hog Rider Demon",300, 6, 16,
                 8, new Melee(), 0,
@@ -162,15 +162,15 @@ public class PreProcess{
                         , ActionChangeHP.getAction()), SPATime.ATTACK));
         minions.add(new Minion("The Wizard",550, 4, 5,
                 4, new Range(), 3,
-                ,"Passive"));
+                ,SPATime.PASSIVE));
 
         minions.add(new Minion("The Great Wizard",550, 6, 6,
                 6, new Range(), 5,
-                ,"Passive"));
+                ,SPATime.PASSIVE));
         minions.add(new Minion("Genie",500, 5, 10,
                 4, new Range(), 4,
                 new SpecialPower("Genie SpecialPower", 0, 0, 0, 1,
-                        , ActionChangeAP.getAction()), "OnTurn"));
+                        , ActionChangeAP.getAction()), SPATime.PASSIVE));//
         minions.add(new Minion("Wild Goraz",500, 6, 10,
                 14, new Melee(), 0,
                 , SPATime.DEFEND));
@@ -203,17 +203,17 @@ public class PreProcess{
                         , ActionStun.getAction()), SPATime.SPAWN));
         minions.add(new Minion("Foolad Zereh",650, 3, 1,
                 1, new Melee(), 0,
-                , "Passive"));
+                , SPATime.PASSIVE));
         minions.add(new Minion("Siavash",350, 4, 8,
                 5, new Melee(), 0,
                 new SpecialPower("Siavash SpecialPower", 0, 0, 0, 6,
                         TargetEnemyHero.getTargetInstance(), ActionChangeAP.getAction()), SPATime.DEATH);
         minions.add(new Minion("Eurymedon",600, 5, 10,
                 4, new Melee(), 0,
-                , "Combo"));
+                , SPATime.NULL));
         minions.add(new Minion("Arzhang Div",600, 3, 6,
                 6, new Melee(), 0,
-                , "Combo"));
+                , SPATime.NULL));
 
         for (Minion minion:
                     minions){
