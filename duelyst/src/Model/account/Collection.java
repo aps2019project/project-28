@@ -14,6 +14,9 @@ public class Collection{
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Card> tempCards = new ArrayList<>();
     private ArrayList<Usable> usables = new ArrayList<>();
+
+    private ArrayList<OnCollectionPresentedListener> collectionPresentedListeners;
+
     private Account owner;
     private Deck mainDeck;
     private Deck tempMainDeck;
@@ -44,6 +47,10 @@ public class Collection{
 
     public ArrayList<Deck> getTempDecks() {
         return tempDecks;
+    }
+
+    public ArrayList<OnCollectionPresentedListener> getCollectionPresentedListeners() {
+        return collectionPresentedListeners;
     }
 
     public ArrayList<Card> getCards() {
@@ -169,7 +176,7 @@ public class Collection{
         throw new InvalidItemException();
     }
 
-    public Usable getItem(String name) throws InvalidItemException{
+    public Item getItem(String name) throws InvalidItemException{
         for (Usable item:
                 usables) {
             if(item.getName().equals(name)){

@@ -116,15 +116,16 @@ public abstract class Battle extends Menu {
         // TODO: 5/5/19 one more exception  (read the doc)
     }
 
-    public void endTurn() throws HandFullException, DeckIsEmptyException{
+    public void endTurn() throws HandFullException, DeckIsEmptyException, InvalidCardException {
 
         /*updating hand*/
         this.account.getPlayer().getHand().updateHand();
 
         /*minions passive SP handling*/
         for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
-            minion.itIsTime(SPATime.valueOf("PASSIVE"));
+            minion.itIsTime(SPATime.PASSIVE);
         }
+        this.getEnemyPlayer(this.account.getPlayer())
 
         /*changing turn*/
         turn++;
@@ -197,8 +198,9 @@ public abstract class Battle extends Menu {
     public Player getPlayer(){
         return player[getTurn()] ;
     }
-    public Player getEnemyPlayer(){
-        return player[1 - getTurn()] ;
+    public Player getEnemyPlayer(Player player){
+         if(this.player[0].equals(player))return this.player[1];
+         return this.player[0];
     }
     public int getTurn() {return turn%2 ; }
     public int getOriginalTurn(){ return this.turn; }

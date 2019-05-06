@@ -1,9 +1,6 @@
 package Controller.menu;
 
-import Model.account.Account;
-import Model.account.Collection;
-import Model.account.Deck;
-import Model.account.OnDeckPresentedListener;
+import Model.account.*;
 import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
 import Model.item.Item;
@@ -15,7 +12,7 @@ import java.util.ArrayList;
 public class CollectionMenu extends Menu {
 
     private Collection tempCollection;
-    private ArrayList<OnCollectionPresenterListener> collectionPresenters;
+    private ArrayList<OnCollectionPresentedListener> collectionPresenters;
 
     public CollectionMenu(Menu parentMenu) {
         super(parentMenu);
@@ -29,7 +26,7 @@ public class CollectionMenu extends Menu {
     }
 
     public void showCollection(){
-        for (OnCollectionPresenterListener presenter : this.collectionPresenters) {
+        for (OnCollectionPresentedListener presenter : this.collectionPresenters) {
             presenter.show(this.account.getCollection());
         }
     }
@@ -66,7 +63,7 @@ public class CollectionMenu extends Menu {
         this.account.getCollection().getDeckByName(deckName).removeFromDeck(ID);
     }
 
-    public void addCollectionPresenterListener(OnCollectionPresenterListener presenter){
+    public void addCollectionPresenterListener(OnCollectionPresentedListener presenter){
         this.collectionPresenters.add(presenter);
     }
 
