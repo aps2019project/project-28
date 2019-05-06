@@ -121,11 +121,13 @@ public abstract class Battle extends Menu {
         /*updating hand*/
         this.account.getPlayer().getHand().updateHand();
 
-        /*minions passive SP handling*/
+        /*minions passive and onTurn SP handling*/
         for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
             minion.itIsTime(SPATime.PASSIVE);
         }
-        this.getEnemyPlayer(this.account.getPlayer())
+        for (Minion minion : this.getEnemyPlayer(this.account.getPlayer()).getMinionsInGame()) {
+            minion.itIsTime(SPATime.ON_TURN);
+        }
 
         /*changing turn*/
         turn++;

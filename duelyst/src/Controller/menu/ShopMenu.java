@@ -68,6 +68,8 @@ public class ShopMenu extends Menu {
             }
         }
         if(this.shop.getCollection().hasItem(name)) {
+            // TODO: 5/6/19 Fatteme ya saE item.price
+
             if (this.shop.getCollection().getItem(name).getPrice() > this.account.getMoney()) {
                 throw new NotEnoughMoneyException();
             } else if (account.getCollection().getUsables().size() >= Collection.MAX_USABLES) {
