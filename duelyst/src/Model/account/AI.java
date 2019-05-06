@@ -6,6 +6,7 @@ import Model.Map.Map;
 import Model.PreProcess;
 import Model.card.Card;
 
+import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
@@ -13,11 +14,13 @@ import Model.card.spell.Target;
 import exeption.*;
 
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class AI extends Account {
     int level;
-    int move; //0: insert card , 1: move Hero , 2: attack with hero , 3: move minions , 4: attack with minions
+    int move; //0: insert card , 1&3: select hero, 2: move Hero ,
+                // 4: attack with hero ,and then : minions : select-move-select-attack
     Map map;
     Player enemy;
 
@@ -43,24 +46,79 @@ public class AI extends Account {
     }
 
     public String play() {
+        move++ ;
         String command;
         map = Game.battle.getMap();
         enemy = Game.battle.getEnemyPlayer();
-        Random randTypeCard = new Random();
-        int randCard = randTypeCard.nextInt(2);
-        if (randCard == 0) {
-            command = insertMinion();
-        } else {
-            command = insertSpell();
+        switch(move){
+            case 0:
+                Random randTypeCard = new Random();
+                int randCard = randTypeCard.nextInt(2);
+                if (randCard == 0) {
+                    command = insertMinion();
+                } else {
+                    command = insertSpell();
+                }
+                if (command != null && !command.isEmpty()) return command;
+                else move++ ;
+            case 1:
+            case 3:
+                command = "Select "+ collection.getMainDeck().getHero().getCardID();
+                return command ;
+            case 2:
+                Hero hero = collection.getMainDeck().getHero();
+                for (int i = 2 ; i >0 ; i--){
+                    Cell[] cells = map.getCellsInDistance(hero.getLocation() , i) ;
+                    for (Cell cell : cells){
+                        if (cell.getCardOnCell() == null) {
+                            command = "Move to (" + cell.getX() + ", " + cell.getY()+")" ;
+                            return command ;
+                        }
+                    }
+                }
+                move++ ;
+
+            case 4:
+                hero = collection.getMainDeck().getHero() ;
+                 command = attack(hero);
+                if (command != null) return command;
+                else move++;
+            default:
+                if (move > player.getMinionsInGame().size() + 5) {
+                    move = -1 ;
+                    return "End turn";
+                }
+                if (move % 2 == 1){
+                    command = "Select " + player.getMinionsInGame().get(move-5) ;
+                    return command ;
+                }
+                else{
+                    Minion card = player.getMinionsInGame().get(move-6) ;
+                    command = attack(card) ;
+                    return command ;
+                }
         }
-        if (command != null && !command.isEmpty()) return command;
-
-        Hero hero = collection.getMainDeck().getHero();
-
-
-        return "End turn";
     }
 
+    private String attack(Hermione card) {
+        String command;
+        if (card.canAttackThisCard(enemy.getDeck().getHero())){
+            command = "Attack " + enemy.getDeck().getHero();
+            return command ;
+        }
+        Random rand = new Random();
+        ArrayList<Minion> target = new ArrayList<>(enemy.getMinionsInGame()) ;
+        int counter = 0 ;
+        for (int i = rand.nextInt(target.size()) ; true ; i = rand.nextInt(target.size())){
+            counter++ ;
+            if (card.canAttackThisCard(target.get(i))){
+                command = "Attack " + target.get(i);
+                return command ;
+            }
+            if (counter > 30) break ;
+        }
+        return null ;
+    }
 
     private String insertMinion() {
         String command = "";
@@ -146,7 +204,7 @@ public class AI extends Account {
                         DeckAlreadyHasThisItemException e) {
                     throw e;
                 }
-
+                break ;
             case 2:
                 try {
                     deck.addCardToDeck(PreProcess.getHeroes().get(4));
@@ -178,7 +236,7 @@ public class AI extends Account {
                         DeckAlreadyHasThisItemException e) {
                     throw e;
                 }
-
+                break ;
             case 3:
                 try {
                     deck.addCardToDeck(PreProcess.getHeroes().get(6));
