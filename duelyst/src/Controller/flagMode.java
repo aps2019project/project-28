@@ -7,6 +7,7 @@ public class flagMode implements GameMode{
 
     @Override
     public boolean checkState() {
+
         return false;
     }
 

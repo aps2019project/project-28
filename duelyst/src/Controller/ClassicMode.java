@@ -11,7 +11,7 @@ public class ClassicMode implements GameMode {
     @Override
     public boolean checkState() {
         if(Game.accounts[0].getPlayer().getDeck().getHero()==null)return true;
-
+        if(Game.accounts[1].getPlayer().getDeck().getHero()==null)return true;
         return false;
     }
 
