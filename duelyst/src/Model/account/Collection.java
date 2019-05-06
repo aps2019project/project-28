@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import exeption.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Collection{
 
@@ -303,4 +304,9 @@ public class Collection{
             removeCardFromCollection(this.getCard(name));
         }
     }
+
+    public ArrayList<OnCollectionPresentedListener> getCollectionPresentedListeners() {
+        return (ArrayList<OnCollectionPresentedListener>) Collections.unmodifiableList(this.collectionPresentedListeners);
+    }
+
 }
