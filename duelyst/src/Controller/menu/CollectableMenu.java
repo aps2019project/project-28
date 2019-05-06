@@ -7,8 +7,8 @@ import exeption.InvalidCellException;
 
 public class CollectableMenu extends Menu{
 
-    public CollectableMenu(Menu parentMenu) {
-        super(parentMenu);
+    public CollectableMenu(Menu parentMenu, String name) {
+        super(parentMenu, name);
         this.account=parentMenu.getAccount();
     }
 

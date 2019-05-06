@@ -1,7 +1,7 @@
 package Controller;
 
 import Controller.menu.Menu;
-import Controller.menu.OnGameInfoPresentedListener;
+import View.Listeners.OnGameInfoPresentedListener;
 import Model.Map.Map;
 import Model.account.*;
 import Model.card.Card;
@@ -18,7 +18,7 @@ import exeption.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public abstract class Battle extends Menu {
+public class Battle extends Menu {
     private Map map;
     private Player[] player =new Player[2];
     private int turn = 0 ;
@@ -205,8 +205,6 @@ public abstract class Battle extends Menu {
         return player[1];
 
     }
-
-    public abstract void checkState();
 
     public Map getMap() {
         return map;

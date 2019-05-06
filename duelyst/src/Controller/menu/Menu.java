@@ -1,5 +1,6 @@
 package Controller.menu;
 
+import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ public abstract class Menu {
 
 
 
-    public Menu(Menu parentMenu) {
+    public Menu(Menu parentMenu, String name) {
+        this.name = name;
         this.parentMenu = parentMenu;
         this.subMenus=new ArrayList<>();
         this.patterns=new ArrayList<>();

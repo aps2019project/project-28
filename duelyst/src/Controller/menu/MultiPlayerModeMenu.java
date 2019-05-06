@@ -4,8 +4,8 @@ import Controller.Game;
 import Model.account.Account;
 
 public class MultiPlayerModeMenu extends Menu {
-    public MultiPlayerModeMenu(Menu parentMenu) {
-        super(parentMenu);
+    public MultiPlayerModeMenu(Menu parentMenu, String name) {
+        super(parentMenu, name);
     }
 
     public void selectUser(int i){

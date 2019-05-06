@@ -1,6 +1,7 @@
 package Controller.menu;
 
 import Controller.Game;
+import View.Listeners.OnLeaderBoardClickedListener;
 import Model.account.Account;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
@@ -46,8 +47,8 @@ public class SignInMenu extends Menu{
         }
     }
 
-    public SignInMenu(Menu parentMenu) {
-        super(parentMenu);
+    public SignInMenu(Menu parentMenu, String name) {
+        super(parentMenu, name);
         this.account=parentMenu.getAccount();
         this.leaderBoardPresenters=new ArrayList<>();
     }

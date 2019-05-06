@@ -6,8 +6,8 @@ import exeption.InvalidCardException;
 
 public class GraveYardMenu extends Menu {
 
-    public GraveYardMenu(Menu parentMenu) {
-        super(parentMenu);
+    public GraveYardMenu(Menu parentMenu, String name) {
+        super(parentMenu, name);
         this.account = parentMenu.getAccount();
         this.account = parentMenu.getAccount();
     }

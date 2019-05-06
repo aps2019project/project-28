@@ -1,5 +1,6 @@
 package Model;
 
+import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
 import Model.card.spell.SpellAction.*;
@@ -9,17 +10,46 @@ import Model.card.spell.SpellAction.ActionDisarm;
 import Model.card.spell.SpellAction.ActionStun;
 import Model.card.spell.Targets.*;
 import Model.item.Collectable;
+import Model.item.Item;
 import Model.item.ItemAction.ItemActionChangeAP;
 import Model.item.ItemAction.ItemActionDamoolArch;
 import Model.item.ItemAction.ItemActionExtraMana;
 import Model.item.ItemAction.ItemActionShieldAF;
 import Model.item.Usable;
 import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PreProcess{
+
+    public static ArrayList<Card> getCards (){
+        ArrayList<Card> cards = new ArrayList<>();
+        Gson gson = new Gson();
+        try {
+            JsonReader reader = new JsonReader(new FileReader("Card.Json"));
+        } catch (FileNotFoundException e) {}
+
+
+
+        return cards;
+    }
+
+    public static ArrayList<Item> getItems(){
+        ArrayList<Item> items = new ArrayList<>();
+        Gson gson = new Gson();
+        try {
+            JsonReader reader = new JsonReader(new FileReader("Item.Json"));
+        } catch (FileNotFoundException e) {}
+
+
+
+        return items;
+    }
 
     public static void preProcess() throws java.io.IOException{
         Gson gson = new Gson();
@@ -70,7 +100,7 @@ public class PreProcess{
 
         for (Spell spell:
              spells) {
-            gson.toJson(spell, new FileWriter("Card.Json", true));
+            gson.toJson(spell, new FileWriter("Spell.Json", true));
         }
 
 
@@ -329,7 +359,9 @@ public class PreProcess{
 
         for (Collectable collectable:
                 collectables) {
-            gson.toJson(collectable, new FileWriter("Card.Json", true));
+            gson.toJson(collectable, new FileWriter("Spell.Json", true));
         }
     }
+
+
 }

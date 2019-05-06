@@ -1,5 +1,6 @@
 package Controller.menu;
 
+import View.Listeners.OnCollectionPresentedListener;
 import Model.account.*;
 import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
@@ -14,8 +15,8 @@ public class CollectionMenu extends Menu {
     private Collection tempCollection;
     private ArrayList<OnCollectionPresentedListener> collectionPresenters;
 
-    public CollectionMenu(Menu parentMenu) {
-        super(parentMenu);
+    public CollectionMenu(Menu parentMenu, String name) {
+        super(parentMenu, name);
         this.account=parentMenu.getAccount();
         this.tempCollection = new Collection();
         this.collectionPresenters = new ArrayList<>();

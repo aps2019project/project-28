@@ -1,6 +1,6 @@
 package Model.account;
 
-import Controller.menu.OnCollectionPresentedListener;
+import View.Listeners.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
