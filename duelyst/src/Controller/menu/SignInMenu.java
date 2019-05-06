@@ -67,4 +67,10 @@ public class SignInMenu extends Menu {
         this.leaderBoardPresenters.add(presenter);
     }
 
+    @Override
+    public void help() {
+        super.help();
+        System.out.println("4)create account [user name]     5)login [user name]    6)show leaderboard");
+        System.out.println("5)save     6)logout    ");
+    }
 }

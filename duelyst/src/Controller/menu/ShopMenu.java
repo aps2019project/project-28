@@ -120,4 +120,11 @@ public class ShopMenu extends Menu {
         account.setCollection(this.tempCollection);
     }
 
+
+    @Override
+    public void help() {
+        super.help();
+        System.out.println("4)show collection     5)search [item name | card name]     6)search collection [item name | card name]");
+        System.out.println("7)buy [card name | item name]     8)sell [card id | card id]     9)show");
+    }
 }
