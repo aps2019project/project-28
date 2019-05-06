@@ -3,6 +3,7 @@ package Model.card.spell.Targets;
 import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
+import Model.card.spell.Target;
 import exeption.InvalidCellException;
 
 import java.util.ArrayList;
@@ -19,4 +20,8 @@ public class TargetRandom {
         return new Cell[] {hermiones.get(r).getLocation()} ;
     }
 
+    public static Target getTargetInstance() {
+    }
+
+    //TODO saee
 }
