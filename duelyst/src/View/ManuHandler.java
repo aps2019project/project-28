@@ -3,7 +3,6 @@ package View;
 import Controller.menu.Battle;
 import Controller.menu.*;
 import Model.account.Account;
-import Model.account.Collection;
 import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
 import Model.card.hermione.Hermione;
@@ -13,7 +12,6 @@ import Model.card.spell.Spell;
 import Model.item.Item;
 import Model.item.OnItemDetailPresentedListener;
 import Model.item.Usable;
-import View.Listeners.OnCollectionPresentedListener;
 import View.Listeners.OnHeroDetailsPresentedListener;
 import View.Listeners.OnMenuClickedListener;
 import exeption.AccountAlreadyExistsException;
@@ -51,20 +49,21 @@ public class ManuHandler {
 
     private static void setListener(){
         //show menu
-        SignInMenu.getMenu().addMenuClickListener(menu -> System.out.println("SignInMenu:"));
-        Battle.getMenu().addMenuClickListener(new ShowMenu());
-        ChooseBattleModeMenu.getMenu().addMenuClickListener(new ShowMenu());
-        CollectableMenu.getMenu().addMenuClickListener(new ShowMenu());
-        CollectionMenu.getMenu().addMenuClickListener(new ShowMenu());
-        CostumeModeMenu.getMenu().addMenuClickListener(new ShowMenu());
-        GameModeMenu.getMenu().addMenuClickListener(new ShowMenu());
-        GraveYardMenu.getMenu().addMenuClickListener(new ShowMenu());
-        MainMenu.getMenu().addMenuClickListener(new ShowMenu());
-        MultiPlayerModeMenu.getMenu().addMenuClickListener(new ShowMenu());
-        ShopMenu.getMenu().addMenuClickListener(new ShowMenu());
-        SinglePlayerModeMenu.getMenu().addMenuClickListener(new ShowMenu());
-        StoryModeMenu.getMenu().addMenuClickListener(new ShowMenu());
-
+        {
+            SignInMenu.getMenu().addMenuClickListener(menu -> System.out.println("SignInMenu:"));
+            Battle.getMenu().addMenuClickListener(new ShowMenu());
+            ChooseBattleModeMenu.getMenu().addMenuClickListener(new ShowMenu());
+            CollectableMenu.getMenu().addMenuClickListener(new ShowMenu());
+            CollectionMenu.getMenu().addMenuClickListener(new ShowMenu());
+            CostumeModeMenu.getMenu().addMenuClickListener(new ShowMenu());
+            GameModeMenu.getMenu().addMenuClickListener(new ShowMenu());
+            GraveYardMenu.getMenu().addMenuClickListener(new ShowMenu());
+            MainMenu.getMenu().addMenuClickListener(new ShowMenu());
+            MultiPlayerModeMenu.getMenu().addMenuClickListener(new ShowMenu());
+            ShopMenu.getMenu().addMenuClickListener(new ShowMenu());
+            SinglePlayerModeMenu.getMenu().addMenuClickListener(new ShowMenu());
+            StoryModeMenu.getMenu().addMenuClickListener(new ShowMenu());
+        }
         //signIn menu
         SignInMenu.getMenu().addLeaderBoardClickedListener(accounts -> {
             System.out.println("LeaderBoard:");
@@ -111,6 +110,22 @@ public class ManuHandler {
                 System.out.println("\tSell cost : " + s.getPrice());
                 System.out.println("\tName : " + s.getName());
             }
+            private void showHermioneDetail(Hermione h){
+                System.out.println("\tName : " + h.getName());
+                System.out.println("\tClass : " + h.getAttackType().getClass().toString());
+                System.out.println("\tAttackPoint : " + h.getOriginalAttackPoint() +
+                        "\tHealth point : " + h.getOriginalHealthPoint() + "\tManaPoint : " + h.getManaPoint());
+                System.out.println("\tSpecialPower : " + h.getSpecialPower().getComment());
+                System.out.println("\tSell cost : " + h.getPrice());
+            }
+            private void showHermioneInfo(Hermione h){
+                System.out.println("\tName : " + h.getName());
+                System.out.println("\tClass : " + h.getAttackType().getClass().toString());
+                System.out.println("\tAttackPoint : " + h.getAttackPoint() +
+                        "\tHealth point : " + h.getHealthPoint() + "\tManaPoint : " + h.getManaPoint());
+                System.out.println("\tSpecialPower : " + h.getSpecialPower().getComment());
+                System.out.println("\tSell cost : " + h.getPrice());
+            }
             @Override
             public void showCardDetail(Card card) {
                 if (card instanceof Spell) {
@@ -123,18 +138,34 @@ public class ManuHandler {
                         System.out.println("Type : Hero");
 
                     Hermione h = (Hermione) card;
-                    System.out.println("\tName : " + h.getName());
-                    System.out.println("\tClass : " + h.getAttackType().getClass().toString());
-                    System.out.println("\tAttackPoint : " + h.getOriginalAttackPoint() +
-                            "\tHealth point : " + h.getHealthPoint() + "\tManaPoint : " + h.getManaPoint());
-                    System.out.println("\tSpecialPower : " + h.getSpecialPower().getComment());
-                    System.out.println("\tSell cost : " + h.getPrice());
+                    showHermioneDetail(h);
                 }
             }
             @Override
             public void showCardInfo(Card card) {
+                if (card instanceof Spell) {
+                    Spell s = (Spell) card;
+                    showSpell(s);
+                } else {
+                    if (card instanceof Minion)
+                        System.out.println("Type : Minion");
+                    else
+                        System.out.println("Type : Hero");
+                    Hermione h = (Hermione) card;
+                    showHermioneInfo(h);
+                }
 
             }
+        });
+
+        //hero
+        Hero.addOnHeroDetailPresented(hero -> {
+            System.out.println("\tName : " + hero.getName());
+            System.out.println("\tAttackPoint : " + hero.getOriginalAttackPoint() +
+                    "\tHealth point : " + hero.getOriginalHealthPoint() + "\tManaPoint : ");
+            System.out.println("\tClass : " + hero.getAttackType().getClass().toString());
+                System.out.println("\tSpecialPower : " + hero.getSpecialPower().getComment());
+                System.out.println("\tSell cost : " + hero.getPrice());
         });
     }
     private static void initMenus() {
