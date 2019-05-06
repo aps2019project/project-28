@@ -63,17 +63,17 @@ public class ShopMenu extends Menu {
 
     public void buy(String name) throws CardExistException, ItemExistExeption, InvalidCardException,
             InvalidItemException, NotEnoughMoneyException, FullCollectionException {
-        if (!this.shop.getCollection().hasCard(name) && !this.shop.getCollection().hasItem(name) ) {
-             throw new InvalidCardException();
+        if (!this.shop.getCollection().hasCard(name) && !this.shop.getCollection().hasItem(name)) {
+            throw new InvalidCardException();
         }
-        if(this.shop.getCollection().hasCard(name)) {
+        if (this.shop.getCollection().hasCard(name)) {
             if (this.shop.getCollection().getCard(name).getPrice() > this.account.getMoney()) {
                 throw new NotEnoughMoneyException();
             } else {
-                 tempCollection.addCardToCollection(this.shop.getCollection().getCard(name));
+                tempCollection.addCardToCollection(this.shop.getCollection().getCard(name));
             }
         }
-        if(this.shop.getCollection().hasItem(name)) {
+        if (this.shop.getCollection().hasItem(name)) {
             if (this.shop.getCollection().getItem(name).getPrice() > this.account.getMoney()) {
                 throw new NotEnoughMoneyException();
             } else if (account.getCollection().getUsables().size() >= Collection.MAX_USABLES) {

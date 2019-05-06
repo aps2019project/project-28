@@ -12,38 +12,38 @@ public abstract class Menu {
     private Menu parentMenu;
     private ArrayList<Menu> subMenus;
     private ArrayList<OnMenuClickedListener> menuPresenters;
-    private ArrayList<String>patterns;
-
+    private ArrayList<String> patterns;
 
 
     public Menu(Menu parentMenu, String name) {
         this.name = name;
         this.parentMenu = parentMenu;
-        this.subMenus=new ArrayList<>();
-        this.patterns=new ArrayList<>();
+        this.subMenus = new ArrayList<>();
+        this.patterns = new ArrayList<>();
     }
 
-
-    public void addPattern(String pattern){
+    public void addPattern(String pattern) {
         this.patterns.add(pattern);
     }
-    public void addSubMenu(Menu subMenu){
+
+    public void addSubMenu(Menu subMenu) {
         this.subMenus.add(subMenu);
     }
-    public void addMenuClickListener(OnMenuClickedListener presenter){
+
+    public void addMenuClickListener(OnMenuClickedListener presenter) {
         this.menuPresenters.add(presenter);
     }
 
-    public boolean allowsCommand(String command){
+    public boolean allowsCommand(String command) {
         for (String pattern : this.patterns) {
-            if(command.matches(pattern))return true;
+            if (command.matches(pattern)) return true;
         }
         return false;
     }
 
     public abstract void help();
 
-    public void showMenu(){
+    public void showMenu() {
         for (OnMenuClickedListener presenter : this.menuPresenters) {
             presenter.show();
         }
@@ -53,14 +53,14 @@ public abstract class Menu {
         return parentMenu;
     }
 
-    public Menu getMenuFromSubMenus(String name){
+    public Menu getMenuFromSubMenus(String name) {
         for (Menu subMenu : this.subMenus) {
-            if(subMenu.name.equals(name))return subMenu;
+            if (subMenu.name.equals(name)) return subMenu;
         }
         return null;
     }
 
-    public Account getAccount(){
+    public Account getAccount() {
         return this.account;
     }
 }

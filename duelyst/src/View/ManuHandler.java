@@ -9,16 +9,17 @@ public class ManuHandler {
     {
         MainMenu mainMenu = new MainMenu(null, "MainMenue");
         SignInMenu signInMenu = new SignInMenu(null, "SignInMenue");
-        CollectionMenu collectionMenu = new CollectionMenu(null);
-        ShopMenu shopMenu = new ShopMenu(null);
-        Battle battle = new Battle(null);
-        ChooseBattleModeMenu chooseBattleModeMenu = new ChooseBattleModeMenu(null);
-        CostumeModeMenu costumeModeMenu = new CostumeModeMenu(null);
-        MultiPlayerModeMenu multiPlayerModeMenu = new MultiPlayerModeMenu(null);
-        SinglePlayerModeMenu singlePlayerModeMenu = new SinglePlayerModeMenu(null);
-        GraveYardMenu graveYardMenu = new GraveYardMenu(null);
+        CollectionMenu collectionMenu = new CollectionMenu(null, "CollectionMenue");
+        ShopMenu shopMenu = new ShopMenu(null, "ShopMenue");
+        Battle battle = new Battle(null, "Battle");
+        ChooseBattleModeMenu chooseBattleModeMenu = new ChooseBattleModeMenu(null, "ChooseBattleMenu");
+        CostumeModeMenu costumeModeMenu = new CostumeModeMenu(null, "CustomeModeMenu");
+        MultiPlayerModeMenu multiPlayerModeMenu = new MultiPlayerModeMenu(null, "MultiPlayerModeMenu");
+        SinglePlayerModeMenu singlePlayerModeMenu = new SinglePlayerModeMenu(null, "SinglePlayerModeMenu");
+        GraveYardMenu graveYardMenu = new GraveYardMenu(null, "GraveYardMenue");
 
     }
+
 
 
 
