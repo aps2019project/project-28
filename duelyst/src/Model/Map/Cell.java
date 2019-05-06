@@ -16,11 +16,6 @@ public class Cell {
         this.y = y;
     }
 
-    public Cell(Cell cell){
-        this.x = cell.getX();
-        this.y = cell.getY();
-    }
-
     public int getX() {
         return x;
     }

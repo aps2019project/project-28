@@ -12,10 +12,4 @@ public class Hybrid implements AttackType {
         if(Map.getManhattanDistance(champCard.getLocation(),enemyCard.getLocation())<=champCard.getRange())return true;
         return false;
     }
-    public Hybrid(){
-
-    }
-    public Hybrid(Hybrid hybrid){
-
-    }
 }

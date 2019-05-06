@@ -25,14 +25,6 @@ public abstract class Card {
         this.manaPoint = manaPoint;
     }
 
-    public Card(Card card){
-        this.setSuperCollection(new Collection(card.getSuperCollection()));
-        this.setCardID(card.getCardID());
-        this.setName(String.copyValueOf(card.getName().toCharArray()));
-        this.setManaPoint(card.getManaPoint());
-        this.setPrice(card.getPrice());
-    }
-
     public void setSuperCollection(Collection superCollection) {
         this.superCollection = superCollection;
     }
