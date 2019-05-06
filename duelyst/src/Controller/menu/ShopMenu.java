@@ -2,7 +2,6 @@ package Controller.menu;
 
 import Model.account.Account;
 import Model.account.Collection;
-import Model.account.OnCollectionPresentedListener;
 import Model.account.Shop;
 import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 public class ShopMenu extends Menu {
 
     Shop shop = Shop.getInstance();
-    Collection tempCollection=this.account.getTempCollection();
+    Collection tempCollection = this.account.getCollection();
     private ArrayList<OnSearchClickedListener> searchClickedListeners;
     private ArrayList<OnSearchCollectionClickedListener> searchCollectionClickedListeners;
     private ArrayList<OnShowClickedListener> showClickedListeners;
@@ -68,14 +67,12 @@ public class ShopMenu extends Menu {
             }
         }
         if(this.shop.getCollection().hasItem(name)) {
-            // TODO: 5/6/19 Fatteme ya saE item.price
-
             if (this.shop.getCollection().getItem(name).getPrice() > this.account.getMoney()) {
                 throw new NotEnoughMoneyException();
             } else if (account.getCollection().getUsables().size() >= Collection.MAX_USABLES) {
                 throw new FullCollectionException();
             } else {
-                tempCollection.addItemToCollection((Usable) this.shop.getCollection().getItem(name));
+                tempCollection.addItemToCollection((this.shop.getCollection().getItem(name)));
             }
         }
     }

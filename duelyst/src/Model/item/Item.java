@@ -2,6 +2,7 @@ package Model.item;
 
 import Model.Map.Cell;
 import Model.account.Player;
+import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Target;
 import Model.item.ItemAction.ItemAction;
@@ -29,7 +30,7 @@ public abstract class Item {
         this.target = target;
         this.perk = perk;
         this.duration = duration;
-//        this.itemID = itemID;TODO ITEMID
+        this.itemID = Card.uniqueID++;
     }
 
     public static Item getItem(int itemID) throws InvalidItemException {
