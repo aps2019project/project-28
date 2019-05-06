@@ -10,52 +10,78 @@ import Model.card.spell.SpellAction.ActionDisarm;
 import Model.card.spell.SpellAction.ActionStun;
 import Model.card.spell.Targets.*;
 import Model.item.Collectable;
-import Model.item.Item;
-import Model.item.ItemAction.ItemActionChangeAP;
-import Model.item.ItemAction.ItemActionDamoolArch;
-import Model.item.ItemAction.ItemActionExtraMana;
-import Model.item.ItemAction.ItemActionShieldAF;
 import Model.item.ItemActions.ItemActionChangeAP;
 import Model.item.ItemActions.ItemActionDamoolArch;
 import Model.item.ItemActions.ItemActionExtraMana;
 import Model.item.ItemActions.ItemActionShieldAF;
 import Model.item.Usable;
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
+import java.text.CollationElementIterator;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class PreProcess{
 
-    public static ArrayList<Card> getCards (){
+    public static ArrayList<Card> getCards ()  {
         ArrayList<Card> cards = new ArrayList<>();
-        Gson gson = new Gson();
         try {
-            JsonReader reader = new JsonReader(new FileReader("Card.Json"));
-        } catch (FileNotFoundException e) {}
-
-
+            Gson gson = new Gson();
+            BufferedReader reader = new BufferedReader(new FileReader("Card.json"));
+            JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+            while (jsonStreamParser.hasNext()) {
+                JsonElement jsonElement = jsonStreamParser.next();
+                if (jsonElement.isJsonObject()) {
+                    Card card = gson.fromJson(jsonElement, Card.class);
+                    cards.add(card);
+                }
+            }
+        }catch (FileNotFoundException e){}
 
         return cards;
     }
 
-    public static ArrayList<Item> getItems(){
-        ArrayList<Item> items = new ArrayList<>();
-        Gson gson = new Gson();
+    public static ArrayList<Usable> getUsables() {
+        ArrayList<Usable> usables = new ArrayList<>();
         try {
-            JsonReader reader = new JsonReader(new FileReader("Item.Json"));
-        } catch (FileNotFoundException e) {}
+            Gson gson = new Gson();
+            BufferedReader reader = new BufferedReader(new FileReader("Usables.json"));
+            JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+            while (jsonStreamParser.hasNext()) {
+                JsonElement jsonElement = jsonStreamParser.next();
+                if (jsonElement.isJsonObject()) {
+                    Usable usable = gson.fromJson(jsonElement, Usable.class);
+                    usables.add(usable);
+                }
+            }
+        }catch (FileNotFoundException e){}
 
-
-
-        return items;
+        return usables;
     }
 
-    public static void preProcess() throws java.io.IOException{
+    public static ArrayList<Collectable> getCollectables(){
+        ArrayList<Collectable> collectables = new ArrayList<>();
+        try {
+            Gson gson = new Gson();
+            BufferedReader reader = new BufferedReader(new FileReader("Collectables.json"));
+            JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+            while (jsonStreamParser.hasNext()) {
+                JsonElement jsonElement = jsonStreamParser.next();
+                if (jsonElement.isJsonObject()) {
+                    Collectable collectable = gson.fromJson(jsonElement, Collectable.class);
+                    collectables.add(collectable);
+                }
+            }
+        }catch (FileNotFoundException e){}
+
+        return collectables;
+    }
+
+    public static void preProcess(){
         Gson gson = new Gson();
 
         //Spell
@@ -102,11 +128,14 @@ public class PreProcess{
         spells.add(new Spell("Shock", 1200, 1, 2, 0,
                 TargetEnemyCard.getTargetInstance(), ActionStun.getAction()));
 
-        for (Spell spell:
-             spells) {
-            gson.toJson(spell, new FileWriter("Spell.Json", true));
-        }
-
+            for (Spell spell :
+                    spells) {
+                try {
+                    gson.toJson(spell, new FileWriter("Spell.json", true));
+                } catch (IOException e) {
+                    System.out.println("error");
+                }
+            }
 
         //Minion
 
@@ -185,7 +214,7 @@ public class PreProcess{
 
         minions.add(new Minion("Giant Snake",500, 8, 14,
                 7, new Range(), 5,
-                new SpecialPower("Giant Snake SpecialPower", 0, 0, -1,1
+                new SpecialPower("Giant Snake SpecialPower", 0, 0, -1,1,
                         TargetEnemyMinionswithin2ManhattanDistance.getTargetInstance(), ActionChangeAP.getAction()), SPATime.ATTACK));
         minions.add(new Minion("White Wolf",400, 5, 8,
                 2, new Melee(), 0,
@@ -210,7 +239,7 @@ public class PreProcess{
         minions.add(new Minion("Genie",500, 5, 10,
                 4, new Range(), 4,
                 new SpecialPower("Genie SpecialPower", 0, 0, -1, 1,
-                        TargetAllOwnMinions.getTargetClass(), ActionChangeAP.getAction()), SPATime.ONTURN));//
+                        TargetAllOwnMinions.getTargetClass(), ActionChangeAP.getAction()), SPATime.ON_TURN));//
         /*minions.add(new Minion("Wild Goraz",500, 6, 10,
                 14, new Melee(), 0,
                 , SPATime.DEFEND));
@@ -249,7 +278,7 @@ public class PreProcess{
         minions.add(new Minion("Siavash",350, 4, 8,
                 5, new Melee(), 0,
                 new SpecialPower("Siavash SpecialPower", 0, 0, 0, 6,
-                        TargetEnemyHero.getTargetInstance(), ActionChangeAP.getAction()), SPATime.DEATH);
+                        TargetEnemyHero.getTargetInstance(), ActionChangeAP.getAction()), SPATime.DEATH));
         /*minions.add(new Minion("Eurymedon",600, 5, 10,
                 4, new Melee(), 0,
                 , SPATime.NULL));*/ // combo
@@ -259,7 +288,9 @@ public class PreProcess{
 
         for (Minion minion:
                     minions){
-            gson.toJson(minion, new FileWriter("Card.Json", true));
+            try {
+                gson.toJson(minion, new FileWriter("Card.json", true));
+            } catch (IOException e) {}
         }
 
         //Hero
@@ -287,7 +318,7 @@ public class PreProcess{
                 , 0, 0));
         heroes.add(new Hero("Kaveh", 8000, 50, 4, new Melee(), 0,
                 new SpecialPower("Kaveh", 0, 1, 3, 0,
-                        TargetSingleCell.getTargetInstance(), ActionHolyCell.getAction()),
+                        TargetSingleCell.getTargetInstance(), ActionHollyCell.getAction()),
                 0, 3));
         heroes.add(new Hero("Arash", 10000, 30, 2, new Range(), 6,
                 new SpecialPower("Arash", 0, 2, 1, 4,
@@ -306,7 +337,9 @@ public class PreProcess{
 
         for (Hero hero:
              heroes) {
-            gson.toJson(hero, new FileWriter("Card.Json", true));
+            try {
+                gson.toJson(hero, new FileWriter("Card.json", true));
+            } catch (IOException e) {}
         }
 
 
@@ -322,36 +355,38 @@ public class PreProcess{
         usables.add(new Usable("Simorgh's feather", 3500, 1, -2,
                 TargetRangedAndHybrid.getTargetClass(), ItemActionChangeAP.getItemAction()));
         usables.add(new Usable("Terror Hood", 5000, 1, -2,
-                TargetRandomEnemy.getTargetClass(), ItemActionChangeAP.getItemAction()));
+                TargetRandomEnemy.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         usables.add(new Usable("King Wisdom", 9000, -1, 0,
                 null, ItemActionExtraMana.getItemAction()));
         usables.add(new Usable("Assassination Dagger", 15000, 1, 1,
                 TargetEnemyHero.getTargetInstance(), ItemActionChangeAP.getItemAction()));
-        usables.add(new Usable("Poisonous Dagger", 7000, 1, 0,
+        /*usables.add(new Usable("Poisonous Dagger", 7000, 1, 0,
                 ));
         usables.add(new Usable("Shock Hammer", 15000, 2, 0,
                 ));
         usables.add(new Usable("Soul Eater", 25000, 1, 1,
                 ));
         usables.add(new Usable("‌Baptism", 20000, 2, 0,
-                ));
+                ));*/
 
         for (Usable usable:
              usables) {
-            gson.toJson(usable, new FileWriter("Card.Json", true));
+            try {
+                gson.toJson(usable, new FileWriter("Usables.json", true));
+            } catch (IOException e) {}
         }
 
         ArrayList<Collectable> collectables = new ArrayList<>();
         collectables.add(new Collectable("NooshDaru", 1, 6,
                 TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Two Headed Arrow", 1, 2,
-                TargetRangedAndHybrid.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetRangedAndHybrid.getTargetClass(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Eksir", 1, 3,
                 TargetRandomOwnMinion.getTargetInstance(), ItemActionChangeAP.getItemAction(),
                 ItemActionChangeAP.getItemAction()));
-        collectables.add(new Collectable("Mana's Majoon", 1, 3,
+        /*collectables.add(new Collectable("Mana's Majoon", 1, 3,
                 null, ItemActionExtraMana.getItemAction()));
-        collectables.add(new Collectable("RooEnTan's Majoon",));
+        collectables.add(new Collectable("RooEnTan's Majoon",));*/
         collectables.add(new Collectable("Death's Curse", 0, 8,
                 TargetRandomOwnMinion.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Random damage", 1, 2,
@@ -363,9 +398,13 @@ public class PreProcess{
 
         for (Collectable collectable:
                 collectables) {
-            gson.toJson(collectable, new FileWriter("Spell.Json", true));
+            try {
+                gson.toJson(collectable, new FileWriter("Collectables.json", true));
+            } catch (IOException e) {}
         }
     }
 
-
+    public static void main(String[] args) {
+        preProcess();
+    }
 }

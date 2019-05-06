@@ -15,6 +15,7 @@ public class TargetRandomEnemy implements Target {
         }
         return obj ;
     }
+
     @Override
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
         Player player = Game.battle.getEnemyPlayer() ;
