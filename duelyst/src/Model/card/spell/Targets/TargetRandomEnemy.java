@@ -20,4 +20,5 @@ public class TargetRandomEnemy implements Target {
         Player player = Game.battle.getEnemyPlayer() ;
         return TargetRandom.getTarget(player);
     }
+    //TODO saee
 }
