@@ -12,15 +12,22 @@ import exeption.*;
 import java.util.ArrayList;
 
 public class CollectionMenu extends Menu {
+    private static CollectionMenu menu;
 
     private Collection tempCollection;
     private ArrayList<OnCollectionPresentedListener> collectionPresenters;
 
-    public CollectionMenu(Menu parentMenu, String name) {
+    private CollectionMenu(String name) {
         super(name);
-        this.account = parentMenu.getAccount();
         this.tempCollection = new Collection();
         this.collectionPresenters = new ArrayList<>();
+    }
+
+    public static CollectionMenu getMenu(){
+        if(CollectionMenu.menu==null){
+            CollectionMenu.menu=new CollectionMenu("CollectionMenu");
+        }
+        return menu;
     }
 
     public void save(Account account) {
@@ -90,8 +97,4 @@ public class CollectionMenu extends Menu {
         }
     }
 
-    @Override
-    public void help() {
-
-    }
 }

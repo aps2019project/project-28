@@ -4,8 +4,16 @@ package Controller.menu;
 
 
 public class ChooseBattleModeMenu extends Menu {
-    public ChooseBattleModeMenu(Menu parentMenu, String name) {
+    private static ChooseBattleModeMenu menu;
+    private ChooseBattleModeMenu( String name) {
         super(name);
+    }
+
+    public static Menu getMenu() {
+        if(ChooseBattleModeMenu.menu==null){
+            ChooseBattleModeMenu.menu=new ChooseBattleModeMenu("ChooseBattleModeMenu");
+        }
+        return menu;
     }
 
     @Override

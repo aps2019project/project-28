@@ -1,5 +1,6 @@
 package Controller.menu;
 
+import Controller.Game;
 import Controller.menu.GameMode;
 import Controller.menu.Menu;
 import View.Listeners.OnGameInfoPresentedListener;
@@ -21,6 +22,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Battle extends Menu {
+
+    private static Battle menu;
+
     private Map map;
     private Player[] player = new Player[2];
     private int turn = 0;
@@ -35,14 +39,22 @@ public class Battle extends Menu {
 
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
 
-    public Battle(Menu parentMenu, String name) {
+    public Battle( String name) {
         super(name);
-        this.map = Map.generate();
     }
 
-//    void init(Player player1,Player player2){
-//        this.setPlayer();
-//    }
+    public static Battle getMenu() {
+        if(Battle.menu==null){
+            Battle.menu=new Battle("Battle");
+        }
+        return menu;
+    }
+
+    @Override
+    public void init(Menu parentMenu) {
+        super.init(parentMenu);
+        setPlayer(Game.accounts[0].getPlayer(),Game.accounts[1].getPlayer());
+    }
 
     public void gameInfo() {
         for (OnGameInfoPresentedListener presenter : this.gameInfoPresenters) {

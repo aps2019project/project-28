@@ -1,5 +1,7 @@
 package View.Listeners;
 
+import Controller.menu.Menu;
+
 public interface OnMenuClickedListener {
-    void show();
+    void show(Menu menu);
 }

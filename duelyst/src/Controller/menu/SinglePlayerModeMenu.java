@@ -1,12 +1,15 @@
 package Controller.menu;
 
 public class SinglePlayerModeMenu extends Menu {
-    public SinglePlayerModeMenu(Menu parentMenu, String name) {
+    private static SinglePlayerModeMenu menu;
+    private SinglePlayerModeMenu(String name) {
         super(name);
     }
-
-    @Override
-    public void help() {
-
+    public static SinglePlayerModeMenu getMenu(){
+        if(SinglePlayerModeMenu.menu==null){
+            SinglePlayerModeMenu.menu=new SinglePlayerModeMenu("SinglePlayerModeMenu");
+        }
+        return menu;
     }
+
 }
