@@ -103,6 +103,10 @@ public class PreProcess {
         return collectables;
     }
 
+    public static ArrayList<Spell> getSpells() {
+        return spells;
+    }
+
     public static void preProcess() {
         Gson gson = new Gson();
 
