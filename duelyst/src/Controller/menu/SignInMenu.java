@@ -67,8 +67,4 @@ public class SignInMenu extends Menu {
         this.leaderBoardPresenters.add(presenter);
     }
 
-    @Override
-    public void help() {
-        // TODO: 4/30/19 HELPPPPPP!!!!!
-    }
 }

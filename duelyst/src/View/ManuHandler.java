@@ -3,6 +3,7 @@ package View;
 import Controller.menu.Battle;
 import Controller.menu.*;
 import Model.account.Account;
+import Model.account.Collection;
 import View.Listeners.OnMenuClickedListener;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
@@ -90,7 +91,7 @@ public class ManuHandler {
         currentMenu.showMenu();
         while(commands.hasNext()){
             currentMenu.showMenu();
-            String command = commands.nextLine();
+            String command = commands.nextLine().toLowerCase();
             String[] word=command.split(" ");
             if(!currentMenu.allowsCommand(command)) {
                 System.out.println("Invalid Command");
@@ -99,6 +100,17 @@ public class ManuHandler {
             if(commonCommandHandler(word))continue;
             if(currentMenu instanceof SignInMenu) {
                 SignInMenuCommandHandler(word);
+            }else if(currentMenu instanceof CollectionMenu){
+                CollectionMenu menu= (CollectionMenu) currentMenu;
+                if(word[0].equals("show")){
+                    if(word[1].equals("all") && word[2].equals("decks")){
+
+                    }else if(word[1].equals("deck")){
+
+                    }else{
+                        menu.showCollection();
+                    }
+                }
             }
         }
     }
@@ -112,7 +124,7 @@ public class ManuHandler {
                 System.out.println("this userName is already taken");
             } catch(ArrayIndexOutOfBoundsException e){
                 System.out.println("please enter in the fallowing order");
-                System.out.println("1)name     2)username      3)password");
+                System.out.println("1)username     2)name      3)password");
             }
         }else if(word[0].equals("login")){
             try {
@@ -138,9 +150,7 @@ public class ManuHandler {
     private static boolean commonCommandHandler(String[] word) {
         /*common commands*/
         if(word[0].equals("help")){
-            System.err.println("HELPPPPP");
             currentMenu.help();
-            System.err.println("2222222222222HELPPPPP");
             return true;
         }else if(word[0].equals("show") && word[1].equals("menu")){
             currentMenu.showMenu();
