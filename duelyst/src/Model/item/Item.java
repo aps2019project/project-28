@@ -22,7 +22,7 @@ public abstract class Item {
     private int perk2;
     private ArrayList<ItemAction> actions = new ArrayList<>();
     private int itemID;
-    private ArrayList<OnItemDetailPresentedListener> itemDetailPresenters = new ArrayList<>();
+    private static ArrayList<OnItemDetailPresentedListener> itemDetailPresenters = new ArrayList<>();
 
     public Item(String name, int duration, int perk, Target target, ItemAction... actions) {
         this.name = name;
@@ -120,11 +120,11 @@ public abstract class Item {
         return (ArrayList<Item>) Collections.unmodifiableList(items);
     }
 
-    public void addNewOnItemDeatilPresentedListener(OnItemDetailPresentedListener presenter) {
-        this.itemDetailPresenters.add(presenter);
+    public static void addNewOnItemDeatilPresentedListener(OnItemDetailPresentedListener presenter) {
+        Item.itemDetailPresenters.add(presenter);
     }
 
-    public ArrayList<OnItemDetailPresentedListener> getItemDetailPresenters() {
+    public static ArrayList<OnItemDetailPresentedListener> getItemDetailPresenters() {
         return (ArrayList<OnItemDetailPresentedListener>) Collections.unmodifiableList(itemDetailPresenters);
     }
 

@@ -4,6 +4,17 @@ import Controller.menu.Battle;
 import Controller.menu.*;
 import Model.account.Account;
 import Model.account.Collection;
+import Model.card.Card;
+import Model.card.OnCardDetailsPresentedListener;
+import Model.card.hermione.Hermione;
+import Model.card.hermione.Hero;
+import Model.card.hermione.Minion;
+import Model.card.spell.Spell;
+import Model.item.Item;
+import Model.item.OnItemDetailPresentedListener;
+import Model.item.Usable;
+import View.Listeners.OnCollectionPresentedListener;
+import View.Listeners.OnHeroDetailsPresentedListener;
 import View.Listeners.OnMenuClickedListener;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
@@ -61,6 +72,68 @@ public class ManuHandler {
             for (Account account : accounts) {
                 i++;
                 System.out.println(i+") "+account.getName() + " - Wins: " +account.getWins());
+            }
+        });
+
+        //Collection menu
+        CollectionMenu.getMenu().addCollectionPresentedListener(collection -> {
+            System.out.println("Heroes : ");
+            for (Card card : collection.getCards()) {
+                if((card instanceof Hero)) {
+                    for (OnHeroDetailsPresentedListener presenter : Hero.getHeroDetailsPresenters()) {
+                           presenter.show((Hero) card);
+                    }
+                }
+            }
+            System.out.println("Cards : ");
+            for (Card card : collection.getCards()) {
+                if(!(card instanceof Hero)){
+                    for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
+                        presenter.showCardDetail(card);
+                    }
+                }
+            }
+            System.out.println("Items : ");
+            for (Usable item : collection.getItems()) {
+                for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
+                    presenter.showItemDetail(item);
+                }
+            }
+        });
+
+        //Card
+        Card.addOnCardDetailPresented(new OnCardDetailsPresentedListener() {
+            private void showSpell(Spell s){
+                System.out.println("Type : Spell");
+                System.out.println("\tName : " + s.getName());
+                System.out.println("\tManaPoint : " + s.getManaPoint());
+                System.out.println("\tAction : " + s.getComment());
+                System.out.println("\tSell cost : " + s.getPrice());
+                System.out.println("\tName : " + s.getName());
+            }
+            @Override
+            public void showCardDetail(Card card) {
+                if (card instanceof Spell) {
+                    Spell s = (Spell) card;
+                    showSpell(s);
+                } else {
+                    if (card instanceof Minion)
+                        System.out.println("Type : Minion");
+                    else
+                        System.out.println("Type : Hero");
+
+                    Hermione h = (Hermione) card;
+                    System.out.println("\tName : " + h.getName());
+                    System.out.println("\tClass : " + h.getAttackType().getClass().toString());
+                    System.out.println("\tAttackPoint : " + h.getOriginalAttackPoint() +
+                            "\tHealth point : " + h.getHealthPoint() + "\tManaPoint : " + h.getManaPoint());
+                    System.out.println("\tSpecialPower : " + h.getSpecialPower().getComment());
+                    System.out.println("\tSell cost : " + h.getPrice());
+                }
+            }
+            @Override
+            public void showCardInfo(Card card) {
+
             }
         });
     }

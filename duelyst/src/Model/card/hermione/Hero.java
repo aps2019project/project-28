@@ -2,7 +2,13 @@ package Model.card.hermione;
 
 import Controller.Game;
 import Model.Map.Cell;
+import Model.card.Card;
+import Model.card.OnCardDetailsPresentedListener;
+import View.Listeners.OnHeroDetailsPresentedListener;
 import exeption.InvalidCardException;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Hero extends Hermione {
 
@@ -48,5 +54,15 @@ public class Hero extends Hermione {
     public void die() throws InvalidCardException {
         super.die();
         Game.battle.getEnemyPlayer().getDeck().killHero();
+    }
+
+    private static ArrayList<OnHeroDetailsPresentedListener> heroDetailsPresenters=new ArrayList<>();
+
+    public static void addOnHeroDetailPresented(OnHeroDetailsPresentedListener presenter){
+        Hero.heroDetailsPresenters.add(presenter);
+    }
+
+    public static ArrayList<OnHeroDetailsPresentedListener> getHeroDetailsPresenters() {
+        return (ArrayList<OnHeroDetailsPresentedListener>) Collections.unmodifiableList(heroDetailsPresenters);
     }
 }
