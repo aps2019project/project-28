@@ -5,11 +5,11 @@ import Model.Map.Cell;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.Spell;
 
-public class ActionDispel implements Action {
-    private static ActionDispel obj;
+public class ActionDispelNegatives implements Action {
+    private static ActionDispelNegatives obj;
 
-    public static ActionDispel getAction() {
-        if (obj == null) obj = new ActionDispel();
+    public static ActionDispelNegatives getAction() {
+        if (obj == null) obj = new ActionDispelNegatives();
         return obj;
     }
 
@@ -17,11 +17,10 @@ public class ActionDispel implements Action {
     public void deploy(Spell spell, Cell... cells) {
         for (Cell cell : cells) {
             for (Buff buff : cell.getCardOnCell().getAppliedBuffs()) {
-                if (buff.isItPositive() ^ buff.getPlayer() == Game.battle.getPlayer()) {
+                if (!buff.isItPositive() && buff.getPlayer() == Game.battle.getPlayer()) {
                     buff.destroy();
                 }
             }
         }
     }
 }
-
