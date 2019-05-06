@@ -2,10 +2,13 @@ package View;
 
 import Controller.menu.Battle;
 import Controller.menu.*;
+import Model.account.Account;
+import View.Listeners.OnLeaderBoardClickedListener;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -37,21 +40,28 @@ public class ManuHandler {
     }
 
     private static void setListener(){
-
+        signInMenu.addLeaderBoardClickedListener(accounts -> {
+            System.out.println("LeaderBoard:");
+            int i=0;
+            for (Account account : accounts) {
+                i++;
+                System.out.println(i+") "+account.getName() + " - Wins: " +account.getWins());
+            }
+        });
     }
     private static void initMenus() {
-        gameMode = new Menu(null,"gameMode") {@Override public void help() {}};
-        mainMenu = new MainMenu(null, "MainMenue");
-        signInMenu = new SignInMenu(null, "SignInMenue");
-        collectionMenu = new CollectionMenu(null, "CollectionMenue");
-        collectableMenu  = new CollectableMenu(null, "CollectableMenue");
-        shopMenu = new ShopMenu(null, "ShopMenue");
+        gameMode = new Menu("gameMode") {@Override public void help() {}};
+        mainMenu = new MainMenu( "MainMenu");
+        signInMenu = new SignInMenu(null, "SignInMenu");
+        collectionMenu = new CollectionMenu(null, "CollectionMenu");
+        collectableMenu  = new CollectableMenu(null, "CollectableMenu");
+        shopMenu = new ShopMenu(null, "ShopMenu");
         battle = new Battle(null, "Battle");
         chooseBattleModeMenu = new ChooseBattleModeMenu(null, "ChooseBattleMenu");
         costumeModeMenu = new CostumeModeMenu(null, "CustomeModeMenu");
         multiPlayerModeMenu = new MultiPlayerModeMenu(null, "MultiPlayerModeMenu");
         singlePlayerModeMenu = new SinglePlayerModeMenu(null, "SinglePlayerModeMenu");
-        graveYardMenu = new GraveYardMenu(null, "GraveYardMenue");
+        graveYardMenu = new GraveYardMenu(null, "GraveYardMenu");
         storyModeMenu = new StoryModeMenu(null, "StoryModeMenu");
 
         //az SignIn Menu mirim tuye MainMenu
@@ -104,7 +114,7 @@ public class ManuHandler {
                     System.out.println("please enter in the fallowing order");
                     System.out.println("1)username      2)password");
                 }
-            }else if(word[0].equals(‫‪"show") && word[1].equals("‫‪leaderboard")){
+            }else if(word[0].equals("show") && word[1].equals("‫‪leaderboard")){
                 SignInMenu menu= (SignInMenu) currentMenu;
                 menu.showLeaderBoard();
             }

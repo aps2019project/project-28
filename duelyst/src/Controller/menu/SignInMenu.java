@@ -42,7 +42,7 @@ public class SignInMenu extends Menu {
 
     public void showLeaderBoard() {
         for (OnLeaderBoardClickedListener presenter : this.leaderBoardPresenters) {
-            presenter.show();
+            presenter.show(Account.getAccounts());
         }
     }
 
