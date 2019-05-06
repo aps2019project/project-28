@@ -1,6 +1,6 @@
 package Model.account;
 
-import Controller.menu.OnCollectionPresentedListener;
+import View.Listeners.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
@@ -195,10 +195,6 @@ public class Collection{
             }
         }
         throw new InvalidDeckException();
-    }
-
-    public ArrayList<OnCollectionPresentedListener> getCollectionPresentedListeners() {
-        return collectionPresentedListeners;
     }
 
     public boolean addNewDeck(String name) throws DeckAlreadyExistException{

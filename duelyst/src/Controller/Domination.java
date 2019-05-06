@@ -1,14 +1,18 @@
 package Controller;
 
+import Controller.menu.GameMode;
 import Controller.menu.Menu;
+import Model.Map.Map;
 
-public class Domination extends Battle {
-    public Domination(Menu parentMenu) {
-        super(parentMenu);
+public class Domination implements GameMode {
+
+    @Override
+    public boolean checkState() {
+        return false;
     }
 
     @Override
-    public void checkState() {
-        // TODO: 5/5/19 SHIT HERE WE GO AGAIN
+    public Map mapGenerator() {
+        return null;
     }
 }

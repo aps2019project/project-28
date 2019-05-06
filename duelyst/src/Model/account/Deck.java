@@ -192,5 +192,13 @@ public class Deck{
     public Hero getHero() {
         return hero ;
     }
+
+    public ArrayList<Card> getGraveYard() {
+        return graveYard;
+    }
+
+    public void killHero() {
+        this.hero=null;
+    }
 }
 

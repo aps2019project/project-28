@@ -1,7 +1,8 @@
 package Controller;
 
+import Controller.menu.GameMode;
 import Controller.menu.Menu;
-import Controller.menu.OnGameInfoPresentedListener;
+import View.Listeners.OnGameInfoPresentedListener;
 import Model.Map.Map;
 import Model.account.*;
 import Model.card.Card;
@@ -18,12 +19,16 @@ import exeption.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public abstract class Battle extends Menu {
+public class Battle extends Menu {
     private Map map;
     private Player[] player =new Player[2];
     private int turn = 0 ;
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
     private static final int[] MAX_MANA_PER_TURN={2,3,3,4,4,5,5,6,6,7,7,8,8,9};
+
+    private GameMode gameMode;
+
+
     private KingSlayerCounter[] kingSlayerCountDown =
             {new KingSlayerCounter(player[0]) , new KingSlayerCounter(player[1]) } ;
 
@@ -167,6 +172,9 @@ public abstract class Battle extends Menu {
             }
         }
 
+        /*checkState*/
+        this.gameMode.checkState();
+        // TODO: 5/6/19 what to do with that shit
     }
 
     public void showNextCard(){
@@ -205,8 +213,6 @@ public abstract class Battle extends Menu {
         return player[1];
 
     }
-
-    public abstract void checkState();
 
     public Map getMap() {
         return map;
