@@ -58,7 +58,7 @@ public class Player {
         // TODO: 5/5/19 ArshiA bezan
     }
 
-    public void spawn(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException, InvalidCellException {
+    public void spawn(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException, InvalidCellException, InvalidCardException {
         if (this.mana < card.getManaPoint()) throw new NotEnoughManaException();
         if (cell.isFull()) throw new DestinationIsFullException();
         // TODO: 5/5/19 better implementation maybe by using .getClass?
