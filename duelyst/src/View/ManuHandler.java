@@ -100,6 +100,7 @@ public class ManuHandler {
             }
         });
 
+
         //Card
         Card.addOnCardDetailPresented(new OnCardDetailsPresentedListener() {
             private void showSpell(Spell s){
