@@ -6,6 +6,7 @@ import Model.account.Player;
 import Model.card.Card;
 import Model.Map.*;
 import Model.card.spell.SpellAction.Action;
+import exeption.InvalidCardException;
 import exeption.InvalidCellException;
 
 import java.util.ArrayList;
@@ -83,7 +84,7 @@ public class Spell extends Card {
         return perk;
     }
 
-    public void deploy(Player player, Player enemy, Cell cell) throws InvalidCellException {
+    public void deploy(Player player, Player enemy, Cell cell) throws InvalidCellException, InvalidCardException {
         try{
             activeSpells.add(this);
             if(targetCells.length == 0) targetCells = this.target.getTarget(cell);
@@ -98,7 +99,7 @@ public class Spell extends Card {
         }
     }
 
-    public void deployAction(Cell... cells) throws InvalidCellException{
+    public void deployAction(Cell... cells) throws InvalidCellException, InvalidCardException {
         for (Action action : this.actions)
             action.deploy(this, cells);
     }

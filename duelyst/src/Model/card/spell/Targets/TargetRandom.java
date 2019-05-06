@@ -21,6 +21,7 @@ public class TargetRandom {
     }
 
     public static Target getTargetInstance() {
+        return null;
     }
 
     //TODO saee

@@ -22,6 +22,7 @@ public class Map {
 
     public static Map generate() {
         // TODO: 5/5/19 generate Map
+        return null;
     }
 
 
