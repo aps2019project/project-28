@@ -3,19 +3,18 @@ package Model.account;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
+import com.google.gson.Gson;
 import exeption.*;
 
 import java.util.ArrayList;
 
 public class Collection{
 
-    private Collection tempCollection;
+    private TempCollection tempCollection;
     private ArrayList<Deck> decks = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Usable> usables = new ArrayList<>();
-
     private ArrayList<OnCollectionPresentedListener> collectionPresentedListeners;
-
     private Account owner;
     private Deck mainDeck;
     public static final int MAX_USABLES = 3;
@@ -28,6 +27,15 @@ public class Collection{
             }
         }
         return false;
+    }
+
+    public Collection(){
+
+    }
+
+    public Collection(Collection collection){
+        Gson gson = new Gson();
+        this.tempCollection = gson.fromJson(gson.toJson(collection), TempCollection.class);
     }
 
     public Deck getDeckByName(String name) throws InvalidDeckException {
@@ -122,6 +130,10 @@ public class Collection{
         throw new InvalidCardException();
     }
 
+    public Collection getTempCollection() {
+        return tempCollection;
+    }
+
     public boolean hasItem(int itemID){
         for (Usable item:
              usables) {
@@ -172,10 +184,6 @@ public class Collection{
         throw new InvalidItemException();
     }
 
-    public Deck getTempMainDeck() {
-        return tempMainDeck;
-    }
-
     private Deck getDeck(String deckName) throws InvalidDeckException {
         for (Deck deck:
              decks) {
@@ -189,7 +197,7 @@ public class Collection{
     public boolean addNewDeck(String name) throws DeckAlreadyExistException{
         if(!this.hasDeck(name)) {
             Deck newDeck = new Deck(name);
-            this.tempDecks.add(newDeck);
+            this.tempCollection.getDecks().add(newDeck);
             return true;
         }
         throw  new DeckAlreadyExistException();
@@ -198,7 +206,7 @@ public class Collection{
     public void deleteDeck(String name) throws InvalidDeckException {
         if(this.hasDeck(name)){
             Deck delete = getDeckByName(name);
-            tempDecks.remove(delete);
+            this.tempCollection.getDecks().remove(delete);
         }
         throw new InvalidDeckException();
     }
@@ -211,12 +219,12 @@ public class Collection{
 
     public void setMainDeck(String deckName) throws InvalidDeckException {
         Deck mainDeck = getDeck(deckName);
-        this.tempMainDeck = mainDeck;
+        this.tempCollection.setMainDeck(mainDeck.getName());
     }
 
     public void addCardToCollection(Card card) throws CardExistException{
         if(!hasCard(card)){
-            tempCollection.add(card);
+            tempCollection.getCards().add(card);
         }
         throw new CardExistException();
     }
@@ -247,12 +255,7 @@ public class Collection{
     }
 
     public void save(){
-        decks = tempDecks;
-        tempMainDeck = null;
-        cards = tempCards;
-        tempCards = null;
-        mainDeck = tempMainDeck;
-        tempMainDeck = null;
+        = tempCollection;
     }
 
     public ArrayList<Card>getAllCardsByID(int ID){
