@@ -48,7 +48,7 @@ public class PreProcess{
         spells.add(new Spell("All Disarm", 2000, 9, 1, 0,
                 TargetAllEnemyCards.getTargetInstance(), ActionDisarm.getAction()));
         spells.add(new Spell("All Poison", 1500, 8, 4, 0,
-                TargetAllEnemyCards.getTargetInstance(), ActionAllPoison.getAction()));
+                TargetAllEnemyCards.getTargetInstance(), ActionDeployPoison.getAction()));
         spells.add(new Spell("Dispel",2100, 0, 1, 0,
                  TargetSingleCell.getTargetInstance(), ActionDispel.getAction()));
         spells.add(new Spell("Health With Profit", 2250, 0, 3, -6,
@@ -93,7 +93,7 @@ public class PreProcess{
         minions.add(new Minion("Persian Warrior",600, 9, 24,
                 6, new Melee(), 0,
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, 5,
-                        , ActionChangeAP.getAction()), SPATime.ATTACK));
+                        null, ActionChangeAP.getAction()), SPATime.ATTACK));
         
 /*        minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
@@ -144,19 +144,19 @@ public class PreProcess{
         minions.add(new Minion("Fire Dragon",250, 5, 9,
                 5, new Range(), 4,
                 null, null));
-
-       /* minions.add(new Minion("Fierce Lion",600, 2, 1,
+        /*minions.add(new Minion("Fierce Lion",600, 2, 1,
                 8, new Melee(), 0,
                 new SpecialPower("Fierce Lion SpecialPower", 0, 0, 0, 0,
                         null, ), SPATime.ATTACK));*/
 
-        /*minions.add(new Minion("Giant Snake",500, 8, 14,
+        minions.add(new Minion("Giant Snake",500, 8, 14,
                 7, new Range(), 5,
-                new SpecialPower("Giant Snake SpecialPower", , , ,
-                        Mini,), SPATime.ATTACK));*/
-        /*minions.add(new Minion("White Wolf",400, 5, 8,
+                new SpecialPower("Giant Snake SpecialPower", 0, 0, -1,1
+                        TargetEnemyMinionswithin2ManhattanDistance.getTargetInstance(), ActionChangeAP.getAction()), SPATime.ATTACK));
+        minions.add(new Minion("White Wolf",400, 5, 8,
                 2, new Melee(), 0,
-                , SPATime.ATTACK));*/
+                new SpecialPower("White Wolf SpecialPower", 0, 0, 2, -6,
+                        TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK));//unhandled
         /*minions.add(new Minion("Leopard",400, 4, 6,
                 2, new Melee(), 0,
                 ,SPATime.ATTACK));*/
@@ -265,7 +265,7 @@ public class PreProcess{
                 , 0, 2));
         heroes.add(new Hero("EsfanDar", 12000, 35, 3, new Hybrid(), 3,
                 new SpecialPower("EsfanDar", 0, 0, -1, 3,
-                        TargetSingleCell.getTargetInstance(), ActionDeployHoleyBuff.getAction()),
+                        TargetSingleCell.getTargetInstance(), ActionDeployHollyBuff.getAction()),
                 0, 0));
         heroes.add(new Hero("Rostam", 8000, 55, 7,new Hybrid(), 4,
                 null, 0, 0));

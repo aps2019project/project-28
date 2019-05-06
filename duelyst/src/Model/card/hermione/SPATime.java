@@ -1,5 +1,5 @@
 package Model.card.hermione;
 
 public enum SPATime {
-    SPAWN,DEATH,ATTACK,DEFEND,PASSIVE,NULL,ONTURN;
+    SPAWN,DEATH,ATTACK,DEFEND,PASSIVE,NULL,ON_TURN;
 }
