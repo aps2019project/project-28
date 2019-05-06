@@ -12,7 +12,7 @@ public class BuffActionHolly implements Model.card.spell.BuffActions {
 
     public void affect(Buff buff){
         buff.getTarget().setHollyBuffLevel(buff.getTarget().getHollyBuffLevel());
-        //TODO sare defend bayad check beshe age HollyBuff dare yeki kamtar zarbe bokhore !
+        //TODO @ArshiA sare defend bayad check beshe age HollyBuff dare yeki kamtar zarbe bokhore !
     }
     @Override
     public void destroy(Buff buff){

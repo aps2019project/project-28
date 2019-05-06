@@ -4,19 +4,18 @@ import Model.Map.Cell;
 import Model.Map.CellAffects;
 import Model.card.spell.Spell;
 
-public class ActionPoisonCell implements Action {
-    private static ActionPoisonCell obj;
+public class ActionHollyCell implements Action {
+    private static ActionHollyCell obj;
 
-    public static ActionPoisonCell getAction() {
-        if (obj == null) obj = new ActionPoisonCell();
+    public static ActionHollyCell getAction() {
+        if (obj == null) obj = new ActionHollyCell();
         return obj;
     }
 
     @Override
     public void deploy(Spell spell, Cell... cells) {
         for (Cell cell : cells) {
-            cell.setCellAffect(CellAffects.poison);
+            cell.setCellAffect(CellAffects.holly);
         }
     }
 }
-

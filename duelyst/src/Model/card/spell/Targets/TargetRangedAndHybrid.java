@@ -9,13 +9,10 @@ import exeption.InvalidCellException;
 public class TargetRangedAndHybrid implements Target {
         private static TargetRangedAndHybrid obj ;
         public static TargetRangedAndHybrid getTargetClass() {
-            if (obj == null) obj = new TargetRangedAndHybrid() ;
-            return obj ;
+            if (obj == null) obj = new TargetRangedAndHybrid();
+            return obj;
         }
 
-    public static Target getTargetInstance() {
-    }
-    //TODO SAEE
 
     @Override
         public Cell[] getTarget(Cell cell) throws InvalidCellException {

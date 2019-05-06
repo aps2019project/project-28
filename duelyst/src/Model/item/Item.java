@@ -137,4 +137,5 @@ public abstract class Item {
     public void setPerk2(int perk) {
         this.perk2 = perk;
     }
+
 }

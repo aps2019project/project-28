@@ -13,6 +13,9 @@ public class Collection{
     private ArrayList<Deck> decks = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Usable> usables = new ArrayList<>();
+
+    private ArrayList<OnCollectionPresentedListener> collectionPresentedListeners;
+
     private Account owner;
     private Deck mainDeck;
     public static final int MAX_USABLES = 3;
