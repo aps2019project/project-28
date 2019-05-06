@@ -9,10 +9,10 @@ import Model.card.spell.SpellAction.ActionDisarm;
 import Model.card.spell.SpellAction.ActionStun;
 import Model.card.spell.Targets.*;
 import Model.item.Collectable;
-import Model.item.ItemAction.ItemActionChangeAP;
-import Model.item.ItemAction.ItemActionDamoolArch;
-import Model.item.ItemAction.ItemActionExtraMana;
-import Model.item.ItemAction.ItemActionShieldAF;
+import Model.item.ItemActions.ItemActionChangeAP;
+import Model.item.ItemActions.ItemActionDamoolArch;
+import Model.item.ItemActions.ItemActionExtraMana;
+import Model.item.ItemActions.ItemActionShieldAF;
 import Model.item.Usable;
 import com.google.gson.*;
 

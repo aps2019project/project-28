@@ -11,5 +11,6 @@ public class BuffActionHP implements Model.card.spell.BuffActions {
 
     public void affect(Buff buff){
         buff.getTarget().changeHealthPoint(buff.getPerk());
+        buff.getTarget().setLostHealthPointDueToBuff(buff.getPerk());
     }
 }

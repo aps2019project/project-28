@@ -1,4 +1,4 @@
-package Model.item.ItemAction;
+package Model.item.ItemActions;
 
 import Controller.Game;
 import Model.account.Player;
@@ -14,6 +14,6 @@ public class ItemActionManaGiver implements ItemAction {
 
     public void deploy(Item item){
         Player player = Game.battle.getPlayer();
-        player.setMana(player.getMana() + item.getPerk());
+        player.setManaTheriac(item.getPerk());
     }
 }

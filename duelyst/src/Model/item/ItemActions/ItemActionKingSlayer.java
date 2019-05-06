@@ -1,4 +1,4 @@
-package Model.item.ItemAction;
+package Model.item.ItemActions;
 
 import Controller.Game;
 import Model.item.Item;
