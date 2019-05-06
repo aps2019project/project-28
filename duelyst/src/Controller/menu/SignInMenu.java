@@ -11,8 +11,22 @@ import java.util.ArrayList;
 
 public class SignInMenu extends Menu {
 
+    private static SignInMenu menu;
+
     private Account temporaryAccount;
     private ArrayList<OnLeaderBoardClickedListener> leaderBoardPresenters;
+
+    private SignInMenu(String name) {
+        super(name);
+        this.leaderBoardPresenters = new ArrayList<>();
+    }
+
+    public static SignInMenu getMenu(){
+        if(SignInMenu.menu==null){
+            SignInMenu.menu=new SignInMenu("SignInMenu");
+        }
+        return menu;
+    }
 
     public void creatAccount(String name, String username, String password) throws AccountAlreadyExistsException {
         if (Account.hasAccount(username))
@@ -25,6 +39,7 @@ public class SignInMenu extends Menu {
         if (account.getPassword().equals(password)) {
             Game.accounts[0] = account;
             Game.hasLoggedIn = true;
+            this.account=account;
         } else {
             throw new WrongPassException();
         }
@@ -33,6 +48,7 @@ public class SignInMenu extends Menu {
     public void logOut() {
         Game.hasLoggedIn = false;
         Game.accounts[0] = null;
+        this.account=null;
     }
 
     public void save() {
@@ -47,7 +63,7 @@ public class SignInMenu extends Menu {
     }
 
     public SignInMenu(Menu parentMenu, String name) {
-        super(name);
+        super(parentMenu, name);
         this.account = parentMenu.getAccount();
         this.leaderBoardPresenters = new ArrayList<>();
     }

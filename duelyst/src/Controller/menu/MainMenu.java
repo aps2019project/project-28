@@ -1,13 +1,20 @@
 package Controller.menu;
 
+import Model.account.Account;
+
 public class MainMenu extends Menu {
-    public MainMenu(String name) {
+    private static MainMenu menu;
+    private  MainMenu(String name) {
         super(name);
-//        this.account = parentMenu.getAccount();
+        this.account = parentMenu.getAccount();
     }
 
-    @Override
-    public void help() {
+    public static MainMenu getMenu(){
+        if(MainMenu.menu==null){
+            MainMenu.menu=new MainMenu("MainMenu");
+        }
+        return menu;
+    }
 
     }
 }

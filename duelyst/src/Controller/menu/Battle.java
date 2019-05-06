@@ -1,6 +1,8 @@
 package Controller.menu;
 
-import Controller.GameMode.GameMode;
+import Controller.Game;
+import Controller.menu.GameMode;
+import Controller.menu.Menu;
 import View.Listeners.OnGameInfoPresentedListener;
 import Model.Map.Map;
 import Model.account.*;
@@ -21,22 +23,37 @@ import java.util.Collections;
 
 public class Battle extends Menu {
 
-    private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
+    private static Battle menu;
 
     private Map map;
     private Player[] player = new Player[2];
     private int turn = 0;
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
+    private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
+
     private GameMode gameMode;
+
 
     private KingSlayerCounter[] kingSlayerCountDown =
             {new KingSlayerCounter(player[0]), new KingSlayerCounter(player[1])};
 
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
 
-    public Battle(Menu parentMenu, String name) {
+    public Battle( String name) {
         super(name);
-        this.map = Map.generate();
+    }
+
+    public static Battle getMenu() {
+        if(Battle.menu==null){
+            Battle.menu=new Battle("Battle");
+        }
+        return menu;
+    }
+
+    @Override
+    public void init(Menu parentMenu) {
+        super.init(parentMenu);
+        setPlayer(Game.accounts[0].getPlayer(),Game.accounts[1].getPlayer());
     }
 
     public void gameInfo() {
@@ -169,9 +186,8 @@ public class Battle extends Menu {
         }
 
         /*checkState*/
-        if(this.gameMode.checkState()){
-            this.gameMode.handleWin();
-        }
+        this.gameMode.checkState();
+        // TODO: 5/6/19 what to do with that shit
     }
 
     public void showNextCard() {

@@ -1,12 +1,15 @@
 package Controller.menu;
 
 public class CostumeModeMenu extends Menu {
-    public CostumeModeMenu(Menu parentMenu, String name) {
+    private static CostumeModeMenu menu;
+    private CostumeModeMenu(String name) {
         super(name);
     }
-
-    @Override
-    public void help() {
-
+    public static CostumeModeMenu getMenu(){
+        if(CostumeModeMenu.menu==null){
+            menu=new CostumeModeMenu("CostumeMenu");
+        }
+        return menu;
     }
+
 }

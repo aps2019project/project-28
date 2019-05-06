@@ -1,12 +1,16 @@
 package Controller.menu;
 
 public class StoryModeMenu extends Menu {
-    public StoryModeMenu(Menu parentMenu, String name) {
+    private static StoryModeMenu menu;
+    private StoryModeMenu(String name) {
         super(name);
     }
 
-    @Override
-    public void help() {
-
+    public static StoryModeMenu getMenu(){
+        if(StoryModeMenu.menu==null){
+            StoryModeMenu.menu=new StoryModeMenu("StoryModeMenu");
+        }
+        return menu;
     }
+
 }

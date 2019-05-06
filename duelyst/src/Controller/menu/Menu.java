@@ -1,9 +1,11 @@
 package Controller.menu;
 
+import Model.account.Collection;
 import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public abstract class Menu {
 
@@ -17,11 +19,20 @@ public abstract class Menu {
 
     public Menu(String name) {
         this.name = name;
-//        this.parentMenu = parentMenu;
+        this.menuPresenters=new ArrayList<>();
         this.subMenus = new ArrayList<>();
         this.patterns = new ArrayList<>();
     }
 
+    public Menu enter(Menu subMenu){
+        subMenu.init(this);
+        return subMenu;
+    }
+
+    public void init(Menu parentMenu) {
+        this.setParentMenu(parentMenu);
+        this.setAccount(parentMenu.account);
+    }
     public void addPattern(String pattern) {
         this.patterns.add(pattern);
     }
@@ -43,11 +54,16 @@ public abstract class Menu {
         // TODO: 5/6/19 in bayad return false bashe
     }
 
-    public abstract void help();
-
+//    public abstract void help();
+// TODO: 5/6/19 comment bala bayad solve she
+    public void help(){
+        System.err.println("HEPPPPPP");;
+        System.out.println("these are the command you can use");
+        System.out.println("1)exit     2)show menu     3)enter[number]");
+    }
     public void showMenu() {
         for (OnMenuClickedListener presenter : this.menuPresenters) {
-            presenter.show();
+            presenter.show(this);
         }
     }
 
@@ -62,7 +78,27 @@ public abstract class Menu {
         return null;
     }
 
+    public void setParentMenu(Menu parentMenu) {
+        this.parentMenu = parentMenu;
+    }
+
     public Account getAccount() {
         return this.account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public ArrayList<Menu> getSubMenus() {
+        return subMenus;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Menu exit() {
+        return parentMenu;
     }
 }

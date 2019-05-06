@@ -6,10 +6,17 @@ import exeption.InvalidCardException;
 
 public class GraveYardMenu extends Menu {
 
-    public GraveYardMenu(Menu parentMenu, String name) {
+    private static GraveYardMenu menu;
+
+    private GraveYardMenu(String name) {
         super(name);
-        this.account = parentMenu.getAccount();
-        this.account = parentMenu.getAccount();
+    }
+
+    public static GraveYardMenu getMenu(){
+        if(GraveYardMenu.menu==null){
+            GraveYardMenu.menu=new GraveYardMenu("GraveYardMenu");
+        }
+        return menu;
     }
 
     void showCardInfo(int cardID) throws InvalidCardException {
@@ -27,8 +34,4 @@ public class GraveYardMenu extends Menu {
         }
     }
 
-    @Override
-    public void help() {
-
-    }
 }
