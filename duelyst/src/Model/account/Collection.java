@@ -9,14 +9,12 @@ import java.util.ArrayList;
 
 public class Collection{
 
+    private Collection tempCollection;
     private ArrayList<Deck> decks = new ArrayList<>();
-    private ArrayList<Deck> tempDecks = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
-    private ArrayList<Card> tempCards = new ArrayList<>();
     private ArrayList<Usable> usables = new ArrayList<>();
     private Account owner;
     private Deck mainDeck;
-    private Deck tempMainDeck;
     public static final int MAX_USABLES = 3;
 
     public boolean hasDeck(String name){
@@ -36,14 +34,6 @@ public class Collection{
             }
         }
         throw new InvalidDeckException();
-    }
-
-    public ArrayList<Card> getTempCards() {
-        return tempCards;
-    }
-
-    public ArrayList<Deck> getTempDecks() {
-        return tempDecks;
     }
 
     public ArrayList<Card> getCards() {
@@ -223,7 +213,7 @@ public class Collection{
 
     public void addCardToCollection(Card card) throws CardExistException{
         if(!hasCard(card)){
-            tempCards.add(card);
+            tempCollection.add(card);
         }
         throw new CardExistException();
     }
