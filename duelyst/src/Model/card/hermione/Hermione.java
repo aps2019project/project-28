@@ -52,7 +52,7 @@ public abstract class Hermione extends Card {
         this.canCounterAttack = canCounterAttack;
     }
 
-    public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCardException {
+    public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCardException, InvalidCellException {
         if(!this.canAttack)throw new CantAttackException();
       if(this.attackType.canReach(this,enemyCard)){
           this.attackCounter++ ;
