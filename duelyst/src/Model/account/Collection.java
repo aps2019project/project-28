@@ -1,5 +1,6 @@
 package Model.account;
 
+import Controller.menu.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
@@ -7,6 +8,7 @@ import com.google.gson.Gson;
 import exeption.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Collection{
 
@@ -195,6 +197,10 @@ public class Collection{
         throw new InvalidDeckException();
     }
 
+    public ArrayList<OnCollectionPresentedListener> getCollectionPresentedListeners() {
+        return collectionPresentedListeners;
+    }
+
     public boolean addNewDeck(String name) throws DeckAlreadyExistException{
         if(!this.hasDeck(name)) {
             Deck newDeck = new Deck(name);
@@ -298,4 +304,9 @@ public class Collection{
             removeCardFromCollection(this.getCard(name));
         }
     }
+
+    public ArrayList<OnCollectionPresentedListener> getCollectionPresentedListeners() {
+        return (ArrayList<OnCollectionPresentedListener>) Collections.unmodifiableList(this.collectionPresentedListeners);
+    }
+
 }

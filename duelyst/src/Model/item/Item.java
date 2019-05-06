@@ -2,6 +2,7 @@ package Model.item;
 
 import Model.Map.Cell;
 import Model.account.Player;
+import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Target;
 import Model.item.ItemActions.ItemAction;
@@ -29,7 +30,7 @@ public abstract class Item {
         this.target = target;
         this.perk = perk;
         this.duration = duration;
-//        this.itemID = itemID;TODO ITEMID
+        this.itemID = Card.uniqueID++;
     }
 
     public static Item getItem(int itemID) throws InvalidItemException {
@@ -76,7 +77,7 @@ public abstract class Item {
         return actions;
     }
 
-    public void deploy(){
+    public void deploy() throws Exception {
         for (ItemAction action : actions) {
             action.deploy(this);
         }
@@ -90,6 +91,7 @@ public abstract class Item {
         }
         for (ItemAction action : actions) {
             try {
+                // TODO: 5/6/19 saE ya Fattme handle this error
                 action.deploy(this, target.getTarget(cell));
             } catch (InvalidCellException e) {
                 throw e;

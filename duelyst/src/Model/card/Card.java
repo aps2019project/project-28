@@ -9,7 +9,7 @@ import java.util.Collections;
 public abstract class Card {
 
     private static ArrayList<Card> cards=new ArrayList<>();
-    private static int uniqueID =0;
+    public static int uniqueID =0;
 
     protected Collection superCollection;
     private int cardID;
@@ -83,8 +83,6 @@ public abstract class Card {
             return false;
         }
     }
-
-
 
 
     public int getCardID() {
