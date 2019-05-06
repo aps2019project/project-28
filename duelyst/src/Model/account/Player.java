@@ -28,6 +28,7 @@ public class Player {
     private Item selectedItem;
 
     public Player(Account user, int maxMana, int mana) {
+        // TODO: 5/6/19 FATTEME LISTEN CAREFULLY 1)make a json string from Accunt(user)'s main deck   2)make a deck object from that json string file and put its refrence in the player """"that way we always have a hard copy of main deck and no need to get hard on our selves:D"""""
         this.user = user;
         this.maxMana = maxMana;
         this.mana = mana;

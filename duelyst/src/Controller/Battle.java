@@ -32,6 +32,10 @@ public abstract class Battle extends Menu {
         this.map=Map.generate();
     }
 
+//    void init(Player player1,Player player2){
+//        this.setPlayer();
+//    }
+
     public void gameInfo(){
         for (OnGameInfoPresentedListener presenter : this.gameInfoPresenters) {
             presenter.showGameInfo();
