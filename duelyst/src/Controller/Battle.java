@@ -214,7 +214,9 @@ public abstract class Battle extends Menu {
     public Player getPlayer(){
         return player[getTurn()] ;
     }
-
+    public Player getEnemyPlayer(){
+        return player[1-getTurn()] ;
+    }
     public int getTurn() {return turn%2 ; }
     public int getOriginalTurn(){ return this.turn; }
     @Override

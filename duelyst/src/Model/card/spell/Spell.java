@@ -98,7 +98,7 @@ public class Spell extends Card {
         }
     }
 
-    public void deployAction(Cell... cells) {
+    public void deployAction(Cell... cells) throws InvalidCellException{
         for (Action action : this.actions)
             action.deploy(this, cells);
     }
