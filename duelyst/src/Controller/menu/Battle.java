@@ -36,7 +36,7 @@ public class Battle extends Menu {
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
 
     public Battle(Menu parentMenu, String name) {
-        super(parentMenu, name);
+        super(name);
         this.map = Map.generate();
     }
 

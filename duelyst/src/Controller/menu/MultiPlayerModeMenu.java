@@ -5,7 +5,7 @@ import Model.account.Account;
 
 public class MultiPlayerModeMenu extends Menu {
     public MultiPlayerModeMenu(Menu parentMenu, String name) {
-        super(parentMenu, name);
+        super( name);
     }
 
     public void selectUser(int i) {

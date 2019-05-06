@@ -1,12 +1,32 @@
 package Model.card.hermione;
 
+import Model.Map.Cell;
+import Model.card.spell.SpellAction.ActionDeployPoison;
+import Model.card.spell.Target;
+import Model.card.spell.Targets.TargetRandom;
+import Model.card.spell.Targets.TargetRandomEnemy;
+import exeption.InvalidCellException;
+
 public class BuffEffectsOnHermione {
+    private Hermione card ;
     private boolean hasTheDeathCurse = false ;
     private int HollyBuffLevel = 0 ;
     private int originalAttackPoint ;
     private int lostHealthPointDueToBuff = 0 ;
     private boolean hasTheGiantSnakeEffect = false ;
     private boolean hasThePoisonousDagger = false ;
+
+    public BuffEffectsOnHermione(Hermione card) {
+        this.card = card;
+    }
+
+    public void handle() throws InvalidCellException {
+        if (hasThePoisonousDagger){
+             Cell[] cells = TargetRandomEnemy.getTargetInstance().getTarget(card.location) ;
+             ActionDeployPoison.getAction().deploy(cells);
+        }
+    }
+
 
 
     public boolean isHasTheDeathCurse() {

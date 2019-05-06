@@ -27,7 +27,7 @@ public abstract class Hermione extends Card {
     protected boolean hasFlag=false;
     protected boolean canMove;
     protected int attackCounter = 0 ;
-    protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione();
+    protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range) {
@@ -56,6 +56,7 @@ public abstract class Hermione extends Card {
         if(!this.canAttack)throw new CantAttackException();
       if(this.attackType.canReach(this,enemyCard)){
           this.attackCounter++ ;
+          this.buffEffects.handle() ;
             enemyCard.setHealthPoint(enemyCard.healthPoint-this.attackPoint);
             enemyCard.counterAttack(this);
             if(enemyCard.getHealthPoint()<=0){

@@ -25,7 +25,7 @@ public class ShopMenu extends Menu {
     private ArrayList<OnShowClickedListener> showClickedListeners;
 
     public ShopMenu(Menu parentMenu, String name) {
-        super(parentMenu, name);
+        super(name);
         this.account = parentMenu.getAccount();
         tempCollection = this.account.getCollection();
     }
