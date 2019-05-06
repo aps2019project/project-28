@@ -24,3 +24,43 @@ public class ActionDispel implements Action {
         }
     }
 }
+
+public class ActionDispelPositives implements Action {
+    private static ActionDispelPositives obj;
+
+    public static ActionDispelPositives getAction() {
+        if (obj == null) obj = new ActionDispelPositives();
+        return obj;
+    }
+
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+        for (Cell cell : cells) {
+            for (Buff buff : cell.getCardOnCell().getAppliedBuffs()) {
+                if (buff.isItPositive() && buff.getPlayer() != Game.battle.getPlayer()) {
+                    buff.destroy();
+                }
+            }
+        }
+    }
+}
+
+public class ActionDispelNegatives implements Action {
+    private static ActionDispelNegatives obj;
+
+    public static ActionDispelNegatives getAction() {
+        if (obj == null) obj = new ActionDispelNegatives();
+        return obj;
+    }
+
+    @Override
+    public void deploy(Spell spell, Cell... cells) {
+        for (Cell cell : cells) {
+            for (Buff buff : cell.getCardOnCell().getAppliedBuffs()) {
+                if (!buff.isItPositive() && buff.getPlayer() == Game.battle.getPlayer()) {
+                    buff.destroy();
+                }
+            }
+        }
+    }
+}

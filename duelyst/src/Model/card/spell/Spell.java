@@ -83,7 +83,7 @@ public class Spell extends Card {
         return perk;
     }
 
-    public void deploy(Player player, Player enemy, Cell cell) {
+    public void deploy(Player player, Player enemy, Cell cell) throws Exception {
         try{
             activeSpells.add(this);
             if(targetCells.length == 0) targetCells = this.target.getTarget(cell);
