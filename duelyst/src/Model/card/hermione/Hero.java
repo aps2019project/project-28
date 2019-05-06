@@ -12,7 +12,7 @@ public class Hero extends Hermione {
     // TODO: 4/15/19 final touches
 
     // TODO: 4/15/19 final touches
-    public void spawn(Cell cell){
+    public void spawn(Cell cell) {
         this.setLocation(cell);
     }
 
@@ -26,9 +26,9 @@ public class Hero extends Hermione {
 
 
     public Hero(String name, int price, int healthPoint, int attackPoint,
-                AttackType attackType, int range, Model.card.spell.SpecialPower specialPower, int manaPoint,int cooldown) {
+                AttackType attackType, int range, Model.card.spell.SpecialPower specialPower, int manaPoint, int cooldown) {
         super(name, price, manaPoint, healthPoint, attackPoint, specialPower, attackType, range);
-        this.cooldown=cooldown;
+        this.cooldown = cooldown;
     }
 
     public void setCooldown(int cooldown) {
@@ -41,7 +41,7 @@ public class Hero extends Hermione {
 
     public void increaseRemainCoolDown() {
         this.remainCoolDOwnTime--;
-        if(this.remainCoolDOwnTime==0)this.remainCoolDOwnTime=this.cooldown;
+        if (this.remainCoolDOwnTime == 0) this.remainCoolDOwnTime = this.cooldown;
     }
 
     @Override

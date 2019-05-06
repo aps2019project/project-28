@@ -1,10 +1,10 @@
 package Model.card.hermione;
 
 public class BuffEffectsOnHermione {
-    private boolean hasTheDeathCurse = false ;
-    private int HollyBuffLevel = 0 ;
-    private int originalAttackPoint ;
-    private int lostHealthPointDueToBuff = 0 ;
+    private boolean hasTheDeathCurse = false;
+    private int HollyBuffLevel = 0;
+    private int originalAttackPoint;
+    private int lostHealthPointDueToBuff = 0;
 
 
     public boolean isHasTheDeathCurse() {

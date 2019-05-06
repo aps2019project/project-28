@@ -18,9 +18,9 @@ public class ActionDeployHollyBuff implements Action {
     @Override
     public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
-            if (cell.getCardOnCell() == null) throw new InvalidCellException("empty cell") ;
-            Buff buff = new Buff (spell.getDuration() , true , BuffActionHolly.getBuffAction() , spell.getPerk()) ;
-            buff.deploy(Game.battle.getPlayer() , cell.getCardOnCell());
+            if (cell.getCardOnCell() == null) throw new InvalidCellException("empty cell");
+            Buff buff = new Buff(spell.getDuration(), true, BuffActionHolly.getBuffAction(), spell.getPerk());
+            buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
 
         }
     }

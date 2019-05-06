@@ -6,6 +6,7 @@ import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
 import Model.item.Item;
 import Model.item.OnItemDetailPresentedListener;
+import View.Listeners.OnDeckPresentedListener;
 import exeption.*;
 
 import java.util.ArrayList;
