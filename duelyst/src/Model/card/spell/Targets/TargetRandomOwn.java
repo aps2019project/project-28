@@ -6,7 +6,7 @@ import Model.account.Player;
 import Model.card.spell.Target;
 import exeption.InvalidCellException;
 
-public class TargetRandomEnemy implements Target {
+public class TargetRandomOwn implements Target {
     private static TargetRandomEnemy obj;
 
     public static TargetRandomEnemy getTargetInstance() {
@@ -17,8 +17,7 @@ public class TargetRandomEnemy implements Target {
     }
     @Override
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
-        Player player = Game.battle.getEnemyPlayer() ;
+        Player player = Game.battle.getPlayer() ;
         return TargetRandom.getTarget(player);
     }
-    //TODO saee
 }

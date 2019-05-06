@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ShopMenu extends Menu {
 
     Shop shop = Shop.getInstance();
-    Collection tempCollection;
+    Collection tempCollection=this.account.getTempCollection();
     private ArrayList<OnSearchClickedListener> searchClickedListeners;
     private ArrayList<OnSearchCollectionClickedListener> searchCollectionClickedListeners;
     private ArrayList<OnShowClickedListener> showClickedListeners;
@@ -80,20 +80,23 @@ public class ShopMenu extends Menu {
         }
     }
 
-    public void sell(String name) throws InvalidItemException, InvalidCardException {
-        if (!this.account.getCollection().hasCard(name)) {
-                throw new InvalidItemException();
-        } else {
-                try
-                tempCollection.removeCardFromCollection(tempCollection.getCard(name));
-                tempCollection.removeItemFromCollection((Usable)tempCollection.getItem(name));
-        }
+    public void sell(String name) throws InvalidCardException {
+        if (!this.account.getCollection().hasCard(name) && !this.account.getCollection().hasItem(name))
+            throw new InvalidCardException();
+
+        tempCollection.removeFromCollection(name);
     }
 
-    public void show() {
-        for (OnShowClickedListener presenter :
-                showClickedListeners) {
-            presenter.show(shop.getCollection());
+    public void show() {//shows the items and cards in shop
+        for (Card card : this.shop.getCollection().getCards()) {
+            for (OnCardDetailsPresentedListener presenter : card.getCardDetailsPresenters()) {
+                presenter.showCardDetail(card);
+            }
+        }
+        for (Usable usable : this.shop.getCollection().getUsables()) {
+            for (OnItemDetailPresentedListener presenter : usable.getItemDetailPresenters()) {
+                presenter.showItemDetail(usable);
+            }
         }
     }
 

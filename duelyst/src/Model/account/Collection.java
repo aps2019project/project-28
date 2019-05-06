@@ -289,4 +289,12 @@ public class Collection{
         }
         return returnArray;
     }
+
+    public void removeFromCollection(String name) throws InvalidCardException {
+        try{
+            removeItemFromCollection((Usable) this.getItem(name));
+        } catch (InvalidItemException e) {
+            removeCardFromCollection(this.getCard(name));
+        }
+    }
 }
