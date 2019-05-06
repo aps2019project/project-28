@@ -180,7 +180,7 @@ public class PreProcess {
                 6, new Melee(), 0,
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, 5,
                         null, ActionChangeAP.getAction()), SPATime.ATTACK));
-        
+
         /*minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
                 , SPATime.NULL));*/ //combo

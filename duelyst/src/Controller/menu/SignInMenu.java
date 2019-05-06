@@ -62,8 +62,18 @@ public class SignInMenu extends Menu {
         }
     }
 
+    public SignInMenu(Menu parentMenu, String name) {
+        super(parentMenu, name);
+        this.account = parentMenu.getAccount();
+        this.leaderBoardPresenters = new ArrayList<>();
+    }
+
     public void addLeaderBoardClickedListener(OnLeaderBoardClickedListener presenter) {
         this.leaderBoardPresenters.add(presenter);
     }
 
+    @Override
+    public void help() {
+        // TODO: 4/30/19 HELPPPPPP!!!!!
+    }
 }
