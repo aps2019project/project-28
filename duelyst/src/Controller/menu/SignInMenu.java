@@ -21,6 +21,7 @@ public class SignInMenu extends Menu {
         this.leaderBoardPresenters = new ArrayList<>();
     }
 
+
     public static SignInMenu getMenu(){
         if(SignInMenu.menu==null){
             SignInMenu.menu=new SignInMenu("SignInMenu");
@@ -60,12 +61,6 @@ public class SignInMenu extends Menu {
         for (OnLeaderBoardClickedListener presenter : this.leaderBoardPresenters) {
             presenter.show(Account.getAccounts());
         }
-    }
-
-    public SignInMenu(Menu parentMenu, String name) {
-        super(parentMenu, name);
-        this.account = parentMenu.getAccount();
-        this.leaderBoardPresenters = new ArrayList<>();
     }
 
     public void addLeaderBoardClickedListener(OnLeaderBoardClickedListener presenter) {

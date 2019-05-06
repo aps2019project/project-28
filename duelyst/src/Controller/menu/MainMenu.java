@@ -6,7 +6,6 @@ public class MainMenu extends Menu {
     private static MainMenu menu;
     private  MainMenu(String name) {
         super(name);
-        this.account = parentMenu.getAccount();
     }
 
     public static MainMenu getMenu(){
@@ -16,5 +15,4 @@ public class MainMenu extends Menu {
         return menu;
     }
 
-    }
 }
