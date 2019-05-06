@@ -1,6 +1,7 @@
 package Model.account;
 
 import Model.card.Card;
+import View.Listeners.OnHandPresentedListener;
 import exeption.DeckIsEmptyException;
 import exeption.HandFullException;
 import exeption.InvalidCardException;
@@ -16,26 +17,26 @@ public class Hand {
     private Card[] cards = new Card[SIZE];
     private Card nextCard;
 
-    public Hand(Deck deck){
+    public Hand(Deck deck) {
         this.deck = deck.getCards();
-        for(int i = 0; i < SIZE; i++){
+        for (int i = 0; i < SIZE; i++) {
             this.cards[i] = this.deck.get(i);
         }
         this.nextCard = this.deck.get(SIZE);
     }
 
-    public void updateHand() throws DeckIsEmptyException, HandFullException{
-        for (int i = 0 ; i < SIZE ; i++) {
-            if(cards[i] == null){
+    public void updateHand() throws DeckIsEmptyException, HandFullException {
+        for (int i = 0; i < SIZE; i++) {
+            if (cards[i] == null) {
                 this.addCard();
             }
         }
     }
 
     private void addCard() throws DeckIsEmptyException, HandFullException {
-        if(nextCard != null){
-            for (int i = 0; i < SIZE; i++){
-                if(cards[i] == null){
+        if (nextCard != null) {
+            for (int i = 0; i < SIZE; i++) {
+                if (cards[i] == null) {
                     cards[i] = nextCard;
                     setNextCard();
                     return;
@@ -47,24 +48,23 @@ public class Hand {
     }
 
     private void setNextCard() {
-        if(deck.indexOf(nextCard) + 1 < Deck.CARD_SIZE){
-            nextCard = deck.get(deck.indexOf(nextCard) + 1 );
-        }
-        else {
+        if (deck.indexOf(nextCard) + 1 < Deck.CARD_SIZE) {
+            nextCard = deck.get(deck.indexOf(nextCard) + 1);
+        } else {
             nextCard = null;
         }
     }
 
-    private void removeCard(Card card){
-        for (int i = 0; i < SIZE; i++){
-            if(cards[i] == card){
+    private void removeCard(Card card) {
+        for (int i = 0; i < SIZE; i++) {
+            if (cards[i] == card) {
                 cards[i] = null;
                 return;
             }
         }
     }
 
-    public void handleHand(Card card) throws DeckIsEmptyException, HandFullException{
+    public void handleHand(Card card) throws DeckIsEmptyException, HandFullException {
         removeCard(card);
         addCard();
     }
@@ -79,7 +79,7 @@ public class Hand {
 
     public Card getCard(int cardID) throws InvalidCardException {
         for (Card card : this.cards) {
-            if(card.getCardID()==cardID)return card;
+            if (card.getCardID() == cardID) return card;
         }
         throw new InvalidCardException();
     }

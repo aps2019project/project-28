@@ -4,6 +4,9 @@ import Controller.Match;
 import exeption.InvalidAccountException;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 public class Account {
 
     private static ArrayList<Account> accounts=new ArrayList<>();
@@ -20,9 +23,6 @@ public class Account {
     private ArrayList<Match> matchHistory;
     private int wins;
     private int storyModeSPX;
-
-    public static void sort(){
-    }
 
     public void saveMatchHistory(Match match){
     }
@@ -174,5 +174,10 @@ public class Account {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public static ArrayList<Account> sort(){
+        Collections.sort(Account.getAccounts(), Comparator.comparingInt(o -> o.wins));
+        return Account.getAccounts();
     }
 }

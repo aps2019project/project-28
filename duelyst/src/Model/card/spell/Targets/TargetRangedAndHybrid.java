@@ -13,10 +13,6 @@ public class TargetRangedAndHybrid implements Target {
             return obj;
         }
 
-    public static Target getTargetInstance() {
-    }
-
-
     @Override
         public Cell[] getTarget(Cell cell) throws InvalidCellException {
             if (cell.getCardOnCell().getAttackType().getClass().equals(Melee.class)){

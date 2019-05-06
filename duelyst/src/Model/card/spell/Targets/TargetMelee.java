@@ -3,7 +3,6 @@ package Model.card.spell.Targets;
 import Model.Map.Cell;
 import Model.card.hermione.Melee;
 import Model.card.spell.Target;
-import Model.item.ItemTargetEnemyHermione;
 import exeption.InvalidCellException;
 
 public class TargetMelee implements Target {

@@ -3,6 +3,7 @@ package Model.card.spell.SpellAction;
 import Model.Map.Cell;
 import Model.Map.CellAffects;
 import Model.card.spell.Spell;
+import exeption.InvalidCellException;
 
 public class ActionHollyCell implements Action {
     private static ActionHollyCell obj;
@@ -13,7 +14,7 @@ public class ActionHollyCell implements Action {
     }
 
     @Override
-    public void deploy(Spell spell, Cell... cells) {
+    public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
             cell.setCellAffect(CellAffects.holly);
         }

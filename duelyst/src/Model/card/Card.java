@@ -77,7 +77,7 @@ public abstract class Card {
     }
     public static boolean hasCard(String name){
         try {
-            Card.getCuard(name);
+            Card.getCard(name);
             return true;
         } catch (InvalidCardException e) {
             return false;

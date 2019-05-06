@@ -2,7 +2,7 @@ package Controller.menu;
 
 public class MainMenu extends Menu {
     public MainMenu(Menu parentMenu, String name) {
-        super(parentMenu, name);
+        super(name);
         this.account = parentMenu.getAccount();
     }
 

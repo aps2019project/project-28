@@ -9,15 +9,15 @@ public abstract class Menu {
 
     protected Account account;
     private String name;
-    private Menu parentMenu;
+    private Menu parentMenu=null;
     private ArrayList<Menu> subMenus;
     private ArrayList<OnMenuClickedListener> menuPresenters;
     private ArrayList<String> patterns;
 
 
-    public Menu(Menu parentMenu, String name) {
+    public Menu(String name) {
         this.name = name;
-        this.parentMenu = parentMenu;
+//        this.parentMenu = parentMenu;
         this.subMenus = new ArrayList<>();
         this.patterns = new ArrayList<>();
     }
@@ -38,7 +38,9 @@ public abstract class Menu {
         for (String pattern : this.patterns) {
             if (command.matches(pattern)) return true;
         }
-        return false;
+//        return false;
+        return true;
+        // TODO: 5/6/19 in bayad return false bashe
     }
 
     public abstract void help();
