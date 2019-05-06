@@ -1,7 +1,6 @@
 package Model.card.spell.Buff.BuffActions;
 
 import Model.card.spell.Buff.Buff;
-import Model.card.spell.BuffActions;
 
 public class BuffActionStun implements BuffActions {
     private static BuffActionStun obj;
