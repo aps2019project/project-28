@@ -60,7 +60,7 @@ public class Minion extends Hermione{
             super.counterAttack(enemyCard);
         }
 
-        private void itIsTime(SPATime currentState){
+        public void itIsTime(SPATime currentState){
             if(!this.SPActivationTime.equals(currentState))return;
             this.applySpecialPower(this.getLocation().getX(), this.getLocation().getY());
         }

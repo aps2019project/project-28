@@ -7,6 +7,8 @@ import Model.account.*;
 import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
 import Model.card.hermione.Hermione;
+import Model.card.hermione.Minion;
+import Model.card.hermione.SPATime;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
 import Model.item.KingSlayerCounter;
@@ -118,7 +120,11 @@ public abstract class Battle extends Menu {
 
         /*updating hand*/
         this.account.getPlayer().getHand().updateHand();
-        // TODO: 5/5/19 fatteme updateHand
+
+        /*minions passive SP handling*/
+        for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
+            minion.itIsTime(SPATime.valueOf("PASSIVE"));
+        }
 
         /*changing turn*/
         turn++;
