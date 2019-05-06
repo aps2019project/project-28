@@ -25,28 +25,49 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PreProcess{
+public class PreProcess {
 
-    public static ArrayList<Card> getCards ()  {
-        ArrayList<Card> cards = new ArrayList<>();
+    private static ArrayList<Spell> spells = new ArrayList<>();
+    private static ArrayList<Minion> minions = new ArrayList<>();
+    private static ArrayList<Hero> heroes = new ArrayList<>();
+    private static ArrayList<Usable> usables = new ArrayList<>();
+    private static ArrayList<Collectable> collectables = new ArrayList<>();
+
+    public static ArrayList<Hero> getHeroes() {
         try {
             Gson gson = new Gson();
-            BufferedReader reader = new BufferedReader(new FileReader("Card.json"));
+            BufferedReader reader = new BufferedReader(new FileReader("Hero.json"));
             JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
             while (jsonStreamParser.hasNext()) {
                 JsonElement jsonElement = jsonStreamParser.next();
                 if (jsonElement.isJsonObject()) {
-                    Card card = gson.fromJson(jsonElement, Card.class);
-                    cards.add(card);
+                    Hero hero = gson.fromJson(jsonElement, Hero.class);
+                    heroes.add(hero);
                 }
             }
-        }catch (FileNotFoundException e){}
+        } catch (Throwable e) {
+        }
+        return heroes;
+    }
 
-        return cards;
+    public static ArrayList<Minion> getMinions() {
+        try {
+            Gson gson = new Gson();
+            BufferedReader reader = new BufferedReader(new FileReader("Minion.json"));
+            JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+            while (jsonStreamParser.hasNext()) {
+                JsonElement jsonElement = jsonStreamParser.next();
+                if (jsonElement.isJsonObject()) {
+                    Minion minion = gson.fromJson(jsonElement, Minion.class);
+                    minions.add(minion);
+                }
+            }
+        } catch (Throwable e) {
+        }
+        return minions;
     }
 
     public static ArrayList<Usable> getUsables() {
-        ArrayList<Usable> usables = new ArrayList<>();
         try {
             Gson gson = new Gson();
             BufferedReader reader = new BufferedReader(new FileReader("Usables.json"));
@@ -58,13 +79,13 @@ public class PreProcess{
                     usables.add(usable);
                 }
             }
-        }catch (FileNotFoundException e){}
+        } catch (Throwable e) {
+        }
 
         return usables;
     }
 
-    public static ArrayList<Collectable> getCollectables(){
-        ArrayList<Collectable> collectables = new ArrayList<>();
+    public static ArrayList<Collectable> getCollectables() {
         try {
             Gson gson = new Gson();
             BufferedReader reader = new BufferedReader(new FileReader("Collectables.json"));
@@ -76,24 +97,23 @@ public class PreProcess{
                     collectables.add(collectable);
                 }
             }
-        }catch (FileNotFoundException e){}
+        } catch (Throwable e) {
+        }
 
         return collectables;
     }
 
-    public static void preProcess(){
+    public static void preProcess() {
         Gson gson = new Gson();
 
         //Spell
-
-        ArrayList<Spell> spells = new ArrayList<>();
         spells.add(new Spell("Total Disarm", 1000, 0, -1, 1,
                 TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction()));
         spells.add(new Spell("Area Dispel", 1500, 2, 1, 1,
                 TargetTwoByTwo.getTargetInstance(), ActionDispel.getAction()));
         spells.add(new Spell("Empower", 250, 1, 1, 2,
                 TargetOwnCard.getTargetInstance(), ActionChangeAP.getAction()));
-        spells.add(new Spell("Fireball", 400, 1, 1,4,
+        spells.add(new Spell("Fireball", 400, 1, 1, 4,
                 TargetEnemyCard.getTargetInstance(), ActionChangeAP.getAction()));
         spells.add(new Spell("God Strength", 450, 2, 1, 4,
                 TargetOwnHero.getTargetInstance(), ActionChangeAP.getAction()));
@@ -109,8 +129,8 @@ public class PreProcess{
                 TargetAllEnemyCards.getTargetInstance(), ActionDisarm.getAction()));
         spells.add(new Spell("All Poison", 1500, 8, 4, 0,
                 TargetAllEnemyCards.getTargetInstance(), ActionDeployPoison.getAction()));
-        spells.add(new Spell("Dispel",2100, 0, 1, 0,
-                 TargetSingleCell.getTargetInstance(), ActionDispel.getAction()));
+        spells.add(new Spell("Dispel", 2100, 0, 1, 0,
+                TargetSingleCell.getTargetInstance(), ActionDispel.getAction()));
         spells.add(new Spell("Health With Profit", 2250, 0, 3, -6,
                 TargetOwnCard.getTargetInstance(), ActionHealthWithProfit.getAction()));
         spells.add(new Spell("Power Up", 2500, 2, 1, 6,
@@ -128,83 +148,86 @@ public class PreProcess{
         spells.add(new Spell("Shock", 1200, 1, 2, 0,
                 TargetEnemyCard.getTargetInstance(), ActionStun.getAction()));
 
-            for (Spell spell :
-                    spells) {
-                try {
-                    gson.toJson(spell, new FileWriter("Spell.json", true));
-                } catch (IOException e) {
-                    System.out.println("error");
-                }
-            }
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter("Spell.json");
+        } catch (IOException e) {
+        }
+        for (Spell spell :
+                spells) {
+            gson.toJson(spell, fileWriter);
+        }
+        try {
+            fileWriter.close();
+        } catch (IOException e) {
+        }
 
         //Minion
-
-        ArrayList<Minion> minions = new ArrayList<>();
-        minions.add(new Minion("Persian Archer",300, 2, 6,
+        minions.add(new Minion("Persian Archer", 300, 2, 6,
                 4, new Range(), 7,
                 null, null));
-        minions.add(new Minion("Persian Swordsman",400, 2, 6,
+        minions.add(new Minion("Persian Swordsman", 400, 2, 6,
                 4, new Melee(), 0,
                 new SpecialPower("Persian SwordsMan SpecialPower", 0, 0, 0, 0,
                         null, ActionStun.getAction()), SPATime.ATTACK));
-        minions.add(new Minion("Persian Lancer",500, 1, 5,
+        minions.add(new Minion("Persian Lancer", 500, 1, 5,
                 3, new Hybrid(), 3,
                 null, null));
-        minions.add(new Minion("Persian Horseman",200, 4, 10,
+        minions.add(new Minion("Persian Horseman", 200, 4, 10,
                 6, new Melee(), 0,
                 null, null));
-        minions.add(new Minion("Persian Warrior",600, 9, 24,
+        minions.add(new Minion("Persian Warrior", 600, 9, 24,
                 6, new Melee(), 0,
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, 5,
                         null, ActionChangeAP.getAction()), SPATime.ATTACK));
         
-/*        minions.add(new Minion("Persian General",800, 7, 12,
+        /*minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
                 , SPATime.NULL));*/ //combo
-        minions.add(new Minion("Turanian Archer",500, 1, 3,
+        minions.add(new Minion("Turanian Archer", 500, 1, 3,
                 4, new Range(), 5,
                 null, null));
-        minions.add(new Minion("Turanian Slinger",600, 1, 4,
+        minions.add(new Minion("Turanian Slinger", 600, 1, 4,
                 2, new Range(), 7,
                 null, null));
-        minions.add(new Minion("Turanian Lancer",600, 1, 4,
+        minions.add(new Minion("Turanian Lancer", 600, 1, 4,
                 4, new Hybrid(), 3,
                 null, null));
-        minions.add(new Minion("Turanian SPY",700, 4, 6,
+        minions.add(new Minion("Turanian SPY", 700, 4, 6,
                 6, new Melee(), 0,
                 new SpecialPower("Turanian Spy SpecialPower", 0, 0, 1, 4,
                         TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction(),
                         ActionPoisonCell.getAction()), SPATime.ATTACK));
 
-        minions.add(new Minion("Turanian MaceBearer",450, 2, 3,
+        minions.add(new Minion("Turanian MaceBearer", 450, 2, 3,
                 10, new Melee(), 0,
                 null, null));
         /*minions.add(new Minion("Turanian Prince",800, 6, 6,
                 10, new Melee(), 0,
                 , null));*///combo
-        minions.add(new Minion("Black Demon",300, 9, 14,
+        minions.add(new Minion("Black Demon", 300, 9, 14,
                 10, new Hybrid(), 7,
                 null, null));
-        minions.add(new Minion("Stone Thrower Giant",300, 9, 12,
+        minions.add(new Minion("Stone Thrower Giant", 300, 9, 12,
                 12, new Range(), 7,
                 null, null));
-        minions.add(new Minion("Eagle",200, 2, 0,
+        minions.add(new Minion("Eagle", 200, 2, 0,
                 2, new Range(), 3,
                 new SpecialPower("Eagle SpecialPower", 0, 0, 0, 10,
-                        null, ActionChangeHP.getAction()),SPATime.PASSIVE));
+                        null, ActionChangeHP.getAction()), SPATime.PASSIVE));
 
-        minions.add(new Minion("Hog Rider Demon",300, 6, 16,
+        minions.add(new Minion("Hog Rider Demon", 300, 6, 16,
                 8, new Melee(), 0,
                 null, null));
-        minions.add(new Minion("One Eye Giant",500, 7, 12,
+        minions.add(new Minion("One Eye Giant", 500, 7, 12,
                 11, new Hybrid(), 3,
                 new SpecialPower("One Eye Giant SpecialPower", 0, 0, 0, 2,
-                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeAP.getAction()), SPATime.DEATH ));
-        minions.add(new Minion("Venomous Snake",300, 4, 5,
+                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeAP.getAction()), SPATime.DEATH));
+        minions.add(new Minion("Venomous Snake", 300, 4, 5,
                 6, new Range(), 4,
                 new SpecialPower("VenomousSnake", 0, 0, 0, 3,
                         TargetEnemyCard.getTargetInstance(), ActionPoisonCell.getAction()), SPATime.ATTACK));
-        minions.add(new Minion("Fire Dragon",250, 5, 9,
+        minions.add(new Minion("Fire Dragon", 250, 5, 9,
                 5, new Range(), 4,
                 null, null));
         /*minions.add(new Minion("Fierce Lion",600, 2, 1,
@@ -212,31 +235,31 @@ public class PreProcess{
                 new SpecialPower("Fierce Lion SpecialPower", 0, 0, 0, 0,
                         null, ), SPATime.ATTACK));*/
 
-        minions.add(new Minion("Giant Snake",500, 8, 14,
+        minions.add(new Minion("Giant Snake", 500, 8, 14,
                 7, new Range(), 5,
-                new SpecialPower("Giant Snake SpecialPower", 0, 0, -1,1,
+                new SpecialPower("Giant Snake SpecialPower", 0, 0, -1, 1,
                         TargetEnemyMinionswithin2ManhattanDistance.getTargetInstance(), ActionChangeAP.getAction()), SPATime.ATTACK));
-        minions.add(new Minion("White Wolf",400, 5, 8,
+        minions.add(new Minion("White Wolf", 400, 5, 8,
                 2, new Melee(), 0,
                 new SpecialPower("White Wolf SpecialPower", 0, 0, 2, -6,
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK));//unhandled
         /*minions.add(new Minion("Leopard",400, 4, 6,
                 2, new Melee(), 0,
                 ,SPATime.ATTACK));*/
-        minions.add(new Minion("Wolf",400, 3, 6,
+        minions.add(new Minion("Wolf", 400, 3, 6,
                 1, new Melee(), 0,
                 new SpecialPower("Wolf SpecialPower", 0, 0, 0, -6,
                         TargetOwnMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK));
-        minions.add(new Minion("The Wizard",550, 4, 5,
+        minions.add(new Minion("The Wizard", 550, 4, 5,
                 4, new Range(), 3,
                 new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2,
-                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeHP.getAction(), ActionChangeAP.getAction()) ,
+                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeHP.getAction(), ActionChangeAP.getAction()),
                 SPATime.PASSIVE));
 
         /*minions.add(new Minion("The Great Wizard",550, 6, 6,
                 6, new Range(), 5,
                 ,SPATime.PASSIVE));*/
-        minions.add(new Minion("Genie",500, 5, 10,
+        minions.add(new Minion("Genie", 500, 5, 10,
                 4, new Range(), 4,
                 new SpecialPower("Genie SpecialPower", 0, 0, -1, 1,
                         TargetAllOwnMinions.getTargetClass(), ActionChangeAP.getAction()), SPATime.ON_TURN));//
@@ -250,47 +273,56 @@ public class PreProcess{
                 7, new Range(), 5,
                 , SPATime.DEFEND));*///Emtiazi
 
-        minions.add(new Minion("Bahman",450, 8, 16,
+        minions.add(new Minion("Bahman", 450, 8, 16,
                 9, new Melee(), 0,
                 new SpecialPower("Bahman SpecialPower", 0, 0, 1, -16,
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.SPAWN));
         /*inions.add(new Minion("Ashkbus",400, 7, 14,
                 8, new Melee(), 0,
                 , SPATime.DEFEND));*///emtiazi
-        minions.add(new Minion("Iraj",500, 4, 6,
+        minions.add(new Minion("Iraj", 500, 4, 6,
                 20, new Range(), 3,
                 null, null));
-        minions.add(new Minion("Great Giant",600, 9, 30,
+        minions.add(new Minion("Great Giant", 600, 9, 30,
                 8, new Hybrid(), 2,
                 null, null));
         /*minions.add(new Minion("Two Headed Giant",550, 4, 10,
                 4, new Melee(), 0,
                 new SpecialPower(), SPATime.ATTACK));*/
 
-        minions.add(new Minion("Mother Ice",500, 3, 3,
+        minions.add(new Minion("Mother Ice", 500, 3, 3,
                 4, new Range(), 5,
                 new SpecialPower("Mother Ice SpecialPower", 0, 0, 0, 1,
-                        MinionInSurrounding.getTargetInstance() ,ActionStun.getAction()), SPATime.SPAWN));
-        minions.add(new Minion("Foolad Zereh",650, 3, 1,
+                        MinionInSurrounding.getTargetInstance(), ActionStun.getAction()), SPATime.SPAWN));
+        minions.add(new Minion("Foolad Zereh", 650, 3, 1,
                 1, new Melee(), 0,
                 new SpecialPower("Foolad zereh SpecialPower", 0, 0, -1, 12,
                         TargetSingleCell.getTargetInstance(), ActionDeployHollyBuff.getAction()), SPATime.PASSIVE));
-        minions.add(new Minion("Siavash",350, 4, 8,
+        minions.add(new Minion("Siavash", 350, 4, 8,
                 5, new Melee(), 0,
                 new SpecialPower("Siavash SpecialPower", 0, 0, 0, 6,
                         TargetEnemyHero.getTargetInstance(), ActionChangeAP.getAction()), SPATime.DEATH));
         /*minions.add(new Minion("Eurymedon",600, 5, 10,
                 4, new Melee(), 0,
                 , SPATime.NULL));*/ // combo
-       /* minions.add(new Minion("Arzhang Div",600, 3, 6,
+        /*minions.add(new Minion("Arzhang Div",600, 3, 6,
                 6, new Melee(), 0,
                 , SPATime.NULL));*/ //combo
 
-        for (Minion minion:
-                    minions){
-            try {
-                gson.toJson(minion, new FileWriter("Card.json", true));
-            } catch (IOException e) {}
+        fileWriter = null;
+        try {
+            fileWriter = new FileWriter("Minion.json", true);
+        } catch (IOException e) {
+
+        }
+        for (Minion minion :
+                minions) {
+            gson.toJson(minion, fileWriter);
+        }
+        try {
+            fileWriter.close();
+        } catch (IOException e) {
+
         }
 
         //Hero
@@ -307,7 +339,7 @@ public class PreProcess{
         heroes.add(new Hero("Seven Headed Dragon", 50, 4, 0, new Melee(), 0,
                 new SpecialPower("Seven Headed Dragon", 0, 0, 1, 0,
                         TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction())
-                ,0, 1));
+                , 0, 1));
         heroes.add(new Hero("Rakhsh", 8000, 50, 4, new Melee(), 0,
                 new SpecialPower("Rakhsh", 0, 1, 1, 0,
                         TargetEnemyCard.getTargetInstance(), ActionStun.getAction())
@@ -332,21 +364,29 @@ public class PreProcess{
                 new SpecialPower("EsfanDar", 0, 0, -1, 3,
                         TargetSingleCell.getTargetInstance(), ActionDeployHollyBuff.getAction()),
                 0, 0));
-        heroes.add(new Hero("Rostam", 8000, 55, 7,new Hybrid(), 4,
+        heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4,
                 null, 0, 0));
 
-        for (Hero hero:
-             heroes) {
-            try {
-                gson.toJson(hero, new FileWriter("Card.json", true));
-            } catch (IOException e) {}
+        fileWriter = null;
+        try {
+            fileWriter = new FileWriter("Hero.json", true);
+        } catch (IOException e) {
+
+        }
+        for (Hero hero :
+                heroes) {
+            gson.toJson(hero, fileWriter);
+
+        }
+        try {
+            fileWriter.close();
+        } catch (IOException e) {
+
         }
 
 
         //item
-
-        ArrayList<Usable> usables = new ArrayList<>();
-        usables.add(new Usable("Wisdom Crown", 300,3, 1,
+        usables.add(new Usable("Wisdom Crown", 300, 3, 1,
                 null, ItemActionExtraMana.getItemAction()));
         usables.add(new Usable("Shield AF", 4000, 1, 12,
                 ItemTargetOwnHero.getTargetInstance(), ItemActionShieldAF.getItemAction()));
@@ -369,14 +409,21 @@ public class PreProcess{
         usables.add(new Usable("‌Baptism", 20000, 2, 0,
                 ));*/
 
-        for (Usable usable:
-             usables) {
-            try {
-                gson.toJson(usable, new FileWriter("Usables.json", true));
-            } catch (IOException e) {}
+        fileWriter = null;
+        try {
+            fileWriter = new FileWriter("Usables.json", true);
+        } catch (IOException e) {
         }
 
-        ArrayList<Collectable> collectables = new ArrayList<>();
+        for (Usable usable :
+                usables) {
+            gson.toJson(usable, fileWriter);
+        }
+        try {
+            fileWriter.close();
+        } catch (IOException e) {
+        }
+
         collectables.add(new Collectable("NooshDaru", 1, 6,
                 TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Two Headed Arrow", 1, 2,
@@ -396,15 +443,19 @@ public class PreProcess{
         collectables.add(new Collectable("Chineese Sword", 1, 5,
                 TargetMelee.getTargetClass(), ItemActionChangeAP.getItemAction()));
 
-        for (Collectable collectable:
+        fileWriter = null;
+        try {
+            fileWriter = new FileWriter("Collectables.json", true);
+        } catch (IOException e) {
+        }
+        for (Collectable collectable :
                 collectables) {
-            try {
-                gson.toJson(collectable, new FileWriter("Collectables.json", true));
-            } catch (IOException e) {}
+            gson.toJson(collectable, fileWriter);
+        }
+        try {
+            fileWriter.close();
+        } catch (IOException e) {
         }
     }
 
-    public static void main(String[] args) {
-        preProcess();
-    }
 }
