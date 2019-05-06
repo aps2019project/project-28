@@ -236,4 +236,8 @@ public abstract class Hermione extends Card {
     public void setLostHealthPointDueToBuff(int lostHealthPointDueToBuff) {
         this.buffEffects.setLostHealthPointDueToBuff(lostHealthPointDueToBuff);
     }
+
+    public BuffEffectsOnHermione getBuffEffects() {
+        return buffEffects;
+    }
 }
