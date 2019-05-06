@@ -9,6 +9,10 @@ import Model.card.spell.SpellAction.ActionDisarm;
 import Model.card.spell.SpellAction.ActionStun;
 import Model.card.spell.Targets.*;
 import Model.item.Collectable;
+import Model.item.ItemAction.ItemActionChangeAP;
+import Model.item.ItemAction.ItemActionDamoolArch;
+import Model.item.ItemAction.ItemActionExtraMana;
+import Model.item.ItemAction.ItemActionShieldAF;
 import Model.item.Usable;
 import com.google.gson.*;
 
@@ -268,17 +272,28 @@ public class PreProcess{
         //item
 
         ArrayList<Usable> usables = new ArrayList<>();
-        usables.add(new Usable("Wisdom Crown", 300,3, 1, null, ActionIncreaseMana));
-        usables.add(new Usable("Shield AF", 4000, 1, 12, ItemTargetOwnHero));
-        usables.add(new Usable("Damool's Arc", 30000, ));
-        usables.add(new Usable("Simorgh's feather", 3500, 1, 6, ItemTargetOwnCard, ItemActionIncreaseAP));
-        usables.add(new Usable("Terror Hood", 5000, 1, -2, ));
-        usables.add(new Usable("King Wisdom", 9000, -1, 6, ));
-        usables.add(new Usable("Assassination Dagger", 15000, 1, 1, ));
-        usables.add(new Usable("Poisonous Dagger", 7000, 1, 0, ));
-        usables.add(new Usable("Shock Hammer", 15000, 2, 0, ));
-        usables.add(new Usable("Soul Eater", 25000, 1, 1, ));
-        usables.add(new Usable("‌Baptism", 20000, 2, 0, ));
+        usables.add(new Usable("Wisdom Crown", 300,3, 1,
+                null, ItemActionExtraMana.getItemAction()));
+        usables.add(new Usable("Shield AF", 4000, 1, 12,
+                ItemTargetOwnHero.getTargetInstance(), ItemActionShieldAF.getItemAction()));
+        usables.add(new Usable("Damool Arch", 30000, 1, 0,
+                TargetRangedAndHybrid.getTargetClass(), ItemActionDamoolArch.getItemAction()));
+        usables.add(new Usable("Simorgh's feather", 3500, 1, -2,
+                TargetRangedAndHybrid.getTargetClass(), ItemActionChangeAP.getItemAction()));
+        usables.add(new Usable("Terror Hood", 5000, 1, -2,
+                TargetRandomEnemy.getTargetClass(), ItemActionChangeAP.getItemAction()));
+        usables.add(new Usable("King Wisdom", 9000, -1, 0,
+                null, ItemActionExtraMana.getItemAction()));
+        usables.add(new Usable("Assassination Dagger", 15000, 1, 1,
+                ));
+        usables.add(new Usable("Poisonous Dagger", 7000, 1, 0,
+                ));
+        usables.add(new Usable("Shock Hammer", 15000, 2, 0,
+                ));
+        usables.add(new Usable("Soul Eater", 25000, 1, 1,
+                ));
+        usables.add(new Usable("‌Baptism", 20000, 2, 0,
+                ));
 
         for (Usable usable:
              usables) {
@@ -286,15 +301,24 @@ public class PreProcess{
         }
 
         ArrayList<Collectable> collectables = new ArrayList<>();
-        collectables.add(new Collectable("NooshDaru",));
-        collectables.add(new Collectable("Two Headed Arrow",));
-        collectables.add(new Collectable("Eksir",));
-        collectables.add(new Collectable("Mana's Majoon",));
+        collectables.add(new Collectable("NooshDaru", 1, 6,
+                TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+        collectables.add(new Collectable("Two Headed Arrow", 1, 2,
+                TargetRangedAndHybrid.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+        collectables.add(new Collectable("Eksir", 1, 3,
+                TargetRandomOwnMinion.getTargetInstance(), ItemActionChangeAP.getItemAction(),
+                ItemActionChangeAP.getItemAction()));
+        collectables.add(new Collectable("Mana's Majoon", 1, 3,
+                null, ItemActionExtraMana.getItemAction()));
         collectables.add(new Collectable("RooEnTan's Majoon",));
-        collectables.add(new Collectable("Death's Curse",));
-        collectables.add(new Collectable("Random damage",));
-        collectables.add(new Collectable("Blades of agility",));
-        collectables.add(new Collectable("Chineese Sword",));
+        collectables.add(new Collectable("Death's Curse", 0, 8,
+                TargetRandomOwnMinion.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+        collectables.add(new Collectable("Random damage", 1, 2,
+                TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+        collectables.add(new Collectable("Blades of agility", 1, 6,
+                TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+        collectables.add(new Collectable("Chineese Sword", 1, 5,
+                TargetMelee.getTargetClass(), ItemActionChangeAP.getItemAction()));
 
         for (Collectable collectable:
                 collectables) {

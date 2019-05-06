@@ -4,6 +4,7 @@ import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Target;
+import Model.item.ItemAction.ItemAction;
 import exeption.InvalidCellException;
 import exeption.InvalidItemException;
 
@@ -15,17 +16,19 @@ public abstract class Item {
     private static ArrayList<Item> items = new ArrayList<>();
     private String name;
     private Target target;
+    private int duration;
     private int perk;
     private int perk2;
     private ArrayList<ItemAction> actions = new ArrayList<>();
     private int itemID;
     private ArrayList<OnItemDetailPresentedListener> itemDetailPresenters = new ArrayList<>();
 
-    public Item(String name, ArrayList<ItemAction> actions, Target target, int perk) {
+    public Item(String name, int duration, int perk, Target target, ItemAction... actions) {
         this.name = name;
-        this.actions = actions;
+        Collections.addAll(this.actions, actions);
         this.target = target;
         this.perk = perk;
+        this.duration = duration;
 //        this.itemID = itemID;TODO ITEMID
     }
 

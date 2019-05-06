@@ -38,7 +38,7 @@ public abstract class Battle extends Menu {
 //        this.setPlayer();
 //    }
 
-    public void gameInfo(){
+    public void gameInfo() {
         for (OnGameInfoPresentedListener presenter : this.gameInfoPresenters) {
             presenter.showGameInfo();
         }
@@ -177,9 +177,11 @@ public abstract class Battle extends Menu {
     public void addGameInfoPresentedListener(OnGameInfoPresentedListener presenter){
         this.gameInfoPresenters.add(presenter);
     }
+
     public ArrayList<OnGameInfoPresentedListener> getGameInfoPresenters() {
         return (ArrayList<OnGameInfoPresentedListener>) Collections.unmodifiableList(gameInfoPresenters);
     }
+
     public Player getEnemy(Account me) {
         if (player[0].getUser().equals(me)) return player[1];
         return player[0];

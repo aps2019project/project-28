@@ -34,26 +34,6 @@ public class Spell extends Card {
         this.target = target;
     }
 
-    public Spell(Spell spell){
-        super(spell);
-        this.setPerk(spell.getPerk());
-        this.setDuration(spell.getDuration());
-        //this.setTarget(spell.getTarget());//TODO Constructor e target ha
-        for (Spell activeSpell:
-             spell.getActiveSpells()) {
-            this.getActiveSpells().add(new Spell(activeSpell));
-        }//TODO LOOP nmikhre?
-        int i = 0;
-        for (Cell cell:
-             spell.getTargetCells()) {
-            this.getTargetCells()[i++] = new Cell(cell);
-        }
-//        for (Action action:
-//             spell.getActions()) {
-//            this.getActions().add(new Action(action));
-//        }TODO
-
-    }
 
     public void setPerk(int perk) {
         this.perk = perk;
