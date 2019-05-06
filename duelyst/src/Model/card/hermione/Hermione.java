@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public abstract class Hermione extends Card {
 
     protected int healthPoint;
-    protected int originalHealhPoint;
+    protected int originalHealthPoint;
     protected int attackPoint;
     protected Model.card.spell.SpecialPower SpecialPower;
     protected ArrayList<Buff> appliedBuffs ;
@@ -130,7 +130,7 @@ public abstract class Hermione extends Card {
 
     public void changeHealthPoint(int healthPoint) {
         this.healthPoint += healthPoint;
-        this.healthPoint=Integer.min(this.healthPoint,this.originalHealhPoint);
+        this.healthPoint=Integer.min(this.healthPoint,this.originalHealthPoint);
     }
     public void changeAttackPoint(int attackPoint) {
         this.attackPoint = attackPoint;
@@ -247,11 +247,11 @@ public abstract class Hermione extends Card {
         this.buffEffects.setLostHealthPointDueToBuff(lostHealthPointDueToBuff);
     }
 
-    public int getOriginalHealhPoint() {
-        return originalHealhPoint;
+    public int getOriginalHealthPoint() {
+        return originalHealthPoint;
     }
 
-    public void setOriginalHealhPoint(int originalHealhPoint) {
-        this.originalHealhPoint = originalHealhPoint;
+    public void setOriginalHealthPoint(int originalHealthPoint) {
+        this.originalHealthPoint = originalHealthPoint;
     }
 }
