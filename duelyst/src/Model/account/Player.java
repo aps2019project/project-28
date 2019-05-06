@@ -12,11 +12,9 @@ import Model.item.Item;
 import com.google.gson.Gson;
 import exeption.*;
 
-import javax.print.attribute.standard.Destination;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class Player {
     private Account user;
@@ -28,6 +26,10 @@ public class Player {
     private Deck deck;
     private Card selectedCard;
     private Item selectedItem;
+    private int manaTheriac = 0 ;
+    private int maxManaTheriac = 0 ;
+    private boolean hasAssasinationDagger = false ;
+
 
     public Player(Account user, int maxMana, int mana) {
         this.user = user;
@@ -63,9 +65,12 @@ public class Player {
         try {
             Hermione hermione = (Hermione) card;
             hermione.spawn(cell);
+            if (hasAssasinationDagger){
+                Game.battle.getEnemyPlayer().getDeck().getHero().changeHealthPoint(-1);
+            }
         } catch (ClassCastException e) {
-            Spell spell=(Spell) card;
-                spell.deploy(this, Game.battle.getEnemy(this.user),cell);
+            Spell spell = (Spell) card;
+            spell.deploy(this, Game.battle.getEnemy(this.user), cell);
         }
     }
 
@@ -102,7 +107,7 @@ public class Player {
         return Collections.unmodifiableList(minionsInGame) ;
     }
 
-    public List<Collectable> getUsabless() {
+    public List<Collectable> getUsables() {
         return Collections.unmodifiableList(collectables);
     }
 
@@ -132,7 +137,9 @@ public class Player {
     }
 
     public void reFillMana() {
-        this.mana=maxMana;
+        this.mana=maxMana + maxManaTheriac;
+        mana+=this.manaTheriac ;
+        manaTheriac = 0 ;
     }
 
     public Item getItem(int ID) throws InvalidItemException {
@@ -147,5 +154,17 @@ public class Player {
             if(collectable.getID()==id)return true;
         }
         return false;
+    }
+
+    public void setManaTheriac(int hasManaTheriac) {
+        this.manaTheriac = hasManaTheriac;
+    }
+
+    public void setMaxManaTheriac(int maxManaTheriac) {
+        this.maxManaTheriac += maxManaTheriac;
+    }
+
+    public void setHasAssasinationDagger(boolean hasAssasinationDagger) {
+        this.hasAssasinationDagger = hasAssasinationDagger;
     }
 }

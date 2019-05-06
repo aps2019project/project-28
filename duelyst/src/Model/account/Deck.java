@@ -196,5 +196,9 @@ public class Deck{
     public ArrayList<Card> getGraveYard() {
         return graveYard;
     }
+
+    public void killHero() {
+        this.hero=null;
+    }
 }
 

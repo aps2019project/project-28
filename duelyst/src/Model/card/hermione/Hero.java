@@ -1,6 +1,8 @@
 package Model.card.hermione;
 
+import Controller.Game;
 import Model.Map.Cell;
+import exeption.InvalidCardException;
 
 public class Hero extends Hermione {
 
@@ -40,5 +42,11 @@ public class Hero extends Hermione {
     public void increaseRemainCoolDown() {
         this.remainCoolDOwnTime--;
         if(this.remainCoolDOwnTime==0)this.remainCoolDOwnTime=this.cooldown;
+    }
+
+    @Override
+    public void die() throws InvalidCardException {
+        super.die();
+        Game.battle.getEnemyPlayer().getDeck().killHero();
     }
 }

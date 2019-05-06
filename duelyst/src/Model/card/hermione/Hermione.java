@@ -14,10 +14,8 @@ public abstract class Hermione extends Card {
 
     protected int healthPoint;
     protected int attackPoint;
-    protected int originalAttackPoint ;
     protected Model.card.spell.SpecialPower SpecialPower;
-    private ArrayList<Buff> appliedBuffs ;
-    private int HollyBuffLevel = 0 ;
+    protected ArrayList<Buff> appliedBuffs ;
     protected AttackType attackType;
     protected int range;
     public static final int MOVE_RANGE = 2;
@@ -27,22 +25,22 @@ public abstract class Hermione extends Card {
     protected boolean canAttack = true ;
     protected int numberOfFlags;
     protected boolean canMove;
-    protected boolean hasTheDeathCurse = false ;
     protected int attackCounter = 0 ;
+    protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione();
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range) {
         super(name, price, manaPoint);
         this.healthPoint = healthPoint;
         this.attackPoint = attackPoint;
-        this.originalAttackPoint = attackPoint ;
+        this.buffEffects.setOriginalAttackPoint(attackPoint) ;
         SpecialPower = specialPower;
         this.attackType = attackType;
         this.range = range;
     }
 
     public void setOriginalAttackPoint(int originalAttackPoint) {
-        this.originalAttackPoint = originalAttackPoint;
+        this.buffEffects.setOriginalAttackPoint(originalAttackPoint);
     }
 
     public void setActionTurn(int actionTurn) {
@@ -56,6 +54,7 @@ public abstract class Hermione extends Card {
     public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCardException {
         if(!this.canAttack)throw new CantAttackException();
       if(this.attackType.canReach(this,enemyCard)){
+          this.attackCounter++ ;
             enemyCard.setHealthPoint(enemyCard.healthPoint-this.attackPoint);
             enemyCard.counterAttack(this);
             if(enemyCard.getHealthPoint()<=0){
@@ -96,7 +95,7 @@ public abstract class Hermione extends Card {
 
     public  abstract boolean applySpecialPower(int x, int y);// TODO: 4/15/19 saE
 
-    private void handleAppliedBuffs(){
+    private void handleAppliedBuffs() throws InvalidCellException{
         for (Buff appliedBuff : this.appliedBuffs) {
             appliedBuff.affect();
         }
@@ -110,11 +109,13 @@ public abstract class Hermione extends Card {
         Game.battle.getEnemyPlayer().getDeck().moveToGraveYard(this);
     }
 
-    public void reverseChanges(){
-        this.attackPoint=this.originalAttackPoint;
-        // TODO: 4/29/19 age chizi munde
+    public void reverseAP(){
+        this.attackPoint=this.buffEffects.getOriginalAttackPoint();
     }
 
+    public void reverseHP(){
+        this.healthPoint+=this.buffEffects.getLostHealthPointDueToBuff();
+    }
 
 
 
@@ -205,7 +206,7 @@ public abstract class Hermione extends Card {
     }
 
     public int getOriginalAttackPoint() {
-        return originalAttackPoint;
+        return buffEffects.getOriginalAttackPoint();
     }
 
     public boolean isCanCounterAttack() {
@@ -217,18 +218,22 @@ public abstract class Hermione extends Card {
     }
 
     public void setHollyBuffLevel (int level) {
-         this.HollyBuffLevel = level;
+         this.buffEffects.setHollyBuffLevel(level) ;
     }
 
     public int getHollyBuffLevel() {
-        return HollyBuffLevel;
+        return this.buffEffects.getHollyBuffLevel();
     }
 
     public boolean isHasTheDeathCurse() {
-        return hasTheDeathCurse;
+        return buffEffects.isHasTheDeathCurse();
     }
 
     public void setHasTheDeathCurse(boolean hasTheDeathCurse) {
-        this.hasTheDeathCurse = hasTheDeathCurse;
+        this.setHasTheDeathCurse(hasTheDeathCurse);
+    }
+
+    public void setLostHealthPointDueToBuff(int lostHealthPointDueToBuff) {
+        this.buffEffects.setLostHealthPointDueToBuff(lostHealthPointDueToBuff);
     }
 }

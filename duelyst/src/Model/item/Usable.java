@@ -1,9 +1,7 @@
 package Model.item;
 
 import Model.card.spell.Target;
-import Model.item.ItemAction.ItemAction;
-
-import java.util.ArrayList;
+import Model.item.ItemActions.ItemAction;
 
 public class Usable extends Item {
 
