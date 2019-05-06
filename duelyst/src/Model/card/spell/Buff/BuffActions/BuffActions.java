@@ -5,6 +5,6 @@ import exeption.InvalidCellException;
 
 public interface BuffActions {
     void affect(Buff buff) throws InvalidCellException ;
-    default void destroy(Buff buff) throws InvalidCellException {}
+    default void destroy(Buff buff) {}
 }
 

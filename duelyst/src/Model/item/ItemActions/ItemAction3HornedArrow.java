@@ -1,4 +1,4 @@
-package Model.item.ItemAction;
+package Model.item.ItemActions;
 
 import Model.Map.Cell;
 import Model.item.Item;

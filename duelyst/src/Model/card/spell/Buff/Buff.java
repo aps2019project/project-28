@@ -2,6 +2,7 @@ package Model.card.spell.Buff;
 
 import Model.account.Player;
 import Model.card.hermione.Hermione;
+import exeption.InvalidCellException;
 
 import java.util.ArrayList;
 
@@ -30,14 +31,14 @@ public class Buff {
         this.perk = perk ;
     }
 
-    public void deploy(Player player , Hermione target ){
+    public void deploy(Player player , Hermione target ) throws InvalidCellException{
         this.player = player;
         this.target = target ;
         target.getAppliedBuffs().add(this);
         activeBuffs.add(this);
         this.action.affect(this);
     }
-    public void affect(){
+    public void affect() throws InvalidCellException {
         if (this.player == null || this.target == null || this.action == null) return;
         this.action.affect(this);
     }

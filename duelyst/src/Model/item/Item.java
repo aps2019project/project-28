@@ -4,7 +4,7 @@ import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Target;
-import Model.item.ItemAction.ItemAction;
+import Model.item.ItemActions.ItemAction;
 import exeption.InvalidCellException;
 import exeption.InvalidItemException;
 
