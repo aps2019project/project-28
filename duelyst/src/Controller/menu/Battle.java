@@ -286,4 +286,8 @@ public class Battle extends Menu {
         System.out.println("19)Show info     20)Use [location x, y]     21)Show Next Card");
         System.out.println("22)Help    23)End Game     ");
     }
+
+    public GameMode getGameMode() {
+        return gameMode;
+    }
 }

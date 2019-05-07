@@ -1,5 +1,7 @@
 package View;
 
+import Controller.GameMode.ClassicMode;
+import Controller.GameMode.FlagMode;
 import Controller.menu.Battle;
 import Controller.menu.*;
 import Model.account.Account;
@@ -14,10 +16,7 @@ import Model.card.spell.Spell;
 import Model.item.Item;
 import Model.item.OnItemDetailPresentedListener;
 import Model.item.Usable;
-import View.Listeners.OnCollectionPresentedListener;
-import View.Listeners.OnDeckPresentedListener;
-import View.Listeners.OnHeroDetailsPresentedListener;
-import View.Listeners.OnMenuClickedListener;
+import View.Listeners.*;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -190,6 +189,21 @@ public class ManuHandler {
 
         //deck
         Deck.addNewOnDeckPresentedListener(deck -> allCardPresenter(deck.getCards(),deck.getUsables()));
+
+        //GameInfo
+        Battle.getMenu().addGameInfoPresentedListener(new OnGameInfoPresentedListener() {
+            @Override
+            public void showGameInfo() {
+                if(Battle.getMenu().getGameMode() instanceof ClassicMode){
+                    System.out.println(Battle.getMenu().getAccount().getName()+" : " + Battle.getMenu().getAccount().getPlayer().getDeck().getHero().getHealthPoint());
+                    System.out.println(Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getUser().getName()+" : " + Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getHealthPoint());
+                }else if(Battle.getMenu().getGameMode() instanceof FlagMode){
+
+                }else{
+
+                }
+            }
+        });
     }
     private static void initMenus() {
         //az SignIn Menu mirim tuye MainMenu
@@ -230,13 +244,17 @@ public class ManuHandler {
 
 
                 if (commonCommandHandler(word)) {
-
                 } else if (currentMenu instanceof SignInMenu) {
                     SignInMenuCommandHandler(word);
                 } else if (currentMenu instanceof CollectionMenu) {
                     CollectionMenuCommandHandler(word);
                 } else if (currentMenu instanceof ShopMenu){
                     ShopMenuCommandHandler(word);
+                }else if(currentMenu instanceof Battle){
+                    Battle menu= (Battle) currentMenu;
+                    if(word[0].equals("game") && word[1].equals("info")){
+                        menu.gameInfo();
+                    }
                 }
             }
             catch (Exception e){};
