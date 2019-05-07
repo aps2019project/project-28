@@ -134,10 +134,6 @@ public class Collection {
         throw new InvalidCardException();
     }
 
-    public Collection getTempCollection() {
-        return tempCollection;
-    }
-
     public boolean hasItem(int itemID) {
         for (Usable item :
                 usables) {
@@ -211,6 +207,7 @@ public class Collection {
         if (this.hasDeck(name)) {
             Deck delete = getDeckByName(name);
             this.tempCollection.getDecks().remove(delete);
+            return;
         }
         throw new InvalidDeckException();
     }
@@ -229,6 +226,7 @@ public class Collection {
     public void addCardToCollection(Card card) throws CardExistException {
         if (!hasCard(card)) {
             tempCollection.getCards().add(card);
+            return;
         }
         throw new CardExistException();
     }
@@ -236,6 +234,7 @@ public class Collection {
     public void removeCardFromCollection(Card card) throws InvalidCardException {
         if (hasCard(card)) {
             this.cards.remove(card);
+            return;
         }
         throw new InvalidCardException();
     }
@@ -304,7 +303,7 @@ public class Collection {
 
     public void removeFromCollection(String name) throws InvalidCardException {
         try {
-            removeItemFromCollection((Usable) this.getItem(name));
+            removeItemFromCollection(this.getItem(name));
         } catch (InvalidItemException e) {
             removeCardFromCollection(this.getCard(name));
         }
