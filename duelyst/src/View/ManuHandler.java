@@ -481,12 +481,12 @@ public class ManuHandler {
         Battle.getMenu().addPattern("Show opponent minions");
         Battle.getMenu().addPattern("Show card info [\\d]+");
         Battle.getMenu().addPattern("Select [\\d]+");
-        Battle.getMenu().addPattern("Move to ([\\d]+, [\\d]+)");//Mitune ye rqmi ham bzrim
+        Battle.getMenu().addPattern("Move to \\([\\d]+ [\\d]+\\)");
         Battle.getMenu().addPattern("Attack [\\d]+");
         Battle.getMenu().addPattern("Attack combo [\\d]+ [\\d]+[ \\d+]+");
-        Battle.getMenu().addPattern("Use special power ([\\d]+, [\\d]+)");
+        Battle.getMenu().addPattern("Use special power \\([\\d]+ [\\d]+\\)");
         Battle.getMenu().addPattern("Show hand");
-        Battle.getMenu().addPattern("Insert [\\w]+ in ([\\d]+, [\\d]+)");
+        Battle.getMenu().addPattern("Insert [\\w]+ in \\([\\d]+ [\\d]+\\)");
         Battle.getMenu().addPattern("End turn");
         Battle.getMenu().addPattern("Show collectables");
         Battle.getMenu().addPattern("Select [\\d]+");
@@ -511,7 +511,7 @@ public class ManuHandler {
         CollectableMenu.getMenu().addPattern("show");
         CollectableMenu.getMenu().addPattern("exit");
         CollectableMenu.getMenu().addPattern("Show info");
-        CollectableMenu.getMenu().addPattern("Use \\[[\\d+], [\\d]+\\]");
+        CollectableMenu.getMenu().addPattern("Use \\[[\\d+] [\\d]+\\]");
     }
     public static void setMainMenuPattern(){
         MainMenu.getMenu().addPattern("[\\d]+");
