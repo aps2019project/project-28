@@ -414,6 +414,7 @@ public class ManuHandler {
         setShopPatterns();
         setBattlePatterns();
         setGraveyardPatterns();
+        setCollectablePattern();
     }
 
     public static void setSignInPatterns(){
@@ -459,8 +460,6 @@ public class ManuHandler {
         Battle.getMenu().addPattern("End turn");
         Battle.getMenu().addPattern("Show collectables");
         Battle.getMenu().addPattern("Select [\\d]+");
-        Battle.getMenu().addPattern("Show info");
-        Battle.getMenu().addPattern("Use \\[[\\d+], [\\d]+\\]");
         Battle.getMenu().addPattern("Show Next Card");
         Battle.getMenu().addPattern("Enter graveyard");
         Battle.getMenu().addPattern("Help");
@@ -471,6 +470,10 @@ public class ManuHandler {
         Battle.getMenu().addPattern("Show cards");
     }
 
+    public static void setCollectablePattern(){
+        Battle.getMenu().addPattern("Show info");
+        Battle.getMenu().addPattern("Use \\[[\\d+], [\\d]+\\]");
+    }
 
 
     public static void main(String[] args) {
