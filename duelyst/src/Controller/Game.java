@@ -11,5 +11,6 @@ public class Game {
     public static Battle battle= Battle.getMenu();
     public static boolean hasLoggedIn = false;
 
+
 }
 
