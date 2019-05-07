@@ -247,7 +247,9 @@ public class ManuHandler {
            if(word[1].equals("collection")){
                menu.showCollection();
            }else{
+               System.err.println("asdddddddddddddd");
                 menu.show();
+               System.err.println("asdddddddddddddd");
            }
        }else if(word[0].equals("search")){
             if(word[1].equals("collection")){

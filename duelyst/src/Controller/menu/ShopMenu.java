@@ -103,7 +103,9 @@ public class ShopMenu extends Menu {
     }
 
     public void show() {//shows the items and cards in shop
+        System.err.println("im in");
         for (OnCollectionPresentedListener presenter : Collection.getCollectionPresentedListeners()) {
+            System.err.println("im in the for");
             presenter.show(this.shop.getCollection(),"SHOP");
         }
 //        for (Card card : this.shop.getCollection().getCards()) {
