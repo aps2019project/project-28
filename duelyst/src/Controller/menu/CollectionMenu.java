@@ -15,6 +15,7 @@ public class CollectionMenu extends Menu {
     private static CollectionMenu menu;
 
     private Collection tempCollection;
+
     private CollectionMenu(String name) {
         super(name);
         this.tempCollection = new Collection();

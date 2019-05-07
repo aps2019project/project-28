@@ -27,11 +27,11 @@ import java.util.List;
 
 public class PreProcess {
 
-    private static ArrayList<Spell> spells = new ArrayList<>();
-    private static ArrayList<Minion> minions = new ArrayList<>();
-    private static ArrayList<Hero> heroes = new ArrayList<>();
-    private static ArrayList<Usable> usables = new ArrayList<>();
-    private static ArrayList<Collectable> collectables = new ArrayList<>();
+    public static ArrayList<Spell> spells = new ArrayList<>();
+    public static ArrayList<Minion> minions = new ArrayList<>();
+    public static ArrayList<Hero> heroes = new ArrayList<>();
+    public static ArrayList<Usable> usables = new ArrayList<>();
+    public static ArrayList<Collectable> collectables = new ArrayList<>();
 
     public static ArrayList<Hero> getHeroes() {
         try {
@@ -152,7 +152,7 @@ public class PreProcess {
         spells.add(new Spell("Shock", 1200, 1, 2, 0,
                 TargetEnemyCard.getTargetInstance(), ActionStun.getAction()));
 
-       FileWriter fileWriter = null;
+       /*FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter("Spell.json");
         } catch (IOException e) {
@@ -164,7 +164,7 @@ public class PreProcess {
         try {
             fileWriter.close();
         } catch (IOException e) {
-        }
+        }*/
 
         //Minion
         minions.add(new Minion("Persian Archer", 300, 2, 6,
@@ -320,7 +320,7 @@ public class PreProcess {
                 null, ActionCombo.getAction())
                 , SPATime.NULL));
 
-        fileWriter = null;
+        /*fileWriter = null;
         try {
             fileWriter = new FileWriter("Minion.json", true);
         } catch (IOException e) {
@@ -334,7 +334,7 @@ public class PreProcess {
             fileWriter.close();
         } catch (IOException e) {
 
-        }
+        }*/
 
         //Hero
 
@@ -378,7 +378,7 @@ public class PreProcess {
         heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4,
                 null, 0, 0));
 
-        fileWriter = null;
+        /*fileWriter = null;
         try {
             fileWriter = new FileWriter("Hero.json", true);
         } catch (IOException e) {
@@ -393,7 +393,7 @@ public class PreProcess {
             fileWriter.close();
         } catch (IOException e) {
 
-        }
+        }*/
 
 
         //item
@@ -420,7 +420,7 @@ public class PreProcess {
         usables.add(new Usable("‌Baptism", 20000, 2, 0,
                 ));*/
 
-        fileWriter = null;
+        /*fileWriter = null;
         try {
             fileWriter = new FileWriter("Usables.json", true);
         } catch (IOException e) {
@@ -433,7 +433,7 @@ public class PreProcess {
         try {
             fileWriter.close();
         } catch (IOException e) {
-        }
+        }*/
 
         collectables.add(new Collectable("NooshDaru", 1, 6,
                 TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
@@ -454,7 +454,7 @@ public class PreProcess {
         collectables.add(new Collectable("Chineese Sword", 1, 5,
                 TargetMelee.getTargetClass(), ItemActionChangeAP.getItemAction()));
 
-        fileWriter = null;
+        /*fileWriter = null;
         try {
             fileWriter = new FileWriter("Collectables.json", true);
         } catch (IOException e) {
@@ -466,7 +466,7 @@ public class PreProcess {
         try {
             fileWriter.close();
         } catch (IOException e) {
-        }
+        }*/
     }
 
 }

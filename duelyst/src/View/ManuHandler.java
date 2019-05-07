@@ -4,6 +4,7 @@ import Controller.GameMode.ClassicMode;
 import Controller.GameMode.FlagMode;
 import Controller.menu.Battle;
 import Controller.menu.*;
+import Model.PreProcess;
 import Model.account.Account;
 import Model.account.Collection;
 import Model.account.Deck;
@@ -79,6 +80,7 @@ public class ManuHandler {
         }
     }
     static{
+        PreProcess.preProcess();
         initMenus();
         setListener();
     }
@@ -396,7 +398,7 @@ public class ManuHandler {
                 System.out.println("this userName is already taken");
             } catch(ArrayIndexOutOfBoundsException e){
                 System.out.println("please enter in the fallowing order");
-                System.out.println("1)username     2)name      3)password");
+                System.out.println("1)name     2)username      3)password");
             }
         }else if(word[0].equals("login")){
             try {
@@ -439,4 +441,97 @@ public class ManuHandler {
         }
         return false;
     }
+
+    public void setSignInPatterns(){
+        SignInMenu.getMenu().addPattern("create account [\\w]+");
+        SignInMenu.getMenu().addPattern("login [\\w]+ [\\w]+");
+        SignInMenu.getMenu().addPattern("show leaderboard");
+        SignInMenu.getMenu().addPattern("save");
+        SignInMenu.getMenu().addPattern("logout");
+    }
+
+    public void setCollectionPatterns(){
+        CollectionMenu.getMenu().addPattern("show");
+        CollectionMenu.getMenu().addPattern("search [\\w]+");
+        CollectionMenu.getMenu().addPattern("save");
+        CollectionMenu.getMenu().addPattern("create deck[\\w+]");
+        CollectionMenu.getMenu().addPattern("delete deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("add [\\d]+ to deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("remove [\\d]+ from deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("validate deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("select deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("show all decks");
+        CollectionMenu.getMenu().addPattern("show deck [\\w]+");
+    }
+
+
+    public void setShopPatterns(){
+        ShopMenu.getMenu().addPattern("show collection");
+        ShopMenu.getMenu().addPattern("search [\\w]+");
+        ShopMenu.getMenu().addPattern("search collection [\\w]+");
+        ShopMenu.getMenu().addPattern("buy [\\w]+");
+        ShopMenu.getMenu().addPattern("sell [\\d]+");
+        ShopMenu.getMenu().addPattern("show");
+    }
+
+    public void setBattlePatterns(){
+        Battle.getMenu().addPattern("Game info");
+        Battle.getMenu().addPattern("Show my minions");
+        Battle.getMenu().addPattern("Show opponent minions");
+        Battle.getMenu().addPattern("Show card info [\\d]+");
+        Battle.getMenu().addPattern("Select [\\d]+");
+        Battle.getMenu().addPattern("Move to ([\\d]+, [\\d]+)");//Mitune ye rqmi ham bzrim
+        Battle.getMenu().addPattern("Attack [\\d]+");
+        Battle.getMenu().addPattern("Attack combo [\\d]+ [\\d]+[ \\d+]+");
+        Battle.getMenu().addPattern("Use special power ([\\d]+, [\\d]+)");
+        Battle.getMenu().addPattern("Show hand");
+        Battle.getMenu().addPattern("Insert [\\w]+ in ([\\d]+, [\\d]+)");
+        Battle.getMenu().addPattern("End turn");
+        Battle.getMenu().addPattern("Show collectables");
+        Battle.getMenu().addPattern("Select [\\d]+");
+        Battle.getMenu().addPattern("Show info");
+        Battle.getMenu().addPattern("Use \\[[\\d+], [\\d]+\\]");
+        Battle.getMenu().addPattern("Show Next Card");
+        Battle.getMenu().addPattern("Enter graveyard");
+        Battle.getMenu().addPattern("Help");
+        Battle.getMenu().addPattern("End Game");
+    }
+
+    public void setGraveyardPatterns(){
+        Battle.getMenu().addPattern("Show info [\\d]+");
+        Battle.getMenu().addPattern("Show cards");
+    }
+
+
+    public static void main(String[] args) {
+
+        Scanner commands=new Scanner(System.in);
+        currentMenu.showMenu();
+        while(commands.hasNext()){
+            try {
+                String command = commands.nextLine().toLowerCase();
+                String[] word = command.split(" ");
+                if (!currentMenu.allowsCommand(command)) {
+                    System.out.println("Invalid Command");
+                    continue;
+                }
+
+
+                if (commonCommandHandler(word)) {
+
+                } else if (currentMenu instanceof SignInMenu) {
+                    SignInMenuCommandHandler(word);
+                } else if (currentMenu instanceof CollectionMenu) {
+                    CollectionMenuCommandHandler(word);
+                } else if (currentMenu instanceof ShopMenu){
+                    ShopMenuCommandHandler(word);
+                }
+            }
+            catch (Exception e){};
+            currentMenu.showMenu();
+
+
+        }
+    }
+
 }

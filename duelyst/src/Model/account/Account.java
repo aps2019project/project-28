@@ -19,7 +19,7 @@ public class Account {
     protected String password;
     protected int ID;
     protected int money;//unit :derik
-    protected Collection collection;
+    protected Collection collection=new Collection();
     protected ArrayList<Match> matchHistory;
     protected int wins;
     protected int storyModeSPX;
