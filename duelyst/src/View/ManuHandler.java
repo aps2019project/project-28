@@ -5,10 +5,7 @@ import Controller.GameMode.FlagMode;
 import Controller.menu.Battle;
 import Controller.menu.*;
 import Model.PreProcess;
-import Model.account.Account;
-import Model.account.Collection;
-import Model.account.Deck;
-import Model.account.Shop;
+import Model.account.*;
 import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
 import Model.card.hermione.Hermione;
@@ -213,6 +210,18 @@ public class ManuHandler {
 
                 }else{
 
+                }
+            }
+        });
+
+        //Hand
+        Hand.addOnHandPresentedListener(new OnHandPresentedListener() {
+            @Override
+            public void showHand(Hand hand) {
+                for (Card card : hand.getCards()) {
+                    for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
+                        presenter.showCardInfo(card);
+                    }
                 }
             }
         });
@@ -542,29 +551,7 @@ public class ManuHandler {
                 } else if (currentMenu instanceof ShopMenu){
                     ShopMenuCommandHandler(word);
                 }else if(currentMenu instanceof Battle){
-                    Battle menu= (Battle) currentMenu;
-                    if(word[0].equals("game") && word[1].equals("info")){
-                        menu.gameInfo();
-                    }
-                    else if(word[0].equals("show")){
-                        if(word[1].equals("my") && word[2].equals("minions")){
-                            menu.showMyMinions();
-                        }else if(word[1].equals("opponent") && word[2].equals("minions")){
-                            menu.showMyOpponentMinion();
-                        }else if(word[1].equals("card") && word[2].equals("info")){
-                            try {
-                                menu.showCardInfo(Integer.parseInt(word[3]));
-                            } catch (InvalidCardException e) {
-                                System.out.println("Couldn't find the card!");
-                            }
-                        }else if(word[1].equals("hand")){
-                            menu.showHand();
-                        }else if(word[1].equals("collectable")){
-
-                        }else if(word[1].equals("next") && word[2].equals("card")){
-
-                        }
-                    }
+                    BattleCommandHandler(word);
                 }
             }
             catch (Exception e){
@@ -573,6 +560,92 @@ public class ManuHandler {
             currentMenu.showMenu();
 
 
+        }
+    }
+
+    private static void BattleCommandHandler(String[] word) {
+        Battle menu= (Battle) currentMenu;
+        if(word[0].equals("game") && word[1].equals("info")){
+            menu.gameInfo();
+        }
+        else if(word[0].equals("show")){
+            if(word[1].equals("my") && word[2].equals("minions")){
+                menu.showMyMinions();
+            }else if(word[1].equals("opponent") && word[2].equals("minions")){
+                menu.showMyOpponentMinion();
+            }else if(word[1].equals("card") && word[2].equals("info")){
+                try {
+                    menu.showCardInfo(Integer.parseInt(word[3]));
+                } catch (InvalidCardException e) {
+                    System.out.println("Couldn't find the card!");
+                }
+            }else if(word[1].equals("hand")){
+                menu.showHand();
+            }else if(word[1].equals("collectable")){
+                menu.showCollectable();
+            }else if(word[1].equals("next") && word[2].equals("card")){
+                menu.showNextCard();
+            }
+        }else if(word[0].equals("select")){
+            try {
+                menu.select(Integer.parseInt(word[1]));
+            } catch (InvalidCardException e) {
+                System.out.println("im afraid that you dont acquire this card");
+            } catch (InvalidItemException e) {
+                System.out.println("im afraid that you dont acquire this item");
+            }
+        }else if(word[0].equals("move") && word[1].equals("to") ){
+            try {
+                menu.move(Integer.parseInt(word[2]),Integer.parseInt(word[3]));
+            } catch (NoCardHasBeenSelectedException e) {
+                System.out.println("please select a card first");
+            } catch (CardCantBeMovedException e) {
+                System.out.println("this card cant be moved due the spell unleashed upon it");
+            } catch (MoveTrunIsOverException e) {
+                System.out.println("there is no time to move !!!");
+                System.out.println("Attack attack attack");
+            } catch (DestinationOutOfreachException e) {
+                System.out.println("Ooooo to far!");
+                System.out.println("please set the destination some were close");
+            } catch (InvalidCellException e) {
+                System.out.println("Im afraid our little word doesnt have enough space for your ambitions");
+            }
+        }else if(word[0].equals("attack")){
+            try {
+                menu.attack(Integer.parseInt(word[1]));
+            } catch (NoCardHasBeenSelectedException e) {
+                System.out.println("please select a card first");
+            } catch (InvalidCardException e) {
+                System.out.println("are you sure?");
+                System.out.println("cause it seems like our enemy doesnt have such card on the ground");
+            } catch (DestinationOutOfreachException e) {
+                System.out.println("marchin on this destinations may not result in our benefit");
+                System.out.println("my lord.... please reconsider");
+            } catch (CantAttackException e) {
+                System.out.println("this card cant attack due the spell unleashed upon it");
+            } catch (InvalidCellException e) {
+                System.out.println("Im afraid our little word doesnt have enough space for your ambitions");
+            }
+        }else if(word[0].equals("use") && word[1].equals("special") && word[2].equals("power")){
+            menu.useSpecialPower(Integer.parseInt(word[3]),Integer.parseInt(word[4]));
+        }else if(word[0].equals("insert")){
+            try {
+                menu.insert(Integer.parseInt(word[1]),Integer.parseInt(word[3]),Integer.parseInt(word[4]));
+            } catch (InvalidCardException e) {
+                System.out.println("thre is no such card in your hand");
+            } catch (NotEnoughManaException e) {
+                System.out.println("lets collect some mana first!");
+            } catch (DestinationIsFullException e) {
+                System.out.println("cant spwan/deploy card on the selected destination");
+            } catch (InvalidCellException e) {
+                System.out.println("Im afraid our little word doesnt have enough space for your ambitions");
+            }
+        }else if(word[0].equals("end") && word[1].equals("turn")){
+            try {
+                menu.endTurn();
+            } catch (HandFullException | DeckIsEmptyException | InvalidCardException e) {
+                // :D
+            }
         }
     }
 }

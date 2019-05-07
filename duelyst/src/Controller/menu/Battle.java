@@ -3,6 +3,7 @@ package Controller.menu;
 import Controller.Game;
 import Controller.GameMode.GameMode;
 import Controller.menu.Menu;
+import Model.item.Item;
 import View.Listeners.OnGameInfoPresentedListener;
 import Model.Map.Map;
 import Model.account.*;
@@ -193,14 +194,14 @@ public class Battle extends Menu {
 
     public void showNextCard() {
         Card card = this.account.getPlayer().getHand().getNextCard();
-        for (OnCardDetailsPresentedListener presenter : card.getCardDetailsPresenters()) {
+        for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
             presenter.showCardDetail(card);
         }
     }
 
     public void showCollectable() {
         for (Collectable collectable : this.account.getPlayer().getCollectables()) {
-            for (OnItemDetailPresentedListener presenter : collectable.getItemDetailPresenters()) {
+            for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
                 presenter.showItemDetail(collectable);
             }
         }
