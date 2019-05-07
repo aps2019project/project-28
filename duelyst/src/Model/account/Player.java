@@ -70,7 +70,7 @@ public class Player {
             }
         } catch (ClassCastException e) {
             Spell spell = (Spell) card;
-            spell.deploy(this, Game.battle.getEnemy(this.user), cell);
+            spell.deploy(this, Game.battle.getEnemyPlayer(), cell);
         }
     }
 
