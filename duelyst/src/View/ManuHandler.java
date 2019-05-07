@@ -8,16 +8,19 @@ import Model.PreProcess;
 import Model.account.Account;
 import Model.account.Collection;
 import Model.account.Deck;
+import Model.account.Shop;
 import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
+import Model.item.Collectable;
 import Model.item.Item;
 import Model.item.OnItemDetailPresentedListener;
 import Model.item.Usable;
 import View.Listeners.*;
+import com.sun.tools.javac.Main;
 import exeption.*;
 
 import java.io.FileNotFoundException;
@@ -240,15 +243,17 @@ public class ManuHandler {
 
 
     private static void ShopMenuCommandHandler(String[] word) {
-        ShopMenu menu= (ShopMenu) currentMenu;
+        ShopMenu menu = (ShopMenu) currentMenu;
         if(word[0].equals("show")){
-           if(word[1].equals("collection")){
+           if(word.length>= 2 && word[1].equals("collection")){
                menu.showCollection();
            }else{
+               System.err.println("asdddddddddddddd");
                 menu.show();
+               System.err.println("asdddddddddddddd");
            }
        }else if(word[0].equals("search")){
-            if(word[1].equals("collection")){
+            if(word.length>= 2 && word[1].equals("collection")){
                 try {
                     menu.searchCollection(word[2]);
                 } catch (InvalidCardException e) {
@@ -291,9 +296,9 @@ public class ManuHandler {
     private static void CollectionMenuCommandHandler(String[] word) {
         CollectionMenu menu= (CollectionMenu) currentMenu;
         if(word[0].equals("show")){
-            if(word[1].equals("all") && word[2].equals("decks")){
+            if(word.length>= 3 && word[1].equals("all") && word[2].equals("decks")){
                 menu.showAllDecks();
-            }else if(word[1].equals("deck")){
+            }else if(word.length>= 2 && word[1].equals("deck")){
                 try {
                     menu.showDeck(word[2]);
                 } catch (InvalidDeckException e) {
@@ -412,7 +417,6 @@ public class ManuHandler {
         return false;
     }
 
-
     public static void setPatterns(){
         setSignInPatterns();
         setCollectionPatterns();
@@ -420,18 +424,23 @@ public class ManuHandler {
         setBattlePatterns();
         setGraveyardPatterns();
         setCollectablePattern();
+        setMainMenuPattern();
     }
     public static void setSignInPatterns(){
+        SignInMenu.getMenu().addPattern("enter [\\w]+");
+        SignInMenu.getMenu().addPattern("[\\d]+");
         SignInMenu.getMenu().addPattern("help");
         SignInMenu.getMenu().addPattern("show");
         SignInMenu.getMenu().addPattern("exit");
-        SignInMenu.getMenu().addPattern("create account [\\w]+");
+        SignInMenu.getMenu().addPattern("create account [\\w]+ [\\w]+ [\\w]+");
         SignInMenu.getMenu().addPattern("login [\\w]+ [\\w]+");
         SignInMenu.getMenu().addPattern("show leaderboard");
         SignInMenu.getMenu().addPattern("save");
         SignInMenu.getMenu().addPattern("logout");
     }
     public static void setCollectionPatterns(){
+        CollectableMenu.getMenu().addPattern("enter [\\w]+");
+        CollectionMenu.getMenu().addPattern("[\\d]+");
         CollectionMenu.getMenu().addPattern("help");
         CollectionMenu.getMenu().addPattern("show");
         CollectionMenu.getMenu().addPattern("exit");
@@ -448,6 +457,8 @@ public class ManuHandler {
         CollectionMenu.getMenu().addPattern("show deck [\\w]+");
     }
     public static void setShopPatterns(){
+        ShopMenu.getMenu().addPattern("enter [\\w]+");
+        ShopMenu.getMenu().addPattern("[\\d]+");
         ShopMenu.getMenu().addPattern("help");
         ShopMenu.getMenu().addPattern("show");
         ShopMenu.getMenu().addPattern("exit");
@@ -459,6 +470,8 @@ public class ManuHandler {
         ShopMenu.getMenu().addPattern("show");
     }
     public static void setBattlePatterns(){
+        Battle.getMenu().addPattern("enter [\\w]+");
+        Battle.getMenu().addPattern("[\\d]+");
         Battle.getMenu().addPattern("help");
         Battle.getMenu().addPattern("show");
         Battle.getMenu().addPattern("exit");
@@ -482,6 +495,8 @@ public class ManuHandler {
         Battle.getMenu().addPattern("End Game");
     }
     public static void setGraveyardPatterns(){
+        GraveYardMenu.getMenu().addPattern("enter [\\w]+");
+        GraveYardMenu.getMenu().addPattern("[\\d]+");
         GraveYardMenu.getMenu().addPattern("help");
         GraveYardMenu.getMenu().addPattern("show");
         GraveYardMenu.getMenu().addPattern("exit");
@@ -489,15 +504,24 @@ public class ManuHandler {
         GraveYardMenu.getMenu().addPattern("Show cards");
     }
     public static void setCollectablePattern(){
+        CollectableMenu.getMenu().addPattern("enter [\\w]+");
+        CollectableMenu.getMenu().addPattern("[\\d]+");
         CollectableMenu.getMenu().addPattern("help");
         CollectableMenu.getMenu().addPattern("show");
         CollectableMenu.getMenu().addPattern("exit");
         CollectableMenu.getMenu().addPattern("Show info");
         CollectableMenu.getMenu().addPattern("Use \\[[\\d+], [\\d]+\\]");
     }
+    public static void setMainMenuPattern(){
+        MainMenu.getMenu().addPattern("[\\d]+");
+        MainMenu.getMenu().addPattern("enter [\\w]+");
+        MainMenu.getMenu().addPattern("help");
+        MainMenu.getMenu().addPattern("show");
+        MainMenu.getMenu().addPattern("exit");
+    }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         Scanner commands = new Scanner(System.in);
         currentMenu.showMenu();
@@ -544,7 +568,9 @@ public class ManuHandler {
                     }
                 }
             }
-            catch (Exception e){};
+            catch (Exception e){
+                System.err.println("ftme");
+            }
             currentMenu.showMenu();
 
 
