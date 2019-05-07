@@ -401,7 +401,8 @@ public class ManuHandler {
         if(word[0].equals("help")){
             currentMenu.help();
             return true;
-        }else if(word[0].equals("show") && word[1].equals("menu")){
+        }
+        else if(word.length >= 2 && word[0].equals("show") && word[1].equals("menu")){
             currentMenu.showMenu();
             return true;
         }else if(word[0].matches("[\\d]")){
@@ -525,16 +526,14 @@ public class ManuHandler {
 
         Scanner commands = new Scanner(System.in);
         currentMenu.showMenu();
-        while(commands.hasNext()){
-            try {
-                String command = commands.nextLine().toLowerCase();
+        while(commands.hasNextLine()){
+          //  try {
+                String command = commands.nextLine().toLowerCase().trim();
                 String[] word = command.split(" ");
                 if (!currentMenu.allowsCommand(command)) {
                     System.out.println("Invalid Command");
                     continue;
                 }
-
-
                 if (commonCommandHandler(word)) {
                 } else if (currentMenu instanceof SignInMenu) {
                     SignInMenuCommandHandler(word);
@@ -549,10 +548,10 @@ public class ManuHandler {
                     }
 //                    else if(word[0].equals("show") )
                 }
-            }
-            catch (Exception e){
-                System.err.println("ftme");
-            }
+           // }
+//            catch (Exception e){
+//                System.err.println("ftme");
+//            }
             currentMenu.showMenu();
 
 
