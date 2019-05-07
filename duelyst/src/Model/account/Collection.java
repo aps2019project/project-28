@@ -311,7 +311,7 @@ public class Collection {
     }
 
     public static ArrayList<OnCollectionPresentedListener> getCollectionPresentedListeners() {
-        return (ArrayList<OnCollectionPresentedListener>) Collections.unmodifiableList(Collection.collectionPresentedListeners);
+        return (Collection.collectionPresentedListeners);
     }
     public static void addCollectionPresentedListener(OnCollectionPresentedListener presenter){
         Collection.collectionPresentedListeners.add(presenter);
