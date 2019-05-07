@@ -81,7 +81,7 @@ public class SignInMenu extends Menu {
     @Override
     public void help() {
         super.help();
-        System.out.println("4)create account [user name]     5)login [user name]    6)show leaderboard");
+        System.out.println("4)create account [name] [user name] [password]     5)login [user name] [password]    6)show leaderboard");
         System.out.println("5)save     6)logout    ");
     }
 }

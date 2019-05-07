@@ -15,33 +15,14 @@ import Model.card.spell.Spell;
 import Model.item.Item;
 import Model.item.OnItemDetailPresentedListener;
 import Model.item.Usable;
-import View.Listeners.OnCollectionPresentedListener;
-import View.Listeners.OnDeckPresentedListener;
 import View.Listeners.OnHeroDetailsPresentedListener;
-import View.Listeners.OnMenuClickedListener;
 import exeption.*;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 // TODO: 5/5/19 command select collectable(page 20) change menu from battle to collectable menu
 // TODO: 5/5/19 command entergraveyard changes menu from battle to graveYard
-
-class ShowMenu implements OnMenuClickedListener{
-    @Override
-
-    public void show(Menu menu) {
-        System.out.println();
-        System.out.println(menu.getName()+" :");
-        int i=0;
-        for (Menu subMenu : menu.getSubMenus()) {
-            i++;
-            System.out.println(i+") "+subMenu.getName());
-        }
-    }
-}
-
 
 public class ManuHandler {
 
@@ -81,6 +62,7 @@ public class ManuHandler {
             }
         }
     }
+
     static{
         PreProcess.preProcess();
         initMenus();
@@ -216,37 +198,6 @@ public class ManuHandler {
         Battle.getMenu().addSubMenu(CollectableMenu.getMenu());
 
         currentMenu = SignInMenu.getMenu();
-    }
-
-    public static void main(String[] args) {
-
-        Scanner commands=new Scanner(System.in);
-        currentMenu.showMenu();
-        while(commands.hasNext()){
-            try {
-                String command = commands.nextLine().toLowerCase();
-                String[] word = command.split(" ");
-                if (!currentMenu.allowsCommand(command)) {
-                    System.out.println("Invalid Command");
-                    continue;
-                }
-
-
-                if (commonCommandHandler(word)) {
-
-                } else if (currentMenu instanceof SignInMenu) {
-                    SignInMenuCommandHandler(word);
-                } else if (currentMenu instanceof CollectionMenu) {
-                    CollectionMenuCommandHandler(word);
-                } else if (currentMenu instanceof ShopMenu){
-                    ShopMenuCommandHandler(word);
-                }
-            }
-            catch (Exception e){};
-            currentMenu.showMenu();
-
-
-        }
     }
 
     private static void ShopMenuCommandHandler(String[] word) {
@@ -424,4 +375,97 @@ public class ManuHandler {
         }
         return false;
     }
+
+    public void setSignInPatterns(){
+        SignInMenu.getMenu().addPattern("create account [\\w]+");
+        SignInMenu.getMenu().addPattern("login [\\w]+ [\\w]+");
+        SignInMenu.getMenu().addPattern("show leaderboard");
+        SignInMenu.getMenu().addPattern("save");
+        SignInMenu.getMenu().addPattern("logout");
+    }
+
+    public void setCollectionPatterns(){
+        CollectionMenu.getMenu().addPattern("show");
+        CollectionMenu.getMenu().addPattern("search [\\w]+");
+        CollectionMenu.getMenu().addPattern("save");
+        CollectionMenu.getMenu().addPattern("create deck[\\w+]");
+        CollectionMenu.getMenu().addPattern("delete deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("add [\\d]+ to deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("remove [\\d]+ from deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("validate deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("select deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("show all decks");
+        CollectionMenu.getMenu().addPattern("show deck [\\w]+");
+    }
+
+
+    public void setShopPatterns(){
+        ShopMenu.getMenu().addPattern("show collection");
+        ShopMenu.getMenu().addPattern("search [\\w]+");
+        ShopMenu.getMenu().addPattern("search collection [\\w]+");
+        ShopMenu.getMenu().addPattern("buy [\\w]+");
+        ShopMenu.getMenu().addPattern("sell [\\d]+");
+        ShopMenu.getMenu().addPattern("show");
+    }
+
+    public void setBattlePatterns(){
+        Battle.getMenu().addPattern("Game info");
+        Battle.getMenu().addPattern("Show my minions");
+        Battle.getMenu().addPattern("Show opponent minions");
+        Battle.getMenu().addPattern("Show card info [\\d]+");
+        Battle.getMenu().addPattern("Select [\\d]+");
+        Battle.getMenu().addPattern("Move to ([\\d]+, [\\d]+)");//Mitune ye rqmi ham bzrim
+        Battle.getMenu().addPattern("Attack [\\d]+");
+        Battle.getMenu().addPattern("Attack combo [\\d]+ [\\d]+[ \\d+]+");
+        Battle.getMenu().addPattern("Use special power ([\\d]+, [\\d]+)");
+        Battle.getMenu().addPattern("Show hand");
+        Battle.getMenu().addPattern("Insert [\\w]+ in ([\\d]+, [\\d]+)");
+        Battle.getMenu().addPattern("End turn");
+        Battle.getMenu().addPattern("Show collectables");
+        Battle.getMenu().addPattern("Select [\\d]+");
+        Battle.getMenu().addPattern("Show info");
+        Battle.getMenu().addPattern("Use \\[[\\d+], [\\d]+\\]");
+        Battle.getMenu().addPattern("Show Next Card");
+        Battle.getMenu().addPattern("Enter graveyard");
+        Battle.getMenu().addPattern("Help");
+        Battle.getMenu().addPattern("End Game");
+    }
+
+    public void setGraveyardPatterns(){
+        Battle.getMenu().addPattern("Show info [\\d]+");
+        Battle.getMenu().addPattern("Show cards");
+    }
+
+
+    public static void main(String[] args) {
+
+        Scanner commands=new Scanner(System.in);
+        currentMenu.showMenu();
+        while(commands.hasNext()){
+            try {
+                String command = commands.nextLine().toLowerCase();
+                String[] word = command.split(" ");
+                if (!currentMenu.allowsCommand(command)) {
+                    System.out.println("Invalid Command");
+                    continue;
+                }
+
+
+                if (commonCommandHandler(word)) {
+
+                } else if (currentMenu instanceof SignInMenu) {
+                    SignInMenuCommandHandler(word);
+                } else if (currentMenu instanceof CollectionMenu) {
+                    CollectionMenuCommandHandler(word);
+                } else if (currentMenu instanceof ShopMenu){
+                    ShopMenuCommandHandler(word);
+                }
+            }
+            catch (Exception e){};
+            currentMenu.showMenu();
+
+
+        }
+    }
+
 }
