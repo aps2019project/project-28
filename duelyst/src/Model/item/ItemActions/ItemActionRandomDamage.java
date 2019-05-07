@@ -6,7 +6,7 @@ import Model.item.Item;
 public class ItemActionRandomDamage implements ItemAction {
     static private ItemActionRandomDamage obj;
 
-    public ItemActionRandomDamage getItemAction() {
+    public static ItemActionRandomDamage getItemAction() {
         if (obj == null) obj = new ItemActionRandomDamage();
         return obj;
     }

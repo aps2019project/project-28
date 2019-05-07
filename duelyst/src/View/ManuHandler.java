@@ -20,6 +20,8 @@ import Model.item.Usable;
 import View.Listeners.*;
 import exeption.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -80,7 +82,11 @@ public class ManuHandler {
         }
     }
     static{
-        PreProcess.preProcess();
+        try {
+            PreProcess.preprocess();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         initMenus();
         setListener();
         setPatterns();
@@ -476,9 +482,9 @@ public class ManuHandler {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        Scanner commands=new Scanner(System.in);
+        Scanner commands = new Scanner(System.in);
         currentMenu.showMenu();
         while(commands.hasNext()){
             try {

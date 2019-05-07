@@ -13,7 +13,7 @@ public class Minion extends Hermione{
 
     public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint, AttackType attackType, int range, Model.card.spell.SpecialPower specialPower,SPATime SPActivationTime) {
         super(name, price, manaPoint, healthPoint, attackPoint, specialPower, attackType, range);
-        this.SPActivationTime=SPActivationTime;
+        this.SPActivationTime = SPActivationTime;
     }
 
     @Override

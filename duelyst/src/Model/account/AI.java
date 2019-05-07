@@ -14,6 +14,7 @@ import Model.card.spell.Target;
 import exeption.*;
 
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -175,30 +176,30 @@ public class AI extends Account {
         switch (level) {
             case 1:
                 try {
-                    deck.addCardToDeck(PreProcess.getHeroes().get(0));
+                    deck.addCardToDeck(PreProcess.heroes.get(0));
 
-                    deck.addCardToDeck(PreProcess.getMinions().get(0));
-                    deck.addCardToDeck(PreProcess.getMinions().get(8));
-                    deck.addCardToDeck(PreProcess.getMinions().get(10));
-                    deck.addCardToDeck(PreProcess.getMinions().get(10));
-                    deck.addCardToDeck(PreProcess.getMinions().get(12));
-                    deck.addCardToDeck(PreProcess.getMinions().get(16));
-                    deck.addCardToDeck(PreProcess.getMinions().get(17));
-                    deck.addCardToDeck(PreProcess.getMinions().get(20));
-                    deck.addCardToDeck(PreProcess.getMinions().get(21));
-                    deck.addCardToDeck(PreProcess.getMinions().get(25));
-                    deck.addCardToDeck(PreProcess.getMinions().get(33));
-                    deck.addCardToDeck(PreProcess.getMinions().get(35));
+                    deck.addCardToDeck(PreProcess.minions.get(0));
+                    deck.addCardToDeck(PreProcess.minions.get(8));
+                    deck.addCardToDeck(PreProcess.minions.get(10));
+                    deck.addCardToDeck(PreProcess.minions.get(10));
+                    deck.addCardToDeck(PreProcess.minions.get(12));
+                    deck.addCardToDeck(PreProcess.minions.get(16));
+                    deck.addCardToDeck(PreProcess.minions.get(17));
+                    deck.addCardToDeck(PreProcess.minions.get(20));
+                    deck.addCardToDeck(PreProcess.minions.get(21));
+                    deck.addCardToDeck(PreProcess.minions.get(25));
+                    deck.addCardToDeck(PreProcess.minions.get(33));
+                    deck.addCardToDeck(PreProcess.minions.get(35));
 
-                    deck.addCardToDeck(PreProcess.getSpells().get(0));
-                    deck.addCardToDeck(PreProcess.getSpells().get(6));
-                    deck.addCardToDeck(PreProcess.getSpells().get(9));
-                    deck.addCardToDeck(PreProcess.getSpells().get(10));
-                    deck.addCardToDeck(PreProcess.getSpells().get(11));
-                    deck.addCardToDeck(PreProcess.getSpells().get(17));
-                    deck.addCardToDeck(PreProcess.getSpells().get(19));
+                    deck.addCardToDeck(PreProcess.spells.get(0));
+                    deck.addCardToDeck(PreProcess.spells.get(6));
+                    deck.addCardToDeck(PreProcess.spells.get(9));
+                    deck.addCardToDeck(PreProcess.spells.get(10));
+                    deck.addCardToDeck(PreProcess.spells.get(11));
+                    deck.addCardToDeck(PreProcess.spells.get(17));
+                    deck.addCardToDeck(PreProcess.spells.get(19));
 
-                    deck.addItemToDeck(PreProcess.getUsables().get(0));
+                    deck.addItemToDeck(PreProcess.usables.get(0));
 
                 } catch (FullDeckException | DeckAlreadyHasThisCardException | DeckAlreadyHasAHeroException |
                         DeckAlreadyHasThisItemException e) {
@@ -207,31 +208,31 @@ public class AI extends Account {
                 break ;
             case 2:
                 try {
-                    deck.addCardToDeck(PreProcess.getHeroes().get(4));
+                    deck.addCardToDeck(PreProcess.heroes.get(4));
 
-                    deck.addCardToDeck(PreProcess.getMinions().get(1));
-                    deck.addCardToDeck(PreProcess.getMinions().get(2));
-                    deck.addCardToDeck(PreProcess.getMinions().get(4));
-                    deck.addCardToDeck(PreProcess.getMinions().get(7));
-                    deck.addCardToDeck(PreProcess.getMinions().get(11));
-                    deck.addCardToDeck(PreProcess.getMinions().get(14));
-                    deck.addCardToDeck(PreProcess.getMinions().get(14));
-                    deck.addCardToDeck(PreProcess.getMinions().get(18));
-                    deck.addCardToDeck(PreProcess.getMinions().get(22));
-                    deck.addCardToDeck(PreProcess.getMinions().get(26));
-                    deck.addCardToDeck(PreProcess.getMinions().get(29));
-                    deck.addCardToDeck(PreProcess.getMinions().get(32));
-                    deck.addCardToDeck(PreProcess.getMinions().get(34));
+                    deck.addCardToDeck(PreProcess.minions.get(1));
+                    deck.addCardToDeck(PreProcess.minions.get(2));
+                    deck.addCardToDeck(PreProcess.minions.get(4));
+                    deck.addCardToDeck(PreProcess.minions.get(7));
+                    deck.addCardToDeck(PreProcess.minions.get(11));
+                    deck.addCardToDeck(PreProcess.minions.get(14));
+                    deck.addCardToDeck(PreProcess.minions.get(14));
+                    deck.addCardToDeck(PreProcess.minions.get(18));
+                    deck.addCardToDeck(PreProcess.minions.get(22));
+                    deck.addCardToDeck(PreProcess.minions.get(26));
+                    deck.addCardToDeck(PreProcess.minions.get(29));
+                    deck.addCardToDeck(PreProcess.minions.get(32));
+                    deck.addCardToDeck(PreProcess.minions.get(34));
 
-                    deck.addCardToDeck(PreProcess.getSpells().get(1));
-                    deck.addCardToDeck(PreProcess.getSpells().get(2));
-                    deck.addCardToDeck(PreProcess.getSpells().get(4));
-                    deck.addCardToDeck(PreProcess.getSpells().get(7));
-                    deck.addCardToDeck(PreProcess.getSpells().get(8));
-                    deck.addCardToDeck(PreProcess.getSpells().get(12));
-                    deck.addCardToDeck(PreProcess.getSpells().get(18));
+                    deck.addCardToDeck(PreProcess.spells.get(1));
+                    deck.addCardToDeck(PreProcess.spells.get(2));
+                    deck.addCardToDeck(PreProcess.spells.get(4));
+                    deck.addCardToDeck(PreProcess.spells.get(7));
+                    deck.addCardToDeck(PreProcess.spells.get(8));
+                    deck.addCardToDeck(PreProcess.spells.get(12));
+                    deck.addCardToDeck(PreProcess.spells.get(18));
 
-                    deck.addItemToDeck(PreProcess.getUsables().get(9));
+                    deck.addItemToDeck(PreProcess.usables.get(9));
                 } catch (FullDeckException | DeckAlreadyHasThisCardException | DeckAlreadyHasAHeroException |
                         DeckAlreadyHasThisItemException e) {
                     throw e;
@@ -239,36 +240,35 @@ public class AI extends Account {
                 break ;
             case 3:
                 try {
-                    deck.addCardToDeck(PreProcess.getHeroes().get(6));
+                    deck.addCardToDeck(PreProcess.heroes.get(6));
 
-                    deck.addCardToDeck(PreProcess.getMinions().get(5));
-                    deck.addCardToDeck(PreProcess.getMinions().get(6));
-                    deck.addCardToDeck(PreProcess.getMinions().get(9));
-                    deck.addCardToDeck(PreProcess.getMinions().get(13));
-                    deck.addCardToDeck(PreProcess.getMinions().get(15));
-                    deck.addCardToDeck(PreProcess.getMinions().get(15));
-                    deck.addCardToDeck(PreProcess.getMinions().get(19));
-                    deck.addCardToDeck(PreProcess.getMinions().get(23));
-                    deck.addCardToDeck(PreProcess.getMinions().get(24));
-                    deck.addCardToDeck(PreProcess.getMinions().get(27));
-                    deck.addCardToDeck(PreProcess.getMinions().get(28));
-                    deck.addCardToDeck(PreProcess.getMinions().get(30));
-                    deck.addCardToDeck(PreProcess.getMinions().get(33));
+                    deck.addCardToDeck(PreProcess.minions.get(5));
+                    deck.addCardToDeck(PreProcess.minions.get(6));
+                    deck.addCardToDeck(PreProcess.minions.get(9));
+                    deck.addCardToDeck(PreProcess.minions.get(13));
+                    deck.addCardToDeck(PreProcess.minions.get(15));
+                    deck.addCardToDeck(PreProcess.minions.get(15));
+                    deck.addCardToDeck(PreProcess.minions.get(19));
+                    deck.addCardToDeck(PreProcess.minions.get(23));
+                    deck.addCardToDeck(PreProcess.minions.get(24));
+                    deck.addCardToDeck(PreProcess.minions.get(27));
+                    deck.addCardToDeck(PreProcess.minions.get(28));
+                    deck.addCardToDeck(PreProcess.minions.get(30));
+                    deck.addCardToDeck(PreProcess.minions.get(33));
 
-                    deck.addCardToDeck(PreProcess.getSpells().get(4));
-                    deck.addCardToDeck(PreProcess.getSpells().get(9));
-                    deck.addCardToDeck(PreProcess.getSpells().get(11));
-                    deck.addCardToDeck(PreProcess.getSpells().get(13));
-                    deck.addCardToDeck(PreProcess.getSpells().get(14));
-                    deck.addCardToDeck(PreProcess.getSpells().get(15));
-                    deck.addCardToDeck(PreProcess.getSpells().get(16));
+                    deck.addCardToDeck(PreProcess.spells.get(4));
+                    deck.addCardToDeck(PreProcess.spells.get(9));
+                    deck.addCardToDeck(PreProcess.spells.get(11));
+                    deck.addCardToDeck(PreProcess.spells.get(13));
+                    deck.addCardToDeck(PreProcess.spells.get(14));
+                    deck.addCardToDeck(PreProcess.spells.get(15));
+                    deck.addCardToDeck(PreProcess.spells.get(16));
 
-                    deck.addItemToDeck(PreProcess.getUsables().get(4));
+                    deck.addItemToDeck(PreProcess.usables.get(4));
                 } catch (FullDeckException | DeckAlreadyHasThisCardException | DeckAlreadyHasAHeroException |
                         DeckAlreadyHasThisItemException e) {
                     throw e;
                 }
-
         }
         return deck;
     }

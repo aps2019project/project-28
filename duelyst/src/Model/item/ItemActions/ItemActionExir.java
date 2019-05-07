@@ -7,7 +7,7 @@ import Model.item.Item;
 public class ItemActionExir implements ItemAction {
     static private ItemAction30chicken obj;
 
-    public ItemAction30chicken getItemAction() {
+    public static ItemAction30chicken getItemAction() {
         if (obj == null) obj = new ItemAction30chicken();
         return obj;
     }

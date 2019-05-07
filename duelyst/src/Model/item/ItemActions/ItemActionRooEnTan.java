@@ -10,7 +10,7 @@ import exeption.InvalidCellException;
 public class ItemActionRooEnTan implements ItemAction {
     static private ItemActionRooEnTan obj;
 
-    public ItemActionRooEnTan getItemAction() {
+    public static ItemActionRooEnTan getItemAction() {
         if (obj == null) obj = new ItemActionRooEnTan();
         return obj;
     }

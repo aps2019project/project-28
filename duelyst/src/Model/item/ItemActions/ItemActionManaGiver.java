@@ -7,7 +7,7 @@ import Model.item.Item;
 public class ItemActionManaGiver implements ItemAction {
     static private ItemActionManaGiver obj;
 
-    public ItemActionManaGiver getItemAction() {
+    public static ItemActionManaGiver getItemAction() {
         if (obj == null) obj = new ItemActionManaGiver();
         return obj;
     }

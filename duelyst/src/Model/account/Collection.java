@@ -4,7 +4,7 @@ import View.Listeners.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
-import com.google.gson.Gson;
+import com.gilecode.yagson.com.google.gson.Gson;
 import exeption.*;
 
 import java.util.ArrayList;

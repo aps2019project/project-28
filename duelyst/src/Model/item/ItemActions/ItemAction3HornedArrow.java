@@ -6,7 +6,7 @@ import Model.item.Item;
 public class ItemAction3HornedArrow implements ItemAction {
     static private ItemAction3HornedArrow obj;
 
-    public ItemAction3HornedArrow getItemAction() {
+    public static ItemAction3HornedArrow getItemAction() {
         if (obj == null) obj = new ItemAction3HornedArrow();
         return obj;
     }

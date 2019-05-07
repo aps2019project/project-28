@@ -7,7 +7,7 @@ import Model.item.Item;
 public class ItemActionMinionRandomAttacker implements ItemAction {
     static private ItemActionMinionRandomAttacker obj;
 
-    public ItemActionMinionRandomAttacker getItemAction() {
+    public static ItemActionMinionRandomAttacker getItemAction() {
         if (obj == null) obj = new ItemActionMinionRandomAttacker();
         return obj;
     }

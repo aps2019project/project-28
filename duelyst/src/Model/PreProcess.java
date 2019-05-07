@@ -1,6 +1,5 @@
 package Model;
 
-import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
 import Model.card.spell.SpellAction.*;
@@ -10,20 +9,14 @@ import Model.card.spell.SpellAction.ActionDisarm;
 import Model.card.spell.SpellAction.ActionStun;
 import Model.card.spell.Targets.*;
 import Model.item.Collectable;
-import Model.item.ItemActions.ItemActionChangeAP;
-import Model.item.ItemActions.ItemActionDamoolArch;
-import Model.item.ItemActions.ItemActionExtraMana;
-import Model.item.ItemActions.ItemActionShieldAF;
+import Model.item.ItemActions.*;
 import Model.item.Usable;
-import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.JsonElement;
+import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 
 import java.io.*;
-import java.text.CollationElementIterator;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class PreProcess {
 
@@ -33,82 +26,82 @@ public class PreProcess {
     public static ArrayList<Usable> usables = new ArrayList<>();
     public static ArrayList<Collectable> collectables = new ArrayList<>();
 
-    public static ArrayList<Hero> getHeroes() {
-        try {
-            Gson gson = new Gson();
-            BufferedReader reader = new BufferedReader(new FileReader("Hero.json"));
-            JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
-            while (jsonStreamParser.hasNext()) {
-                JsonElement jsonElement = jsonStreamParser.next();
-                if (jsonElement.isJsonObject()) {
-                    Hero hero = gson.fromJson(jsonElement, Hero.class);
-                    heroes.add(hero);
-                }
+    public static void getHeroes() throws FileNotFoundException {
+        YaGson gson = new YaGson();
+        BufferedReader reader = new BufferedReader(new FileReader("Hero.json"));
+        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+        while (jsonStreamParser.hasNext()) {
+            JsonElement jsonElement = jsonStreamParser.next();
+            if (jsonElement.isJsonObject()) {
+                Hero hero = gson.fromJson(jsonElement, Hero.class);
+                heroes.add(hero);
             }
-        } catch (Throwable e) {
         }
-        return heroes;
     }
 
-    public static ArrayList<Minion> getMinions() {
-        try {
-            Gson gson = new Gson();
-            BufferedReader reader = new BufferedReader(new FileReader("Minion.json"));
-            JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
-            while (jsonStreamParser.hasNext()) {
-                JsonElement jsonElement = jsonStreamParser.next();
-                if (jsonElement.isJsonObject()) {
-                    Minion minion = gson.fromJson(jsonElement, Minion.class);
-                    minions.add(minion);
-                }
+    public static void getMinions() throws FileNotFoundException {
+        YaGson gson = new YaGson();
+        BufferedReader reader = new BufferedReader(new FileReader("Minion.json"));
+        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+        while (jsonStreamParser.hasNext()) {
+            JsonElement jsonElement = jsonStreamParser.next();
+            if (jsonElement.isJsonObject()) {
+                Minion minion = gson.fromJson(jsonElement, Minion.class);
+                minions.add(minion);
             }
-        } catch (Throwable e) {
         }
-        return minions;
     }
 
-    public static ArrayList<Usable> getUsables() {
-        try {
-            Gson gson = new Gson();
-            BufferedReader reader = new BufferedReader(new FileReader("Usables.json"));
-            JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
-            while (jsonStreamParser.hasNext()) {
-                JsonElement jsonElement = jsonStreamParser.next();
-                if (jsonElement.isJsonObject()) {
-                    Usable usable = gson.fromJson(jsonElement, Usable.class);
-                    usables.add(usable);
-                }
+    public static void getUsables() throws FileNotFoundException {
+        YaGson gson = new YaGson();
+        BufferedReader reader = new BufferedReader(new FileReader("Usables.json"));
+        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+        while (jsonStreamParser.hasNext()) {
+            JsonElement jsonElement = jsonStreamParser.next();
+            if (jsonElement.isJsonObject()) {
+                Usable usable = gson.fromJson(jsonElement, Usable.class);
+                usables.add(usable);
             }
-        } catch (Throwable e) {
         }
-
-        return usables;
     }
 
-    public static ArrayList<Collectable> getCollectables() {
-        try {
-            Gson gson = new Gson();
-            BufferedReader reader = new BufferedReader(new FileReader("Collectables.json"));
-            JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
-            while (jsonStreamParser.hasNext()) {
-                JsonElement jsonElement = jsonStreamParser.next();
-                if (jsonElement.isJsonObject()) {
-                    Collectable collectable = gson.fromJson(jsonElement, Collectable.class);
-                    collectables.add(collectable);
-                }
+    public static void getCollectables() throws FileNotFoundException {
+
+        YaGson gson = new YaGson();
+        BufferedReader reader = new BufferedReader(new FileReader("Collectables.json"));
+        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+        while (jsonStreamParser.hasNext()) {
+            JsonElement jsonElement = jsonStreamParser.next();
+            if (jsonElement.isJsonObject()) {
+                Collectable collectable = gson.fromJson(jsonElement, Collectable.class);
+                collectables.add(collectable);
             }
-        } catch (Throwable e) {
         }
-
-        return collectables;
     }
 
-    public static ArrayList<Spell> getSpells() {
-        return spells;
+    public static void getSpells() throws FileNotFoundException {
+        YaGson gson = new YaGson();
+        BufferedReader reader = new BufferedReader(new FileReader("Spell.json"));
+        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+        while (jsonStreamParser.hasNext()) {
+            JsonElement jsonElement = jsonStreamParser.next();
+            if (jsonElement.isJsonObject()) {
+                Spell spell = gson.fromJson(jsonElement, Spell.class);
+                spells.add(spell);
+            }
+        }
     }
 
-    public static void preProcess() {
-        Gson gson = new Gson();
+    public static void preprocess() throws FileNotFoundException {
+        getHeroes();
+        getMinions();
+        getSpells();
+        getUsables();
+        getCollectables();
+    }
+
+    public static void Json() throws IOException {
+        YaGson gson = new YaGson();
 
         //Spell
         spells.add(new Spell("Total Disarm", 1000, 0, -1, 1,
@@ -152,19 +145,13 @@ public class PreProcess {
         spells.add(new Spell("Shock", 1200, 1, 2, 0,
                 TargetEnemyCard.getTargetInstance(), ActionStun.getAction()));
 
-       /*FileWriter fileWriter = null;
-        try {
-            fileWriter = new FileWriter("Spell.json");
-        } catch (IOException e) {
-        }
-        for (Spell spell :
+       FileWriter fileWriter = new FileWriter("Spell.json");
+       for (Spell spell :
                 spells) {
             gson.toJson(spell, fileWriter);
+            fileWriter.write("\n");
         }
-        try {
-            fileWriter.close();
-        } catch (IOException e) {
-        }*/
+       fileWriter.close();
 
         //Minion
         minions.add(new Minion("Persian Archer", 300, 2, 6,
@@ -210,7 +197,7 @@ public class PreProcess {
         minions.add(new Minion("Turanian Prince",800, 6, 6,
                 10, new Melee(), 0,
                 new SpecialPower("Turanian Prince", 0, 0, 0, 0,
-                        null, ActionCombo.getAction()), null));
+                        null, ActionCombo.getAction()), SPATime.NULL));
         minions.add(new Minion("Black Demon", 300, 9, 14,
                 10, new Hybrid(), 7,
                 null, null));
@@ -232,7 +219,7 @@ public class PreProcess {
         minions.add(new Minion("Venomous Snake", 300, 4, 5,
                 6, new Range(), 4,
                 new SpecialPower("VenomousSnake", 0, 0, 0, 3,
-                        TargetEnemyCard.getTargetInstance(), ActionPoisonCell.getAction()), SPATime.ATTACK));
+                        TargetEnemyCard.getTargetInstance(), ActionDeployPoison.getAction()), SPATime.ATTACK));
         minions.add(new Minion("Fire Dragon", 250, 5, 9,
                 5, new Range(), 4,
                 null, null));
@@ -248,11 +235,11 @@ public class PreProcess {
         minions.add(new Minion("White Wolf", 400, 5, 8,
                 2, new Melee(), 0,
                 new SpecialPower("White Wolf SpecialPower", 0, 0, 2, -6,
-                        TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK));//unhandled
+                        TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK));//unhanddeled
         minions.add(new Minion("Leopard",400, 4, 6,
                 2, new Melee(), 0,
                 new SpecialPower("Leopard SpecialPower", 0, 0, 1, -8,
-                        TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()),SPATime.ATTACK));
+                        TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK));
         minions.add(new Minion("Wolf", 400, 3, 6,
                 1, new Melee(), 0,
                 new SpecialPower("Wolf SpecialPower", 0, 0, 0, -6,
@@ -270,7 +257,8 @@ public class PreProcess {
         minions.add(new Minion("Genie", 500, 5, 10,
                 4, new Range(), 4,
                 new SpecialPower("Genie SpecialPower", 0, 0, -1, 1,
-                        TargetAllOwnMinions.getTargetClass(), ActionChangeAP.getAction()), SPATime.ON_TURN));//
+                        TargetAllOwnMinions.getTargetClass(), ActionChangeAP.getAction()), SPATime.ON_TURN));
+
         /*minions.add(new Minion("Wild Goraz",500, 6, 10,
                 14, new Melee(), 0,
                 , SPATime.DEFEND));
@@ -285,9 +273,11 @@ public class PreProcess {
                 9, new Melee(), 0,
                 new SpecialPower("Bahman SpecialPower", 0, 0, 1, -16,
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.SPAWN));
+
         /*inions.add(new Minion("Ashkbus",400, 7, 14,
                 8, new Melee(), 0,
                 , SPATime.DEFEND));*///emtiazi
+
         minions.add(new Minion("Iraj", 500, 4, 6,
                 20, new Range(), 3,
                 null, null));
@@ -320,24 +310,15 @@ public class PreProcess {
                 null, ActionCombo.getAction())
                 , SPATime.NULL));
 
-        /*fileWriter = null;
-        try {
-            fileWriter = new FileWriter("Minion.json", true);
-        } catch (IOException e) {
-
-        }
+        fileWriter = new FileWriter("Minion.json");
         for (Minion minion :
                 minions) {
             gson.toJson(minion, fileWriter);
+            fileWriter.write("\n");
         }
-        try {
-            fileWriter.close();
-        } catch (IOException e) {
-
-        }*/
+        fileWriter.close();
 
         //Hero
-
         ArrayList<Hero> heroes = new ArrayList<>();
         heroes.add(new Hero("White Demon", 8000, 50, 4, new Melee(), 0,
                 new SpecialPower("White Demon", 0, 1, -1, 4,
@@ -378,23 +359,13 @@ public class PreProcess {
         heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4,
                 null, 0, 0));
 
-        /*fileWriter = null;
-        try {
-            fileWriter = new FileWriter("Hero.json", true);
-        } catch (IOException e) {
-
-        }
+        fileWriter = new FileWriter("Hero.json");
         for (Hero hero :
                 heroes) {
             gson.toJson(hero, fileWriter);
-
+            fileWriter.write("\n");
         }
-        try {
-            fileWriter.close();
-        } catch (IOException e) {
-
-        }*/
-
+        fileWriter.close();
 
         //item
         usables.add(new Usable("Wisdom Crown", 300, 3, 1,
@@ -404,69 +375,58 @@ public class PreProcess {
         usables.add(new Usable("Damool Arch", 30000, 1, 0,
                 TargetRangedAndHybrid.getTargetClass(), ItemActionDamoolArch.getItemAction()));
         usables.add(new Usable("Simorgh's feather", 3500, 1, -2,
-                TargetRangedAndHybrid.getTargetClass(), ItemActionChangeAP.getItemAction()));
+                TargetRangedAndHybrid.getTargetClass(), ItemAction30chicken.getItemAction()));
         usables.add(new Usable("Terror Hood", 5000, 1, -2,
                 TargetRandomEnemy.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         usables.add(new Usable("King Wisdom", 9000, -1, 0,
-                null, ItemActionExtraMana.getItemAction()));
+                null, ItemActionKingsWisdom.getItemAction()));
         usables.add(new Usable("Assassination Dagger", 15000, 1, 1,
-                TargetEnemyHero.getTargetInstance(), ItemActionChangeAP.getItemAction()));
-        /*usables.add(new Usable("Poisonous Dagger", 7000, 1, 0,
-                ));
-        usables.add(new Usable("Shock Hammer", 15000, 2, 0,
-                ));
+                TargetEnemyHero.getTargetInstance(), ItemActionAssasinationDagger.getItemAction()));
+        usables.add(new Usable("Poisonous Dagger", 7000, 1, 0,
+                TargetRandomEnemy.getTargetInstance(), ItemActionPoisonousDagger.getItemAction()));
+        usables.add(new Usable("Shock Hammer", 15000, 1, 0,
+                TargetEnemyCard.getTargetInstance(), ItemActionDisArm.getItemAction()));
         usables.add(new Usable("Soul Eater", 25000, 1, 1,
-                ));
+                TargetOwnCard.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         usables.add(new Usable("‌Baptism", 20000, 2, 0,
-                ));*/
+                TargetOwnMinion.getTargetInstance(), ItemActionChangeAP.getItemAction()));
 
-        /*fileWriter = null;
-        try {
-            fileWriter = new FileWriter("Usables.json", true);
-        } catch (IOException e) {
-        }
-
+        fileWriter = new FileWriter("Usables.json");
         for (Usable usable :
                 usables) {
             gson.toJson(usable, fileWriter);
+            fileWriter.write("\n");
         }
-        try {
-            fileWriter.close();
-        } catch (IOException e) {
-        }*/
+        fileWriter.close();
 
         collectables.add(new Collectable("NooshDaru", 1, 6,
                 TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Two Headed Arrow", 1, 2,
-                TargetRangedAndHybrid.getTargetClass(), ItemActionChangeAP.getItemAction()));
+                TargetRangedAndHybrid.getTargetClass(), ItemAction3HornedArrow.getItemAction()));
         collectables.add(new Collectable("Eksir", 1, 3,
-                TargetRandomOwnMinion.getTargetInstance(), ItemActionChangeAP.getItemAction(),
+                TargetRandomOwnMinion.getTargetInstance(), ItemActionExir.getItemAction(),
                 ItemActionChangeAP.getItemAction()));
-        /*collectables.add(new Collectable("Mana's Majoon", 1, 3,
-                null, ItemActionExtraMana.getItemAction()));
-        collectables.add(new Collectable("RooEnTan's Majoon",));*/
+        collectables.add(new Collectable("Mana's Majoon", 1, 3,
+                null, ItemActionManaGiver.getItemAction()));
+        collectables.add(new Collectable("RooEnTan's Majoon",0,0,
+                TargetRandomOwn.getTargetInstance(), ItemActionRooEnTan.getItemAction()));
         collectables.add(new Collectable("Death's Curse", 0, 8,
-                TargetRandomOwnMinion.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetRandomOwnMinion.getTargetInstance(), ItemActionMinionRandomAttacker.getItemAction()));
         collectables.add(new Collectable("Random damage", 1, 2,
-                TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetRandom.getTargetInstance(), ItemActionRandomDamage.getItemAction()));
         collectables.add(new Collectable("Blades of agility", 1, 6,
                 TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Chineese Sword", 1, 5,
                 TargetMelee.getTargetClass(), ItemActionChangeAP.getItemAction()));
 
-        /*fileWriter = null;
-        try {
-            fileWriter = new FileWriter("Collectables.json", true);
-        } catch (IOException e) {
-        }
+        fileWriter = new FileWriter("Collectables.json", true);
+
         for (Collectable collectable :
                 collectables) {
             gson.toJson(collectable, fileWriter);
+            fileWriter.write("\n");
         }
-        try {
-            fileWriter.close();
-        } catch (IOException e) {
-        }*/
+        fileWriter.close();
     }
 
 }

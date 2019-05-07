@@ -8,8 +8,7 @@ import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
 import Model.item.Item;
-
-import com.google.gson.Gson;
+import com.gilecode.yagson.com.google.gson.Gson;
 import exeption.*;
 
 import java.util.ArrayList;
