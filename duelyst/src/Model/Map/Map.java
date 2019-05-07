@@ -1,6 +1,10 @@
 package Model.Map;
 
+import Controller.Game;
 import Model.account.Collection;
+import Model.card.spell.Buff.Buff;
+import Model.card.spell.Buff.BuffActions.BuffActionPoison;
+import Model.card.spell.BuffTypes.BuffTypePassive;
 import Model.item.Flag;
 import exeption.InvalidCellException;
 
@@ -59,14 +63,27 @@ public class Map {
         return cells ;
     }
 
-    public void applyFireCellAffect() {
+    public void handleFireCellAffect() {
         for (Cell[] cellRow : this.board) {
             for (Cell cell : cellRow) {
-                if (cell.getCellAffect() == CellAffects.fire) {
+                if (cell.getCellAffect().contains(CellAffects.fire)) {
                     cell.getCardOnCell().changeHealthPoint(-2);
                 }
             }
         }
     }
+
+    public void handlePoisonCell() throws InvalidCellException{
+        for (Cell[] cellRow : this.board) {
+            for (Cell cell : cellRow) {
+                if (cell.getCellAffect().contains(CellAffects.poison)) {
+                    Buff buff = new Buff(1 , false , BuffActionPoison.getBuffAction() , new BuffTypePassive());
+                    buff.deploy(Game.battle.getPlayer() , cell.getCardOnCell());
+                }
+            }
+        }
+    }
+
+    
 
 }

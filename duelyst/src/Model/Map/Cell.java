@@ -2,6 +2,8 @@ package Model.Map;
 
 import Model.card.hermione.Hermione;
 
+import java.util.ArrayList;
+
 
 public class Cell {
     private int x;
@@ -9,7 +11,7 @@ public class Cell {
     private Hermione cardOnCell;
     private boolean hasFlag = false;
     private boolean isFull = false;
-    private CellAffects cellAffect = CellAffects.normal ;
+    private ArrayList<CellAffects> cellAffect = new ArrayList<>() ;
 
     public Cell(int x, int y) {
         this.x = x;
@@ -53,12 +55,16 @@ public class Cell {
         isFull = full;
     }
 
-    public CellAffects getCellAffect() {
+    public boolean isHasFlag() {
+        return hasFlag;
+    }
+
+    public ArrayList<CellAffects> getCellAffect() {
         return cellAffect;
     }
 
-    public void setCellAffect(CellAffects cellAffect) {
-        this.cellAffect = cellAffect;
+    public void addCellAffect(CellAffects cellAffect) {
+        this.cellAffect.add(cellAffect);
     }
 
 }

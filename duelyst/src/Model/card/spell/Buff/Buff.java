@@ -3,6 +3,8 @@ package Model.card.spell.Buff;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Buff.BuffActions.BuffActions;
+import Model.card.spell.BuffTypes.BuffTypes;
+import exeption.BuffHasntBeenDeployedYetException;
 import exeption.InvalidCellException;
 
 import java.util.ArrayList;
@@ -15,12 +17,22 @@ public class Buff {
     private Player player;
     private BuffActions action;
     private int perk ;
+    private BuffTypes buffType ;
 
     public Buff(int duration, boolean isPositive,  BuffActions action) {
         this.action = action;
         this.duration = duration;
         this.isPositive = isPositive;
     }
+
+    public Buff(int duration, boolean isPositive,  BuffActions action, BuffTypes buffType) {
+        this.action = action;
+        this.duration = duration;
+        this.isPositive = isPositive;
+        this.buffType = buffType ;
+        this.buffType.setBuff(this);
+    }
+
 
     public Buff(Buff buff){
 
@@ -39,22 +51,25 @@ public class Buff {
         activeBuffs.add(this);
         this.action.affect(this);
     }
-    public void affect() throws InvalidCellException {
-        if (this.player == null || this.target == null || this.action == null) return;
+    public void affect() throws InvalidCellException , BuffHasntBeenDeployedYetException {
+        if (this.player == null || this.target == null || this.action == null)
+            throw new BuffHasntBeenDeployedYetException();
         this.action.affect(this);
     }
 
     public void destroy(){
         this.action.destroy(this) ;
-        activeBuffs.remove(this);
-        this.target.getAppliedBuffs().remove(this) ;
+        if(this.buffType.isShouldBeDispelled() || this.duration == 0) {
+            activeBuffs.remove(this);
+            this.target.getAppliedBuffs().remove(this);
+        }
     }
 
-    public void nextTurnForBuffs(){
-        for (Buff buff : activeBuffs){
-            buff.duration -- ;
-            if (buff.duration == 0) buff.destroy();
-        }
+    public void handleBuffBeginningOfTurn() throws InvalidCellException , BuffHasntBeenDeployedYetException{
+        this.buffType.handleBeginningOfTheTurn();
+    }
+    public void handleBuffEndOfTurn() throws InvalidCellException{
+        this.buffType.handleEndOfTheTurn();
     }
 
     public int getPerk() {
@@ -96,6 +111,10 @@ public class Buff {
 
     public boolean isPositive() {
         return isPositive;
+    }
+
+    public BuffTypes getBuffType() {
+        return buffType;
     }
 }
 
