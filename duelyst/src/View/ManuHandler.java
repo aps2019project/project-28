@@ -52,9 +52,9 @@ public class ManuHandler {
         System.out.println("Heroes : ");
         int i=0;
         for (Card card : cards) {
-            i++;
-            System.out.print(i+") ");
             if((card instanceof Hero)) {
+                i++;
+                System.out.print(i+") ");
                 for (OnHeroDetailsPresentedListener presenter : Hero.getHeroDetailsPresenters()) {
                     presenter.show((Hero) card);
                 }
@@ -63,9 +63,9 @@ public class ManuHandler {
         System.out.println("Cards : ");
         i=0;
         for (Card card : cards) {
-            i++;
-            System.out.print(i+") ");
             if(!(card instanceof Hero)){
+                i++;
+                System.out.print(i+") ");
                 for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
                     presenter.showCardDetail(card);
                 }
@@ -555,7 +555,7 @@ public class ManuHandler {
                 }
             }
             catch (Exception e){
-                System.err.println("ftme");
+                e.printStackTrace();
             }
             currentMenu.showMenu();
 

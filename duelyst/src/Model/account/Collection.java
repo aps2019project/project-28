@@ -229,6 +229,7 @@ public class Collection {
     public void addCardToCollection(Card card) throws CardExistException {
         if (!hasCard(card)) {
             tempCollection.getCards().add(card);
+            return;
         }
         throw new CardExistException();
     }
@@ -236,6 +237,7 @@ public class Collection {
     public void removeCardFromCollection(Card card) throws InvalidCardException {
         if (hasCard(card)) {
             this.cards.remove(card);
+            return;
         }
         throw new InvalidCardException();
     }

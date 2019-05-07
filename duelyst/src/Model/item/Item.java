@@ -125,7 +125,7 @@ public abstract class Item {
     }
 
     public static ArrayList<OnItemDetailPresentedListener> getItemDetailPresenters() {
-        return (ArrayList<OnItemDetailPresentedListener>) Collections.unmodifiableList(itemDetailPresenters);
+        return itemDetailPresenters;
     }
 
     public int getPerk() {
