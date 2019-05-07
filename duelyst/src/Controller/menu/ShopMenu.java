@@ -43,9 +43,8 @@ public class ShopMenu extends Menu {
     }
 
     public void showCollection() {
-        for (OnCollectionPresentedListener presenter :
-                this.shop.getCollection().getCollectionPresentedListeners()) {
-            presenter.show(this.account.getCollection());
+        for (OnCollectionPresentedListener presenter : Collection.getCollectionPresentedListeners()) {
+            presenter.show(this.account.getCollection(),this.account.getName()+"'s Collection");
         }
     }
 
@@ -61,12 +60,12 @@ public class ShopMenu extends Menu {
             InvalidItemException {
         if (collection.hasCard(name)) {
             Card card = collection.getCard(name);
-            for (OnCardDetailsPresentedListener presenter : card.getCardDetailsPresenters()) {
+            for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
                 presenter.showCardDetail(card);
             }
         } else if (collection.hasItem(name)) {
             Item item = collection.getItem(name);
-            for (OnItemDetailPresentedListener presenter : item.getItemDetailPresenters()) {
+            for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
                 presenter.showItemDetail(item);
             }
         }
@@ -104,16 +103,19 @@ public class ShopMenu extends Menu {
     }
 
     public void show() {//shows the items and cards in shop
-        for (Card card : this.shop.getCollection().getCards()) {
-            for (OnCardDetailsPresentedListener presenter : card.getCardDetailsPresenters()) {
-                presenter.showCardDetail(card);
-            }
+        for (OnCollectionPresentedListener presenter : Collection.getCollectionPresentedListeners()) {
+            presenter.show(this.shop.getCollection(),"SHOP");
         }
-        for (Usable usable : this.shop.getCollection().getUsables()) {
-            for (OnItemDetailPresentedListener presenter : usable.getItemDetailPresenters()) {
-                presenter.showItemDetail(usable);
-            }
-        }
+//        for (Card card : this.shop.getCollection().getCards()) {
+//            for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
+//                presenter.showCardDetail(card);
+//            }
+//        }
+//        for (Usable usable : this.shop.getCollection().getUsables()) {
+//            for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
+//                presenter.showItemDetail(usable);
+//            }
+//        }
     }
 
     public void save(Account account) {

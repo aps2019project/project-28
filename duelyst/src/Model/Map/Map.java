@@ -1,9 +1,11 @@
 package Model.Map;
 
+import Model.account.Collection;
 import Model.item.Flag;
 import exeption.InvalidCellException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Map {
     private static ArrayList<Map> maps;
@@ -15,6 +17,21 @@ public class Map {
     public static int getManhattanDistance(Cell cell1, Cell cell2) {
         return Math.abs(cell1.getX()-cell2.getX())+Math.abs(cell1.getY()-cell2.getY());
     }
+
+    public Cell[] getCellsInDistance(Cell cell , int distance){
+        ArrayList<Cell> cells = new ArrayList<>() ;
+        for (Cell[] cel1 : this.board){
+            for (Cell cel : cel1){
+                if (Map.getManhattanDistance(cell , cel) == distance) cells.add(cel) ;
+            }
+        }
+        Cell[] cellsArray = new Cell[cells.size()] ;
+        for (int i = 0; i < cells.size(); i++) {
+            cellsArray[i] = cells.get(i) ;
+        }
+        return cellsArray ;
+    }
+
     public static int getRadiusDistance(Cell cell1, Cell cell2) {
         return Integer.max(Math.abs(cell1.getX()-cell2.getX()),Math.abs(cell1.getY()-cell2.getY()));
 
@@ -32,6 +49,14 @@ public class Map {
     }
     public Cell getCell(Cell cell){
         return board[cell.getX()][cell.getY()];
+    }
+
+    public ArrayList<Cell> getCells(){
+        ArrayList<Cell> cells = new ArrayList<>();
+        for (int i =0 ; i < board.length ; i++) {
+            Collections.addAll(cells, board[i]);
+        }
+        return cells ;
     }
 
     public void applyFireCellAffect() {

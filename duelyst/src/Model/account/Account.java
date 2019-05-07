@@ -9,25 +9,26 @@ import java.util.Comparator;
 
 public class Account {
 
-    private static ArrayList<Account> accounts=new ArrayList<>();
-    private static int unique =0;
-    private static final int INITIAL_MONEY = 1500;
+    protected static ArrayList<Account> accounts=new ArrayList<>();
+    protected static int unique =0;
+    protected static final int INITIAL_MONEY = 1500;
 
-    private Player player;
-    private String name;
-    private String username;
-    private String password;
-    private int ID;
-    private int money;//unit :derik
-    private Collection collection;
-    private ArrayList<Match> matchHistory;
-    private int wins;
-    private int storyModeSPX;
+    protected Player player;
+    protected String name;
+    protected String username;
+    protected String password;
+    protected int ID;
+    protected int money;//unit :derik
+    protected Collection collection;
+    protected ArrayList<Match> matchHistory;
+    protected int wins;
+    protected int storyModeSPX;
 
     public void saveMatchHistory(Match match){
     }
 
     public static void addNewAccount(Account account){
+        if(account==null)return;
         if(Account.hasAccount(account))return;
         Account.getAccounts().add(account);
     }

@@ -3,6 +3,7 @@ package Model.account;
 import Model.card.Card;
 import Model.card.hermione.Hero;
 import Model.item.Item;
+import Model.item.Usable;
 import View.Listeners.OnDeckPresentedListener;
 import exeption.*;
 
@@ -14,7 +15,7 @@ public class Deck {
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Card> graveYard = new ArrayList<>();
-    private ArrayList<OnDeckPresentedListener> deckPresenters = new ArrayList<OnDeckPresentedListener>();
+    private static ArrayList<OnDeckPresentedListener> deckPresenters = new ArrayList<OnDeckPresentedListener>();
     private Hero hero;
     private String name;
     private int ID;
@@ -178,11 +179,11 @@ public class Deck {
             addItemToDeck(collection.getItem(ID));
     }
 
-    public void addNewOnDeckPresentedListener(OnDeckPresentedListener presenter) {
-        this.deckPresenters.add(presenter);
+    public static void addNewOnDeckPresentedListener(OnDeckPresentedListener presenter) {
+        Deck.deckPresenters.add(presenter);
     }
 
-    public ArrayList<OnDeckPresentedListener> getDeckPresenters() {
+    public static ArrayList<OnDeckPresentedListener> getDeckPresenters() {
         return (ArrayList<OnDeckPresentedListener>) Collections.unmodifiableList(deckPresenters);
     }
 
@@ -196,6 +197,14 @@ public class Deck {
 
     public void killHero() {
         this.hero = null;
+    }
+
+    public ArrayList<Usable> getUsables() {
+        ArrayList<Usable>usables=new ArrayList<>();
+        for (Item item : this.getItems()) {
+            usables.add((Usable) item);
+        }
+        return usables;
     }
 }
 

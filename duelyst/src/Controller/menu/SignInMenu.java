@@ -5,6 +5,7 @@ import View.Listeners.OnLeaderBoardClickedListener;
 import Model.account.Account;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
+import exeption.NoAccountHasBeenSignedInException;
 import exeption.WrongPassException;
 
 import java.util.ArrayList;
@@ -27,6 +28,16 @@ public class SignInMenu extends Menu {
             SignInMenu.menu=new SignInMenu("SignInMenu");
         }
         return menu;
+    }
+
+    @Override
+    public Menu enter(Menu subMenu) {
+        if(this.account==null){
+            // TODO: 5/7/19 handle it better
+            System.out.println("no account has been signed in yet");
+            return this;
+        }
+        return super.enter(subMenu);
     }
 
     public void creatAccount(String name, String username, String password) throws AccountAlreadyExistsException {

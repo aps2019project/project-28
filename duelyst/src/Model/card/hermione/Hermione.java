@@ -74,6 +74,11 @@ public abstract class Hermione extends Card {
         }
     }
 
+    public boolean canAttackThisCard(Hermione target){
+        return this.attackType.canReach(this , target) ;
+        //TODO if there are more conditions to be checked !
+    }
+
     private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
         if(this.actionTurn==1)throw new MoveTrunIsOverException();
         if(Game.battle.getMap().getCell(x,y).isFull())throw new DestinationOutOfreachException();

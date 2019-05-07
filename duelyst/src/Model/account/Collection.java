@@ -16,7 +16,7 @@ public class Collection {
     private ArrayList<Deck> decks = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Usable> usables = new ArrayList<>();
-    private ArrayList<OnCollectionPresentedListener> collectionPresentedListeners;
+    private static ArrayList<OnCollectionPresentedListener> collectionPresentedListeners=new ArrayList<>();
     private Account owner;
     private Deck mainDeck;
     public static final int MAX_USABLES = 3;
@@ -302,10 +302,12 @@ public class Collection {
         }
     }
 
-    public ArrayList<OnCollectionPresentedListener> getCollectionPresentedListeners() {
-        return (ArrayList<OnCollectionPresentedListener>) Collections.unmodifiableList(this.collectionPresentedListeners);
+    public static ArrayList<OnCollectionPresentedListener> getCollectionPresentedListeners() {
+        return (ArrayList<OnCollectionPresentedListener>) Collections.unmodifiableList(Collection.collectionPresentedListeners);
     }
-
+    public static void addCollectionPresentedListener(OnCollectionPresentedListener presenter){
+        Collection.collectionPresentedListeners.add(presenter);
+    }
     public ArrayList<Usable> getItems() {
         return usables;
     }

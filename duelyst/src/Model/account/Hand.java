@@ -87,4 +87,8 @@ public class Hand {
     public Card getNextCard() {
         return nextCard;
     }
+
+    public Card[] getCards() {
+        return cards;
+    }
 }
