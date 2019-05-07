@@ -200,30 +200,31 @@ public class ManuHandler {
         Deck.addNewOnDeckPresentedListener(deck -> allCardPresenter(deck.getCards(),deck.getUsables()));
 
         //GameInfo
-        Battle.getMenu().addGameInfoPresentedListener(new OnGameInfoPresentedListener() {
-            @Override
-            public void showGameInfo() {
-                if(Battle.getMenu().getGameMode() instanceof ClassicMode){
-                    System.out.println(Battle.getMenu().getAccount().getName()+" : " + Battle.getMenu().getAccount().getPlayer().getDeck().getHero().getHealthPoint());
-                    System.out.println(Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getUser().getName()+" : " + Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getHealthPoint());
-                }else if(Battle.getMenu().getGameMode() instanceof FlagMode){
+        Battle.getMenu().addGameInfoPresentedListener(() -> {
+            if(Battle.getMenu().getGameMode() instanceof ClassicMode){
+                System.out.println(Battle.getMenu().getAccount().getName()+" : " + Battle.getMenu().getAccount().getPlayer().getDeck().getHero().getHealthPoint());
+                System.out.println(Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getUser().getName()+" : " + Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getHealthPoint());
+            }else if(Battle.getMenu().getGameMode() instanceof FlagMode){
 
-                }else{
+            }else{
 
-                }
             }
         });
 
         //Hand
-        Hand.addOnHandPresentedListener(new OnHandPresentedListener() {
-            @Override
-            public void showHand(Hand hand) {
-                for (Card card : hand.getCards()) {
-                    for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
-                        presenter.showCardInfo(card);
-                    }
+        Hand.addOnHandPresentedListener(hand -> {
+            for (Card card : hand.getCards()) {
+                for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
+                    presenter.showCardInfo(card);
                 }
             }
+        });
+
+        //Item
+        Item.addNewOnItemDeatilPresentedListener(item -> {
+            System.out.println("Name : " + item.getName());
+            System.out.println("Desc : " + item.getComment());
+            System.out.println("Sell cost" + ((Usable) item).getPrice());
         });
     }
     private static void initMenus() {

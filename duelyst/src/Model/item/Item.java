@@ -23,6 +23,7 @@ public abstract class Item {
     private ArrayList<ItemAction> actions = new ArrayList<>();
     private int itemID;
     private static ArrayList<OnItemDetailPresentedListener> itemDetailPresenters = new ArrayList<>();
+    private String comment;
 
     public Item(String name, int duration, int perk, Target target, ItemAction... actions) {
         this.name = name;
@@ -140,4 +141,10 @@ public abstract class Item {
         this.perk2 = perk;
     }
 
+    public String getComment() {
+        return this.comment;
+    }
+    public void setComment(String comment){
+       this.comment=comment; 
+    }
 }
