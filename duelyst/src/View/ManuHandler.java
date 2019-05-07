@@ -424,6 +424,9 @@ public class ManuHandler {
     }
 
     public static void setSignInPatterns(){
+        SignInMenu.getMenu().addPattern("help");
+        SignInMenu.getMenu().addPattern("show");
+        SignInMenu.getMenu().addPattern("exit");
         SignInMenu.getMenu().addPattern("create account [\\w]+");
         SignInMenu.getMenu().addPattern("login [\\w]+ [\\w]+");
         SignInMenu.getMenu().addPattern("show leaderboard");
@@ -431,6 +434,9 @@ public class ManuHandler {
         SignInMenu.getMenu().addPattern("logout");
     }
     public static void setCollectionPatterns(){
+        CollectionMenu.getMenu().addPattern("help");
+        CollectionMenu.getMenu().addPattern("show");
+        CollectionMenu.getMenu().addPattern("exit");
         CollectionMenu.getMenu().addPattern("show");
         CollectionMenu.getMenu().addPattern("search [\\w]+");
         CollectionMenu.getMenu().addPattern("save");
@@ -444,6 +450,9 @@ public class ManuHandler {
         CollectionMenu.getMenu().addPattern("show deck [\\w]+");
     }
     public static void setShopPatterns(){
+        ShopMenu.getMenu().addPattern("help");
+        ShopMenu.getMenu().addPattern("show");
+        ShopMenu.getMenu().addPattern("exit");
         ShopMenu.getMenu().addPattern("show collection");
         ShopMenu.getMenu().addPattern("search [\\w]+");
         ShopMenu.getMenu().addPattern("search collection [\\w]+");
@@ -452,6 +461,9 @@ public class ManuHandler {
         ShopMenu.getMenu().addPattern("show");
     }
     public static void setBattlePatterns(){
+        Battle.getMenu().addPattern("help");
+        Battle.getMenu().addPattern("show");
+        Battle.getMenu().addPattern("exit");
         Battle.getMenu().addPattern("Game info");
         Battle.getMenu().addPattern("Show my minions");
         Battle.getMenu().addPattern("Show opponent minions");
@@ -472,13 +484,19 @@ public class ManuHandler {
         Battle.getMenu().addPattern("End Game");
     }
     public static void setGraveyardPatterns(){
-        Battle.getMenu().addPattern("Show info [\\d]+");
-        Battle.getMenu().addPattern("Show cards");
+        GraveYardMenu.getMenu().addPattern("help");
+        GraveYardMenu.getMenu().addPattern("show");
+        GraveYardMenu.getMenu().addPattern("exit");
+        GraveYardMenu.getMenu().addPattern("Show info [\\d]+");
+        GraveYardMenu.getMenu().addPattern("Show cards");
     }
 
     public static void setCollectablePattern(){
-        Battle.getMenu().addPattern("Show info");
-        Battle.getMenu().addPattern("Use \\[[\\d+], [\\d]+\\]");
+        CollectableMenu.getMenu().addPattern("help");
+        CollectableMenu.getMenu().addPattern("show");
+        CollectableMenu.getMenu().addPattern("exit");
+        CollectableMenu.getMenu().addPattern("Show info");
+        CollectableMenu.getMenu().addPattern("Use \\[[\\d+], [\\d]+\\]");
     }
 
 
