@@ -15,12 +15,9 @@ public class CollectionMenu extends Menu {
     private static CollectionMenu menu;
 
     private Collection tempCollection;
-    private ArrayList<OnCollectionPresentedListener> collectionPresenters;
-
     private CollectionMenu(String name) {
         super(name);
         this.tempCollection = new Collection();
-        this.collectionPresenters = new ArrayList<>();
     }
 
     public static CollectionMenu getMenu(){
@@ -35,10 +32,11 @@ public class CollectionMenu extends Menu {
     }
 
     public void showCollection() {
-        for (OnCollectionPresentedListener presenter : this.collectionPresenters) {
-            presenter.show(this.account.getCollection());
+        for (OnCollectionPresentedListener presenter : Collection.getCollectionPresentedListeners()) {
+            presenter.show(this.account.getCollection(),this.account+"'s Collection");
         }
     }
+
 
     public void search(String name) {
         Collection collection = this.account.getCollection();
@@ -71,10 +69,6 @@ public class CollectionMenu extends Menu {
 
     public void removeFromDeck(int ID, String deckName) throws InvalidCardException, InvalidItemException, InvalidDeckException {
         this.account.getCollection().getDeckByName(deckName).removeFromDeck(ID);
-    }
-
-    public void addCollectionPresentedListener(OnCollectionPresentedListener presenter) {
-        this.collectionPresenters.add(presenter);
     }
 
     public boolean validateDeck(String deckName) throws InvalidDeckException {

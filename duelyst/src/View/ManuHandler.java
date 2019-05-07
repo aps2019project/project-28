@@ -87,7 +87,7 @@ public class ManuHandler {
     private static void setListener(){
         //show menu
         {
-            SignInMenu.getMenu().addMenuClickListener(menu -> System.out.println("SignInMenu:"));
+            SignInMenu.getMenu().addMenuClickListener(new ShowMenu());
             Battle.getMenu().addMenuClickListener(new ShowMenu());
             ChooseBattleModeMenu.getMenu().addMenuClickListener(new ShowMenu());
             CollectableMenu.getMenu().addMenuClickListener(new ShowMenu());
@@ -111,10 +111,13 @@ public class ManuHandler {
             }
         });
 
-        //Collection menu
-        CollectionMenu.getMenu().addCollectionPresentedListener(collection -> allCardPresenter(collection.getCards(),collection.getItems()));
+        //Collection
+        Collection.addCollectionPresentedListener((collection, name) -> {
+            System.out.println(name + " : ");
+            allCardPresenter(collection.getCards(), collection.getItems());
 
-        //Card
+        });
+                //Card
         Card.addOnCardDetailPresented(new OnCardDetailsPresentedListener() {
             private void showSpell(Spell s){
                 System.out.println("Type : Spell");
@@ -191,6 +194,8 @@ public class ManuHandler {
     private static void initMenus() {
         //az SignIn Menu mirim tuye MainMenu
 
+        SignInMenu.getMenu().addSubMenu(MainMenu.getMenu());
+
         MainMenu.getMenu().addSubMenu(CollectionMenu.getMenu());
         MainMenu.getMenu().addSubMenu(ShopMenu.getMenu());
         MainMenu.getMenu().addSubMenu(ChooseBattleModeMenu.getMenu());
@@ -211,21 +216,82 @@ public class ManuHandler {
     }
 
     public static void main(String[] args) {
+
         Scanner commands=new Scanner(System.in);
         currentMenu.showMenu();
         while(commands.hasNext()){
-            currentMenu.showMenu();
-            String command = commands.nextLine().toLowerCase();
-            String[] word=command.split(" ");
-            if(!currentMenu.allowsCommand(command)) {
-                System.out.println("Invalid Command");
-                continue;
+            try {
+                String command = commands.nextLine().toLowerCase();
+                String[] word = command.split(" ");
+                if (!currentMenu.allowsCommand(command)) {
+                    System.out.println("Invalid Command");
+                    continue;
+                }
+
+
+                if (commonCommandHandler(word)) {
+
+                } else if (currentMenu instanceof SignInMenu) {
+                    SignInMenuCommandHandler(word);
+                } else if (currentMenu instanceof CollectionMenu) {
+                    CollectionMenuCommandHandler(word);
+                } else if (currentMenu instanceof ShopMenu){
+                    ShopMenuCommandHandler(word);
+                }
             }
-            if(commonCommandHandler(word))continue;
-            if(currentMenu instanceof SignInMenu) {
-                SignInMenuCommandHandler(word);
-            }else if(currentMenu instanceof CollectionMenu){
-                CollectionMenuCommandHandler(word);
+            catch (Exception e){};
+            currentMenu.showMenu();
+
+
+        }
+    }
+
+    private static void ShopMenuCommandHandler(String[] word) {
+        ShopMenu menu= (ShopMenu) currentMenu;
+        if(word[0].equals("show")){
+           if(word[1].equals("collection")){
+               menu.showCollection();
+           }else{
+                menu.show();
+           }
+       }else if(word[0].equals("search")){
+            if(word[1].equals("collection")){
+                try {
+                    menu.searchCollection(word[2]);
+                } catch (InvalidCardException e) {
+                    System.out.println("Card with Given name doesnt exist");
+                } catch (InvalidItemException e) {
+                    System.out.println("Item with Given name doesnt exist");
+                }
+            }else {
+                try {
+                    menu.search(word[1]);
+                } catch (InvalidCardException e) {
+                    System.out.println("Card with Given name doesnt exist");
+                } catch (InvalidItemException e) {
+                    System.out.println("Item with Given name doesnt exist");
+                }
+            }
+        }else if(word[0].equals("buy")){
+            try {
+                menu.buy(word[1]);
+            } catch (CardExistException e) {
+                System.out.println("You already have this Card. it is not wise to buy a same card twice");
+            } catch (InvalidCardException | InvalidItemException e) {
+                System.out.println("my lord! we just ran out of " + word[1] + ". im sorry!");
+            } catch (ItemExistExeption itemExistExeption) {
+                System.out.println("You already have this Item. it is not wise to buy a same item twice");
+            } catch (FullCollectionException e) {
+                System.out.println("sorry but you dont have enough Space in your collection");
+                System.out.println("empty your collection a little bit by selling some card and try later");
+            } catch (NotEnoughMoneyException e) {
+                System.out.println("Oops you are not as reach as you thought!");
+            }
+        }else if(word[0].equals("sell")){
+            try {
+                menu.sell(word[1]);
+            } catch (InvalidCardException e) {
+                System.out.println("Smart Move But you cant sell a Card/Item that you dont have");
             }
         }
     }
@@ -344,7 +410,7 @@ public class ManuHandler {
             currentMenu.showMenu();
             return true;
         }else if(word[0].matches("[\\d]")){
-            currentMenu=currentMenu.enter(currentMenu.getSubMenus().get(Integer.parseInt(word[0])));
+            currentMenu=currentMenu.enter(currentMenu.getSubMenus().get(Integer.parseInt(word[0])-1));
             return true;
         }else if(word[0].equals("exit")){
             if(currentMenu.getParentMenu()==null) System.out.println("This is the root menu!");

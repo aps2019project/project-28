@@ -28,6 +28,7 @@ public class Account {
     }
 
     public static void addNewAccount(Account account){
+        if(account==null)return;
         if(Account.hasAccount(account))return;
         Account.getAccounts().add(account);
     }
