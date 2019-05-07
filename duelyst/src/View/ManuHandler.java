@@ -254,10 +254,10 @@ public class ManuHandler {
                     Battle menu= (Battle) currentMenu;
                     if(word[0].equals("game") && word[1].equals("info")){
                         menu.gameInfo();
-                    }
+                    }else if(word[0].equals("show") )
                 }
             }
-            catch (Exception e){};
+//            catch (Exception e){};
             currentMenu.showMenu();
 
 
