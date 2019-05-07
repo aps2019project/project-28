@@ -241,6 +241,7 @@ public class ManuHandler {
         currentMenu = SignInMenu.getMenu();
     }
 
+
     private static void ShopMenuCommandHandler(String[] word) {
         ShopMenu menu= (ShopMenu) currentMenu;
         if(word[0].equals("show")){
@@ -292,7 +293,6 @@ public class ManuHandler {
             }
         }
     }
-
     private static void CollectionMenuCommandHandler(String[] word) {
         CollectionMenu menu= (CollectionMenu) currentMenu;
         if(word[0].equals("show")){
@@ -365,7 +365,6 @@ public class ManuHandler {
             }
         }
     }
-
     private static void SignInMenuCommandHandler(String[] word) {
         SignInMenu menu= (SignInMenu) currentMenu;
         if(word[0].equals("create") && word[1].equals("account")){
@@ -397,7 +396,6 @@ public class ManuHandler {
             menu.logOut();
         }
     }
-
     private static boolean commonCommandHandler(String[] word) {
         /*common commands*/
         if(word[0].equals("help")){
@@ -419,6 +417,7 @@ public class ManuHandler {
         return false;
     }
 
+
     public static void setPatterns(){
         setSignInPatterns();
         setCollectionPatterns();
@@ -428,7 +427,6 @@ public class ManuHandler {
         setCollectablePattern();
         setMainMenuPattern();
     }
-
     public static void setSignInPatterns(){
         SignInMenu.getMenu().addPattern("enter [\\w]+");
         SignInMenu.getMenu().addPattern("[\\d]+");
@@ -506,7 +504,6 @@ public class ManuHandler {
         GraveYardMenu.getMenu().addPattern("Show info [\\d]+");
         GraveYardMenu.getMenu().addPattern("Show cards");
     }
-
     public static void setCollectablePattern(){
         CollectableMenu.getMenu().addPattern("enter [\\w]+");
         CollectableMenu.getMenu().addPattern("[\\d]+");
