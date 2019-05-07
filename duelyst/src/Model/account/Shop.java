@@ -42,6 +42,7 @@ public class Shop {
                 collection.addCardToCollection(spell);
             } catch (CardExistException e) {}
         }
+        collection.save();
     }
 
     public Collection getCollection() {

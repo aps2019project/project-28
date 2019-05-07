@@ -12,7 +12,7 @@ import java.util.Collections;
 
 public class Collection {
 
-    private Collection tempCollection;
+    private static Collection tempCollection = new Collection();
     private ArrayList<Deck> decks = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Usable> usables = new ArrayList<>();
@@ -243,6 +243,7 @@ public class Collection {
     public void addItemToCollection(Usable item) throws ItemExistExeption {
         if (!hasItem(item)) {
             this.usables.add(item);
+            return;
         }
         throw new ItemExistExeption();
     }
@@ -250,6 +251,7 @@ public class Collection {
     public void removeItemFromCollection(Usable item) throws InvalidItemException {
         if (hasItem(item)) {
             usables.remove(item);
+            return;
         }
         throw new InvalidItemException();
     }
@@ -259,6 +261,12 @@ public class Collection {
     }
 
     public void save() {
+        if(this.owner==null){
+            this.owner=new Account("","","");
+            this.owner.setCollection(tempCollection);
+            this.owner=null;
+            return;
+        }
         this.owner.setCollection(tempCollection);
     }
 
