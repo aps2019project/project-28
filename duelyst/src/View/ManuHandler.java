@@ -27,20 +27,6 @@ import java.util.Scanner;
 // TODO: 5/5/19 command select collectable(page 20) change menu from battle to collectable menu
 // TODO: 5/5/19 command entergraveyard changes menu from battle to graveYard
 
-class ShowMenu implements OnMenuClickedListener{
-    @Override
-
-    public void show(Menu menu) {
-        System.out.println(menu.getName()+" :");
-        int i=0;
-        for (Menu subMenu : menu.getSubMenus()) {
-            i++;
-            System.out.println(i+") "+subMenu.getName());
-        }
-    }
-}
-
-
 public class ManuHandler {
 
     private static Menu currentMenu;
@@ -489,12 +475,15 @@ public class ManuHandler {
         Battle.getMenu().addPattern("End turn");
         Battle.getMenu().addPattern("Show collectables");
         Battle.getMenu().addPattern("Select [\\d]+");
-        Battle.getMenu().addPattern("Show info");
-        Battle.getMenu().addPattern("Use \\[[\\d+], [\\d]+\\]");
         Battle.getMenu().addPattern("Show Next Card");
         Battle.getMenu().addPattern("Enter graveyard");
         Battle.getMenu().addPattern("Help");
         Battle.getMenu().addPattern("End Game");
+    }
+
+    public static void setCollectablePatterns(){
+        Battle.getMenu().addPattern("Show info");
+        Battle.getMenu().addPattern("Use \\[[\\d+], [\\d]+\\]");
     }
 
     public void setGraveyardPatterns(){
