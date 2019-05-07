@@ -2,6 +2,7 @@ package View;
 
 import Controller.menu.Battle;
 import Controller.menu.*;
+import Model.PreProcess;
 import Model.account.Account;
 import Model.account.Collection;
 import Model.account.Deck;
@@ -31,6 +32,7 @@ class ShowMenu implements OnMenuClickedListener{
     @Override
 
     public void show(Menu menu) {
+        System.out.println();
         System.out.println(menu.getName()+" :");
         int i=0;
         for (Menu subMenu : menu.getSubMenus()) {
@@ -80,6 +82,7 @@ public class ManuHandler {
         }
     }
     static{
+        PreProcess.preProcess();
         initMenus();
         setListener();
     }
@@ -378,7 +381,7 @@ public class ManuHandler {
                 System.out.println("this userName is already taken");
             } catch(ArrayIndexOutOfBoundsException e){
                 System.out.println("please enter in the fallowing order");
-                System.out.println("1)username     2)name      3)password");
+                System.out.println("1)name     2)username      3)password");
             }
         }else if(word[0].equals("login")){
             try {

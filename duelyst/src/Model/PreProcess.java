@@ -27,11 +27,11 @@ import java.util.List;
 
 public class PreProcess {
 
-    private static ArrayList<Spell> spells = new ArrayList<>();
-    private static ArrayList<Minion> minions = new ArrayList<>();
-    private static ArrayList<Hero> heroes = new ArrayList<>();
-    private static ArrayList<Usable> usables = new ArrayList<>();
-    private static ArrayList<Collectable> collectables = new ArrayList<>();
+    public static ArrayList<Spell> spells = new ArrayList<>();
+    public static ArrayList<Minion> minions = new ArrayList<>();
+    public static ArrayList<Hero> heroes = new ArrayList<>();
+    public static ArrayList<Usable> usables = new ArrayList<>();
+    public static ArrayList<Collectable> collectables = new ArrayList<>();
 
     public static ArrayList<Hero> getHeroes() {
         try {
