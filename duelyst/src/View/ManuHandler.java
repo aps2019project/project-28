@@ -243,9 +243,9 @@ public class ManuHandler {
 
 
     private static void ShopMenuCommandHandler(String[] word) {
-        ShopMenu menu= (ShopMenu) currentMenu;
+        ShopMenu menu = (ShopMenu) currentMenu;
         if(word[0].equals("show")){
-           if(word[1].equals("collection")){
+           if(word.length>= 2 && word[1].equals("collection")){
                menu.showCollection();
            }else{
                System.err.println("asdddddddddddddd");
@@ -253,7 +253,7 @@ public class ManuHandler {
                System.err.println("asdddddddddddddd");
            }
        }else if(word[0].equals("search")){
-            if(word[1].equals("collection")){
+            if(word.length>= 2 && word[1].equals("collection")){
                 try {
                     menu.searchCollection(word[2]);
                 } catch (InvalidCardException e) {
@@ -296,9 +296,9 @@ public class ManuHandler {
     private static void CollectionMenuCommandHandler(String[] word) {
         CollectionMenu menu= (CollectionMenu) currentMenu;
         if(word[0].equals("show")){
-            if(word[1].equals("all") && word[2].equals("decks")){
+            if(word.length>= 3 && word[1].equals("all") && word[2].equals("decks")){
                 menu.showAllDecks();
-            }else if(word[1].equals("deck")){
+            }else if(word.length>= 2 && word[1].equals("deck")){
                 try {
                     menu.showDeck(word[2]);
                 } catch (InvalidDeckException e) {
@@ -417,7 +417,6 @@ public class ManuHandler {
         return false;
     }
 
-
     public static void setPatterns(){
         setSignInPatterns();
         setCollectionPatterns();
@@ -513,7 +512,6 @@ public class ManuHandler {
         CollectableMenu.getMenu().addPattern("Show info");
         CollectableMenu.getMenu().addPattern("Use \\[[\\d+], [\\d]+\\]");
     }
-
     public static void setMainMenuPattern(){
         MainMenu.getMenu().addPattern("[\\d]+");
         MainMenu.getMenu().addPattern("enter [\\w]+");
@@ -523,7 +521,7 @@ public class ManuHandler {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         Scanner commands = new Scanner(System.in);
         currentMenu.showMenu();
@@ -552,7 +550,9 @@ public class ManuHandler {
 //                    else if(word[0].equals("show") )
                 }
             }
-            catch (Exception e){};
+            catch (Exception e){
+                System.err.println("ftme");
+            }
             currentMenu.showMenu();
 
 
