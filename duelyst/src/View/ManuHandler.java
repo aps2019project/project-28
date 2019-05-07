@@ -83,6 +83,7 @@ public class ManuHandler {
         PreProcess.preProcess();
         initMenus();
         setListener();
+        setPatterns();
     }
 
     private static void setListener(){
@@ -118,7 +119,7 @@ public class ManuHandler {
             allCardPresenter(collection.getCards(), collection.getItems());
 
         });
-                //Card
+        //Card
         Card.addOnCardDetailPresented(new OnCardDetailsPresentedListener() {
             private void showSpell(Spell s){
                 System.out.println("Type : Spell");
@@ -229,41 +230,6 @@ public class ManuHandler {
         Battle.getMenu().addSubMenu(CollectableMenu.getMenu());
 
         currentMenu = SignInMenu.getMenu();
-    }
-
-    public static void main(String[] args) {
-
-        Scanner commands=new Scanner(System.in);
-        currentMenu.showMenu();
-        while(commands.hasNext()){
-            try {
-                String command = commands.nextLine().toLowerCase();
-                String[] word = command.split(" ");
-                if (!currentMenu.allowsCommand(command)) {
-                    System.out.println("Invalid Command");
-                    continue;
-                }
-
-
-                if (commonCommandHandler(word)) {
-                } else if (currentMenu instanceof SignInMenu) {
-                    SignInMenuCommandHandler(word);
-                } else if (currentMenu instanceof CollectionMenu) {
-                    CollectionMenuCommandHandler(word);
-                } else if (currentMenu instanceof ShopMenu){
-                    ShopMenuCommandHandler(word);
-                }else if(currentMenu instanceof Battle){
-                    Battle menu= (Battle) currentMenu;
-                    if(word[0].equals("game") && word[1].equals("info")){
-                        menu.gameInfo();
-                    }else if(word[0].equals("show") )
-                }
-            }
-//            catch (Exception e){};
-            currentMenu.showMenu();
-
-
-        }
     }
 
     private static void ShopMenuCommandHandler(String[] word) {
@@ -442,15 +408,22 @@ public class ManuHandler {
         return false;
     }
 
-    public void setSignInPatterns(){
+    public static void setPatterns(){
+        setSignInPatterns();
+        setCollectionPatterns();
+        setShopPatterns();
+        setBattlePatterns();
+        setGraveyardPatterns();
+    }
+
+    public static void setSignInPatterns(){
         SignInMenu.getMenu().addPattern("create account [\\w]+");
         SignInMenu.getMenu().addPattern("login [\\w]+ [\\w]+");
         SignInMenu.getMenu().addPattern("show leaderboard");
         SignInMenu.getMenu().addPattern("save");
         SignInMenu.getMenu().addPattern("logout");
     }
-
-    public void setCollectionPatterns(){
+    public static void setCollectionPatterns(){
         CollectionMenu.getMenu().addPattern("show");
         CollectionMenu.getMenu().addPattern("search [\\w]+");
         CollectionMenu.getMenu().addPattern("save");
@@ -463,9 +436,7 @@ public class ManuHandler {
         CollectionMenu.getMenu().addPattern("show all decks");
         CollectionMenu.getMenu().addPattern("show deck [\\w]+");
     }
-
-
-    public void setShopPatterns(){
+    public static void setShopPatterns(){
         ShopMenu.getMenu().addPattern("show collection");
         ShopMenu.getMenu().addPattern("search [\\w]+");
         ShopMenu.getMenu().addPattern("search collection [\\w]+");
@@ -473,8 +444,7 @@ public class ManuHandler {
         ShopMenu.getMenu().addPattern("sell [\\d]+");
         ShopMenu.getMenu().addPattern("show");
     }
-
-    public void setBattlePatterns(){
+    public static void setBattlePatterns(){
         Battle.getMenu().addPattern("Game info");
         Battle.getMenu().addPattern("Show my minions");
         Battle.getMenu().addPattern("Show opponent minions");
@@ -496,11 +466,11 @@ public class ManuHandler {
         Battle.getMenu().addPattern("Help");
         Battle.getMenu().addPattern("End Game");
     }
-
-    public void setGraveyardPatterns(){
+    public static void setGraveyardPatterns(){
         Battle.getMenu().addPattern("Show info [\\d]+");
         Battle.getMenu().addPattern("Show cards");
     }
+
 
 
     public static void main(String[] args) {
@@ -518,13 +488,18 @@ public class ManuHandler {
 
 
                 if (commonCommandHandler(word)) {
-
                 } else if (currentMenu instanceof SignInMenu) {
                     SignInMenuCommandHandler(word);
                 } else if (currentMenu instanceof CollectionMenu) {
                     CollectionMenuCommandHandler(word);
                 } else if (currentMenu instanceof ShopMenu){
                     ShopMenuCommandHandler(word);
+                }else if(currentMenu instanceof Battle){
+                    Battle menu= (Battle) currentMenu;
+                    if(word[0].equals("game") && word[1].equals("info")){
+                        menu.gameInfo();
+                    }
+//                    else if(word[0].equals("show") )
                 }
             }
             catch (Exception e){};
@@ -533,5 +508,4 @@ public class ManuHandler {
 
         }
     }
-
 }

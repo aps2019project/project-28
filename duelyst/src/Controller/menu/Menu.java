@@ -49,9 +49,7 @@ public abstract class Menu {
         for (String pattern : this.patterns) {
             if (command.matches(pattern)) return true;
         }
-//        return false;
-        return true;
-        // TODO: 5/6/19 in bayad return false bashe
+        return false;
     }
 
     public void help(){
