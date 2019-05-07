@@ -526,8 +526,8 @@ public class ManuHandler {
 
         Scanner commands = new Scanner(System.in);
         currentMenu.showMenu();
-        while(commands.hasNextLine()){
-          //  try {
+        while(commands.hasNext()){
+            try {
                 String command = commands.nextLine().toLowerCase().trim();
                 String[] word = command.split(" ");
                 if (!currentMenu.allowsCommand(command)) {
@@ -546,12 +546,30 @@ public class ManuHandler {
                     if(word[0].equals("game") && word[1].equals("info")){
                         menu.gameInfo();
                     }
-//                    else if(word[0].equals("show") )
+                    else if(word[0].equals("show")){
+                        if(word[1].equals("my") && word[2].equals("minions")){
+                            menu.showMyMinions();
+                        }else if(word[1].equals("opponent") && word[2].equals("minions")){
+                            menu.showMyOpponentMinion();
+                        }else if(word[1].equals("card") && word[2].equals("info")){
+                            try {
+                                menu.showCardInfo(Integer.parseInt(word[3]));
+                            } catch (InvalidCardException e) {
+                                System.out.println("Couldn't find the card!");
+                            }
+                        }else if(word[1].equals("hand")){
+                            menu.showHand();
+                        }else if(word[1].equals("collectable")){
+
+                        }else if(word[1].equals("next") && word[2].equals("card")){
+
+                        }
+                    }
                 }
-           // }
-//            catch (Exception e){
-//                System.err.println("ftme");
-//            }
+            }
+            catch (Exception e){
+                System.err.println("ftme");
+            }
             currentMenu.showMenu();
 
 

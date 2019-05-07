@@ -12,7 +12,7 @@ import java.util.Collections;
 public class Hand {
 
     private ArrayList<Card> deck;
-    private ArrayList<OnHandPresentedListener> handPresenters = new ArrayList<>();
+    private static ArrayList<OnHandPresentedListener> handPresenters = new ArrayList<>();
     private static final int SIZE = 5;
     private Card[] cards = new Card[SIZE];
     private Card nextCard;
@@ -69,12 +69,12 @@ public class Hand {
         addCard();
     }
 
-    public ArrayList<OnHandPresentedListener> getHandPresenters() {
+    public static ArrayList<OnHandPresentedListener> getHandPresenters() {
         return (ArrayList<OnHandPresentedListener>) Collections.unmodifiableList(handPresenters);
     }
 
-    public void addOnHandPresentedListener(OnHandPresentedListener handPresenter) {
-        this.handPresenters.add(handPresenter);
+    public static void addOnHandPresentedListener(OnHandPresentedListener handPresenter) {
+        Hand.handPresenters.add(handPresenter);
     }
 
     public Card getCard(int cardID) throws InvalidCardException {

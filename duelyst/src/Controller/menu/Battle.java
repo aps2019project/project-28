@@ -65,7 +65,7 @@ public class Battle extends Menu {
     public void showMyMinions() {
 
         for (Card card : this.account.getPlayer().getDeck().getCards()) {
-            for (OnCardDetailsPresentedListener presenter : card.getCardDetailsPresenters()) {
+            for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
                 presenter.showCardInfo(card);
             }
         }
@@ -74,7 +74,7 @@ public class Battle extends Menu {
 
     public void showMyOpponentMinion() {
         for (Card card : this.getEnemy(this.account).getDeck().getCards()) {
-            for (OnCardDetailsPresentedListener presenter : card.getCardDetailsPresenters()) {
+            for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
                 presenter.showCardInfo(card);
             }
         }
@@ -82,7 +82,7 @@ public class Battle extends Menu {
 
     public void showCardInfo(int cardID) throws InvalidCardException {
         Card card = this.account.getPlayer().getDeck().getCard(cardID);
-        for (OnCardDetailsPresentedListener presenter : Card.getCard(cardID).getCardDetailsPresenters()) {
+        for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
             presenter.showCardInfo(card);
         }
     }
@@ -124,7 +124,7 @@ public class Battle extends Menu {
 
     public void showHand() {
         Hand hand = this.account.getPlayer().getHand();
-        for (OnHandPresentedListener presenter : hand.getHandPresenters()) {
+        for (OnHandPresentedListener presenter : Hand.getHandPresenters()) {
             presenter.showHand(hand);
         }
     }
