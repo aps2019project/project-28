@@ -2,8 +2,9 @@ package View;
 
 import Controller.menu.Battle;
 import Controller.menu.*;
-import Model.PreProcess;
 import Model.account.Account;
+import Model.account.Collection;
+import Model.account.Deck;
 import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
 import Model.card.hermione.Hermione;
@@ -13,12 +14,13 @@ import Model.card.spell.Spell;
 import Model.item.Item;
 import Model.item.OnItemDetailPresentedListener;
 import Model.item.Usable;
+import View.Listeners.OnCollectionPresentedListener;
+import View.Listeners.OnDeckPresentedListener;
 import View.Listeners.OnHeroDetailsPresentedListener;
 import View.Listeners.OnMenuClickedListener;
-import exeption.AccountAlreadyExistsException;
-import exeption.InvalidAccountException;
-import exeption.WrongPassException;
+import exeption.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -38,10 +40,45 @@ class ShowMenu implements OnMenuClickedListener{
     }
 }
 
+
 public class ManuHandler {
 
     private static Menu currentMenu;
 
+    //preprocess
+    public static void allCardPresenter(ArrayList<Card> cards,ArrayList<Usable> items){
+        System.out.println("Heroes : ");
+        int i=0;
+        for (Card card : cards) {
+            i++;
+            System.out.print(i+") ");
+            if((card instanceof Hero)) {
+                for (OnHeroDetailsPresentedListener presenter : Hero.getHeroDetailsPresenters()) {
+                    presenter.show((Hero) card);
+                }
+            }
+        }
+        System.out.println("Cards : ");
+        i=0;
+        for (Card card : cards) {
+            i++;
+            System.out.print(i+") ");
+            if(!(card instanceof Hero)){
+                for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
+                    presenter.showCardDetail(card);
+                }
+            }
+        }
+        System.out.println("Items : ");
+        i=0;
+        for (Usable item : items) {
+            i++;
+            System.out.println(i+") ");
+            for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
+                presenter.showItemDetail(item);
+            }
+        }
+    }
     static{
         initMenus();
         setListener();
@@ -75,30 +112,7 @@ public class ManuHandler {
         });
 
         //Collection menu
-        CollectionMenu.getMenu().addCollectionPresentedListener(collection -> {
-            System.out.println("Heroes : ");
-            for (Card card : collection.getCards()) {
-                if((card instanceof Hero)) {
-                    for (OnHeroDetailsPresentedListener presenter : Hero.getHeroDetailsPresenters()) {
-                           presenter.show((Hero) card);
-                    }
-                }
-            }
-            System.out.println("Cards : ");
-            for (Card card : collection.getCards()) {
-                if(!(card instanceof Hero)){
-                    for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
-                        presenter.showCardDetail(card);
-                    }
-                }
-            }
-            System.out.println("Items : ");
-            for (Usable item : collection.getItems()) {
-                for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
-                    presenter.showItemDetail(item);
-                }
-            }
-        });
+        CollectionMenu.getMenu().addCollectionPresentedListener(collection -> allCardPresenter(collection.getCards(),collection.getItems()));
 
         //Card
         Card.addOnCardDetailPresented(new OnCardDetailsPresentedListener() {
@@ -109,6 +123,7 @@ public class ManuHandler {
                 System.out.println("\tAction : " + s.getComment());
                 System.out.println("\tSell cost : " + s.getPrice());
                 System.out.println("\tName : " + s.getName());
+                System.out.println("\tID : "+s.getCardID());
             }
             private void showHermioneDetail(Hermione h){
                 System.out.println("\tName : " + h.getName());
@@ -117,6 +132,7 @@ public class ManuHandler {
                         "\tHealth point : " + h.getOriginalHealthPoint() + "\tManaPoint : " + h.getManaPoint());
                 System.out.println("\tSpecialPower : " + h.getSpecialPower().getComment());
                 System.out.println("\tSell cost : " + h.getPrice());
+                System.out.println("\tID : "+h.getCardID());
             }
             private void showHermioneInfo(Hermione h){
                 System.out.println("\tName : " + h.getName());
@@ -125,6 +141,7 @@ public class ManuHandler {
                         "\tHealth point : " + h.getHealthPoint() + "\tManaPoint : " + h.getManaPoint());
                 System.out.println("\tSpecialPower : " + h.getSpecialPower().getComment());
                 System.out.println("\tSell cost : " + h.getPrice());
+                System.out.println("\tID : "+h.getCardID());
             }
             @Override
             public void showCardDetail(Card card) {
@@ -167,6 +184,9 @@ public class ManuHandler {
                 System.out.println("\tSpecialPower : " + hero.getSpecialPower().getComment());
                 System.out.println("\tSell cost : " + hero.getPrice());
         });
+
+        //deck
+        Deck.addNewOnDeckPresentedListener(deck -> allCardPresenter(deck.getCards(),deck.getUsables()));
     }
     private static void initMenus() {
         //az SignIn Menu mirim tuye MainMenu
@@ -205,16 +225,80 @@ public class ManuHandler {
             if(currentMenu instanceof SignInMenu) {
                 SignInMenuCommandHandler(word);
             }else if(currentMenu instanceof CollectionMenu){
-                CollectionMenu menu= (CollectionMenu) currentMenu;
-                if(word[0].equals("show")){
-                    if(word[1].equals("all") && word[2].equals("decks")){
+                CollectionMenuCommandHandler(word);
+            }
+        }
+    }
 
-                    }else if(word[1].equals("deck")){
-
-                    }else{
-                        menu.showCollection();
-                    }
+    private static void CollectionMenuCommandHandler(String[] word) {
+        CollectionMenu menu= (CollectionMenu) currentMenu;
+        if(word[0].equals("show")){
+            if(word[1].equals("all") && word[2].equals("decks")){
+                menu.showAllDecks();
+            }else if(word[1].equals("deck")){
+                try {
+                    menu.showDeck(word[2]);
+                } catch (InvalidDeckException e) {
+                    System.out.println("Deck with the name "+word[2]+" doesnt exists ");
                 }
+            }else{
+                menu.showCollection();
+            }
+        }else if(word[0].equals("search")){
+            menu.search(word[1]);
+        }else if(word[0].equals("save")){
+            menu.save();
+        }else if(word[0].equals("create") && word[1].equals("deck")){
+            try {
+                menu.creatNewDeck(word[2]);
+            } catch (DeckAlreadyExistException e) {
+                System.out.println("Deck with the exact same name already exist please try again");
+            }
+        }else if(word[0].equals("delete") && word[1].equals("deck")){
+            try {
+                menu.deleteDeck(word[2]);
+            } catch (InvalidDeckException e) {
+                System.out.println("Deck with the given name doesnt exist");
+            }
+        }else if(word[0].equals("add") && word[2].equals("to")&& word[3].equals("deck")){
+            try {
+                menu.addToDeck(Integer.parseInt(word[1]),word[4]);
+            } catch (DeckAlreadyHasAHeroException e) {
+                System.out.println("Cant add another Hero to the deck");
+            } catch (DeckAlreadyHasThisCardException e) {
+                System.out.println("Deck already has this Card");
+            } catch (FullDeckException e) {
+                System.out.println("No More!!! deck is full");
+            } catch (InvalidCardException e) {
+                System.out.println("you dont have this Card in your collection");
+            } catch (DeckAlreadyHasThisItemException e) {
+                System.out.println("Deck already has this Item");
+            } catch (InvalidDeckException e) {
+                System.out.println("Couldn't find the Deck!");
+            } catch (InvalidItemException e) {
+                System.out.println("you dont have this Item in your collection");
+            }
+        }else if(word[0].equals("remove") && word[2].equals("from")&& word[3].equals("deck")){
+            try {
+                menu.removeFromDeck(Integer.parseInt(word[1]),word[4]);
+            } catch (InvalidCardException e) {
+                System.out.println("you dont have this Card in your Deck");
+            } catch (InvalidItemException e) {
+                System.out.println("you dont have this Item in your Deck");
+            } catch (InvalidDeckException e) {
+                System.out.println("Couldn't find the Deck!");
+            }
+        }else if(word[0].equals("validate") && word[1].equals("deck")){
+            try {
+                menu.validateDeck(word[2]);
+            } catch (InvalidDeckException e) {
+                System.out.println("Couldn't find the Deck!");
+            }
+        }else if(word[0].equals("select") && word[1].equals("deck")){
+            try {
+                menu.selectDeck(word[2]);
+            } catch (InvalidDeckException e) {
+                System.out.println("Couldn't find the Deck!");
             }
         }
     }
