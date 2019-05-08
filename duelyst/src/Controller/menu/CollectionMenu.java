@@ -9,8 +9,6 @@ import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnDeckPresentedListener;
 import exeption.*;
 
-import java.util.ArrayList;
-
 public class CollectionMenu extends Menu {
     private static CollectionMenu menu;
 

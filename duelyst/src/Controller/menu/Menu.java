@@ -1,11 +1,9 @@
 package Controller.menu;
 
-import Model.account.Collection;
 import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public abstract class Menu {
 

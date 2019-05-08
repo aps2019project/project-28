@@ -11,7 +11,6 @@ import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
 import Model.item.Item;
 import Model.item.OnItemDetailPresentedListener;
-import Model.item.Usable;
 import exeption.*;
 
 import java.util.ArrayList;

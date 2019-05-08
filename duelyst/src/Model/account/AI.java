@@ -14,7 +14,6 @@ import Model.card.spell.Target;
 import exeption.*;
 
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 

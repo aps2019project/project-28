@@ -1,6 +1,5 @@
 package Model.Map;
 
-import Model.account.Collection;
 import Model.item.Flag;
 import exeption.InvalidCellException;
 

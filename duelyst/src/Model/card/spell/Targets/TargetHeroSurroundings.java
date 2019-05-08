@@ -3,14 +3,11 @@ package Model.card.spell.Targets;
 import Controller.Game;
 import Model.Map.Cell;
 import Model.Map.Map;
-import Model.account.Collection;
 import Model.account.Player;
-import Model.card.spell.Spell;
 import Model.card.spell.Target;
 import exeption.InvalidCellException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class TargetHeroSurroundings implements Target {
     private static TargetHeroSurroundings obj;

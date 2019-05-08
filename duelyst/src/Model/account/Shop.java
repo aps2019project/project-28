@@ -1,6 +1,7 @@
 package Model.account;
 
 import Model.PreProcess;
+import Model.card.Card;
 import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
@@ -9,26 +10,26 @@ import exeption.CardExistException;
 import exeption.ItemExistExeption;
 
 public class Shop {
-    private static Shop ourInstance = new Shop();
 
+    private static Shop ourInstance = new Shop();
     private Collection collection = new Collection();
-    {
-        for (Hero hero:
-                PreProcess.heroes) {
+
+    private void fillCollection(){
+        for (Hero hero: PreProcess.heroes) {
             try {
                 collection.addCardToCollection(hero);
-            } catch (CardExistException e) {}
+            } catch (CardExistException e) {
+                e.printStackTrace();
+            }
         }
 
-        for (Minion minion:
-             PreProcess.minions) {
+        for (Minion minion: PreProcess.minions) {
             try {
                 collection.addCardToCollection(minion);
             } catch (CardExistException e) {}
         }
 
-        for (Usable item:
-             PreProcess.usables) {
+        for (Usable item: PreProcess.usables) {
             try {
                 collection.addItemToCollection(item);
             } catch (ItemExistExeption itemExistExeption) {
@@ -42,7 +43,7 @@ public class Shop {
                 collection.addCardToCollection(spell);
             } catch (CardExistException e) {}
         }
-        collection.save();
+        collection = collection.save();//kh kaCf
     }
 
     public Collection getCollection() {
@@ -55,5 +56,11 @@ public class Shop {
     }
 
     private Shop() {
+        fillCollection();
+
+        for (Card c: this.collection.getCards()) {
+            System.err.println(c.getName());
+        }
     }
+
 }

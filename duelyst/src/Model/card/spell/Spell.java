@@ -1,7 +1,5 @@
 package Model.card.spell;
 
-import Model.account.Account;
-import Model.account.Collection;
 import Model.account.Player;
 import Model.card.Card;
 import Model.Map.*;
@@ -10,7 +8,6 @@ import exeption.InvalidCardException;
 import exeption.InvalidCellException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 
