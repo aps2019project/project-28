@@ -19,6 +19,7 @@ import View.Listeners.*;
 import exeption.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -529,10 +530,6 @@ public class ManuHandler {
 
 
     public static void main(String[] args) {
-        for (Card card:
-        Shop.getInstance().getCollection().getCards()) {
-            System.out.println(card.getName());
-        }
 
         Scanner commands = new Scanner(System.in);
         currentMenu.showMenu();
