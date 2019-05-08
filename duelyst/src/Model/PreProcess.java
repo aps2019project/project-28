@@ -139,13 +139,13 @@ public class PreProcess {
         spells.add(new Spell("Weakening", 1000, 1, 1, -4,"gives an enemy minion a weakness buff, it decreases attack point 4 units",
                 TargetEnemyMinion.getTargetInstance(), ActionChangeAP.getAction()));
         spells.add(new Spell("Sacrifice", 1600, 2, 1, -6, "gives an own minion a power buff, it increases attack point 8 units , it gives weakness buff too, it decreases health point 6 units",
-                new TargetOwnMinion(), ActionChangeAP.getAction(), ActionChangeHP.getAction()));
+                new TargetOwnMinion(), ActionSacrifice.getAction()));
         spells.add(new Spell("Kings Guard", 1750, 9, 1, 8, "it kills a random minion in hero surroundings",
                 TargetHeroSurroundings.getTargetInstance(), ActionKillMinion.getAction()));
         spells.add(new Spell("Shock", 1200, 1, 2, 0, "an enemy card will be stuned, duration : 2",
                 TargetEnemyCard.getTargetInstance(), ActionStun.getAction()));
 
-       FileWriter fileWriter = new FileWriter("Spell.json");
+       FileWriter fileWriter = new FileWriter("Spell.json", false);
        for (Spell spell :
                 spells) {
             gson.toJson(spell, fileWriter);
@@ -160,7 +160,7 @@ public class PreProcess {
         minions.add(new Minion("Persian Swordsman", 400, 2, 6,
                 4, new Melee(), 0,
                 new SpecialPower("Persian SwordsMan SpecialPower", 0, 0, 0, 0, "",
-                        null, ActionStun.getAction()), SPATime.ATTACK, "while attacking, enemy's card will be stunned"));
+                        TargetEnemyCard.getTargetInstance(), ActionStun.getAction()), SPATime.ATTACK, "while attacking, enemy's card will be stunned"));
         minions.add(new Minion("Persian Lancer", 500, 1, 5,
                 3, new Hybrid(), 3,
                 null, null, "just an ordinary hybrid minion"));
@@ -170,7 +170,7 @@ public class PreProcess {
         minions.add(new Minion("Persian Warrior", 600, 9, 24,
                 6, new Melee(), 0,
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, 5, "",
-                        null, ActionChangeAP.getAction()), SPATime.ATTACK, "be tedad dafati ke dar nobat haye qabl be yek niru hamle karde, 5 vahed bishtar be an zarbe vared mikonad"));
+                        TargetEnemyCard.getTargetInstance(), ActionChangeAP.getAction()), SPATime.ATTACK, "be tedad dafati ke dar nobat haye qabl be yek niru hamle karde, 5 vahed bishtar be an zarbe vared mikonad"));
 
         minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
@@ -226,7 +226,7 @@ public class PreProcess {
         minions.add(new Minion("Fierce Lion",600, 2, 1,
                 8, new Melee(), 0,
                 new SpecialPower("Fierce Lion SpecialPower", 0, 0, 0, 0, "",
-                        null, ActionDispel.getAction()), SPATime.ATTACK, "holy buff doesn't effect its attack"));
+                        TargetEnemyCard.getTargetInstance(), ActionDispel.getAction()), SPATime.ATTACK, "holy buff doesn't effect its attack"));
 
         minions.add(new Minion("Giant Snake", 500, 8, 14,
                 7, new Range(), 5,
@@ -243,7 +243,7 @@ public class PreProcess {
         minions.add(new Minion("Wolf", 400, 3, 6,
                 1, new Melee(), 0,
                 new SpecialPower("Wolf SpecialPower", 0, 0, 0, -6, "",
-                        TargetOwnMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
+                        TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
         minions.add(new Minion("The Wizard", 550, 4, 5,
                 4, new Range(), 3,
                 new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
@@ -287,11 +287,11 @@ public class PreProcess {
         minions.add(new Minion("Two Headed Giant",550, 4, 10,
                 4, new Melee(), 0,
                 new SpecialPower("Two Headed Giant SpecialPower", 0, 0, 1, 0, "",
-                        TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction()), SPATime.ATTACK, "every card that it attacks will be diarmed"));
+                        TargetEnemyCard.getTargetInstance(), ActionDispelPositives.getAction()), SPATime.ATTACK, "every card that it attacks will be diarmed"));
 
         minions.add(new Minion("Mother Ice", 500, 3, 3,
                 4, new Range(), 5,
-                new SpecialPower("Mother Ice SpecialPower", 0, 0, 0, 1, "",
+                new SpecialPower("Mother Ice SpecialPower", 0, 0, 1, 0, "",
                         MinionInSurrounding.getTargetInstance(), ActionStun.getAction()), SPATime.SPAWN, "enemy minions surrounding stun for 1 turn"));
         minions.add(new Minion("Foolad Zereh", 650, 3, 1,
                 1, new Melee(), 0,
@@ -338,7 +338,7 @@ public class PreProcess {
                 , 0, 2, "a melee hero with special power of stunning enemy for 1 turn"));
         heroes.add(new Hero("Zahak", 10000, 50, 2, new Melee(), 0,
                 new SpecialPower("Zahak", 0, 0, 3, 0, "",
-                        TargetEnemyCard.getTargetInstance(), ActionPoison.getAction())
+                        TargetEnemyCard.getTargetInstance(), ActionDeployPoison.getAction())
                 , 0, 0, "a melee hero with special power of poisoning enemy 3 turns after attack"));
         heroes.add(new Hero("Kaveh", 8000, 50, 4, new Melee(), 0,
                 new SpecialPower("Kaveh", 0, 1, 3, 0, "",

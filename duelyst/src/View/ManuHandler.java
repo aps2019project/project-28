@@ -530,7 +530,6 @@ public class ManuHandler {
 
 
     public static void main(String[] args) {
-
         Scanner commands = new Scanner(System.in);
         currentMenu.showMenu();
         while(commands.hasNext()){
