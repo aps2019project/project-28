@@ -2,6 +2,7 @@ package Model.card.hermione;
 
 import Controller.Game;
 import Model.Map.Cell;
+import Model.Map.CellAffects;
 import Model.Map.Map;
 import Model.card.Card;
 import Model.card.spell.Buff.Buff;
@@ -59,6 +60,8 @@ public abstract class Hermione extends Card {
           this.attackCounter++ ;
           this.buffEffects.handle() ;
             enemyCard.setHealthPoint(enemyCard.healthPoint-this.attackPoint);
+            if (enemyCard.getLocation().getCellAffect().contains(CellAffects.holly))
+                enemyCard.changeHealthPoint(1);
             enemyCard.counterAttack(this);
             if(enemyCard.getHealthPoint()<=0){
                 enemyCard.die();
@@ -108,11 +111,6 @@ public abstract class Hermione extends Card {
 
     public  abstract boolean applySpecialPower(int x, int y);// TODO: 4/15/19 saE
 
-    private void handleAppliedBuffs() throws InvalidCellException{
-        for (Buff appliedBuff : this.appliedBuffs) {
-            appliedBuff.affect();
-        }
-    }
 
     public void spawn(Cell cell){
         this.setLocation(cell);
@@ -128,7 +126,7 @@ public abstract class Hermione extends Card {
     }
 
     public void reverseHP(){
-        this.healthPoint+=this.buffEffects.getLostHealthPointDueToBuff();
+        this.healthPoint+=this.buffEffects.getChangedHealthPointDueToBuff();
     }
 
 
@@ -249,7 +247,7 @@ public abstract class Hermione extends Card {
     }
 
     public void setLostHealthPointDueToBuff(int lostHealthPointDueToBuff) {
-        this.buffEffects.setLostHealthPointDueToBuff(lostHealthPointDueToBuff);
+        this.buffEffects.setChangedHealthPointDueToBuff(lostHealthPointDueToBuff);
     }
 
     public int getOriginalHealthPoint() {
@@ -258,5 +256,9 @@ public abstract class Hermione extends Card {
 
     public void setOriginalHealthPoint(int originalHealthPoint) {
         this.originalHealthPoint = originalHealthPoint;
+    }
+
+    public BuffEffectsOnHermione getBuffEffects() {
+        return buffEffects;
     }
 }

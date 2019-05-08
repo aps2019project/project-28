@@ -13,4 +13,9 @@ public class BuffActionHP implements BuffActions {
         buff.getTarget().changeHealthPoint(buff.getPerk());
         buff.getTarget().setLostHealthPointDueToBuff(buff.getPerk());
     }
+
+    @Override
+    public void destroy(Buff buff) {
+        buff.getTarget().getBuffEffects().changeBackHealthPoint();
+    }
 }

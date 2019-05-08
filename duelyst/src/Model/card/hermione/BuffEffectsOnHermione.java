@@ -2,8 +2,6 @@ package Model.card.hermione;
 
 import Model.Map.Cell;
 import Model.card.spell.SpellAction.ActionDeployPoison;
-import Model.card.spell.Target;
-import Model.card.spell.Targets.TargetRandom;
 import Model.card.spell.Targets.TargetRandomEnemy;
 import exeption.InvalidCellException;
 
@@ -12,7 +10,7 @@ public class BuffEffectsOnHermione {
     private boolean hasTheDeathCurse = false ;
     private int HollyBuffLevel = 0 ;
     private int originalAttackPoint ;
-    private int lostHealthPointDueToBuff = 0 ;
+    private int changedHealthPointDueToBuff = 0 ;
     private boolean hasTheGiantSnakeEffect = false ;
     private boolean hasThePoisonousDagger = false ;
 
@@ -41,8 +39,8 @@ public class BuffEffectsOnHermione {
         return originalAttackPoint;
     }
 
-    public int getLostHealthPointDueToBuff() {
-        return lostHealthPointDueToBuff;
+    public int getChangedHealthPointDueToBuff() {
+        return changedHealthPointDueToBuff;
     }
 
     public void setHasTheDeathCurse(boolean hasTheDeathCurse) {
@@ -57,8 +55,12 @@ public class BuffEffectsOnHermione {
         this.originalAttackPoint = originalAttackPoint;
     }
 
-    public void setLostHealthPointDueToBuff(int lostHealthPointDueToBuff) {
-        this.lostHealthPointDueToBuff = lostHealthPointDueToBuff;
+    public void setChangedHealthPointDueToBuff(int changedHealthPointDueToBuff) {
+        this.changedHealthPointDueToBuff = changedHealthPointDueToBuff;
+    }
+
+    public void changeBackHealthPoint(){
+        this.card.changeHealthPoint(-changedHealthPointDueToBuff);
     }
 
     public boolean isHasTheGiantSnakeEffect() {
