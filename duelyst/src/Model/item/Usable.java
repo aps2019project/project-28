@@ -8,8 +8,8 @@ public class Usable extends Item {
 
     int price;
 
-    public Usable(String name, int price, int duration, int perk, Target target, ItemAction... actions) {
-        super(name, duration, perk, target, actions);
+    public Usable(String name, int price, int duration, int perk, String info, Target target, ItemAction... actions) {
+        super(name, duration, perk, info, target, actions);
         this.price = price;
     }
 

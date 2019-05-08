@@ -23,15 +23,16 @@ public abstract class Item {
     private ArrayList<ItemAction> actions = new ArrayList<>();
     private int itemID;
     private static ArrayList<OnItemDetailPresentedListener> itemDetailPresenters = new ArrayList<>();
-    private String comment;
+    private String info;
 
-    public Item(String name, int duration, int perk, Target target, ItemAction... actions) {
+    public Item(String name, int duration, int perk, String info, Target target, ItemAction... actions) {
         this.name = name;
         Collections.addAll(this.actions, actions);
         this.target = target;
         this.perk = perk;
         this.duration = duration;
         this.itemID = Card.uniqueID++;
+        this.info = info;
     }
 
     public static Item getItem(int itemID) throws InvalidItemException {
@@ -142,9 +143,9 @@ public abstract class Item {
     }
 
     public String getComment() {
-        return this.comment;
+        return this.info;
     }
     public void setComment(String comment){
-       this.comment=comment; 
+       this.info=comment;
     }
 }

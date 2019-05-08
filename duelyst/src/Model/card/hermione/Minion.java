@@ -11,8 +11,9 @@ import exeption.InvalidCellException;
 public class Minion extends Hermione{
     private SPATime SPActivationTime;
 
-    public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint, AttackType attackType, int range, Model.card.spell.SpecialPower specialPower,SPATime SPActivationTime) {
-        super(name, price, manaPoint, healthPoint, attackPoint, specialPower, attackType, range);
+    public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint, AttackType attackType, int range,
+                  Model.card.spell.SpecialPower specialPower,SPATime SPActivationTime, String info) {
+        super(name, price, manaPoint, healthPoint, attackPoint, specialPower, attackType, range, info);
         this.SPActivationTime = SPActivationTime;
     }
 
