@@ -413,7 +413,11 @@ public class ManuHandler {
             currentMenu.showMenu();
             return true;
         }else if(word[0].matches("[\\d]")){
-            currentMenu=currentMenu.enter(currentMenu.getSubMenus().get(Integer.parseInt(word[0])-1));
+            try {
+                currentMenu = currentMenu.enter(currentMenu.getSubMenus().get(Integer.parseInt(word[0]) - 1));
+            }catch (IndexOutOfBoundsException e){
+                System.out.println("please choose a number between 1 and " + currentMenu.getSubMenus().size());
+            }
             return true;
         }else if(word[0].equals("exit")){
             if(currentMenu.getParentMenu()==null) System.out.println("This is the root menu!");
