@@ -252,7 +252,9 @@ public abstract class Hermione extends Card {
     }
 
     public int getOriginalHealthPoint() {
-        return originalHealthPoint;
+//        return originalHealthPoint;
+        // TODO: 5/9/19 jam kon ridemanet ro
+        return healthPoint;
     }
 
     public void setOriginalHealthPoint(int originalHealthPoint) {

@@ -24,3 +24,4 @@ public class SinglePlayerModeMenu extends Menu {
         } catch (FullDeckException | DeckAlreadyHasThisCardException | InvalidDeckException | DeckAlreadyHasAHeroException | DeckAlreadyHasThisItemException ignored) {}
     }
 }
+

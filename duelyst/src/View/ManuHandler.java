@@ -143,9 +143,10 @@ public class ManuHandler {
             private void showHermioneDetail(Hermione h){
                 System.out.println("\tName : " + h.getName());
                 System.out.println("\tClass : " + h.getAttackType().getClass().toString());
-                System.out.println("\tAttackPoint : " + h.getOriginalAttackPoint() +
-                        "\tHealth point : " + h.getOriginalHealthPoint() + "\tManaPoint : " + h.getSpecialPower().getManaPoint());
-                System.out.println("\tSpecialPower : " + h.getSpecialPower().getInfo());
+                System.out.print("\tAttackPoint : " + h.getOriginalAttackPoint());
+                System.out.println("\tHealth point : " + h.getOriginalHealthPoint());
+                System.out.println("\tManaPoint : " + h.getManaPoint());
+//                System.out.println("\tSpecialPower : " + h.getSpecialPower().getInfo());
                 System.out.println("\tSell cost : " + h.getPrice());
                 System.out.println("\tID : "+h.getCardID());
             }
@@ -226,9 +227,9 @@ public class ManuHandler {
 
         //Item
         Item.addNewOnItemDeatilPresentedListener(item -> {
-            System.out.println("Name : " + item.getName());
-            System.out.println("Desc : " + item.getComment());
-            System.out.println("Sell cost" + ((Usable) item).getPrice());
+            System.out.println("\tName : " + item.getName());
+            System.out.println("\tDesc : " + item.getComment());
+            System.out.println("\tSell cost" + ((Usable) item).getPrice());
         });
     }
     private static void initMenus() {
