@@ -9,6 +9,7 @@ import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
 import Model.item.Item;
+import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.Gson;
 import exeption.*;
 
@@ -39,10 +40,10 @@ public class Player {
         this.collectables = new ArrayList<>();
         this.selectedCard = null;
         this.selectedItem = null;
-        Gson gson = new Gson();
+        YaGson gson = new YaGson();
         //In Order To Secure Objects In Account We Made A HardCopy Of MainDeck
         this.deck = gson.fromJson(gson.toJson(user.getCollection().getMainDeck()), Deck.class);
-//        this.deck.setCollection(user.getCollection());
+        this.deck.setCollection(user.getCollection());
         // TODO: 5/9/19 check whether or not the line above needs to be
         this.hand = new Hand(this.deck);
     }

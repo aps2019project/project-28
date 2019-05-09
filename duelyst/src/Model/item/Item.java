@@ -119,7 +119,7 @@ public abstract class Item {
 
 
     public static ArrayList<Item> getItems() {
-        return (ArrayList<Item>) Collections.unmodifiableList(items);
+        return (items);
     }
 
     public static void addNewOnItemDeatilPresentedListener(OnItemDetailPresentedListener presenter) {
