@@ -275,7 +275,7 @@ public class AI extends Account {
     }
 
     @Override
-    public Scanner getOutputStream(Scanner consoleOutputStream) {
+    public Scanner getOutputStream() {
         if(this.outputStream!=null){
             this.outputStream.close();
         }

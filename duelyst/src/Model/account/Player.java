@@ -42,7 +42,8 @@ public class Player {
         Gson gson = new Gson();
         //In Order To Secure Objects In Account We Made A HardCopy Of MainDeck
         this.deck = gson.fromJson(gson.toJson(user.getCollection().getMainDeck()), Deck.class);
-        this.deck.setCollection(user.getCollection());
+//        this.deck.setCollection(user.getCollection());
+        // TODO: 5/9/19 check whether or not the line above needs to be
         this.hand = new Hand(this.deck);
     }
 

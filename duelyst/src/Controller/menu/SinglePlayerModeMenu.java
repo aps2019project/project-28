@@ -11,7 +11,7 @@ public class SinglePlayerModeMenu extends Menu {
     }
     public static SinglePlayerModeMenu getMenu(){
         if(SinglePlayerModeMenu.menu==null){
-            SinglePlayerModeMenu.menu=new SinglePlayerModeMenu("SinglePlayerModeMenu");
+            SinglePlayerModeMenu.menu=new SinglePlayerModeMenu("SinglePlayer");
         }
         return menu;
     }
@@ -19,9 +19,6 @@ public class SinglePlayerModeMenu extends Menu {
     @Override
     public void init(Menu parentMenu) {
         super.init(parentMenu);
-        try {
-            Game.accounts[1]=new AI(Game.accounts[0].getStoryModeSPX());
-        } catch (FullDeckException | DeckAlreadyHasThisCardException | InvalidDeckException | DeckAlreadyHasAHeroException | DeckAlreadyHasThisItemException ignored) {}
     }
 }
 

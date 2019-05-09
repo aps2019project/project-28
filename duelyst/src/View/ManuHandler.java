@@ -112,7 +112,13 @@ public class ManuHandler {
             MultiPlayerModeMenu.getMenu().addMenuClickListener(new ShowMenu());
             ShopMenu.getMenu().addMenuClickListener(new ShowMenu());
             SinglePlayerModeMenu.getMenu().addMenuClickListener(new ShowMenu());
-            StoryModeMenu.getMenu().addMenuClickListener(new ShowMenu());
+            StoryModeMenu.getMenu().addMenuClickListener(new OnMenuClickedListener() {
+                @Override
+                public void show(Menu menu) {
+                    System.out.println("Levels:");
+                    System.out.println("1) welcome to our world     2) wrath of the Mighty     3) the last fiction");
+                }
+            });
         }
         //signIn menu
         SignInMenu.getMenu().addLeaderBoardClickedListener(accounts -> {
@@ -267,7 +273,27 @@ public class ManuHandler {
         setCollectablePattern();
         setMainMenuPattern();
         setGameModeMenuPatterns();
+        setStoryModePattern();
+        setSinglePlayerModePattern();
     }
+
+    private static void setSinglePlayerModePattern() {
+        SinglePlayerModeMenu.getMenu().addPattern("enter [\\w]+");
+        SinglePlayerModeMenu.getMenu().addPattern("[\\d]+");
+        SinglePlayerModeMenu.getMenu().addPattern("help");
+        SinglePlayerModeMenu.getMenu().addPattern("show");
+        SinglePlayerModeMenu.getMenu().addPattern("exit");
+        SinglePlayerModeMenu.getMenu().addPattern("level [\\d]+");
+    }
+    private static void setStoryModePattern() {
+        StoryModeMenu.getMenu().addPattern("enter [\\w]+");
+        StoryModeMenu.getMenu().addPattern("[\\d]+");
+        StoryModeMenu.getMenu().addPattern("help");
+        StoryModeMenu.getMenu().addPattern("show");
+        StoryModeMenu.getMenu().addPattern("exit");
+        StoryModeMenu.getMenu().addPattern("level [\\d]+");
+    }
+
     public static void setSignInPatterns(){
         SignInMenu.getMenu().addPattern("enter [\\w]+");
         SignInMenu.getMenu().addPattern("[\\d]+");
@@ -280,6 +306,7 @@ public class ManuHandler {
         SignInMenu.getMenu().addPattern("save");
         SignInMenu.getMenu().addPattern("logout");
     }
+
     public static void setCollectionPatterns(){
         CollectableMenu.getMenu().addPattern("enter [\\w]+");
         CollectionMenu.getMenu().addPattern("[\\d]+");
@@ -378,10 +405,9 @@ public class ManuHandler {
     }
 
     public static void main(String[] args) {
-        Scanner[] outStream=new Scanner[2];
-        outStream[0]=new Scanner(System.in);
-        Scanner commands=outStream[0];
+        Scanner commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
         currentMenu.showMenu();
+
         while(commands.hasNext()){
             try {
                 String command = commands.nextLine().toLowerCase().trim();
@@ -401,17 +427,23 @@ public class ManuHandler {
                     BattleCommandHandler(word);
                 }else if(currentMenu instanceof ChooseBattleModeMenu){
                     ChooseBattleModeMenuCommandHandler(word);
-                }else if(currentMenu instanceof SinglePlayerModeMenu){
-//                    SinglePlayerModeMenu.getMenu().init();
+                }else if(currentMenu instanceof StoryModeMenu){
+                    storyModeMenuCommandHandler(word);
                 }
             }
             catch (Exception e){
                 e.printStackTrace();
             }
             currentMenu.showMenu();
-            commands=outStream[Game.battle.getTurn()];
+            commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
         }
+    }
 
+    private static void storyModeMenuCommandHandler(String[] word) {
+        StoryModeMenu menu= (StoryModeMenu) currentMenu;
+        if(word[0].equals("level")) {
+            currentMenu=menu.setAI(Integer.parseInt(word[1]));
+        }
     }
 
     private static void ShopMenuCommandHandler(String[] word) {
@@ -580,7 +612,11 @@ public class ManuHandler {
         }else if(word[0].equals("enter")){
             try {
 
-                currentMenu = currentMenu.enter(currentMenu.getMenuFromSubMenus(word[1]));
+                try {
+                    currentMenu = currentMenu.enter(currentMenu.getMenuFromSubMenus(word[1]));
+                } catch (InvalidSubMenuException e) {
+                    System.out.println("the requested menu doesnt exist");
+                }
             }catch (IndexOutOfBoundsException e){
                 System.out.println("please choose a number between 1 and " + currentMenu.getSubMenus().size());
             }

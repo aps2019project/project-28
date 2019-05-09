@@ -1,5 +1,9 @@
 package Controller.menu;
 
+import Controller.Game;
+import Model.account.AI;
+import exeption.*;
+
 public class StoryModeMenu extends Menu {
     private static StoryModeMenu menu;
 
@@ -14,4 +18,16 @@ public class StoryModeMenu extends Menu {
         return menu;
     }
 
+    @Override
+    public void help() {
+        super.help();
+        System.out.println("4) Level [Level number]");
+    }
+
+    public Menu setAI(int level) {
+        try {
+            Game.accounts[1]=new AI(level);
+        } catch (FullDeckException | DeckAlreadyHasThisCardException | InvalidDeckException | DeckAlreadyHasAHeroException | DeckAlreadyHasThisItemException ignored) { }
+        return this.enter(Battle.getMenu());
+    }
 }

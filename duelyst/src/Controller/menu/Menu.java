@@ -2,6 +2,7 @@ package Controller.menu;
 
 import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
+import exeption.InvalidSubMenuException;
 
 import java.util.ArrayList;
 
@@ -66,11 +67,11 @@ public abstract class Menu {
         return parentMenu;
     }
 
-    public Menu getMenuFromSubMenus(String name) {
+    public Menu getMenuFromSubMenus(String name) throws InvalidSubMenuException {
         for (Menu subMenu : this.subMenus) {
             if (subMenu.name.toLowerCase().trim().equals(name)) return subMenu;
         }
-        return null;
+        throw new InvalidSubMenuException();
 
     }
     public void setParentMenu(Menu parentMenu) {

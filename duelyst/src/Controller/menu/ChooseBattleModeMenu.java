@@ -11,7 +11,7 @@ public class ChooseBattleModeMenu extends Menu {
 
     public static Menu getMenu() {
         if(ChooseBattleModeMenu.menu==null){
-            ChooseBattleModeMenu.menu=new ChooseBattleModeMenu("ChooseBattleModeMenu");
+            ChooseBattleModeMenu.menu=new ChooseBattleModeMenu("ChooseBattle");
         }
         return menu;
     }

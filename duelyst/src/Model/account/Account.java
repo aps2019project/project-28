@@ -1,5 +1,6 @@
 package Model.account;
 
+import Controller.Game;
 import Controller.Match;
 import Model.Primary;
 import com.gilecode.yagson.YaGson;
@@ -13,6 +14,7 @@ import java.util.Scanner;
 
 public class Account {
 
+    private static final Account defaultAccount = new Account("Duelyst","SAF","Pass the fucking word");
     protected static int unique = 0;
     protected static final int INITIAL_MONEY = 1500;
 
@@ -47,6 +49,9 @@ public class Account {
         }
     }
 
+    public static Account getDefaultAccount(){
+        return Account.defaultAccount;
+    }
     public Account(String name, String username, String password) {
         this.name = name;
         this.username = username;
@@ -211,8 +216,8 @@ public class Account {
         return Account.getAccounts();
     }
     public String play(){return null;}
-    public Scanner getOutputStream(Scanner consuleSccaner){
-        if(this.outputStream==null)this.outputStream=consuleSccaner;
+    public Scanner getOutputStream(){
+        if(this.outputStream==null)this.outputStream= Game.scanner;
         return outputStream;
     }
 }

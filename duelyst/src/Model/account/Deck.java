@@ -155,10 +155,10 @@ public class Deck {
     public boolean addCardToDeck(Card card) throws DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasAHeroException {
         if (this.hasCard(card.getCardID())) throw new DeckAlreadyHasThisCardException();
         if (this.cards.size() >= CARD_SIZE) throw new FullDeckException();
-        if (card.getClass().equals(hero.getClass()) && hero != null) throw new DeckAlreadyHasAHeroException();
+        if (hero != null && card instanceof Hero) throw new DeckAlreadyHasAHeroException();
 
         cards.add(card);
-        if (card.getClass().equals(hero.getClass())) hero = (Hero) card;
+        if (hero !=null && card instanceof Hero) hero = (Hero) card;
         return true;
     }
 
