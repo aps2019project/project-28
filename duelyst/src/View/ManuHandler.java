@@ -549,6 +549,11 @@ public class ManuHandler {
 
 
     public static void main(String[] args) {
+        try {
+            Primary.Json();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Scanner commands = new Scanner(System.in);
         currentMenu.showMenu();
         while(commands.hasNext()){
@@ -572,7 +577,7 @@ public class ManuHandler {
                     if(word[0].equals("mode")){
                         switch (Integer.parseInt(word[1])){
                             case 1:
-                                Game.battle.
+                                //Game.battle.
                         }
                     }
                 }

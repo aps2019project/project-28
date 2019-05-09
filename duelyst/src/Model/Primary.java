@@ -174,17 +174,20 @@ public class Primary {
         //Minion
         minions.add(new Minion("Persian Archer", 300, 2, 6,
                 4, new Range(), 7,
-                null, null, "just an ordinary range minion"));
+                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                        null, ActionChangeAP.getAction()), null, "just an ordinary range minion"));
         minions.add(new Minion("Persian Swordsman", 400, 2, 6,
                 4, new Melee(), 0,
                 new SpecialPower("Persian SwordsMan SpecialPower", 0, 0, 0, 0, "",
                         TargetEnemyCard.getTargetInstance(), ActionStun.getAction()), SPATime.ATTACK, "while attacking, enemy's card will be stunned"));
         minions.add(new Minion("Persian Lancer", 500, 1, 5,
                 3, new Hybrid(), 3,
-                null, null, "just an ordinary hybrid minion"));
+                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                        null, ActionChangeAP.getAction()), null, "just an ordinary hybrid minion"));
         minions.add(new Minion("Persian Horseman", 200, 4, 10,
                 6, new Melee(), 0,
-                null, null, "just an ordinary melee minion"));
+                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                        null, ActionChangeAP.getAction()), null, "just an ordinary melee minion"));
         minions.add(new Minion("Persian Warrior", 600, 9, 24,
                 6, new Melee(), 0,
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, 5, "",
@@ -196,13 +199,16 @@ public class Primary {
                         null, ActionCombo.getAction()), SPATime.NULL, "Combo"));
         minions.add(new Minion("Turanian Archer", 500, 1, 3,
                 4, new Range(), 5,
-                null, null, "just an ordinary range minion"));
+                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                        null, ActionChangeAP.getAction()), null, "just an ordinary range minion"));
         minions.add(new Minion("Turanian Slinger", 600, 1, 4,
                 2, new Range(), 7,
-                null, null, "just an ordinary range minion"));
+                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                        null, ActionChangeAP.getAction()), null, "just an ordinary range minion"));
         minions.add(new Minion("Turanian Lancer", 600, 1, 4,
                 4, new Hybrid(), 3,
-                null, null, "just an ordinary hybrid minion"));
+                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                        null, ActionChangeAP.getAction()), null, "just an ordinary hybrid minion"));
         minions.add(new Minion("Turanian SPY", 700, 4, 6,
                 6, new Melee(), 0,
                 new SpecialPower("Turanian Spy SpecialPower", 0, 0, 1, 4, "",
@@ -211,17 +217,20 @@ public class Primary {
 
         minions.add(new Minion("Turanian MaceBearer", 450, 2, 3,
                 10, new Melee(), 0,
-                null, null, "just a melee minion"));
+                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                        null, ActionChangeAP.getAction()), null, "just a melee minion"));
         minions.add(new Minion("Turanian Prince",800, 6, 6,
                 10, new Melee(), 0,
                 new SpecialPower("Turanian Prince", 0, 0, 0, 0, "",
                         null, ActionCombo.getAction()), SPATime.NULL, "combo"));
         minions.add(new Minion("Black Demon", 300, 9, 14,
                 10, new Hybrid(), 7,
-                null, null, "just a hybrid minion"));
+                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                        null, ActionChangeAP.getAction()), null, "just a hybrid minion"));
         minions.add(new Minion("Stone Thrower Giant", 300, 9, 12,
                 12, new Range(), 7,
-                null, null, "just a range minion"));
+                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                        null, ActionChangeAP.getAction()), null, "just a range minion"));
         minions.add(new Minion("Eagle", 200, 2, 0,
                 2, new Range(), 3,
                 new SpecialPower("Eagle SpecialPower", 0, 0, 0, 10, "",
@@ -229,7 +238,8 @@ public class Primary {
 
         minions.add(new Minion("Hog Rider Demon", 300, 6, 16,
                 8, new Melee(), 0,
-                null, null, "just a melee minion"));
+                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                        null, ActionChangeAP.getAction()), null, "just a melee minion"));
         minions.add(new Minion("One Eye Giant", 500, 7, 12,
                 11, new Hybrid(), 3,
                 new SpecialPower("One Eye Giant SpecialPower", 0, 0, 0, 2, "",
@@ -269,7 +279,7 @@ public class Primary {
                 SPATime.PASSIVE, "gives own and minions surrounded a power buff, increases attack point 2 units + a weakness buff, decreases health point 1 unit for one turn"));
 
         minions.add(new Minion("The Great Wizard",550, 6, 6,
-                6, new Range(), 5,new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2, "",
+                6, new Range(), 5, new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2, "",
                 OwnMinionAndItsSurrounfing.getTargetInstance(), ActionChangeAP.getAction(), ActionDeployHollyBuff.getAction())
                 ,SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
         minions.add(new Minion("Genie", 500, 5, 10,
@@ -298,10 +308,12 @@ public class Primary {
 
         minions.add(new Minion("Iraj", 500, 4, 6,
                 20, new Range(), 3,
-                null, null, "just a range minion"));
+                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                        null, ActionChangeAP.getAction()), null, "just a range minion"));
         minions.add(new Minion("Great Giant", 600, 9, 30,
                 8, new Hybrid(), 2,
-                null, null, "just a hybrid minion"));
+                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                        null, ActionChangeAP.getAction()), null, "just a hybrid minion"));
         minions.add(new Minion("Two Headed Giant",550, 4, 10,
                 4, new Melee(), 0,
                 new SpecialPower("Two Headed Giant SpecialPower", 0, 0, 1, 0, "",
