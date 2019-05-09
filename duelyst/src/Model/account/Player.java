@@ -4,6 +4,7 @@ import Controller.Game;
 import Model.Map.Cell;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
+import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
@@ -60,14 +61,13 @@ public class Player {
     public void spawn(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException, InvalidCellException, InvalidCardException {
         if (this.mana < card.getManaPoint()) throw new NotEnoughManaException();
         if (cell.isFull()) throw new DestinationIsFullException();
-        // TODO: 5/5/19 better implementation maybe by using .getClass?
-        try {
+        if(card instanceof Hero){
             Hermione hermione = (Hermione) card;
             hermione.spawn(cell);
             if (hasAssasinationDagger) {
                 Game.battle.getEnemyPlayer().getDeck().getHero().changeHealthPoint(-1);
             }
-        } catch (ClassCastException e) {
+        }else{
             Spell spell = (Spell) card;
             spell.deploy(this, Game.battle.getEnemyPlayer(), cell);
         }
