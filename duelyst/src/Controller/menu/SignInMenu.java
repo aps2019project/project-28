@@ -59,7 +59,6 @@ public class SignInMenu extends Menu {
 
     public void logOut() {
         Game.hasLoggedIn = false;
-        Game.accounts[0] = null;
         this.account=null;
     }
 

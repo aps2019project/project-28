@@ -109,15 +109,19 @@ public class ManuHandler {
             GameModeMenu.getMenu().addMenuClickListener(new ShowMenu());
             GraveYardMenu.getMenu().addMenuClickListener(new ShowMenu());
             MainMenu.getMenu().addMenuClickListener(new ShowMenu());
-            MultiPlayerModeMenu.getMenu().addMenuClickListener(new ShowMenu());
+            MultiPlayerModeMenu.getMenu().addMenuClickListener(menu -> {
+                System.out.println("Accounts: ");
+                int i=0;
+                for (Account account : Account.getAccounts()) {
+                    i++;
+                    System.out.println("\t"+i+") UserName:"+account.getUsername()+"\tName: "+account.getName());
+                }
+            });
             ShopMenu.getMenu().addMenuClickListener(new ShowMenu());
             SinglePlayerModeMenu.getMenu().addMenuClickListener(new ShowMenu());
-            StoryModeMenu.getMenu().addMenuClickListener(new OnMenuClickedListener() {
-                @Override
-                public void show(Menu menu) {
-                    System.out.println("Levels:");
-                    System.out.println("1) welcome to our world     2) wrath of the Mighty     3) the last fiction");
-                }
+            StoryModeMenu.getMenu().addMenuClickListener(menu -> {
+                System.out.println("Levels:");
+                System.out.println("1) welcome to our world     2) wrath of the Mighty     3) the last fiction");
             });
         }
         //signIn menu
@@ -275,6 +279,16 @@ public class ManuHandler {
         setGameModeMenuPatterns();
         setStoryModePattern();
         setSinglePlayerModePattern();
+        setMultiPlayerModeMenuPattern();
+    }
+
+    private static void setMultiPlayerModeMenuPattern() {
+        MultiPlayerModeMenu.getMenu().addPattern("enter [\\w]+");
+        MultiPlayerModeMenu.getMenu().addPattern("[\\d]+");
+        MultiPlayerModeMenu.getMenu().addPattern("help");
+        MultiPlayerModeMenu.getMenu().addPattern("show");
+        MultiPlayerModeMenu.getMenu().addPattern("exit");
+        MultiPlayerModeMenu.getMenu().addPattern("select user [\\w]+ [\\w]+");
     }
 
     private static void setSinglePlayerModePattern() {
@@ -429,6 +443,8 @@ public class ManuHandler {
                     ChooseBattleModeMenuCommandHandler(word);
                 }else if(currentMenu instanceof StoryModeMenu){
                     storyModeMenuCommandHandler(word);
+                }else if(currentMenu instanceof MultiPlayerModeMenu){
+                    MultiPlayerMenuCommandHandler(word);
                 }
             }
             catch (Exception e){
@@ -436,6 +452,20 @@ public class ManuHandler {
             }
             currentMenu.showMenu();
             commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
+        }
+    }
+
+    private static void MultiPlayerMenuCommandHandler(String[] word) {
+        MultiPlayerModeMenu menu= (MultiPlayerModeMenu) currentMenu;
+        if(word[0].equals("select") && word[1].equals("account")){
+            try {
+                menu.selectUser(word[2],word[3]);
+                currentMenu=menu.enter(Battle.getMenu());
+            } catch (InvalidAccountException e) {
+                System.out.println("this account doesnt exist");
+            } catch (WrongPassException e) {
+                System.out.println("username and pass word dont match try again");
+            }
         }
     }
 
@@ -571,6 +601,7 @@ public class ManuHandler {
     }
     private static void SignInMenuCommandHandler(String[] word) {
         SignInMenu menu= (SignInMenu) currentMenu;
+        System.err.println("sign in bitch");
         if(word[0].equals("create") && word[1].equals("account")){
             try {
                 menu.creatAccount(word[2],word[3],word[4]);
@@ -592,8 +623,10 @@ public class ManuHandler {
                 System.out.println("please enter in the fallowing order");
                 System.out.println("1)username      2)password");
             }
-        }else if(word[0].equals("show") && word[1].equals("‫‪leaderboard")){
+        }else if(word[0].equals("show") && word[1].equals("leaderboard")){
+            System.err.println("hey sexy lady");
             menu.showLeaderBoard();
+
         }else if(word[0].equals("save")){
             menu.save();
         }else if(word[0].equals("logout")){
