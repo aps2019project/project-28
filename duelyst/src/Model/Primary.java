@@ -172,6 +172,7 @@ public class Primary {
        fileWriter.close();
 
         //Minion
+
         minions.add(new Minion("Persian Archer", 300, 2, 6,
                 4, new Range(), 7,
                 new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
