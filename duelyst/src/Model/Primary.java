@@ -94,12 +94,7 @@ public class Primary {
         }
     }
 
-    public static void preprocess() throws IOException {
-        getHeroes();
-        getMinions();
-        getSpells();
-        getUsables();
-        getCollectables();
+    public static void getAccounts() throws IOException {
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Account.json"));
         JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
@@ -112,6 +107,15 @@ public class Primary {
             }
         }
         reader.close();
+    }
+
+    public static void preprocess() throws IOException {
+        getHeroes();
+        getMinions();
+        getSpells();
+        getUsables();
+        getCollectables();
+        getAccounts();
     }
 
     public static void Json() throws IOException {
@@ -371,7 +375,8 @@ public class Primary {
                         TargetSingleCell.getTargetInstance(), ActionDeployHollyBuff.getAction()),
                 0, 0, "a hybrid hero with a special power of  holy buffs continuously"));
         heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4,
-                null, 0, 0, "just a hybrid hero"));
+                new SpecialPower("Rostam SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                       null, ActionChangeAP.getAction()), 0, 0, "just a hybrid hero"));
 
         fileWriter = new FileWriter("Hero.json");
         for (Hero hero :
