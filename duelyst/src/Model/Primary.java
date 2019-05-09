@@ -1,5 +1,6 @@
 package Model;
 
+import Model.account.Account;
 import Model.card.hermione.*;
 import Model.card.spell.*;
 import Model.card.spell.SpellAction.*;
@@ -18,13 +19,14 @@ import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import java.io.*;
 import java.util.ArrayList;
 
-public class PreProcess {
+public class Primary {
 
     public static ArrayList<Spell> spells = new ArrayList<>();
     public static ArrayList<Minion> minions = new ArrayList<>();
     public static ArrayList<Hero> heroes = new ArrayList<>();
     public static ArrayList<Usable> usables = new ArrayList<>();
     public static ArrayList<Collectable> collectables = new ArrayList<>();
+    public static ArrayList<Account> accounts = new ArrayList<>();
 
     public static void getHeroes() throws FileNotFoundException {
         YaGson gson = new YaGson();
@@ -92,12 +94,24 @@ public class PreProcess {
         }
     }
 
-    public static void preprocess() throws FileNotFoundException {
+    public static void preprocess() throws IOException {
         getHeroes();
         getMinions();
         getSpells();
         getUsables();
         getCollectables();
+        YaGson gson = new YaGson();
+        BufferedReader reader = new BufferedReader(new FileReader("Account.json"));
+        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+        if(jsonStreamParser.hasNext()) {
+            while (jsonStreamParser.hasNext()) {
+                JsonElement jsonElement = jsonStreamParser.next();
+                if (jsonElement.isJsonObject()) {
+                    Account.getAccounts().add(gson.fromJson(jsonElement, Account.class));
+                }
+            }
+        }
+        reader.close();
     }
 
     public static void Json() throws IOException {

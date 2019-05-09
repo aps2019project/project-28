@@ -1,10 +1,8 @@
 package Model.account;
 
 import Controller.Match;
-import Model.card.hermione.Hero;
+import Model.Primary;
 import com.gilecode.yagson.YaGson;
-import com.gilecode.yagson.com.google.gson.JsonElement;
-import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import exeption.InvalidAccountException;
 
 import java.io.*;
@@ -14,22 +12,7 @@ import java.util.Comparator;
 
 public class Account {
 
-    protected static ArrayList<Account> accounts = new ArrayList<>();
-    static {
-        YaGson gson = new YaGson();
-        try{
-            BufferedReader reader = new BufferedReader(new FileReader("Hero.json"));
-            JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
-            while (jsonStreamParser.hasNext()) {
-                JsonElement jsonElement = jsonStreamParser.next();
-                if (jsonElement.isJsonObject()) {
-                    Account account = gson.fromJson(jsonElement, Account.class);
-                    accounts.add(account);
-                }
-            }
-        } catch (FileNotFoundException e) {}
-    }
-    protected static int unique =0;
+    protected static int unique = 0;
     protected static final int INITIAL_MONEY = 1500;
 
     protected Player player;
@@ -38,24 +21,25 @@ public class Account {
     protected String password;
     protected int ID;
     protected int money;//unit :derik
-    protected Collection collection=new Collection();
+    protected Collection collection = new Collection();
     protected ArrayList<Match> matchHistory;
     protected int wins;
     protected int storyModeSPX;
 
-    public void saveMatchHistory(Match match){
+    public void saveMatchHistory(Match match) {
     }
 
     public static void addNewAccount(Account account) {
-        if(account==null)return;
-        if(Account.hasAccount(account))return;
+        if (account == null) return;
+        if (Account.hasAccount(account)) return;
         Account.getAccounts().add(account);
         YaGson gson = new YaGson();
         try {
-            FileWriter fileWriter = new FileWriter("Account.json",true);
+            FileWriter fileWriter = new FileWriter("Account.json", true);
             gson.toJson(account, fileWriter);
+            fileWriter.write("\n");
+            fileWriter.close();
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -73,111 +57,126 @@ public class Account {
 
     public static Account getAccount(String username) throws InvalidAccountException {
         for (Account account : Account.getAccounts()) {
-            if(account.getUsername().equals(username))return account;
-        }
-        throw new InvalidAccountException();
-    }
-    public static Account getAccount(int ID) throws InvalidAccountException {
-        for (Account account : Account.getAccounts()) {
-            if(account.getID()==ID)return account;
+            if (account.getUsername().equals(username)) return account;
         }
         throw new InvalidAccountException();
     }
 
-    public static boolean hasAccount(String username){
+    public static Account getAccount(int ID) throws InvalidAccountException {
+        for (Account account : Account.getAccounts()) {
+            if (account.getID() == ID) return account;
+        }
+        throw new InvalidAccountException();
+    }
+
+    public static boolean hasAccount(String username) {
         try {
             Account.getAccount(username);
             return true;
-        }
-        catch (InvalidAccountException e){
+        } catch (InvalidAccountException e) {
             return false;
         }
     }
-    public static boolean hasAccount(int ID){
+
+    public static boolean hasAccount(int ID) {
         try {
             Account.getAccount(ID);
             return true;
-        }
-        catch (InvalidAccountException e){
+        } catch (InvalidAccountException e) {
             return false;
         }
     }
-    public static boolean hasAccount(Account account){
+
+    public static boolean hasAccount(Account account) {
         try {
             Account.getAccount(account.getID());
             return true;
-        }
-        catch (InvalidAccountException e){
+        } catch (InvalidAccountException e) {
             return false;
         }
     }
 
 
-
-
     public static ArrayList<Account> getAccounts() {
-        return accounts;
+        return Primary.accounts;
     }
-    public static void setAccounts(ArrayList<Account> accounts) {
-        Account.accounts = accounts;
-    }
+
     public static int getUnique() {
         return unique;
     }
+
     public static void setUnique(int unique) {
         Account.unique = unique;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
+
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     public int getID() {
         return ID;
     }
+
     public void setID(int ID) {
         this.ID = ID;
     }
+
     public int getMoney() {
         return money;
     }
+
     public void setMoney(int money) {
         this.money = money;
     }
+
     public Collection getCollection() {
         return collection;
     }
+
     public void setCollection(Collection collection) {
         this.collection = collection;
     }
+
     public ArrayList<Match> getMatchHistory() {
         return matchHistory;
     }
+
     public void setMatchHistory(ArrayList<Match> matchHistory) {
         this.matchHistory = matchHistory;
     }
+
     public int getWins() {
         return wins;
     }
+
     public void setWins(int wins) {
         this.wins = wins;
     }
+
     public int getStoryModeSPX() {
         return storyModeSPX;
     }
+
     public void setStoryModeSPX(int storyModeSPX) {
         this.storyModeSPX = storyModeSPX;
     }
@@ -187,15 +186,15 @@ public class Account {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        Account account=(Account)obj;
+        Account account = (Account) obj;
 
         return this.ID == account.ID;
     }
 
 
     public Player getPlayer() {
-        if(this.player==null)
-            this.player=new Player(this,2,2);
+        if (this.player == null)
+            this.player = new Player(this, 2, 2);
         return player;
     }
 
@@ -203,7 +202,7 @@ public class Account {
         this.player = player;
     }
 
-    public static ArrayList<Account> sort(){
+    public static ArrayList<Account> sort() {
         Collections.sort(Account.getAccounts(), Comparator.comparingInt(o -> o.wins));
         return Account.getAccounts();
     }

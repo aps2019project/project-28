@@ -1,7 +1,6 @@
 package Model.account;
 
-import Model.PreProcess;
-import Model.card.Card;
+import Model.Primary;
 import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
@@ -15,7 +14,7 @@ public class Shop {
     private Collection collection = new Collection();
 
     private void fillCollection(){
-        for (Hero hero: PreProcess.heroes) {
+        for (Hero hero: Primary.heroes) {
             try {
                 collection.addCardToCollection(hero);
             } catch (CardExistException e) {
@@ -23,13 +22,13 @@ public class Shop {
             }
         }
 
-        for (Minion minion: PreProcess.minions) {
+        for (Minion minion: Primary.minions) {
             try {
                 collection.addCardToCollection(minion);
             } catch (CardExistException e) {}
         }
 
-        for (Usable item: PreProcess.usables) {
+        for (Usable item: Primary.usables) {
             try {
                 collection.addItemToCollection(item);
             } catch (ItemExistExeption itemExistExeption) {
@@ -38,7 +37,7 @@ public class Shop {
         }
 
         for (Spell spell:
-             PreProcess.spells) {
+             Primary.spells) {
             try {
                 collection.addCardToCollection(spell);
             } catch (CardExistException e) {}

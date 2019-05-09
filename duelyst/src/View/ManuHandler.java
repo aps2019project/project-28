@@ -4,7 +4,7 @@ import Controller.GameMode.ClassicMode;
 import Controller.GameMode.FlagMode;
 import Controller.menu.Battle;
 import Controller.menu.*;
-import Model.PreProcess;
+import Model.Primary;
 import Model.account.*;
 import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
@@ -19,6 +19,7 @@ import View.Listeners.*;
 import exeption.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -80,8 +81,10 @@ public class ManuHandler {
     }
     static{
         try {
-            PreProcess.preprocess();
+            Primary.preprocess();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         initMenus();
