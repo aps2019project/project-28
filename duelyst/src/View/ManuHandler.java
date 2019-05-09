@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Game;
 import Controller.GameMode.ClassicMode;
 import Controller.GameMode.FlagMode;
 import Controller.menu.Battle;
@@ -97,7 +98,10 @@ public class ManuHandler {
         {
             SignInMenu.getMenu().addMenuClickListener(new ShowMenu());
             Battle.getMenu().addMenuClickListener(new ShowMenu());
-            ChooseBattleModeMenu.getMenu().addMenuClickListener(new ShowMenu());
+            ChooseBattleModeMenu.getMenu().addMenuClickListener(menu -> {
+                System.out.println("Modes:");
+                System.out.println("1)Classic      2)flag mode     3)Domination");
+            });
             CollectableMenu.getMenu().addMenuClickListener(new ShowMenu());
             CollectionMenu.getMenu().addMenuClickListener(new ShowMenu());
             CostumeModeMenu.getMenu().addMenuClickListener(new ShowMenu());
@@ -191,7 +195,6 @@ public class ManuHandler {
             System.out.println("\tAttackPoint : " + hero.getOriginalAttackPoint() +
                     "\tHealth point : " + hero.getOriginalHealthPoint() + "\tManaPoint : ");
             System.out.println("\tClass : " + hero.getAttackType().getClass().toString());
-                System.out.println("\tSpecialPower : " + hero.getSpecialPower().getInfo());
                 System.out.println("\tSell cost : " + hero.getPrice());
         });
 
@@ -203,6 +206,7 @@ public class ManuHandler {
             if(Battle.getMenu().getGameMode() instanceof ClassicMode){
                 System.out.println(Battle.getMenu().getAccount().getName()+" : " + Battle.getMenu().getAccount().getPlayer().getDeck().getHero().getHealthPoint());
                 System.out.println(Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getUser().getName()+" : " + Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getHealthPoint());
+//                System.out.println("\tSpecialPower : " + hero.getSpecialPower().getInfo());
             }else if(Battle.getMenu().getGameMode() instanceof FlagMode){
 
             }else{
@@ -432,6 +436,7 @@ public class ManuHandler {
     }
 
     public static void setPatterns(){
+        setChooseBattleModePattern();
         setSignInPatterns();
         setCollectionPatterns();
         setShopPatterns();
@@ -533,6 +538,14 @@ public class ManuHandler {
         MainMenu.getMenu().addPattern("show");
         MainMenu.getMenu().addPattern("exit");
     }
+    public static void setChooseBattleModePattern(){
+        ChooseBattleModeMenu.getMenu().addPattern("[\\d]+");
+        ChooseBattleModeMenu.getMenu().addPattern("enter [\\w]+");
+        ChooseBattleModeMenu.getMenu().addPattern("help");
+        ChooseBattleModeMenu.getMenu().addPattern("show");
+        ChooseBattleModeMenu.getMenu().addPattern("exit");
+        ChooseBattleModeMenu.getMenu().addPattern("mode [\\d]+");
+    }
 
 
     public static void main(String[] args) {
@@ -555,6 +568,13 @@ public class ManuHandler {
                     ShopMenuCommandHandler(word);
                 }else if(currentMenu instanceof Battle){
                     BattleCommandHandler(word);
+                }else if(currentMenu instanceof ChooseBattleModeMenu){
+                    if(word[0].equals("mode")){
+                        switch (Integer.parseInt(word[1])){
+                            case 1:
+                                Game.battle.
+                        }
+                    }
                 }
             }
             catch (Exception e){

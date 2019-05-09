@@ -16,4 +16,9 @@ public class ChooseBattleModeMenu extends Menu {
         return menu;
     }
 
+    @Override
+    public void help() {
+        super.help();
+        System.out.println("4)mode [mode number]");
+    }
 }

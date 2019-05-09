@@ -3,14 +3,12 @@ package Model.account;
 import Controller.Match;
 import Model.Primary;
 import com.gilecode.yagson.YaGson;
-import com.gilecode.yagson.com.google.gson.internal.Primitives;
 import exeption.InvalidAccountException;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.function.Predicate;
 
 public class Account {
 
@@ -33,13 +31,11 @@ public class Account {
 
     public static void addNewAccount(Account account) {
         if (account == null) return;
-        System.err.println(Account.hasAccount(account));
-        if (Account.hasAccount(account))
-            return;
-        Primary.accounts.add(account);
+        if (Account.hasAccount(account)) return;
+        Account.getAccounts().add(account);
         YaGson gson = new YaGson();
         try {
-            FileWriter fileWriter = new FileWriter("Account.json");
+            FileWriter fileWriter = new FileWriter("Account.json", true);
             gson.toJson(account, fileWriter);
             fileWriter.write("\n");
             fileWriter.close();
@@ -60,39 +56,44 @@ public class Account {
     }
 
     public static Account getAccount(String username) throws InvalidAccountException {
-        for (Account account : Primary.accounts) {
+        for (Account account : Account.getAccounts()) {
             if (account.getUsername().equals(username)) return account;
         }
         throw new InvalidAccountException();
     }
 
     public static Account getAccount(int ID) throws InvalidAccountException {
-        for (Account account : Primary.accounts) {
+        for (Account account : Account.getAccounts()) {
             if (account.getID() == ID) return account;
         }
         throw new InvalidAccountException();
     }
 
     public static boolean hasAccount(String username) {
-        for (Account account : Primary.accounts) {
-            if (account.getUsername().equals(username)) return true;
+        try {
+            Account.getAccount(username);
+            return true;
+        } catch (InvalidAccountException e) {
+            return false;
         }
-        return false;
     }
 
-    public static boolean hasAccount(int ID) {
-        for (Account account : Primary.accounts) {
-            if (account.getID()==ID) return true;
-        }
-        return false;
-    }
+//    public static boolean hasAccount(int ID) {
+//        try {
+//            Account.getAccount(ID);
+//            return true;
+//        } catch (InvalidAccountException e) {
+//            return false;
+//        }
+//    }
 
-    public static boolean hasAccount(Account wantedAccount) {
-        for (Account account : Primary.accounts) {
-            System.err.println(account.getName());
-            if (account.equals(wantedAccount)) return true;
+    public static boolean hasAccount(Account account) {
+        try {
+            Account.getAccount(account.getUsername());
+            return true;
+        } catch (InvalidAccountException e) {
+            return false;
         }
-        return false;
     }
 
 
