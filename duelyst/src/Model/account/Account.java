@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Scanner;
 
 public class Account {
 
@@ -25,6 +26,9 @@ public class Account {
     protected ArrayList<Match> matchHistory;
     protected int wins;
     protected int storyModeSPX;
+
+    protected Scanner outputStream;
+    // TODO: 5/9/19 move to player
 
     public void saveMatchHistory(Match match) {
     }
@@ -205,5 +209,10 @@ public class Account {
     public static ArrayList<Account> sort() {
         Collections.sort(Account.getAccounts(), Comparator.comparingInt(o -> o.wins));
         return Account.getAccounts();
+    }
+    public String play(){return null;}
+    public Scanner getOutputStream(Scanner consuleSccaner){
+        if(this.outputStream==null)this.outputStream=consuleSccaner;
+        return outputStream;
     }
 }

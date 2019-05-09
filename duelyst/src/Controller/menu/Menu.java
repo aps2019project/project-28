@@ -71,8 +71,8 @@ public abstract class Menu {
             if (subMenu.name.toLowerCase().trim().equals(name)) return subMenu;
         }
         return null;
-    }
 
+    }
     public void setParentMenu(Menu parentMenu) {
         this.parentMenu = parentMenu;
     }

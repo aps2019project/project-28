@@ -3,6 +3,7 @@ package View;
 import Controller.Game;
 import Controller.GameMode.ClassicMode;
 import Controller.GameMode.FlagMode;
+import Controller.GameMode.GameMode;
 import Controller.menu.Battle;
 import Controller.menu.*;
 import Model.Primary;
@@ -143,7 +144,7 @@ public class ManuHandler {
                 System.out.println("\tName : " + h.getName());
                 System.out.println("\tClass : " + h.getAttackType().getClass().toString());
                 System.out.println("\tAttackPoint : " + h.getOriginalAttackPoint() +
-                        "\tHealth point : " + h.getOriginalHealthPoint() + "\tManaPoint : " + h.getManaPoint());
+                        "\tHealth point : " + h.getOriginalHealthPoint() + "\tManaPoint : " + h.getSpecialPower().getManaPoint());
                 System.out.println("\tSpecialPower : " + h.getSpecialPower().getInfo());
                 System.out.println("\tSell cost : " + h.getPrice());
                 System.out.println("\tID : "+h.getCardID());
@@ -152,7 +153,7 @@ public class ManuHandler {
                 System.out.println("\tName : " + h.getName());
                 System.out.println("\tClass : " + h.getAttackType().getClass().toString());
                 System.out.println("\tAttackPoint : " + h.getAttackPoint() +
-                        "\tHealth point : " + h.getHealthPoint() + "\tManaPoint : " + h.getManaPoint());
+                        "\tHealth point : " + h.getHealthPoint() + "\tManaPoint : " + h.getSpecialPower().getManaPoint());
                 System.out.println("\tSpecialPower : " + h.getSpecialPower().getInfo());
                 System.out.println("\tSell cost : " + h.getPrice());
                 System.out.println("\tID : "+h.getCardID());
@@ -239,8 +240,8 @@ public class ManuHandler {
         MainMenu.getMenu().addSubMenu(ShopMenu.getMenu());
         MainMenu.getMenu().addSubMenu(ChooseBattleModeMenu.getMenu());
 
-        ChooseBattleModeMenu.getMenu().addSubMenu(SinglePlayerModeMenu.getMenu());
-        ChooseBattleModeMenu.getMenu().addSubMenu(MultiPlayerModeMenu.getMenu());
+        GameModeMenu.getMenu().addSubMenu(SinglePlayerModeMenu.getMenu());
+        GameModeMenu.getMenu().addSubMenu(MultiPlayerModeMenu.getMenu());
 
         SinglePlayerModeMenu.getMenu().addSubMenu(StoryModeMenu.getMenu());
         SinglePlayerModeMenu.getMenu().addSubMenu(CostumeModeMenu.getMenu());
@@ -255,17 +256,174 @@ public class ManuHandler {
     }
 
 
+    public static void setPatterns(){
+        setChooseBattleModePattern();
+        setSignInPatterns();
+        setCollectionPatterns();
+        setShopPatterns();
+        setBattlePatterns();
+        setGraveyardPatterns();
+        setCollectablePattern();
+        setMainMenuPattern();
+        setGameModeMenuPatterns();
+    }
+    public static void setSignInPatterns(){
+        SignInMenu.getMenu().addPattern("enter [\\w]+");
+        SignInMenu.getMenu().addPattern("[\\d]+");
+        SignInMenu.getMenu().addPattern("help");
+        SignInMenu.getMenu().addPattern("show");
+        SignInMenu.getMenu().addPattern("exit");
+        SignInMenu.getMenu().addPattern("create account [\\w]+ [\\w]+ [\\w]+");
+        SignInMenu.getMenu().addPattern("login [\\w]+ [\\w]+");
+        SignInMenu.getMenu().addPattern("show leaderboard");
+        SignInMenu.getMenu().addPattern("save");
+        SignInMenu.getMenu().addPattern("logout");
+    }
+    public static void setCollectionPatterns(){
+        CollectableMenu.getMenu().addPattern("enter [\\w]+");
+        CollectionMenu.getMenu().addPattern("[\\d]+");
+        CollectionMenu.getMenu().addPattern("help");
+        CollectionMenu.getMenu().addPattern("show");
+        CollectionMenu.getMenu().addPattern("exit");
+        CollectionMenu.getMenu().addPattern("show");
+        CollectionMenu.getMenu().addPattern("search [\\w]+");
+        CollectionMenu.getMenu().addPattern("save");
+        CollectionMenu.getMenu().addPattern("create deck[\\w+]");
+        CollectionMenu.getMenu().addPattern("delete deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("add [\\d]+ to deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("remove [\\d]+ from deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("validate deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("select deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("show all decks");
+        CollectionMenu.getMenu().addPattern("show deck [\\w]+");
+    }
+    public static void setShopPatterns(){
+        ShopMenu.getMenu().addPattern("enter [\\w]+");
+        ShopMenu.getMenu().addPattern("[\\d]+");
+        ShopMenu.getMenu().addPattern("help");
+        ShopMenu.getMenu().addPattern("show");
+        ShopMenu.getMenu().addPattern("exit");
+        ShopMenu.getMenu().addPattern("show collection");
+        ShopMenu.getMenu().addPattern("search [\\w]+");
+        ShopMenu.getMenu().addPattern("search collection [\\w]+");
+        ShopMenu.getMenu().addPattern("buy [\\w]+");
+        ShopMenu.getMenu().addPattern("sell [\\d]+");
+        ShopMenu.getMenu().addPattern("show");
+    }
+    public static void setBattlePatterns(){
+        Battle.getMenu().addPattern("enter [\\w]+");
+        Battle.getMenu().addPattern("[\\d]+");
+        Battle.getMenu().addPattern("help");
+        Battle.getMenu().addPattern("show");
+        Battle.getMenu().addPattern("exit");
+        Battle.getMenu().addPattern("Game info");
+        Battle.getMenu().addPattern("Show my minions");
+        Battle.getMenu().addPattern("Show opponent minions");
+        Battle.getMenu().addPattern("Show card info [\\d]+");
+        Battle.getMenu().addPattern("Select [\\d]+");
+        Battle.getMenu().addPattern("Move to \\([\\d]+ [\\d]+\\)");
+        Battle.getMenu().addPattern("Attack [\\d]+");
+        Battle.getMenu().addPattern("Attack combo [\\d]+ [\\d]+[ \\d+]+");
+        Battle.getMenu().addPattern("Use special power \\([\\d]+ [\\d]+\\)");
+        Battle.getMenu().addPattern("Show hand");
+        Battle.getMenu().addPattern("Insert [\\w]+ in \\([\\d]+ [\\d]+\\)");
+        Battle.getMenu().addPattern("End turn");
+        Battle.getMenu().addPattern("Show collectables");
+        Battle.getMenu().addPattern("Select [\\d]+");
+        Battle.getMenu().addPattern("Show Next Card");
+        Battle.getMenu().addPattern("Enter graveyard");
+        Battle.getMenu().addPattern("Help");
+        Battle.getMenu().addPattern("End Game");
+    }
+    public static void setGraveyardPatterns(){
+        GraveYardMenu.getMenu().addPattern("enter [\\w]+");
+        GraveYardMenu.getMenu().addPattern("[\\d]+");
+        GraveYardMenu.getMenu().addPattern("help");
+        GraveYardMenu.getMenu().addPattern("show");
+        GraveYardMenu.getMenu().addPattern("exit");
+        GraveYardMenu.getMenu().addPattern("Show info [\\d]+");
+        GraveYardMenu.getMenu().addPattern("Show cards");
+    }
+    public static void setCollectablePattern(){
+        CollectableMenu.getMenu().addPattern("enter [\\w]+");
+        CollectableMenu.getMenu().addPattern("[\\d]+");
+        CollectableMenu.getMenu().addPattern("help");
+        CollectableMenu.getMenu().addPattern("show");
+        CollectableMenu.getMenu().addPattern("exit");
+        CollectableMenu.getMenu().addPattern("Show info");
+        CollectableMenu.getMenu().addPattern("Use \\[[\\d+] [\\d]+\\]");
+    }
+    public static void setMainMenuPattern(){
+        MainMenu.getMenu().addPattern("[\\d]+");
+        MainMenu.getMenu().addPattern("enter [\\w]+");
+        MainMenu.getMenu().addPattern("help");
+        MainMenu.getMenu().addPattern("show");
+        MainMenu.getMenu().addPattern("exit");
+    }
+    public static void setChooseBattleModePattern(){
+        ChooseBattleModeMenu.getMenu().addPattern("[\\d]+");
+        ChooseBattleModeMenu.getMenu().addPattern("enter [\\w]+");
+        ChooseBattleModeMenu.getMenu().addPattern("help");
+        ChooseBattleModeMenu.getMenu().addPattern("show");
+        ChooseBattleModeMenu.getMenu().addPattern("exit");
+        ChooseBattleModeMenu.getMenu().addPattern("mode [\\d]+");
+    }
+    public static void setGameModeMenuPatterns(){
+        GameModeMenu.getMenu().addPattern("[\\d]+");
+        GameModeMenu.getMenu().addPattern("enter [\\w]+");
+        GameModeMenu.getMenu().addPattern("help");
+        GameModeMenu.getMenu().addPattern("show");
+        GameModeMenu.getMenu().addPattern("exit");
+    }
+
+    public static void main(String[] args) {
+        Scanner[] outStream=new Scanner[2];
+        outStream[0]=new Scanner(System.in);
+        Scanner commands=outStream[0];
+        currentMenu.showMenu();
+        while(commands.hasNext()){
+            try {
+                String command = commands.nextLine().toLowerCase().trim();
+                String[] word = command.split(" ");
+                if (!currentMenu.allowsCommand(command)) {
+                    System.out.println("Invalid Command");
+                    continue;
+                }
+                if (commonCommandHandler(word)) {
+                } else if (currentMenu instanceof SignInMenu) {
+                    SignInMenuCommandHandler(word);
+                } else if (currentMenu instanceof CollectionMenu) {
+                    CollectionMenuCommandHandler(word);
+                } else if (currentMenu instanceof ShopMenu){
+                    ShopMenuCommandHandler(word);
+                }else if(currentMenu instanceof Battle){
+                    BattleCommandHandler(word);
+                }else if(currentMenu instanceof ChooseBattleModeMenu){
+                    ChooseBattleModeMenuCommandHandler(word);
+                }else if(currentMenu instanceof SinglePlayerModeMenu){
+//                    SinglePlayerModeMenu.getMenu().init();
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            currentMenu.showMenu();
+            commands=outStream[Game.battle.getTurn()];
+        }
+
+    }
+
     private static void ShopMenuCommandHandler(String[] word) {
         ShopMenu menu = (ShopMenu) currentMenu;
         if(word[0].equals("show")){
-           if(word.length>= 2 && word[1].equals("collection")){
-               menu.showCollection();
-           }else{
-               System.err.println("asdddddddddddddd");
+            if(word.length>= 2 && word[1].equals("collection")){
+                menu.showCollection();
+            }else{
+                System.err.println("asdddddddddddddd");
                 menu.show();
-               System.err.println("asdddddddddddddd");
-           }
-       }else if(word[0].equals("search")){
+                System.err.println("asdddddddddddddd");
+            }
+        }else if(word[0].equals("search")){
             if(word.length>= 2 && word[1].equals("collection")){
                 try {
                     menu.searchCollection(word[2]);
@@ -435,155 +593,6 @@ public class ManuHandler {
         }
         return false;
     }
-
-    public static void setPatterns(){
-        setChooseBattleModePattern();
-        setSignInPatterns();
-        setCollectionPatterns();
-        setShopPatterns();
-        setBattlePatterns();
-        setGraveyardPatterns();
-        setCollectablePattern();
-        setMainMenuPattern();
-    }
-    public static void setSignInPatterns(){
-        SignInMenu.getMenu().addPattern("enter [\\w]+");
-        SignInMenu.getMenu().addPattern("[\\d]+");
-        SignInMenu.getMenu().addPattern("help");
-        SignInMenu.getMenu().addPattern("show");
-        SignInMenu.getMenu().addPattern("exit");
-        SignInMenu.getMenu().addPattern("create account [\\w]+ [\\w]+ [\\w]+");
-        SignInMenu.getMenu().addPattern("login [\\w]+ [\\w]+");
-        SignInMenu.getMenu().addPattern("show leaderboard");
-        SignInMenu.getMenu().addPattern("save");
-        SignInMenu.getMenu().addPattern("logout");
-    }
-    public static void setCollectionPatterns(){
-        CollectableMenu.getMenu().addPattern("enter [\\w]+");
-        CollectionMenu.getMenu().addPattern("[\\d]+");
-        CollectionMenu.getMenu().addPattern("help");
-        CollectionMenu.getMenu().addPattern("show");
-        CollectionMenu.getMenu().addPattern("exit");
-        CollectionMenu.getMenu().addPattern("show");
-        CollectionMenu.getMenu().addPattern("search [\\w]+");
-        CollectionMenu.getMenu().addPattern("save");
-        CollectionMenu.getMenu().addPattern("create deck[\\w+]");
-        CollectionMenu.getMenu().addPattern("delete deck [\\w]+");
-        CollectionMenu.getMenu().addPattern("add [\\d]+ to deck [\\w]+");
-        CollectionMenu.getMenu().addPattern("remove [\\d]+ from deck [\\w]+");
-        CollectionMenu.getMenu().addPattern("validate deck [\\w]+");
-        CollectionMenu.getMenu().addPattern("select deck [\\w]+");
-        CollectionMenu.getMenu().addPattern("show all decks");
-        CollectionMenu.getMenu().addPattern("show deck [\\w]+");
-    }
-    public static void setShopPatterns(){
-        ShopMenu.getMenu().addPattern("enter [\\w]+");
-        ShopMenu.getMenu().addPattern("[\\d]+");
-        ShopMenu.getMenu().addPattern("help");
-        ShopMenu.getMenu().addPattern("show");
-        ShopMenu.getMenu().addPattern("exit");
-        ShopMenu.getMenu().addPattern("show collection");
-        ShopMenu.getMenu().addPattern("search [\\w]+");
-        ShopMenu.getMenu().addPattern("search collection [\\w]+");
-        ShopMenu.getMenu().addPattern("buy [\\w]+");
-        ShopMenu.getMenu().addPattern("sell [\\d]+");
-        ShopMenu.getMenu().addPattern("show");
-    }
-    public static void setBattlePatterns(){
-        Battle.getMenu().addPattern("enter [\\w]+");
-        Battle.getMenu().addPattern("[\\d]+");
-        Battle.getMenu().addPattern("help");
-        Battle.getMenu().addPattern("show");
-        Battle.getMenu().addPattern("exit");
-        Battle.getMenu().addPattern("Game info");
-        Battle.getMenu().addPattern("Show my minions");
-        Battle.getMenu().addPattern("Show opponent minions");
-        Battle.getMenu().addPattern("Show card info [\\d]+");
-        Battle.getMenu().addPattern("Select [\\d]+");
-        Battle.getMenu().addPattern("Move to \\([\\d]+ [\\d]+\\)");
-        Battle.getMenu().addPattern("Attack [\\d]+");
-        Battle.getMenu().addPattern("Attack combo [\\d]+ [\\d]+[ \\d+]+");
-        Battle.getMenu().addPattern("Use special power \\([\\d]+ [\\d]+\\)");
-        Battle.getMenu().addPattern("Show hand");
-        Battle.getMenu().addPattern("Insert [\\w]+ in \\([\\d]+ [\\d]+\\)");
-        Battle.getMenu().addPattern("End turn");
-        Battle.getMenu().addPattern("Show collectables");
-        Battle.getMenu().addPattern("Select [\\d]+");
-        Battle.getMenu().addPattern("Show Next Card");
-        Battle.getMenu().addPattern("Enter graveyard");
-        Battle.getMenu().addPattern("Help");
-        Battle.getMenu().addPattern("End Game");
-    }
-    public static void setGraveyardPatterns(){
-        GraveYardMenu.getMenu().addPattern("enter [\\w]+");
-        GraveYardMenu.getMenu().addPattern("[\\d]+");
-        GraveYardMenu.getMenu().addPattern("help");
-        GraveYardMenu.getMenu().addPattern("show");
-        GraveYardMenu.getMenu().addPattern("exit");
-        GraveYardMenu.getMenu().addPattern("Show info [\\d]+");
-        GraveYardMenu.getMenu().addPattern("Show cards");
-    }
-    public static void setCollectablePattern(){
-        CollectableMenu.getMenu().addPattern("enter [\\w]+");
-        CollectableMenu.getMenu().addPattern("[\\d]+");
-        CollectableMenu.getMenu().addPattern("help");
-        CollectableMenu.getMenu().addPattern("show");
-        CollectableMenu.getMenu().addPattern("exit");
-        CollectableMenu.getMenu().addPattern("Show info");
-        CollectableMenu.getMenu().addPattern("Use \\[[\\d+] [\\d]+\\]");
-    }
-    public static void setMainMenuPattern(){
-        MainMenu.getMenu().addPattern("[\\d]+");
-        MainMenu.getMenu().addPattern("enter [\\w]+");
-        MainMenu.getMenu().addPattern("help");
-        MainMenu.getMenu().addPattern("show");
-        MainMenu.getMenu().addPattern("exit");
-    }
-    public static void setChooseBattleModePattern(){
-        ChooseBattleModeMenu.getMenu().addPattern("[\\d]+");
-        ChooseBattleModeMenu.getMenu().addPattern("enter [\\w]+");
-        ChooseBattleModeMenu.getMenu().addPattern("help");
-        ChooseBattleModeMenu.getMenu().addPattern("show");
-        ChooseBattleModeMenu.getMenu().addPattern("exit");
-        ChooseBattleModeMenu.getMenu().addPattern("mode [\\d]+");
-    }
-
-
-    public static void main(String[] args) {
-        Scanner commands = new Scanner(System.in);
-        currentMenu.showMenu();
-        while(commands.hasNext()){
-            try {
-                String command = commands.nextLine().toLowerCase().trim();
-                String[] word = command.split(" ");
-                if (!currentMenu.allowsCommand(command)) {
-                    System.out.println("Invalid Command");
-                    continue;
-                }
-                if (commonCommandHandler(word)) {
-                } else if (currentMenu instanceof SignInMenu) {
-                    SignInMenuCommandHandler(word);
-                } else if (currentMenu instanceof CollectionMenu) {
-                    CollectionMenuCommandHandler(word);
-                } else if (currentMenu instanceof ShopMenu){
-                    ShopMenuCommandHandler(word);
-                }else if(currentMenu instanceof Battle){
-                    BattleCommandHandler(word);
-                }else if(currentMenu instanceof ChooseBattleModeMenu){
-                    ChooseBattleModeMenuCommandHandler(word);
-                }else if(currentMenu instanceof GameModeMenu){
-
-                }
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-            currentMenu.showMenu();
-
-
-        }
-
-    }
     private static void ChooseBattleModeMenuCommandHandler(String[] word) {
         ChooseBattleModeMenu menu= (ChooseBattleModeMenu) ChooseBattleModeMenu.getMenu();
         if(word[0].equals("mode")){
@@ -599,7 +608,6 @@ public class ManuHandler {
             }
         }
     }
-
     private static void BattleCommandHandler(String[] word) {
         Battle menu= (Battle) currentMenu;
         if(word[0].equals("game") && word[1].equals("info")){
