@@ -418,9 +418,10 @@ public class ManuHandler {
         else if(word.length >= 2 && word[0].equals("show") && word[1].equals("menu")){
             currentMenu.showMenu();
             return true;
-        }else if(word[0].matches("[\\d]")){
+        }else if(word[0].equals("enter")){
             try {
-                currentMenu = currentMenu.enter(currentMenu.getSubMenus().get(Integer.parseInt(word[0]) - 1));
+
+                currentMenu = currentMenu.enter(currentMenu.getMenuFromSubMenus(word[1]));
             }catch (IndexOutOfBoundsException e){
                 System.out.println("please choose a number between 1 and " + currentMenu.getSubMenus().size());
             }
@@ -569,12 +570,9 @@ public class ManuHandler {
                 }else if(currentMenu instanceof Battle){
                     BattleCommandHandler(word);
                 }else if(currentMenu instanceof ChooseBattleModeMenu){
-                    if(word[0].equals("mode")){
-                        switch (Integer.parseInt(word[1])){
-                            case 1:
-                                Game.battle.
-                        }
-                    }
+                    ChooseBattleModeMenuCommandHandler(word);
+                }else if(currentMenu instanceof GameModeMenu){
+
                 }
             }
             catch (Exception e){
@@ -583,6 +581,22 @@ public class ManuHandler {
             currentMenu.showMenu();
 
 
+        }
+
+    }
+    private static void ChooseBattleModeMenuCommandHandler(String[] word) {
+        ChooseBattleModeMenu menu= (ChooseBattleModeMenu) ChooseBattleModeMenu.getMenu();
+        if(word[0].equals("mode")){
+            switch (Integer.parseInt(word[1])){
+                case 1:
+                case 2:
+                case 3:
+                    Game.battle.setGameMode(new ClassicMode());
+                    currentMenu=menu.enter(GameModeMenu.getMenu());
+                    break;
+                default:
+                    System.out.println("please Enter a Number between 1 and 3");
+            }
         }
     }
 

@@ -68,7 +68,7 @@ public abstract class Menu {
 
     public Menu getMenuFromSubMenus(String name) {
         for (Menu subMenu : this.subMenus) {
-            if (subMenu.name.equals(name)) return subMenu;
+            if (subMenu.name.toLowerCase().trim().equals(name)) return subMenu;
         }
         return null;
     }

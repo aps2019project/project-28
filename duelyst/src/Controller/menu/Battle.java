@@ -291,4 +291,7 @@ public class Battle extends Menu {
     public GameMode getGameMode() {
         return gameMode;
     }
+    public void setGameMode(GameMode gameMode) {
+        this.gameMode = gameMode;
+    }
 }
