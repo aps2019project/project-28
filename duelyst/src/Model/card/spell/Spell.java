@@ -24,8 +24,8 @@ public class Spell extends Card {
         this.duration--;
     }
 
-    public Spell(String name, int price , int manaPoint, int duration , int perk , Target target, Action... actions ) {
-        super( name, price, manaPoint);
+    public Spell(String name, int price , int manaPoint, int duration , int perk , String info, Target target, Action... actions ) {
+        super( name, price, manaPoint, info);
         this.duration = duration ;
         this.perk = perk ;
         Collections.addAll(this.actions, actions) ;

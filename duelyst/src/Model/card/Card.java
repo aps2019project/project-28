@@ -17,13 +17,14 @@ public abstract class Card {
     private int price;
     private int manaPoint;
     private static ArrayList<OnCardDetailsPresentedListener> cardDetailsPresenters=new ArrayList<>();
-    private String comment;
+    private String info;
 
-    public Card( String name, int price, int manaPoint) {
+    public Card( String name, int price, int manaPoint, String info) {
         this.cardID = uniqueID++;
         this.name = name;
         this.price = price;
         this.manaPoint = manaPoint;
+        this.info = info;
     }
 
     public void setSuperCollection(Collection superCollection) {
@@ -110,11 +111,11 @@ public abstract class Card {
         return (ArrayList<OnCardDetailsPresentedListener>) Collections.unmodifiableList(cardDetailsPresenters);
     }
 
-    public String getComment() {
-        return this.comment;
+    public String getInfo() {
+        return this.info;
     }
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setInfo(String info) {
+        this.info = info;
     }
 }
 

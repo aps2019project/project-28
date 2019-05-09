@@ -32,8 +32,8 @@ public class Hero extends Hermione {
 
 
     public Hero(String name, int price, int healthPoint, int attackPoint,
-                AttackType attackType, int range, Model.card.spell.SpecialPower specialPower, int manaPoint, int cooldown) {
-        super(name, price, manaPoint, healthPoint, attackPoint, specialPower, attackType, range);
+                AttackType attackType, int range, Model.card.spell.SpecialPower specialPower, int manaPoint, int cooldown, String info) {
+        super(name, price, manaPoint, healthPoint, attackPoint, specialPower, attackType, range, info);
         this.cooldown = cooldown;
     }
 

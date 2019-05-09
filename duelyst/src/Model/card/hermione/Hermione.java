@@ -32,8 +32,8 @@ public abstract class Hermione extends Card {
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
-            , SpecialPower specialPower, AttackType attackType, int range) {
-        super(name, price, manaPoint);
+            , SpecialPower specialPower, AttackType attackType, int range, String info) {
+        super(name, price, manaPoint, info);
         this.healthPoint = healthPoint;
         this.attackPoint = attackPoint;
         this.buffEffects.setOriginalAttackPoint(attackPoint) ;

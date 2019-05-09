@@ -58,9 +58,6 @@ public class Shop {
     private Shop() {
         fillCollection();
 
-        for (Card c: this.collection.getCards()) {
-            System.err.println(c.getName());
-        }
     }
 
     public void setCollection(Collection save) {

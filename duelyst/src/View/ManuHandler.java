@@ -19,6 +19,7 @@ import View.Listeners.*;
 import exeption.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -120,7 +121,6 @@ public class ManuHandler {
         Collection.addCollectionPresentedListener((collection, name) -> {
             System.out.println(name + " : ");
             allCardPresenter(collection.getCards(), collection.getItems());
-
         });
         //Card
         Card.addOnCardDetailPresented(new OnCardDetailsPresentedListener() {
@@ -128,7 +128,7 @@ public class ManuHandler {
                 System.out.println("Type : Spell");
                 System.out.println("\tName : " + s.getName());
                 System.out.println("\tManaPoint : " + s.getManaPoint());
-                System.out.println("\tAction : " + s.getComment());
+                System.out.println("\tAction : " + s.getInfo());
                 System.out.println("\tSell cost : " + s.getPrice());
                 System.out.println("\tName : " + s.getName());
                 System.out.println("\tID : "+s.getCardID());
@@ -138,7 +138,7 @@ public class ManuHandler {
                 System.out.println("\tClass : " + h.getAttackType().getClass().toString());
                 System.out.println("\tAttackPoint : " + h.getOriginalAttackPoint() +
                         "\tHealth point : " + h.getOriginalHealthPoint() + "\tManaPoint : " + h.getManaPoint());
-                System.out.println("\tSpecialPower : " + h.getSpecialPower().getComment());
+                System.out.println("\tSpecialPower : " + h.getSpecialPower().getInfo());
                 System.out.println("\tSell cost : " + h.getPrice());
                 System.out.println("\tID : "+h.getCardID());
             }
@@ -147,7 +147,7 @@ public class ManuHandler {
                 System.out.println("\tClass : " + h.getAttackType().getClass().toString());
                 System.out.println("\tAttackPoint : " + h.getAttackPoint() +
                         "\tHealth point : " + h.getHealthPoint() + "\tManaPoint : " + h.getManaPoint());
-                System.out.println("\tSpecialPower : " + h.getSpecialPower().getComment());
+                System.out.println("\tSpecialPower : " + h.getSpecialPower().getInfo());
                 System.out.println("\tSell cost : " + h.getPrice());
                 System.out.println("\tID : "+h.getCardID());
             }
@@ -189,7 +189,7 @@ public class ManuHandler {
             System.out.println("\tAttackPoint : " + hero.getOriginalAttackPoint() +
                     "\tHealth point : " + hero.getOriginalHealthPoint() + "\tManaPoint : ");
             System.out.println("\tClass : " + hero.getAttackType().getClass().toString());
-                System.out.println("\tSpecialPower : " + hero.getSpecialPower().getComment());
+                System.out.println("\tSpecialPower : " + hero.getSpecialPower().getInfo());
                 System.out.println("\tSell cost : " + hero.getPrice());
         });
 
@@ -534,7 +534,6 @@ public class ManuHandler {
 
 
     public static void main(String[] args) {
-
         Scanner commands = new Scanner(System.in);
         currentMenu.showMenu();
         while(commands.hasNext()){
