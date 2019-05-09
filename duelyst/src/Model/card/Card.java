@@ -108,7 +108,7 @@ public abstract class Card {
     }
 
     public static ArrayList<OnCardDetailsPresentedListener> getCardDetailsPresenters() {
-        return (ArrayList<OnCardDetailsPresentedListener>) Collections.unmodifiableList(cardDetailsPresenters);
+        return (cardDetailsPresenters);
     }
 
     public String getInfo() {

@@ -40,6 +40,7 @@ public abstract class Hermione extends Card {
         SpecialPower = specialPower;
         this.attackType = attackType;
         this.range = range;
+        this.originalHealthPoint=this.healthPoint;
     }
 
     public void setOriginalAttackPoint(int originalAttackPoint) {

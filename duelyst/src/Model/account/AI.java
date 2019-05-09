@@ -16,6 +16,7 @@ import exeption.*;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class AI extends Account {
     int level;
@@ -28,6 +29,7 @@ public class AI extends Account {
     public AI(int level) throws FullDeckException, DeckAlreadyHasThisCardException, InvalidDeckException,
             DeckAlreadyHasAHeroException, DeckAlreadyHasThisItemException {
         super("AI", "itsAI", "imAnAIgirlInAnAIWorld");
+//        super(,2,2)
         this.level = level;
 
         try {
@@ -44,7 +46,7 @@ public class AI extends Account {
         }
 
     }
-
+    @Override
     public String play() {
         move++ ;
         String command;
@@ -270,5 +272,14 @@ public class AI extends Account {
                 }
         }
         return deck;
+    }
+
+    @Override
+    public Scanner getOutputStream(Scanner consoleOutputStream) {
+        if(this.outputStream!=null){
+            this.outputStream.close();
+        }
+        this.outputStream=new Scanner(this.play());
+        return this.outputStream;
     }
 }
