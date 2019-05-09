@@ -45,11 +45,12 @@ public class CollectionMenu extends Menu {
     }
 
     public void search(String name) {
-        for (Card card : this.tempCollection.getAllCardsByName(name)) {
-            for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
-                presenter.showCardDetail(card);
+            for (Card card : this.tempCollection.getAllCardsByName(name)) {
+                for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
+                    presenter.showCardDetail(card);
+                }
             }
-        }
+
         for (Item item : this.tempCollection.getAllItemsByName(name)) {
             for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
                 presenter.showItemDetail(item);
