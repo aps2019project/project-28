@@ -78,18 +78,18 @@ public class Account {
         }
     }
 
-    public static boolean hasAccount(int ID) {
-        try {
-            Account.getAccount(ID);
-            return true;
-        } catch (InvalidAccountException e) {
-            return false;
-        }
-    }
+//    public static boolean hasAccount(int ID) {
+//        try {
+//            Account.getAccount(ID);
+//            return true;
+//        } catch (InvalidAccountException e) {
+//            return false;
+//        }
+//    }
 
     public static boolean hasAccount(Account account) {
         try {
-            Account.getAccount(account.getID());
+            Account.getAccount(account.getUsername());
             return true;
         } catch (InvalidAccountException e) {
             return false;

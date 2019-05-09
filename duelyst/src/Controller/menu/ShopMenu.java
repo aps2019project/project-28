@@ -121,18 +121,18 @@ public class ShopMenu extends Menu {
 
     @Override
     public Menu enter(Menu subMenu) {
-        this.shop.setCollection(this.shop.getCollection().save());
+//        this.shop.setCollection(this.shop.getCollection().save());
         return super.enter(subMenu);
     }
 
     @Override
     public Menu exit() {
-        this.shop.setCollection(this.shop.getCollection().save());
+//        this.shop.setCollection(this.shop.getCollection().save());
         return super.exit();
     }
 
-    public void save(Account account) {
-        account.setCollection(this.tempCollection);
+    public void save() {
+        this.account.setCollection(this.tempCollection);
     }
 
 
