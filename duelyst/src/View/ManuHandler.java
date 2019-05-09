@@ -457,7 +457,7 @@ public class ManuHandler {
 
     private static void MultiPlayerMenuCommandHandler(String[] word) {
         MultiPlayerModeMenu menu= (MultiPlayerModeMenu) currentMenu;
-        if(word[0].equals("select") && word[1].equals("account")){
+        if(word[0].equals("select") && word[1].equals("user")){
             try {
                 menu.selectUser(word[2],word[3]);
                 currentMenu=menu.enter(Battle.getMenu());
