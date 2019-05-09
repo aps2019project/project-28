@@ -58,4 +58,7 @@ public class Shop {
 
     }
 
+    public void setCollection(Collection save) {
+        this.collection=save;
+    }
 }

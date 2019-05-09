@@ -63,6 +63,6 @@ public class Hero extends Hermione {
     }
 
     public static ArrayList<OnHeroDetailsPresentedListener> getHeroDetailsPresenters() {
-        return (ArrayList<OnHeroDetailsPresentedListener>) Collections.unmodifiableList(heroDetailsPresenters);
+        return heroDetailsPresenters;
     }
 }
