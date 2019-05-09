@@ -7,23 +7,31 @@ import Model.card.OnCardDetailsPresentedListener;
 import Model.item.Item;
 import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnDeckPresentedListener;
+import com.gilecode.yagson.YaGson;
 import exeption.*;
 
 public class CollectionMenu extends Menu {
-    private static CollectionMenu menu;
 
+    private static CollectionMenu menu;
     private Collection tempCollection;
 
     private CollectionMenu(String name) {
         super(name);
-        this.tempCollection = new Collection();
+        tempCollection = new Collection();
     }
 
     public static CollectionMenu getMenu(){
-        if(CollectionMenu.menu==null){
-            CollectionMenu.menu=new CollectionMenu("CollectionMenu");
+        if(CollectionMenu.menu == null){
+            CollectionMenu.menu = new CollectionMenu("CollectionMenu");
         }
         return menu;
+    }
+
+    @Override
+    public void init(Menu parentMenu) {
+        super.init(parentMenu);
+        YaGson gson = new YaGson();
+        this.tempCollection = gson.fromJson(gson.toJson(this.getAccount().getCollection()), Collection.class);
     }
 
     public void save() {
@@ -32,57 +40,55 @@ public class CollectionMenu extends Menu {
 
     public void showCollection() {
         for (OnCollectionPresentedListener presenter : Collection.getCollectionPresentedListeners()) {
-            presenter.show(this.account.getCollection(),this.account+"'s Collection");
+            presenter.show(this.tempCollection,this.account.getName()+"'s Collection");
         }
     }
 
-
     public void search(String name) {
-        Collection collection = this.account.getCollection();
-        for (Card card : collection.getAllCardsByName(name)) {
+        for (Card card : this.tempCollection.getAllCardsByName(name)) {
             for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
                 presenter.showCardDetail(card);
             }
         }
-        for (Item item : collection.getAllItemsByName(name)) {
+        for (Item item : this.tempCollection.getAllItemsByName(name)) {
             for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
                 presenter.showItemDetail(item);
             }
         }
     }
 
-    public void creatNewDeck(String deckName) throws DeckAlreadyExistException {
-        if (this.account.getCollection().hasDeck(deckName)) throw new DeckAlreadyExistException();
-        this.account.getCollection().addNewDeck(deckName);
+    public void createNewDeck(String deckName) throws DeckAlreadyExistException {
+        if (this.tempCollection.hasDeck(deckName)) throw new DeckAlreadyExistException();
+        this.tempCollection.addNewDeck(deckName);
     }
 
     public void deleteDeck(String deckName) throws InvalidDeckException {
-        if (!this.account.getCollection().hasDeck(deckName)) throw new InvalidDeckException();
-        this.account.getCollection().deleteDeck(deckName);
+        if (!this.tempCollection.hasDeck(deckName)) throw new InvalidDeckException();
+        this.tempCollection.deleteDeck(deckName);
     }
 
     public void addToDeck(int ID, String deckName) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException,
             FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidDeckException, InvalidItemException {
-        this.account.getCollection().getDeckByName(deckName).addToDeck(ID);
+        this.tempCollection.getDeckByName(deckName).addToDeck(ID);
     }
 
     public void removeFromDeck(int ID, String deckName) throws InvalidCardException, InvalidItemException, InvalidDeckException {
-        this.account.getCollection().getDeckByName(deckName).removeFromDeck(ID);
+        this.tempCollection.getDeckByName(deckName).removeFromDeck(ID);
     }
 
     public boolean validateDeck(String deckName) throws InvalidDeckException {
-        return this.account.getCollection().getDeckByName(deckName).validateDeck();
+        return this.tempCollection.getDeckByName(deckName).validateDeck();
     }
 
     public void showDeck(String deckName) throws InvalidDeckException {
-        Deck deck = this.account.getCollection().getDeckByName(deckName);
+        Deck deck = this.tempCollection.getDeckByName(deckName);
         for (OnDeckPresentedListener presenter : Deck.getDeckPresenters()) {
             presenter.showDeck(deck);
         }
     }
 
     public void showAllDecks() {
-        for (Deck deck : this.account.getCollection().getDecks()) {
+        for (Deck deck : this.tempCollection.getDecks()) {
             try {
                 showDeck(deck.getName());
             } catch (InvalidDeckException e) {
@@ -100,6 +106,6 @@ public class CollectionMenu extends Menu {
     }
 
     public void selectDeck(String deckName) throws InvalidDeckException {
-        this.account.getCollection().setMainDeck(deckName);
+        this.tempCollection.setMainDeck(deckName);
     }
 }

@@ -19,7 +19,6 @@ import View.Listeners.*;
 import exeption.*;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -320,7 +319,7 @@ public class ManuHandler {
             menu.save();
         }else if(word[0].equals("create") && word[1].equals("deck")){
             try {
-                menu.creatNewDeck(word[2]);
+                menu.createNewDeck(word[2]);
             } catch (DeckAlreadyExistException e) {
                 System.out.println("Deck with the exact same name already exist please try again");
             }

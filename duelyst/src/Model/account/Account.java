@@ -1,15 +1,34 @@
 package Model.account;
 
 import Controller.Match;
+import Model.card.hermione.Hero;
+import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.JsonElement;
+import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import exeption.InvalidAccountException;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class Account {
 
-    protected static ArrayList<Account> accounts=new ArrayList<>();
+    protected static ArrayList<Account> accounts = new ArrayList<>();
+    static {
+        YaGson gson = new YaGson();
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader("Hero.json"));
+            JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+            while (jsonStreamParser.hasNext()) {
+                JsonElement jsonElement = jsonStreamParser.next();
+                if (jsonElement.isJsonObject()) {
+                    Account account = gson.fromJson(jsonElement, Account.class);
+                    accounts.add(account);
+                }
+            }
+        } catch (FileNotFoundException e) {}
+    }
     protected static int unique =0;
     protected static final int INITIAL_MONEY = 1500;
 
@@ -27,10 +46,17 @@ public class Account {
     public void saveMatchHistory(Match match){
     }
 
-    public static void addNewAccount(Account account){
+    public static void addNewAccount(Account account) {
         if(account==null)return;
         if(Account.hasAccount(account))return;
         Account.getAccounts().add(account);
+        YaGson gson = new YaGson();
+        try {
+            FileWriter fileWriter = new FileWriter("Account.json",true);
+            gson.toJson(account, fileWriter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Account(String name, String username, String password) {

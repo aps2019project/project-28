@@ -4,15 +4,12 @@ import View.Listeners.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
-import com.gilecode.yagson.YaGson;
-import com.gilecode.yagson.com.google.gson.Gson;
 import exeption.*;
 
 import java.util.ArrayList;
 
 public class Collection {
 
-    private static CollectionProcess collectionProcess;
     private ArrayList<Deck> decks = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Usable> usables = new ArrayList<>();
@@ -29,10 +26,6 @@ public class Collection {
             }
         }
         return false;
-    }
-
-    public Collection() {
-        collectionProcess = new CollectionProcess(this);
     }
 
     public Deck getDeckByName(String name) throws InvalidDeckException {
@@ -102,16 +95,6 @@ public class Collection {
         for (Card card :
                 cards) {
             if (card.getCardID() == cardID) {
-                return card;
-            }
-        }
-        throw new InvalidCardException();
-    }
-
-    public Card getCard(Card card) throws InvalidCardException {
-        for (Card collectionCard :
-                cards) {
-            if (collectionCard.equals(card)) {
                 return card;
             }
         }
@@ -191,7 +174,7 @@ public class Collection {
     public boolean addNewDeck(String name) throws DeckAlreadyExistException {
         if (!this.hasDeck(name)) {
             Deck newDeck = new Deck(name);
-            collectionProcess.getTempCollection().getDecks().add(newDeck);
+            this.decks.add(newDeck);
             return true;
         }
         throw new DeckAlreadyExistException();
@@ -200,25 +183,29 @@ public class Collection {
     public void deleteDeck(String name) throws InvalidDeckException {
         if (this.hasDeck(name)) {
             Deck delete = getDeckByName(name);
-            collectionProcess.getTempCollection().getDecks().remove(delete);
+            this.decks.remove(delete);
             return;
         }
         throw new InvalidDeckException();
     }
 
-    public void addCardToDeck(int cardID, String deckName) throws InvalidDeckException, InvalidCardException, DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException {
+    public void addCardToDeck(int cardID, String deckName) throws InvalidCardException, InvalidDeckException, DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException {
         Card card = this.getCard(cardID);
-        collectionProcess.getTempCollection().getDeck(deckName).addCardToDeck(card);
+        this.getDeck(deckName).addCardToDeck(card);
     }
 
     public void setMainDeck(String deckName) throws InvalidDeckException {
         Deck mainDeck = getDeck(deckName);
-        collectionProcess.getTempCollection().setMainDeck(mainDeck.getName());
+        this.setMainDeck(mainDeck);
+    }
+
+    public void setMainDeck(Deck mainDeck) {
+        this.mainDeck = mainDeck;
     }
 
     public void addCardToCollection(Card card) throws CardExistException {
         if (!this.hasCard(card)) {
-            collectionProcess.getTempCollection().getCards().add(card);
+           this.cards.add(card);
             return;
         }
         throw new CardExistException();
@@ -226,7 +213,7 @@ public class Collection {
 
     public void removeCardFromCollection(Card card) throws InvalidCardException {
         if (this.hasCard(card)) {
-            collectionProcess.getTempCollection().getCards().remove(card);
+            this.cards.remove(card);
             return;
         }
         throw new InvalidCardException();
@@ -234,7 +221,7 @@ public class Collection {
 
     public void addItemToCollection(Usable item) throws ItemExistExeption {
         if (!hasItem(item)) {
-            collectionProcess.getTempCollection().getUsables().add(item);
+            this.usables.add(item);
             return;
         }
         throw new ItemExistExeption();
@@ -242,7 +229,7 @@ public class Collection {
 
     public void removeItemFromCollection(Usable item) throws InvalidItemException {
         if (this.hasItem(item)) {
-            collectionProcess.getTempCollection().getUsables().remove(item);
+            this.usables.remove(item);
             return;
         }
         throw new InvalidItemException();
@@ -250,11 +237,6 @@ public class Collection {
 
     public boolean has(int ID) {
         return hasCard(ID) || hasItem(ID);
-    }
-
-    public Collection save() {
-        collectionProcess.setCollection(collectionProcess.getTempCollection());
-        return collectionProcess.getCollection();
     }
 
     public ArrayList<Card> getAllCardsByID(int ID) {
