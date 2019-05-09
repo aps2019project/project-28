@@ -1,1 +1,4 @@
+{"@type":"Model.account.Account","@val":{"name":"f","username":"f","password":"1","ID":0,"money":1500,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0}}
+{"@type":"Model.account.Account","@val":{"name":"f","username":"t","password":"1","ID":1,"money":1500,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0}}
+{"@type":"Model.account.Account","@val":{"name":"a","username":"s","password":"1","ID":0,"money":1500,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0}}
 {"@type":"Model.account.Account","@val":{"name":"w","username":"w","password":"1","ID":0,"money":1500,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0}}
