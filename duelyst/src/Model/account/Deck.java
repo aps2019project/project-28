@@ -22,8 +22,9 @@ public class Deck {
     final static int CARD_SIZE = 20;
     final static int ITEM_SIZE = 1;
 
-    public Deck(String name) {
+    public Deck(String name,Collection collection) {
         this.name = name;
+        this.collection=collection;
     }
 
     public void setCollection(Collection collection) {
@@ -93,6 +94,7 @@ public class Deck {
     }
 
     public boolean validateDeck() {
+        // TODO: 5/13/19 fatteme return false ha ro exception kon
         if (cards.size() != CARD_SIZE) {
             return false;
         }
@@ -126,8 +128,8 @@ public class Deck {
                 break;
             }
         }
+        if (willBeRemoved instanceof Hero) hero = null;
         cards.remove(willBeRemoved);
-        if (willBeRemoved.getClass().equals(hero.getClass())) hero = null;
         return true;
     }
 
@@ -153,18 +155,24 @@ public class Deck {
 
 
     public boolean addCardToDeck(Card card) throws DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasAHeroException {
+        System.err.println("residam");
         if (this.hasCard(card.getCardID())) throw new DeckAlreadyHasThisCardException();
+        System.err.println("residam");
         if (this.cards.size() >= CARD_SIZE) throw new FullDeckException();
+        System.err.println("residam");
         if (hero != null && card instanceof Hero) throw new DeckAlreadyHasAHeroException();
-
+        System.err.println("residam");
         cards.add(card);
         if (hero !=null && card instanceof Hero) hero = (Hero) card;
         return true;
     }
 
     public boolean addItemToDeck(Item item) throws DeckAlreadyHasThisItemException, FullDeckException {
+        System.err.println("im innnn");
         if (this.hasItem(item.getID())) throw new DeckAlreadyHasThisItemException();
+        System.err.println("im innnn");
         if (this.items.size() >= ITEM_SIZE) throw new FullDeckException();
+        System.err.println("im innnn");
 
 
         items.add(item);
@@ -173,6 +181,9 @@ public class Deck {
 
     public void addToDeck(int ID) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException,
             FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidItemException {
+        System.err.println("im in addToDeck of Deck.java");
+        System.err.println("and cardName: "+Card.getCard(ID));
+
         if (Card.hasCard(ID))
             addCardToDeck(collection.getCard(ID));
         else if (Item.hasItem(ID))
@@ -184,7 +195,7 @@ public class Deck {
     }
 
     public static ArrayList<OnDeckPresentedListener> getDeckPresenters() {
-        return (ArrayList<OnDeckPresentedListener>) Collections.unmodifiableList(deckPresenters);
+        return (deckPresenters);
     }
 
     public Hero getHero() {

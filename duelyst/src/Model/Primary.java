@@ -1,6 +1,7 @@
 package Model;
 
 import Model.account.Account;
+import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
 import Model.card.spell.SpellAction.*;
@@ -27,6 +28,7 @@ public class Primary {
     public static ArrayList<Usable> usables = new ArrayList<>();
     public static ArrayList<Collectable> collectables = new ArrayList<>();
     public static ArrayList<Account> accounts = new ArrayList<>();
+    public  static  ArrayList<Card> cards = new ArrayList<>();
 
     public static void getHeroes() throws FileNotFoundException {
         YaGson gson = new YaGson();
@@ -109,6 +111,11 @@ public class Primary {
         reader.close();
     }
 
+    public static  void getCards(){
+        cards.addAll(heroes);
+        cards.addAll(minions);
+        cards.addAll(spells);
+    }
     public static void preprocess() throws IOException {
         getHeroes();
         getMinions();
@@ -116,6 +123,7 @@ public class Primary {
         getUsables();
         getCollectables();
         getAccounts();
+        getCards();
     }
 
     public static void Json() throws IOException {

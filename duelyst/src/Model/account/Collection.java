@@ -1,5 +1,6 @@
 package Model.account;
 
+import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
@@ -173,7 +174,7 @@ public class Collection {
 
     public boolean addNewDeck(String name) throws DeckAlreadyExistException {
         if (!this.hasDeck(name)) {
-            Deck newDeck = new Deck(name);
+            Deck newDeck = new Deck(name,this);
             this.decks.add(newDeck);
             return true;
         }
@@ -196,7 +197,11 @@ public class Collection {
 
     public void setMainDeck(String deckName) throws InvalidDeckException {
         Deck mainDeck = getDeck(deckName);
-        this.setMainDeck(mainDeck);
+        if(mainDeck.validateDeck())
+            this.setMainDeck(mainDeck);
+        else{
+            System.out.println("selected deck is not valid");
+        }
     }
 
     public void setMainDeck(Deck mainDeck) {
@@ -248,19 +253,20 @@ public class Collection {
     }
 
     public ArrayList<Card> getAllCardsByName(String name) {
-        try {
-            return this.getAllCardsByID(Card.getCard(name).getCardID());
-        } catch (InvalidCardException e) {
-            return new ArrayList<>();
+        ArrayList<Card> returnArray = new ArrayList<>();
+        for (Card card : this.cards) {
+            if (card.getName().toLowerCase().equals(name)) returnArray.add(card);
         }
+        return returnArray;
+
     }
 
     public ArrayList<Item> getAllItemsByName(String name) {
-        try {
-            return this.getAllItemsByID(Item.getItem(name).getID());
-        } catch (InvalidItemException e) {
-            return new ArrayList<>();
+        ArrayList<Item> returnArray = new ArrayList<>();
+        for (Usable usable : this.usables) {
+            if (usable.getName().toLowerCase().equals(name)) returnArray.add(usable);
         }
+        return returnArray;
     }
 
     public ArrayList<Item> getAllItemsByID(int ID) {

@@ -53,7 +53,7 @@ public abstract class Item {
 
     public static Item getItem(String name) throws InvalidItemException {
         for (Item item : Item.getItems()) {
-            if (item.getName().equals(name)) return item;
+            if (item.getName().toLowerCase().equals(name)) return item;
         }
         throw new InvalidItemException();
     }

@@ -48,7 +48,7 @@ public class ManuHandler {
     private static Menu currentMenu;
 
     //preprocess
-    public static void allCardPresenter(ArrayList<Card> cards,ArrayList<Usable> items){
+    public static void allCardPresenter(ArrayList<Card> cards,ArrayList<Usable> items,boolean showID){
         System.out.println("Heroes : ");
         int i=0;
         for (Card card : cards) {
@@ -57,6 +57,7 @@ public class ManuHandler {
                 System.out.print(i+") ");
                 for (OnHeroDetailsPresentedListener presenter : Hero.getHeroDetailsPresenters()) {
                     presenter.show((Hero) card);
+                    if(showID) System.out.println("\tID: "+card.getCardID());
                 }
             }
         }
@@ -68,6 +69,7 @@ public class ManuHandler {
                 System.out.print(i+") ");
                 for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
                     presenter.showCardDetail(card);
+//                    if(showID) System.out.println("\tID: "+card.getCardID());
                 }
             }
         }
@@ -78,6 +80,7 @@ public class ManuHandler {
             System.out.println(i+") ");
             for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
                 presenter.showItemDetail(item);
+                if(showID) System.out.println("\tID: "+item.getID());
             }
         }
     }
@@ -137,7 +140,7 @@ public class ManuHandler {
         //Collection
         Collection.addCollectionPresentedListener((collection, name) -> {
             System.out.println(name + " : ");
-            allCardPresenter(collection.getCards(), collection.getItems());
+            allCardPresenter(collection.getCards(), collection.getItems(),true);
         });
         //Card
         Card.addOnCardDetailPresented(new OnCardDetailsPresentedListener() {
@@ -211,7 +214,7 @@ public class ManuHandler {
         });
 
         //deck
-        Deck.addNewOnDeckPresentedListener(deck -> allCardPresenter(deck.getCards(),deck.getUsables()));
+        Deck.addNewOnDeckPresentedListener(deck -> allCardPresenter(deck.getCards(),deck.getUsables(),true));
 
         //GameInfo
         Battle.getMenu().addGameInfoPresentedListener(() -> {
@@ -330,7 +333,7 @@ public class ManuHandler {
         CollectionMenu.getMenu().addPattern("show");
         CollectionMenu.getMenu().addPattern("search [\\w]+");
         CollectionMenu.getMenu().addPattern("save");
-        CollectionMenu.getMenu().addPattern("create deck[\\w+]");
+        CollectionMenu.getMenu().addPattern("create deck [\\w]+");
         CollectionMenu.getMenu().addPattern("delete deck [\\w]+");
         CollectionMenu.getMenu().addPattern("add [\\d]+ to deck [\\w]+");
         CollectionMenu.getMenu().addPattern("remove [\\d]+ from deck [\\w]+");
@@ -577,6 +580,8 @@ public class ManuHandler {
                 System.out.println("Couldn't find the Deck!");
             } catch (InvalidItemException e) {
                 System.out.println("you dont have this Item in your collection");
+            } catch (Exception e){
+                e.printStackTrace();
             }
         }else if(word[0].equals("remove") && word[2].equals("from")&& word[3].equals("deck")){
             try {
@@ -590,7 +595,11 @@ public class ManuHandler {
             }
         }else if(word[0].equals("validate") && word[1].equals("deck")){
             try {
-                menu.validateDeck(word[2]);
+                if(menu.validateDeck(word[2])){
+                    System.out.println("your deck is valid");
+                }else{
+                    System.out.println("your deck is not valid");
+                }
             } catch (InvalidDeckException e) {
                 System.out.println("Couldn't find the Deck!");
             }

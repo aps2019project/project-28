@@ -1,13 +1,17 @@
 package Model.card;
 
+import Model.Primary;
 import Model.account.Collection;
+import Model.card.hermione.Hero;
+import Model.card.hermione.Minion;
+import Model.card.spell.Spell;
 import exeption.InvalidCardException;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public abstract class Card {
-    private static ArrayList<Card> cards=new ArrayList<>();
+    private static ArrayList<Card> cards= Primary.cards;
 
     public static int uniqueID =0;
 
@@ -63,7 +67,7 @@ public abstract class Card {
     }
     public static Card getCard(String name) throws InvalidCardException {
         for (Card card : Card.cards) {
-            if(card.getName().equals(name))return card;
+            if(card.getName().toLowerCase().equals(name))return card;
         }
         throw new InvalidCardException();
     }

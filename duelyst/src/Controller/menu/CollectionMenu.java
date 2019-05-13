@@ -70,7 +70,9 @@ public class CollectionMenu extends Menu {
 
     public void addToDeck(int ID, String deckName) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException,
             FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidDeckException, InvalidItemException {
+        System.err.println("im in addToDeck of CollectionMenu");
         this.tempCollection.getDeckByName(deckName).addToDeck(ID);
+        System.err.println("im in addToDeck of CollectionMenu");
     }
 
     public void removeFromDeck(int ID, String deckName) throws InvalidCardException, InvalidItemException, InvalidDeckException {
@@ -91,6 +93,7 @@ public class CollectionMenu extends Menu {
     public void showAllDecks() {
         for (Deck deck : this.tempCollection.getDecks()) {
             try {
+                System.out.println(deck.getName()+ " : ");
                 showDeck(deck.getName());
             } catch (InvalidDeckException e) {
             }
@@ -108,5 +111,11 @@ public class CollectionMenu extends Menu {
 
     public void selectDeck(String deckName) throws InvalidDeckException {
         this.tempCollection.setMainDeck(deckName);
+    }
+
+    @Override
+    public Menu exit() {
+        this.save();
+        return super.exit();
     }
 }
