@@ -173,7 +173,7 @@ public class AI extends Account {
 
     private Deck getDeck(int level) throws FullDeckException, DeckAlreadyHasThisCardException,
             DeckAlreadyHasAHeroException, DeckAlreadyHasThisItemException {
-        Deck deck = new Deck("AIDeck");
+        Deck deck = new Deck("AIDeck",this.collection);
         switch (level) {
             case 1:
                 try {

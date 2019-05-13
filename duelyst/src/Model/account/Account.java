@@ -16,14 +16,14 @@ public class Account {
 
     private static final Account defaultAccount = new Account("Duelyst","SAF","Pass the fucking word");
     protected static int unique = 0;
-    protected static final int INITIAL_MONEY = 1500;
+    protected static final int INITIAL_MONEY = 99999999;
 
     protected Player player;
     protected String name;
     protected String username;
     protected String password;
     protected int ID;
-    protected int money;//unit :derik
+    protected int money=150000;//unit :derik
     protected Collection collection = new Collection();
     protected ArrayList<Match> matchHistory;
     protected int wins;
@@ -39,6 +39,7 @@ public class Account {
         if (account == null) return;
         if (Account.hasAccount(account)) return;
         Account.getAccounts().add(account);
+        account .money=15000;
         YaGson gson = new YaGson();
         try {
             FileWriter fileWriter = new FileWriter("Account.json", true);

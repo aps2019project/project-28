@@ -48,7 +48,7 @@ public class ManuHandler {
     private static Menu currentMenu;
 
     //preprocess
-    public static void allCardPresenter(ArrayList<Card> cards,ArrayList<Usable> items){
+    public static void allCardPresenter(ArrayList<Card> cards,ArrayList<Usable> items,boolean showID){
         System.out.println("Heroes : ");
         int i=0;
         for (Card card : cards) {
@@ -57,6 +57,7 @@ public class ManuHandler {
                 System.out.print(i+") ");
                 for (OnHeroDetailsPresentedListener presenter : Hero.getHeroDetailsPresenters()) {
                     presenter.show((Hero) card);
+                    if(showID) System.out.println("\tID: "+card.getCardID());
                 }
             }
         }
@@ -68,6 +69,7 @@ public class ManuHandler {
                 System.out.print(i+") ");
                 for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
                     presenter.showCardDetail(card);
+//                    if(showID) System.out.println("\tID: "+card.getCardID());
                 }
             }
         }
@@ -78,6 +80,7 @@ public class ManuHandler {
             System.out.println(i+") ");
             for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
                 presenter.showItemDetail(item);
+                if(showID) System.out.println("\tID: "+item.getID());
             }
         }
     }
@@ -137,7 +140,7 @@ public class ManuHandler {
         //Collection
         Collection.addCollectionPresentedListener((collection, name) -> {
             System.out.println(name + " : ");
-            allCardPresenter(collection.getCards(), collection.getItems());
+            allCardPresenter(collection.getCards(), collection.getItems(),true);
         });
         //Card
         Card.addOnCardDetailPresented(new OnCardDetailsPresentedListener() {
@@ -211,7 +214,7 @@ public class ManuHandler {
         });
 
         //deck
-        Deck.addNewOnDeckPresentedListener(deck -> allCardPresenter(deck.getCards(),deck.getUsables()));
+        Deck.addNewOnDeckPresentedListener(deck -> allCardPresenter(deck.getCards(),deck.getUsables(),true));
 
         //GameInfo
         Battle.getMenu().addGameInfoPresentedListener(() -> {
@@ -328,16 +331,17 @@ public class ManuHandler {
         CollectionMenu.getMenu().addPattern("show");
         CollectionMenu.getMenu().addPattern("exit");
         CollectionMenu.getMenu().addPattern("show");
-        CollectionMenu.getMenu().addPattern("search [\\w]+");
+        CollectionMenu.getMenu().addPattern("search ([\\w]+\\s?)+");
         CollectionMenu.getMenu().addPattern("save");
-        CollectionMenu.getMenu().addPattern("create deck[\\w+]");
+        CollectionMenu.getMenu().addPattern("create deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("create deck ([\\w]+\\s?)+");
         CollectionMenu.getMenu().addPattern("delete deck [\\w]+");
-        CollectionMenu.getMenu().addPattern("add [\\d]+ to deck [\\w]+");
-        CollectionMenu.getMenu().addPattern("remove [\\d]+ from deck [\\w]+");
-        CollectionMenu.getMenu().addPattern("validate deck [\\w]+");
-        CollectionMenu.getMenu().addPattern("select deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("add [\\d]+ to deck ([\\w]+\\s?)+");
+        CollectionMenu.getMenu().addPattern("remove [\\d]+ from deck ([\\w]+\\s?)+");
+        CollectionMenu.getMenu().addPattern("validate deck ([\\w]+\\s?)+");
+        CollectionMenu.getMenu().addPattern("select deck ([\\w]+\\s?)+");
         CollectionMenu.getMenu().addPattern("show all decks");
-        CollectionMenu.getMenu().addPattern("show deck [\\w]+");
+        CollectionMenu.getMenu().addPattern("show deck ([\\w]+\\s?)+");
     }
     public static void setShopPatterns(){
         ShopMenu.getMenu().addPattern("enter [\\w]+");
@@ -346,10 +350,10 @@ public class ManuHandler {
         ShopMenu.getMenu().addPattern("show");
         ShopMenu.getMenu().addPattern("exit");
         ShopMenu.getMenu().addPattern("show collection");
-        ShopMenu.getMenu().addPattern("search [\\w]+");
-        ShopMenu.getMenu().addPattern("search collection [\\w]+");
-        ShopMenu.getMenu().addPattern("buy [\\w]+");
-        ShopMenu.getMenu().addPattern("sell [\\d]+");
+        ShopMenu.getMenu().addPattern("search ([\\w]+\\s?)+");
+        ShopMenu.getMenu().addPattern("search collection ([\\w]+\\s?)+");
+        ShopMenu.getMenu().addPattern("buy ([\\w]+\\s?)+");
+        ShopMenu.getMenu().addPattern("sell ([\\w]+\\s?)+");
         ShopMenu.getMenu().addPattern("show");
     }
     public static void setBattlePatterns(){
@@ -489,15 +493,17 @@ public class ManuHandler {
         }else if(word[0].equals("search")){
             if(word.length>= 2 && word[1].equals("collection")){
                 try {
-                    menu.searchCollection(word[2]);
+                    String name = getName(word , 2);
+                    menu.searchCollection(name);
                 } catch (InvalidCardException e) {
                     System.out.println("Card with Given name doesnt exist");
                 } catch (InvalidItemException e) {
                     System.out.println("Item with Given name doesnt exist");
                 }
             }else {
+                String name = getName(word , 1);
                 try {
-                    menu.search(word[1]);
+                    menu.search(name);
                 } catch (InvalidCardException e) {
                     System.out.println("Card with Given name doesnt exist");
                 } catch (InvalidItemException e) {
@@ -505,61 +511,81 @@ public class ManuHandler {
                 }
             }
         }else if(word[0].equals("buy")){
+            String name = getName(word , 1);
             try {
-                menu.buy(word[1]);
+                menu.buy(name);
             } catch (CardExistException e) {
                 System.out.println("You already have this Card. it is not wise to buy a same card twice");
-            } catch (InvalidCardException | InvalidItemException e) {
-                System.out.println("my lord! we just ran out of " + word[1] + ". im sorry!");
+            } catch (InvalidCardException e) {
+                System.err.println("hhhhhhhhhhhhhhhhhhhhh");
+                System.out.println("Me lord! we just ran out of " + name + ". im sorry!");
             } catch (ItemExistExeption itemExistExeption) {
                 System.out.println("You already have this Item. it is not wise to buy a same item twice");
             } catch (FullCollectionException e) {
-                System.out.println("sorry but you dont have enough Space in your collection");
-                System.out.println("empty your collection a little bit by selling some card and try later");
+                System.out.println("Sorry but you dont have enough Space in your collection");
+                System.out.println("Empty your collection a little bit by selling some cards and try again");
             } catch (NotEnoughMoneyException e) {
                 System.out.println("Oops you are not as reach as you thought!");
+            } catch (InvalidItemException e) {
+                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
             }
         }else if(word[0].equals("sell")){
+            String name = getName(word , 1);
             try {
-                menu.sell(word[1]);
+                menu.sell(name);
             } catch (InvalidCardException e) {
                 System.out.println("Smart Move But you cant sell a Card/Item that you dont have");
             }
         }
     }
+
+    private static String getName(String[] word , int startPoint) {
+        String name = "" ;
+        for (int i = startPoint ; i < word.length ; i++){
+            name = name + word[i] + " " ;
+        }
+        name = name.substring(0 , name.length()-1) ;
+        return name;
+    }
+
     private static void CollectionMenuCommandHandler(String[] word) {
         CollectionMenu menu= (CollectionMenu) currentMenu;
         if(word[0].equals("show")){
             if(word.length>= 3 && word[1].equals("all") && word[2].equals("decks")){
                 menu.showAllDecks();
             }else if(word.length>= 2 && word[1].equals("deck")){
+                String name = getName(word , 2) ;
                 try {
-                    menu.showDeck(word[2]);
+                    menu.showDeck(name);
                 } catch (InvalidDeckException e) {
-                    System.out.println("Deck with the name "+word[2]+" doesnt exists ");
+                    System.out.println("Deck with the name "+name+" doesnt exists ");
                 }
             }else{
                 menu.showCollection();
             }
         }else if(word[0].equals("search")){
-            menu.search(word[1]);
+            String name = getName(word , 1) ;
+            menu.search(name);
         }else if(word[0].equals("save")){
             menu.save();
         }else if(word[0].equals("create") && word[1].equals("deck")){
+            String name = getName(word , 2) ;
             try {
-                menu.createNewDeck(word[2]);
+                menu.createNewDeck(name);
             } catch (DeckAlreadyExistException e) {
                 System.out.println("Deck with the exact same name already exist please try again");
             }
         }else if(word[0].equals("delete") && word[1].equals("deck")){
             try {
-                menu.deleteDeck(word[2]);
+                String name = getName(word , 2) ;
+                menu.deleteDeck(name);
             } catch (InvalidDeckException e) {
                 System.out.println("Deck with the given name doesnt exist");
             }
         }else if(word[0].equals("add") && word[2].equals("to")&& word[3].equals("deck")){
             try {
-                menu.addToDeck(Integer.parseInt(word[1]),word[4]);
+                String name = getName(word , 4) ;
+                menu.addToDeck(Integer.parseInt(word[1]),name);
             } catch (DeckAlreadyHasAHeroException e) {
                 System.out.println("Cant add another Hero to the deck");
             } catch (DeckAlreadyHasThisCardException e) {
@@ -577,7 +603,8 @@ public class ManuHandler {
             }
         }else if(word[0].equals("remove") && word[2].equals("from")&& word[3].equals("deck")){
             try {
-                menu.removeFromDeck(Integer.parseInt(word[1]),word[4]);
+                String name = getName(word , 4) ;
+                menu.removeFromDeck(Integer.parseInt(word[1]),name);
             } catch (InvalidCardException e) {
                 System.out.println("you dont have this Card in your Deck");
             } catch (InvalidItemException e) {
@@ -586,14 +613,20 @@ public class ManuHandler {
                 System.out.println("Couldn't find the Deck!");
             }
         }else if(word[0].equals("validate") && word[1].equals("deck")){
+            String name = getName(word , 2) ;
             try {
-                menu.validateDeck(word[2]);
+                if(menu.validateDeck(name)){
+                    System.out.println("your deck is valid");
+                }else{
+                    System.out.println("your deck is not valid");
+                }
             } catch (InvalidDeckException e) {
                 System.out.println("Couldn't find the Deck!");
             }
         }else if(word[0].equals("select") && word[1].equals("deck")){
+            String name = getName(word , 2) ;
             try {
-                menu.selectDeck(word[2]);
+                menu.selectDeck(name);
             } catch (InvalidDeckException e) {
                 System.out.println("Couldn't find the Deck!");
             }

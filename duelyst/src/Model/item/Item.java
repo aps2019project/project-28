@@ -1,6 +1,7 @@
 package Model.item;
 
 import Model.Map.Cell;
+import Model.Primary;
 import Model.account.Player;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
@@ -14,7 +15,7 @@ import java.util.Collections;
 
 public abstract class Item {
 
-    private static ArrayList<Item> items = new ArrayList<>();
+    private static ArrayList<Item> items=Primary.items;
     private String name;
     private Target target;
     private int duration;
@@ -24,6 +25,10 @@ public abstract class Item {
     private int itemID;
     private static ArrayList<OnItemDetailPresentedListener> itemDetailPresenters = new ArrayList<>();
     private String info;
+
+    static{
+
+    }
 
     public Item(String name, int duration, int perk, String info, Target target, ItemAction... actions) {
         this.name = name;
@@ -43,17 +48,18 @@ public abstract class Item {
     }
 
     public static boolean hasItem(int itemID) {
-        try {
-            Item.getItem(itemID);
-            return true;
-        } catch (InvalidItemException e) {
-            return false;
+        for (Item i:
+             items) {
+            if(i.getID() == itemID){
+                return true;
+            }
         }
+        return false;
     }
 
     public static Item getItem(String name) throws InvalidItemException {
         for (Item item : Item.getItems()) {
-            if (item.getName().equals(name)) return item;
+            if (item.getName().toLowerCase().equals(name)) return item;
         }
         throw new InvalidItemException();
     }
