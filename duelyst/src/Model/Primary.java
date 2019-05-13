@@ -11,6 +11,7 @@ import Model.card.spell.SpellAction.ActionDisarm;
 import Model.card.spell.SpellAction.ActionStun;
 import Model.card.spell.Targets.*;
 import Model.item.Collectable;
+import Model.item.Item;
 import Model.item.ItemActions.*;
 import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 
 public class Primary {
 
+    public static ArrayList<Item>  items= new ArrayList<>();
     public static ArrayList<Spell> spells = new ArrayList<>();
     public static ArrayList<Minion> minions = new ArrayList<>();
     public static ArrayList<Hero> heroes = new ArrayList<>();
@@ -29,7 +31,10 @@ public class Primary {
     public static ArrayList<Collectable> collectables = new ArrayList<>();
     public static ArrayList<Account> accounts = new ArrayList<>();
     public  static  ArrayList<Card> cards = new ArrayList<>();
-
+    public static void getItems(){
+        items.addAll(usables);
+        items.addAll(collectables);
+    }
     public static void getHeroes() throws FileNotFoundException {
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Hero.json"));
@@ -124,6 +129,7 @@ public class Primary {
         getCollectables();
         getAccounts();
         getCards();
+        getItems();
     }
 
     public static void Json() throws IOException {

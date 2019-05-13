@@ -6,3 +6,6 @@
 {"@type":"Model.account.Account","@val":{"name":"a","username":"a","password":"1","ID":0,"money":1500,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0}}
 {"@type":"Model.account.Account","@val":{"name":"a","username":"d","password":"1","ID":0,"money":15000,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0}}
 {"@type":"Model.account.Account","@val":{"name":"arshia","username":"arshia","password":"1","ID":0,"money":15000,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0}}
+{"@type":"Model.account.Account","@val":{"name":"due","username":"asd","password":"123","ID":0,"money":15000,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0}}
+{"@type":"Model.account.Account","@val":{"name":"g","username":"g","password":"1","ID":1,"money":15000,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0}}
+{"@type":"Model.account.Account","@val":{"name":"z","username":"z","password":"1","ID":0,"money":15000,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0}}

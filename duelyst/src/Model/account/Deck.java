@@ -181,8 +181,8 @@ public class Deck {
 
     public void addToDeck(int ID) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException,
             FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidItemException {
-        System.err.println("im in addToDeck of Deck.java");
-        System.err.println("and cardName: "+Card.getCard(ID));
+//        System.err.println("im in addToDeck of Deck.java");
+//        System.err.println("and cardName: "+Card.getCard(ID));
 
         if (Card.hasCard(ID))
             addCardToDeck(collection.getCard(ID));

@@ -16,7 +16,7 @@ public class Account {
 
     private static final Account defaultAccount = new Account("Duelyst","SAF","Pass the fucking word");
     protected static int unique = 0;
-    protected static final int INITIAL_MONEY = 1500;
+    protected static final int INITIAL_MONEY = 99999999;
 
     protected Player player;
     protected String name;

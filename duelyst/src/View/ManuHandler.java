@@ -338,7 +338,7 @@ public class ManuHandler {
         CollectionMenu.getMenu().addPattern("delete deck [\\w]+");
         CollectionMenu.getMenu().addPattern("add [\\d]+ to deck ([\\w]+\\s?)+");
         CollectionMenu.getMenu().addPattern("remove [\\d]+ from deck ([\\w]+\\s?)+");
-        CollectionMenu.getMenu().addPattern("validate deck ([\\w]+//s?)+");
+        CollectionMenu.getMenu().addPattern("validate deck ([\\w]+\\s?)+");
         CollectionMenu.getMenu().addPattern("select deck ([\\w]+\\s?)+");
         CollectionMenu.getMenu().addPattern("show all decks");
         CollectionMenu.getMenu().addPattern("show deck ([\\w]+\\s?)+");
