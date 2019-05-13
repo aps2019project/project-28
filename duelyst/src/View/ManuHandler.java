@@ -349,7 +349,7 @@ public class ManuHandler {
         ShopMenu.getMenu().addPattern("search [\\w]+");
         ShopMenu.getMenu().addPattern("search collection [\\w]+");
         ShopMenu.getMenu().addPattern("buy [\\w]+");
-        ShopMenu.getMenu().addPattern("sell [\\d]+");
+        ShopMenu.getMenu().addPattern("sell [\\w]+");
         ShopMenu.getMenu().addPattern("show");
     }
     public static void setBattlePatterns(){
@@ -509,7 +509,8 @@ public class ManuHandler {
                 menu.buy(word[1]);
             } catch (CardExistException e) {
                 System.out.println("You already have this Card. it is not wise to buy a same card twice");
-            } catch (InvalidCardException | InvalidItemException e) {
+            } catch (InvalidCardException e) {
+                System.err.println("hhhhhhhhhhhhhhhhhhhhh");
                 System.out.println("my lord! we just ran out of " + word[1] + ". im sorry!");
             } catch (ItemExistExeption itemExistExeption) {
                 System.out.println("You already have this Item. it is not wise to buy a same item twice");
@@ -518,6 +519,8 @@ public class ManuHandler {
                 System.out.println("empty your collection a little bit by selling some card and try later");
             } catch (NotEnoughMoneyException e) {
                 System.out.println("Oops you are not as reach as you thought!");
+            } catch (InvalidItemException e) {
+                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
             }
         }else if(word[0].equals("sell")){
             try {
