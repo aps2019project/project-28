@@ -1,6 +1,7 @@
 package Model.account;
 
 import Model.card.Card;
+import Model.card.hermione.Hero;
 import View.Listeners.OnHandPresentedListener;
 import exeption.DeckIsEmptyException;
 import exeption.HandFullException;
@@ -11,14 +12,20 @@ import java.util.Collections;
 
 public class Hand {
 
-    private ArrayList<Card> deck;
+    private ArrayList<Card> deck = new ArrayList<>();
     private static ArrayList<OnHandPresentedListener> handPresenters = new ArrayList<>();
     private static final int SIZE = 5;
     private Card[] cards = new Card[SIZE];
     private Card nextCard;
 
     public Hand(Deck deck) {
-        this.deck = deck.getCards();
+        for (Card card:
+             deck.getCards()) {
+            if(card instanceof Hero){
+                continue;
+            }
+            this.deck.add(card);
+        }
         for (int i = 0; i < SIZE; i++) {
             this.cards[i] = this.deck.get(i);
         }
@@ -49,9 +56,9 @@ public class Hand {
 
     private void setNextCard() {
         if (deck.indexOf(nextCard) + 1 < Deck.CARD_SIZE) {
-            nextCard = deck.get(deck.indexOf(nextCard) + 1);
+            this.nextCard = deck.get(deck.indexOf(nextCard) + 1);
         } else {
-            nextCard = null;
+            this.nextCard = null;
         }
     }
 
@@ -70,7 +77,7 @@ public class Hand {
     }
 
     public static ArrayList<OnHandPresentedListener> getHandPresenters() {
-        return (ArrayList<OnHandPresentedListener>) Collections.unmodifiableList(handPresenters);
+        return (handPresenters);
     }
 
     public static void addOnHandPresentedListener(OnHandPresentedListener handPresenter) {
