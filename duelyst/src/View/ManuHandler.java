@@ -358,7 +358,7 @@ public class ManuHandler {
     }
     public static void setBattlePatterns(){
         Battle.getMenu().addPattern("enter [\\w]+");
-        Battle.getMenu().addPattern();
+        Battle.getMenu().addPattern("show info");
         Battle.getMenu().addPattern("[\\d]+");
         Battle.getMenu().addPattern("help");
         Battle.getMenu().addPattern("show");
