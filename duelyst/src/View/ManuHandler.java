@@ -353,15 +353,14 @@ public class ManuHandler {
         ShopMenu.getMenu().addPattern("show");
         ShopMenu.getMenu().addPattern("exit");
         ShopMenu.getMenu().addPattern("show collection");
-        ShopMenu.getMenu().addPattern("search ([\\w]+\\s?)+");
-        ShopMenu.getMenu().addPattern("search collection ([\\w]+\\s?)+");
-        ShopMenu.getMenu().addPattern("buy ([\\w]+\\s?)+");
-        ShopMenu.getMenu().addPattern("sell ([\\w]+\\s?)+");
+        ShopMenu.getMenu().addPattern("search( [\\w]+)+");
+        ShopMenu.getMenu().addPattern("search collection( [\\w]+)+");
+        ShopMenu.getMenu().addPattern("buy( [\\w]+)+");
+        ShopMenu.getMenu().addPattern("sell( [\\w]+)+");
         ShopMenu.getMenu().addPattern("show");
     }
     public static void setBattlePatterns(){
         Battle.getMenu().addPattern("enter [\\w]+");
-        Battle.getMenu().addPattern("show info");
         Battle.getMenu().addPattern("[\\d]+");
         Battle.getMenu().addPattern("help");
         Battle.getMenu().addPattern("show");
@@ -374,9 +373,9 @@ public class ManuHandler {
         Battle.getMenu().addPattern("move to [\\d]+ [\\d]+");
         Battle.getMenu().addPattern("attack [\\d]+");
         Battle.getMenu().addPattern("attack combo [\\d]+ [\\d]+[ \\d+]+");
-        Battle.getMenu().addPattern("use special power \\([\\d]+ [\\d]+\\)");
+        Battle.getMenu().addPattern("use special power [\\d]+ [\\d]+");
         Battle.getMenu().addPattern("show hand");
-        Battle.getMenu().addPattern("insert [\\w]+ in \\([\\d]+ [\\d]+\\)");
+        Battle.getMenu().addPattern("insert [\\w]+ in [\\d]+ [\\d]+");
         Battle.getMenu().addPattern("end turn");
         Battle.getMenu().addPattern("show collectables");
         Battle.getMenu().addPattern("select [\\d]+");

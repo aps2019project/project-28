@@ -84,8 +84,10 @@ public class ShopMenu extends Menu {
                 System.err.println(this.shop.getCollection().getCard(name).getPrice());
                 System.err.println(this.account.getMoney());
                 throw new NotEnoughMoneyException();
-            } else {
+            }
+            else {
                 tempCollection.addCardToCollection(this.shop.getCollection().getCard(name));
+                this.account.setMoney(this.account.getMoney() - this.shop.getCollection().getCard(name).getPrice());
             }
 
         }
@@ -105,6 +107,7 @@ public class ShopMenu extends Menu {
             throw new InvalidCardException();
 
         tempCollection.removeFromCollection(name);
+        this.account.setMoney(this.account.getMoney() + this.shop.getCollection().getCard(name).getPrice());
     }
 
     public void show() {//shows the items and cards in shop
