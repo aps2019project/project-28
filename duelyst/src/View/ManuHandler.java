@@ -249,6 +249,7 @@ public class ManuHandler {
             System.out.println("\t\tHealth Point: " + h.getHealthPoint() + ",location: " + h.getLocation().getX() + "," + h.getLocation().getY());
             System.out.println("\t\tAction: "+h.getInfo());
         });
+
     }
     private static void initMenus() {
         //az SignIn Menu mirim tuye MainMenu
