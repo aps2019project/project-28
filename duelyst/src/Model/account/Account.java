@@ -47,6 +47,24 @@ public class Account {
         }
     }
 
+    public void save() {
+        YaGson gson = new YaGson();
+        File file = new File("Account.json");
+        file.delete();
+        for (Account account:
+                Primary.accounts) {
+            try{
+                FileWriter fileWriter = new FileWriter("Account.json", true);
+                Player player=account.getPlayer();
+                account.player=null;
+                gson.toJson(account, fileWriter);
+                account.player=player;
+                fileWriter.write("\n");
+                fileWriter.close();
+            } catch (IOException e) {}
+        }
+    }
+
     public static Account getDefaultAccount(){
         return Account.defaultAccount;
     }
@@ -214,5 +232,4 @@ public class Account {
         return Account.getAccounts();
     }
     public String play(){return null;}
-
 }

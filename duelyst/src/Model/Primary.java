@@ -31,10 +31,13 @@ public class Primary {
     public static ArrayList<Collectable> collectables = new ArrayList<>();
     public static ArrayList<Account> accounts = new ArrayList<>();
     public  static  ArrayList<Card> cards = new ArrayList<>();
+
+
     public static void getItems(){
         items.addAll(usables);
         items.addAll(collectables);
     }
+
     public static void getHeroes() throws FileNotFoundException {
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Hero.json"));
@@ -109,7 +112,7 @@ public class Primary {
             while (jsonStreamParser.hasNext()) {
                 JsonElement jsonElement = jsonStreamParser.next();
                 if (jsonElement.isJsonObject()) {
-                    Account.getAccounts().add(gson.fromJson(jsonElement, Account.class));
+                    accounts.add(gson.fromJson(jsonElement, Account.class));
                 }
             }
         }
@@ -355,7 +358,7 @@ public class Primary {
                 null, ActionCombo.getAction())
                 , SPATime.NULL, "Combo"));
 
-        fileWriter = new FileWriter("Minion.json");
+        fileWriter = new FileWriter("Minion.json", false);
         for (Minion minion :
                 minions) {
             gson.toJson(minion, fileWriter);
@@ -405,7 +408,7 @@ public class Primary {
                 new SpecialPower("Rostam SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
                        null, ActionChangeAP.getAction()), 0, 0, "just a hybrid hero"));
 
-        fileWriter = new FileWriter("Hero.json");
+        fileWriter = new FileWriter("Hero.json", false);
         for (Hero hero :
                 heroes) {
             gson.toJson(hero, fileWriter);
@@ -416,8 +419,8 @@ public class Primary {
         //item
         usables.add(new Usable("Wisdom Crown", 300, 3, 1, "increases mana first 3 turn",
                 null, ItemActionExtraMana.getItemAction()));
-        usables.add(new Usable("Shield AF", 4000, 1, 12, "for own hero, 12 hol buff",
-                ItemTargetOwnHero.getTargetInstance(), ItemActionShieldAF.getItemAction()));
+        usables.add(new Usable("Shield AF", 4000, 1, 12, "for own hero, 12 holy buff",
+                TargetOwnHero.getTargetInstance(), ItemActionShieldAF.getItemAction()));
         usables.add(new Usable("Damool Arch", 30000, 1, 0, "only for ranged or hybrid own hero, while attacking disarms enemy card, duration : 1",
                 TargetRangedAndHybrid.getTargetClass(), ItemActionDamoolArch.getItemAction()));
         usables.add(new Usable("Simorgh's feather", 3500, 1, -2, "only for ranged or hybrid enemy hero, decreases attack point 2 units",
@@ -437,7 +440,7 @@ public class Primary {
         usables.add(new Usable("‌Baptism", 20000, 2, 0, "every minion when spawns gets holly buff, duration : 2",
                 TargetOwnMinion.getTargetInstance(), ItemActionChangeAP.getItemAction()));
 
-        fileWriter = new FileWriter("Usables.json");
+        fileWriter = new FileWriter("Usables.json", false);
         for (Usable usable :
                 usables) {
             gson.toJson(usable, fileWriter);
@@ -465,7 +468,7 @@ public class Primary {
         collectables.add(new Collectable("Chineese Sword", 1, 5, "5 attack points for melee",
                 TargetMelee.getTargetClass(), ItemActionChangeAP.getItemAction()));
 
-        fileWriter = new FileWriter("Collectables.json", true);
+        fileWriter = new FileWriter("Collectables.json", false);
 
         for (Collectable collectable :
                 collectables) {
