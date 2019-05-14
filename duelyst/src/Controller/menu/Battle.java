@@ -4,6 +4,7 @@ import Controller.Game;
 import Controller.GameMode.GameMode;
 import Controller.menu.Menu;
 import Model.item.Item;
+import View.Listeners.OnGameCardsPresentedListenr;
 import View.Listeners.OnGameInfoPresentedListener;
 import Model.Map.Map;
 import Model.account.*;
@@ -39,7 +40,7 @@ public class Battle extends Menu {
             {new KingSlayerCounter(player[0]), new KingSlayerCounter(player[1])};
 
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
-
+    private ArrayList<OnGameCardsPresentedListenr> cardsPresenters=new ArrayList<>();
     public Battle( String name) {
         super(name);
     }
@@ -73,18 +74,28 @@ public class Battle extends Menu {
 
     public void showMyMinions() {
 
-        for (Card card : this.account.getPlayer().getDeck().getCards()) {
-            for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
-                presenter.showCardInfo(card);
-            }
+        System.out.println("HERO:");
+        for (OnGameCardsPresentedListenr presenter : Battle.getMenu().getCardsPresenters()) {
+            presenter.showCard(this.account.getPlayer().getDeck().getHero());
+        }
+        System.out.println("MINIONS:");
+        for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
+            for (OnGameCardsPresentedListenr presenter : Battle.getMenu().getCardsPresenters()) {
+                    presenter.showCard(minion);
+                }
         }
 
     }
 
     public void showMyOpponentMinion() {
-        for (Card card : this.getEnemy(this.account).getDeck().getCards()) {
-            for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
-                presenter.showCardInfo(card);
+        System.out.println("HERO:");
+        for (OnGameCardsPresentedListenr presenter : Battle.getMenu().getCardsPresenters()) {
+            presenter.showCard(this.getEnemy(this.account).getDeck().getHero());
+        }
+        System.out.println("MINIONS:");
+        for (Minion minion : this.getEnemy(this.account).getMinionsInGame()) {
+            for (OnGameCardsPresentedListenr presenter : Battle.getMenu().getCardsPresenters()) {
+                presenter.showCard(minion);
             }
         }
     }
@@ -301,5 +312,11 @@ public class Battle extends Menu {
     }
     public void setGameMode(GameMode gameMode) {
         this.gameMode = gameMode;
+    }
+    public void addCardPresentedListener(OnGameCardsPresentedListenr listener){
+        this.cardsPresenters.add(listener);
+    }
+    public ArrayList<OnGameCardsPresentedListenr> getCardsPresenters() {
+        return cardsPresenters;
     }
 }

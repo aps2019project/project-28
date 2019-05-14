@@ -216,10 +216,11 @@ public class ManuHandler {
         //GameInfo
         Battle.getMenu().addGameInfoPresentedListener(() -> {
             if(Battle.getMenu().getGameMode() instanceof ClassicMode){
-                System.out.println(Battle.getMenu().getAccount().getName()+" : " + Battle.getMenu().getAccount().getPlayer().getDeck().getHero().getHealthPoint());
-                System.out.println(Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getUser().getName()+" : " + Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getHealthPoint());
-//                System.out.println("\tSpecialPower : " + hero.getSpecialPower().getInfo());
-            }else if(Battle.getMenu().getGameMode() instanceof FlagMode){
+                System.out.println(Battle.getMenu().getAccount().getName()+" : ");
+                System.out.println("\t"+Battle.getMenu().getAccount().getPlayer().getDeck().getHero().getName()+" : "+Battle.getMenu().getAccount().getPlayer().getDeck().getHero().getHealthPoint());
+                System.out.println(Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getUser().getName()+" : ");
+                System.out.println("\t"+Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getName()+" : "+Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getHealthPoint());
+//          }else if(Battle.getMenu().getGameMode() instanceof FlagMode){
 
             }else{
 
@@ -240,6 +241,13 @@ public class ManuHandler {
             System.out.println("\tName : " + item.getName());
             System.out.println("\tDesc : " + item.getComment());
             System.out.println("\tSell cost" + ((Usable) item).getPrice());
+        });
+        //game card presentedListener
+        Battle.getMenu().addCardPresentedListener(card -> {
+            Hermione h= (Hermione) card;
+            System.out.println("\t" + h.getName() + " : ");
+            System.out.println("\t\tHealth Point: " + h.getHealthPoint() + ",location: " + h.getLocation().getX() + "," + h.getLocation().getY());
+            System.out.println("\t\tAction: "+h.getInfo());
         });
     }
     private static void initMenus() {
