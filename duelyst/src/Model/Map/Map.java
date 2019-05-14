@@ -13,8 +13,8 @@ import java.util.Collections;
 
 public class Map {
     private static ArrayList<Map> maps;
-    public static final int HEIGHT = 5;
-    public static final int WIDTH = 9;
+    public static final int HEIGHT = 9;
+    public static final int WIDTH = 5;
     private Cell[][] board = new Cell[Map.HEIGHT+1][Map.WIDTH+1];
     private ArrayList<Flag> flags;
 

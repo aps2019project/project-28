@@ -3,6 +3,7 @@ package Controller.menu;
 import Controller.Game;
 import Controller.GameMode.GameMode;
 import Controller.menu.Menu;
+import Model.card.spell.Buff.Buff;
 import Model.item.Item;
 import View.Listeners.OnGameCardsPresentedListenr;
 import View.Listeners.OnGameInfoPresentedListener;
@@ -175,7 +176,13 @@ public class Battle extends Menu {
             minion.itIsTime(SPATime.PASSIVE);
         }
         //----------start-----------
-        // TODO: 5/6/19 SaE passive buff
+        for (Buff buff : this.player[0].getDeck().getHero().getAppliedBuffs()){
+            try {
+                buff.handleBuffEndOfTurn();
+            }catch (InvalidCellException ignored){
+                // TODO: 5/14/19 badan shayad lazem bashe check she
+            }
+            }
         //-------------end----------
         turn--;
 

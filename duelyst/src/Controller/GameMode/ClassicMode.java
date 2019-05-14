@@ -29,7 +29,7 @@ public class ClassicMode implements GameMode {
 
     @Override
     public Map mapGenerator() {
-
+        return null;
     }
 }
 
