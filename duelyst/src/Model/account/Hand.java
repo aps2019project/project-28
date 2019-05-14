@@ -12,23 +12,24 @@ import java.util.Collections;
 
 public class Hand {
 
-    private ArrayList<Card> deck;
+    private ArrayList<Card> deck = new ArrayList<>();
     private static ArrayList<OnHandPresentedListener> handPresenters = new ArrayList<>();
     private static final int SIZE = 5;
     private Card[] cards = new Card[SIZE];
     private Card nextCard;
 
     public Hand(Deck deck) {
-        int j = 0;
-        this.deck = deck.getCards();
-        for (int i = 0; i < SIZE; i++) {
-            if(!(cards[i] instanceof Hero)) {
-                this.cards[j++] = this.deck.get(i);
+        for (Card card:
+             deck.getCards()) {
+            if(card instanceof Hero){
+                continue;
             }
+            this.deck.add(card);
         }
-        if(!(cards[SIZE] instanceof Hero)) {
-            this.nextCard = this.deck.get(SIZE);
+        for (int i = 0; i < SIZE; i++) {
+            this.cards[i] = this.deck.get(i);
         }
+        this.nextCard = this.deck.get(SIZE);
     }
 
     public void updateHand() throws DeckIsEmptyException, HandFullException {
@@ -55,12 +56,9 @@ public class Hand {
 
     private void setNextCard() {
         if (deck.indexOf(nextCard) + 1 < Deck.CARD_SIZE) {
-            Card card = deck.get(deck.indexOf(nextCard) + 1);
-            if(!(card instanceof Hero)){
-                nextCard = card;
-            }
+            this.nextCard = deck.get(deck.indexOf(nextCard) + 1);
         } else {
-            nextCard = null;
+            this.nextCard = null;
         }
     }
 
