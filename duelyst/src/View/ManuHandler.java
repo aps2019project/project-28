@@ -42,7 +42,7 @@ class ShowMenu implements OnMenuClickedListener{
 }
 public class ManuHandler {
 
-    private static Menu currentMenu;
+    public static Menu currentMenu;
 
     //preprocess
     public static void allCardPresenter(ArrayList<Card> cards,ArrayList<Usable> items,boolean showID){

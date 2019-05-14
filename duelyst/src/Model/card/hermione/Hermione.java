@@ -60,7 +60,7 @@ public abstract class Hermione extends Card {
         if (this.attackType.canReach(this, enemyCard)) {
             this.attackCounter++;
             this.buffEffects.handle();
-            enemyCard.setHealthPoint(enemyCard.healthPoint - this.attackPoint);
+            enemyCard.changeHealthPoint(-(1)*this.attackPoint);
             if (enemyCard.getLocation().getCellAffect().contains(CellAffects.holly))
                 enemyCard.changeHealthPoint(1);
             enemyCard.counterAttack(this);
@@ -76,7 +76,8 @@ public abstract class Hermione extends Card {
     public void counterAttack(Hermione enemyCard) {
         if (!this.canCounterAttack) return;
         if (this.attackType.canReach(this, enemyCard)) {
-            this.setHealthPoint(Integer.min(this.healthPoint + this.attackPoint, enemyCard.getAttackPoint()));
+            if(this.healthPoint>0)
+                this.setHealthPoint(this.healthPoint + this.attackPoint);
         }
     }
 
