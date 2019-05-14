@@ -19,6 +19,7 @@ import Model.item.Collectable;
 import Model.item.KingSlayerCounter;
 import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnHandPresentedListener;
+import View.ManuHandler;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -66,6 +67,7 @@ public class Battle extends Menu {
             this.player[0].getDeck().getHero().setLocation(this.map.getCell(3,1));
             this.player[1].getDeck().getHero().setLocation(this.map.getCell(3,9));
         } catch (InvalidCellException e){e.printStackTrace();}
+        System.err.println("bitch bitch im here fuck you");
         return true;
     }
 
@@ -180,10 +182,12 @@ public class Battle extends Menu {
 
         //----------start-----------
         handleBuffs("end");
+        // TODO: 5/14/19 az comment dar biad
         //-------------end----------
 
         this.account = this.getEnemy(this.account).getUser();
-
+        swapPlayers();
+        System.err.println(this.account.getName()+" , "+this.getEnemy(this.account).getUser().getName());
         /*handling Mana*/
         this.account.getPlayer().setMaxMana(MAX_MANA_PER_TURN[Integer.min(turn, MAX_MANA_PER_TURN.length - 1)]);
         this.account.getPlayer().reFillMana();
@@ -191,8 +195,10 @@ public class Battle extends Menu {
         // TODO: 5/5/19 @SaE beBn bayad kari vasse Spell ha ya  SpecialPower ha beshe ya na
 
         /*handling coolDown*/
-        this.player[0].getDeck().getHero().increaseRemainCoolDown();
-        this.player[1].getDeck().getHero().increaseRemainCoolDown();
+        try {
+            this.player[0].getDeck().getHero().increaseRemainCoolDown();
+            this.player[1].getDeck().getHero().increaseRemainCoolDown();
+        }catch(NullPointerException ignored){}
         // TODO: 5/5/19 other stuff maybe?
 
         for (int i = 0; i < 2; i++) {
@@ -209,46 +215,57 @@ public class Battle extends Menu {
         /*checkState*/
         if(this.gameMode.checkState()){
             this.gameMode.handleWin();
+            ManuHandler.currentMenu=this.exit();
         }
         else{
             nextTurn();
         }
-        startTurn();
 
     }
 
-    private void startTurn() {
-        for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
-            minion.setActionTurn(0);
-        }
+    private void swapPlayers() {
+        Player temp=this.player[0];
+        this.player[0]=this.player[1];
+        this.player[1]=temp;
     }
+
 
     private void handleBuffs(String endOrBeginning) {
         for (int i = 0 ; i < 2 ; i++) {
-            turn += i==1?1:0 ;
-            Player plyr = player[getTurn()] ;
-            for (Buff buff : plyr.getDeck().getHero().getAppliedBuffs()) {
-                if (endOrBeginning.equals("end"))
-                    deployBuffEndTurn(buff);
-                else deployBuffBeginningOfTurn(buff);
-            }
-            for (Minion minion : plyr.getMinionsInGame()) {
-                for (Buff buff : minion.getAppliedBuffs()) {
+            turn += i == 1 ? 1 : 0;
+            Player plyr = player[getTurn()];
+            try {
+                for (Buff buff : plyr.getDeck().getHero().getAppliedBuffs()) {
                     if (endOrBeginning.equals("end"))
                         deployBuffEndTurn(buff);
                     else deployBuffBeginningOfTurn(buff);
                 }
+            } catch (NullPointerException ignored) {
             }
-            turn += i==1?-1:0 ;
+            try {
+                for (Minion minion : plyr.getMinionsInGame()) {
+                    for (Buff buff : minion.getAppliedBuffs()) {
+                        if (endOrBeginning.equals("end"))
+                            deployBuffEndTurn(buff);
+                        else deployBuffBeginningOfTurn(buff);
+                    }
+                }
+                turn += i == 1 ? -1 : 0;
+            }catch(NullPointerException ignored){}
         }
     }
 
     private void nextTurn(){
         turn++;
+
+
         //TODO arshia karaye marbut be turn e jadid o inja bokon (mana o updateHand o ina)
-
+        for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
+            minion.setActionTurn(0);
+        }
+        this.account.getPlayer().getDeck().getHero().setActionTurn(0);
         handleBuffs("beginning");
-
+        // TODO: 5/14/19 comment bala ro bardar
 
     }
 

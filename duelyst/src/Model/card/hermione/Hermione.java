@@ -17,7 +17,7 @@ public abstract class Hermione extends Card {
     protected int originalHealthPoint;
     protected int attackPoint;
     protected Model.card.spell.SpecialPower SpecialPower;
-    protected ArrayList<Buff> appliedBuffs;
+    protected ArrayList<Buff> appliedBuffs = new ArrayList<>();
     protected AttackType attackType;
     protected int range;
     public static final int MOVE_RANGE = 2;
@@ -61,7 +61,7 @@ public abstract class Hermione extends Card {
         if (this.attackType.canReach(this, enemyCard)) {
             this.attackCounter++;
             this.buffEffects.handle();
-            enemyCard.setHealthPoint(enemyCard.healthPoint - this.attackPoint);
+            enemyCard.changeHealthPoint(-(1)*this.attackPoint);
             if (enemyCard.getLocation().getCellAffect().contains(CellAffects.holly))
                 enemyCard.changeHealthPoint(1);
             enemyCard.counterAttack(this);
@@ -77,7 +77,8 @@ public abstract class Hermione extends Card {
     public void counterAttack(Hermione enemyCard) {
         if (!this.canCounterAttack) return;
         if (this.attackType.canReach(this, enemyCard)) {
-            this.setHealthPoint(Integer.min(this.healthPoint + this.attackPoint, enemyCard.getAttackPoint()));
+            if(this.healthPoint>0)
+                this.setHealthPoint(this.healthPoint + this.attackPoint);
         }
     }
 

@@ -13,7 +13,7 @@ public class MultiPlayerModeMenu extends Menu {
 
     public static MultiPlayerModeMenu getMenu(){
         if(MultiPlayerModeMenu.menu==null){
-            MultiPlayerModeMenu.menu=new MultiPlayerModeMenu("MultiPlayerModeMenu");
+            MultiPlayerModeMenu.menu=new MultiPlayerModeMenu("MultiPlayer");
         }
         return menu;
     }
@@ -21,6 +21,7 @@ public class MultiPlayerModeMenu extends Menu {
     public void selectUser(String username,String password) throws InvalidAccountException, WrongPassException {
         Account account = Account.getAccount(username);
         if (account.getPassword().equals(password)) {
+            Game.accounts[0]=this.account;
             Game.accounts[1] = account;
             Game.battle.setPlayer(Game.accounts[0].getPlayer(), Game.accounts[1].getPlayer());
 

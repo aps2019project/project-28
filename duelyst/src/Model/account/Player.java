@@ -66,7 +66,7 @@ public class Player {
     public void spawn(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException, InvalidCellException, InvalidCardException {
         if (this.mana < card.getManaPoint()) throw new NotEnoughManaException();
         if (cell.isFull()) throw new DestinationIsFullException();
-        if(card instanceof Hero){
+        if(card instanceof Minion){
             Hermione hermione = (Hermione) card;
             hermione.spawn(cell);
             if (hasAssasinationDagger) {
@@ -108,7 +108,7 @@ public class Player {
     }
 
     public List<Minion> getMinionsInGame() {
-        return Collections.unmodifiableList(minionsInGame);
+        return (minionsInGame);
     }
 
     public List<Collectable> getUsables() {

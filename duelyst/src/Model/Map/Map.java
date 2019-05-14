@@ -20,6 +20,7 @@ public class Map {
     private ArrayList<Flag> flags;
 
     public static int getManhattanDistance(Cell cell1, Cell cell2) {
+        System.err.println(cell1.getY());
         return Math.abs(cell1.getX()-cell2.getX())+Math.abs(cell1.getY()-cell2.getY());
     }
 

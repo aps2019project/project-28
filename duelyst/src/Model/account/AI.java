@@ -1,6 +1,7 @@
 package Model.account;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
 import Model.Primary;
@@ -9,6 +10,7 @@ import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
+import Model.card.hermione.SPATime;
 import Model.card.spell.Spell;
 import Model.card.spell.Target;
 import exeption.*;
@@ -24,7 +26,7 @@ public class AI extends Account {
                 // 4: attack with hero ,and then : minions : select-move-select-attack
     Map map;
     Player enemy;
-
+    private String output;
 
     public AI(int level) throws FullDeckException, DeckAlreadyHasThisCardException, InvalidDeckException,
             DeckAlreadyHasAHeroException, DeckAlreadyHasThisItemException {
@@ -47,6 +49,22 @@ public class AI extends Account {
         }
 
     }
+    public AI(Deck deck){
+        super("AI", "itsAI", "imAnAIgirlInAnAIWorld");
+//        super(,2,2)
+        this.level = 1;
+
+        try {
+            this.collection = new Collection();
+            collection.setOwner(this);
+            deck.setCollection(collection);
+            collection.forcePushDeck(deck);
+            collection.setMainDeck(deck.getName());
+
+
+        } catch (InvalidDeckException e) {
+        }
+    }
     @Override
     public String play() {
         move++ ;
@@ -62,19 +80,24 @@ public class AI extends Account {
                 } else {
                     command = insertSpell();
                 }
-                if (command != null && !command.isEmpty()) return command;
+                if (command != null && !command.isEmpty()){
+                    output=command;
+                    return command;
+                }
                 else move++ ;
             case 1:
             case 3:
                 command = "Select "+ collection.getMainDeck().getHero().getCardID();
-                return command ;
+                output=command;
+                return command;
             case 2:
-                Hero hero = collection.getMainDeck().getHero();
+                Hero hero = this.player.getDeck().getHero();//collection.getMainDeck().getHero();
                 for (int i = 2 ; i >0 ; i--){
                     Cell[] cells = map.getCellsInDistance(hero.getLocation() , i) ;
                     for (Cell cell : cells){
                         if (cell.getCardOnCell() == null) {
                             command = "Move to (" + cell.getX() + ", " + cell.getY()+")" ;
+                            output=command;
                             return command ;
                         }
                     }
@@ -84,29 +107,36 @@ public class AI extends Account {
             case 4:
                 hero = collection.getMainDeck().getHero() ;
                  command = attack(hero);
-                if (command != null) return command;
+                if (command != null){
+                    output=command;
+                    return command;
+                }
                 else move++;
             default:
                 if (move > player.getMinionsInGame().size() + 5) {
                     move = -1 ;
+                    output="End turn";
                     return "End turn";
                 }
                 if (move % 2 == 1){
                     command = "Select " + player.getMinionsInGame().get(move-5) ;
+                    output=command;
                     return command ;
                 }
                 else{
                     Minion card = player.getMinionsInGame().get(move-6) ;
                     command = attack(card) ;
+                    output=command;
                     return command ;
                 }
         }
     }
 
-    private String attack(Hermione card) {
+    private String  attack(Hermione card) {
         String command;
         if (card.canAttackThisCard(enemy.getDeck().getHero())){
             command = "Attack " + enemy.getDeck().getHero();
+            output=command;
             return command ;
         }
         Random rand = new Random();
@@ -116,11 +146,13 @@ public class AI extends Account {
             counter++ ;
             if (card.canAttackThisCard(target.get(i))){
                 command = "Attack " + target.get(i);
+                output=command;
                 return command ;
             }
             if (counter > 30) break ;
         }
-        return null ;
+        output="";
+        return "" ;
     }
 
     private String insertMinion() {
@@ -133,17 +165,22 @@ public class AI extends Account {
                 }
             }
         }
-        if (command.isEmpty()) return command;
+        if (command.isEmpty()) {
+            output=command;
+            return command;
+        }
         for (int i = 1; i < 8; i++) {
             Cell[] cells = this.map.getCellsInDistance(this.collection.getMainDeck().getHero().getLocation(), i);
             for (Cell cell : cells) {
                 if (cell.getCardOnCell() == null) {
                     command = command + cell.getX() + ", " + cell.getY() + ")";
+                    output=command;
                     return command;
                 }
             }
         }
-        return null;
+        output="";
+        return "";
     }
 
     private String insertSpell() {
@@ -158,18 +195,23 @@ public class AI extends Account {
                 }
             }
         }
-        if (command.isEmpty() || spell == null) return command;
+        if (command.isEmpty() || spell == null) {
+            output=command;
+            return command;
+        }
         Target target = spell.getTarget();
         for (Cell cell : map.getCells()) {
             try {
                 target.getTarget(cell);
                 command = command + cell.getX() + ", " + cell.getY() + ")";
+                output=command;
                 return command;
             } catch (InvalidCellException e) {
                 continue;
             }
         }
-        return null;
+        output="";
+        return "";
     }
 
     private Deck getDeck(int level) throws FullDeckException, DeckAlreadyHasThisCardException,
@@ -277,14 +319,12 @@ public class AI extends Account {
 
     @Override
     public Scanner getOutputStream() {
-        if(this.outputStream!=null && this.outputStream.scanner!=null){
-            this.outputStream.scanner.close();
-        }
+        this.play();
+        if(output.isEmpty() || output==null)output="chert o pert";
         if(this.outputStream==null || this.outputStream.scanner==null){
             this.outputStream = new ScannerWrapper();
-            this.outputStream.scanner = new Scanner(this.play());
+            this.outputStream.scanner = new Scanner(output);
         }
-
         return this.outputStream.scanner;
     }
 }

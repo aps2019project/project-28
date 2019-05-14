@@ -42,7 +42,7 @@ class ShowMenu implements OnMenuClickedListener{
 }
 public class ManuHandler {
 
-    private static Menu currentMenu;
+    public static Menu currentMenu;
 
     //preprocess
     public static void allCardPresenter(ArrayList<Card> cards,ArrayList<Usable> items,boolean showID){
@@ -216,8 +216,10 @@ public class ManuHandler {
         Battle.getMenu().addGameInfoPresentedListener(() -> {
             if(Battle.getMenu().getGameMode() instanceof ClassicMode){
                 System.out.println(Battle.getMenu().getAccount().getName()+" : ");
+                System.out.println("\tMANA: "+Battle.getMenu().getAccount().getPlayer().getMana());
                 System.out.println("\t"+Battle.getMenu().getAccount().getPlayer().getDeck().getHero().getName()+" : "+Battle.getMenu().getAccount().getPlayer().getDeck().getHero().getHealthPoint());
                 System.out.println(Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getUser().getName()+" : ");
+                System.out.println("\tMANA: "+Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getMana());
                 System.out.println("\t"+Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getName()+" : "+Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getHealthPoint());
 //          }else if(Battle.getMenu().getGameMode() instanceof FlagMode){
 
@@ -290,7 +292,18 @@ public class ManuHandler {
         setStoryModePattern();
         setSinglePlayerModePattern();
         setMultiPlayerModeMenuPattern();
+        setCostumeModeMenuPattern();
     }
+
+    private static void setCostumeModeMenuPattern() {
+        MultiPlayerModeMenu.getMenu().addPattern("enter [\\w]+");
+        MultiPlayerModeMenu.getMenu().addPattern("[\\d]+");
+        MultiPlayerModeMenu.getMenu().addPattern("help");
+        MultiPlayerModeMenu.getMenu().addPattern("show");
+        MultiPlayerModeMenu.getMenu().addPattern("exit");
+        MultiPlayerModeMenu.getMenu().addPattern("select [\\w]+");
+    }
+
     private static void setMultiPlayerModeMenuPattern() {
         MultiPlayerModeMenu.getMenu().addPattern("enter [\\w]+");
         MultiPlayerModeMenu.getMenu().addPattern("[\\d]+");
@@ -454,6 +467,8 @@ public class ManuHandler {
                     storyModeMenuCommandHandler(word);
                 }else if(currentMenu instanceof MultiPlayerModeMenu){
                     MultiPlayerMenuCommandHandler(word);
+                }else if(currentMenu instanceof CostumeModeMenu){
+                    CostumeModeMenuCommandHandler(word);
                 }
             }
             catch (Exception e){
@@ -461,6 +476,17 @@ public class ManuHandler {
             }
             currentMenu.showMenu();
             commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
+        }
+    }
+
+    private static void CostumeModeMenuCommandHandler(String[] word) {
+        if(word[0].equals("select")){
+            CostumeModeMenu menu= (CostumeModeMenu) currentMenu;
+            try {
+                menu.selectDeck(word[1]);
+            } catch (InvalidDeckException e) {
+                System.out.println("Couldnt find the deck");
+            }
         }
     }
 
