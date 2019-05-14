@@ -368,12 +368,12 @@ public class ManuHandler {
         Battle.getMenu().addPattern("show opponent minions");
         Battle.getMenu().addPattern("show card info [\\d]+");
         Battle.getMenu().addPattern("select [\\d]+");
-        Battle.getMenu().addPattern("aove to \\([\\d]+ [\\d]+\\)");
+        Battle.getMenu().addPattern("move to \\([\\d]+ [\\d]+\\)");
         Battle.getMenu().addPattern("attack [\\d]+");
         Battle.getMenu().addPattern("attack combo [\\d]+ [\\d]+[ \\d+]+");
         Battle.getMenu().addPattern("use special power \\([\\d]+ [\\d]+\\)");
-        Battle.getMenu().addPattern("ehow hand");
-        Battle.getMenu().addPattern("ensert [\\w]+ in \\([\\d]+ [\\d]+\\)");
+        Battle.getMenu().addPattern("show hand");
+        Battle.getMenu().addPattern("insert [\\w]+ in \\([\\d]+ [\\d]+\\)");
         Battle.getMenu().addPattern("end turn");
         Battle.getMenu().addPattern("show collectables");
         Battle.getMenu().addPattern("select [\\d]+");
