@@ -1,6 +1,7 @@
 package Controller.GameMode;
 
 import Controller.Game;
+import Model.Map.Cell;
 import Model.Map.Map;
 
 public class ClassicMode implements GameMode {
@@ -28,7 +29,7 @@ public class ClassicMode implements GameMode {
 
     @Override
     public Map mapGenerator() {
-        return null;
+
     }
 }
 

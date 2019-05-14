@@ -60,6 +60,7 @@ public class Battle extends Menu {
             return false;
         }
         setPlayer(Game.accounts[0].getPlayer(),Game.accounts[1].getPlayer());
+        this.map = Map.generate();
         try {
             this.player[0].getDeck().getHero().setLocation(this.map.getCell(1,3));
             this.player[1].getDeck().getHero().setLocation(this.map.getCell(9,3));
