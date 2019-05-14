@@ -181,7 +181,7 @@ public class Battle extends Menu {
         turn -- ;
 
         //----------start-----------
-//        handleBuffs("end");
+        handleBuffs("end");
         // TODO: 5/14/19 az comment dar biad
         //-------------end----------
 
@@ -232,21 +232,26 @@ public class Battle extends Menu {
 
     private void handleBuffs(String endOrBeginning) {
         for (int i = 0 ; i < 2 ; i++) {
-            turn += i==1?1:0 ;
-            Player plyr = player[getTurn()] ;
-            for (Buff buff : plyr.getDeck().getHero().getAppliedBuffs()) {
-                if (endOrBeginning.equals("end"))
-                    deployBuffEndTurn(buff);
-                else deployBuffBeginningOfTurn(buff);
-            }
-            for (Minion minion : plyr.getMinionsInGame()) {
-                for (Buff buff : minion.getAppliedBuffs()) {
+            turn += i == 1 ? 1 : 0;
+            Player plyr = player[getTurn()];
+            try {
+                for (Buff buff : plyr.getDeck().getHero().getAppliedBuffs()) {
                     if (endOrBeginning.equals("end"))
                         deployBuffEndTurn(buff);
                     else deployBuffBeginningOfTurn(buff);
                 }
+            } catch (NullPointerException ignored) {
             }
-            turn += i==1?-1:0 ;
+            try {
+                for (Minion minion : plyr.getMinionsInGame()) {
+                    for (Buff buff : minion.getAppliedBuffs()) {
+                        if (endOrBeginning.equals("end"))
+                            deployBuffEndTurn(buff);
+                        else deployBuffBeginningOfTurn(buff);
+                    }
+                }
+                turn += i == 1 ? -1 : 0;
+            }catch(NullPointerException ignored){}
         }
     }
 
@@ -259,7 +264,7 @@ public class Battle extends Menu {
             minion.setActionTurn(0);
         }
         this.account.getPlayer().getDeck().getHero().setActionTurn(0);
-        //handleBuffs("beginning");
+        handleBuffs("beginning");
         // TODO: 5/14/19 comment bala ro bardar
 
     }
