@@ -274,5 +274,12 @@ public class AI extends Account {
         return deck;
     }
 
-
+    @Override
+    public Scanner getOutputStream() {
+        if(this.outputStream.scanner!=null){
+            this.outputStream.scanner.close();
+        }
+        this.outputStream.scanner=new Scanner(this.play());
+        return this.outputStream.scanner;
+    }
 }

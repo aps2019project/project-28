@@ -416,7 +416,7 @@ public class ManuHandler {
     }
 
     public static void main(String[] args) {
-        Scanner commands=Game.accounts[Game.battle.getTurn()].getPlayer().getOutputStream();
+        Scanner commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
         currentMenu.showMenu();
 
         while(commands.hasNext()){
@@ -448,7 +448,7 @@ public class ManuHandler {
                 e.printStackTrace();
             }
             currentMenu.showMenu();
-            commands=Game.accounts[Game.battle.getTurn()].getPlayer().getOutputStream();
+            commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
         }
     }
 
