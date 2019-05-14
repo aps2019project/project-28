@@ -110,6 +110,7 @@ public class Battle extends Menu {
         }
     }
 
+
     public void select(int ID) throws InvalidCardException, InvalidItemException {
         Deck deck = this.account.getPlayer().getDeck();
         if (deck.hasCard(ID)) {
