@@ -13,11 +13,11 @@ import java.util.Random ;
 import java.util.ArrayList;
 
 public class RandomMinionInSurrounding implements Target {
-    private static TargetAllOwnCards obj;
+    private static RandomMinionInSurrounding obj;
 
-    public static TargetAllOwnCards getTargetInstance() {
+    public static RandomMinionInSurrounding getTargetInstance() {
         if (obj == null) {
-            obj =  new TargetAllOwnCards();
+            obj =  new RandomMinionInSurrounding();
         }
         return obj ;
     }
@@ -26,7 +26,7 @@ public class RandomMinionInSurrounding implements Target {
     public  Cell[] getTarget(Cell cell) throws InvalidCellException {
         Cell[] cells ;
         try {
-            cells = TargetHeroSurroundings.getTargetInstance().getTarget(cell);
+            cells = TargetSurroundings.getTargetInstance().getTarget(cell);
         } catch (InvalidCellException e){
             throw e ;
         }

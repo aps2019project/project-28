@@ -298,7 +298,7 @@ public class Primary {
 
         minions.add(new Minion("The Great Wizard",550, 6, 6,
                 6, new Range(), 5, new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2, "",
-                OwnMinionAndItsSurrounfing.getTargetInstance(), ActionChangeAP.getAction(), ActionDeployHollyBuff.getAction())
+                OwnMinionAndItsSurrounding.getTargetInstance(), ActionChangeAP.getAction(), ActionDeployHollyBuff.getAction())
                 ,SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
         minions.add(new Minion("Genie", 500, 5, 10,
                 4, new Range(), 4,
@@ -340,7 +340,7 @@ public class Primary {
         minions.add(new Minion("Mother Ice", 500, 3, 3,
                 4, new Range(), 5,
                 new SpecialPower("Mother Ice SpecialPower", 0, 0, 1, 0, "",
-                        MinionInSurrounding.getTargetInstance(), ActionStun.getAction()), SPATime.SPAWN, "enemy minions surrounding stun for 1 turn"));
+                        TargetAllMinionsInSurrounding.getTargetInstance(), ActionStun.getAction()), SPATime.SPAWN, "enemy minions surrounding stun for 1 turn"));
         minions.add(new Minion("Foolad Zereh", 650, 3, 1,
                 1, new Melee(), 0,
                 new SpecialPower("Foolad zereh SpecialPower", 0, 0, -1, 12, "",
@@ -449,7 +449,7 @@ public class Primary {
         fileWriter.close();
 
         collectables.add(new Collectable("NooshDaru", 1, 6, "increases health point of a random card 6 units",
-                TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetRandomOwn.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Two Headed Arrow", 1, 2, "increases attack point of random ranged or hybrid 2 units",
                 TargetRangedAndHybrid.getTargetClass(), ItemAction3HornedArrow.getItemAction()));
         collectables.add(new Collectable("Eksir", 1, 3, "increases health point 3 units, a power buff with increasing ",
@@ -462,9 +462,9 @@ public class Primary {
         collectables.add(new Collectable("Death's Curse", 0, 8, "8 attack points on nearest enemy card for a random minion ",
                 TargetRandomOwnMinion.getTargetInstance(), ItemActionMinionRandomAttacker.getItemAction()));
         collectables.add(new Collectable("Random damage", 1, 2, "2 attack points for random card",
-                TargetRandom.getTargetInstance(), ItemActionRandomDamage.getItemAction()));
+                TargetRandomOwn.getTargetInstance(), ItemActionRandomDamage.getItemAction()));
         collectables.add(new Collectable("Blades of agility", 1, 6, "6 attack points for a random card",
-                TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetRandomOwn.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Chineese Sword", 1, 5, "5 attack points for melee",
                 TargetMelee.getTargetClass(), ItemActionChangeAP.getItemAction()));
 
