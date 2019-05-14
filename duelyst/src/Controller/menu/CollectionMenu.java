@@ -73,6 +73,7 @@ public class CollectionMenu extends Menu {
             FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidDeckException, InvalidItemException {
         System.err.println("im in addToDeck of CollectionMenu");
         this.tempCollection.getDeckByName(deckName).addToDeck(ID);
+        System.err.println(this.tempCollection.getDeckByName(deckName).getHero());
         System.err.println("im in addToDeck of CollectionMenu");
     }
 

@@ -78,7 +78,8 @@ public class Deck {
 
     public Card getCard(int cardID) throws InvalidCardException {
         for (Card card : this.getCards()) {
-            if (card.getCardID() == cardID) return card;
+            if (card.getCardID() == cardID)
+                return card;
         }
         throw new InvalidCardException();
     }
@@ -96,12 +97,15 @@ public class Deck {
     public boolean validateDeck() {
         // TODO: 5/13/19 fatteme return false ha ro exception kon
         if (cards.size() != CARD_SIZE) {
+            System.err.println("card size problem");
             return false;
         }
         if (items.size() != ITEM_SIZE) {
+            System.err.println("item size problems");
             return false;
         }
         if (hero == null) {
+            System.err.println("hero problems");
             return false;
         }
         return true;
@@ -160,10 +164,13 @@ public class Deck {
         System.err.println("residam");
         if (this.cards.size() >= CARD_SIZE) throw new FullDeckException();
         System.err.println("residam");
-        if (hero != null && card instanceof Hero) throw new DeckAlreadyHasAHeroException();
+        if (this.hero != null && card instanceof Hero) throw new DeckAlreadyHasAHeroException();
         System.err.println("residam");
         cards.add(card);
-        if (hero !=null && card instanceof Hero) hero = (Hero) card;
+        if (this.hero == null && card instanceof Hero) {
+            System.err.println("hero added");
+            this.hero = (Hero) card;
+        }
         return true;
     }
 
