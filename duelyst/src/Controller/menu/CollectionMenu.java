@@ -77,6 +77,7 @@ public class CollectionMenu extends Menu {
         System.err.println("im in addToDeck of CollectionMenu");
     }
 
+
     public void removeFromDeck(int ID, String deckName) throws InvalidCardException, InvalidItemException, InvalidDeckException {
         this.tempCollection.getDeckByName(deckName).removeFromDeck(ID);
     }
