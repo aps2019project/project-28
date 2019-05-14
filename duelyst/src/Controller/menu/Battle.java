@@ -52,9 +52,14 @@ public class Battle extends Menu {
     }
 
     @Override
-    public void init(Menu parentMenu) {
+    public boolean init(Menu parentMenu) {
         super.init(parentMenu);
+        if(Game.accounts[0].getCollection().getMainDeck()==null || Game.accounts[1].getCollection().getMainDeck()==null){
+            System.out.println("Please Select your Main Deck");
+            return false;
+        }
         setPlayer(Game.accounts[0].getPlayer(),Game.accounts[1].getPlayer());
+        return true;
     }
 
     public void gameInfo() {
