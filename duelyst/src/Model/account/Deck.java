@@ -96,6 +96,7 @@ public class Deck {
 
     public boolean validateDeck() {
         // TODO: 5/13/19 fatteme return false ha ro exception kon
+        System.err.println(this.getHero().getName());
         if (cards.size() != CARD_SIZE) {
             System.err.println("card size problem");
             return false;
