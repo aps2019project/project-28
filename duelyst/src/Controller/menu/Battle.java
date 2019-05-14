@@ -3,6 +3,7 @@ package Controller.menu;
 import Controller.Game;
 import Controller.GameMode.GameMode;
 import Controller.menu.Menu;
+import Model.card.spell.Buff.Buff;
 import Model.item.Item;
 import View.Listeners.OnGameCardsPresentedListenr;
 import View.Listeners.OnGameInfoPresentedListener;
@@ -55,15 +56,16 @@ public class Battle extends Menu {
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
-        if(Game.accounts[0].getCollection().getMainDeck()==null) System.err.println("SaE says: "+Game.accounts[0].getName());
-        if(Game.accounts[1].getCollection().getMainDeck()==null) System.err.println("SaE says: "+Game.accounts[1].getName());
-
         if(Game.accounts[0].getCollection().getMainDeck()==null || Game.accounts[1].getCollection().getMainDeck()==null){
             System.out.println("Please Select your Main Deck");
             return false;
         }
         setPlayer(Game.accounts[0].getPlayer(),Game.accounts[1].getPlayer());
         this.map = Map.generate();
+        try {
+            this.player[0].getDeck().getHero().setLocation(this.map.getCell(1,3));
+            this.player[1].getDeck().getHero().setLocation(this.map.getCell(9,3));
+        } catch (InvalidCellException ignored){}
         return true;
     }
 
@@ -174,7 +176,13 @@ public class Battle extends Menu {
             minion.itIsTime(SPATime.PASSIVE);
         }
         //----------start-----------
-        // TODO: 5/6/19 SaE passive buff
+        for (Buff buff : this.player[0].getDeck().getHero().getAppliedBuffs()){
+            try {
+                buff.handleBuffEndOfTurn();
+            }catch (InvalidCellException ignored){
+                // TODO: 5/14/19 badan shayad lazem bashe check she
+            }
+            }
         //-------------end----------
         turn--;
 
