@@ -5,5 +5,5 @@ import Model.card.spell.Target;
 public class OwnMinionAndItsSurrounfing {
     public static Target getTargetInstance() {
         return null;
-    }
+    } //TODO
 }

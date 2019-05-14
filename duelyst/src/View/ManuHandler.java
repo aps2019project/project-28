@@ -1,9 +1,8 @@
 package View;
-
+//TODO change the name dude !!!!
 import Controller.Game;
 import Controller.GameMode.ClassicMode;
 import Controller.GameMode.FlagMode;
-import Controller.GameMode.GameMode;
 import Controller.menu.Battle;
 import Controller.menu.*;
 import Model.Primary;

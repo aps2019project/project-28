@@ -358,7 +358,7 @@ public class Primary {
                 null, ActionCombo.getAction())
                 , SPATime.NULL, "Combo"));
 
-        fileWriter = new FileWriter("Minion.json", false);
+        fileWriter = new FileWriter("Minion.json");
         for (Minion minion :
                 minions) {
             gson.toJson(minion, fileWriter);
