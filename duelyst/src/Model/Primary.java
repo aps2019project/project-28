@@ -298,7 +298,7 @@ public class Primary {
 
         minions.add(new Minion("The Great Wizard",550, 6, 6,
                 6, new Range(), 5, new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2, "",
-                OwnMinionAndItsSurrounfing.getTargetInstance(), ActionChangeAP.getAction(), ActionDeployHollyBuff.getAction())
+                OwnMinionAndItsSurrounding.getTargetInstance(), ActionChangeAP.getAction(), ActionDeployHollyBuff.getAction())
                 ,SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
         minions.add(new Minion("Genie", 500, 5, 10,
                 4, new Range(), 4,
@@ -340,7 +340,7 @@ public class Primary {
         minions.add(new Minion("Mother Ice", 500, 3, 3,
                 4, new Range(), 5,
                 new SpecialPower("Mother Ice SpecialPower", 0, 0, 1, 0, "",
-                        MinionInSurrounding.getTargetInstance(), ActionStun.getAction()), SPATime.SPAWN, "enemy minions surrounding stun for 1 turn"));
+                        TargetAllMinionsInSurrounding.getTargetInstance(), ActionStun.getAction()), SPATime.SPAWN, "enemy minions surrounding stun for 1 turn"));
         minions.add(new Minion("Foolad Zereh", 650, 3, 1,
                 1, new Melee(), 0,
                 new SpecialPower("Foolad zereh SpecialPower", 0, 0, -1, 12, "",

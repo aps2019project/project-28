@@ -9,30 +9,27 @@ import exeption.InvalidCellException;
 
 import java.util.ArrayList;
 
-public class TargetHeroSurroundings implements Target {
-    private static TargetHeroSurroundings obj;
+public class TargetSurroundings implements Target {
+    private static TargetSurroundings obj;
 
-    public static TargetHeroSurroundings getTargetInstance() {
+    public static TargetSurroundings getTargetInstance() {
         if (obj == null) {
-            obj = new TargetHeroSurroundings();
+            obj = new TargetSurroundings();
         }
         return obj ;
     }
     @Override
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
-        Player player = Game.battle.getPlayer() ;
-        Player enemy = Game.battle.getEnemyPlayer() ;
-        if (cell != player.getDeck().getHero().getLocation())  {
-            throw new InvalidCellException();
-        }
         Map map = Game.battle.getMap();
         int x = cell.getX();
         int y = cell.getY();
-        Cell[] cells = TargetSurroundings.getTargetInstance().getTarget(cell);
+        Cell[] cells = {map.getCell(x - 1, y - 1), map.getCell(x, y - 1), map.getCell(x + 1, y - 1),
+                map.getCell(x - 1, y), map.getCell(x + 1, y), map.getCell(x - 1, y + 1),
+                map.getCell(x, y + 1), map.getCell(x + 1, y + 1)};
 
         ArrayList<Cell> cells2 = new ArrayList<>() ;
         for (Cell cel : cells){
-            if (cel.getCardOnCell() != null && cel.getCardOnCell().getSuperCollection().getOwner().getPlayer().equals(enemy)){
+            if (cel.getCardOnCell() != null ){
                 cells2.add(cel) ;
             }
         }
