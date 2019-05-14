@@ -15,7 +15,7 @@ public class Map {
     private static ArrayList<Map> maps;
     public static final int HEIGHT = 5;
     public static final int WIDTH = 9;
-    private Cell[][] board=new Cell[Map.HEIGHT+1][Map.WIDTH+1];
+    private Cell[][] board = new Cell[Map.HEIGHT+1][Map.WIDTH+1];
     private ArrayList<Flag> flags;
 
     public static int getManhattanDistance(Cell cell1, Cell cell2) {
@@ -42,8 +42,13 @@ public class Map {
     }
 
     public static Map generate() {
-        // TODO: 5/5/19 generate Map
-        return null;
+        Map map = new Map();
+        for(int i = 0 ; i < Map.HEIGHT ; i++){
+            for(int j = 0 ; j < Map.WIDTH ; j++){
+                map.getBoard()[i][j] = new Cell(i, j);
+            }
+        }
+        return map;
     }
 
 
@@ -84,6 +89,7 @@ public class Map {
         }
     }
 
-    
-
+    public Cell[][] getBoard() {
+        return board;
+    }
 }

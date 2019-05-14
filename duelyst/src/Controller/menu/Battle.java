@@ -62,6 +62,7 @@ public class Battle extends Menu {
             return false;
         }
         setPlayer(Game.accounts[0].getPlayer(),Game.accounts[1].getPlayer());
+        this.map = Map.generate();
         return true;
     }
 
