@@ -16,6 +16,7 @@ import exeption.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class Player {
     private Account user;
@@ -30,6 +31,7 @@ public class Player {
     private int manaTheriac = 0;
     private int maxManaTheriac = 0;
     private boolean hasAssasinationDagger = false;
+    protected Scanner outputStream;
 
 
     public Player(Account user, int maxMana, int mana) {
@@ -43,11 +45,13 @@ public class Player {
         YaGson gson = new YaGson();
         //In Order To Secure Objects In Account We Made A HardCopy Of MainDeck
         this.deck = gson.fromJson(gson.toJson(user.getCollection().getMainDeck()), Deck.class);
-        this.deck.setCollection(user.getCollection());
-        // TODO: 5/9/19 check whether or not the line above needs to be
-        this.hand = new Hand(this.deck);
+        if (this.deck != null) {
+            this.deck.setCollection(user.getCollection());
+            this.hand = new Hand(this.deck);
+            // TODO: 5/14/19 remove that piece of shit you wrote up there
+            // TODO: 5/9/19 check whether or not the line above needs to be
+        }
     }
-
     public void setMana(int mana) {
         this.mana = mana;
     }
@@ -167,5 +171,18 @@ public class Player {
 
     public void setHasAssasinationDagger(boolean hasAssasinationDagger) {
         this.hasAssasinationDagger = hasAssasinationDagger;
+    }
+
+    public Scanner getOutputStream(){
+        if(this.user instanceof AI){
+            if(this.outputStream!=null){
+                this.outputStream.close();
+            }
+            this.outputStream=new Scanner(this.user.play());
+            return this.outputStream;
+        }else {
+            if (this.outputStream == null) this.outputStream = Game.scanner;
+            return outputStream;
+        }
     }
 }

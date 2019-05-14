@@ -41,8 +41,6 @@ class ShowMenu implements OnMenuClickedListener{
         }
     }
 }
-
-
 public class ManuHandler {
 
     private static Menu currentMenu;
@@ -96,7 +94,6 @@ public class ManuHandler {
         setListener();
         setPatterns();
     }
-
     private static void setListener(){
         //show menu
         {
@@ -268,8 +265,7 @@ public class ManuHandler {
 
         currentMenu = SignInMenu.getMenu();
     }
-
-
+    //paturns
     public static void setPatterns(){
         setChooseBattleModePattern();
         setSignInPatterns();
@@ -284,7 +280,6 @@ public class ManuHandler {
         setSinglePlayerModePattern();
         setMultiPlayerModeMenuPattern();
     }
-
     private static void setMultiPlayerModeMenuPattern() {
         MultiPlayerModeMenu.getMenu().addPattern("enter [\\w]+");
         MultiPlayerModeMenu.getMenu().addPattern("[\\d]+");
@@ -293,7 +288,6 @@ public class ManuHandler {
         MultiPlayerModeMenu.getMenu().addPattern("exit");
         MultiPlayerModeMenu.getMenu().addPattern("select user [\\w]+ [\\w]+");
     }
-
     private static void setSinglePlayerModePattern() {
         SinglePlayerModeMenu.getMenu().addPattern("enter [\\w]+");
         SinglePlayerModeMenu.getMenu().addPattern("[\\d]+");
@@ -310,7 +304,6 @@ public class ManuHandler {
         StoryModeMenu.getMenu().addPattern("exit");
         StoryModeMenu.getMenu().addPattern("level [\\d]+");
     }
-
     public static void setSignInPatterns(){
         SignInMenu.getMenu().addPattern("enter [\\w]+");
         SignInMenu.getMenu().addPattern("[\\d]+");
@@ -323,7 +316,6 @@ public class ManuHandler {
         SignInMenu.getMenu().addPattern("save");
         SignInMenu.getMenu().addPattern("logout");
     }
-
     public static void setCollectionPatterns(){
         CollectableMenu.getMenu().addPattern("enter [\\w]+");
         CollectionMenu.getMenu().addPattern("[\\d]+");
@@ -420,10 +412,11 @@ public class ManuHandler {
         GameModeMenu.getMenu().addPattern("help");
         GameModeMenu.getMenu().addPattern("show");
         GameModeMenu.getMenu().addPattern("exit");
+
     }
 
     public static void main(String[] args) {
-        Scanner commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
+        Scanner commands=Game.accounts[Game.battle.getTurn()].getPlayer().getOutputStream();
         currentMenu.showMenu();
 
         while(commands.hasNext()){
@@ -455,7 +448,7 @@ public class ManuHandler {
                 e.printStackTrace();
             }
             currentMenu.showMenu();
-            commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
+            commands=Game.accounts[Game.battle.getTurn()].getPlayer().getOutputStream();
         }
     }
 
