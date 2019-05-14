@@ -55,14 +55,15 @@ public class Battle extends Menu {
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
-        if(Game.accounts[0].getCollection().getMainDeck()==null) System.err.println("SaE says: "+Game.accounts[0].getName());
-        if(Game.accounts[1].getCollection().getMainDeck()==null) System.err.println("SaE says: "+Game.accounts[1].getName());
-
         if(Game.accounts[0].getCollection().getMainDeck()==null || Game.accounts[1].getCollection().getMainDeck()==null){
             System.out.println("Please Select your Main Deck");
             return false;
         }
         setPlayer(Game.accounts[0].getPlayer(),Game.accounts[1].getPlayer());
+        try {
+            this.player[0].getDeck().getHero().setLocation(this.map.getCell(1,3));
+            this.player[1].getDeck().getHero().setLocation(this.map.getCell(9,3));
+        } catch (InvalidCellException ignored){}
         return true;
     }
 
