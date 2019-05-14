@@ -354,24 +354,24 @@ public class ManuHandler {
         Battle.getMenu().addPattern("help");
         Battle.getMenu().addPattern("show");
         Battle.getMenu().addPattern("exit");
-        Battle.getMenu().addPattern("Game info");
-        Battle.getMenu().addPattern("Show my minions");
-        Battle.getMenu().addPattern("Show opponent minions");
-        Battle.getMenu().addPattern("Show card info [\\d]+");
-        Battle.getMenu().addPattern("Select [\\d]+");
-        Battle.getMenu().addPattern("Move to \\([\\d]+ [\\d]+\\)");
-        Battle.getMenu().addPattern("Attack [\\d]+");
-        Battle.getMenu().addPattern("Attack combo [\\d]+ [\\d]+[ \\d+]+");
-        Battle.getMenu().addPattern("Use special power \\([\\d]+ [\\d]+\\)");
-        Battle.getMenu().addPattern("Show hand");
-        Battle.getMenu().addPattern("Insert [\\w]+ in \\([\\d]+ [\\d]+\\)");
-        Battle.getMenu().addPattern("End turn");
-        Battle.getMenu().addPattern("Show collectables");
-        Battle.getMenu().addPattern("Select [\\d]+");
-        Battle.getMenu().addPattern("Show Next Card");
-        Battle.getMenu().addPattern("Enter graveyard");
-        Battle.getMenu().addPattern("Help");
-        Battle.getMenu().addPattern("End Game");
+        Battle.getMenu().addPattern("game info");
+        Battle.getMenu().addPattern("show my minions");
+        Battle.getMenu().addPattern("show opponent minions");
+        Battle.getMenu().addPattern("show card info [\\d]+");
+        Battle.getMenu().addPattern("select [\\d]+");
+        Battle.getMenu().addPattern("aove to \\([\\d]+ [\\d]+\\)");
+        Battle.getMenu().addPattern("attack [\\d]+");
+        Battle.getMenu().addPattern("attack combo [\\d]+ [\\d]+[ \\d+]+");
+        Battle.getMenu().addPattern("use special power \\([\\d]+ [\\d]+\\)");
+        Battle.getMenu().addPattern("ehow hand");
+        Battle.getMenu().addPattern("ensert [\\w]+ in \\([\\d]+ [\\d]+\\)");
+        Battle.getMenu().addPattern("end turn");
+        Battle.getMenu().addPattern("show collectables");
+        Battle.getMenu().addPattern("select [\\d]+");
+        Battle.getMenu().addPattern("show next card");
+        Battle.getMenu().addPattern("enter graveyard");
+        Battle.getMenu().addPattern("help");
+        Battle.getMenu().addPattern("end game");
     }
     public static void setGraveyardPatterns(){
         GraveYardMenu.getMenu().addPattern("enter [\\w]+");
@@ -379,8 +379,8 @@ public class ManuHandler {
         GraveYardMenu.getMenu().addPattern("help");
         GraveYardMenu.getMenu().addPattern("show");
         GraveYardMenu.getMenu().addPattern("exit");
-        GraveYardMenu.getMenu().addPattern("Show info [\\d]+");
-        GraveYardMenu.getMenu().addPattern("Show cards");
+        GraveYardMenu.getMenu().addPattern("show info [\\d]+");
+        GraveYardMenu.getMenu().addPattern("show cards");
     }
     public static void setCollectablePattern(){
         CollectableMenu.getMenu().addPattern("enter [\\w]+");
@@ -388,8 +388,8 @@ public class ManuHandler {
         CollectableMenu.getMenu().addPattern("help");
         CollectableMenu.getMenu().addPattern("show");
         CollectableMenu.getMenu().addPattern("exit");
-        CollectableMenu.getMenu().addPattern("Show info");
-        CollectableMenu.getMenu().addPattern("Use \\[[\\d+] [\\d]+\\]");
+        CollectableMenu.getMenu().addPattern("show info");
+        CollectableMenu.getMenu().addPattern("use \\[[\\d+] [\\d]+\\]");
     }
     public static void setMainMenuPattern(){
         MainMenu.getMenu().addPattern("[\\d]+");
