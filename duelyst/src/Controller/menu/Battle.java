@@ -63,9 +63,9 @@ public class Battle extends Menu {
         setPlayer(Game.accounts[0].getPlayer(),Game.accounts[1].getPlayer());
         this.map = Map.generate();
         try {
-            this.player[0].getDeck().getHero().setLocation(this.map.getCell(1,3));
-            this.player[1].getDeck().getHero().setLocation(this.map.getCell(9,3));
-        } catch (InvalidCellException ignored){}
+            this.player[0].getDeck().getHero().setLocation(this.map.getCell(3,1));
+            this.player[1].getDeck().getHero().setLocation(this.map.getCell(3,9));
+        } catch (InvalidCellException e){e.printStackTrace();}
         return true;
     }
 

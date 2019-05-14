@@ -13,8 +13,9 @@ import java.util.Collections;
 
 public class Map {
     private static ArrayList<Map> maps;
-    public static final int HEIGHT = 9;
-    public static final int WIDTH = 5;
+    public static final int HEIGHT = 10;
+    public static final int WIDTH = 18;
+    // TODO: 5/14/19 size ha ro doros kon
     private Cell[][] board = new Cell[Map.HEIGHT+1][Map.WIDTH+1];
     private ArrayList<Flag> flags;
 
