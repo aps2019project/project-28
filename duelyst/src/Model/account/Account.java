@@ -12,6 +12,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
+class ScannerWrapper{
+    Scanner scanner;
+}
+
 public class Account {
 
     private static final Account defaultAccount = new Account("Duelyst","SAF","Pass the fucking word");
@@ -28,6 +32,8 @@ public class Account {
     protected ArrayList<Match> matchHistory;
     protected int wins;
     protected int storyModeSPX;
+
+    protected ScannerWrapper outputStream=new ScannerWrapper();
     // TODO: 5/9/19 move to player
 
     public void saveMatchHistory(Match match) {
@@ -214,5 +220,8 @@ public class Account {
         return Account.getAccounts();
     }
     public String play(){return null;}
-
+    public Scanner getOutputStream(){
+        if(this.outputStream.scanner==null)this.outputStream.scanner= Game.scanner;
+        return outputStream.scanner;
+    }
 }
