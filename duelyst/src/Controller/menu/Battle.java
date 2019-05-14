@@ -54,6 +54,9 @@ public class Battle extends Menu {
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
+        if(Game.accounts[0].getCollection().getMainDeck()==null) System.err.println("SaE says: "+Game.accounts[0].getName());
+        if(Game.accounts[1].getCollection().getMainDeck()==null) System.err.println("SaE says: "+Game.accounts[1].getName());
+
         if(Game.accounts[0].getCollection().getMainDeck()==null || Game.accounts[1].getCollection().getMainDeck()==null){
             System.out.println("Please Select your Main Deck");
             return false;

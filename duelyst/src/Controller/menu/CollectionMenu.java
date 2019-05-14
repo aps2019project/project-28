@@ -115,11 +115,13 @@ public class CollectionMenu extends Menu {
 
     public void selectDeck(String deckName) throws InvalidDeckException {
         this.tempCollection.setMainDeck(deckName);
+
     }
 
     @Override
     public Menu exit() {
         this.save();
+        System.err.println("THE NAME IS "+this.account.getCollection().getMainDeck().getName()+" BITCHES");
         return super.exit();
     }
 }

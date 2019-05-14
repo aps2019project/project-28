@@ -37,6 +37,7 @@ public class AI extends Account {
             collection.setOwner(this);
             Deck deck = getDeck(level);
             deck.setCollection(collection);
+            collection.forcePushDeck(deck);
             collection.setMainDeck(deck.getName());
 
 
@@ -182,7 +183,7 @@ public class AI extends Account {
                     deck.addCardToDeck(Primary.minions.get(0));
                     deck.addCardToDeck(Primary.minions.get(8));
                     deck.addCardToDeck(Primary.minions.get(10));
-                    deck.addCardToDeck(Primary.minions.get(10));
+                    deck.addCardToDeck(Primary.minions.get(15));
                     deck.addCardToDeck(Primary.minions.get(12));
                     deck.addCardToDeck(Primary.minions.get(16));
                     deck.addCardToDeck(Primary.minions.get(17));
@@ -217,7 +218,7 @@ public class AI extends Account {
                     deck.addCardToDeck(Primary.minions.get(7));
                     deck.addCardToDeck(Primary.minions.get(11));
                     deck.addCardToDeck(Primary.minions.get(14));
-                    deck.addCardToDeck(Primary.minions.get(14));
+//                    deck.addCardToDeck(Primary.minions.get(14));
                     deck.addCardToDeck(Primary.minions.get(18));
                     deck.addCardToDeck(Primary.minions.get(22));
                     deck.addCardToDeck(Primary.minions.get(26));

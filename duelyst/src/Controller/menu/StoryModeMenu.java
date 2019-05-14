@@ -27,7 +27,9 @@ public class StoryModeMenu extends Menu {
     public Menu setAI(int level) {
         try {
             Game.accounts[1]=new AI(level);
-        } catch (FullDeckException | DeckAlreadyHasThisCardException | InvalidDeckException | DeckAlreadyHasAHeroException | DeckAlreadyHasThisItemException ignored) { }
+        } catch (FullDeckException | DeckAlreadyHasThisCardException | InvalidDeckException | DeckAlreadyHasAHeroException | DeckAlreadyHasThisItemException e) {
+            e.printStackTrace();
+        }
         return this.enter(Battle.getMenu());
     }
 }
