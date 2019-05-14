@@ -79,7 +79,7 @@ public class Hand {
     }
 
     public static ArrayList<OnHandPresentedListener> getHandPresenters() {
-        return (ArrayList<OnHandPresentedListener>) Collections.unmodifiableList(handPresenters);
+        return (handPresenters);
     }
 
     public static void addOnHandPresentedListener(OnHandPresentedListener handPresenter) {

@@ -229,10 +229,12 @@ public class ManuHandler {
 
         //Hand
         Hand.addOnHandPresentedListener(hand -> {
+            int i=0;
             for (Card card : hand.getCards()) {
-                for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
-                    presenter.showCardInfo(card);
-                }
+                i++;
+                System.out.println();
+                System.out.println(i+ ") "+ card.getName());
+                System.out.println("\tid: "+card.getCardID());
             }
         });
 
@@ -248,6 +250,7 @@ public class ManuHandler {
             System.out.println("\t" + h.getName() + " : ");
             System.out.println("\t\tHealth Point: " + h.getHealthPoint() + ",location: " + h.getLocation().getX() + "," + h.getLocation().getY());
             System.out.println("\t\tAction: "+h.getInfo());
+            System.out.println("\t\tID: "+h.getCardID());
         });
 
     }
@@ -369,7 +372,7 @@ public class ManuHandler {
         Battle.getMenu().addPattern("show opponent minions");
         Battle.getMenu().addPattern("show card info [\\d]+");
         Battle.getMenu().addPattern("select [\\d]+");
-        Battle.getMenu().addPattern("move to \\([\\d]+ [\\d]+\\)");
+        Battle.getMenu().addPattern("move to [\\d]+ [\\d]+");
         Battle.getMenu().addPattern("attack [\\d]+");
         Battle.getMenu().addPattern("attack combo [\\d]+ [\\d]+[ \\d+]+");
         Battle.getMenu().addPattern("use special power \\([\\d]+ [\\d]+\\)");
