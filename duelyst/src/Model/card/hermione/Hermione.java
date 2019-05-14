@@ -106,6 +106,7 @@ public abstract class Hermione extends Card {
 
 
         Game.battle.getMap().getCell(x,y).setCardOnCell(this);
+        this.actionTurn=1;
         return true;
     }
 

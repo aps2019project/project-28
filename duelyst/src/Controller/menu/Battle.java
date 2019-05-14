@@ -110,6 +110,7 @@ public class Battle extends Menu {
         }
     }
 
+
     public void select(int ID) throws InvalidCardException, InvalidItemException {
         Deck deck = this.account.getPlayer().getDeck();
         if (deck.hasCard(ID)) {
@@ -175,21 +176,12 @@ public class Battle extends Menu {
         for (Minion minion : this.getEnemy(this.account).getMinionsInGame()) {
             minion.itIsTime(SPATime.PASSIVE);
         }
+        turn -- ;
+
         //----------start-----------
-        for (Buff buff : this.player[0].getDeck().getHero().getAppliedBuffs()){
-            try {
-                buff.handleBuffEndOfTurn();
-            }catch (InvalidCellException ignored){
-                // TODO: 5/14/19 badan shayad lazem bashe check she
-            }
-            }
+        handleBuffs("end");
         //-------------end----------
-        turn--;
 
-
-
-        /*changing turn*/
-        turn++;
         this.account = this.getEnemy(this.account).getUser();
 
         /*handling Mana*/
@@ -217,6 +209,56 @@ public class Battle extends Menu {
         /*checkState*/
         if(this.gameMode.checkState()){
             this.gameMode.handleWin();
+        }
+        else{
+            nextTurn();
+        }
+
+
+    }
+
+    private void handleBuffs(String endOrBeginning) {
+        for (int i = 0 ; i < 2 ; i++) {
+            turn += i==1?1:0 ;
+            Player plyr = player[getTurn()] ;
+            for (Buff buff : plyr.getDeck().getHero().getAppliedBuffs()) {
+                if (endOrBeginning.equals("end"))
+                    deployBuffEndTurn(buff);
+                else deployBuffBeginningOfTurn(buff);
+            }
+            for (Minion minion : plyr.getMinionsInGame()) {
+                for (Buff buff : minion.getAppliedBuffs()) {
+                    if (endOrBeginning.equals("end"))
+                        deployBuffEndTurn(buff);
+                    else deployBuffBeginningOfTurn(buff);
+                }
+            }
+            turn += i==1?-1:0 ;
+        }
+    }
+
+    private void nextTurn(){
+        turn++;
+        //TODO arshia karaye marbut be turn e jadid o inja bokon (mana o updateHand o ina)
+
+        handleBuffs("beginning");
+
+
+    }
+
+    private void deployBuffEndTurn(Buff buff) {
+        try {
+            buff.handleBuffEndOfTurn();
+        }catch (InvalidCellException ignored){
+            System.err.println("buff handle in battle menu end of turn");
+        }
+    }
+
+    private void deployBuffBeginningOfTurn(Buff buff) {
+        try {
+            buff.handleBuffBeginningOfTurn();
+        }catch (InvalidCellException|BuffHasntBeenDeployedYetException ignored){
+            System.err.println("buff handle in battle menu beginning of turn");
         }
     }
 
