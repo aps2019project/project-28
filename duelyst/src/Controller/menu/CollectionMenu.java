@@ -121,7 +121,6 @@ public class CollectionMenu extends Menu {
     @Override
     public Menu exit() {
         this.save();
-        System.err.println("THE NAME IS "+this.account.getCollection().getMainDeck().getName()+" BITCHES");
         return super.exit();
     }
 }
