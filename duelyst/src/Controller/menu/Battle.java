@@ -355,10 +355,9 @@ public class Battle extends Menu {
         System.out.println("4)Game info     5)Show my minions     6)Show opponent minions");
         System.out.println("7)Show card info [card id]     8)Select [card id]     9)Move to ([x], [y])");
         System.out.println("10)Attack [opponent card id]     11)Attack combo [opponent card id] [my card id] [my card id] [...]     12)Use special power (x, y)");
-        System.out.println("13)Show hand     14)Insert [card name] in (x, y)     15)Insert [card name] in (x, y)");
+        System.out.println("13)Show hand     14)Insert [card name] in (x, y)     15)Show Next Card");
         System.out.println("16)End turn     17)Show collectables     18)Select [collectable id]");
-        System.out.println("19)Show info     20)Use [location x, y]     21)Show Next Card");
-        System.out.println("22)Help    23)End Game     ");
+        System.out.println("19)End Game   20)Use [location x, y]     21)Help");
     }
 
     public GameMode getGameMode() {
