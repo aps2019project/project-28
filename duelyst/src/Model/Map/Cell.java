@@ -1,17 +1,23 @@
 package Model.Map;
 
 import Model.card.hermione.Hermione;
+import Model.item.Collectable;
+import exeption.CellIsFullException;
+import exeption.DeckAlreadyHasAHeroException;
 
 import java.util.ArrayList;
 
 
 public class Cell {
+
     private int x;
     private int y;
     private Hermione cardOnCell;
     private boolean hasFlag = false;
     private boolean isFull = false;
+    private boolean hasItem = false;
     private ArrayList<CellAffects> cellAffect = new ArrayList<>() ;
+    private Collectable collectable;
 
     public Cell(int x, int y) {
         this.x = x;
@@ -24,6 +30,11 @@ public class Cell {
 
     public int getY() {
         return y;
+    }
+
+    public void setCollectable(Collectable collectable) {
+        this.collectable = collectable;
+        this.hasItem = true;
     }
 
     public Hermione getCardOnCell() {
@@ -43,8 +54,20 @@ public class Cell {
         return hasFlag;
     }
 
-    public void setFlag(boolean hasFlag) {
-        this.hasFlag = hasFlag;
+    public void setFlag(boolean hasFlag) throws CellIsFullException {
+        if(hasFlag) {
+            if (!this.hasItem) {
+                this.hasFlag = true;
+                this.hasItem = true;
+            }
+            throw new CellIsFullException();
+        }
+        else {
+            if(this.hasFlag){
+                this.hasFlag = false;
+                this.hasItem = false;
+            }
+        }
     }
 
     public boolean isFull() {

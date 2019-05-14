@@ -1,7 +1,13 @@
 package Controller.GameMode;
 
-import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Map;
+import Model.Primary;
+import Model.item.Collectable;
+import exeption.CellIsFullException;
+import exeption.InvalidCellException;
+
+import java.util.Random;
 
 public class Domination implements GameMode {
     private final static int prize = 1500;
@@ -22,7 +28,29 @@ public class Domination implements GameMode {
     }
 
     @Override
-    public Map mapGenerator() {
-        return null;
+    public void mapGenerator() throws InvalidCellException, CellIsFullException {
+        for (Collectable collectable:
+                Primary.collectables) {
+            Random random = new Random();
+            if(random.nextInt(Map.HEIGHT) == 0){
+                int x = random.nextInt(Map.HEIGHT);
+                int y = random.nextInt(Map.WIDTH);
+
+                Battle.getMenu().getMap().getCell(x, y).setCollectable(collectable);
+            }
+        }
+
+        Random random = new Random();
+        int numberOfFlags = 0;
+        while (numberOfFlags == 1 || numberOfFlags == 0){
+            numberOfFlags = random.nextInt(10);
+        }
+
+        for (int i = 0; i < numberOfFlags ; i++){
+            int x = random.nextInt(Map.HEIGHT);
+            int y = random.nextInt(Map.WIDTH);
+
+            Battle.getMenu().getMap().getCell(x, y).setFlag(true);
+        }
     }
 }

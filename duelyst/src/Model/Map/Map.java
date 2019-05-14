@@ -51,7 +51,6 @@ public class Map {
         return map;
     }
 
-
     public Cell getCell(int x, int y) throws InvalidCellException {
         if(x>WIDTH || y>HEIGHT || x<1 || y<1)throw new InvalidCellException();
         return board[x][y];
