@@ -420,6 +420,7 @@ public class ManuHandler {
         GameModeMenu.getMenu().addPattern("help");
         GameModeMenu.getMenu().addPattern("show");
         GameModeMenu.getMenu().addPattern("exit");
+
     }
 
     public static void main(String[] args) {
