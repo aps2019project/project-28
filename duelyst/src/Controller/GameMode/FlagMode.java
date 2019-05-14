@@ -1,5 +1,6 @@
 package Controller.GameMode;
 
+import Controller.Game;
 import Controller.menu.Battle;
 import Model.Map.Map;
 import Model.Primary;
@@ -19,11 +20,28 @@ public class FlagMode implements GameMode {
 
     @Override
     public void handleWin() {
-       /* Game.accounts[0].setWins(Game.accounts[0].getWins() + 1);
-        Game.accounts[0].setMoney(Game.accounts[0].getMoney() + FlagMode.prize);
+        if(Game.accounts[0].getPlayer().getDeck().getHero().hasFlag()){
+            Game.accounts[0].getPlayer().getDeck().getHero().setNumberOfFlags( Game.accounts[0].getPlayer().getDeck().getHero().getNumberOfFlags() + 1);
+        }
+        else {
+            Game.accounts[0].getPlayer().getDeck().getHero().setNumberOfFlags(0);
+        }
 
-        Game.accounts[1].setMoney(Game.accounts[1].getMoney() + FlagMode.prize);
-        Game.accounts[1].setWins(Game.accounts[1].getWins() + 1);*/
+        if(Game.accounts[0].getPlayer().getDeck().getHero().getNumberOfFlags() >= 6){
+            Game.accounts[0].setWins(Game.accounts[0].getWins() + 1);
+            Game.accounts[0].setMoney(Game.accounts[0].getMoney() + FlagMode.prize);
+        }
+
+        if(Game.accounts[1].getPlayer().getDeck().getHero().hasFlag()){
+            Game.accounts[1].getPlayer().getDeck().getHero().setNumberOfFlags(Game.accounts[1].getPlayer().getDeck().getHero().getNumberOfFlags() + 1);
+        }
+        else {
+            Game.accounts[1].getPlayer().getDeck().getHero().setNumberOfFlags(1);
+        }
+        if(Game.accounts[1].getPlayer().getDeck().getHero().getNumberOfFlags() >= 6) {
+            Game.accounts[1].setMoney(Game.accounts[1].getMoney() + FlagMode.prize);
+            Game.accounts[1].setWins(Game.accounts[1].getWins() + 1);
+        }
     }
 
     @Override

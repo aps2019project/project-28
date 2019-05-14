@@ -43,6 +43,7 @@ public abstract class Hermione extends Card {
         this.originalHealthPoint = this.healthPoint;
     }
 
+
     public void setOriginalAttackPoint(int originalAttackPoint) {
         this.buffEffects.setOriginalAttackPoint(originalAttackPoint);
     }
@@ -263,6 +264,10 @@ public abstract class Hermione extends Card {
 //        return originalHealthPoint;
         // TODO: 5/9/19 jam kon ridemanet ro
         return healthPoint;
+    }
+
+    public boolean hasFlag() {
+        return hasFlag;
     }
 
     public void setOriginalHealthPoint(int originalHealthPoint) {

@@ -427,6 +427,7 @@ public class ManuHandler {
     }
 
     public static void main(String[] args) {
+
         Scanner commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
         currentMenu.showMenu();
 

@@ -1,8 +1,13 @@
 package Controller.GameMode;
 
+import Controller.Game;
 import Controller.menu.Battle;
 import Model.Map.Map;
 import Model.Primary;
+import Model.card.Card;
+import Model.card.hermione.Hermione;
+import Model.card.hermione.Hero;
+import Model.card.hermione.Minion;
 import Model.item.Collectable;
 import exeption.CellIsFullException;
 import exeption.InvalidCellException;
@@ -10,6 +15,7 @@ import exeption.InvalidCellException;
 import java.util.Random;
 
 public class Domination implements GameMode {
+    static int numberOfFlags;
     private final static int prize = 1500;
 
     @Override
@@ -20,11 +26,33 @@ public class Domination implements GameMode {
 
     @Override
     public void handleWin() {
-        /*Game.accounts[0].setWins(Game.accounts[0].getWins() + 1);
-        Game.accounts[0].setMoney(Game.accounts[0].getMoney() + Domination.prize);
+        int i = 0;
+        for (Card card:
+                Game.accounts[0].getPlayer().getDeck().getCards()) {
+            if(card instanceof Hero || card instanceof Minion){
+                if (((Hermione)card).hasFlag()){
+                    i ++;
+                }
+            }
+        }
+        if( i > numberOfFlags/2){
+            Game.accounts[0].setWins(Game.accounts[0].getWins() + 1);
+            Game.accounts[0].setMoney(Game.accounts[0].getMoney() + Domination.prize);
+        }
 
-        Game.accounts[1].setWins(Game.accounts[1].getWins() + 1);
-        Game.accounts[1].setMoney(Game.accounts[1].getMoney() + Domination.prize);*/
+        int j =0;
+        for (Card card:
+                Game.accounts[1].getPlayer().getDeck().getCards()) {
+            if(card instanceof Hero || card instanceof Minion){
+                if (((Hermione)card).hasFlag()){
+                     j++;
+                }
+            }
+        }
+        if(j > numberOfFlags/2) {
+            Game.accounts[1].setWins(Game.accounts[1].getWins() + 1);
+            Game.accounts[1].setMoney(Game.accounts[1].getMoney() + Domination.prize);
+        }
     }
 
     @Override
@@ -41,7 +69,6 @@ public class Domination implements GameMode {
         }
 
         Random random = new Random();
-        int numberOfFlags = 0;
         while (numberOfFlags == 1 || numberOfFlags == 0){
             numberOfFlags = random.nextInt(10);
         }
