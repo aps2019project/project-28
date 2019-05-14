@@ -61,10 +61,10 @@ public class Account {
                 Primary.accounts) {
             try{
                 FileWriter fileWriter = new FileWriter("Account.json", true);
-                Player player=account.getPlayer();
-                account.player=null;
+                ScannerWrapper outputStream=account.outputStream;
+                account.outputStream=null;
                 gson.toJson(account, fileWriter);
-                account.player=player;
+                account.outputStream=outputStream;
                 fileWriter.write("\n");
                 fileWriter.close();
             } catch (IOException e) {}
@@ -238,8 +238,12 @@ public class Account {
         return Account.getAccounts();
     }
     public String play(){return null;}
-    public Scanner getOutputStream(){
-        if(this.outputStream.scanner==null)this.outputStream.scanner= Game.scanner;
+    public Scanner getOutputStream() {
+        if(this.outputStream==null || this.outputStream.scanner==null){
+            this.outputStream = new ScannerWrapper();
+            this.outputStream.scanner = Game.scanner;
+        }
         return outputStream.scanner;
+
     }
 }
