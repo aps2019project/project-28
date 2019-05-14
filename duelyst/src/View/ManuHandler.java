@@ -292,7 +292,18 @@ public class ManuHandler {
         setStoryModePattern();
         setSinglePlayerModePattern();
         setMultiPlayerModeMenuPattern();
+        setCostumeModeMenuPattern();
     }
+
+    private static void setCostumeModeMenuPattern() {
+        MultiPlayerModeMenu.getMenu().addPattern("enter [\\w]+");
+        MultiPlayerModeMenu.getMenu().addPattern("[\\d]+");
+        MultiPlayerModeMenu.getMenu().addPattern("help");
+        MultiPlayerModeMenu.getMenu().addPattern("show");
+        MultiPlayerModeMenu.getMenu().addPattern("exit");
+        MultiPlayerModeMenu.getMenu().addPattern("select [\\w]+");
+    }
+
     private static void setMultiPlayerModeMenuPattern() {
         MultiPlayerModeMenu.getMenu().addPattern("enter [\\w]+");
         MultiPlayerModeMenu.getMenu().addPattern("[\\d]+");
@@ -455,6 +466,8 @@ public class ManuHandler {
                     storyModeMenuCommandHandler(word);
                 }else if(currentMenu instanceof MultiPlayerModeMenu){
                     MultiPlayerMenuCommandHandler(word);
+                }else if(currentMenu instanceof CostumeModeMenu){
+                    CostumeModeMenuCommandHandler(word);
                 }
             }
             catch (Exception e){
@@ -462,6 +475,17 @@ public class ManuHandler {
             }
             currentMenu.showMenu();
             commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
+        }
+    }
+
+    private static void CostumeModeMenuCommandHandler(String[] word) {
+        if(word[0].equals("select")){
+            CostumeModeMenu menu= (CostumeModeMenu) currentMenu;
+            try {
+                menu.selectDeck(word[1]);
+            } catch (InvalidDeckException e) {
+                System.out.println("Couldnt find the deck");
+            }
         }
     }
 

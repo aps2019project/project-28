@@ -49,6 +49,22 @@ public class AI extends Account {
         }
 
     }
+    public AI(Deck deck){
+        super("AI", "itsAI", "imAnAIgirlInAnAIWorld");
+//        super(,2,2)
+        this.level = 1;
+
+        try {
+            this.collection = new Collection();
+            collection.setOwner(this);
+            deck.setCollection(collection);
+            collection.forcePushDeck(deck);
+            collection.setMainDeck(deck.getName());
+
+
+        } catch (InvalidDeckException e) {
+        }
+    }
     @Override
     public String play() {
         move++ ;
