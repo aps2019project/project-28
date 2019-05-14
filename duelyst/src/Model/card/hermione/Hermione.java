@@ -17,7 +17,7 @@ public abstract class Hermione extends Card {
     protected int originalHealthPoint;
     protected int attackPoint;
     protected Model.card.spell.SpecialPower SpecialPower;
-    protected ArrayList<Buff> appliedBuffs;
+    protected ArrayList<Buff> appliedBuffs = new ArrayList<>();
     protected AttackType attackType;
     protected int range;
     public static final int MOVE_RANGE = 2;

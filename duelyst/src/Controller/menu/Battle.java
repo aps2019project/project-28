@@ -179,7 +179,8 @@ public class Battle extends Menu {
         turn -- ;
 
         //----------start-----------
-        handleBuffs("end");
+//        handleBuffs("end");
+        // TODO: 5/14/19 az comment dar biad
         //-------------end----------
 
         this.account = this.getEnemy(this.account).getUser();
@@ -213,15 +214,9 @@ public class Battle extends Menu {
         else{
             nextTurn();
         }
-        startTurn();
 
     }
 
-    private void startTurn() {
-        for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
-            minion.setActionTurn(0);
-        }
-    }
 
     private void handleBuffs(String endOrBeginning) {
         for (int i = 0 ; i < 2 ; i++) {
@@ -246,9 +241,11 @@ public class Battle extends Menu {
     private void nextTurn(){
         turn++;
         //TODO arshia karaye marbut be turn e jadid o inja bokon (mana o updateHand o ina)
-
-        handleBuffs("beginning");
-
+        for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
+            minion.setActionTurn(0);
+        }
+        //handleBuffs("beginning");
+        // TODO: 5/14/19 comment bala ro bardar
 
     }
 

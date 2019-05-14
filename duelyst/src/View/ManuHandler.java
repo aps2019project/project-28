@@ -216,8 +216,10 @@ public class ManuHandler {
         Battle.getMenu().addGameInfoPresentedListener(() -> {
             if(Battle.getMenu().getGameMode() instanceof ClassicMode){
                 System.out.println(Battle.getMenu().getAccount().getName()+" : ");
+                System.out.println("\tMANA: "+Battle.getMenu().getAccount().getPlayer().getMana());
                 System.out.println("\t"+Battle.getMenu().getAccount().getPlayer().getDeck().getHero().getName()+" : "+Battle.getMenu().getAccount().getPlayer().getDeck().getHero().getHealthPoint());
                 System.out.println(Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getUser().getName()+" : ");
+                System.out.println("\tMANA: "+Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getMana());
                 System.out.println("\t"+Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getName()+" : "+Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getHealthPoint());
 //          }else if(Battle.getMenu().getGameMode() instanceof FlagMode){
 
