@@ -1,12 +1,12 @@
 package Controller.GameMode;
 
-import Model.Map.Map;
-import Model.account.Account;
+import exeption.CellIsFullException;
+import exeption.InvalidCellException;
 
 public interface GameMode {
 
     boolean checkState();
     void handleWin();
-    Map mapGenerator();
+    void mapGenerator() throws InvalidCellException, CellIsFullException;
 
 }

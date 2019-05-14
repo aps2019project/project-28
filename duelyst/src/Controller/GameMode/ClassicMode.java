@@ -1,8 +1,13 @@
 package Controller.GameMode;
 
 import Controller.Game;
-import Model.Map.Cell;
+import Controller.menu.Battle;
 import Model.Map.Map;
+import Model.Primary;
+import Model.item.Collectable;
+import exeption.InvalidCellException;
+
+import java.util.Random;
 
 public class ClassicMode implements GameMode {
 
@@ -28,8 +33,17 @@ public class ClassicMode implements GameMode {
     }
 
     @Override
-    public Map mapGenerator() {
-        return null;
+    public void mapGenerator() throws InvalidCellException {
+        for (Collectable collectable:
+                Primary.collectables) {
+            Random random = new Random();
+            if(random.nextInt(Map.HEIGHT) == 0){
+                int x = random.nextInt(Map.HEIGHT);
+                int y = random.nextInt(Map.WIDTH);
+
+                Battle.getMenu().getMap().getCell(x, y).setCollectable(collectable);
+            }
+        }
     }
 }
 
