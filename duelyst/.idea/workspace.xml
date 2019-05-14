@@ -24,15 +24,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllMinionsInSurrounding.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetSurroundings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Primary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Primary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/MinionInSurrounding.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/OwnMinionAndItsSurrounfing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/OwnMinionAndItsSurrounding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/RandomMinionInSurrounding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/RandomMinionInSurrounding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnMinions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnMinions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetHeroSurroundings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetHeroSurroundings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandom.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,100 +40,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/OwnMinionAndItsSurrounding.java">
+        <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllEnemyCards.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="17" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllMinionsInSurrounding.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-              <folding>
-                <element signature="e#425#431#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnCards.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="17" selection-end-column="5" />
+            <state relative-caret-position="84">
+              <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnMinions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyCard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyHero.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="300" column="16" selection-start-line="300" selection-start-column="16" selection-end-line="300" selection-end-column="16" />
+            <state relative-caret-position="328">
+              <caret line="466" column="31" selection-start-line="466" selection-start-column="31" selection-end-line="466" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/RandomMinionInSurrounding.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetHeroSurroundings.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="30" column="78" selection-start-line="30" selection-start-column="78" selection-end-line="30" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -195,7 +111,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Controller/menu/GraveYardMenu.java" />
         <option value="$PROJECT_DIR$/src/Model/card/spell/SpellAction/ActionCombo.java" />
         <option value="$PROJECT_DIR$/src/View/MenuHandler.java" />
         <option value="$PROJECT_DIR$/src/View/ShowMenu.java" />
@@ -241,11 +156,12 @@
         <option value="$PROJECT_DIR$/src/Controller/menu/Battle.java" />
         <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetSurroundings.java" />
         <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetHeroSurroundings.java" />
-        <option value="$PROJECT_DIR$/src/Model/Primary.java" />
         <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/OwnMinionAndItsSurrounding.java" />
         <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/RandomMinionInSurrounding.java" />
         <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllMinionsInSurrounding.java" />
         <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnMinions.java" />
+        <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandom.java" />
+        <option value="$PROJECT_DIR$/src/Model/Primary.java" />
       </list>
     </option>
   </component>
@@ -377,7 +293,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557829829847" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557830128694" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -472,14 +388,7 @@
       <option name="presentableId" value="Default" />
       <updated>1556627517835</updated>
       <workItem from="1557418476963" duration="6065000" />
-      <workItem from="1557755825769" duration="6797000" />
-    </task>
-    <task id="LOCAL-00025" summary="preprocess SPAActivationtime">
-      <created>1557086565522</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1557086565522</updated>
+      <workItem from="1557755825769" duration="7095000" />
     </task>
     <task id="LOCAL-00026" summary="hardCode e Constructor e Player">
       <created>1557117016172</created>
@@ -817,11 +726,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557828014788</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="finished up with all the targets">
+      <created>1557829854374</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1557829854374</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16168000" />
+    <option name="totallyTimeSpent" value="16466000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -836,7 +752,7 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22132471" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22132471" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -850,7 +766,7 @@
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" auto_hide="true" id="Run" order="5" weight="0.5602241" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32703003" />
+      <window_info active="true" anchor="bottom" id="TODO" order="6" visible="true" weight="0.32633054" />
       <window_info anchor="bottom" id="TeamCity" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49928367" weight="0.32769832" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007163" side_tool="true" weight="0.32769832" />
@@ -929,7 +845,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed" />
     <MESSAGE value="menuPatterns" />
     <MESSAGE value="menuPatterns added another One" />
     <MESSAGE value="menuPatterns 2" />
@@ -954,12 +869,10 @@
     <MESSAGE value="fixed inputs for multiple part names" />
     <MESSAGE value="handled buffs in battle" />
     <MESSAGE value="handled buffs in battle + added startTurn" />
-    <option name="LAST_COMMIT_MESSAGE" value="handled buffs in battle + added startTurn" />
+    <MESSAGE value="finished up with all the targets" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished up with all the targets" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Collectables.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Minion.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -1321,34 +1234,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnMinions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="300" column="16" selection-start-line="300" selection-start-column="16" selection-end-line="300" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="212">
+          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/RandomMinionInSurrounding.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/OwnMinionAndItsSurrounding.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllEnemyCards.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnCards.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="17" selection-end-column="5" />
@@ -1365,17 +1258,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnCards.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllEnemyCards.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="17" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyHero.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/OwnMinionAndItsSurrounding.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="319">
+          <caret line="16" column="48" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1386,10 +1282,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnMinions.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyHero.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+        <state relative-caret-position="84">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/RandomMinionInSurrounding.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="466" column="31" selection-start-line="466" selection-start-column="31" selection-end-line="466" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

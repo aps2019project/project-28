@@ -449,7 +449,7 @@ public class Primary {
         fileWriter.close();
 
         collectables.add(new Collectable("NooshDaru", 1, 6, "increases health point of a random card 6 units",
-                TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetRandomOwn.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Two Headed Arrow", 1, 2, "increases attack point of random ranged or hybrid 2 units",
                 TargetRangedAndHybrid.getTargetClass(), ItemAction3HornedArrow.getItemAction()));
         collectables.add(new Collectable("Eksir", 1, 3, "increases health point 3 units, a power buff with increasing ",
@@ -462,9 +462,9 @@ public class Primary {
         collectables.add(new Collectable("Death's Curse", 0, 8, "8 attack points on nearest enemy card for a random minion ",
                 TargetRandomOwnMinion.getTargetInstance(), ItemActionMinionRandomAttacker.getItemAction()));
         collectables.add(new Collectable("Random damage", 1, 2, "2 attack points for random card",
-                TargetRandom.getTargetInstance(), ItemActionRandomDamage.getItemAction()));
+                TargetRandomOwn.getTargetInstance(), ItemActionRandomDamage.getItemAction()));
         collectables.add(new Collectable("Blades of agility", 1, 6, "6 attack points for a random card",
-                TargetRandom.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetRandomOwn.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Chineese Sword", 1, 5, "5 attack points for melee",
                 TargetMelee.getTargetClass(), ItemActionChangeAP.getItemAction()));
 

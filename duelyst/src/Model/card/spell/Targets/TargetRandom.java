@@ -20,9 +20,5 @@ public class TargetRandom {
         return new Cell[] {hermiones.get(r).getLocation()} ;
     }
 
-    public static Target getTargetInstance() {
-        return null;
-    }
 
-    //TODO saee
 }
