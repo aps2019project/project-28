@@ -18,9 +18,10 @@ public class CostumeModeMenu extends Menu {
     }
     public Menu selectDeck(String deckName) throws InvalidDeckException {
         Deck deck=this.account.getCollection().getDeckByName(deckName);
-                Game.accounts[1]=new AI(deck);
+        Game.accounts[1]=new AI(deck);
 
-            return this.enter(Battle.getMenu());
+        System.err.println("debug");
+        return this.enter(Battle.getMenu());
     }
 
     @Override

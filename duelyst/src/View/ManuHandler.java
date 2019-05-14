@@ -296,12 +296,12 @@ public class ManuHandler {
     }
 
     private static void setCostumeModeMenuPattern() {
-        MultiPlayerModeMenu.getMenu().addPattern("enter [\\w]+");
-        MultiPlayerModeMenu.getMenu().addPattern("[\\d]+");
-        MultiPlayerModeMenu.getMenu().addPattern("help");
-        MultiPlayerModeMenu.getMenu().addPattern("show");
-        MultiPlayerModeMenu.getMenu().addPattern("exit");
-        MultiPlayerModeMenu.getMenu().addPattern("select [\\w]+");
+        CostumeModeMenu.getMenu().addPattern("enter [\\w]+");
+        CostumeModeMenu.getMenu().addPattern("[\\d]+");
+        CostumeModeMenu.getMenu().addPattern("help");
+        CostumeModeMenu.getMenu().addPattern("show");
+        CostumeModeMenu.getMenu().addPattern("exit");
+        CostumeModeMenu.getMenu().addPattern("select [\\w]+");
     }
 
     private static void setMultiPlayerModeMenuPattern() {
@@ -483,7 +483,7 @@ public class ManuHandler {
         if(word[0].equals("select")){
             CostumeModeMenu menu= (CostumeModeMenu) currentMenu;
             try {
-                menu.selectDeck(word[1]);
+                currentMenu=menu.selectDeck(word[1]);
             } catch (InvalidDeckException e) {
                 System.out.println("Couldnt find the deck");
             }
