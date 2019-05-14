@@ -28,10 +28,11 @@ public class CollectionMenu extends Menu {
     }
 
     @Override
-    public void init(Menu parentMenu) {
+    public boolean init(Menu parentMenu) {
         super.init(parentMenu);
         YaGson gson = new YaGson();
         this.tempCollection = gson.fromJson(gson.toJson(this.getAccount().getCollection()), Collection.class);
+        return true;
     }
 
     public void save() {

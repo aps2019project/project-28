@@ -24,13 +24,14 @@ public abstract class Menu {
     }
 
     public Menu enter(Menu subMenu){
-        subMenu.init(this);
+        if(subMenu.init(this)==false)return this;
         return subMenu;
     }
 
-    public void init(Menu parentMenu) {
+    public boolean init(Menu parentMenu) {
         this.setParentMenu(parentMenu);
         this.setAccount(parentMenu.account);
+        return true;
     }
     public void addPattern(String pattern) {
         this.patterns.add(pattern);

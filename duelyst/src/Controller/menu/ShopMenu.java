@@ -36,9 +36,10 @@ public class ShopMenu extends Menu {
     }
 
     @Override
-    public void init(Menu parentMenu) {
+    public boolean init(Menu parentMenu) {
         super.init(parentMenu);
         tempCollection = this.account.getCollection();
+        return true;
     }
 
     public void showCollection() {

@@ -16,9 +16,5 @@ public class SinglePlayerModeMenu extends Menu {
         return menu;
     }
 
-    @Override
-    public void init(Menu parentMenu) {
-        super.init(parentMenu);
-    }
 }
 
