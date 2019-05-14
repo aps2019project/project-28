@@ -216,6 +216,11 @@ public class Collection {
         throw new CardExistException();
     }
 
+    public void forcePushDeck(Deck deck){
+        this.decks.add(deck);
+        // TODO: 5/14/19 in goh khorit ro jam kon plz be hamrah e saE
+    }
+
     public void removeCardFromCollection(Card card) throws InvalidCardException {
         if (this.hasCard(card)) {
             this.cards.remove(card);
