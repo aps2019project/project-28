@@ -1,6 +1,7 @@
 package Model.account;
 
 import Model.card.Card;
+import Model.card.hermione.Hero;
 import View.Listeners.OnHandPresentedListener;
 import exeption.DeckIsEmptyException;
 import exeption.HandFullException;
@@ -18,11 +19,16 @@ public class Hand {
     private Card nextCard;
 
     public Hand(Deck deck) {
+        int j = 0;
         this.deck = deck.getCards();
         for (int i = 0; i < SIZE; i++) {
-            this.cards[i] = this.deck.get(i);
+            if(!(cards[i] instanceof Hero)) {
+                this.cards[j++] = this.deck.get(i);
+            }
         }
-        this.nextCard = this.deck.get(SIZE);
+        if(!(cards[SIZE] instanceof Hero)) {
+            this.nextCard = this.deck.get(SIZE);
+        }
     }
 
     public void updateHand() throws DeckIsEmptyException, HandFullException {
@@ -49,7 +55,10 @@ public class Hand {
 
     private void setNextCard() {
         if (deck.indexOf(nextCard) + 1 < Deck.CARD_SIZE) {
-            nextCard = deck.get(deck.indexOf(nextCard) + 1);
+            Card card = deck.get(deck.indexOf(nextCard) + 1);
+            if(!(card instanceof Hero)){
+                nextCard = card;
+            }
         } else {
             nextCard = null;
         }
