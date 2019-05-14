@@ -213,8 +213,14 @@ public class Battle extends Menu {
         else{
             nextTurn();
         }
+        startTurn();
 
+    }
 
+    private void startTurn() {
+        for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
+            minion.setActionTurn(0);
+        }
     }
 
     private void handleBuffs(String endOrBeginning) {
