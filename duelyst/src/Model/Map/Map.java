@@ -103,29 +103,36 @@ public class Map {
     }
     private static Map collectableGenerator(Map map) {
         Random random = new Random();
-        try {
             for (int i = 0; i < MAX_COLLECTABLE_ON_MAP; i++) {
-                int x = 0;
-                int y = 0;
-                boolean cant=true;
-                while (cant) {
-                    x = random.nextInt(Map.HEIGHT-3);
-                    y = random.nextInt(Map.WIDTH-3);
-                    try {
-                        if (!map.getCell(x, y).hasItem() && !map.getCell(x, y).isFull()) cant = false;
-                    }catch (InvalidCellException ignored){}
-                }
-                x++;
-                y++;
+                Cell cell=map.getRandomEmptyCell();
                 Collectable collectable=Primary.collectables.get(random.nextInt(Primary.collectables.size()));
-                System.err.println("X: "+x+" , Y: "+y);
-                System.err.println("Collect me you Bitch: "+collectable.getName());
-                map.getCell(x, y).setItem(collectable);
+//                System.err.println("X: "+x+" , Y: "+y);
+//                System.err.println("Collect me you Bitch: "+collectable.getName());
+                cell.setItem(collectable);
             }
+        return map;
+    }
+
+    public  Cell getRandomEmptyCell(){
+        Random random=new Random();
+        int x = 0;
+        int y = 0;
+        boolean cant=true;
+        while (cant) {
+            x = random.nextInt(Map.HEIGHT-3)+1;
+            y = random.nextInt(Map.WIDTH-3)+1;
+            try {
+                if (!this.getCell(x, y).hasItem() && !this.getCell(x, y).hasFlag() && !this.getCell(x, y).isFull()) cant = false;
+                if(x==3 && (y==1 || y==9))cant=true;
+            }catch (InvalidCellException ignored){}
+        }
+        Cell returnCell=null;
+        try {
+            returnCell=this.getCell(x,y);
         } catch (InvalidCellException e) {
             e.printStackTrace();
         }
-        return map;
+        return returnCell;
     }
 
     public Cell[][] getBoard() {

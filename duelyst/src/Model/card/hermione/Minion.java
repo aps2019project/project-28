@@ -51,7 +51,7 @@ public class Minion extends Hermione{
 
         @Override
         public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
-        if(Battle.getMenu().getTurn()<=this.spawnTurn+1)throw new CantAttackException();
+        if(Battle.getMenu().getOriginalTurn()<=this.spawnTurn+1)throw new CantAttackException();
         this.itIsTime(SPATime.ATTACK);
             super.attack(enemyCard);
         }
@@ -69,8 +69,8 @@ public class Minion extends Hermione{
 
 
     @Override
-    public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, CardCantBeMovedException {
-        if(Battle.getMenu().getTurn()<=this.spawnTurn+1)throw new CardCantBeMovedException();
+    public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException,CardCantBeMovedException {
+        if(Battle.getMenu().getOriginalTurn()<=this.spawnTurn+1)throw new CardCantBeMovedException();
         return super.move(x, y);
     }
 

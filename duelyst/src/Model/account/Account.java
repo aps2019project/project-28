@@ -63,6 +63,7 @@ public class Account {
                 FileWriter fileWriter = new FileWriter("Account.json", true);
                 ScannerWrapper outputStream=account.outputStream;
                 account.outputStream=null;
+                account.player=null;
                 gson.toJson(account, fileWriter);
                 account.outputStream=outputStream;
                 fileWriter.write("\n");

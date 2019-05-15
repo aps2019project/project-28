@@ -32,6 +32,8 @@ public class Player {
     private int manaTheriac = 0;
     private int maxManaTheriac = 0;
     private boolean hasAssasinationDagger = false;
+    private boolean hasFlag=false;
+    private int flagInteger=0;
 
 
 
@@ -47,6 +49,7 @@ public class Player {
         //In Order To Secure Objects In Account We Made A HardCopy Of MainDeck
         this.deck = gson.fromJson(gson.toJson(user.getCollection().getMainDeck()), Deck.class);
         this.deck.setCollection(user.getCollection());
+        this.deck.shuffle();
         // TODO: 5/9/19 check whether or not the line above needs to be
         this.hand = new Hand(this.deck);
     }
@@ -177,5 +180,21 @@ public class Player {
 
     public void changeMana(int manaPoint) {
         this.mana+=manaPoint;
+    }
+
+    public boolean hasFlag() {
+        return hasFlag;
+    }
+
+    public void setFlag(boolean hasFlag) {
+        this.hasFlag = hasFlag;
+    }
+
+    public int getFlagInteger() {
+        return flagInteger;
+    }
+
+    public void setFlagInteger(int flagInteger) {
+        this.flagInteger = flagInteger;
     }
 }

@@ -2,9 +2,12 @@ package Controller.GameMode;
 
 import Controller.Game;
 import Controller.menu.Battle;
+import Model.Map.Cell;
 import Model.Map.Map;
 import Model.Primary;
 import Model.account.Account;
+import Model.account.Player;
+import Model.card.hermione.Hermione;
 import Model.item.Collectable;
 import exeption.CellIsFullException;
 import exeption.InvalidCellException;
@@ -39,6 +42,9 @@ public class ClassicMode implements GameMode {
     public Map generateMap() {
         return Map.generate();
     }
+
+    @Override
+    public void getFlag(Player player, Hermione hermione, Cell cell) {/*ignored*/}
 
 
 }

@@ -5,8 +5,16 @@ import exeption.BuffHasntBeenDeployedYetException;
 import exeption.InvalidCellException;
 
 public class BuffTypeContinuous extends BuffTypes{
+
+    private static BuffTypeContinuous obj ;
+
     public BuffTypeContinuous() {
         shouldBeDispelled = false ;
+    }
+
+    public static BuffTypeContinuous getBuffTypeInstance(){
+        if (obj == null) obj = new BuffTypeContinuous();
+        return obj;
     }
 
     @Override

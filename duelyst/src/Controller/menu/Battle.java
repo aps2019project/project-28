@@ -156,6 +156,9 @@ public class Battle extends Menu {
                 this.getPlayer().getCollectables().add(map.getCell(x, y).getCollectable());
                 map.getCell(x, y).clearCollectable();
             }
+            this.gameMode.getFlag(this.account.getPlayer(),hermione,
+                    map.getCell(x, y));
+
         } catch (ClassCastException e) {
             throw new CardCantBeMovedException();//because its Spell
         }
@@ -212,8 +215,10 @@ public class Battle extends Menu {
         for (int i = 0; i < 2; i++) {
             ArrayList<Minion> deadMinions = new ArrayList<>();
             for (Minion minion : this.player[i].getMinionsInGame()) {
-                if (minion.getHealthPoint() <= 0)
+                if (minion.getHealthPoint() <= 0) {
                     deadMinions.add(minion);
+                    this.map.getCell(minion.getLocation()).setFlag(minion.hasFlag());
+                }
             }
             this.player[i].getMinionsInGame().removeAll(deadMinions);
             this.player[i].getDeck().moveAllToGraveYard(deadMinions);
@@ -275,7 +280,7 @@ public class Battle extends Menu {
         /*checkState*/
         if (this.gameMode.checkState()) {
             this.gameMode.handleWin();
-            ManuHandler.currentMenu = this.exit();
+            ManuHandler.currentMenu = MainMenu.getMenu();
         } else {
             nextTurn();
         }
@@ -299,8 +304,7 @@ public class Battle extends Menu {
                         deployBuffEndTurn(buff);
                     else deployBuffBeginningOfTurn(buff);
                 }
-            } catch (NullPointerException ignored) {
-            }
+            } catch (NullPointerException ignored) {}
             try {
                 for (Minion minion : plyr.getMinionsInGame()) {
                     for (Buff buff : minion.getAppliedBuffs()) {
