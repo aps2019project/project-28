@@ -208,6 +208,7 @@ public class Battle extends Menu {
         handleDeaths();
     }
 
+
     private void handleDeaths() {
         for (int i = 0; i < 2; i++) {
             ArrayList<Minion> deadMinions = new ArrayList<>();

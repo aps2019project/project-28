@@ -129,6 +129,7 @@ public abstract class Hermione extends Card {
 
     public void spawn(Cell cell) {
         this.canMove = true ;
+        this.originalHealthPoint=this.healthPoint;
         this.setLocation(cell);
     }
 
