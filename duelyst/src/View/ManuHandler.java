@@ -294,7 +294,6 @@ public class ManuHandler {
         setMultiPlayerModeMenuPattern();
         setCostumeModeMenuPattern();
     }
-
     private static void setCostumeModeMenuPattern() {
         CostumeModeMenu.getMenu().addPattern("enter [\\w]+");
         CostumeModeMenu.getMenu().addPattern("[\\d]+");
@@ -303,7 +302,6 @@ public class ManuHandler {
         CostumeModeMenu.getMenu().addPattern("exit");
         CostumeModeMenu.getMenu().addPattern("select [\\w]+");
     }
-
     private static void setMultiPlayerModeMenuPattern() {
         MultiPlayerModeMenu.getMenu().addPattern("enter [\\w]+");
         MultiPlayerModeMenu.getMenu().addPattern("[\\d]+");
@@ -440,9 +438,9 @@ public class ManuHandler {
     }
 
     public static void main(String[] args) {
-
-        Scanner commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
-        if (commands.hasNext())System.err.println(commands.nextLine());
+        System.err.println("im out of While");
+        Scanner commands=Game.accounts[0].getOutputStream();
+//        if (commands.hasNext())System.err.println(commands.nextLine());
         currentMenu.showMenu();
         String command ;
         while(commands.hasNext()){
@@ -477,7 +475,17 @@ public class ManuHandler {
                 e.printStackTrace();
             }
             currentMenu.showMenu();
-            commands=Game.accounts[0].getOutputStream();
+            System.err.println("i hate you "+ Game.accounts[Game.battle.getTurn()].getName());
+            Game.accounts[Game.battle.getTurn()].doYourMove();
+            commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
+
+//            System.err.println(Game.accounts[Game.battle.getTurn()].getOutputStream()==Game.accounts[1].getOutputStream());
+            System.err.println(Game.accounts[Game.battle.getTurn()].getName());
+            System.err.println(Game.accounts[0].getName()+" , "+Game.accounts[1].getName());
+            System.err.println(Game.battle.getTurn());
+//            try {
+//                System.err.println(((AI)(Game.accounts[Game.battle.getTurn()])).output);
+//            }catch (Exception e){e.printStackTrace();}
         }
     }
 
@@ -493,7 +501,6 @@ public class ManuHandler {
             }
         }
     }
-
     private static void CostumeModeMenuCommandHandler(String[] word) {
         if(word[0].equals("select")){
             CostumeModeMenu menu= (CostumeModeMenu) currentMenu;
@@ -504,7 +511,6 @@ public class ManuHandler {
             }
         }
     }
-
     private static void MultiPlayerMenuCommandHandler(String[] word) {
         MultiPlayerModeMenu menu= (MultiPlayerModeMenu) currentMenu;
         if(word[0].equals("select") && word[1].equals("user")){
@@ -518,82 +524,12 @@ public class ManuHandler {
             }
         }
     }
-
     private static void storyModeMenuCommandHandler(String[] word) {
         StoryModeMenu menu= (StoryModeMenu) currentMenu;
         if(word[0].equals("level")) {
             currentMenu=menu.setAI(Integer.parseInt(word[1]));
         }
     }
-
-    private static void ShopMenuCommandHandler(String[] word) {
-        ShopMenu menu = (ShopMenu) currentMenu;
-        if(word[0].equals("show")){
-            if(word.length>= 2 && word[1].equals("collection")){
-                menu.showCollection();
-            }else{
-                System.err.println("asdddddddddddddd");
-                menu.show();
-                System.err.println("asdddddddddddddd");
-            }
-        }else if(word[0].equals("search")){
-            if(word.length>= 2 && word[1].equals("collection")){
-                try {
-                    String name = getName(word , 2);
-                    menu.searchCollection(name);
-                } catch (InvalidCardException e) {
-                    System.out.println("Card with Given name doesnt exist");
-                } catch (InvalidItemException e) {
-                    System.out.println("Item with Given name doesnt exist");
-                }
-            }else {
-                String name = getName(word , 1);
-                try {
-                    menu.search(name);
-                } catch (InvalidCardException e) {
-                    System.out.println("Card with Given name doesnt exist");
-                } catch (InvalidItemException e) {
-                    System.out.println("Item with Given name doesnt exist");
-                }
-            }
-        }else if(word[0].equals("buy")){
-            String name = getName(word , 1);
-            try {
-                menu.buy(name);
-            } catch (CardExistException e) {
-                System.out.println("You already have this Card. it is not wise to buy a same card twice");
-            } catch (InvalidCardException e) {
-                System.err.println("hhhhhhhhhhhhhhhhhhhhh");
-                System.out.println("Me lord! we just ran out of " + name + ". im sorry!");
-            } catch (ItemExistExeption itemExistExeption) {
-                System.out.println("You already have this Item. it is not wise to buy a same item twice");
-            } catch (FullCollectionException e) {
-                System.out.println("Sorry but you dont have enough Space in your collection");
-                System.out.println("Empty your collection a little bit by selling some cards and try again");
-            } catch (NotEnoughMoneyException e) {
-                System.out.println("Oops you are not as reach as you thought!");
-            } catch (InvalidItemException e) {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
-            }
-        }else if(word[0].equals("sell")){
-            String name = getName(word , 1);
-            try {
-                menu.sell(name);
-            } catch (InvalidCardException e) {
-                System.out.println("Smart Move But you cant sell a Card/Item that you dont have");
-            }
-        }
-    }
-
-    private static String getName(String[] word , int startPoint) {
-        String name = "" ;
-        for (int i = startPoint ; i < word.length ; i++){
-            name = name + word[i] + " " ;
-        }
-        name = name.substring(0 , name.length()-1) ;
-        return name;
-    }
-
     private static void CollectionMenuCommandHandler(String[] word) {
         CollectionMenu menu= (CollectionMenu) currentMenu;
         if(word[0].equals("show")){
@@ -675,6 +611,64 @@ public class ManuHandler {
                 menu.selectDeck(name);
             } catch (InvalidDeckException e) {
                 System.out.println("Couldn't find the Deck!");
+            }
+        }
+    }
+    private static void ShopMenuCommandHandler(String[] word) {
+        ShopMenu menu = (ShopMenu) currentMenu;
+        if(word[0].equals("show")){
+            if(word.length>= 2 && word[1].equals("collection")){
+                menu.showCollection();
+            }else{
+                System.err.println("asdddddddddddddd");
+                menu.show();
+                System.err.println("asdddddddddddddd");
+            }
+        }else if(word[0].equals("search")){
+            if(word.length>= 2 && word[1].equals("collection")){
+                try {
+                    String name = getName(word , 2);
+                    menu.searchCollection(name);
+                } catch (InvalidCardException e) {
+                    System.out.println("Card with Given name doesnt exist");
+                } catch (InvalidItemException e) {
+                    System.out.println("Item with Given name doesnt exist");
+                }
+            }else {
+                String name = getName(word , 1);
+                try {
+                    menu.search(name);
+                } catch (InvalidCardException e) {
+                    System.out.println("Card with Given name doesnt exist");
+                } catch (InvalidItemException e) {
+                    System.out.println("Item with Given name doesnt exist");
+                }
+            }
+        }else if(word[0].equals("buy")){
+            String name = getName(word , 1);
+            try {
+                menu.buy(name);
+            } catch (CardExistException e) {
+                System.out.println("You already have this Card. it is not wise to buy a same card twice");
+            } catch (InvalidCardException e) {
+                System.err.println("hhhhhhhhhhhhhhhhhhhhh");
+                System.out.println("Me lord! we just ran out of " + name + ". im sorry!");
+            } catch (ItemExistExeption itemExistExeption) {
+                System.out.println("You already have this Item. it is not wise to buy a same item twice");
+            } catch (FullCollectionException e) {
+                System.out.println("Sorry but you dont have enough Space in your collection");
+                System.out.println("Empty your collection a little bit by selling some cards and try again");
+            } catch (NotEnoughMoneyException e) {
+                System.out.println("Oops you are not as reach as you thought!");
+            } catch (InvalidItemException e) {
+                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
+            }
+        }else if(word[0].equals("sell")){
+            String name = getName(word , 1);
+            try {
+                menu.sell(name);
+            } catch (InvalidCardException e) {
+                System.out.println("Smart Move But you cant sell a Card/Item that you dont have");
             }
         }
     }
@@ -841,5 +835,14 @@ public class ManuHandler {
                 // :D
             }
         }
+    }
+
+    private static String getName(String[] word , int startPoint) {
+        String name = "" ;
+        for (int i = startPoint ; i < word.length ; i++){
+            name = name + word[i] + " " ;
+        }
+        name = name.substring(0 , name.length()-1) ;
+        return name;
     }
 }

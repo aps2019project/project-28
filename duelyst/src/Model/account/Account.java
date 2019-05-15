@@ -237,7 +237,7 @@ public class Account {
         Collections.sort(Account.getAccounts(), Comparator.comparingInt(o -> o.wins));
         return Account.getAccounts();
     }
-    public String play(){return null;}
+    public void doYourMove(){}
     public Scanner getOutputStream() {
         if(this.outputStream==null || this.outputStream.scanner==null){
             this.outputStream = new ScannerWrapper();

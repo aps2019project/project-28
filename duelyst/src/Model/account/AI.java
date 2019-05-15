@@ -20,13 +20,20 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+class StringWrapper{
+    public String string;
+
+    public void set(String string) {
+        this.string = string;
+    }
+}
 public class AI extends Account {
     int level;
     int move; //0: insert card , 1&3: select hero, 2: move Hero ,
                 // 4: attack with hero ,and then : minions : select-move-select-attack
     Map map;
     Player enemy;
-    private String output;
+    public StringWrapper output=new StringWrapper();
 
     public AI(int level) throws FullDeckException, DeckAlreadyHasThisCardException, InvalidDeckException,
             DeckAlreadyHasAHeroException, DeckAlreadyHasThisItemException {
@@ -67,7 +74,6 @@ public class AI extends Account {
     }
 
 
-    @Override
     public String play() {
         move++ ;
         String command;
@@ -83,14 +89,14 @@ public class AI extends Account {
                     command = insertSpell();
                 }
                 if (command != null && !command.isEmpty()){
-                    output=command;
+                    output.set(command);
                     return command;
                 }
                 else move++ ;
             case 1:
             case 3:
                 command = "Select "+ collection.getMainDeck().getHero().getCardID();
-                output=command;
+                output.set(command);
                 return command;
             case 2:
                 Hero hero = this.player.getDeck().getHero();//collection.getMainDeck().getHero();
@@ -99,7 +105,7 @@ public class AI extends Account {
                     for (Cell cell : cells){
                         if (cell.getCardOnCell() == null) {
                             command = "Move to (" + cell.getX() + ", " + cell.getY()+")" ;
-                            output=command;
+                            output.set(command);
                             return command ;
                         }
                     }
@@ -110,25 +116,25 @@ public class AI extends Account {
                 hero = collection.getMainDeck().getHero() ;
                  command = attack(hero);
                 if (command != null){
-                    output=command;
+                    output.set(command);
                     return command;
                 }
                 else move++;
             default:
                 if (move > player.getMinionsInGame().size() + 5) {
                     move = -1 ;
-                    output="End turn";
+                    output.set("End turn");
                     return "End turn";
                 }
                 if (move % 2 == 1){
                     command = "Select " + player.getMinionsInGame().get(move-5) ;
-                    output=command;
+                    output.set(command);
                     return command ;
                 }
                 else{
                     Minion card = player.getMinionsInGame().get(move-6) ;
                     command = attack(card) ;
-                    output=command;
+                    output.set(command);
                     return command ;
                 }
         }
@@ -138,7 +144,7 @@ public class AI extends Account {
         String command;
         if (card.canAttackThisCard(enemy.getDeck().getHero())){
             command = "Attack " + enemy.getDeck().getHero();
-            output=command;
+            output.set(command);
             return command ;
         }
         Random rand = new Random();
@@ -148,12 +154,12 @@ public class AI extends Account {
             counter++ ;
             if (card.canAttackThisCard(target.get(i))){
                 command = "Attack " + target.get(i);
-                output=command;
+                output.set(command);
                 return command ;
             }
             if (counter > 30) break ;
         }
-        output="";
+        output.set("ridam");
         return "" ;
     }
 
@@ -168,7 +174,7 @@ public class AI extends Account {
             }
         }
         if (command.isEmpty()) {
-            output=command;
+            output.set(command);
             return command;
         }
         for (int i = 1; i < 8; i++) {
@@ -176,12 +182,12 @@ public class AI extends Account {
             for (Cell cell : cells) {
                 if (cell.getCardOnCell() == null) {
                     command = command + cell.getX() + ", " + cell.getY() + ")";
-                    output=command;
+                    output.set(command);
                     return command;
                 }
             }
         }
-        output="";
+        output.set("ridam");
         return "";
     }
 
@@ -198,7 +204,7 @@ public class AI extends Account {
             }
         }
         if (command.isEmpty() || spell == null) {
-            output=command;
+            output.set(command);
             return command;
         }
         Target target = spell.getTarget();
@@ -206,13 +212,13 @@ public class AI extends Account {
             try {
                 target.getTarget(cell);
                 command = command + cell.getX() + ", " + cell.getY() + ")";
-                output=command;
+                output.set(command);
                 return command;
             } catch (InvalidCellException e) {
                 continue;
             }
         }
-        output="";
+        output.set("ridam");
         return "";
     }
 
@@ -320,12 +326,22 @@ public class AI extends Account {
     }
 
     @Override
+    public void doYourMove() {
+        this.play();
+
+        if(output.string==null || output.string.isEmpty()) output.set("bad riiiidam");
+    }
+
+    @Override
     public Scanner getOutputStream() {
-        if(output==null || output.isEmpty()) output = "End turn";
-        if(this.outputStream==null || this.outputStream.scanner==null){
-            this.outputStream = new ScannerWrapper();
-            this.outputStream.scanner = new Scanner(output);
-        }
+        System.err.println();
+//        this.play();
+//        if(output==null || output.isEmpty()) output = "End turn";
+        if(this.outputStream!=null && this.outputStream.scanner!=null)this.outputStream.scanner.close();
+
+        this.outputStream = new ScannerWrapper();
+        this.outputStream.scanner = new Scanner(output.string);
+
         return this.outputStream.scanner;
     }
 }
