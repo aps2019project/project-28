@@ -151,8 +151,8 @@ public class Battle extends Menu {
     public void move(int x, int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
         try {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
-            hermione.move(x, y);
-            System.err.println();
+//            hermione.move(x, y);
+            System.err.println(hermione.move(x, y));
             if (map.getCell(x, y).hasItem()) {
                 this.getPlayer().getCollectables().add(map.getCell(x, y).getCollectable());
                 map.getCell(x, y).clearCollectable();
