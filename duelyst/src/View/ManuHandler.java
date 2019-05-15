@@ -465,9 +465,6 @@ public class ManuHandler {
         String command ;
         while(commands.hasNext()){
             System.err.println();
-            try{
-                System.err.println(" -_-_-_-__-_-___-----___-__-----__ " + Game.battle.getPlayer().getDeck().getHero().isCanMove());
-            }catch(NullPointerException ignored){}
             try {
                 command = commands.nextLine().toLowerCase().trim();
                 String[] word = command.split(" ");

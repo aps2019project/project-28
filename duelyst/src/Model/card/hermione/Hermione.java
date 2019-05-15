@@ -96,8 +96,7 @@ public abstract class Hermione extends Card {
 
     private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
         if (this.actionTurn != 0) throw new MoveTrunIsOverException();
-        if (!this.canMove){
-            System.err.println("it's the canMove -_- _______-----_______-----______"); return false ;}
+        if (!this.canMove) return false ;
         if (Game.battle.getMap().getCell(x, y).isFull()) throw new DestinationOutOfreachException();
 
         // TODO: 5/5/19 if the path is not blocked by enemies
