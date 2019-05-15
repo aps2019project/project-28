@@ -33,10 +33,9 @@ public class Buff {
         this.buffType.setBuff(this);
     }
 
-
     public Buff(Buff buff){
-
     }
+
     public Buff(int duration, boolean isPositive, BuffActions action , int perk) {
         this.action = action;
         this.duration = duration;

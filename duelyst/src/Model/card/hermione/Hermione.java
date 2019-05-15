@@ -18,7 +18,7 @@ public abstract class Hermione extends Card {
     protected int originalHealthPoint;
     protected int attackPoint;
     protected Model.card.spell.SpecialPower SpecialPower;
-    protected ArrayList<Buff> appliedBuffs = new ArrayList<>();
+    protected ArrayList<Buff> appliedBuffs ;
     protected AttackType attackType;
     protected int range;
     public static final int MOVE_RANGE = 2;
@@ -42,6 +42,7 @@ public abstract class Hermione extends Card {
         this.attackType = attackType;
         this.range = range;
         this.originalHealthPoint = this.healthPoint;
+        this.appliedBuffs = new ArrayList<>();
     }
 
 
@@ -106,8 +107,12 @@ public abstract class Hermione extends Card {
     }
 
 
-    public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, CardCantBeMovedException {
-        if (!canMove(x, y)) return false;
+    public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException , CardCantBeMovedException{
+        try {
+            if (!canMove(x, y)) return false;
+        }catch (CardCantBeMovedException e){
+            throw e ;
+        }
         Game.battle.getMap().getCell(this.location).clear();
 
         this.setLocation(Game.battle.getMap().getCell(x, y));
