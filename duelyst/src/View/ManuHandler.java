@@ -2,6 +2,7 @@ package View;
 //TODO change the name dude !!!!
 import Controller.Game;
 import Controller.GameMode.ClassicMode;
+import Controller.GameMode.Domination;
 import Controller.GameMode.FlagMode;
 import Controller.menu.Battle;
 import Controller.menu.*;
@@ -118,6 +119,7 @@ public class ManuHandler {
                                         System.out.print("W ");
                                     }
                                 }else if(cell.hasItem()) System.out.print("C ");
+                                else if(cell.hasFlag()) System.out.println("F ");
                                 else if(cell.getCardOnCell()==null) System.out.print(". ");
                             } catch (InvalidCellException e) {
                                 e.printStackTrace(); }
@@ -761,9 +763,12 @@ public class ManuHandler {
         ChooseBattleModeMenu menu= (ChooseBattleModeMenu) ChooseBattleModeMenu.getMenu();
         if(word[0].equals("mode")){
             switch (Integer.parseInt(word[1])){
-                case 1:
                 case 2:
                 case 3:
+                    Game.battle.setGameMode(new Domination());
+                    currentMenu=menu.enter(GameModeMenu.getMenu());
+                    break;
+                case 1:
                     Game.battle.setGameMode(new ClassicMode());
                     currentMenu=menu.enter(GameModeMenu.getMenu());
                     break;

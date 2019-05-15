@@ -45,12 +45,12 @@ public class FlagMode implements GameMode {
     }
 
     @Override
-    public Map mapGenerator() {
+    public Map generateMap() {
         return null;
     }
 
 //    @Override
-//    public void mapGenerator() throws InvalidCellException, CellIsFullException {
+//    public void generateMap() throws InvalidCellException, CellIsFullException {
 ////        GameMode.CollectableGenerator();
 //
 //        Random random = new Random();

@@ -2,6 +2,7 @@ package Controller.menu;
 
 import Controller.Game;
 import Controller.GameMode.GameMode;
+import Model.Map.Cell;
 import Model.card.hermione.Hero;
 import Model.card.spell.Buff.Buff;
 import Model.item.Item;
@@ -64,18 +65,24 @@ public class Battle extends Menu {
         }
 
         setPlayer(Game.accounts[0].getPlayer(), Game.accounts[1].getPlayer());
-        this.map = Map.generate();
+        this.map = this.gameMode.generateMap();
 
         try {
-            this.map.getCell(3, 1).setCardOnCell(this.player[0].getDeck().getHero());
-            this.player[0].getDeck().getHero().setLocation(this.map.getCell(3, 1));
-            System.err.println();
-            this.map.getCell(3, 9).setCardOnCell(this.player[1].getDeck().getHero());
-            this.player[1].getDeck().getHero().setLocation(this.map.getCell(3, 9));
+            this.insert(this.player[0].getDeck().getHero(),this.map.getCell(3, 1));
+            this.insert(this.player[1].getDeck().getHero(),this.map.getCell(3, 9));
+//            this.map.getCell(3, 1).setCardOnCell(this.player[0].getDeck().getHero());
+//            this.player[0].getDeck().getHero().setLocation(this.map.getCell(3, 1));
+//            System.err.println();
+//            this.map.getCell(3, 9).setCardOnCell(this.player[1].getDeck().getHero());
+//            this.player[1].getDeck().getHero().setLocation(this.map.getCell(3, 9));
         } catch (InvalidCellException e) {
             e.printStackTrace();
         }
         return true;
+    }
+    private void insert(Hermione hermione, Cell cell){
+        hermione.spawn(cell);
+        this.map.getCell(cell).setCardOnCell(hermione);
     }
 
     public void gameInfo() {

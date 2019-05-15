@@ -94,8 +94,8 @@ public class Map {
 
     public static Map generate() {
         Map map = new Map();
-        for (int i = 0; i < Map.HEIGHT; i++) {
-            for (int j = 0; j < Map.WIDTH; j++) {
+        for (int i = 0; i < Map.HEIGHT+1; i++) {
+            for (int j = 0; j < Map.WIDTH+1; j++) {
                 map.board[i][j] = new Cell(i, j);
             }
         }

@@ -36,7 +36,7 @@ public class ClassicMode implements GameMode {
     }
 
     @Override
-    public Map mapGenerator() {
+    public Map generateMap() {
         return Map.generate();
     }
 
