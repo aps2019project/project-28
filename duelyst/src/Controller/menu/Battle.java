@@ -262,8 +262,8 @@ public class Battle extends Menu {
 
         /*handling coolDown*/
         try {
-            this.player[0].getDeck().getHero().increaseRemainCoolDown();
-            this.player[1].getDeck().getHero().increaseRemainCoolDown();
+            this.player[0].getDeck().getHero().handleCoolDown();
+            this.player[1].getDeck().getHero().handleCoolDown();
         } catch (NullPointerException ignored) {
         }
         // TODO: 5/5/19 other stuff maybe?

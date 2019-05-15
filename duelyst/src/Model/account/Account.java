@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 class ScannerWrapper{
     Scanner scanner;
+    
 }
 
 public class Account {
