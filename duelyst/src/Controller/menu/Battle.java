@@ -298,8 +298,7 @@ public class Battle extends Menu {
                         deployBuffEndTurn(buff);
                     else deployBuffBeginningOfTurn(buff);
                 }
-            } catch (NullPointerException ignored) {
-            }
+            } catch (NullPointerException ignored) {}
             try {
                 for (Minion minion : plyr.getMinionsInGame()) {
                     for (Buff buff : minion.getAppliedBuffs()) {
