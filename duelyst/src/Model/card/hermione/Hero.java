@@ -2,13 +2,12 @@ package Model.card.hermione;
 
 import Controller.Game;
 import Model.Map.Cell;
-import Model.card.Card;
-import Model.card.OnCardDetailsPresentedListener;
 import View.Listeners.OnHeroDetailsPresentedListener;
+import exeption.CantSpecialPowerCooldownException;
 import exeption.InvalidCardException;
+import exeption.InvalidCellException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Hero extends Hermione {
 
@@ -20,15 +19,16 @@ public class Hero extends Hermione {
     // TODO: 4/15/19 final touches
     public void spawn(Cell cell) {
         super.spawn(cell);
+        remainCoolDOwnTime = cooldown - 1 ;
     }
 
 
     @Override
-    public boolean applySpecialPower(int x, int y) {
-
-        // TODO: 4/15/19 saE
-
-        return false;
+    public boolean applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException , CantSpecialPowerCooldownException {
+        if (this.remainCoolDOwnTime != cooldown) throw new CantSpecialPowerCooldownException() ;
+        this.SpecialPower.deploy(Game.battle.getPlayer(), Game.battle.getEnemyPlayer(), cell);
+        this.decreaseRemainCoolDown();
+        return true ;
     }
 
 
@@ -46,13 +46,13 @@ public class Hero extends Hermione {
         return cooldown;
     }
 
-    public void increaseRemainCoolDown() {
+    private void decreaseRemainCoolDown() {
         this.remainCoolDOwnTime--;
         if (this.remainCoolDOwnTime <= 0) this.remainCoolDOwnTime = this.cooldown;
     }
     public void handleCoolDown(){
         if(this.cooldown!=this.remainCoolDOwnTime){
-            this.increaseRemainCoolDown();
+            this.decreaseRemainCoolDown();
         }
     }
 

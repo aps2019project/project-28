@@ -903,7 +903,17 @@ public class ManuHandler {
                 System.out.println("Im afraid our little word doesnt have enough space for your ambitions");
             }
         } else if (word[0].equals("use") && word[1].equals("special") && word[2].equals("power")) {
-            menu.useSpecialPower(Integer.parseInt(word[3]), Integer.parseInt(word[4]));
+            try {
+                menu.useSpecialPower(Integer.parseInt(word[3]), Integer.parseInt(word[4]));
+            }catch(InvalidCellException e){
+//                System.out.println("sorry but you have to pick a different cell");
+//                System.out.println(e.getMessage());
+                e.printStackTrace();
+            }catch (InvalidCardException e){
+                System.out.println("sorry ! invalid card");
+            }catch (CantSpecialPowerCooldownException e){
+                System.out.println("sorry but you have to cool down first man !");
+            }
         } else if (word[0].equals("insert")) {
             try {
                 menu.insert(Integer.parseInt(word[1]), Integer.parseInt(word[3]), Integer.parseInt(word[4]));

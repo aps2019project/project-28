@@ -18,7 +18,7 @@ public abstract class Hermione extends Card {
     protected int originalHealthPoint;
     protected int attackPoint;
     protected Model.card.spell.SpecialPower SpecialPower;
-    protected ArrayList<Buff> appliedBuffs ;
+    protected ArrayList<Buff> appliedBuffs;
     protected AttackType attackType;
     protected int range;
     public static final int MOVE_RANGE = 2;
@@ -28,7 +28,7 @@ public abstract class Hermione extends Card {
     protected boolean canAttack = true;
     protected int numberOfFlags = 0;
     protected boolean hasFlag = false;
-    protected boolean canMove = true ;
+    protected boolean canMove = true;
     protected int attackCounter = 0;
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
 
@@ -60,11 +60,11 @@ public abstract class Hermione extends Card {
 
     public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
         System.err.println("debug");
-        if (!this.canAttack || this.actionTurn==2) throw new CantAttackException();
+        if (!this.canAttack || this.actionTurn == 2) throw new CantAttackException();
         if (this.attackType.canReach(this, enemyCard)) {
             this.attackCounter++;
             this.buffEffects.handle();
-            enemyCard.changeHealthPoint(-(1000)*this.attackPoint);
+            enemyCard.changeHealthPoint(-(1000) * this.attackPoint);
             // TODO: 5/15/19 -1000----------->-1
 
             if (enemyCard.getLocation().getCellAffect().contains(CellAffects.holly))
@@ -73,9 +73,10 @@ public abstract class Hermione extends Card {
             if (enemyCard.getHealthPoint() <= 0) {
                 try {
                     enemyCard.die();
-                } catch (InvalidCardException ignored) {}
+                } catch (InvalidCardException ignored) {
+                }
             }
-            this.actionTurn=2;
+            this.actionTurn = 2;
             return;
         }
         System.err.println("HOLD ON IM THROWING");
@@ -85,8 +86,8 @@ public abstract class Hermione extends Card {
     public void counterAttack(Hermione enemyCard) {
         if (!this.canCounterAttack) return;
         if (this.attackType.canReach(this, enemyCard)) {
-            if(this.healthPoint>0)
-                enemyCard.changeHealthPoint((-1)*this.attackPoint);
+            if (this.healthPoint > 0)
+                enemyCard.changeHealthPoint((-1) * this.attackPoint);
         }
     }
 
@@ -97,7 +98,7 @@ public abstract class Hermione extends Card {
 
     private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
         if (this.actionTurn != 0) throw new MoveTrunIsOverException();
-        if (!this.canMove) return false ;
+        if (!this.canMove) return false;
         if (Game.battle.getMap().getCell(x, y).isFull()) throw new DestinationOutOfreachException();
 
         // TODO: 5/5/19 if the path is not blocked by enemies
@@ -107,7 +108,7 @@ public abstract class Hermione extends Card {
     }
 
 
-    public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException,CardCantBeMovedException{
+    public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, CardCantBeMovedException {
         if (!canMove(x, y)) return false;
 
         Game.battle.getMap().getCell(this.location).clear();
@@ -125,12 +126,12 @@ public abstract class Hermione extends Card {
     }
 
 
-    public abstract boolean applySpecialPower(int x, int y);// TODO: 4/15/19 saE
+    public abstract boolean applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException , CantSpecialPowerCooldownException;
 
 
     public void spawn(Cell cell) {
-        this.canMove = true ;
-        this.originalHealthPoint=this.healthPoint;
+        this.canMove = true;
+        this.originalHealthPoint = this.healthPoint;
         this.setLocation(cell);
     }
 
@@ -149,13 +150,13 @@ public abstract class Hermione extends Card {
 
     public void changeHealthPoint(int healthPoint) {
         this.healthPoint += healthPoint;
-        if(this.healthPoint<=0)this.healthPoint=0;
+        if (this.healthPoint <= 0) this.healthPoint = 0;
 //        if(this.healthPoint>=this.originalHealthPoint)this.healthPoint=this.originalHealthPoint;
         // TODO: 5/14/19 in ro baadan check kon
     }
 
     public void changeAttackPoint(int attackPoint) {
-        this.attackPoint = attackPoint;
+        this.attackPoint += attackPoint;
     }
 
     public int getHealthPoint() {
@@ -292,12 +293,12 @@ public abstract class Hermione extends Card {
         return buffEffects;
     }
 
-    public void makeNewListForAppliedBuffs (){
-        this.appliedBuffs = new ArrayList<>() ;
+    public void makeNewListForAppliedBuffs() {
+        this.appliedBuffs = new ArrayList<>();
     }
 
 
-    public void setFlag(boolean flag){
-        this.hasFlag=flag;
+    public void setFlag(boolean flag) {
+        this.hasFlag = flag;
     }
 }

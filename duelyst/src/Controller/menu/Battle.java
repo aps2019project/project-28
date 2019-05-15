@@ -68,8 +68,8 @@ public class Battle extends Menu {
         this.map = this.gameMode.generateMap();
 
         try {
-            this.insert(this.player[0].getDeck().getHero(),this.map.getCell(3, 1));
-            this.insert(this.player[1].getDeck().getHero(),this.map.getCell(3, 9));
+            this.insert(this.player[0].getDeck().getHero(), this.map.getCell(3, 1));
+            this.insert(this.player[1].getDeck().getHero(), this.map.getCell(3, 9));
 //            this.map.getCell(3, 1).setCardOnCell(this.player[0].getDeck().getHero());
 //            this.player[0].getDeck().getHero().setLocation(this.map.getCell(3, 1));
 //            System.err.println();
@@ -80,7 +80,8 @@ public class Battle extends Menu {
         }
         return true;
     }
-    private void insert(Hermione hermione, Cell cell){
+
+    private void insert(Hermione hermione, Cell cell) {
         hermione.spawn(cell);
         this.map.getCell(cell).setCardOnCell(hermione);
     }
@@ -139,7 +140,7 @@ public class Battle extends Menu {
                     return;
                 }
             }
-            if(this.account.getPlayer().getDeck().getCard(ID) instanceof Hero){
+            if (this.account.getPlayer().getDeck().getCard(ID) instanceof Hero) {
                 this.account.getPlayer().setSelectedCard(this.account.getPlayer().getDeck().getCard(ID));
                 return;
             }
@@ -156,7 +157,7 @@ public class Battle extends Menu {
                 this.getPlayer().getCollectables().add(map.getCell(x, y).getCollectable());
                 map.getCell(x, y).clearCollectable();
             }
-            this.gameMode.getFlag(this.account.getPlayer(),hermione,
+            this.gameMode.getFlag(this.account.getPlayer(), hermione,
                     map.getCell(x, y));
 
         } catch (ClassCastException e) {
@@ -176,9 +177,11 @@ public class Battle extends Menu {
         handleDeaths();
     }
 
-    public void useSpecialPower(int x, int y) {
-        this.account.getPlayer().getDeck().getHero().applySpecialPower(x, y);
+    public void useSpecialPower(int x, int y) throws InvalidCellException , CantSpecialPowerCooldownException , InvalidCardException{
+        Cell cell = map.getCell(x, y);
+        this.account.getPlayer().getDeck().getHero().applySpecialPower(cell);
         handleDeaths();
+
     }
 
     public void showHand() {
@@ -306,7 +309,8 @@ public class Battle extends Menu {
                         deployBuffEndTurn(buff);
                     else deployBuffBeginningOfTurn(buff);
                 }
-            } catch (NullPointerException ignored) {}
+            } catch (NullPointerException ignored) {
+            }
             try {
                 for (Minion minion : plyr.getMinionsInGame()) {
                     for (Buff buff : minion.getAppliedBuffs()) {

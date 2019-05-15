@@ -22,6 +22,7 @@ public class ActionChangeAP implements Action {
             Hermione card = cell.getCardOnCell();
             Buff buff = new Buff(spell.getDuration(), spell.getPerk() > 0, BuffActionAP.getBuffAction());
             buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
+            card.changeAttackPoint(spell.getPerk());
         }
     }
 }
