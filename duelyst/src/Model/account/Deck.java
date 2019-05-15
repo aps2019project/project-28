@@ -2,6 +2,7 @@ package Model.account;
 
 import Model.card.Card;
 import Model.card.hermione.Hero;
+import Model.card.hermione.Minion;
 import Model.item.Item;
 import Model.item.Usable;
 import View.Listeners.OnDeckPresentedListener;
@@ -138,6 +139,15 @@ public class Deck {
         return true;
     }
 
+    public void moveAllToGraveYard(ArrayList<Minion> deads){
+        for (Card dead : deads) {
+            try {
+                this.moveToGraveYard(dead);
+            } catch (InvalidCardException ignored) {
+                ignored.printStackTrace();
+            }
+        }
+    }
     public void moveToGraveYard(Card card) throws InvalidCardException {
         if (this.hasCard(card)) {
             this.graveYard.add(card);

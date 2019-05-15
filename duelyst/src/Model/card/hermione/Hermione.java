@@ -69,13 +69,14 @@ public abstract class Hermione extends Card {
             if (enemyCard.getHealthPoint() <= 0) {
                 try {
                     enemyCard.die();
-                } catch (InvalidCardException e) {
+                } catch (InvalidCardException ignored) {
 //                    e.printStackTrace();
                 }
             }
             this.actionTurn=2;
             return;
         }
+        System.err.println("HOLD ON IM THROWING");
         throw new DestinationOutOfreachException();
     }
 
@@ -83,7 +84,7 @@ public abstract class Hermione extends Card {
         if (!this.canCounterAttack) return;
         if (this.attackType.canReach(this, enemyCard)) {
             if(this.healthPoint>0)
-                this.setHealthPoint(this.healthPoint + this.attackPoint);
+                enemyCard.changeHealthPoint((-1)*this.attackPoint);
         }
     }
 
@@ -93,7 +94,7 @@ public abstract class Hermione extends Card {
     }
 
     private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
-        if (this.actionTurn == 1) throw new MoveTrunIsOverException();
+        if (this.actionTurn != 0) throw new MoveTrunIsOverException();
         if (Game.battle.getMap().getCell(x, y).isFull()) throw new DestinationOutOfreachException();
 
         // TODO: 5/5/19 if the path is not blocked by enemies
@@ -128,10 +129,7 @@ public abstract class Hermione extends Card {
     }
 
     public void die() throws InvalidCardException {
-        Game.battle.getEnemyPlayer().getMinionsInGame().remove(this);
-//        Game.battle.getEnemy(Game.battle.getAccount()).getDeck().getGraveYard().add(this);
         Game.battle.getMap().getCell(this.getLocation()).setFull(false);
-        Game.battle.getEnemyPlayer().getDeck().moveToGraveYard(this);
     }
 
     public void reverseAP() {
@@ -145,7 +143,8 @@ public abstract class Hermione extends Card {
 
     public void changeHealthPoint(int healthPoint) {
         this.healthPoint += healthPoint;
-//        this.healthPoint = Integer.min(this.healthPoint, this.originalHealthPoint);
+        if(this.healthPoint<=0)this.healthPoint=0;
+//        if(this.healthPoint>=this.originalHealthPoint)this.healthPoint=this.originalHealthPoint;
         // TODO: 5/14/19 in ro baadan check kon
     }
 

@@ -2,7 +2,6 @@ package Controller.menu;
 
 import Controller.Game;
 import Controller.GameMode.GameMode;
-import Controller.menu.Menu;
 import Model.card.spell.Buff.Buff;
 import Model.item.Item;
 import View.Listeners.OnGameCardsPresentedListenr;
@@ -138,16 +137,18 @@ public class Battle extends Menu {
     public void attack(int cardID) throws NoCardHasBeenSelectedException, InvalidCardException, DestinationOutOfreachException, CantAttackException, InvalidCellException {
         Hermione myHermione = (Hermione) this.account.getPlayer().getSelectedCard();
         Hermione enemyCard = (Hermione) this.getEnemy(this.account).getDeck().getCard(cardID);
-
         myHermione.attack(enemyCard);
+        handleDeaths();
     }
 
     public void attackCombo() {
         // TODO: 5/5/19 COMMMBOOOOOOO
+        handleDeaths();
     }
 
     public void useSpecialPower(int x, int y) {
         this.account.getPlayer().getDeck().getHero().applySpecialPower(x, y);
+        handleDeaths();
     }
 
     public void showHand() {
@@ -160,24 +161,35 @@ public class Battle extends Menu {
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
         Card card=this.account.getPlayer().getHand().getCard(cardID);
         if(card instanceof Hermione){
-            this.account.getPlayer().spawn(this.account.getPlayer().getHand().getCard(cardID), this.map.getCell(x, y));
+            this.account.getPlayer().spawn(card, this.map.getCell(x, y));
+            this.account.getPlayer().changeMana((-1)*card.getManaPoint());
             try {
                 this.account.getPlayer().getHand().handleHand(this.account.getPlayer().getHand().getCard(cardID));
-            } catch (DeckIsEmptyException e) {
-                e.printStackTrace();
-            } catch (HandFullException e) {
+            } catch (DeckIsEmptyException | HandFullException e) {
                 e.printStackTrace();
             }
         }else if(card instanceof Spell){
             try {
                 ((Spell) card).deploy(this.account.getPlayer(),Battle.getMenu().getEnemy(this.account),Battle.getMenu().getMap().getCell(x,y));
+                this.account.getPlayer().changeMana((-1)*card.getManaPoint());
             } catch (InvalidCellException e) {
                 e.printStackTrace();
             }
         }
         // TODO: 5/5/19 one more exception  (read the doc)
+        handleDeaths();
     }
-
+    private void handleDeaths(){
+        for(int i=0;i<2;i++) {
+            ArrayList<Minion> deadMinions = new ArrayList<>();
+            for (Minion minion : this.player[i].getMinionsInGame()) {
+                if (minion.getHealthPoint() <= 0)
+                    deadMinions.add(minion);
+            }
+            this.player[i].getMinionsInGame().removeAll(deadMinions);
+            this.player[i].getDeck().moveAllToGraveYard(deadMinions);
+        }
+    }
     public void endTurn() throws HandFullException, DeckIsEmptyException, InvalidCardException {
 
         /*updating hand*/
@@ -192,11 +204,11 @@ public class Battle extends Menu {
         }
 
         /*enemy player passive Handling*/
-        turn++;
+        swapPlayers();
         for (Minion minion : this.getEnemy(this.account).getMinionsInGame()) {
             minion.itIsTime(SPATime.PASSIVE);
         }
-        turn -- ;
+        swapPlayers();
 
         //----------start-----------
         handleBuffs("end");
@@ -345,11 +357,11 @@ public class Battle extends Menu {
     }
 
     public Player getPlayer() {
-        return player[getTurn()];
+        return player[0];
     }
 
     public Player getEnemyPlayer() {
-        return player[1 - getTurn()];
+        return player[1];
     }
 
     public int getTurn() {

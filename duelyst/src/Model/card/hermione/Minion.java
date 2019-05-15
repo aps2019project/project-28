@@ -1,6 +1,7 @@
 package Model.card.hermione;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
 import exeption.CantAttackException;
@@ -10,6 +11,7 @@ import exeption.InvalidCellException;
 
 public class Minion extends Hermione{
     private SPATime SPActivationTime;
+    private int spawnTurn;
 
     public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint, AttackType attackType, int range,
                   Model.card.spell.SpecialPower specialPower,SPATime SPActivationTime, String info) {
@@ -20,6 +22,7 @@ public class Minion extends Hermione{
     @Override
     public void spawn(Cell cell){
         super.spawn(cell);
+        this.spawnTurn= Battle.getMenu().getOriginalTurn();
         Game.battle.getAccount().getPlayer().getMinionsInGame().add(this);
         this.itIsTime(SPATime.SPAWN);
 
@@ -51,7 +54,8 @@ public class Minion extends Hermione{
 
         @Override
         public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
-            this.itIsTime(SPATime.ATTACK);
+        if(Battle.getMenu().getTurn()<=this.spawnTurn+1)throw new CantAttackException();
+        this.itIsTime(SPATime.ATTACK);
             super.attack(enemyCard);
         }
 

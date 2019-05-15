@@ -39,6 +39,8 @@ public class Map {
     }
 
     public static int getRadiusDistance(Cell cell1, Cell cell2) {
+        System.err.println("Integer.max(Math.abs(cell1.getX()-cell2.getX()),Math.abs(cell1.getY()-cell2.getY())): "+ Integer.max(Math.abs(cell1.getX()-cell2.getX()),Math.abs(cell1.getY()-cell2.getY())));
+        System.err.println(cell1.getX()+" , "+cell1.getY()+ " | "+cell2.getX()+" , "+cell2.getY());
         return Integer.max(Math.abs(cell1.getX()-cell2.getX()),Math.abs(cell1.getY()-cell2.getY()));
 
     }
