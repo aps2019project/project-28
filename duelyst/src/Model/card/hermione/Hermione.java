@@ -107,12 +107,9 @@ public abstract class Hermione extends Card {
     }
 
 
-    public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException , CardCantBeMovedException{
-        try {
-            if (!canMove(x, y)) return false;
-        }catch (CardCantBeMovedException e){
-            throw e ;
-        }
+    public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException,CardCantBeMovedException{
+        if (!canMove(x, y)) return false;
+
         Game.battle.getMap().getCell(this.location).clear();
 
         this.setLocation(Game.battle.getMap().getCell(x, y));
