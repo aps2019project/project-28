@@ -499,6 +499,14 @@ public class ManuHandler {
 
             Game.accounts[Game.battle.getTurn()].doYourMove();
             commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
+
+//            System.err.println(Game.accounts[Game.battle.getTurn()].getOutputStream()==Game.accounts[1].getOutputStream());
+            System.err.println(Game.accounts[Game.battle.getTurn()].getName());
+            System.err.println(Game.accounts[0].getName()+" , "+Game.accounts[1].getName());
+//            System.err.println(Game.battle.getTurn());
+//            try {
+//                System.err.println(((AI)(Game.accounts[Game.battle.getTurn()])).output);
+//            }catch (Exception e){e.printStackTrace();}
         }
     }
 
@@ -825,11 +833,10 @@ public class ManuHandler {
                 System.out.println("are you sure?");
                 System.out.println("cause it seems like our enemy doesnt have such card on the ground");
             } catch (DestinationOutOfreachException e) {
-                System.out.println("marching on this destinations may not result in our benefit");
+                System.out.println("marchin on this destinations may not result in our benefit");
                 System.out.println("my lord.... please reconsider");
             } catch (CantAttackException e) {
                 System.out.println("this card cant attack due the spell unleashed upon it");
-                System.out.println("Or Maybe Because he/she is too tired :D");
             } catch (InvalidCellException e) {
                 System.out.println("Im afraid our little word doesnt have enough space for your ambitions");
             }

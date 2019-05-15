@@ -25,37 +25,8 @@
   <component name="ChangeListManager">
     <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Map/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Primary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Primary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/account/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/account/AI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Spell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Target.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Target.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/OwnMinionAndItsSurrounding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/OwnMinionAndItsSurrounding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/RandomMinionInSurrounding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/RandomMinionInSurrounding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/Target3RandomEnemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/Target3RandomEnemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllEnemyCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllEnemyCards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllMinionsInSurrounding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllMinionsInSurrounding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnCards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnMinions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetAllOwnMinions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyHero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyHero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyHeroColumn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyHeroColumn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyMinion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyMinion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyMinionswithin2ManhattanDistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyMinionswithin2ManhattanDistance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetHeroSurroundings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetHeroSurroundings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetMelee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetMelee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetOwnCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetOwnCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetOwnHero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetOwnHero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetOwnHeroRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetOwnHeroRow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetOwnMinion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetOwnMinion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandomEnemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandomEnemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandomOwn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandomOwn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandomOwnMinion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandomOwnMinion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRangedAndHybrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRangedAndHybrid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetSingleCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetSingleCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetSurroundings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetSurroundings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetThreeByThree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetThreeByThree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetTwoByTwo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetTwoByTwo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ManuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ManuHandler.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,8 +42,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/ManuHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="800" column="39" selection-start-line="800" selection-start-column="33" selection-end-line="800" selection-end-column="39" />
+            <state relative-caret-position="237">
+              <caret line="484" column="56" lean-forward="true" selection-start-line="484" selection-start-column="56" selection-end-line="484" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/account/AI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="105" column="82" lean-forward="true" selection-start-line="105" selection-start-column="82" selection-end-line="105" selection-end-column="82" />
+            <state relative-caret-position="720">
+              <caret line="321" column="5" lean-forward="true" selection-start-line="321" selection-start-column="5" selection-end-line="321" selection-end-column="5" />
               <folding>
                 <element signature="class#StringWrapper#0" />
                 <element signature="method#AI#0;class#AI#0" />
@@ -98,20 +69,19 @@
                 <element signature="e#7555#8928#0" />
                 <element signature="e#9193#10628#0" />
                 <element signature="e#10893#12330#0" />
-                <element signature="method#doYourMove#0;class#AI#0" />
-                <element signature="method#getOutputStream#0;class#AI#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyCard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1103">
-              <caret line="468" column="45" selection-start-line="468" selection-start-column="45" selection-end-line="468" selection-end-column="45" />
+            <state relative-caret-position="32">
+              <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#910#911#0" expanded="true" />
+                <element signature="e#942#943#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -129,7 +99,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>save</find>
       <find>thr</find>
       <find>show</find>
       <find>set</find>
@@ -159,6 +128,7 @@
       <find>output.set</find>
       <find>getTargetClass</find>
       <find>attack</find>
+      <find>System.err.println(</find>
     </findStrings>
     <replaceStrings>
       <replace>getTargetInstance</replace>
@@ -196,7 +166,6 @@
         <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandom.java" />
         <option value="$PROJECT_DIR$/Account.json" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Battle.java" />
-        <option value="$PROJECT_DIR$/src/View/ManuHandler.java" />
         <option value="$PROJECT_DIR$/src/Model/account/Account.java" />
         <option value="$PROJECT_DIR$/src/Model/Map/Map.java" />
         <option value="$PROJECT_DIR$/src/Model/card/spell/Target.java" />
@@ -230,6 +199,7 @@
         <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetTwoByTwo.java" />
         <option value="$PROJECT_DIR$/src/Model/Primary.java" />
         <option value="$PROJECT_DIR$/src/Model/account/AI.java" />
+        <option value="$PROJECT_DIR$/src/View/ManuHandler.java" />
       </list>
     </option>
   </component>
@@ -368,7 +338,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557897976870" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557906810904" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -466,14 +436,7 @@
       <workItem from="1557418476963" duration="6065000" />
       <workItem from="1557755825769" duration="14046000" />
       <workItem from="1557847073202" duration="4318000" />
-      <workItem from="1557894349025" duration="3615000" />
-    </task>
-    <task id="LOCAL-00030" summary="Json Primary 5">
-      <created>1557128274917</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1557128274917</updated>
+      <workItem from="1557894349025" duration="5506000" />
     </task>
     <task id="LOCAL-00031" summary="commit to pull">
       <created>1557129377441</created>
@@ -811,11 +774,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557868748661</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="working on AI , fixed some bugs and corrected the outputs of it ! + added getTargetClass to all targets">
+      <created>1557898031812</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1557898031814</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31350000" />
+    <option name="totallyTimeSpent" value="33241000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -830,7 +800,7 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22455573" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22455573" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -840,10 +810,10 @@
       <window_info id="Learn" order="7" weight="0.32977587" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32769832" />
-      <window_info anchor="bottom" auto_hide="true" id="Debug" order="2" weight="0.5602241" />
+      <window_info anchor="bottom" auto_hide="true" id="Debug" order="2" weight="0.12885155" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" auto_hide="true" id="Run" order="5" weight="0.37535015" />
+      <window_info active="true" anchor="bottom" auto_hide="true" id="Run" order="5" visible="true" weight="0.7815126" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32633054" />
       <window_info anchor="bottom" id="TeamCity" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49928367" weight="0.32769832" />
@@ -924,8 +894,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="menuPatterns 2" />
-    <MESSAGE value="Json" />
     <MESSAGE value="Menu Patterns bug fix" />
     <MESSAGE value="Menu Patterns bug fix 2" />
     <MESSAGE value="Menu Patterns bug fix 3" />
@@ -949,7 +917,9 @@
     <MESSAGE value="finished up with all the targets" />
     <MESSAGE value="solved the handle buff bug in battle" />
     <MESSAGE value="working on it" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on it" />
+    <MESSAGE value="working on AI , fixed some bugs and corrected the outputs of it !" />
+    <MESSAGE value="working on AI , fixed some bugs and corrected the outputs of it ! + added getTargetClass to all targets" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on AI , fixed some bugs and corrected the outputs of it ! + added getTargetClass to all targets" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/ItemTargetOwnHero.java" />
@@ -1231,17 +1201,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-          <folding>
-            <element signature="e#910#911#0" expanded="true" />
-            <element signature="e#942#943#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyHero.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -1447,20 +1406,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+    <entry file="file://$PROJECT_DIR$/src/View/ManuHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1103">
-          <caret line="468" column="45" selection-start-line="468" selection-start-column="45" selection-end-line="468" selection-end-column="45" />
+        <state relative-caret-position="237">
+          <caret line="484" column="56" lean-forward="true" selection-start-line="484" selection-start-column="56" selection-end-line="484" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/ManuHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="800" column="39" selection-start-line="800" selection-start-column="33" selection-end-line="800" selection-end-column="39" />
+        <state relative-caret-position="256">
+          <caret line="468" column="45" selection-start-line="468" selection-start-column="45" selection-end-line="468" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1469,8 +1428,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/account/AI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="105" column="82" lean-forward="true" selection-start-line="105" selection-start-column="82" selection-end-line="105" selection-end-column="82" />
+        <state relative-caret-position="720">
+          <caret line="321" column="5" lean-forward="true" selection-start-line="321" selection-start-column="5" selection-end-line="321" selection-end-column="5" />
           <folding>
             <element signature="class#StringWrapper#0" />
             <element signature="method#AI#0;class#AI#0" />
@@ -1484,8 +1443,17 @@
             <element signature="e#7555#8928#0" />
             <element signature="e#9193#10628#0" />
             <element signature="e#10893#12330#0" />
-            <element signature="method#doYourMove#0;class#AI#0" />
-            <element signature="method#getOutputStream#0;class#AI#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+          <folding>
+            <element signature="e#910#911#0" expanded="true" />
+            <element signature="e#942#943#0" expanded="true" />
           </folding>
         </state>
       </provider>

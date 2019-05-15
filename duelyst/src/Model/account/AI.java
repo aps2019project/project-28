@@ -122,11 +122,11 @@ public class AI extends Account {
                     output.set("End turn");
                     return ;
                 }
-                if (move % 2 == 1){
+                if (move % 2 == 1 && player.getMinionsInGame().size() > 0){
                     command = "Select " + player.getMinionsInGame().get(move-5) ;
                     output.set(command);
                 }
-                else{
+                else if (player.getMinionsInGame().size() > 0){
                     Minion card = player.getMinionsInGame().get(move-6) ;
                     command = attack(card) ;
                     output.set(command);
@@ -324,8 +324,7 @@ public class AI extends Account {
     @Override
     public void doYourMove() {
         this.play();
-        System.err.println(outputStream);
-        if(output.string==null || output.string.isEmpty()) output.set("bad riiiidam");
+        if(output.string==null || output.string.isEmpty()) output.set("dude output is empty !");
     }
 
     @Override
