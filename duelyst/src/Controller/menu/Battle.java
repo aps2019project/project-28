@@ -2,6 +2,7 @@ package Controller.menu;
 
 import Controller.Game;
 import Controller.GameMode.GameMode;
+import Model.card.hermione.Hero;
 import Model.card.spell.Buff.Buff;
 import Model.item.Item;
 import View.Listeners.OnGameCardsPresentedListenr;
@@ -130,6 +131,10 @@ public class Battle extends Menu {
                     this.account.getPlayer().setSelectedCard(minion);
                     return;
                 }
+            }
+            if(this.account.getPlayer().getDeck().getCard(ID) instanceof Hero){
+                this.account.getPlayer().setSelectedCard(this.account.getPlayer().getDeck().getCard(ID));
+                return;
             }
         }
         throw new InvalidCardException();
