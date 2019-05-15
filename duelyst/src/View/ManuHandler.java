@@ -438,9 +438,7 @@ public class ManuHandler {
     }
 
     public static void main(String[] args) {
-        System.err.println("im out of While");
         Scanner commands=Game.accounts[0].getOutputStream();
-//        if (commands.hasNext())System.err.println(commands.nextLine());
         currentMenu.showMenu();
         String command ;
         while(commands.hasNext()){
@@ -475,7 +473,7 @@ public class ManuHandler {
                 e.printStackTrace();
             }
             currentMenu.showMenu();
-            System.err.println("i hate you "+ Game.accounts[Game.battle.getTurn()].getName());
+
             Game.accounts[Game.battle.getTurn()].doYourMove();
             commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
 

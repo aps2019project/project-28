@@ -53,7 +53,11 @@ public class Hero extends Hermione {
     @Override
     public void die() throws InvalidCardException {
         super.die();
-        Game.battle.getEnemyPlayer().getDeck().killHero();
+        if (Game.battle.getPlayer().getDeck().getHero().equals(this)){
+            Game.battle.getPlayer().getDeck().killHero();
+        }else if (Game.battle.getEnemyPlayer().getDeck().getHero().equals(this)){
+            Game.battle.getEnemyPlayer().getDeck().killHero();
+        }
     }
 
     private static ArrayList<OnHeroDetailsPresentedListener> heroDetailsPresenters=new ArrayList<>();

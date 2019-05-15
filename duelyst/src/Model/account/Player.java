@@ -175,4 +175,7 @@ public class Player {
         this.hasAssasinationDagger = hasAssasinationDagger;
     }
 
+    public void changeMana(int manaPoint) {
+        this.mana+=manaPoint;
+    }
 }
