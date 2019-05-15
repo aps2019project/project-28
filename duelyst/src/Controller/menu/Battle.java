@@ -41,14 +41,15 @@ public class Battle extends Menu {
             {new KingSlayerCounter(player[0]), new KingSlayerCounter(player[1])};
 
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
-    private ArrayList<OnGameCardsPresentedListenr> cardsPresenters=new ArrayList<>();
-    public Battle( String name) {
+    private ArrayList<OnGameCardsPresentedListenr> cardsPresenters = new ArrayList<>();
+
+    public Battle(String name) {
         super(name);
     }
 
     public static Battle getMenu() {
-        if(Battle.menu==null){
-            Battle.menu=new Battle("Battle");
+        if (Battle.menu == null) {
+            Battle.menu = new Battle("Battle");
         }
         return menu;
     }
@@ -56,21 +57,23 @@ public class Battle extends Menu {
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
-        if(Game.accounts[0].getCollection().getMainDeck()==null || Game.accounts[1].getCollection().getMainDeck()==null){
+        if (Game.accounts[0].getCollection().getMainDeck() == null || Game.accounts[1].getCollection().getMainDeck() == null) {
             System.out.println("Please Select your Main Deck");
             return false;
         }
 
-        setPlayer(Game.accounts[0].getPlayer(),Game.accounts[1].getPlayer());
+        setPlayer(Game.accounts[0].getPlayer(), Game.accounts[1].getPlayer());
         this.map = Map.generate();
 
         try {
-            this.map.getCell(3,1).setCardOnCell(this.player[0].getDeck().getHero());
-            this.player[0].getDeck().getHero().setLocation(this.map.getCell(3,1));
+            this.map.getCell(3, 1).setCardOnCell(this.player[0].getDeck().getHero());
+            this.player[0].getDeck().getHero().setLocation(this.map.getCell(3, 1));
             System.err.println();
-            this.map.getCell(3,9).setCardOnCell(this.player[1].getDeck().getHero());
-            this.player[1].getDeck().getHero().setLocation(this.map.getCell(3,9));
-        } catch (InvalidCellException e){e.printStackTrace();}
+            this.map.getCell(3, 9).setCardOnCell(this.player[1].getDeck().getHero());
+            this.player[1].getDeck().getHero().setLocation(this.map.getCell(3, 9));
+        } catch (InvalidCellException e) {
+            e.printStackTrace();
+        }
         return true;
     }
 
@@ -89,8 +92,8 @@ public class Battle extends Menu {
         System.out.println("MINIONS:");
         for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
             for (OnGameCardsPresentedListenr presenter : Battle.getMenu().getCardsPresenters()) {
-                    presenter.showCard(minion);
-                }
+                presenter.showCard(minion);
+            }
         }
 
     }
@@ -118,12 +121,18 @@ public class Battle extends Menu {
 
     public void select(int ID) throws InvalidCardException, InvalidItemException {
         Deck deck = this.account.getPlayer().getDeck();
-        if (deck.hasCard(ID)) {
-            Card card = deck.getCard(ID);
-            this.account.getPlayer().setSelectedCard(card);
-        } else if (this.account.getPlayer().hasItem(ID)) {
+        if (this.account.getPlayer().hasItem(ID)) {
             this.account.getPlayer().setSelectedItem(this.account.getPlayer().getItem(ID));
+            return;
+        } else if (deck.hasCard(ID)) {
+            for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
+                if (minion.getCardID() == ID) {
+                    this.account.getPlayer().setSelectedCard(minion);
+                    return;
+                }
+            }
         }
+        throw new InvalidCardException();
     }
 
 
@@ -132,9 +141,9 @@ public class Battle extends Menu {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
             hermione.move(x, y);
             System.err.println();
-            if(map.getCell(x,y).hasItem()){
-                this.getPlayer().getCollectables().add(map.getCell(x,y).getCollectable());
-                map.getCell(x,y).clearCollectable();
+            if (map.getCell(x, y).hasItem()) {
+                this.getPlayer().getCollectables().add(map.getCell(x, y).getCollectable());
+                map.getCell(x, y).clearCollectable();
             }
         } catch (ClassCastException e) {
             throw new CardCantBeMovedException();//because its Spell
@@ -166,19 +175,19 @@ public class Battle extends Menu {
     }
 
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
-        Card card=this.account.getPlayer().getHand().getCard(cardID);
-        if(card instanceof Hermione){
+        Card card = this.account.getPlayer().getHand().getCard(cardID);
+        if (card instanceof Hermione) {
             this.account.getPlayer().spawn(card, this.map.getCell(x, y));
-            this.account.getPlayer().changeMana((-1)*card.getManaPoint());
+            this.account.getPlayer().changeMana((-1) * card.getManaPoint());
             try {
                 this.account.getPlayer().getHand().handleHand(this.account.getPlayer().getHand().getCard(cardID));
             } catch (DeckIsEmptyException | HandFullException e) {
                 e.printStackTrace();
             }
-        }else if(card instanceof Spell){
+        } else if (card instanceof Spell) {
             try {
-                ((Spell) card).deploy(this.account.getPlayer(),Battle.getMenu().getEnemy(this.account),Battle.getMenu().getMap().getCell(x,y));
-                this.account.getPlayer().changeMana((-1)*card.getManaPoint());
+                ((Spell) card).deploy(this.account.getPlayer(), Battle.getMenu().getEnemy(this.account), Battle.getMenu().getMap().getCell(x, y));
+                this.account.getPlayer().changeMana((-1) * card.getManaPoint());
             } catch (InvalidCellException e) {
                 e.printStackTrace();
             }
@@ -186,8 +195,9 @@ public class Battle extends Menu {
         // TODO: 5/5/19 one more exception  (read the doc)
         handleDeaths();
     }
-    private void handleDeaths(){
-        for(int i=0;i<2;i++) {
+
+    private void handleDeaths() {
+        for (int i = 0; i < 2; i++) {
             ArrayList<Minion> deadMinions = new ArrayList<>();
             for (Minion minion : this.player[i].getMinionsInGame()) {
                 if (minion.getHealthPoint() <= 0)
@@ -197,6 +207,7 @@ public class Battle extends Menu {
             this.player[i].getDeck().moveAllToGraveYard(deadMinions);
         }
     }
+
     public void endTurn() throws HandFullException, DeckIsEmptyException, InvalidCardException {
 
         /*updating hand*/
@@ -223,7 +234,7 @@ public class Battle extends Menu {
 
         this.account = this.getEnemy(this.account).getUser();
         swapPlayers();
-        System.err.println(this.account.getName()+" , "+this.getEnemy(this.account).getUser().getName());
+        System.err.println(this.account.getName() + " , " + this.getEnemy(this.account).getUser().getName());
         /*handling Mana*/
         this.account.getPlayer().setMaxMana(MAX_MANA_PER_TURN[Integer.min(turn, MAX_MANA_PER_TURN.length - 1)]);
         this.account.getPlayer().reFillMana();
@@ -234,7 +245,8 @@ public class Battle extends Menu {
         try {
             this.player[0].getDeck().getHero().increaseRemainCoolDown();
             this.player[1].getDeck().getHero().increaseRemainCoolDown();
-        }catch(NullPointerException ignored){}
+        } catch (NullPointerException ignored) {
+        }
         // TODO: 5/5/19 other stuff maybe?
 
         for (int i = 0; i < 2; i++) {
@@ -249,25 +261,24 @@ public class Battle extends Menu {
         }
 
         /*checkState*/
-        if(this.gameMode.checkState()){
+        if (this.gameMode.checkState()) {
             this.gameMode.handleWin();
-            ManuHandler.currentMenu=this.exit();
-        }
-        else{
+            ManuHandler.currentMenu = this.exit();
+        } else {
             nextTurn();
         }
 
     }
 
     private void swapPlayers() {
-        Player temp=this.player[0];
-        this.player[0]=this.player[1];
-        this.player[1]=temp;
+        Player temp = this.player[0];
+        this.player[0] = this.player[1];
+        this.player[1] = temp;
     }
 
 
     private void handleBuffs(String endOrBeginning) {
-        for (int i = 0 ; i < 2 ; i++) {
+        for (int i = 0; i < 2; i++) {
             turn += i == 1 ? 1 : 0;
             Player plyr = player[getTurn()];
             try {
@@ -287,11 +298,12 @@ public class Battle extends Menu {
                     }
                 }
                 turn += i == 1 ? -1 : 0;
-            }catch(NullPointerException ignored){}
+            } catch (NullPointerException ignored) {
+            }
         }
     }
 
-    private void nextTurn(){
+    private void nextTurn() {
         turn++;
 
 
@@ -307,7 +319,7 @@ public class Battle extends Menu {
     private void deployBuffEndTurn(Buff buff) {
         try {
             buff.handleBuffEndOfTurn();
-        }catch (InvalidCellException ignored){
+        } catch (InvalidCellException ignored) {
             System.err.println("buff handle in battle menu end of turn");
         }
     }
@@ -315,7 +327,7 @@ public class Battle extends Menu {
     private void deployBuffBeginningOfTurn(Buff buff) {
         try {
             buff.handleBuffBeginningOfTurn();
-        }catch (InvalidCellException|BuffHasntBeenDeployedYetException ignored){
+        } catch (InvalidCellException | BuffHasntBeenDeployedYetException ignored) {
             System.err.println("buff handle in battle menu beginning of turn");
         }
     }
@@ -419,12 +431,15 @@ public class Battle extends Menu {
     public GameMode getGameMode() {
         return gameMode;
     }
+
     public void setGameMode(GameMode gameMode) {
         this.gameMode = gameMode;
     }
-    public void addCardPresentedListener(OnGameCardsPresentedListenr listener){
+
+    public void addCardPresentedListener(OnGameCardsPresentedListenr listener) {
         this.cardsPresenters.add(listener);
     }
+
     public ArrayList<OnGameCardsPresentedListenr> getCardsPresenters() {
         return cardsPresenters;
     }
@@ -433,9 +448,10 @@ public class Battle extends Menu {
         this.account.getPlayer().getSelectedItem().deploy(Game.battle.getMap().getCell(x, y));
         // TODO: 5/5/19 saE doroste dg?
     }
+
     public void showInfo() throws NoItemHasBeenSelectedException {
         Item item = this.account.getPlayer().getSelectedItem();
-        if(item==null)throw new NoItemHasBeenSelectedException();
+        if (item == null) throw new NoItemHasBeenSelectedException();
         for (OnItemDetailPresentedListener presenter : item.getItemDetailPresenters()) {
             presenter.showItemDetail(item);
         }
