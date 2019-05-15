@@ -65,6 +65,8 @@ public class AI extends Account {
         } catch (InvalidDeckException e) {
         }
     }
+
+
     @Override
     public String play() {
         move++ ;
@@ -319,8 +321,7 @@ public class AI extends Account {
 
     @Override
     public Scanner getOutputStream() {
-        this.play();
-        if(output.isEmpty() || output==null)output="chert o pert";
+        if(output==null || output.isEmpty()) output = "End turn";
         if(this.outputStream==null || this.outputStream.scanner==null){
             this.outputStream = new ScannerWrapper();
             this.outputStream.scanner = new Scanner(output);

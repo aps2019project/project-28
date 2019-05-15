@@ -69,7 +69,7 @@ public class Battle extends Menu {
             this.map.getCell(3,9).setCardOnCell(this.player[1].getDeck().getHero());
             this.player[1].getDeck().getHero().setLocation(this.map.getCell(3,9));
         } catch (InvalidCellException e){e.printStackTrace();}
-        System.err.println("bitch bitch im here fuck you");
+        System.err.println("DUUUUUDE !");
         return true;
     }
 
@@ -200,7 +200,6 @@ public class Battle extends Menu {
 
         //----------start-----------
         handleBuffs("end");
-        // TODO: 5/14/19 az comment dar biad
         //-------------end----------
 
         this.account = this.getEnemy(this.account).getUser();
@@ -283,7 +282,6 @@ public class Battle extends Menu {
         }
         this.account.getPlayer().getDeck().getHero().setActionTurn(0);
         handleBuffs("beginning");
-        // TODO: 5/14/19 comment bala ro bardar
 
     }
 

@@ -28,6 +28,7 @@ public class Map {
         ArrayList<Cell> cells = new ArrayList<>() ;
         for (Cell[] cel1 : this.board){
             for (Cell cel : cel1){
+                if (cel == null) continue;
                 if (Map.getManhattanDistance(cell , cel) == distance) cells.add(cel) ;
             }
         }

@@ -442,17 +442,17 @@ public class ManuHandler {
     public static void main(String[] args) {
 
         Scanner commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
+        if (commands.hasNext())System.err.println(commands.nextLine());
         currentMenu.showMenu();
-
+        String command ;
         while(commands.hasNext()){
             try {
-                String command = commands.nextLine().toLowerCase().trim();
+                command = commands.nextLine().toLowerCase().trim();
                 String[] word = command.split(" ");
                 if (!currentMenu.allowsCommand(command)) {
                     System.out.println("Invalid Command");
-                    continue;
-                }
-                if (commonCommandHandler(word)) {
+                }else if (commonCommandHandler(word)) {
+
                 } else if (currentMenu instanceof SignInMenu) {
                     SignInMenuCommandHandler(word);
                 } else if (currentMenu instanceof CollectionMenu) {
@@ -477,7 +477,7 @@ public class ManuHandler {
                 e.printStackTrace();
             }
             currentMenu.showMenu();
-            commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
+            commands=Game.accounts[0].getOutputStream();
         }
     }
 
@@ -762,7 +762,7 @@ public class ManuHandler {
         if(word[0].equals("game") && word[1].equals("info")){
             menu.gameInfo();
         }
-        else if(word[0].equals("show")){
+        else if(word[0].equals("show") && word.length > 1){
             if(word[1].equals("my") && word[2].equals("minions")){
                 menu.showMyMinions();
             }else if(word[1].equals("opponent") && word[2].equals("minions")){
