@@ -28,7 +28,7 @@ public abstract class Hermione extends Card {
     protected boolean canAttack = true;
     protected int numberOfFlags = 0;
     protected boolean hasFlag = false;
-    protected boolean canMove;
+    protected boolean canMove = true ;
     protected int attackCounter = 0;
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
 
@@ -72,9 +72,7 @@ public abstract class Hermione extends Card {
             if (enemyCard.getHealthPoint() <= 0) {
                 try {
                     enemyCard.die();
-                } catch (InvalidCardException ignored) {
-//                    e.printStackTrace();
-                }
+                } catch (InvalidCardException ignored) {}
             }
             this.actionTurn=2;
             return;
@@ -98,6 +96,8 @@ public abstract class Hermione extends Card {
 
     private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
         if (this.actionTurn != 0) throw new MoveTrunIsOverException();
+        if (!this.canMove){
+            System.err.println("it's the canMove -_- _______-----_______-----______"); return false ;}
         if (Game.battle.getMap().getCell(x, y).isFull()) throw new DestinationOutOfreachException();
 
         // TODO: 5/5/19 if the path is not blocked by enemies
@@ -128,6 +128,7 @@ public abstract class Hermione extends Card {
 
 
     public void spawn(Cell cell) {
+        this.canMove = true ;
         this.setLocation(cell);
     }
 
