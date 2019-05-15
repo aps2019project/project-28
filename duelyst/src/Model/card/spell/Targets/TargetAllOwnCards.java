@@ -25,4 +25,7 @@ public class TargetAllOwnCards implements Target {
         }
         return TargetAllCards.getTarget(player);
     }
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }

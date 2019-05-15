@@ -8,7 +8,7 @@ import exeption.InvalidCellException;
 
 public class TargetRangedAndHybrid implements Target {
         private static TargetRangedAndHybrid obj ;
-        public static TargetRangedAndHybrid getTargetClass() {
+        public static TargetRangedAndHybrid getTargetInstance() {
             if (obj == null) obj = new TargetRangedAndHybrid();
             return obj;
         }
@@ -20,5 +20,8 @@ public class TargetRangedAndHybrid implements Target {
             }
             return new Cell[] {cell} ;
         }
+    public Target getTargetClass() {
+        return this.obj ;
+    }
     }
 

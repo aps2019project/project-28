@@ -47,4 +47,7 @@ public class RandomMinionInSurrounding implements Target {
         cells[0] = minions.get(r).getLocation() ;
         return cells ;
     }
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }

@@ -25,4 +25,8 @@ public class TargetSingleCell implements Target {
         cells[0] = cell ;
         return cells ;
     }
+
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }

@@ -31,4 +31,8 @@ public class TargetOwnHeroRow implements Target {
         }
         return cells ;
     }
+
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }

@@ -31,4 +31,7 @@ public class TargetEnemyHeroColumn implements Target {
         }
         return cells ;
     }
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }

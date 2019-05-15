@@ -30,6 +30,10 @@ public class TargetTwoByTwo implements Target {
         Cell[] cells = {cell, map.getCell(x, y + 1), map.getCell(x + 1, y), map.getCell(x + 1, y + 1)};
         return cells ;
     }
+
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }
 
 

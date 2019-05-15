@@ -26,4 +26,7 @@ public class TargetAllEnemyCards  implements Target {
         return TargetAllCards.getTarget(enemy);
 
     }
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }

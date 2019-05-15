@@ -43,6 +43,9 @@ public class Target3RandomEnemy implements Target {
             hermiones.remove(r);
         }
         return cells ;
+    }
 
+    public Target getTargetClass() {
+        return this.obj ;
     }
 }

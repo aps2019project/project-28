@@ -38,4 +38,7 @@ public class TargetEnemyMinionswithin2ManhattanDistance implements Target {
         }
         return cells ;
     }
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }
