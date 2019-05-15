@@ -19,7 +19,7 @@ public class Hero extends Hermione {
 
     // TODO: 4/15/19 final touches
     public void spawn(Cell cell) {
-        this.setLocation(cell);
+        super.spawn(cell);
     }
 
     @Override

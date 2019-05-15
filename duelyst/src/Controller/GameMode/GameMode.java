@@ -6,5 +6,5 @@ public interface GameMode {
 
     boolean checkState();
     void handleWin();
-    Map mapGenerator();
+    Map generateMap();
 }
