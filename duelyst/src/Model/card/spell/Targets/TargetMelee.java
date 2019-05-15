@@ -7,7 +7,7 @@ import exeption.InvalidCellException;
 
 public class TargetMelee implements Target {
         private static TargetMelee obj ;
-        public static TargetMelee getTargetClass() {
+        public static TargetMelee getTargetInstance() {
             if (obj == null) obj = new TargetMelee() ;
             return obj ;
         }
@@ -19,5 +19,9 @@ public class TargetMelee implements Target {
             }
             return new Cell[] {cell} ;
         }
+
+    public Target getTargetClass() {
+        return this.obj ;
+    }
     }
 

@@ -36,4 +36,7 @@ public class OwnMinionAndItsSurrounding implements Target{
         cells.toArray(cells2);
         return cells2 ;
     }
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }

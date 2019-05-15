@@ -23,4 +23,7 @@ public class TargetRandomOwnMinion implements Target {
         int r = rand.nextInt(player.getMinionsInGame().size()) ;
         return new Cell[] {player.getMinionsInGame().get(r).getLocation()} ;
     }
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }

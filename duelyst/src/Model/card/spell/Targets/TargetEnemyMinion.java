@@ -26,4 +26,7 @@ public class TargetEnemyMinion implements Target {
         }
         else throw new InvalidCellException();
     }
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }

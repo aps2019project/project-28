@@ -29,7 +29,7 @@ class StringWrapper{
 }
 public class AI extends Account {
     int level;
-    int move; //0: insert card , 1&3: select hero, 2: move Hero ,
+    int move = -1; //0: insert card , 1&3: select hero, 2: move Hero ,
                 // 4: attack with hero ,and then : minions : select-move-select-attack
     Map map;
     Player enemy;
@@ -69,12 +69,11 @@ public class AI extends Account {
             collection.setMainDeck(deck.getName());
 
 
-        } catch (InvalidDeckException e) {
-        }
+        } catch (InvalidDeckException ignored) {}
     }
 
 
-    public String play() {
+    private void play() {
         move++ ;
         String command;
         map = Game.battle.getMap();
@@ -90,23 +89,23 @@ public class AI extends Account {
                 }
                 if (command != null && !command.isEmpty()){
                     output.set(command);
-                    return command;
+                    return ;
                 }
                 else move++ ;
             case 1:
             case 3:
                 command = "Select "+ collection.getMainDeck().getHero().getCardID();
                 output.set(command);
-                return command;
+                return ;
             case 2:
                 Hero hero = this.player.getDeck().getHero();//collection.getMainDeck().getHero();
                 for (int i = 2 ; i >0 ; i--){
                     Cell[] cells = map.getCellsInDistance(hero.getLocation() , i) ;
                     for (Cell cell : cells){
                         if (cell.getCardOnCell() == null) {
-                            command = "Move to (" + cell.getX() + ", " + cell.getY()+")" ;
+                            command = "Move to " + cell.getX() + " " + cell.getY() ;
                             output.set(command);
-                            return command ;
+                            return ;
                         }
                     }
                 }
@@ -115,27 +114,22 @@ public class AI extends Account {
             case 4:
                 hero = collection.getMainDeck().getHero() ;
                  command = attack(hero);
-                if (command != null){
-                    output.set(command);
-                    return command;
-                }
-                else move++;
+                output.set(command);
+                return ;
             default:
                 if (move > player.getMinionsInGame().size() + 5) {
                     move = -1 ;
                     output.set("End turn");
-                    return "End turn";
+                    return ;
                 }
                 if (move % 2 == 1){
                     command = "Select " + player.getMinionsInGame().get(move-5) ;
                     output.set(command);
-                    return command ;
                 }
                 else{
                     Minion card = player.getMinionsInGame().get(move-6) ;
                     command = attack(card) ;
                     output.set(command);
-                    return command ;
                 }
         }
     }
@@ -145,22 +139,22 @@ public class AI extends Account {
         if (card.canAttackThisCard(enemy.getDeck().getHero())){
             command = "Attack " + enemy.getDeck().getHero();
             output.set(command);
-            return command ;
         }
         Random rand = new Random();
         ArrayList<Minion> target = new ArrayList<>(enemy.getMinionsInGame()) ;
+        if (target.isEmpty()) return "nope not my cup of tea" ;
         int counter = 0 ;
         for (int i = rand.nextInt(target.size()) ; true ; i = rand.nextInt(target.size())){
             counter++ ;
             if (card.canAttackThisCard(target.get(i))){
-                command = "Attack " + target.get(i);
+                command = "Attack " + target.get(i).getCardID();
                 output.set(command);
                 return command ;
             }
             if (counter > 30) break ;
         }
-        output.set("ridam");
-        return "" ;
+        output.set("Unfortunately AI has stopped working");
+        return "Unfortunately AI has stopped working" ;
     }
 
     private String insertMinion() {
@@ -168,7 +162,7 @@ public class AI extends Account {
         for (Card card : this.player.getHand().getCards()) {
             if (card.getClass().equals(Minion.class)) {
                 if (player.getMana() >= card.getPrice()) {
-                    command = "Insert " + card.getName() + " in (";
+                    command = "Insert " + card.getName() + " in ";
                     break;
                 }
             }
@@ -181,14 +175,13 @@ public class AI extends Account {
             Cell[] cells = this.map.getCellsInDistance(this.collection.getMainDeck().getHero().getLocation(), i);
             for (Cell cell : cells) {
                 if (cell.getCardOnCell() == null) {
-                    command = command + cell.getX() + ", " + cell.getY() + ")";
+                    command = command + cell.getX() + " " + cell.getY() ;
                     output.set(command);
-                    return command;
                 }
             }
         }
-        output.set("ridam");
-        return "";
+        output.set("AI has decided not to work somehow!");
+        return "AI has decided not to work somehow!";
     }
 
     private String insertSpell() {
@@ -197,7 +190,7 @@ public class AI extends Account {
         for (Card card : this.player.getHand().getCards()) {
             if (card.getClass().equals(Spell.class)) {
                 if (player.getMana() >= card.getPrice()) {
-                    command = "Insert " + card.getName() + " in (";
+                    command = "Insert " + card.getName() + " in ";
                     spell = (Spell) card;
                     break;
                 }
@@ -205,26 +198,29 @@ public class AI extends Account {
         }
         if (command.isEmpty() || spell == null) {
             output.set(command);
-            return command;
         }
-        Target target = spell.getTarget();
+        Target target ;
+        try {
+            target = spell.getTargetClass();
+        }catch(NullPointerException e){
+            System.err.println("AI wanted to deploy a spell but it didn't have a target class !");
+            return "Spell has no target" ;
+        }
         for (Cell cell : map.getCells()) {
             try {
                 target.getTarget(cell);
-                command = command + cell.getX() + ", " + cell.getY() + ")";
+                command = command + cell.getX() + " " + cell.getY() ;
                 output.set(command);
-                return command;
-            } catch (InvalidCellException e) {
-                continue;
-            }
+            } catch (InvalidCellException ignored) {}
+
         }
-        output.set("ridam");
-        return "";
+        output.set("AI has decided not to work somehow!");
+        return "AI has decided not to work somehow!";
     }
 
     private Deck getDeck(int level) throws FullDeckException, DeckAlreadyHasThisCardException,
             DeckAlreadyHasAHeroException, DeckAlreadyHasThisItemException {
-        Deck deck = new Deck("AIDeck",this.collection);
+        Deck deck = new Deck("AIDeck", this.collection);
         switch (level) {
             case 1:
                 try {
@@ -328,15 +324,12 @@ public class AI extends Account {
     @Override
     public void doYourMove() {
         this.play();
-
+        System.err.println(outputStream);
         if(output.string==null || output.string.isEmpty()) output.set("bad riiiidam");
     }
 
     @Override
     public Scanner getOutputStream() {
-        System.err.println();
-//        this.play();
-//        if(output==null || output.isEmpty()) output = "End turn";
         if(this.outputStream!=null && this.outputStream.scanner!=null)this.outputStream.scanner.close();
 
         this.outputStream = new ScannerWrapper();

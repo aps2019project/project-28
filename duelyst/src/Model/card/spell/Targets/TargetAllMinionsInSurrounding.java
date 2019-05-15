@@ -30,4 +30,8 @@ public class TargetAllMinionsInSurrounding implements Target {
         cells.toArray(cells2);
         return cells2 ;
     }
+
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }

@@ -19,9 +19,6 @@ public class TargetAllOwnMinions implements Target {
         }
         return obj ;
     }
-    public static Target getTargetClass() {
-        return null;
-    }
 
     @Override
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
@@ -32,5 +29,7 @@ public class TargetAllOwnMinions implements Target {
         }
         return cells ;
     }
-
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }

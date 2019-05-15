@@ -65,6 +65,10 @@ public class Spell extends Card {
         return target;
     }
 
+    public Target getTargetClass() {
+        return this.target.getTargetClass();
+    }
+
 //    public Cell[] getTargetCells() {
 //        return targetCells;
 //    }

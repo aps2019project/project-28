@@ -20,4 +20,7 @@ public class TargetRandomOwn implements Target {
         Player player = Game.battle.getPlayer() ;
         return TargetRandom.getTarget(player);
     }
+    public Target getTargetClass() {
+        return this.obj ;
+    }
 }

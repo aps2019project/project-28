@@ -303,7 +303,7 @@ public class Primary {
         minions.add(new Minion("Genie", 500, 5, 10,
                 4, new Range(), 4,
                 new SpecialPower("Genie SpecialPower", 0, 0, -1, 1, "",
-                        TargetAllOwnMinions.getTargetClass(), ActionChangeAP.getAction()), SPATime.ON_TURN, "a continuous power buff, increases attack point 1 unit"));
+                        TargetAllOwnMinions.getTargetInstance(), ActionChangeAP.getAction()), SPATime.ON_TURN, "a continuous power buff, increases attack point 1 unit"));
 
         /*minions.add(new Minion("Wild Goraz",500, 6, 10,
                 14, new Melee(), 0,
@@ -422,9 +422,9 @@ public class Primary {
         usables.add(new Usable("Shield AF", 4000, 1, 12, "for own hero, 12 holy buff",
                 TargetOwnHero.getTargetInstance(), ItemActionShieldAF.getItemAction()));
         usables.add(new Usable("Damool Arch", 30000, 1, 0, "only for ranged or hybrid own hero, while attacking disarms enemy card, duration : 1",
-                TargetRangedAndHybrid.getTargetClass(), ItemActionDamoolArch.getItemAction()));
+                TargetRangedAndHybrid.getTargetInstance(), ItemActionDamoolArch.getItemAction()));
         usables.add(new Usable("Simorgh's feather", 3500, 1, -2, "only for ranged or hybrid enemy hero, decreases attack point 2 units",
-                TargetRangedAndHybrid.getTargetClass(), ItemAction30chicken.getItemAction()));
+                TargetRangedAndHybrid.getTargetInstance(), ItemAction30chicken.getItemAction()));
         usables.add(new Usable("Terror Hood", 5000, 1, -2, "while attacking, weakness buff on random enemy card, decreases attack point 2 units",
                 TargetRandomEnemy.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         usables.add(new Usable("King Wisdom", 9000, -1, 0, "gets extra mana every turn",
@@ -451,7 +451,7 @@ public class Primary {
         collectables.add(new Collectable("NooshDaru", 1, 6, "increases health point of a random card 6 units",
                 TargetRandomOwn.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Two Headed Arrow", 1, 2, "increases attack point of random ranged or hybrid 2 units",
-                TargetRangedAndHybrid.getTargetClass(), ItemAction3HornedArrow.getItemAction()));
+                TargetRangedAndHybrid.getTargetInstance(), ItemAction3HornedArrow.getItemAction()));
         collectables.add(new Collectable("Eksir", 1, 3, "increases health point 3 units, a power buff with increasing ",
                 TargetRandomOwnMinion.getTargetInstance(), ItemActionExir.getItemAction(),
                 ItemActionChangeAP.getItemAction()));
@@ -466,7 +466,7 @@ public class Primary {
         collectables.add(new Collectable("Blades of agility", 1, 6, "6 attack points for a random card",
                 TargetRandomOwn.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Chineese Sword", 1, 5, "5 attack points for melee",
-                TargetMelee.getTargetClass(), ItemActionChangeAP.getItemAction()));
+                TargetMelee.getTargetInstance(), ItemActionChangeAP.getItemAction()));
 
         fileWriter = new FileWriter("Collectables.json", false);
 
