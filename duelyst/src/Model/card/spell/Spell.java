@@ -15,7 +15,7 @@ public class Spell extends Card {
 
     protected ArrayList<Spell> activeSpells = new ArrayList<>() ;
     protected Target target;
-    protected Cell[] targetCells ;
+    protected Cell[] targetCell= new Cell[Map.WIDTH*Map.HEIGHT];
     protected ArrayList<Action> actions = new ArrayList<>();
     protected int duration;
     protected int perk;
@@ -45,9 +45,9 @@ public class Spell extends Card {
         this.actions = actions;
     }
 
-    public void setTargetCells(Cell[] targetCells) {
-        this.targetCells = targetCells;
-    }
+//    public void setTargetCells(Cell[] targetCells) {
+//        this.targetCells = targetCells;
+//    }
 
     public void setTarget(Target target) {
         this.target = target;
@@ -65,9 +65,9 @@ public class Spell extends Card {
         return target;
     }
 
-    public Cell[] getTargetCells() {
-        return targetCells;
-    }
+//    public Cell[] getTargetCells() {
+//        return targetCells;
+//    }
 
     public ArrayList<Action> getActions() {
         return actions;
@@ -84,9 +84,9 @@ public class Spell extends Card {
     public void deploy(Player player, Player enemy, Cell cell) throws InvalidCellException, InvalidCardException {
         try{
             activeSpells.add(this);
-            if(targetCells.length == 0) targetCells = this.target.getTarget(cell);
+            if(targetCell == null || targetCell.length == 0) targetCell = this.target.getTarget(cell);
             for (Action action : actions){
-                action.deploy(this , targetCells);
+                action.deploy(this , targetCell);
             }
             this.duration--;
             if (this.duration == 0) activeSpells.remove(this);

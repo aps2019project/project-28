@@ -403,7 +403,7 @@ public class ManuHandler {
         GraveYardMenu.getMenu().addPattern("help");
         GraveYardMenu.getMenu().addPattern("show");
         GraveYardMenu.getMenu().addPattern("exit");
-        GraveYardMenu.getMenu().addPattern("show info [\\d]+");
+        GraveYardMenu.getMenu().addPattern("show card info [\\d]+");
         GraveYardMenu.getMenu().addPattern("show cards");
     }
     public static void setCollectablePattern(){
@@ -469,6 +469,8 @@ public class ManuHandler {
                     MultiPlayerMenuCommandHandler(word);
                 }else if(currentMenu instanceof CostumeModeMenu){
                     CostumeModeMenuCommandHandler(word);
+                }else if(currentMenu instanceof GraveYardMenu){
+                    GraveYardMenuCommandHandler(word);
                 }
             }
             catch (Exception e){
@@ -476,6 +478,19 @@ public class ManuHandler {
             }
             currentMenu.showMenu();
             commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
+        }
+    }
+
+    private static void GraveYardMenuCommandHandler(String[] word) {
+        GraveYardMenu menu= (GraveYardMenu) currentMenu;
+        if(word[0].equals("show")&& word[1].equals("cards")){
+            menu.showCards();
+        }else if(word[0].equals("show") && word[1].equals("card") && word[2].equals("info")){
+            try {
+                menu.showCardInfo(Integer.parseInt(word[3]));
+            } catch (InvalidCardException e) {
+                System.out.println("there is not such card in your grave yard");
+            }
         }
     }
 

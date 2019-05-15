@@ -19,14 +19,17 @@ public class GraveYardMenu extends Menu {
         return menu;
     }
 
-    void showCardInfo(int cardID) throws InvalidCardException {
+    public void showCardInfo(int cardID) throws InvalidCardException {
         Card card = this.account.getPlayer().getDeck().getCard(cardID);
         for (OnCardDetailsPresentedListener presenter : card.getCardDetailsPresenters()) {
             presenter.showCardDetail(card);
         }
     }
 
-    void showCards() {
+    public void showCards() {
+        for (Card card : this.account.getPlayer().getDeck().getGraveYard()) {
+            System.err.println("HOLALALALALLAA: "+card.getName());
+        }
         for (Card card : this.account.getPlayer().getDeck().getGraveYard()) {
             for (OnCardDetailsPresentedListener presenter : card.getCardDetailsPresenters()) {
                 presenter.showCardDetail(card);

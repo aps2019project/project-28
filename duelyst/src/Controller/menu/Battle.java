@@ -64,7 +64,9 @@ public class Battle extends Menu {
         setPlayer(Game.accounts[0].getPlayer(),Game.accounts[1].getPlayer());
         this.map = Map.generate();
         try {
+            this.map.getCell(3,1).setCardOnCell(this.player[0].getDeck().getHero());
             this.player[0].getDeck().getHero().setLocation(this.map.getCell(3,1));
+            this.map.getCell(3,9).setCardOnCell(this.player[1].getDeck().getHero());
             this.player[1].getDeck().getHero().setLocation(this.map.getCell(3,9));
         } catch (InvalidCellException e){e.printStackTrace();}
         System.err.println("bitch bitch im here fuck you");
@@ -156,7 +158,23 @@ public class Battle extends Menu {
     }
 
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
-        this.account.getPlayer().spawn(this.account.getPlayer().getHand().getCard(cardID), this.map.getCell(x, y));
+        Card card=this.account.getPlayer().getHand().getCard(cardID);
+        if(card instanceof Hermione){
+            this.account.getPlayer().spawn(this.account.getPlayer().getHand().getCard(cardID), this.map.getCell(x, y));
+            try {
+                this.account.getPlayer().getHand().handleHand(this.account.getPlayer().getHand().getCard(cardID));
+            } catch (DeckIsEmptyException e) {
+                e.printStackTrace();
+            } catch (HandFullException e) {
+                e.printStackTrace();
+            }
+        }else if(card instanceof Spell){
+            try {
+                ((Spell) card).deploy(this.account.getPlayer(),Battle.getMenu().getEnemy(this.account),Battle.getMenu().getMap().getCell(x,y));
+            } catch (InvalidCellException e) {
+                e.printStackTrace();
+            }
+        }
         // TODO: 5/5/19 one more exception  (read the doc)
     }
 

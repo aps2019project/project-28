@@ -1,6 +1,7 @@
 package Model.account;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
@@ -31,6 +32,7 @@ public class Player {
     private int manaTheriac = 0;
     private int maxManaTheriac = 0;
     private boolean hasAssasinationDagger = false;
+
 
 
     public Player(Account user, int maxMana, int mana) {
@@ -72,6 +74,7 @@ public class Player {
             if (hasAssasinationDagger) {
                 Game.battle.getEnemyPlayer().getDeck().getHero().changeHealthPoint(-1);
             }
+            Battle.getMenu().getMap().getCell(cell).setCardOnCell((Hermione) card);
         }else{
             Spell spell = (Spell) card;
             spell.deploy(this, Game.battle.getEnemyPlayer(), cell);

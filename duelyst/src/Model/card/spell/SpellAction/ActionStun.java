@@ -20,6 +20,7 @@ public class ActionStun implements Action {
     public void deploy(Spell spell, Cell... cells) throws InvalidCardException, InvalidCellException {
         for (Cell cell : cells) {
             Buff buff = new Buff(spell.getDuration(), false, BuffActionStun.getBuffAction());
+            System.err.println(cell.getCardOnCell().getName());
             buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
         }
     }

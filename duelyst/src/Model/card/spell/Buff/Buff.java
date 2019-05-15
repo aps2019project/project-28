@@ -47,6 +47,8 @@ public class Buff {
     public void deploy(Player player , Hermione target ) throws InvalidCellException{
         this.player = player;
         this.target = target ;
+        System.err.println("asd");
+        if (target.getAppliedBuffs() == null) target.makeNewListForAppliedBuffs();
         target.getAppliedBuffs().add(this);
         activeBuffs.add(this);
         this.action.affect(this);

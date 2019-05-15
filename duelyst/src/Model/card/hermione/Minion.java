@@ -50,7 +50,7 @@ public class Minion extends Hermione{
     }
 
         @Override
-        public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCardException, InvalidCellException {
+        public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
             this.itIsTime(SPATime.ATTACK);
             super.attack(enemyCard);
         }
@@ -62,8 +62,8 @@ public class Minion extends Hermione{
         }
 
         public void itIsTime(SPATime currentState){
-            if(!this.SPActivationTime.equals(currentState))return;
             this.applySpecialPower(this.getLocation().getX(), this.getLocation().getY());
+            if(this.SPActivationTime==null || !this.SPActivationTime.equals(currentState))return;
         }
 
 

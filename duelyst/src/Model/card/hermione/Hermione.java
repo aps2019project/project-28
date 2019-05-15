@@ -56,7 +56,8 @@ public abstract class Hermione extends Card {
         this.canCounterAttack = canCounterAttack;
     }
 
-    public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCardException, InvalidCellException {
+    public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
+        System.err.println("debug");
         if (!this.canAttack || this.actionTurn==2) throw new CantAttackException();
         if (this.attackType.canReach(this, enemyCard)) {
             this.attackCounter++;
@@ -66,7 +67,11 @@ public abstract class Hermione extends Card {
                 enemyCard.changeHealthPoint(1);
             enemyCard.counterAttack(this);
             if (enemyCard.getHealthPoint() <= 0) {
-                enemyCard.die();
+                try {
+                    enemyCard.die();
+                } catch (InvalidCardException e) {
+//                    e.printStackTrace();
+                }
             }
             this.actionTurn=2;
             return;
@@ -123,6 +128,8 @@ public abstract class Hermione extends Card {
     }
 
     public void die() throws InvalidCardException {
+        Game.battle.getEnemyPlayer().getMinionsInGame().remove(this);
+//        Game.battle.getEnemy(Game.battle.getAccount()).getDeck().getGraveYard().add(this);
         Game.battle.getMap().getCell(this.getLocation()).setFull(false);
         Game.battle.getEnemyPlayer().getDeck().moveToGraveYard(this);
     }
@@ -138,7 +145,8 @@ public abstract class Hermione extends Card {
 
     public void changeHealthPoint(int healthPoint) {
         this.healthPoint += healthPoint;
-        this.healthPoint = Integer.min(this.healthPoint, this.originalHealthPoint);
+//        this.healthPoint = Integer.min(this.healthPoint, this.originalHealthPoint);
+        // TODO: 5/14/19 in ro baadan check kon
     }
 
     public void changeAttackPoint(int attackPoint) {
@@ -277,5 +285,9 @@ public abstract class Hermione extends Card {
 
     public BuffEffectsOnHermione getBuffEffects() {
         return buffEffects;
+    }
+
+    public void makeNewListForAppliedBuffs (){
+        this.appliedBuffs = new ArrayList<>() ;
     }
 }

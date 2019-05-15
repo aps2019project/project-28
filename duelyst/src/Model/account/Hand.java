@@ -64,7 +64,7 @@ public class Hand {
 
     private void removeCard(Card card) {
         for (int i = 0; i < SIZE; i++) {
-            if (cards[i] == card) {
+            if (cards[i].equals(card)) {
                 cards[i] = null;
                 return;
             }
