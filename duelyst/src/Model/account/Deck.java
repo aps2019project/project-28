@@ -110,6 +110,7 @@ public class Deck {
             System.err.println("hero problems");
             return false;
         }
+        this.shuffle();
         return true;
     }
 
