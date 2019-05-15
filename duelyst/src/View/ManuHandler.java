@@ -27,6 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.BinaryOperator;
 
 
 // TODO: 5/5/19 command select collectable(page 20) change menu from battle to collectable menu
@@ -248,7 +249,64 @@ public class ManuHandler {
                 System.out.println(Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getUser().getName()+" : ");
                 System.out.println("\tMANA: "+Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getMana());
                 System.out.println("\t"+Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getName()+" : "+Battle.getMenu().getEnemy(Battle.getMenu().getAccount()).getDeck().getHero().getHealthPoint());
+//          }else if(Battle.getMenu().getGameMode() instanceof FlagMode){
 
+            }
+            else if(Battle.getMenu().getGameMode() instanceof FlagMode){
+                System.out.println("Game info");
+                for (Cell cell:
+                     Battle.getMenu().getMap().getCells()) {
+                    if(cell.hasFlag()){
+                        System.out.println("Flag Location :" + cell.getX() + "," + cell.getY());
+                    }
+                }
+                boolean hasflag = false;
+                for (Card card:
+                     Battle.getMenu().getPlayer().getDeck().getCards()) {
+                    if(card instanceof Hermione){
+                        if(((Hermione)card).hasFlag()){
+                            System.out.println("Flag owner:"+ card.getName());
+                            hasflag = true;
+                        }
+                    }
+                }
+                for (Card card:
+                        Battle.getMenu().getEnemyPlayer().getDeck().getCards()) {
+                    if(card instanceof Hermione){
+                        if(((Hermione)card).hasFlag()){
+                            System.out.println("Flag owner :"+ card.getName());
+                            hasflag = true;
+                        }
+                    }
+                }
+                if(!hasflag){
+                    System.out.println("Nobody got the flag !");
+                }
+            }
+            else if(Battle.getMenu().getGameMode() instanceof Domination){
+                System.out.println("Game info");
+                boolean hasflag = false;
+                for (Card card:
+                        Battle.getMenu().getPlayer().getDeck().getCards()) {
+                    if(card instanceof Hermione){
+                        if(((Hermione)card).hasFlag()){
+                            System.out.println("From my team "+ card.getName());
+                            hasflag = true;
+                        }
+                    }
+                }
+                for (Card card:
+                        Battle.getMenu().getEnemyPlayer().getDeck().getCards()) {
+                    if(card instanceof Hermione){
+                        if(((Hermione)card).hasFlag()){
+                            System.out.println("From opponent's team "+ card.getName());
+                            hasflag = true;
+                        }
+                    }
+                }
+                if(!hasflag){
+                    System.out.println("Nobody got any flag!");
+                }
             }
         });
 
