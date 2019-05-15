@@ -84,12 +84,16 @@ public class AI extends Account {
                 int randCard = randTypeCard.nextInt(2);
                 if (randCard == 0) {
                     command = insertMinion();
-                    output.set(command);
-                    return ;
+                    if (command!= null && !command.isEmpty()) {
+                        output.set(command);
+                        return;
+                    }
                 } else {
                     command = insertSpell();
-                    output.set(command);
-                    return ;
+                    if (command!= null && !command.isEmpty()) {
+                        output.set(command);
+                        return;
+                    }
                 }
                 if (command != null && !command.isEmpty()){
                     output.set(command);
