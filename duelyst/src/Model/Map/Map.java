@@ -16,8 +16,8 @@ import java.util.Random;
 
 public class Map {
     private static ArrayList<Map> maps;
-    public static final int HEIGHT = 12;
-    public static final int WIDTH = 12;
+    public static final int HEIGHT = 10;
+    public static final int WIDTH = 10;
     // TODO: 5/14/19 size ha ro doros kon
     private Cell[][] board = new Cell[Map.HEIGHT + 1][Map.WIDTH + 1];
     public static final int MAX_COLLECTABLE_ON_MAP=3;

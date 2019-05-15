@@ -218,6 +218,8 @@ public class Battle extends Menu {
                 if (minion.getHealthPoint() <= 0) {
                     deadMinions.add(minion);
                     this.map.getCell(minion.getLocation()).setFlag(minion.hasFlag());
+                    this.map.getCell(minion.getLocation()).clear();
+                    this.gameMode.handleDeath(this.player[i],minion);
                 }
             }
             this.player[i].getMinionsInGame().removeAll(deadMinions);

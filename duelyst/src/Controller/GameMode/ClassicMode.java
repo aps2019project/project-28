@@ -8,6 +8,7 @@ import Model.Primary;
 import Model.account.Account;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
+import Model.card.hermione.Minion;
 import Model.item.Collectable;
 import exeption.CellIsFullException;
 import exeption.InvalidCellException;
@@ -45,6 +46,9 @@ public class ClassicMode implements GameMode {
 
     @Override
     public void getFlag(Player player, Hermione hermione, Cell cell) {/*ignored*/}
+
+    @Override
+    public void handleDeath(Player player, Minion minion) {/*ignored*/}
 
 
 }

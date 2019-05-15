@@ -65,4 +65,11 @@ public class Domination implements GameMode {
         cell.setFlag(false);
 
     }
+
+    @Override
+    public void handleDeath(Player player, Minion minion) {
+        if(!minion.hasFlag())return;
+        player.setFlagInteger(player.getFlagInteger()-1);
+        if(player.getFlagInteger()==0)player.setFlag(false);
+    }
 }

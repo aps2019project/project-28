@@ -7,6 +7,7 @@ import Model.Map.Map;
 import Model.account.Account;
 import Model.account.Player;
 import Model.card.hermione.Hermione;
+import Model.card.hermione.Minion;
 
 public class FlagMode implements GameMode {
     private static final int prize = 1000;
@@ -52,6 +53,13 @@ public class FlagMode implements GameMode {
         player.setFlagInteger(Battle.getMenu().getTurn());
         hermione.setFlag(true);
         cell.setFlag(false);
+    }
+
+    @Override
+    public void handleDeath(Player player, Minion minion) {
+        if(!minion.hasFlag())return;
+        player.setFlagInteger(0);
+        player.setFlag(false);
     }
 
 //    @Override
