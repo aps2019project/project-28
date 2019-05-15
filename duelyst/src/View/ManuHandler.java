@@ -482,7 +482,7 @@ public class ManuHandler {
 //            System.err.println(Game.accounts[Game.battle.getTurn()].getOutputStream()==Game.accounts[1].getOutputStream());
             System.err.println(Game.accounts[Game.battle.getTurn()].getName());
             System.err.println(Game.accounts[0].getName()+" , "+Game.accounts[1].getName());
-            System.err.println(Game.battle.getTurn());
+//            System.err.println(Game.battle.getTurn());
 //            try {
 //                System.err.println(((AI)(Game.accounts[Game.battle.getTurn()])).output);
 //            }catch (Exception e){e.printStackTrace();}
