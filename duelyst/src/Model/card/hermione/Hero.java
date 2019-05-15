@@ -22,6 +22,7 @@ public class Hero extends Hermione {
         super.spawn(cell);
     }
 
+
     @Override
     public boolean applySpecialPower(int x, int y) {
 
