@@ -820,6 +820,7 @@ public class ManuHandler {
                 System.out.println("please select a card first");
             } catch (CardCantBeMovedException e) {
                 System.out.println("this card cant be moved due the spell unleashed upon it");
+                System.out.println("Or Maybe he/she is just a little bit tired :D");
             } catch (MoveTrunIsOverException e) {
                 System.out.println("there is no time to move !!!");
                 System.out.println("Attack attack attack");

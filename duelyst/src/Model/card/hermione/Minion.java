@@ -4,10 +4,7 @@ import Controller.Game;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
-import exeption.CantAttackException;
-import exeption.DestinationOutOfreachException;
-import exeption.InvalidCardException;
-import exeption.InvalidCellException;
+import exeption.*;
 
 public class Minion extends Hermione{
     private SPATime SPActivationTime;
@@ -71,12 +68,18 @@ public class Minion extends Hermione{
         }
 
 
-        @Override
+    @Override
+    public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, CardCantBeMovedException {
+        if(Battle.getMenu().getTurn()<=this.spawnTurn+1)throw new CardCantBeMovedException();
+        return super.move(x, y);
+    }
+
+    @Override
         public boolean applySpecialPower(int x, int y) {
             return false;
         }
-
         public SPATime getSPActivationTime() {
         return SPActivationTime;
     }
+
 }

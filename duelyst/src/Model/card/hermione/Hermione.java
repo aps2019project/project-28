@@ -95,11 +95,9 @@ public abstract class Hermione extends Card {
         //TODO if there are more conditions to be checked !
     }
 
-    private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException , CardCantBeMovedException {
+    private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
         if (this.actionTurn != 0) throw new MoveTrunIsOverException();
-        if (!this.canMove){
-            throw new CardCantBeMovedException();
-        }
+        if (!this.canMove) return false ;
         if (Game.battle.getMap().getCell(x, y).isFull()) throw new DestinationOutOfreachException();
 
         // TODO: 5/5/19 if the path is not blocked by enemies
@@ -135,6 +133,7 @@ public abstract class Hermione extends Card {
 
     public void spawn(Cell cell) {
         this.canMove = true ;
+        this.originalHealthPoint=this.healthPoint;
         this.setLocation(cell);
     }
 
