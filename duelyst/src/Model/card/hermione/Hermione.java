@@ -295,4 +295,7 @@ public abstract class Hermione extends Card {
     }
 
 
+    public void setFlag(boolean flag){
+        this.hasFlag=flag;
+    }
 }

@@ -54,20 +54,8 @@ public class Cell {
         return hasFlag;
     }
 
-    public void setFlag(boolean hasFlag) throws CellIsFullException {
-        if(hasFlag) {
-            if (!this.hasItem) {
-                this.hasFlag = true;
-                this.hasItem = true;
-            }
-            throw new CellIsFullException();
-        }
-        else {
-            if(this.hasFlag){
-                this.hasFlag = false;
-                this.hasItem = false;
-            }
-        }
+    public void setFlag(boolean hasFlag) {
+        this.hasFlag=hasFlag;
     }
 
     public boolean isFull() {

@@ -2,51 +2,56 @@ package Controller.GameMode;
 
 import Controller.Game;
 import Controller.menu.Battle;
+import Model.Map.Cell;
 import Model.Map.Map;
-import Model.Primary;
-import Model.item.Collectable;
-import exeption.CellIsFullException;
-import exeption.InvalidCellException;
-
-import java.util.Random;
+import Model.account.Account;
+import Model.account.Player;
+import Model.card.hermione.Hermione;
 
 public class FlagMode implements GameMode {
     private static final int prize = 1000;
 
     @Override
     public boolean checkState() {
+        for(int i=0;i<2;i++){
+            if(Game.accounts[i].getPlayer().hasFlag())
+                Game.accounts[i].getPlayer().setFlagInteger( Game.accounts[i].getPlayer().getFlagInteger() + 1);
+            else
+                Game.accounts[i].getPlayer().setFlagInteger(0);
+
+            if(Game.accounts[i].getPlayer().getFlagInteger() >= 6)
+                return true;
+        }
         return false;
     }
 
     @Override
     public void handleWin() {
-        if(Game.accounts[0].getPlayer().getDeck().getHero().hasFlag()){
-            Game.accounts[0].getPlayer().getDeck().getHero().setNumberOfFlags( Game.accounts[0].getPlayer().getDeck().getHero().getNumberOfFlags() + 1);
+        System.err.println();
+        for (int i = 0; i < 2; i++) {
+            if (Game.accounts[i].getPlayer().getFlagInteger() >=6) {
+                Game.accounts[i].setMoney(Game.accounts[i].getMoney() + prize);
+                Game.accounts[i].setWins(Game.accounts[i].getWins() + 1);
+//                return;
+            }
         }
-        else {
-            Game.accounts[0].getPlayer().getDeck().getHero().setNumberOfFlags(0);
-        }
-
-        if(Game.accounts[0].getPlayer().getDeck().getHero().getNumberOfFlags() >= 6){
-            Game.accounts[0].setWins(Game.accounts[0].getWins() + 1);
-            Game.accounts[0].setMoney(Game.accounts[0].getMoney() + FlagMode.prize);
-        }
-
-        if(Game.accounts[1].getPlayer().getDeck().getHero().hasFlag()){
-            Game.accounts[1].getPlayer().getDeck().getHero().setNumberOfFlags(Game.accounts[1].getPlayer().getDeck().getHero().getNumberOfFlags() + 1);
-        }
-        else {
-            Game.accounts[1].getPlayer().getDeck().getHero().setNumberOfFlags(1);
-        }
-        if(Game.accounts[1].getPlayer().getDeck().getHero().getNumberOfFlags() >= 6) {
-            Game.accounts[1].setMoney(Game.accounts[1].getMoney() + FlagMode.prize);
-            Game.accounts[1].setWins(Game.accounts[1].getWins() + 1);
-        }
+        Account.save();
     }
 
     @Override
     public Map generateMap() {
-        return null;
+        Map map=Map.generate();
+        map.getRandomEmptyCell().setFlag(true);
+        return map;
+    }
+
+    @Override
+    public void getFlag(Player player, Hermione hermione, Cell cell) {
+        if(!cell.hasFlag())return;
+        player.setFlag(true);
+        player.setFlagInteger(Battle.getMenu().getTurn());
+        hermione.setFlag(true);
+        cell.setFlag(false);
     }
 
 //    @Override

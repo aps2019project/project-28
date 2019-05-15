@@ -102,30 +102,27 @@ public class ManuHandler {
         {
             SignInMenu.getMenu().addMenuClickListener(new ShowMenu());
             Battle.getMenu().addMenuClickListener(new ShowMenu());
-            Battle.getMenu().addMenuClickListener(new OnMenuClickedListener() {
-                @Override
-                public void show(Menu menu) {
-                    Battle battle= (Battle) menu;
-                    for(int i=1;i< Map.HEIGHT;i++){
-                        for(int j=1;j<Map.WIDTH;j++){
-                            try {
-                                Cell cell=battle.getMap().getCell(i,j);
-                                if(cell.getCardOnCell() instanceof Hero){
-                                    System.out.print("H ");
-                                }else if(cell.getCardOnCell() instanceof Minion){
-                                    if(battle.getPlayer().getMinionsInGame().contains(cell.getCardOnCell())){
-                                        System.out.print("M ");
-                                    }else{
-                                        System.out.print("W ");
-                                    }
-                                }else if(cell.hasItem()) System.out.print("C ");
-                                else if(cell.hasFlag()) System.out.println("F ");
-                                else if(cell.getCardOnCell()==null) System.out.print(". ");
-                            } catch (InvalidCellException e) {
-                                e.printStackTrace(); }
-                        }
-                        System.out.println();
+            Battle.getMenu().addMenuClickListener(menu -> {
+                Battle battle= (Battle) menu;
+                for(int i=1;i< Map.HEIGHT;i++){
+                    for(int j=1;j<Map.WIDTH;j++){
+                        try {
+                            Cell cell=battle.getMap().getCell(i,j);
+                            if(cell.getCardOnCell() instanceof Hero){
+                                System.out.print("H ");
+                            }else if(cell.getCardOnCell() instanceof Minion){
+                                if(battle.getPlayer().getMinionsInGame().contains(cell.getCardOnCell())){
+                                    System.out.print("M ");
+                                }else{
+                                    System.out.print("W ");
+                                }
+                            }else if(cell.hasItem()) System.out.print("C ");
+                            else if(cell.hasFlag()) System.out.print("F ");
+                            else if(cell.getCardOnCell()==null) System.out.print(". ");
+                        } catch (InvalidCellException e) {
+                            e.printStackTrace(); }
                     }
+                    System.out.println();
                 }
             });
             ChooseBattleModeMenu.getMenu().addMenuClickListener(menu -> {
@@ -763,13 +760,16 @@ public class ManuHandler {
         ChooseBattleModeMenu menu= (ChooseBattleModeMenu) ChooseBattleModeMenu.getMenu();
         if(word[0].equals("mode")){
             switch (Integer.parseInt(word[1])){
-                case 2:
                 case 3:
                     Game.battle.setGameMode(new Domination());
                     currentMenu=menu.enter(GameModeMenu.getMenu());
                     break;
+                case 2:
+                    Game.battle.setGameMode(new FlagMode());
+                    currentMenu=menu.enter(GameModeMenu.getMenu());
+                    break;
                 case 1:
-                    Game.battle.setGameMode(new ClassicMode());
+                Game.battle.setGameMode(new ClassicMode());
                     currentMenu=menu.enter(GameModeMenu.getMenu());
                     break;
                 default:
@@ -814,6 +814,7 @@ public class ManuHandler {
                 System.out.println("im afraid that you dont acquire this item");
             }
         } else if (word[0].equals("move") && word[1].equals("to")) {
+            System.err.println();
             try {
                 menu.move(Integer.parseInt(word[2]), Integer.parseInt(word[3]));
             } catch (NoCardHasBeenSelectedException e) {
