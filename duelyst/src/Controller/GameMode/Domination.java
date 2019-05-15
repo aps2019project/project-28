@@ -38,6 +38,7 @@ public class Domination implements GameMode {
             }
         }
         Account.save();
+
     }
 
     @Override
