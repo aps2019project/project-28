@@ -128,6 +128,27 @@ public class Map {
         return map;
     }
 
+    public  Cell getRandomEmptyCell(){
+        Random random=new Random();
+        int x = 0;
+        int y = 0;
+        boolean cant=true;
+        while (cant) {
+            x = random.nextInt(Map.HEIGHT-3)+1;
+            y = random.nextInt(Map.WIDTH-3)+1;
+            try {
+                if (!this.getCell(x, y).hasItem() && !this.getCell(x, y).hasFlag() && !this.getCell(x, y).isFull()) cant = false;
+            }catch (InvalidCellException ignored){}
+        }
+        Cell returnCell=null;
+        try {
+            returnCell=this.getCell(x,y);
+        } catch (InvalidCellException e) {
+            e.printStackTrace();
+        }
+        return returnCell;
+    }
+
     public Cell[][] getBoard() {
         return board;
     }

@@ -2,8 +2,11 @@ package Controller.GameMode;
 
 import Controller.Game;
 import Controller.menu.Battle;
+import Model.Map.Cell;
 import Model.Map.Map;
 import Model.Primary;
+import Model.account.Account;
+import Model.account.Player;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
@@ -21,43 +24,24 @@ public class Domination implements GameMode {
     @Override
     public boolean checkState() {
 
+        if(Battle.getMenu().getPlayer().getFlagInteger()>numberOfFlags/2)return true;
+        if(Battle.getMenu().getEnemyPlayer().getFlagInteger()>numberOfFlags/2)return true;
         return false;
     }
 
     @Override
     public void handleWin() {
-        int i = 0;
-        for (Card card:
-                Game.accounts[0].getPlayer().getDeck().getCards()) {
-            if(card instanceof Hero || card instanceof Minion){
-                if (((Hermione)card).hasFlag()){
-                    i ++;
-                }
+        for(int i=0;i<2 ;i++){
+            if(Game.accounts[i].getPlayer().getFlagInteger()>numberOfFlags/2){
+                Game.accounts[i].setMoney(Game.accounts[i].getMoney() + prize);
+                Game.accounts[i].setWins(Game.accounts[i].getWins() + 1);
             }
         }
-        if( i > numberOfFlags/2){
-            Game.accounts[0].setWins(Game.accounts[0].getWins() + 1);
-            Game.accounts[0].setMoney(Game.accounts[0].getMoney() + Domination.prize);
-        }
-
-        int j =0;
-        for (Card card:
-                Game.accounts[1].getPlayer().getDeck().getCards()) {
-            if(card instanceof Hero || card instanceof Minion){
-                if (((Hermione)card).hasFlag()){
-                     j++;
-                }
-            }
-        }
-        if(j > numberOfFlags/2) {
-            Game.accounts[1].setWins(Game.accounts[1].getWins() + 1);
-            Game.accounts[1].setMoney(Game.accounts[1].getMoney() + Domination.prize);
-        }
+        Account.save();
     }
 
     @Override
     public Map generateMap() {
-        System.err.println();
         Map map=Map.generate();
         Random random = new Random();
         while (numberOfFlags == 1 || numberOfFlags == 0){
@@ -66,45 +50,19 @@ public class Domination implements GameMode {
         numberOfFlags=numberOfFlags*2-1;
 
         for (int i = 0; i < numberOfFlags ; i++){
-            int x = 0;
-            int y = 0;
-            boolean cant=true;
-            while (cant) {
-                x = random.nextInt(Map.HEIGHT-3);
-                y = random.nextInt(Map.WIDTH-3);
-                try {
-                    if (!map.getCell(x, y).hasItem() && !map.getCell(x, y).hasFlag() && !map.getCell(x, y).isFull()) cant = false;
-                }catch (InvalidCellException ignored){}
-            }
-            x++;
-            y++;
-            try {
-                Battle.getMenu().getMap().getCell(x, y).setFlag(true);
-            } catch (NullPointerException e) {
-                System.err.println(x+" | "+y);
-                e.printStackTrace();
-            } catch (CellIsFullException | InvalidCellException e) {
-                e.printStackTrace();
-            }
-            System.err.println("X: "+x+" , Y: "+y);
+            Cell cell=map.getRandomEmptyCell();
+                cell.setFlag(true);
         }
         return map;
     }
 
-//    @Override
-//    public void generateMap() throws InvalidCellException, CellIsFullException {
-//        GameMode.CollectableGenerator();
-//
-//        Random random = new Random();
-//        while (numberOfFlags == 1 || numberOfFlags == 0){
-//            numberOfFlags = random.nextInt(10);
-//        }
-//
-//        for (int i = 0; i < numberOfFlags ; i++){
-//            int x = random.nextInt(Map.HEIGHT);
-//            int y = random.nextInt(Map.WIDTH);
-//
-//            Battle.getMenu().getMap().getCell(x, y).setFlag(true);
-//        }
-//    }
+    @Override
+    public void getFlag(Player player,Hermione hermione, Cell cell) {
+        if(!cell.hasFlag())return;
+        player.setFlag(true);
+        player.setFlagInteger(player.getFlagInteger()+1);
+        hermione.setFlag(true);
+        cell.setFlag(false);
+
+    }
 }

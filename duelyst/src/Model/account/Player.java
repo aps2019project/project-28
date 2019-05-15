@@ -32,6 +32,8 @@ public class Player {
     private int manaTheriac = 0;
     private int maxManaTheriac = 0;
     private boolean hasAssasinationDagger = false;
+    private boolean hasFlag=false;
+    private int flagInteger=0;
 
 
 
@@ -177,5 +179,21 @@ public class Player {
 
     public void changeMana(int manaPoint) {
         this.mana+=manaPoint;
+    }
+
+    public boolean hasFlag() {
+        return hasFlag;
+    }
+
+    public void setFlag(boolean hasFlag) {
+        this.hasFlag = hasFlag;
+    }
+
+    public int getFlagInteger() {
+        return flagInteger;
+    }
+
+    public void setFlagInteger(int flagInteger) {
+        this.flagInteger = flagInteger;
     }
 }
