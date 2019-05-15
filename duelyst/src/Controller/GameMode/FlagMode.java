@@ -45,23 +45,21 @@ public class FlagMode implements GameMode {
     }
 
     @Override
-    public void mapGenerator() throws InvalidCellException, CellIsFullException {
-
-        for (Collectable collectable:
-                Primary.collectables) {
-            Random random = new Random();
-            if(random.nextInt(Map.HEIGHT) == 0){
-                int x = random.nextInt(Map.HEIGHT);
-                int y = random.nextInt(Map.WIDTH);
-
-                Battle.getMenu().getMap().getCell(x, y).setCollectable(collectable);
-            }
-        }
-
-        Random random = new Random();
-        int xf = random.nextInt(Map.HEIGHT);
-        int yf = random.nextInt(Map.WIDTH);
-
-        Battle.getMenu().getMap().getCell(xf, yf).setFlag(true);
+    public Map mapGenerator() {
+        return null;
     }
+
+//    @Override
+//    public void mapGenerator() throws InvalidCellException, CellIsFullException {
+////        GameMode.CollectableGenerator();
+//
+//        Random random = new Random();
+//        int xf = random.nextInt(Map.HEIGHT);
+//        int yf = random.nextInt(Map.WIDTH);
+//
+//        Battle.getMenu().getMap().getCell(xf, yf).setFlag(true);
+//  }
 }
+
+
+

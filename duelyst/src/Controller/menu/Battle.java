@@ -60,15 +60,17 @@ public class Battle extends Menu {
             System.out.println("Please Select your Main Deck");
             return false;
         }
+
         setPlayer(Game.accounts[0].getPlayer(),Game.accounts[1].getPlayer());
         this.map = Map.generate();
+
         try {
             this.map.getCell(3,1).setCardOnCell(this.player[0].getDeck().getHero());
             this.player[0].getDeck().getHero().setLocation(this.map.getCell(3,1));
+            System.err.println();
             this.map.getCell(3,9).setCardOnCell(this.player[1].getDeck().getHero());
             this.player[1].getDeck().getHero().setLocation(this.map.getCell(3,9));
         } catch (InvalidCellException e){e.printStackTrace();}
-        System.err.println("DUUUUUDE !");
         return true;
     }
 
@@ -129,6 +131,11 @@ public class Battle extends Menu {
         try {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
             hermione.move(x, y);
+            System.err.println();
+            if(map.getCell(x,y).hasItem()){
+                this.getPlayer().getCollectables().add(map.getCell(x,y).getCollectable());
+                map.getCell(x,y).clearCollectable();
+            }
         } catch (ClassCastException e) {
             throw new CardCantBeMovedException();//because its Spell
         }
@@ -322,6 +329,7 @@ public class Battle extends Menu {
 
     public void showCollectable() {
         for (Collectable collectable : this.account.getPlayer().getCollectables()) {
+            System.err.println(collectable.getName());
             for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
                 presenter.showItemDetail(collectable);
             }
@@ -420,4 +428,17 @@ public class Battle extends Menu {
     public ArrayList<OnGameCardsPresentedListenr> getCardsPresenters() {
         return cardsPresenters;
     }
+
+    public void useItem(int x, int y) throws InvalidCellException {
+        this.account.getPlayer().getSelectedItem().deploy(Game.battle.getMap().getCell(x, y));
+        // TODO: 5/5/19 saE doroste dg?
+    }
+    public void showInfo() throws NoItemHasBeenSelectedException {
+        Item item = this.account.getPlayer().getSelectedItem();
+        if(item==null)throw new NoItemHasBeenSelectedException();
+        for (OnItemDetailPresentedListener presenter : item.getItemDetailPresenters()) {
+            presenter.showItemDetail(item);
+        }
+    }
+
 }

@@ -5,6 +5,8 @@ import Controller.GameMode.ClassicMode;
 import Controller.GameMode.FlagMode;
 import Controller.menu.Battle;
 import Controller.menu.*;
+import Model.Map.Cell;
+import Model.Map.Map;
 import Model.Primary;
 import Model.account.*;
 import Model.card.Card;
@@ -13,6 +15,7 @@ import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
+import Model.item.Collectable;
 import Model.item.Item;
 import Model.item.OnItemDetailPresentedListener;
 import Model.item.Usable;
@@ -98,6 +101,31 @@ public class ManuHandler {
         {
             SignInMenu.getMenu().addMenuClickListener(new ShowMenu());
             Battle.getMenu().addMenuClickListener(new ShowMenu());
+            Battle.getMenu().addMenuClickListener(new OnMenuClickedListener() {
+                @Override
+                public void show(Menu menu) {
+                    Battle battle= (Battle) menu;
+                    for(int i=1;i< Map.HEIGHT;i++){
+                        for(int j=1;j<Map.WIDTH;j++){
+                            try {
+                                Cell cell=battle.getMap().getCell(i,j);
+                                if(cell.getCardOnCell() instanceof Hero){
+                                    System.out.print("H ");
+                                }else if(cell.getCardOnCell() instanceof Minion){
+                                    if(battle.getPlayer().getMinionsInGame().contains(cell.getCardOnCell())){
+                                        System.out.print("M ");
+                                    }else{
+                                        System.out.print("W ");
+                                    }
+                                }else if(cell.hasItem()) System.out.print("C ");
+                                else if(cell.getCardOnCell()==null) System.out.print(". ");
+                            } catch (InvalidCellException e) {
+                                e.printStackTrace(); }
+                        }
+                        System.out.println();
+                    }
+                }
+            });
             ChooseBattleModeMenu.getMenu().addMenuClickListener(menu -> {
                 System.out.println("Modes:");
                 System.out.println("1)Classic      2)flag mode     3)Domination");
@@ -243,7 +271,10 @@ public class ManuHandler {
         Item.addNewOnItemDeatilPresentedListener(item -> {
             System.out.println("\tName : " + item.getName());
             System.out.println("\tDesc : " + item.getComment());
-            System.out.println("\tSell cost" + ((Usable) item).getPrice());
+            if(item instanceof Usable)
+                System.out.println("\tSell cost" + ((Usable) item).getPrice());
+            else if(item instanceof Collectable)
+                System.out.println("\tID" + (item).getID());
         });
         //game card presentedListener
         Battle.getMenu().addCardPresentedListener(card -> {
@@ -273,7 +304,6 @@ public class ManuHandler {
         //az Single o Multi mirim gameMode
 
         Battle.getMenu().addSubMenu(GraveYardMenu.getMenu());
-        Battle.getMenu().addSubMenu(CollectionMenu.getMenu());
         Battle.getMenu().addSubMenu(CollectableMenu.getMenu());
 
         currentMenu = SignInMenu.getMenu();
@@ -286,7 +316,6 @@ public class ManuHandler {
         setShopPatterns();
         setBattlePatterns();
         setGraveyardPatterns();
-        setCollectablePattern();
         setMainMenuPattern();
         setGameModeMenuPatterns();
         setStoryModePattern();
@@ -374,23 +403,25 @@ public class ManuHandler {
         Battle.getMenu().addPattern("enter [\\w]+");
         Battle.getMenu().addPattern("[\\d]+");
         Battle.getMenu().addPattern("help");
-        Battle.getMenu().addPattern("show");
         Battle.getMenu().addPattern("exit");
+        Battle.getMenu().addPattern("show");
         Battle.getMenu().addPattern("game info");
+        Battle.getMenu().addPattern("show hand");
         Battle.getMenu().addPattern("show my minions");
         Battle.getMenu().addPattern("show opponent minions");
         Battle.getMenu().addPattern("show card info [\\d]+");
+        Battle.getMenu().addPattern("show next card");
+        Battle.getMenu().addPattern("show collectables");
+        Battle.getMenu().addPattern("show info");
         Battle.getMenu().addPattern("select [\\d]+");
         Battle.getMenu().addPattern("move to [\\d]+ [\\d]+");
         Battle.getMenu().addPattern("attack [\\d]+");
         Battle.getMenu().addPattern("attack combo [\\d]+ [\\d]+[ \\d+]+");
         Battle.getMenu().addPattern("use special power [\\d]+ [\\d]+");
-        Battle.getMenu().addPattern("show hand");
         Battle.getMenu().addPattern("insert [\\w]+ in [\\d]+ [\\d]+");
         Battle.getMenu().addPattern("end turn");
-        Battle.getMenu().addPattern("show collectables");
+        Battle.getMenu().addPattern("use \\[[\\d+] [\\d]+\\]");
         Battle.getMenu().addPattern("select [\\d]+");
-        Battle.getMenu().addPattern("show next card");
         Battle.getMenu().addPattern("enter graveyard");
         Battle.getMenu().addPattern("help");
         Battle.getMenu().addPattern("end game");
@@ -403,15 +434,6 @@ public class ManuHandler {
         GraveYardMenu.getMenu().addPattern("exit");
         GraveYardMenu.getMenu().addPattern("show card info [\\d]+");
         GraveYardMenu.getMenu().addPattern("show cards");
-    }
-    public static void setCollectablePattern(){
-        CollectableMenu.getMenu().addPattern("enter [\\w]+");
-        CollectableMenu.getMenu().addPattern("[\\d]+");
-        CollectableMenu.getMenu().addPattern("help");
-        CollectableMenu.getMenu().addPattern("show");
-        CollectableMenu.getMenu().addPattern("exit");
-        CollectableMenu.getMenu().addPattern("show info");
-        CollectableMenu.getMenu().addPattern("use \\[[\\d+] [\\d]+\\]");
     }
     public static void setMainMenuPattern(){
         MainMenu.getMenu().addPattern("[\\d]+");
@@ -436,12 +458,13 @@ public class ManuHandler {
         GameModeMenu.getMenu().addPattern("exit");
 
     }
-
+    //moh
     public static void main(String[] args) {
         Scanner commands=Game.accounts[0].getOutputStream();
         currentMenu.showMenu();
         String command ;
         while(commands.hasNext()){
+            System.err.println();
             try {
                 command = commands.nextLine().toLowerCase().trim();
                 String[] word = command.split(" ");
@@ -742,29 +765,34 @@ public class ManuHandler {
         }
     }
     private static void BattleCommandHandler(String[] word) {
-        Battle menu= (Battle) currentMenu;
-        if(word[0].equals("game") && word[1].equals("info")){
+        Battle menu = (Battle) currentMenu;
+        if (word[0].equals("game") && word[1].equals("info")) {
             menu.gameInfo();
-        }
-        else if(word[0].equals("show") && word.length > 1){
-            if(word[1].equals("my") && word[2].equals("minions")){
+        } else if (word[0].equals("show") && word.length > 1) {
+            if (word[1].equals("my") && word[2].equals("minions")) {
                 menu.showMyMinions();
-            }else if(word[1].equals("opponent") && word[2].equals("minions")){
+            } else if (word[1].equals("opponent") && word[2].equals("minions")) {
                 menu.showMyOpponentMinion();
-            }else if(word[1].equals("card") && word[2].equals("info")){
+            } else if (word[1].equals("card") && word[2].equals("info")) {
                 try {
                     menu.showCardInfo(Integer.parseInt(word[3]));
                 } catch (InvalidCardException e) {
                     System.out.println("Couldn't find the card!");
                 }
-            }else if(word[1].equals("hand")){
+            } else if (word[1].equals("hand")) {
                 menu.showHand();
-            }else if(word[1].equals("collectable")){
+            } else if (word[1].equals("collectables")) {
                 menu.showCollectable();
-            }else if(word[1].equals("next") && word[2].equals("card")){
+            } else if (word[1].equals("next") && word[2].equals("card")) {
                 menu.showNextCard();
+            }else if(word[1].equals("info")){
+                try {
+                    menu.showInfo();
+                } catch (NoItemHasBeenSelectedException e) {
+                    System.out.println("please Select an item first");
+                }
             }
-        }else if(word[0].equals("select")){
+        } else if (word[0].equals("select")) {
             try {
                 menu.select(Integer.parseInt(word[1]));
             } catch (InvalidCardException e) {
@@ -772,9 +800,9 @@ public class ManuHandler {
             } catch (InvalidItemException e) {
                 System.out.println("im afraid that you dont acquire this item");
             }
-        }else if(word[0].equals("move") && word[1].equals("to") ){
+        } else if (word[0].equals("move") && word[1].equals("to")) {
             try {
-                menu.move(Integer.parseInt(word[2]),Integer.parseInt(word[3]));
+                menu.move(Integer.parseInt(word[2]), Integer.parseInt(word[3]));
             } catch (NoCardHasBeenSelectedException e) {
                 System.out.println("please select a card first");
             } catch (CardCantBeMovedException e) {
@@ -788,7 +816,7 @@ public class ManuHandler {
             } catch (InvalidCellException e) {
                 System.out.println("Im afraid our little word doesnt have enough space for your ambitions");
             }
-        }else if(word[0].equals("attack")){
+        } else if (word[0].equals("attack")) {
             try {
                 menu.attack(Integer.parseInt(word[1]));
             } catch (NoCardHasBeenSelectedException e) {
@@ -805,11 +833,11 @@ public class ManuHandler {
             } catch (InvalidCellException e) {
                 System.out.println("Im afraid our little word doesnt have enough space for your ambitions");
             }
-        }else if(word[0].equals("use") && word[1].equals("special") && word[2].equals("power")){
-            menu.useSpecialPower(Integer.parseInt(word[3]),Integer.parseInt(word[4]));
-        }else if(word[0].equals("insert")){
+        } else if (word[0].equals("use") && word[1].equals("special") && word[2].equals("power")) {
+            menu.useSpecialPower(Integer.parseInt(word[3]), Integer.parseInt(word[4]));
+        } else if (word[0].equals("insert")) {
             try {
-                menu.insert(Integer.parseInt(word[1]),Integer.parseInt(word[3]),Integer.parseInt(word[4]));
+                menu.insert(Integer.parseInt(word[1]), Integer.parseInt(word[3]), Integer.parseInt(word[4]));
             } catch (InvalidCardException e) {
                 System.out.println("thre is no such card in your hand");
             } catch (NotEnoughManaException e) {
@@ -818,6 +846,13 @@ public class ManuHandler {
                 System.out.println("cant spwan/deploy card on the selected destination");
             } catch (InvalidCellException e) {
                 System.out.println("Im afraid our little word doesnt have enough space for your ambitions");
+            }
+        } else if (word[0].equals("use")) {
+            try {
+                menu.useItem(Integer.parseInt(word[1]), Integer.parseInt(word[2]));
+            } catch (InvalidCellException e) {
+                System.out.println("cell " + Integer.parseInt(word[1]) + " , " + Integer.parseInt(word[2]) + "says: ");
+                System.out.println("cant touch this!");
             }
         }else if(word[0].equals("end") && word[1].equals("turn")){
             try {

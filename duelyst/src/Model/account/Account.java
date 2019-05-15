@@ -53,7 +53,7 @@ public class Account {
         }
     }
 
-    public void save() {
+    public static void save() {
         YaGson gson = new YaGson();
         File file = new File("Account.json");
         file.delete();
@@ -235,6 +235,7 @@ public class Account {
 
     public static ArrayList<Account> sort() {
         Collections.sort(Account.getAccounts(), Comparator.comparingInt(o -> o.wins));
+        Collections.reverse(Account.getAccounts());
         return Account.getAccounts();
     }
     public void doYourMove(){}

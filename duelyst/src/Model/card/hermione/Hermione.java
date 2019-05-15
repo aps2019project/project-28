@@ -7,6 +7,7 @@ import Model.Map.Map;
 import Model.card.Card;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.SpecialPower;
+import Model.item.Collectable;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -62,7 +63,9 @@ public abstract class Hermione extends Card {
         if (this.attackType.canReach(this, enemyCard)) {
             this.attackCounter++;
             this.buffEffects.handle();
-            enemyCard.changeHealthPoint(-(1)*this.attackPoint);
+            enemyCard.changeHealthPoint(-(1000)*this.attackPoint);
+            // TODO: 5/15/19 -1000----------->-1
+
             if (enemyCard.getLocation().getCellAffect().contains(CellAffects.holly))
                 enemyCard.changeHealthPoint(1);
             enemyCard.counterAttack(this);
@@ -289,4 +292,6 @@ public abstract class Hermione extends Card {
     public void makeNewListForAppliedBuffs (){
         this.appliedBuffs = new ArrayList<>() ;
     }
+
+
 }

@@ -4,7 +4,9 @@ import Controller.Game;
 import Controller.menu.Battle;
 import Model.Map.Map;
 import Model.Primary;
+import Model.account.Account;
 import Model.item.Collectable;
+import exeption.CellIsFullException;
 import exeption.InvalidCellException;
 
 import java.util.Random;
@@ -30,20 +32,14 @@ public class ClassicMode implements GameMode {
             Game.accounts[0].setWins(Game.accounts[0].getWins() + 1);
             Game.accounts[0].setMoney(Game.accounts[0].getMoney() + ClassicMode.prize);
         }
+        Account.save();
     }
 
     @Override
-    public void mapGenerator() throws InvalidCellException {
-        for (Collectable collectable:
-                Primary.collectables) {
-            Random random = new Random();
-            if(random.nextInt(Map.HEIGHT) == 0){
-                int x = random.nextInt(Map.HEIGHT);
-                int y = random.nextInt(Map.WIDTH);
-
-                Battle.getMenu().getMap().getCell(x, y).setCollectable(collectable);
-            }
-        }
+    public Map mapGenerator() {
+        return Map.generate();
     }
+
+
 }
 

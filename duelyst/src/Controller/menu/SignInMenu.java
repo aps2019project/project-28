@@ -68,6 +68,7 @@ public class SignInMenu extends Menu {
     }
 
     public void showLeaderBoard() {
+        Account.sort();
         for (OnLeaderBoardClickedListener presenter : this.leaderBoardPresenters) {
             presenter.show(Account.getAccounts());
         }

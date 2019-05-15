@@ -56,28 +56,24 @@ public class Domination implements GameMode {
     }
 
     @Override
-    public void mapGenerator() throws InvalidCellException, CellIsFullException {
-        for (Collectable collectable:
-                Primary.collectables) {
-            Random random = new Random();
-            if(random.nextInt(Map.HEIGHT) == 0){
-                int x = random.nextInt(Map.HEIGHT);
-                int y = random.nextInt(Map.WIDTH);
-
-                Battle.getMenu().getMap().getCell(x, y).setCollectable(collectable);
-            }
-        }
-
-        Random random = new Random();
-        while (numberOfFlags == 1 || numberOfFlags == 0){
-            numberOfFlags = random.nextInt(10);
-        }
-
-        for (int i = 0; i < numberOfFlags ; i++){
-            int x = random.nextInt(Map.HEIGHT);
-            int y = random.nextInt(Map.WIDTH);
-
-            Battle.getMenu().getMap().getCell(x, y).setFlag(true);
-        }
+    public Map mapGenerator() {
+        return null;
     }
+
+//    @Override
+//    public void mapGenerator() throws InvalidCellException, CellIsFullException {
+//        GameMode.CollectableGenerator();
+//
+//        Random random = new Random();
+//        while (numberOfFlags == 1 || numberOfFlags == 0){
+//            numberOfFlags = random.nextInt(10);
+//        }
+//
+//        for (int i = 0; i < numberOfFlags ; i++){
+//            int x = random.nextInt(Map.HEIGHT);
+//            int y = random.nextInt(Map.WIDTH);
+//
+//            Battle.getMenu().getMap().getCell(x, y).setFlag(true);
+//        }
+//    }
 }

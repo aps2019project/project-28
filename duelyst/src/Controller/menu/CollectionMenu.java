@@ -37,7 +37,7 @@ public class CollectionMenu extends Menu {
 
     public void save() {
         this.account.setCollection(this.tempCollection);
-        account.save();
+        Account.save();
     }
 
     public void showCollection() {

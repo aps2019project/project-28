@@ -32,7 +32,7 @@ public class Cell {
         return y;
     }
 
-    public void setCollectable(Collectable collectable) {
+    public void setItem(Collectable collectable) {
         this.collectable = collectable;
         this.hasItem = true;
     }
@@ -78,9 +78,10 @@ public class Cell {
         isFull = full;
     }
 
-    public boolean isHasFlag() {
-        return hasFlag;
+    public boolean hasItem() {
+        return hasItem;
     }
+
 
     public ArrayList<CellAffects> getCellAffect() {
         return cellAffect;
@@ -90,4 +91,12 @@ public class Cell {
         this.cellAffect.add(cellAffect);
     }
 
+    public Collectable getCollectable() {
+        return collectable;
+    }
+
+    public void clearCollectable() {
+        this.collectable = null;
+        this.hasItem=false;
+    }
 }
