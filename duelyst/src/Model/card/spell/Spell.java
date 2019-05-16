@@ -88,7 +88,13 @@ public class Spell extends Card {
     public void deploy(Player player, Player enemy, Cell cell) throws InvalidCellException, InvalidCardException {
         try{
             activeSpells.add(this);
-            if(targetCell == null || targetCell.length == 0) targetCell = this.target.getTarget(cell);
+            if(targetCell == null || targetCell.length == 0||this.target==null) {
+                try {
+                    targetCell = this.target.getTarget(cell);
+                }catch (NullPointerException e){
+                    throw new InvalidCellException();
+                }
+            }
             for (Action action : actions){
                 action.deploy(this , targetCell);
             }

@@ -9,6 +9,7 @@ import exeption.*;
 public class Minion extends Hermione{
     private SPATime SPActivationTime;
     private int spawnTurn;
+    // TODO: 5/15/19 ArshiA check for SPATime handling
 
     public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint, AttackType attackType, int range,
                   Model.card.spell.SpecialPower specialPower,SPATime SPActivationTime, String info) {
@@ -45,14 +46,14 @@ public class Minion extends Hermione{
             } catch (InvalidCellException e) {
             }
         }
-        this.itIsTime(SPATime.ATTACK);
+        this.itIsTime(SPATime.DEATH);
         super.die();
     }
 
         @Override
         public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
-        if(Battle.getMenu().getOriginalTurn()<=this.spawnTurn+1)throw new CantAttackException();
-        this.itIsTime(SPATime.ATTACK);
+            if(Battle.getMenu().getOriginalTurn()<=this.spawnTurn+1)throw new CantAttackException();
+            this.itIsTime(SPATime.ATTACK);
             super.attack(enemyCard);
         }
 
@@ -64,8 +65,8 @@ public class Minion extends Hermione{
 
         public void itIsTime(SPATime currentState){
             try {
+                if (this.SPActivationTime == null || !this.SPActivationTime.equals(currentState) || this.SPActivationTime==SPATime.NULL) return;
                 this.applySpecialPower(this.getLocation());
-                if (this.SPActivationTime == null || !this.SPActivationTime.equals(currentState)) return;
             }catch(InvalidCellException | InvalidCardException ignored){}
         }
 
@@ -78,7 +79,7 @@ public class Minion extends Hermione{
 
     @Override
         public boolean applySpecialPower(Cell cell) throws InvalidCardException , InvalidCellException{
-        this.SpecialPower.deploy(this.superCollection.getOwner().getPlayer(), Game.battle.getEnemy(this.superCollection.getOwner()), cell);
+        this.SpecialPower.deploy(Game.battle.getPlayer() , Game.battle.getEnemyPlayer() , cell);
         return true ;
         }
         public SPATime getSPActivationTime() {

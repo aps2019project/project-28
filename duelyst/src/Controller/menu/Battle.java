@@ -205,7 +205,8 @@ public class Battle extends Menu {
             try {
                 ((Spell) card).deploy(this.account.getPlayer(), Battle.getMenu().getEnemy(this.account), Battle.getMenu().getMap().getCell(x, y));
                 this.account.getPlayer().changeMana((-1) * card.getManaPoint());
-            } catch (InvalidCellException e) {
+                this.account.getPlayer().getHand().handleHand(card);
+            } catch (InvalidCellException | HandFullException | DeckIsEmptyException e) {
                 e.printStackTrace();
             }
         }
