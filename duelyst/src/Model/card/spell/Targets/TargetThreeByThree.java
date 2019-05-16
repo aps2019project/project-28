@@ -12,6 +12,7 @@ import exeption.InvalidCellException;
 public class TargetThreeByThree implements Target {
     private static TargetEnemyCard obj;
 
+
     public static TargetEnemyCard getTargetInstance() {
         if (obj == null) {
             obj = new TargetEnemyCard();
