@@ -286,6 +286,9 @@ public class Battle extends Menu {
         /*checkState*/
         if (this.gameMode.checkState()) {
             this.gameMode.handleWin();
+            Game.accounts[1]=Account.getDefaultAccount();
+            this.account=SignInMenu.getMenu().account;
+            this.turn=0;
             ManuHandler.currentMenu = MainMenu.getMenu();
         } else {
             nextTurn();

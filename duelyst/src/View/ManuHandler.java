@@ -552,18 +552,13 @@ public class ManuHandler {
                 e.printStackTrace();
             }
             currentMenu.showMenu();
-
-            Game.accounts[Game.battle.getTurn()].doYourMove();
+            if(currentMenu instanceof Battle)
+                Game.accounts[Game.battle.getTurn()].doYourMove();
             commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
 
-//            System.err.println(Game.accounts[Game.battle.getTurn()].getOutputStream()==Game.accounts[1].getOutputStream());
             System.err.println(Game.accounts[Game.battle.getTurn()].getName());
             System.err.println(Game.accounts[0].getName()+" , "+Game.accounts[1].getName());
-//            System.err.println(Game.battle.getTurn());
-//            try {
-//                System.err.println(((AI)(Game.accounts[Game.battle.getTurn()])).output);
-//            }catch (Exception e){e.printStackTrace();}
-        }
+       }
     }
 
     private static void GraveYardMenuCommandHandler(String[] word) {
