@@ -424,7 +424,7 @@ public class Primary {
                 TargetOwnHero.getTargetInstance(), ItemActionShieldAF.getItemAction()));
         usables.add(new Usable("Damool Arch", 30000, 1, 0, "only for ranged or hybrid own hero, while attacking disarms enemy card, duration : 1",
                 TargetRangedAndHybrid.getTargetInstance(), ItemActionDamoolArch.getItemAction()));
-        usables.add(new Usable("Simorgh's feather", 3500, 1, -2, "only for ranged or hybrid enemy hero, decreases attack point 2 units",
+        usables.add(new Usable("Simorgh feather", 3500, 1, -2, "only for ranged or hybrid enemy hero, decreases attack point 2 units",
                 TargetRangedAndHybrid.getTargetInstance(), ItemAction30chicken.getItemAction()));
         usables.add(new Usable("Terror Hood", 5000, 1, -2, "while attacking, weakness buff on random enemy card, decreases attack point 2 units",
                 TargetRandomEnemy.getTargetInstance(), ItemActionChangeAP.getItemAction()));
