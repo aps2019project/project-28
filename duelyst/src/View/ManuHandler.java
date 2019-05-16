@@ -514,6 +514,8 @@ public class ManuHandler {
     }
     //moh
     public static void main(String[] args) {
+
+
         Scanner commands=Game.accounts[0].getOutputStream();
         currentMenu.showMenu();
         String command ;
