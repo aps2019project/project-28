@@ -64,8 +64,7 @@ public abstract class Hermione extends Card {
         if (this.attackType.canReach(this, enemyCard)) {
             this.attackCounter++;
             this.buffEffects.handle();
-            enemyCard.changeHealthPoint(-(1000) * this.attackPoint);
-            // TODO: 5/15/19 -1000----------->-1
+            enemyCard.changeHealthPoint(Integer.min(-(1) * this.attackPoint+enemyCard.getBuffEffects().getHollyBuffLevel(),0));
 
             if (enemyCard.getLocation().getCellAffect().contains(CellAffects.holly))
                 enemyCard.changeHealthPoint(1);

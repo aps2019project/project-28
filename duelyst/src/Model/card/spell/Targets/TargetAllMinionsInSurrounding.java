@@ -2,6 +2,7 @@ package Model.card.spell.Targets;
 
 import Controller.Game;
 import Model.Map.Cell;
+import Model.card.hermione.Hero;
 import Model.card.spell.Target;
 import exeption.InvalidCellException;
 
@@ -23,7 +24,8 @@ public class TargetAllMinionsInSurrounding implements Target {
         ArrayList<Cell> cells = new ArrayList<Cell>() ;
         Collections.addAll(cells , TargetSurroundings.getTargetInstance().getTarget(cell)) ;
         for (Cell cel : cells){
-            if (!cel.getCardOnCell().getSuperCollection().getOwner().equals(Game.battle.getPlayer()))
+            if (cel.getCardOnCell() == null || cel.getCardOnCell() instanceof Hero ||
+                     Game.battle.getPlayer().getMinionsInGame() == null ||!Game.battle.getPlayer().getMinionsInGame().contains(cel.getCardOnCell()))
                 cells.remove(cel) ;
         }
         Cell[] cells2 = new Cell[cells.size()];

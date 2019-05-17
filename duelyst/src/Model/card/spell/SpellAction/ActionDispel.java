@@ -17,6 +17,9 @@ public class ActionDispel implements Action {
     @Override
     public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
+            if(cell.getCardOnCell().getAppliedBuffs()==null){
+                return;
+            }//throw new InvalidCellException();
             for (Buff buff : cell.getCardOnCell().getAppliedBuffs()) {
                 if (buff.isItPositive() ^ buff.getPlayer() == Game.battle.getPlayer()) {
                     buff.destroy();

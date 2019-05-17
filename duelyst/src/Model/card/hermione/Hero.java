@@ -22,6 +22,7 @@ public class Hero extends Hermione {
         remainCoolDOwnTime = cooldown - 1 ;
     }
 
+
     @Override
     public boolean applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException , CantSpecialPowerCooldownException {
         if (this.remainCoolDOwnTime != cooldown) throw new CantSpecialPowerCooldownException() ;

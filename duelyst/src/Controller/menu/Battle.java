@@ -205,7 +205,8 @@ public class Battle extends Menu {
             try {
                 ((Spell) card).deploy(this.account.getPlayer(), Battle.getMenu().getEnemy(this.account), Battle.getMenu().getMap().getCell(x, y));
                 this.account.getPlayer().changeMana((-1) * card.getManaPoint());
-            } catch (InvalidCellException e) {
+                this.account.getPlayer().getHand().handleHand(card);
+            } catch (InvalidCellException | HandFullException | DeckIsEmptyException e) {
                 e.printStackTrace();
             }
         }
@@ -285,6 +286,9 @@ public class Battle extends Menu {
         /*checkState*/
         if (this.gameMode.checkState()) {
             this.gameMode.handleWin();
+            Game.accounts[1]=Account.getDefaultAccount();
+            this.account=SignInMenu.getMenu().account;
+            this.turn=0;
             ManuHandler.currentMenu = MainMenu.getMenu();
         } else {
             nextTurn();
@@ -466,17 +470,17 @@ public class Battle extends Menu {
         return cardsPresenters;
     }
 
-    public void useItem(int x, int y) throws InvalidCellException {
-        this.account.getPlayer().getSelectedItem().deploy(Game.battle.getMap().getCell(x, y));
-        // TODO: 5/5/19 saE doroste dg?
-    }
-
     public void showInfo() throws NoItemHasBeenSelectedException {
         Item item = this.account.getPlayer().getSelectedItem();
         if (item == null) throw new NoItemHasBeenSelectedException();
         for (OnItemDetailPresentedListener presenter : item.getItemDetailPresenters()) {
             presenter.showItemDetail(item);
         }
+    }
+
+    public void useItem(int x, int y) throws InvalidCellException {
+        this.account.getPlayer().getSelectedItem().deploy(Game.battle.getMap().getCell(x, y));
+        // TODO: 5/5/19 saE doroste dg?
     }
 
 }
