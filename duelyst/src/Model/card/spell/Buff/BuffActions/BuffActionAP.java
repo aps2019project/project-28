@@ -12,11 +12,13 @@ public class BuffActionAP implements BuffActions {
     public void affect(Buff buff){
         if (buff.getTarget().getAttackPoint() == buff.getTarget().getOriginalAttackPoint()){
             buff.getTarget().changeAttackPoint(buff.getPerk());
+            System.err.println("just changed some ap : " + buff.getPerk() + "on" + buff.getTarget().getName());
         }
     }
     @Override
     public void destroy(Buff buff){
         buff.getTarget().setAttackPoint(buff.getTarget().getOriginalAttackPoint());
+        System.err.println("destroyed APBuff");
     }
 
 }

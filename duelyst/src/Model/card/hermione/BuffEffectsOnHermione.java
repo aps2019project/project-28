@@ -27,7 +27,6 @@ public class BuffEffectsOnHermione {
     }
 
 
-
     public boolean isHasTheDeathCurse() {
         return hasTheDeathCurse;
     }

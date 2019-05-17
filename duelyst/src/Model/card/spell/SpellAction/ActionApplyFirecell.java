@@ -15,7 +15,7 @@ public class ActionApplyFirecell implements Action {
     @Override
     public void deploy(Spell spell, Cell... cells) {
         for (Cell cell : cells) {
-            cell.addCellAffect(CellAffects.fire);
+            cell.addCellAffect(CellAffects.fire , spell.getDuration(spell.getIndexOfAction(ActionApplyFirecell.getAction())));
         }
     }
 }

@@ -12,5 +12,6 @@ public class BuffActionPoison implements BuffActions {
 
     public void affect(Buff buff) {
         buff.getTarget().changeHealthPoint(-1);
+        System.err.println("just changed some poisoning " + "on " + buff.getTarget().getName());
     }
 }

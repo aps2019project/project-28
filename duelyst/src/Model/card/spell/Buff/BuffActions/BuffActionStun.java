@@ -13,6 +13,7 @@ public class BuffActionStun implements BuffActions {
     public void affect(Buff buff) {
         buff.getTarget().setCanAttack(false);
         buff.getTarget().setCanMove(false);
+        System.err.println("just stunned that guy : " + buff.getTarget());
     }
 
     @Override

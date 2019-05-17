@@ -99,7 +99,7 @@ public class Spell extends Card {
                 try {
                     action.deploy(this, targetCell);
                 }catch (NullPointerException e){
-                    System.err.println("it was deployed ! but it didn't do anything ! i hope that's cool ! ");
+                    System.err.println("it was deployed ! but it didn't do anything ! i hope that's cool ! " + this.getName() + " " + this.getCardID());
                 }
             }
             this.duration--;

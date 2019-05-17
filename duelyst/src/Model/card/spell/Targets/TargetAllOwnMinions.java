@@ -26,6 +26,7 @@ public class TargetAllOwnMinions implements Target {
         Cell[] cells = new Cell[minions.size()];
         for (int i = 0 ; i < minions.size() ; i++){
             cells[i] = minions.get(i).getLocation();
+            System.err.println("target all minions : " + i);
         }
         return cells ;
     }

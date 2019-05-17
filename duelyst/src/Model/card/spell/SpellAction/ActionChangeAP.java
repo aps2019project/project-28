@@ -19,10 +19,18 @@ public class ActionChangeAP implements Action {
     @Override
     public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
-            Hermione card = cell.getCardOnCell();
-            Buff buff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionChangeAP.getAction())), spell.getPerk(spell.getIndexOfAction(ActionChangeAP.getAction())) > 0, BuffActionAP.getBuffAction());
-            if (cell.getCardOnCell() == null) throw new InvalidCellException();
-            buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
+            if (cell != null && cell.getCardOnCell() != null) {
+                try {
+                    Hermione card = cell.getCardOnCell();
+                    Buff buff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionChangeAP.getAction())), spell.getPerk(spell.getIndexOfAction(ActionChangeAP.getAction())) > 0, BuffActionAP.getBuffAction());
+                    if (cell.getCardOnCell() == null) throw new InvalidCellException();
+                    buff.deploy(Game.battle.getPlayer(), card);
+                } catch (NullPointerException e) {
+                    System.out.println();
+                    e.printStackTrace();
+                    System.out.println();
+                }
+            }
         }
     }
 }
