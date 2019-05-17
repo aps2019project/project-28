@@ -19,6 +19,8 @@ public class Spell extends Card {
     protected ArrayList<Action> actions = new ArrayList<>();
     protected int duration;
     protected int perk;
+    protected ArrayList<Integer> perks = new ArrayList<>();
+    protected ArrayList<Integer> durations = new ArrayList<>();
 
     public void decreaseDuration() {
         this.duration--;
@@ -26,24 +28,21 @@ public class Spell extends Card {
 
     public Spell(String name, int price , int manaPoint, int duration , int perk , String info, Target target, Action... actions ) {
         super( name, price, manaPoint, info);
-        this.duration = duration ;
-        this.perk = perk ;
+        this.durations.add(duration) ;
+        this.perks.add(perk) ;
         Collections.addAll(this.actions, actions) ;
         this.target = target;
     }
 
-
-    public void setPerk(int perk) {
-        this.perk = perk;
+    public void addAction(Action action , int perk){
+        this.actions.add(action) ;
+        this.perks.add(perk);
     }
 
     public void setDuration(int duration) {
         this.duration = duration;
     }
 
-    public void setActions(ArrayList<Action> actions) {
-        this.actions = actions;
-    }
 
 //    public void setTargetCells(Cell[] targetCells) {
 //        this.targetCells = targetCells;
@@ -77,12 +76,14 @@ public class Spell extends Card {
         return actions;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getDuration(int i) {
+        if (i < durations.size() )
+            return durations.get(i);
+        else return 0 ;
     }
 
-    public int getPerk() {
-        return perk;
+    public int getPerk(int i) {
+        return perks.get(i);
     }
 
     public void deploy(Player player, Player enemy, Cell cell) throws InvalidCellException, InvalidCardException {
@@ -96,7 +97,11 @@ public class Spell extends Card {
                 }
             }
             for (Action action : actions){
-                action.deploy(this , targetCell);
+                try {
+                    action.deploy(this, targetCell);
+                }catch (NullPointerException e){
+                    System.err.println("it was deployed ! but it didn't do anything ! i hope that's cool ! ");
+                }
             }
             this.duration--;
             if (this.duration == 0) activeSpells.remove(this);
@@ -107,8 +112,13 @@ public class Spell extends Card {
     }
 
     public void deployAction(Cell... cells) throws InvalidCellException, InvalidCardException {
+        if (cells == null ) return ;
         for (Action action : this.actions)
             action.deploy(this, cells);
+    }
+
+    public void addToActions(Action action){
+        this.actions.add(action);
     }
 
 }

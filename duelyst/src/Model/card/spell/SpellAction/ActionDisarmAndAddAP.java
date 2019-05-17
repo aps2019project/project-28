@@ -1,6 +1,8 @@
 package Model.card.spell.SpellAction;
 
 import Model.Map.Cell;
+import Model.card.spell.Buff.Buff;
+import Model.card.spell.Buff.BuffActions.BuffActionDisarm;
 import Model.card.spell.Spell;
 import exeption.InvalidCellException;
 
@@ -18,5 +20,6 @@ public class ActionDisarmAndAddAP implements Action {
         spell.decreaseDuration();
         ActionDisarm.getAction().deploy(spell, cells);
         ActionChangeAP.getAction().deploy(spell, cells);
+        Buff disarm = new Buff (spell.getDuration() , false , BuffActionDisarm , )
     }
 }

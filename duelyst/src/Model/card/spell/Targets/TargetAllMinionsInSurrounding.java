@@ -23,10 +23,12 @@ public class TargetAllMinionsInSurrounding implements Target {
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
         ArrayList<Cell> cells = new ArrayList<Cell>() ;
         Collections.addAll(cells , TargetSurroundings.getTargetInstance().getTarget(cell)) ;
-        for (Cell cel : cells){
+        for (int i = 0 ; i < cells.size() ; i++){
+            Cell cel = cells.get(i);
             if (cel.getCardOnCell() == null || cel.getCardOnCell() instanceof Hero ||
                      Game.battle.getPlayer().getMinionsInGame() == null ||!Game.battle.getPlayer().getMinionsInGame().contains(cel.getCardOnCell()))
-                cells.remove(cel) ;
+                cells.remove(i) ;
+                i--;
         }
         Cell[] cells2 = new Cell[cells.size()];
         cells.toArray(cells2);
