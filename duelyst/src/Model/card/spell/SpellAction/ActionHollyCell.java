@@ -16,7 +16,7 @@ public class ActionHollyCell implements Action {
     @Override
     public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
-            cell.addCellAffect(CellAffects.holly);
+            cell.addCellAffect(CellAffects.holly , spell.getDuration(spell.getIndexOfAction(ActionHollyCell.getAction())));
         }
     }
 }

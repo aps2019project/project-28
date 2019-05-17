@@ -21,7 +21,8 @@ public class BuffEffectsOnHermione {
     public void handle() throws InvalidCellException {
         if (hasThePoisonousDagger){
              Cell[] cells = TargetRandomEnemy.getTargetInstance().getTarget(card.location) ;
-             ActionDeployPoison.getAction().deploy(cells);
+             ActionDeployPoison.getAction().deploy(1 , cells);
+             hasThePoisonousDagger = false ;
         }
     }
 

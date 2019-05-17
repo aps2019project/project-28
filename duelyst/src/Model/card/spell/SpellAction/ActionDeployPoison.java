@@ -18,17 +18,15 @@ public class ActionDeployPoison implements Model.card.spell.SpellAction.Action {
     @Override
     public void deploy(Spell spell, Cell... cells) throws InvalidCellException{
         for (Cell cell : cells) {
-            Buff poisonBuff = new Buff(4, false, BuffActionPoison.getBuffAction());
+            Buff poisonBuff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionDeployPoison.getAction())), false, BuffActionPoison.getBuffAction());
             poisonBuff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
-
         }
     }
 
-    public void deploy(Cell... cells) throws InvalidCellException{
+    public void deploy(int duration , Cell... cells) throws InvalidCellException{
         for (Cell cell : cells) {
-            Buff poisonBuff = new Buff(4, false, BuffActionPoison.getBuffAction());
+            Buff poisonBuff = new Buff(duration, false, BuffActionPoison.getBuffAction());
             poisonBuff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
-
         }
     }
 }

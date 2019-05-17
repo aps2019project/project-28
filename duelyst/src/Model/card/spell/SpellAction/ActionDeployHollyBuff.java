@@ -19,7 +19,7 @@ public class ActionDeployHollyBuff implements Action {
     public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
             if (cell.getCardOnCell() == null) throw new InvalidCellException("empty cell");
-            Buff buff = new Buff(spell.getDuration(), true, BuffActionHolly.getBuffAction(), spell.getPerk());
+            Buff buff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionDeployHollyBuff.getAction())), true, BuffActionHolly.getBuffAction(), spell.getPerk(spell.getIndexOfAction(ActionDeployHollyBuff.getAction())));
             buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
 
         }

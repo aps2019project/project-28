@@ -15,7 +15,7 @@ public class ActionPoisonCell implements Action {
     @Override
     public void deploy(Spell spell, Cell... cells) {
         for (Cell cell : cells) {
-            cell.addCellAffect(CellAffects.poison);
+            cell.addCellAffect(CellAffects.poison , spell.getDuration(spell.getIndexOfAction(ActionPoisonCell.getAction())));
         }
     }
 }

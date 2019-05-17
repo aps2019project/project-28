@@ -20,9 +20,9 @@ public class ActionChangeHP implements Action {
     public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
             Hermione card = cell.getCardOnCell();
-            Buff buff = new Buff(spell.getDuration(), spell.getPerk() > 0, BuffActionHP.getBuffAction());
+            Buff buff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionChangeHP.getAction())), spell.getPerk(spell.getIndexOfAction(ActionChangeHP.getAction())) > 0, BuffActionHP.getBuffAction());
             buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
-            card.changeHealthPoint(spell.getPerk());
+            card.changeHealthPoint(spell.getPerk(spell.getIndexOfAction(ActionChangeHP.getAction())));
         }
     }
 }

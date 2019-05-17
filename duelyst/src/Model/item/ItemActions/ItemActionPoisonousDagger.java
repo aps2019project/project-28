@@ -18,8 +18,7 @@ public class ItemActionPoisonousDagger implements ItemAction {
     public void deploy(Item item, Cell[] target) throws InvalidCellException {
        for (Cell cell : target){
            if (cell.getCardOnCell() == null) throw new InvalidCellException("itemActionPoisonousDagger") ;
-           //cell.getCardOnCell().getBuffEffects().setHasThePoisonousDagger(true);
-           // TODO: 5/6/19 in comment bala bayad bug Fix she
+           cell.getCardOnCell().getBuffEffects().setHasThePoisonousDagger(true);
        }
     }
 }

@@ -21,7 +21,7 @@ public class ActionStun implements Action {
     public void deploy(Spell spell, Cell... cells) throws InvalidCardException, InvalidCellException {
         if (cells == null) return ;
         for (Cell cell : cells) {
-            Buff buff = new Buff(spell.getDuration(), false, BuffActionStun.getBuffAction(), BuffTypePassive.getBuffTypeInstance());
+            Buff buff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionStun.getAction())), false, BuffActionStun.getBuffAction(), BuffTypePassive.getBuffTypeInstance());
             buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
         }
     }

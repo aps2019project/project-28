@@ -4,6 +4,7 @@ import Model.account.Player;
 import Model.card.Card;
 import Model.Map.*;
 import Model.card.spell.SpellAction.Action;
+import Model.card.spell.SpellAction.ActionVoid;
 import exeption.InvalidCardException;
 import exeption.InvalidCellException;
 
@@ -34,30 +35,18 @@ public class Spell extends Card {
         this.target = target;
     }
 
-    public void addAction(Action action , int perk){
+    public void addAction(Action action , int perk , int duration){
         this.actions.add(action) ;
         this.perks.add(perk);
+        this.durations.add(duration);
     }
 
     public void setDuration(int duration) {
         this.duration = duration;
     }
 
-
-//    public void setTargetCells(Cell[] targetCells) {
-//        this.targetCells = targetCells;
-//    }
-
     public void setTarget(Target target) {
         this.target = target;
-    }
-
-    public void setActiveSpells(ArrayList<Spell> activeSpells) {
-        this.activeSpells = activeSpells;
-    }
-
-    public ArrayList<Spell> getActiveSpells() {
-        return activeSpells;
     }
 
     public Target getTarget() {
@@ -67,10 +56,6 @@ public class Spell extends Card {
     public Target getTargetClass() {
         return this.target.getTargetClass();
     }
-
-//    public Cell[] getTargetCells() {
-//        return targetCells;
-//    }
 
     public ArrayList<Action> getActions() {
         return actions;
@@ -83,8 +68,22 @@ public class Spell extends Card {
     }
 
     public int getPerk(int i) {
-        return perks.get(i);
+        if (i < perks.size())
+            return perks.get(i);
+        else return 0 ;
     }
+
+    public Action getAction(int i){
+        if (i < actions.size())
+            return actions.get(i);
+        else return ActionVoid.getAction() ;
+    }
+
+    public int getIndexOfAction(Action action){
+        return actions.indexOf(action) ;
+    }
+
+
 
     public void deploy(Player player, Player enemy, Cell cell) throws InvalidCellException, InvalidCardException {
         try{
@@ -115,10 +114,6 @@ public class Spell extends Card {
         if (cells == null ) return ;
         for (Action action : this.actions)
             action.deploy(this, cells);
-    }
-
-    public void addToActions(Action action){
-        this.actions.add(action);
     }
 
 }

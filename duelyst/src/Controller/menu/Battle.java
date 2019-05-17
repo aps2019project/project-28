@@ -270,6 +270,10 @@ public class Battle extends Menu {
             this.player[1].getDeck().getHero().handleCoolDown();
         } catch (NullPointerException ignored) {
         }
+        // handle cellAffects
+        for (Cell cell : map.getCells()){
+            cell.checkCellAffects();
+        }
         // TODO: 5/5/19 other stuff maybe?
 
         for (int i = 0; i < 2; i++) {

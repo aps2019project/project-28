@@ -20,10 +20,9 @@ public class ActionChangeAP implements Action {
     public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
             Hermione card = cell.getCardOnCell();
-            Buff buff = new Buff(spell.getDuration(), spell.getPerk() > 0, BuffActionAP.getBuffAction());
+            Buff buff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionChangeAP.getAction())), spell.getPerk(spell.getIndexOfAction(ActionChangeAP.getAction())) > 0, BuffActionAP.getBuffAction());
             if (cell.getCardOnCell() == null) throw new InvalidCellException();
             buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
-            card.changeAttackPoint(spell.getPerk());
         }
     }
 }

@@ -18,7 +18,7 @@ public class ActionDisarm implements Action {
     @Override
     public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
-            Buff buff = new Buff(spell.getDuration(), false, BuffActionDisarm.getBuffAction());
+            Buff buff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionDisarm.getAction())), false, BuffActionDisarm.getBuffAction());
             buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
         }
     }

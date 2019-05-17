@@ -17,6 +17,7 @@ public class Cell {
     private boolean isFull = false;
     private boolean hasItem = false;
     private ArrayList<CellAffects> cellAffect = new ArrayList<>() ;
+    private ArrayList<Integer> cellAffectDurations = new ArrayList<>();
     private Collectable collectable;
 
     public Cell(int x, int y) {
@@ -75,8 +76,21 @@ public class Cell {
         return cellAffect;
     }
 
-    public void addCellAffect(CellAffects cellAffect) {
+    public void addCellAffect(CellAffects cellAffect , int duration) {
         this.cellAffect.add(cellAffect);
+        this.cellAffectDurations.add(duration);
+    }
+
+    public void checkCellAffects(){
+
+        for (int i =0 ; i  < cellAffect.size() ; i++){
+            this.cellAffectDurations.set(i , cellAffectDurations.get(i)-1) ;
+            if (this.cellAffectDurations.get(i) == 0){
+                this.cellAffect.remove(i);
+                this.cellAffectDurations.remove(i);
+                i--;
+            }
+        }
     }
 
     public Collectable getCollectable() {
