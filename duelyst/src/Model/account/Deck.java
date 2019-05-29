@@ -125,7 +125,7 @@ public class Deck {
             removeItemFromDeck(ID);
     }
 
-    private boolean removeCardFromDeck(int cardID) throws InvalidCardException {
+    private void removeCardFromDeck(int cardID) throws InvalidCardException {
         Card willBeRemoved = null;
         if (!this.hasCard(cardID))
             throw new InvalidCardException();
@@ -137,7 +137,6 @@ public class Deck {
         }
         if (willBeRemoved instanceof Hero) hero = null;
         cards.remove(willBeRemoved);
-        return true;
     }
 
     public void moveAllToGraveYard(ArrayList<Minion> deads){
@@ -149,7 +148,7 @@ public class Deck {
             }
         }
     }
-    public void moveToGraveYard(Card card) throws InvalidCardException {
+    private void moveToGraveYard(Card card) throws InvalidCardException {
         if (this.hasCard(card)) {
             this.graveYard.add(card);
         } else {
