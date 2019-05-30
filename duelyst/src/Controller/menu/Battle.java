@@ -20,7 +20,7 @@ import Model.item.Collectable;
 import Model.item.KingSlayerCounter;
 import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnHandPresentedListener;
-import View.ManuHandler;
+import View.MenuHandler;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -293,7 +293,7 @@ public class Battle extends Menu {
             Game.accounts[1]=Account.getDefaultAccount();
             this.account=SignInMenu.getMenu().account;
             this.turn=0;
-            ManuHandler.currentMenu = MainMenu.getMenu();
+            MenuHandler.currentMenu = MainMenu.getMenu();
         } else {
             nextTurn();
         }

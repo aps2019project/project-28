@@ -150,8 +150,7 @@ public abstract class Hermione extends Card {
     public void changeHealthPoint(int healthPoint) {
         this.healthPoint += healthPoint;
         if (this.healthPoint <= 0) this.healthPoint = 0;
-//        if(this.healthPoint>=this.originalHealthPoint)this.healthPoint=this.originalHealthPoint;
-        // TODO: 5/14/19 in ro baadan check kon
+        if(this.healthPoint>=this.originalHealthPoint)this.healthPoint=this.originalHealthPoint;
     }
 
     public void changeAttackPoint(int attackPoint) {
@@ -275,9 +274,7 @@ public abstract class Hermione extends Card {
     }
 
     public int getOriginalHealthPoint() {
-//        return originalHealthPoint;
-        // TODO: 5/9/19 jam kon ridemanet ro
-        return healthPoint;
+        return originalHealthPoint;
     }
 
     public boolean hasFlag() {

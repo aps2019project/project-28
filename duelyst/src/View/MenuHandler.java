@@ -1,5 +1,4 @@
 package View;
-//TODO change the name dude !!!!
 import Controller.Game;
 import Controller.GameMode.ClassicMode;
 import Controller.GameMode.Domination;
@@ -30,8 +29,6 @@ import java.util.Scanner;
 import java.util.function.BinaryOperator;
 
 
-// TODO: 5/5/19 command select collectable(page 20) change menu from battle to collectable menu
-// TODO: 5/5/19 command entergraveyard changes menu from battle to graveYard
 
 class ShowMenu implements OnMenuClickedListener{
     @Override
@@ -45,7 +42,7 @@ class ShowMenu implements OnMenuClickedListener{
         }
     }
 }
-public class ManuHandler {
+public class MenuHandler {
 
     public static Menu currentMenu;
 
