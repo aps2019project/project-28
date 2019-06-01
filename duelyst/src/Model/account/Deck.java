@@ -95,22 +95,20 @@ public class Deck {
         return false;
     }
 
-    public boolean validateDeck() {
-        // TODO: 5/13/19 fatteme return false ha ro exception kon
+    public boolean validateDeck() throws InvalidDeckException {
         System.err.println(this.getHero().getName());
         if (cards.size() != CARD_SIZE) {
             System.err.println("card size problem");
-            return false;
+            throw new InvalidDeckException();
         }
         if (items.size() != ITEM_SIZE) {
             System.err.println("item size problems");
-            return false;
+            throw new InvalidDeckException();
         }
         if (hero == null) {
             System.err.println("hero problems");
-            return false;
+            throw new InvalidDeckException();
         }
-        this.shuffle();
         return true;
     }
 
