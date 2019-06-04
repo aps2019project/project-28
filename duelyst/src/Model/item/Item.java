@@ -92,19 +92,8 @@ public abstract class Item {
     }
 
     public void deploy(Cell cell) throws InvalidCellException {
-        try {
-            target.getTarget(cell);
-        } catch (InvalidCellException e) {
-            throw e;
-        }
-        for (ItemAction action : actions) {
-            try {
-                // TODO: 5/6/19 saE ya Fattme handleOnAttack this error
-                action.deploy(this, target.getTarget(cell));
-            } catch (InvalidCellException e) {
-                throw e;
-            }
-        }
+        target.getTarget(cell);
+        for (ItemAction action : actions) action.deploy(this, target.getTarget(cell));
     }
 
     public void increaseHealth(int number, Hermione target) {

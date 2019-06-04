@@ -44,6 +44,7 @@ public class Minion extends Hermione{
             }catch (DestinationOutOfreachException e){
                 //TODO
             } catch (InvalidCellException e) {
+                e.printStackTrace();
             }
         }
         this.itIsTime(SPATime.DEATH);

@@ -14,9 +14,7 @@ public class Hero extends Hermione {
     private int cooldown;
     private int remainCoolDOwnTime;
 
-    // TODO: 4/15/19 final touches
 
-    // TODO: 4/15/19 final touches
     public void spawn(Cell cell) {
         super.spawn(cell);
         remainCoolDOwnTime = cooldown - 1 ;

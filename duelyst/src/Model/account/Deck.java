@@ -13,6 +13,10 @@ import java.util.Collections;
 
 public class Deck {
     private Collection collection;
+    private ArrayList<Integer> cardIDs = new ArrayList<>();
+    private ArrayList<Integer> itemIDs = new ArrayList<>();
+    private ArrayList<Integer> graveYardIDs = new ArrayList<>();
+    private Integer heroID;
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Card> graveYard = new ArrayList<>();
@@ -53,18 +57,18 @@ public class Deck {
     }
 
     public boolean hasCard(int cardID) {
-        for (Card card :
-                cards) {
-            if (card.getCardID() == cardID)
+        for (Integer card :
+                ids) {
+            if (card== cardID)
                 return true;
         }
         return false;
     }
 
     public boolean hasCard(Card wantedCard) {
-        for (Card card :
-                cards) {
-            if (card.equals(wantedCard))
+        for (Integer card :
+                ids) {
+            if (wantedCard.getCardID() == card)
                 return true;
         }
         return false;
@@ -95,22 +99,20 @@ public class Deck {
         return false;
     }
 
-    public boolean validateDeck() {
-        // TODO: 5/13/19 fatteme return false ha ro exception kon
+    public boolean validateDeck() throws InvalidDeckException {
         System.err.println(this.getHero().getName());
         if (cards.size() != CARD_SIZE) {
             System.err.println("card size problem");
-            return false;
+            throw new InvalidDeckException();
         }
         if (items.size() != ITEM_SIZE) {
             System.err.println("item size problems");
-            return false;
+            throw new InvalidDeckException();
         }
         if (hero == null) {
             System.err.println("hero problems");
-            return false;
+            throw new InvalidDeckException();
         }
-        this.shuffle();
         return true;
     }
 
