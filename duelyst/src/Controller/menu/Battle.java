@@ -270,7 +270,7 @@ public class Battle extends Menu {
             this.player[1].getDeck().getHero().handleCoolDown();
         } catch (NullPointerException ignored) {
         }
-        // handle cellAffects
+        // handleOnAttack cellAffects
         for (Cell cell : map.getCells()){
             cell.checkCellAffects();
         }
@@ -350,7 +350,7 @@ public class Battle extends Menu {
         try {
             buff.handleBuffEndOfTurn();
         } catch (InvalidCellException ignored) {
-            System.err.println("buff handle in battle menu end of turn");
+            System.err.println("buff handleOnAttack in battle menu end of turn");
         }
     }
 
@@ -358,7 +358,7 @@ public class Battle extends Menu {
         try {
             buff.handleBuffBeginningOfTurn();
         } catch (InvalidCellException | BuffHasntBeenDeployedYetException ignored) {
-            System.err.println("buff handle in battle menu beginning of turn");
+            System.err.println("buff handleOnAttack in battle menu beginning of turn");
         }
     }
 

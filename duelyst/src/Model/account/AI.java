@@ -31,8 +31,8 @@ public class AI extends Account {
     int level;
     int move = -1; //0: insert card , 1&3: select hero, 2: move Hero ,
                 // 4: attack with hero ,and then : minions : select-move-select-attack
-    Map map;
-    Player enemy;
+    private Map map;
+    private Player enemy;
     public StringWrapper output=new StringWrapper();
 
     public AI(int level) throws FullDeckException, DeckAlreadyHasThisCardException, InvalidDeckException,
@@ -84,7 +84,7 @@ public class AI extends Account {
                 int randCard = randTypeCard.nextInt(2);
                 if (randCard == 0) {
                     command = insertMinion();
-                    if (command!= null && !command.isEmpty()) {
+                    if (command != null && !command.isEmpty()) {
                         output.set(command);
                         return;
                     }
@@ -95,11 +95,7 @@ public class AI extends Account {
                         return;
                     }
                 }
-                if (command != null && !command.isEmpty()){
-                    output.set(command);
-                    return ;
-                }
-                else move++ ;
+                move++ ;
             case 1:
             case 3:
                 command = "Select "+ collection.getMainDeck().getHero().getCardID();
@@ -110,14 +106,14 @@ public class AI extends Account {
                 for (int i = 2 ; i >0 ; i--){
                     Cell[] cells = map.getCellsInDistance(hero.getLocation() , i) ;
                     for (Cell cell : cells){
-                        if (cell.getCardOnCell() == null) {
+                        if (cell.getCardOnCell() == null) { //TODO after arshia makes the canReach function for hermione check that too !
                             command = "Move to " + cell.getX() + " " + cell.getY() ;
                             output.set(command);
                             return ;
                         }
                     }
                 }
-                move++ ;
+                move+=2 ;
 
             case 4:
                 hero = collection.getMainDeck().getHero() ;
@@ -332,6 +328,7 @@ public class AI extends Account {
     @Override
     public void doYourMove() {
         this.play();
+        System.out.println("\t\t\t\t\t\t\t AI output is : " + this.output.string);
         if(output.string==null || output.string.isEmpty()) output.set("dude output is empty !");
     }
 

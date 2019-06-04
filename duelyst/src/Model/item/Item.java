@@ -99,7 +99,7 @@ public abstract class Item {
         }
         for (ItemAction action : actions) {
             try {
-                // TODO: 5/6/19 saE ya Fattme handle this error
+                // TODO: 5/6/19 saE ya Fattme handleOnAttack this error
                 action.deploy(this, target.getTarget(cell));
             } catch (InvalidCellException e) {
                 throw e;
