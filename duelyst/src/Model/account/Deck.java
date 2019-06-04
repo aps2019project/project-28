@@ -13,6 +13,10 @@ import java.util.Collections;
 
 public class Deck {
     private Collection collection;
+    private ArrayList<Integer> cardIDs = new ArrayList<>();
+    private ArrayList<Integer> itemIDs = new ArrayList<>();
+    private ArrayList<Integer> graveYardIDs = new ArrayList<>();
+    private Integer heroID;
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Card> graveYard = new ArrayList<>();
@@ -53,18 +57,18 @@ public class Deck {
     }
 
     public boolean hasCard(int cardID) {
-        for (Card card :
-                cards) {
-            if (card.getCardID() == cardID)
+        for (Integer card :
+                ids) {
+            if (card== cardID)
                 return true;
         }
         return false;
     }
 
     public boolean hasCard(Card wantedCard) {
-        for (Card card :
-                cards) {
-            if (card.equals(wantedCard))
+        for (Integer card :
+                ids) {
+            if (wantedCard.getCardID() == card)
                 return true;
         }
         return false;
