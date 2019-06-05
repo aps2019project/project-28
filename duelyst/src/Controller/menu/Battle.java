@@ -81,7 +81,7 @@ public class Battle extends Menu {
         return true;
     }
 
-    private void insert(Hermione hermione, Cell cell) {
+    private void insert(Hermione hermione, Cell cell) throws InvalidCellException {
         hermione.spawn(cell);
         this.map.getCell(cell).setCardOnCell(hermione);
     }
@@ -189,8 +189,12 @@ public class Battle extends Menu {
         if (hermione instanceof Hero) {
             this.playerOf(hermione).getDeck().killHero();
         }else{
-            this.map.getCell(hermione.getLocation()).setFlag(hermione.hasFlag());
-            this.map.getCell(hermione.getLocation()).clear();
+            try {
+                this.map.getCell(hermione.getLocation()).setFlag(hermione.hasFlag());
+                this.map.getCell(hermione.getLocation()).clear();
+            } catch (InvalidCellException e) {
+                e.printStackTrace();
+            }
 
             this.gameMode.handleDeath(this.playerOf(hermione), (Minion) hermione);
 
@@ -200,7 +204,11 @@ public class Battle extends Menu {
         // TODO: 6/5/19 fatteme after making the unit test check when we kill a minion or hero at any condition(direct attack /counter attack/spell affects....)
         // TODO: 6/5/19 do they go to grave yard or not and the maps get clear or not and announce me
 
-        Battle.getMenu().getMap().getCell(hermione.getLocation()).setFull(false);
+        try {
+            Battle.getMenu().getMap().getCell(hermione.getLocation()).setFull(false);
+        } catch (InvalidCellException e) {
+            e.printStackTrace();
+        }
         handleDeaths();
     }
 

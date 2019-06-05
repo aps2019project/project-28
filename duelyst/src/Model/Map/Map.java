@@ -58,8 +58,8 @@ public class Map {
         return board[x][y];
     }
 
-    public Cell getCell(Cell cell) {
-        return board[cell.getX()][cell.getY()];
+    public Cell getCell(Cell cell) throws InvalidCellException {
+        return getCell(cell.getX(),cell.getY());
     }
 
     public ArrayList<Cell> getCells() {
