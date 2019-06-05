@@ -183,12 +183,17 @@ public class Battle extends Menu {
         handleDeaths();
     }
 
+    public void kill(Hermione hermione) {
+        Battle.getMenu().getMap().getCell(hermione.getLocation()).setFull(false);
+
+    }
+
     public void attackCombo() {
         // TODO: 5/5/19 COMMMBOOOOOOO
         handleDeaths();
     }
 
-    public void useSpecialPower(int x, int y) throws InvalidCellException , CantSpecialPowerCooldownException , InvalidCardException{
+    public void useSpecialPower(int x, int y) throws InvalidCellException, CantSpecialPowerCooldownException, InvalidCardException {
         Cell cell = map.getCell(x, y);
         this.account.getPlayer().getDeck().getHero().applySpecialPower(cell);
         handleDeaths();
@@ -227,6 +232,10 @@ public class Battle extends Menu {
 
 
     private void handleDeaths() {
+
+        /*
+         * minions death
+         * */
         for (int i = 0; i < 2; i++) {
             ArrayList<Minion> deadMinions = new ArrayList<>();
             for (Minion minion : this.player[i].getMinionsInGame()) {
@@ -234,11 +243,19 @@ public class Battle extends Menu {
                     deadMinions.add(minion);
                     this.map.getCell(minion.getLocation()).setFlag(minion.hasFlag());
                     this.map.getCell(minion.getLocation()).clear();
-                    this.gameMode.handleDeath(this.player[i],minion);
+                    this.gameMode.handleDeath(this.player[i], minion);
                 }
             }
             this.player[i].getMinionsInGame().removeAll(deadMinions);
             this.player[i].getDeck().moveAllToGraveYard(deadMinions);
+        }
+
+
+
+        if (Battle.getMenu().getPlayer().getDeck().getHero().equals(this)) {
+            Battle.getMenu().getPlayer().getDeck().killHero();
+        } else if (Battle.getMenu().getEnemyPlayer().getDeck().getHero().equals(this)) {
+            Battle.getMenu().getEnemyPlayer().getDeck().killHero();
         }
     }
 
@@ -282,7 +299,7 @@ public class Battle extends Menu {
         } catch (NullPointerException ignored) {
         }
         // handleOnAttack cellAffects
-        for (Cell cell : map.getCells()){
+        for (Cell cell : map.getCells()) {
             cell.checkCellAffects();
         }
         // TODO: 5/5/19 other stuff maybe?
@@ -302,9 +319,9 @@ public class Battle extends Menu {
         /*checkState*/
         if (this.gameMode.checkState()) {
             this.gameMode.handleWin();
-            Game.accounts[1]=Account.getDefaultAccount();
-            this.account=SignInMenu.getMenu().account;
-            this.turn=0;
+            Game.accounts[1] = Account.getDefaultAccount();
+            this.account = SignInMenu.getMenu().account;
+            this.turn = 0;
             MenuHandler.currentMenu = MainMenu.getMenu();
         } else {
             nextTurn();
@@ -497,6 +514,21 @@ public class Battle extends Menu {
     public void useItem(int x, int y) throws InvalidCellException {
         this.account.getPlayer().getSelectedItem().deploy(Battle.getMenu().getMap().getCell(x, y));
         // TODO: 5/5/19 saE doroste dg?
+    }
+
+    public Player playerOf(Hermione hermione) throws InvalidCardException {
+        for (int i = 0; i < 2; i++) {
+            for (Card card : this.player[i].getDeck().getCards()) {
+                if (card instanceof Hermione) {
+                    if (card.equals(hermione)) return this.player[i];
+                }
+            }
+        }
+        throw new InvalidCardException();
+    }
+    public Player enemyPlayerOf(Hermione hermione) throws InvalidCardException {
+        if(playerOf(hermione).equals(this.player[0]))return this.player[1];
+        return this.player[0];
     }
 
 }

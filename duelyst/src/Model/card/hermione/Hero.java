@@ -56,11 +56,6 @@ public class Hero extends Hermione {
     @Override
     public void die(){
         super.die();
-        if (Battle.getMenu().getPlayer().getDeck().getHero().equals(this)){
-            Battle.getMenu().getPlayer().getDeck().killHero();
-        }else if (Battle.getMenu().getEnemyPlayer().getDeck().getHero().equals(this)){
-            Battle.getMenu().getEnemyPlayer().getDeck().killHero();
-        }
     }
 
     private static ArrayList<OnHeroDetailsPresentedListener> heroDetailsPresenters=new ArrayList<>();

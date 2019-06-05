@@ -175,7 +175,8 @@ public abstract class Hermione extends Card {
     }
 
     public void die() {
-        Battle.getMenu().getMap().getCell(this.getLocation()).setFull(false);
+        Battle.getMenu().kill(this);
+//        Battle.getMenu().getMap().getCell(this.getLocation()).setFull(false);
     }
 
 
