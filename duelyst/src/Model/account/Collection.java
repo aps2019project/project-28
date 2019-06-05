@@ -1,6 +1,5 @@
 package Model.account;
 
-import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
@@ -135,7 +134,7 @@ public class Collection {
     public boolean hasItem(Item item) {
         for (Usable usable :
                 usables) {
-            if (usable.getName().toLowerCase().equals(item.getName().toLowerCase())) {
+            if (usable.equals(item)) {
                 return true;
             }
         }
@@ -301,4 +300,6 @@ public class Collection {
     public ArrayList<Usable> getItems() {
         return usables;
     }
+
 }
+
