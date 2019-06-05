@@ -75,11 +75,9 @@ public class ShopMenu extends Menu {
     public void buy(String name) throws CardExistException, ItemExistExeption, InvalidCardException,
             NotEnoughMoneyException, FullCollectionException, InvalidItemException {
         if (!this.shop.getCollection().hasCard(name) && !this.shop.getCollection().hasItem(name)) {
-            System.err.println("khodaya basse e dg");
             throw new InvalidCardException();
         }
         if (this.shop.getCollection().hasCard(name)) {
-            System.err.println("ArshiA 1");
             if (this.shop.getCollection().getCard(name).getPrice() > this.account.getMoney()) {
                 System.err.println(this.shop.getCollection().getCard(name).getPrice());
                 System.err.println(this.account.getMoney());
@@ -111,32 +109,19 @@ public class ShopMenu extends Menu {
     }
 
     public void show() {//shows the items and cards in shop
-        System.err.println("im in");
         for (OnCollectionPresentedListener presenter : Collection.getCollectionPresentedListeners()) {
-            System.err.println("im in the for");
             presenter.show(this.shop.getCollection(),"SHOP");
         }
-//        for (Card card : this.shop.getCollection().getCards()) {
-//            for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
-//                presenter.showCardDetail(card);
-//            }
-//        }
-//        for (Usable usable : this.shop.getCollection().getUsables()) {
-//            for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
-//                presenter.showItemDetail(usable);
-//            }
-//        }
     }
 
     @Override
     public Menu enter(Menu subMenu) {
-//        this.shop.setCollection(this.shop.getCollection().save());
         return super.enter(subMenu);
     }
 
     @Override
     public Menu exit() {
-//        this.shop.setCollection(this.shop.getCollection().save());
+        this.save();
         return super.exit();
     }
 

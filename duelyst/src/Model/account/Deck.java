@@ -1,5 +1,4 @@
 package Model.account;
-
 import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
@@ -17,8 +16,8 @@ public class Deck {
     private ArrayList<Integer> cardIDs = new ArrayList<>();
     private ArrayList<Integer> itemIDs = new ArrayList<>();
     private int heroID;
-    private ArrayList<Card> cards;
-    private ArrayList<Item> items;
+    private ArrayList<Card> cards = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Card> graveYard = new ArrayList<>();
     private static ArrayList<OnDeckPresentedListener> deckPresenters = new ArrayList<OnDeckPresentedListener>();
     private Hero hero;
@@ -80,18 +79,18 @@ public class Deck {
     }
 
     public boolean hasCard(int cardID) {
-        for (Integer card :
-                cardIDs) {
-            if (card == cardID)
+        for (Card card :
+                cards) {
+            if (card.getCardID() == cardID)
                 return true;
         }
         return false;
     }
 
     public boolean hasCard(Card wantedCard) {
-        for (Integer card :
-                cardIDs) {
-            if (card == wantedCard.getCardID())
+        for (Card card :
+                cards) {
+            if (card.equals(wantedCard))
                 return true;
         }
         return false;
@@ -113,9 +112,9 @@ public class Deck {
     }
 
     public boolean hasItem(int itemID) {
-        for (Integer item :
-                itemIDs) {
-            if (item == itemID) {
+        for (Item item :
+                items) {
+            if (item.getID() == itemID) {
                 return true;
             }
         }
@@ -123,7 +122,6 @@ public class Deck {
     }
 
     public boolean validateDeck() throws InvalidDeckException {
-//        System.err.println(this.getHero().getName());
         if (cardIDs.size() != CARD_SIZE) {
             System.err.println("card size problem");
             throw new InvalidDeckException();
@@ -132,7 +130,7 @@ public class Deck {
             System.err.println("item size problems");
             throw new InvalidDeckException();
         }
-        if (heroID == -1) {
+        if (hero == null) {
             System.err.println("hero problems");
             throw new InvalidDeckException();
         }
@@ -151,19 +149,21 @@ public class Deck {
     }
 
     private void removeCardFromDeck(int cardID) throws InvalidCardException {
-        Integer willBeRemoved = -1;
+        Card willBeRemoved = null;
         if (!this.hasCard(cardID))
             throw new InvalidCardException();
-        for (Integer card : cardIDs) {
-            if (card == cardID) {
+        for (Card card : cards) {
+            if (card.getCardID() == cardID) {
                 willBeRemoved = card;
                 break;
             }
         }
-        if (willBeRemoved == heroID){
+        if (willBeRemoved instanceof Hero){
+            hero = null;
             heroID = -1;
         }
-        cardIDs.remove(willBeRemoved);
+        cards.remove(willBeRemoved);
+        cardIDs.remove(willBeRemoved.getCardID());
     }
 
     public void moveAllToGraveYard(ArrayList<Minion> deads){
@@ -185,14 +185,15 @@ public class Deck {
     }
 
     private boolean removeItemFromDeck(int itemID) throws InvalidItemException {
-        int willBeRemoved = -1;
+        Item willBeRemoved = null;
         if (!this.hasItem(itemID)) throw new InvalidItemException();
-        for (Integer item : itemIDs) {
-            if (item == itemID) {
+        for (Item item : items) {
+            if (item.getID() == itemID) {
                 willBeRemoved = item;
             }
         }
-        itemIDs.remove(willBeRemoved);
+        items.remove(willBeRemoved);
+        itemIDs.remove(willBeRemoved.getID());
         return true;
     }
 
@@ -200,9 +201,11 @@ public class Deck {
     public boolean addCardToDeck(Card card) throws DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasAHeroException {
         if (this.hasCard(card.getCardID())) throw new DeckAlreadyHasThisCardException();
         if (this.cardIDs.size() >= CARD_SIZE) throw new FullDeckException();
-        if (this.heroID != -1 && card instanceof Hero) throw new DeckAlreadyHasAHeroException();
+        if (this.hero != null && card instanceof Hero) throw new DeckAlreadyHasAHeroException();
+        cards.add(card);
         cardIDs.add(card.getCardID());
-        if (this.heroID == -1 && card instanceof Hero) {
+        if (this.hero == null && card instanceof Hero) {
+            this.hero = (Hero) card;
             this.heroID = card.getCardID();
         }
         return true;
@@ -211,6 +214,7 @@ public class Deck {
     public boolean addItemToDeck(Item item) throws DeckAlreadyHasThisItemException, FullDeckException {
         if (this.hasItem(item.getID())) throw new DeckAlreadyHasThisItemException();
         if (this.itemIDs.size() >= ITEM_SIZE) throw new FullDeckException();
+        items.add(item);
         itemIDs.add(item.getID());
         return true;
     }
@@ -239,7 +243,8 @@ public class Deck {
         return graveYard;
     }
 
-    public void killHero() {
+    public void killHero() throws InvalidCardException {
+        this.hero.die();
         this.hero = null;
         this.heroID = -1;
     }
@@ -252,4 +257,3 @@ public class Deck {
         return usables;
     }
 }
-

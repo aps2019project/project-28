@@ -55,10 +55,9 @@ public class Shop {
 
     private Shop() {
         fillCollection();
-
     }
 
     public void setCollection(Collection save) {
-        this.collection=save;
+        this.collection = save;
     }
 }

@@ -1,6 +1,9 @@
 package Model;
 
 import Model.account.Account;
+import Model.account.Collection;
+import Model.account.Deck;
+import Model.account.Player;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
@@ -17,6 +20,8 @@ import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
+import exeption.InvalidCardException;
+import exeption.InvalidItemException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -104,7 +109,7 @@ public class Primary {
         }
     }
 
-    public static void getAccounts() throws IOException {
+    public static void getAccounts() throws IOException, InvalidCardException, InvalidItemException {
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Account.json"));
         JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
@@ -117,6 +122,12 @@ public class Primary {
             }
         }
         reader.close();
+        for (Account account : accounts) {
+            Collection collection = account.getCollection();
+            for (Deck deck : collection.getDecks()) {
+                deck.loadDeck();
+            }
+        }
     }
 
     public static  void getCards(){
@@ -124,15 +135,16 @@ public class Primary {
         cards.addAll(minions);
         cards.addAll(spells);
     }
-    public static void preprocess() throws IOException {
+
+    public static void preprocess() throws IOException{
         getHeroes();
         getMinions();
         getSpells();
         getUsables();
         getCollectables();
-        getAccounts();
         getCards();
         getItems();
+
     }
 
     public static void Json() throws IOException {

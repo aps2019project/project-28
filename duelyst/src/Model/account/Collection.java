@@ -9,7 +9,6 @@ import exeption.*;
 import java.util.ArrayList;
 
 public class Collection {
-
     private ArrayList<Deck> decks = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Usable> usables = new ArrayList<>();
