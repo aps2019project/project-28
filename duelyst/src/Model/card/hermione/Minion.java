@@ -1,6 +1,5 @@
 package Model.card.hermione;
 
-import Controller.Game;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
@@ -79,10 +78,9 @@ public class Minion extends Hermione{
     }
 
     @Override
-        public boolean applySpecialPower(Cell cell) throws InvalidCardException , InvalidCellException{
+        public void applySpecialPower(Cell cell) throws InvalidCardException , InvalidCellException{
         this.SpecialPower.deploy(Battle.getMenu().getPlayer() , Battle.getMenu().getEnemyPlayer() , cell);
-        return true ;
-        }
+    }
         public SPATime getSPActivationTime() {
         return SPActivationTime;
     }

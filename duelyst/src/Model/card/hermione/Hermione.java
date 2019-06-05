@@ -1,6 +1,5 @@
 package Model.card.hermione;
 
-import Controller.Game;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.CellAffects;
@@ -11,7 +10,6 @@ import Model.card.spell.SpecialPower;
 import exeption.*;
 
 import java.util.ArrayList;
-import java.util.Base64;
 
 public abstract class Hermione extends Card {
     protected int healthPoint;
@@ -166,12 +164,13 @@ public abstract class Hermione extends Card {
     }
 
 
-    public abstract boolean applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException, CantSpecialPowerCooldownException;
+    public abstract void applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException, CantSpecialPowerCooldownException;
 
 
     public void spawn(Cell cell) {
+        // TODO: 6/5/19 saE's shit soon to be removed
         this.canMove = true;
-        this.originalHealthPoint = this.healthPoint;
+
         this.setLocation(cell);
     }
 
@@ -179,14 +178,16 @@ public abstract class Hermione extends Card {
         Battle.getMenu().getMap().getCell(this.getLocation()).setFull(false);
     }
 
-    public void reverseAP() {
-        this.attackPoint = this.buffEffects.getOriginalAttackPoint();
-    }
 
-    public void reverseHP() {
-        this.healthPoint += this.buffEffects.getChangedHealthPointDueToBuff();
-    }
+    // TODO: 6/5/19 SaE's shit soon to be removed
+                    public void reverseAP() {
+                        this.attackPoint = this.buffEffects.getOriginalAttackPoint();
+                    }
 
+                    public void reverseHP() {
+                        this.healthPoint += this.buffEffects.getChangedHealthPointDueToBuff();
+                    }
+    //
 
     public void changeHealthPoint(int healthPoint) {
         this.healthPoint += healthPoint;
@@ -218,9 +219,6 @@ public abstract class Hermione extends Card {
         return SpecialPower;
     }
 
-    public void setSpecialPower(SpecialPower specialPower) {
-        SpecialPower = specialPower;
-    }
 
     public ArrayList<Buff> getAppliedBuffs() {
         return appliedBuffs;
@@ -230,9 +228,6 @@ public abstract class Hermione extends Card {
         return attackType;
     }
 
-    public void setAttackType(AttackType attackType) {
-        this.attackType = attackType;
-    }
 
     public int getRange() {
         return range;
@@ -242,24 +237,12 @@ public abstract class Hermione extends Card {
         this.range = range;
     }
 
-    public int getMoveRange() {
-        return MOVE_RANGE;
-    }
-
-    public int getActionTurn() {
-        return this.actionTurn;
-    }
-
     public Cell getLocation() {
         return location;
     }
 
     public void setLocation(Cell location) {
         this.location = location;
-    }
-
-    public boolean isCanMove() {
-        return canMove;
     }
 
     public void setCanMove(boolean canMove) {
@@ -282,33 +265,23 @@ public abstract class Hermione extends Card {
         return buffEffects.getOriginalAttackPoint();
     }
 
-    public boolean isCanCounterAttack() {
-        return canCounterAttack;
-    }
+    // TODO: 6/5/19 SaE's shit soon to be removed
+                /*
+                * in tabe ro bebar tu buffAffects dg
+                *  maslan bejaye hermione.setHoly... beshe hermione.getBuffEffects.setHoly...
+                * */
+                public void setHollyBuffLevel(int level) {
+                    this.buffEffects.setHollyBuffLevel(level);
+                }
 
-    public boolean isCanAttack() {
-        return canAttack;
-    }
+                public int getHollyBuffLevel() {
+                    return this.buffEffects.getHollyBuffLevel();
+                }
 
-    public void setHollyBuffLevel(int level) {
-        this.buffEffects.setHollyBuffLevel(level);
-    }
-
-    public int getHollyBuffLevel() {
-        return this.buffEffects.getHollyBuffLevel();
-    }
-
-    public boolean isHasTheDeathCurse() {
-        return buffEffects.isHasTheDeathCurse();
-    }
-
-    public void setHasTheDeathCurse(boolean hasTheDeathCurse) {
-        this.setHasTheDeathCurse(hasTheDeathCurse);
-    }
-
-    public void setLostHealthPointDueToBuff(int lostHealthPointDueToBuff) {
-        this.buffEffects.setChangedHealthPointDueToBuff(lostHealthPointDueToBuff);
-    }
+                public void setLostHealthPointDueToBuff(int lostHealthPointDueToBuff) {
+                    this.buffEffects.setChangedHealthPointDueToBuff(lostHealthPointDueToBuff);
+                }
+    //
 
     public int getOriginalHealthPoint() {
         return originalHealthPoint;
@@ -318,9 +291,6 @@ public abstract class Hermione extends Card {
         return hasFlag;
     }
 
-    public void setOriginalHealthPoint(int originalHealthPoint) {
-        this.originalHealthPoint = originalHealthPoint;
-    }
 
     public BuffEffectsOnHermione getBuffEffects() {
         return buffEffects;
@@ -329,7 +299,6 @@ public abstract class Hermione extends Card {
     public void makeNewListForAppliedBuffs() {
         this.appliedBuffs = new ArrayList<>();
     }
-
 
     public void setFlag(boolean flag) {
         this.hasFlag = flag;

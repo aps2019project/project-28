@@ -1,6 +1,5 @@
 package Model.card.hermione;
 
-import Controller.Game;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import View.Listeners.OnHeroDetailsPresentedListener;
@@ -23,11 +22,10 @@ public class Hero extends Hermione {
 
 
     @Override
-    public boolean applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException , CantSpecialPowerCooldownException {
+    public void applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException , CantSpecialPowerCooldownException {
         if (this.remainCoolDOwnTime != cooldown) throw new CantSpecialPowerCooldownException() ;
         this.SpecialPower.deploy(Battle.getMenu().getPlayer(), Battle.getMenu().getEnemyPlayer(), cell);
         this.decreaseRemainCoolDown();
-        return true ;
     }
 
 
