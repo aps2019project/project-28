@@ -1,6 +1,7 @@
 package Model.card.spell.Targets;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.spell.Target;
@@ -18,7 +19,7 @@ public class TargetRandomOwnMinion implements Target {
         }
     @Override
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
-        Player player = Game.battle.getPlayer() ;
+        Player player = Battle.getMenu().getPlayer() ;
         Random rand = new Random() ;
         int r = rand.nextInt(player.getMinionsInGame().size()) ;
         return new Cell[] {player.getMinionsInGame().get(r).getLocation()} ;

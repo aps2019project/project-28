@@ -1,6 +1,7 @@
 package Model.item.ItemActions;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.Buff.BuffActions.BuffActionDisarm;
@@ -21,7 +22,7 @@ public class ItemActionDisArm implements ItemAction {
         for (Cell cell : target){
             try{
                 if (cell.getCardOnCell() != null)
-                    buff.deploy(Game.battle.getPlayer() , cell.getCardOnCell());
+                    buff.deploy(Battle.getMenu().getPlayer() , cell.getCardOnCell());
             }catch(NullPointerException ignored){}
         }
     }

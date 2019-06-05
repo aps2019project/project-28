@@ -1,6 +1,5 @@
 package Model.card.hermione;
 
-import Controller.Game;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
@@ -21,17 +20,17 @@ public class Minion extends Hermione{
     public void spawn(Cell cell){
         super.spawn(cell);
         this.spawnTurn= Battle.getMenu().getOriginalTurn();
-        Game.battle.getAccount().getPlayer().getMinionsInGame().add(this);
+        Battle.getMenu().getAccount().getPlayer().getMinionsInGame().add(this);
         this.itIsTime(SPATime.SPAWN);
 
     }
 
     @Override
-    public void die() throws InvalidCardException {
+    public void die(){
         if (this.buffEffects.isHasTheDeathCurse()){
-            int distance = Map.getManhattanDistance(location , Game.battle.getEnemyPlayer().getDeck().getHero().getLocation()) ;
-            Hermione theTarget = Game.battle.getEnemyPlayer().getDeck().getHero() ;
-            for (Minion minion : Game.battle.getEnemyPlayer().getMinionsInGame()){
+            int distance = Map.getManhattanDistance(location , Battle.getMenu().getEnemyPlayer().getDeck().getHero().getLocation()) ;
+            Hermione theTarget = Battle.getMenu().getEnemyPlayer().getDeck().getHero() ;
+            for (Minion minion : Battle.getMenu().getEnemyPlayer().getMinionsInGame()){
                 if (distance > Map.getManhattanDistance(location , minion.getLocation())) {
                     distance = Map.getManhattanDistance(location , minion.getLocation()) ;
                     theTarget = minion ;
@@ -73,16 +72,15 @@ public class Minion extends Hermione{
 
 
     @Override
-    public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException,CardCantBeMovedException {
+    public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, CardCantBeMovedException, DestinationIsFullException {
         if(Battle.getMenu().getOriginalTurn()<=this.spawnTurn+1)throw new CardCantBeMovedException();
         return super.move(x, y);
     }
 
     @Override
-        public boolean applySpecialPower(Cell cell) throws InvalidCardException , InvalidCellException{
-        this.SpecialPower.deploy(Game.battle.getPlayer() , Game.battle.getEnemyPlayer() , cell);
-        return true ;
-        }
+        public void applySpecialPower(Cell cell) throws InvalidCardException , InvalidCellException{
+        this.SpecialPower.deploy(Battle.getMenu().getPlayer() , Battle.getMenu().getEnemyPlayer() , cell);
+    }
         public SPATime getSPActivationTime() {
         return SPActivationTime;
     }

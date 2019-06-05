@@ -1,6 +1,7 @@
 package Model.card.spell.SpellAction;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.Spell;
@@ -21,7 +22,7 @@ public class ActionDispel implements Action {
                 return;
             }
             for (Buff buff : cell.getCardOnCell().getAppliedBuffs()) {
-                if (buff.isItPositive() ^ buff.getPlayer() == Game.battle.getPlayer()) {
+                if (buff.isItPositive() ^ buff.getPlayer() == Battle.getMenu().getPlayer()) {
                     buff.destroy();
                 }
             }

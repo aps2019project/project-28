@@ -1,6 +1,7 @@
 package Model.card.spell.SpellAction;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Buff.Buff;
@@ -21,7 +22,7 @@ public class ActionChangeHP implements Action {
         for (Cell cell : cells) {
             Hermione card = cell.getCardOnCell();
             Buff buff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionChangeHP.getAction())), spell.getPerk(spell.getIndexOfAction(ActionChangeHP.getAction())) > 0, BuffActionHP.getBuffAction());
-            buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
+            buff.deploy(Battle.getMenu().getPlayer(), cell.getCardOnCell());
             card.changeHealthPoint(spell.getPerk(spell.getIndexOfAction(ActionChangeHP.getAction())));
         }
     }

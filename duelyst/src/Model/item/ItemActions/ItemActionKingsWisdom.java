@@ -1,6 +1,7 @@
 package Model.item.ItemActions;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.Buff.BuffActions.BuffActionHolly;
@@ -15,6 +16,6 @@ public class ItemActionKingsWisdom implements ItemAction {
     }
 
     public void deploy(Item item, Cell[] target){
-        Game.battle.getPlayer().setMaxManaTheriac(item.getPerk());
+        Battle.getMenu().getPlayer().setMaxManaTheriac(item.getPerk());
     }
 }

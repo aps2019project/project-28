@@ -1,6 +1,7 @@
 package Model.card.spell.SpellAction;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.Buff.BuffActions.BuffActionStun;
@@ -22,7 +23,7 @@ public class ActionStun implements Action {
         if (cells == null) return ;
         for (Cell cell : cells) {
             Buff buff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionStun.getAction())), false, BuffActionStun.getBuffAction(), BuffTypePassive.getBuffTypeInstance());
-            buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
+            buff.deploy(Battle.getMenu().getPlayer(), cell.getCardOnCell());
         }
     }
 }

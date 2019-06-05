@@ -1,6 +1,7 @@
 package Model.card.spell.SpellAction;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Buff.Buff;
@@ -24,7 +25,7 @@ public class ActionChangeAP implements Action {
                     Hermione card = cell.getCardOnCell();
                     Buff buff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionChangeAP.getAction())), spell.getPerk(spell.getIndexOfAction(ActionChangeAP.getAction())) > 0, BuffActionAP.getBuffAction());
                     if (cell.getCardOnCell() == null) throw new InvalidCellException();
-                    buff.deploy(Game.battle.getPlayer(), card);
+                    buff.deploy(Battle.getMenu().getPlayer(), card);
                 } catch (NullPointerException e) {
                     System.out.println();
                     e.printStackTrace();

@@ -1,4 +1,5 @@
 package Model.account;
+
 import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
@@ -122,6 +123,7 @@ public class Deck {
     }
 
     public boolean validateDeck() throws InvalidDeckException {
+//        System.err.println(this.getHero().getName());
         if (cardIDs.size() != CARD_SIZE) {
             System.err.println("card size problem");
             throw new InvalidDeckException();
@@ -166,7 +168,7 @@ public class Deck {
         cardIDs.remove(willBeRemoved.getCardID());
     }
 
-    public void moveAllToGraveYard(ArrayList<Minion> deads){
+    public void moveAllToGraveYard(ArrayList<? extends Card> deads){
         for (Card dead : deads) {
             try {
                 this.moveToGraveYard(dead);
@@ -176,7 +178,7 @@ public class Deck {
         }
     }
 
-    private void moveToGraveYard(Card card) throws InvalidCardException {
+    public void moveToGraveYard(Card card) throws InvalidCardException {
         if (this.hasCard(card)) {
             this.graveYard.add(card);
         } else {
@@ -243,8 +245,7 @@ public class Deck {
         return graveYard;
     }
 
-    public void killHero() throws InvalidCardException {
-        this.hero.die();
+    public void killHero() {
         this.hero = null;
         this.heroID = -1;
     }

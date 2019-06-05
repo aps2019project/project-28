@@ -1,6 +1,7 @@
 package Model.card.spell.Targets;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
 import Model.account.Player;
@@ -23,8 +24,8 @@ public class TargetThreeByThree implements Target {
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
         int x = cell.getX();
         int y = cell.getY();
-        Map map = Game.battle.getMap();
-        if (x > Map.WIDTH - 2 || y > Map.HEIGHT - 2) {
+        Map map = Battle.getMenu().getMap();
+        if (x > Map.CHAP_RAST_X - 2 || y > Map.BALA_PAEEN_Y - 2) {
             throw new InvalidCellException();
         }
         Cell[] cells = {cell, map.getCell(x, y + 1), map.getCell(x, y + 2), map.getCell(x + 1, y),

@@ -23,7 +23,7 @@ public class MultiPlayerModeMenu extends Menu {
         if (account.getPassword().equals(password)) {
             Game.accounts[0]=this.account;
             Game.accounts[1] = account;
-            Game.battle.setPlayer(Game.accounts[0].getPlayer(), Game.accounts[1].getPlayer());
+            Battle.getMenu().setPlayer(Game.accounts[0].getPlayer(), Game.accounts[1].getPlayer());
 
         } else {
             throw new WrongPassException();

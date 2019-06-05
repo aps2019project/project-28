@@ -74,12 +74,12 @@ public class Player {
             Hermione hermione = (Hermione) card;
             hermione.spawn(cell);
             if (hasAssasinationDagger) {
-                Game.battle.getEnemyPlayer().getDeck().getHero().changeHealthPoint(-1);
+                Battle.getMenu().getEnemyPlayer().getDeck().getHero().changeHealthPoint(-1);
             }
             Battle.getMenu().getMap().getCell(cell).setCardOnCell((Hermione) card);
         }else{
             Spell spell = (Spell) card;
-            spell.deploy(this, Game.battle.getEnemyPlayer(), cell);
+            spell.deploy(this, Battle.getMenu().getEnemyPlayer(), cell);
         }
     }
 

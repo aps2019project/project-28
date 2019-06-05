@@ -10,7 +10,6 @@ import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
-import Model.card.hermione.SPATime;
 import Model.card.spell.Spell;
 import Model.card.spell.Target;
 import exeption.*;
@@ -20,20 +19,21 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-class StringWrapper{
+class StringWrapper {
     public String string;
 
     public void set(String string) {
         this.string = string;
     }
 }
+
 public class AI extends Account {
     int level;
     int move = -1; //0: insert card , 1&3: select hero, 2: move Hero ,
-                // 4: attack with hero ,and then : minions : select-move-select-attack
+    // 4: attack with hero ,and then : minions : select-move-select-attack
     private Map map;
     private Player enemy;
-    public StringWrapper output=new StringWrapper();
+    public StringWrapper output = new StringWrapper();
 
     public AI(int level) throws FullDeckException, DeckAlreadyHasThisCardException, InvalidDeckException,
             DeckAlreadyHasAHeroException, DeckAlreadyHasThisItemException {
@@ -56,7 +56,8 @@ public class AI extends Account {
         }
 
     }
-    public AI(Deck deck){
+
+    public AI(Deck deck) {
         super("AI", "itsAI", "imAnAIgirlInAnAIWorld");
 //        super(,2,2)
         this.level = 1;
@@ -69,16 +70,17 @@ public class AI extends Account {
             collection.setMainDeck(deck.getName());
 
 
-        } catch (InvalidDeckException ignored) {}
+        } catch (InvalidDeckException ignored) {
+        }
     }
 
 
-    private void play() {
-        move++ ;
+    private void play() throws DestinationOutOfreachException, CantAttackException {
+        move++;
         String command;
-        map = Game.battle.getMap();
-        enemy = Game.battle.getEnemyPlayer();
-        switch(move){
+        map = Battle.getMenu().getMap();
+        enemy = Battle.getMenu().getEnemyPlayer();
+        switch (move) {
             case 0:
                 Random randTypeCard = new Random();
                 int randCard = randTypeCard.nextInt(2);
@@ -90,75 +92,74 @@ public class AI extends Account {
                     }
                 } else {
                     command = insertSpell();
-                    if (command!= null && !command.isEmpty()) {
+                    if (command != null && !command.isEmpty()) {
                         output.set(command);
                         return;
                     }
                 }
-                move++ ;
+                move++;
             case 1:
             case 3:
-                command = "Select "+ collection.getMainDeck().getHero().getCardID();
+                command = "Select " + collection.getMainDeck().getHero().getCardID();
                 output.set(command);
-                return ;
+                return;
             case 2:
                 Hero hero = this.player.getDeck().getHero();//collection.getMainDeck().getHero();
-                for (int i = 2 ; i >0 ; i--){
-                    Cell[] cells = map.getCellsInDistance(hero.getLocation() , i) ;
-                    for (Cell cell : cells){
+                for (int i = 2; i > 0; i--) {
+                    Cell[] cells = map.getCellsInDistance(hero.getLocation(), i);
+                    for (Cell cell : cells) {
                         if (cell.getCardOnCell() == null) { //TODO after arshia makes the canReach function for hermione check that too !
-                            command = "Move to " + cell.getX() + " " + cell.getY() ;
+                            command = "Move to " + cell.getX() + " " + cell.getY();
                             output.set(command);
-                            return ;
+                            return;
                         }
                     }
                 }
-                move+=2 ;
+                move += 2;
 
             case 4:
-                hero = collection.getMainDeck().getHero() ;
-                 command = attack(hero);
+                hero = collection.getMainDeck().getHero();
+                command = attack(hero);
                 output.set(command);
-                return ;
+                return;
             default:
                 if (move > player.getMinionsInGame().size() + 5) {
-                    move = -1 ;
+                    move = -1;
                     output.set("End turn");
-                    return ;
+                    return;
                 }
-                if (move % 2 == 1 && player.getMinionsInGame().size() > 0){
-                    command = "Select " + player.getMinionsInGame().get(move-5) ;
+                if (move % 2 == 1 && player.getMinionsInGame().size() > 0) {
+                    command = "Select " + player.getMinionsInGame().get(move - 5);
                     output.set(command);
-                }
-                else if (player.getMinionsInGame().size() > 0){
-                    Minion card = player.getMinionsInGame().get(move-6) ;
-                    command = attack(card) ;
+                } else if (player.getMinionsInGame().size() > 0) {
+                    Minion card = player.getMinionsInGame().get(move - 6);
+                    command = attack(card);
                     output.set(command);
                 }
         }
     }
 
-    private String  attack(Hermione card) {
+    private String attack(Hermione card) throws DestinationOutOfreachException, CantAttackException {
         String command;
-        if (card.canAttackThisCard(enemy.getDeck().getHero())){
+        if (card.canAttack(enemy.getDeck().getHero())) {
             command = "Attack " + enemy.getDeck().getHero();
             output.set(command);
         }
         Random rand = new Random();
-        ArrayList<Minion> target = new ArrayList<>(enemy.getMinionsInGame()) ;
-        if (target.isEmpty()) return "nope not my cup of tea" ;
-        int counter = 0 ;
-        for (int i = rand.nextInt(target.size()) ; true ; i = rand.nextInt(target.size())){
-            counter++ ;
-            if (card.canAttackThisCard(target.get(i))){
+        ArrayList<Minion> target = new ArrayList<>(enemy.getMinionsInGame());
+        if (target.isEmpty()) return "nope not my cup of tea";
+        int counter = 0;
+        for (int i = rand.nextInt(target.size()); true; i = rand.nextInt(target.size())) {
+            counter++;
+            if (card.canAttack(target.get(i))) {
                 command = "Attack " + target.get(i).getCardID();
                 output.set(command);
-                return command ;
+                return command;
             }
-            if (counter > 30) break ;
+            if (counter > 30) break;
         }
         output.set("Unfortunately AI has stopped working");
-        return "Unfortunately AI has stopped working" ;
+        return "Unfortunately AI has stopped working";
     }
 
     private String insertMinion() {
@@ -179,7 +180,7 @@ public class AI extends Account {
             Cell[] cells = this.map.getCellsInDistance(this.collection.getMainDeck().getHero().getLocation(), i);
             for (Cell cell : cells) {
                 if (cell.getCardOnCell() == null) {
-                    command = command + cell.getX() + " " + cell.getY() ;
+                    command = command + cell.getX() + " " + cell.getY();
                     output.set(command);
                 }
             }
@@ -203,19 +204,20 @@ public class AI extends Account {
         if (command.isEmpty() || spell == null) {
             output.set(command);
         }
-        Target target ;
+        Target target;
         try {
             target = spell.getTargetClass();
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             System.err.println("AI wanted to deploy a spell but it didn't have a target class !");
-            return "Spell has no target" ;
+            return "Spell has no target";
         }
         for (Cell cell : map.getCells()) {
             try {
                 target.getTarget(cell);
-                command = command + cell.getX() + " " + cell.getY() ;
+                command = command + cell.getX() + " " + cell.getY();
                 output.set(command);
-            } catch (InvalidCellException ignored) {}
+            } catch (InvalidCellException ignored) {
+            }
 
         }
         output.set("AI has decided not to work somehow!");
@@ -257,7 +259,7 @@ public class AI extends Account {
                         DeckAlreadyHasThisItemException e) {
                     throw e;
                 }
-                break ;
+                break;
             case 2:
                 try {
                     deck.addCardToDeck(Primary.heroes.get(4));
@@ -289,7 +291,7 @@ public class AI extends Account {
                         DeckAlreadyHasThisItemException e) {
                     throw e;
                 }
-                break ;
+                break;
             case 3:
                 try {
                     deck.addCardToDeck(Primary.heroes.get(6));
@@ -327,14 +329,21 @@ public class AI extends Account {
 
     @Override
     public void doYourMove() {
-        this.play();
+        try {
+            this.play(); // TODO: 6/5/19 saE in exception ha ezafe shodan be hermione.attack va Hermione.canAttack va Hermione.canMove va Hermione.move
+            // TODO: 6/5/19 ehtemalan toye play bayad handlesh koni
+            // TODO: 6/5/19 va inke tu method e attck o move canMove o canAttack check mishe lazem nist to check koni dg
+            // TODO: 6/5/19 vazehan baad e in ke handle karD in chatch haro pack kon
+        } catch (DestinationOutOfreachException | CantAttackException e) {
+            e.printStackTrace();
+        }
         System.out.println("\t\t\t\t\t\t\t AI output is : " + this.output.string);
-        if(output.string==null || output.string.isEmpty()) output.set("dude output is empty !");
+        if (output.string == null || output.string.isEmpty()) output.set("dude output is empty !");
     }
 
     @Override
     public Scanner getOutputStream() {
-        if(this.outputStream!=null && this.outputStream.scanner!=null)this.outputStream.scanner.close();
+        if (this.outputStream != null && this.outputStream.scanner != null) this.outputStream.scanner.close();
 
         this.outputStream = new ScannerWrapper();
         this.outputStream.scanner = new Scanner(output.string);

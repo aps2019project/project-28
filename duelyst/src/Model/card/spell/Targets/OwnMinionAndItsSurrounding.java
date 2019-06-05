@@ -1,6 +1,7 @@
 package Model.card.spell.Targets;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Target;
@@ -21,13 +22,13 @@ public class OwnMinionAndItsSurrounding implements Target{
 
     @Override
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
-        if (cell.getCardOnCell()== null || !cell.getCardOnCell().getSuperCollection().getOwner().equals(Game.battle.getPlayer())){
+        if (cell.getCardOnCell()== null || !cell.getCardOnCell().getSuperCollection().getOwner().equals(Battle.getMenu().getPlayer())){
             throw new InvalidCellException();
         }
         ArrayList<Cell> cells = new ArrayList<>();
         Collections.addAll(cells ,  TargetSurroundings.getTargetInstance().getTarget(cell) ) ;
         for (Cell cel : cells){
-            if (! (cel.getCardOnCell().getSuperCollection().getOwner().equals(Game.battle.getPlayer())
+            if (! (cel.getCardOnCell().getSuperCollection().getOwner().equals(Battle.getMenu().getPlayer())
                     && cell.getCardOnCell().getClass().equals(Hermione.class))){
                 cells.remove(cel) ;
             }

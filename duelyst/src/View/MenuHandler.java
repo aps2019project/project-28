@@ -103,8 +103,8 @@ public class MenuHandler {
             Battle.getMenu().addMenuClickListener(new ShowMenu());
             Battle.getMenu().addMenuClickListener(menu -> {
                 Battle battle= (Battle) menu;
-                for(int i=1;i< Map.HEIGHT;i++){
-                    for(int j=1;j<Map.WIDTH;j++){
+                for(int i=0;i< Map.CHAP_RAST_X;i++){
+                    for(int j=0;j<Map.BALA_PAEEN_Y;j++){
                         try {
                             Cell cell=battle.getMap().getCell(i,j);
                             if(cell.getCardOnCell() instanceof Hero){
@@ -517,7 +517,7 @@ public class MenuHandler {
         currentMenu.showMenu();
         String command ;
         while(commands.hasNext()){
-            System.err.println();
+            System.err.println("for now insert the coordinations 0 base");
             try {
                 command = commands.nextLine().toLowerCase().trim();
                 String[] word = command.split(" ");
@@ -550,10 +550,10 @@ public class MenuHandler {
             }
             currentMenu.showMenu();
             if(currentMenu instanceof Battle)
-                Game.accounts[Game.battle.getTurn()].doYourMove();
-            commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
+                Game.accounts[Battle.getMenu().getTurn()].doYourMove();
+            commands=Game.accounts[Battle.getMenu().getTurn()].getOutputStream();
 
-            System.err.println(Game.accounts[Game.battle.getTurn()].getName());
+            System.err.println(Game.accounts[Battle.getMenu().getTurn()].getName());
             System.err.println(Game.accounts[0].getName()+" , "+Game.accounts[1].getName());
        }
     }
@@ -810,15 +810,15 @@ public class MenuHandler {
         if(word[0].equals("mode")){
             switch (Integer.parseInt(word[1])){
                 case 3:
-                    Game.battle.setGameMode(new Domination());
+                    Battle.getMenu().setGameMode(new Domination());
                     currentMenu=menu.enter(GameModeMenu.getMenu());
                     break;
                 case 2:
-                    Game.battle.setGameMode(new FlagMode());
+                    Battle.getMenu().setGameMode(new FlagMode());
                     currentMenu=menu.enter(GameModeMenu.getMenu());
                     break;
                 case 1:
-                Game.battle.setGameMode(new ClassicMode());
+                Battle.getMenu().setGameMode(new ClassicMode());
                     currentMenu=menu.enter(GameModeMenu.getMenu());
                     break;
                 default:
@@ -879,6 +879,9 @@ public class MenuHandler {
                 System.out.println("please set the destination some were close");
             } catch (InvalidCellException e) {
                 System.out.println("Im afraid our little word doesnt have enough space for your ambitions");
+            } catch (DestinationIsFullException e) {
+                System.out.println("SomeBodys already there ");
+                System.out.println("another location maybe?");
             }
         } else if (word[0].equals("attack")) {
             try {
@@ -930,7 +933,7 @@ public class MenuHandler {
         }else if(word[0].equals("end") && word[1].equals("turn")){
             try {
                 menu.endTurn();
-            } catch (HandFullException | DeckIsEmptyException | InvalidCardException e) {
+            } catch (HandFullException | DeckIsEmptyException ignored) {
                 // :D
             }
         }

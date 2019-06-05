@@ -81,7 +81,7 @@ public class Battle extends Menu {
         return true;
     }
 
-    private void insert(Hermione hermione, Cell cell) {
+    private void insert(Hermione hermione, Cell cell) throws InvalidCellException {
         hermione.spawn(cell);
         this.map.getCell(cell).setCardOnCell(hermione);
     }
@@ -149,14 +149,25 @@ public class Battle extends Menu {
     }
 
 
-    public void move(int x, int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
+    public void move(int x, int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException {
         try {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
             hermione.move(x, y);
+
+            this.getMap().getCell(hermione.getLocation()).clear();
+
+            if (this.getMap().getCell(x, y).hasFlag()) {
+                hermione.setNumberOfFlags(hermione.getNumberOfFlags());
+                hermione.setFlag(true);
+            }
+
+            this.getMap().getCell(x, y).setCardOnCell(hermione);
+
             if (map.getCell(x, y).hasItem()) {
                 this.getPlayer().getCollectables().add(map.getCell(x, y).getCollectable());
                 map.getCell(x, y).clearCollectable();
             }
+
             this.gameMode.getFlag(this.account.getPlayer(), hermione,
                     map.getCell(x, y));
 
@@ -172,12 +183,41 @@ public class Battle extends Menu {
         handleDeaths();
     }
 
+    public void kill(Hermione hermione) throws InvalidCardException {
+
+
+        if (hermione instanceof Hero) {
+            this.playerOf(hermione).getDeck().killHero();
+        }else{
+            try {
+                this.map.getCell(hermione.getLocation()).setFlag(hermione.hasFlag());
+                this.map.getCell(hermione.getLocation()).clear();
+            } catch (InvalidCellException e) {
+                e.printStackTrace();
+            }
+
+            this.gameMode.handleDeath(this.playerOf(hermione), (Minion) hermione);
+
+            this.playerOf(hermione).getMinionsInGame().remove(hermione);
+            this.playerOf(hermione).getDeck().moveToGraveYard(hermione);
+        }
+        // TODO: 6/5/19 fatteme after making the unit test check when we kill a minion or hero at any condition(direct attack /counter attack/spell affects....)
+        // TODO: 6/5/19 do they go to grave yard or not and the maps get clear or not and announce me
+
+        try {
+            Battle.getMenu().getMap().getCell(hermione.getLocation()).setFull(false);
+        } catch (InvalidCellException e) {
+            e.printStackTrace();
+        }
+        handleDeaths();
+    }
+
     public void attackCombo() {
         // TODO: 5/5/19 COMMMBOOOOOOO
         handleDeaths();
     }
 
-    public void useSpecialPower(int x, int y) throws InvalidCellException , CantSpecialPowerCooldownException , InvalidCardException{
+    public void useSpecialPower(int x, int y) throws InvalidCellException, CantSpecialPowerCooldownException, InvalidCardException {
         Cell cell = map.getCell(x, y);
         this.account.getPlayer().getDeck().getHero().applySpecialPower(cell);
         handleDeaths();
@@ -214,24 +254,25 @@ public class Battle extends Menu {
         handleDeaths();
     }
 
-
+    @Deprecated
     private void handleDeaths() {
-        for (int i = 0; i < 2; i++) {
-            ArrayList<Minion> deadMinions = new ArrayList<>();
-            for (Minion minion : this.player[i].getMinionsInGame()) {
-                if (minion.getHealthPoint() <= 0) {
-                    deadMinions.add(minion);
-                    this.map.getCell(minion.getLocation()).setFlag(minion.hasFlag());
-                    this.map.getCell(minion.getLocation()).clear();
-                    this.gameMode.handleDeath(this.player[i],minion);
-                }
-            }
-            this.player[i].getMinionsInGame().removeAll(deadMinions);
-            this.player[i].getDeck().moveAllToGraveYard(deadMinions);
-        }
+//
+//        for (int i = 0; i < 2; i++) {
+//            ArrayList<Minion> deadMinions = new ArrayList<>();
+//            for (Minion minion : this.player[i].getMinionsInGame()) {
+//                if (minion.getHealthPoint() <= 0) {
+//                    deadMinions.add(minion);
+//                    this.map.getCell(minion.getLocation()).setFlag(minion.hasFlag());
+//                    this.map.getCell(minion.getLocation()).clear();
+//                    this.gameMode.handleDeath(this.player[i], minion);
+//                }
+//            }
+//            this.player[i].getMinionsInGame().removeAll(deadMinions);
+//            this.player[i].getDeck().moveAllToGraveYard(deadMinions);
+//        }
     }
 
-    public void endTurn() throws HandFullException, DeckIsEmptyException, InvalidCardException {
+    public void endTurn() throws HandFullException, DeckIsEmptyException {
 
         /*updating hand*/
         this.account.getPlayer().getHand().updateHand();
@@ -271,7 +312,7 @@ public class Battle extends Menu {
         } catch (NullPointerException ignored) {
         }
         // handleOnAttack cellAffects
-        for (Cell cell : map.getCells()){
+        for (Cell cell : map.getCells()) {
             cell.checkCellAffects();
         }
         // TODO: 5/5/19 other stuff maybe?
@@ -282,7 +323,8 @@ public class Battle extends Menu {
                 ksc.increaseCounter();
             }
             if (ksc.getCounter() == 15) {
-                player[i].getDeck().getHero().die();
+//                player[i].getDeck().getHero().die();
+                player[i].getDeck().killHero();
                 //TODO @arshia game over mishe inja !
             }
         }
@@ -290,9 +332,9 @@ public class Battle extends Menu {
         /*checkState*/
         if (this.gameMode.checkState()) {
             this.gameMode.handleWin();
-            Game.accounts[1]=Account.getDefaultAccount();
-            this.account=SignInMenu.getMenu().account;
-            this.turn=0;
+            Game.accounts[1] = Account.getDefaultAccount();
+            this.account = SignInMenu.getMenu().account;
+            this.turn = 0;
             MenuHandler.currentMenu = MainMenu.getMenu();
         } else {
             nextTurn();
@@ -336,13 +378,16 @@ public class Battle extends Menu {
     private void nextTurn() {
         turn++;
 
-
+        this.getPlayer().getDeck().getHero().getBuffEffects().handleOnNewTurn();
         //TODO arshia karaye marbut be turn e jadid o inja bokon (mana o updateHand o ina)
         for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
+            minion.getBuffEffects().handleOnNewTurn();
             minion.setActionTurn(0);
         }
         this.account.getPlayer().getDeck().getHero().setActionTurn(0);
         handleBuffs("beginning");
+
+
 
     }
 
@@ -483,8 +528,31 @@ public class Battle extends Menu {
     }
 
     public void useItem(int x, int y) throws InvalidCellException {
-        this.account.getPlayer().getSelectedItem().deploy(Game.battle.getMap().getCell(x, y));
+        this.account.getPlayer().getSelectedItem().deploy(Battle.getMenu().getMap().getCell(x, y));
         // TODO: 5/5/19 saE doroste dg?
+    }
+
+    public Player playerOf(Hermione hermione) throws InvalidCardException {
+        for (int i = 0; i < 2; i++) {
+
+            //checking for hero
+            if(hermione instanceof Hermione){
+                if(this.player[i].getDeck().getHero().equals(hermione))return this.player[i];
+            }
+
+            //checking in minions
+            for (Card card : this.player[i].getDeck().getCards()) {
+                if (card instanceof Hermione) {
+                    if (card.equals(hermione)) return this.player[i];
+                }
+            }
+        }
+        throw new InvalidCardException();
+    }
+
+    public Player enemyPlayerOf(Hermione hermione) throws InvalidCardException {
+        if (playerOf(hermione).equals(this.player[0])) return this.player[1];
+        return this.player[0];
     }
 
 }

@@ -1,6 +1,7 @@
 package Model.card.spell.SpellAction;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.spell.Spell;
@@ -19,7 +20,7 @@ public class ActionSacrifice implements Action {
         for (Cell cell : cells) {
             int mhp = cell.getCardOnCell().getHealthPoint();
             cell.getCardOnCell().die();
-            Player player = Game.battle.getPlayer();
+            Player player = Battle.getMenu().getPlayer();
             player.getDeck().getHero().setHealthPoint(player.getDeck().getHero().getHealthPoint() + mhp);
         }
     }
