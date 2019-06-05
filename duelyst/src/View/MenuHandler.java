@@ -933,7 +933,7 @@ public class MenuHandler {
         }else if(word[0].equals("end") && word[1].equals("turn")){
             try {
                 menu.endTurn();
-            } catch (HandFullException | DeckIsEmptyException | InvalidCardException e) {
+            } catch (HandFullException | DeckIsEmptyException ignored) {
                 // :D
             }
         }

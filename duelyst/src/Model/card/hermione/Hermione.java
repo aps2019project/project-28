@@ -175,8 +175,9 @@ public abstract class Hermione extends Card {
     }
 
     public void die() {
-        Battle.getMenu().kill(this);
-//        Battle.getMenu().getMap().getCell(this.getLocation()).setFull(false);
+        try {
+            Battle.getMenu().kill(this);
+        } catch (InvalidCardException ignored) {}
     }
 
 
@@ -282,6 +283,11 @@ public abstract class Hermione extends Card {
                 public void setLostHealthPointDueToBuff(int lostHealthPointDueToBuff) {
                     this.buffEffects.setChangedHealthPointDueToBuff(lostHealthPointDueToBuff);
                 }
+
+
+                public void setHasTheDeathCurse(boolean b){
+                    //inam bebin chi bude
+                }
     //
 
     public int getOriginalHealthPoint() {
@@ -312,4 +318,5 @@ public abstract class Hermione extends Card {
     public void setCanCounterAttack(boolean canCounterAttack) {
         this.canCounterAttack = canCounterAttack;
     }
+
 }

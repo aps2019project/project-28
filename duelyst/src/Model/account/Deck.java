@@ -166,7 +166,7 @@ public class Deck {
         cardIDs.remove(willBeRemoved);
     }
 
-    public void moveAllToGraveYard(ArrayList<Minion> deads){
+    public void moveAllToGraveYard(ArrayList<? extends Card> deads){
         for (Card dead : deads) {
             try {
                 this.moveToGraveYard(dead);
@@ -176,7 +176,7 @@ public class Deck {
         }
     }
 
-    private void moveToGraveYard(Card card) throws InvalidCardException {
+    public void moveToGraveYard(Card card) throws InvalidCardException {
         if (this.hasCard(card)) {
             this.graveYard.add(card);
         } else {
@@ -240,6 +240,7 @@ public class Deck {
     }
 
     public void killHero() {
+        this.graveYard.add(this.hero);
         this.hero.die();
         this.hero = null;
         this.heroID = -1;

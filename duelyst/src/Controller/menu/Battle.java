@@ -183,9 +183,25 @@ public class Battle extends Menu {
         handleDeaths();
     }
 
-    public void kill(Hermione hermione) {
-        Battle.getMenu().getMap().getCell(hermione.getLocation()).setFull(false);
+    public void kill(Hermione hermione) throws InvalidCardException {
 
+
+        if (hermione instanceof Hero) {
+            this.playerOf(hermione).getDeck().killHero();
+        }else{
+            this.map.getCell(hermione.getLocation()).setFlag(hermione.hasFlag());
+            this.map.getCell(hermione.getLocation()).clear();
+
+            this.gameMode.handleDeath(this.playerOf(hermione), (Minion) hermione);
+
+            this.playerOf(hermione).getMinionsInGame().remove(hermione);
+            this.playerOf(hermione).getDeck().moveToGraveYard(hermione);
+        }
+        // TODO: 6/5/19 fatteme after making the unit test check when we kill a minion or hero at any condition(direct attack /counter attack/spell affects....)
+        // TODO: 6/5/19 do they go to grave yard or not and the maps get clear or not and announce me
+
+        Battle.getMenu().getMap().getCell(hermione.getLocation()).setFull(false);
+        handleDeaths();
     }
 
     public void attackCombo() {
@@ -230,36 +246,25 @@ public class Battle extends Menu {
         handleDeaths();
     }
 
-
+    @Deprecated
     private void handleDeaths() {
-
-        /*
-         * minions death
-         * */
-        for (int i = 0; i < 2; i++) {
-            ArrayList<Minion> deadMinions = new ArrayList<>();
-            for (Minion minion : this.player[i].getMinionsInGame()) {
-                if (minion.getHealthPoint() <= 0) {
-                    deadMinions.add(minion);
-                    this.map.getCell(minion.getLocation()).setFlag(minion.hasFlag());
-                    this.map.getCell(minion.getLocation()).clear();
-                    this.gameMode.handleDeath(this.player[i], minion);
-                }
-            }
-            this.player[i].getMinionsInGame().removeAll(deadMinions);
-            this.player[i].getDeck().moveAllToGraveYard(deadMinions);
-        }
-
-
-
-        if (Battle.getMenu().getPlayer().getDeck().getHero().equals(this)) {
-            Battle.getMenu().getPlayer().getDeck().killHero();
-        } else if (Battle.getMenu().getEnemyPlayer().getDeck().getHero().equals(this)) {
-            Battle.getMenu().getEnemyPlayer().getDeck().killHero();
-        }
+//
+//        for (int i = 0; i < 2; i++) {
+//            ArrayList<Minion> deadMinions = new ArrayList<>();
+//            for (Minion minion : this.player[i].getMinionsInGame()) {
+//                if (minion.getHealthPoint() <= 0) {
+//                    deadMinions.add(minion);
+//                    this.map.getCell(minion.getLocation()).setFlag(minion.hasFlag());
+//                    this.map.getCell(minion.getLocation()).clear();
+//                    this.gameMode.handleDeath(this.player[i], minion);
+//                }
+//            }
+//            this.player[i].getMinionsInGame().removeAll(deadMinions);
+//            this.player[i].getDeck().moveAllToGraveYard(deadMinions);
+//        }
     }
 
-    public void endTurn() throws HandFullException, DeckIsEmptyException, InvalidCardException {
+    public void endTurn() throws HandFullException, DeckIsEmptyException {
 
         /*updating hand*/
         this.account.getPlayer().getHand().updateHand();
@@ -518,6 +523,13 @@ public class Battle extends Menu {
 
     public Player playerOf(Hermione hermione) throws InvalidCardException {
         for (int i = 0; i < 2; i++) {
+
+            //checking for hero
+            if(hermione instanceof Hermione){
+                if(this.player[i].getDeck().getHero().equals(hermione))return this.player[i];
+            }
+
+            //checking in minions
             for (Card card : this.player[i].getDeck().getCards()) {
                 if (card instanceof Hermione) {
                     if (card.equals(hermione)) return this.player[i];
@@ -526,8 +538,9 @@ public class Battle extends Menu {
         }
         throw new InvalidCardException();
     }
+
     public Player enemyPlayerOf(Hermione hermione) throws InvalidCardException {
-        if(playerOf(hermione).equals(this.player[0]))return this.player[1];
+        if (playerOf(hermione).equals(this.player[0])) return this.player[1];
         return this.player[0];
     }
 
