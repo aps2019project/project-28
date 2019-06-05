@@ -102,8 +102,8 @@ public class MenuHandler {
             Battle.getMenu().addMenuClickListener(new ShowMenu());
             Battle.getMenu().addMenuClickListener(menu -> {
                 Battle battle= (Battle) menu;
-                for(int i=1;i< Map.HEIGHT;i++){
-                    for(int j=1;j<Map.WIDTH;j++){
+                for(int i=0;i< Map.CHAP_RAST_X;i++){
+                    for(int j=0;j<Map.BALA_PAEEN_Y;j++){
                         try {
                             Cell cell=battle.getMap().getCell(i,j);
                             if(cell.getCardOnCell() instanceof Hero){
@@ -517,7 +517,7 @@ public class MenuHandler {
         currentMenu.showMenu();
         String command ;
         while(commands.hasNext()){
-            System.err.println();
+            System.err.println("for now insert the coordinations 0 base");
             try {
                 command = commands.nextLine().toLowerCase().trim();
                 String[] word = command.split(" ");

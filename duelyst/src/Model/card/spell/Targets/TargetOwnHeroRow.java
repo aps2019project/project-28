@@ -25,9 +25,9 @@ public class TargetOwnHeroRow implements Target {
             throw new InvalidCellException();
         }
         Map map = Battle.getMenu().getMap();
-        Cell[] cells = new Cell[Map.WIDTH];
+        Cell[] cells = new Cell[Map.CHAP_RAST_X];
         int y = cell.getY();
-        for (int x = 1; x <= Map.WIDTH; x++) {
+        for (int x = 1; x <= Map.BALA_PAEEN_Y; x++) {
             cells[x - 1] = map.getCell(x, y);
         }
         return cells ;

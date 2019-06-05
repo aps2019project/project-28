@@ -25,7 +25,7 @@ public class TargetThreeByThree implements Target {
         int x = cell.getX();
         int y = cell.getY();
         Map map = Battle.getMenu().getMap();
-        if (x > Map.WIDTH - 2 || y > Map.HEIGHT - 2) {
+        if (x > Map.CHAP_RAST_X - 2 || y > Map.BALA_PAEEN_Y - 2) {
             throw new InvalidCellException();
         }
         Cell[] cells = {cell, map.getCell(x, y + 1), map.getCell(x, y + 2), map.getCell(x + 1, y),
