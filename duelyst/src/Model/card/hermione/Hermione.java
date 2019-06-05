@@ -25,16 +25,40 @@ public abstract class Hermione extends Card {
     public static final int MOVE_RANGE = 2;
     protected int actionTurn;//0 move    1 attack  2 do nothing
     protected Cell location;
-    protected boolean canCounterAttack = true;
 
 
-    // TODO: 6/5/19 saE baad az in ke allowsAttack(tu buffAffects) ro zaD in moteghayer va getter o setter esh ro bayad hazv koni
-    protected boolean canAttack = true;
+    // TODO: 6/5/19 saE baad az in ke allowsAttack,allowsCounterAttack,allowsMove(tu buffAffects) ro zaD in moteghayer va getter o setter esh ro bayad hazv koni
+            /*
+            * this is saE's shit
+            *
+            * you may be asking by now what do we do with saE's shit
+            *
+            * well its simple
+            *
+            * step 1)
+            *       collect all the shits and put them here
+            *
+            * step 2)
+            *       call saE
+            *
+            * set 3)
+            *       repeat these exact same words:
+            *           saE!!! get your shit out of my code
+            *
+            * step 4)
+            *       code with joy for saE's shit is not in your code anymore
+            *
+            *           CHEERS!!!!
+            *
+            * */
+            protected boolean canAttack = true;
+            protected int attackCounter = 0;
+            protected boolean canCounterAttack = true;
+            protected boolean canMove = true;
+    //
 
     protected int numberOfFlags = 0;
     protected boolean hasFlag = false;
-    protected boolean canMove = true;
-    protected int attackCounter = 0;
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
@@ -64,6 +88,7 @@ public abstract class Hermione extends Card {
         if (!this.canAttack(enemyCard)) throw new CantAttackException();
 
         // TODO: 6/5/19 saE ------> get your shit out of my code :D
+        // TODO: 6/5/19 saE's shit
         this.attackCounter++;
 
 
@@ -100,6 +125,7 @@ public abstract class Hermione extends Card {
         this.actionTurn = 2;
     }
 
+
     private boolean canCounterAttack(Hermione enemyCard) {
         return
                 this.attackType.canReach(this, enemyCard)
@@ -133,16 +159,8 @@ public abstract class Hermione extends Card {
     public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, CardCantBeMovedException, DestinationIsFullException {
         if (!canMove(x, y)) return false;
 
-        Battle.getMenu().getMap().getCell(this.location).clear();
-
         this.setLocation(Battle.getMenu().getMap().getCell(x, y));
-        if (Battle.getMenu().getMap().getCell(x, y).hasFlag()) {
-            this.numberOfFlags++;
-            this.hasFlag = true;
-        }
 
-
-        Battle.getMenu().getMap().getCell(x, y).setCardOnCell(this);
         this.actionTurn = 1;
         return true;
     }
