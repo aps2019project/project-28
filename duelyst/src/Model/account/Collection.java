@@ -11,10 +11,8 @@ import java.util.ArrayList;
 public class Collection {
 
     private ArrayList<Deck> decks = new ArrayList<>();
-    private ArrayList<Integer> cardIDs = new ArrayList<>();
-    private ArrayList<Card> cards;
-    private ArrayList<Integer> usableIDs = new ArrayList<>();
-    private ArrayList<Usable> usables;
+    private ArrayList<Card> cards = new ArrayList<>();
+    private ArrayList<Usable> usables = new ArrayList<>();
     private static ArrayList<OnCollectionPresentedListener> collectionPresentedListeners = new ArrayList<>();
     private Account owner;
     private Deck mainDeck;
@@ -64,9 +62,9 @@ public class Collection {
     }
 
     public boolean hasCard(int cardID) {
-        for (Integer card :
-                cardIDs) {
-            if (card == cardID) {
+        for (Card card :
+                cards) {
+            if (card.getCardID() == cardID) {
                 return true;
             }
         }
@@ -74,9 +72,9 @@ public class Collection {
     }
 
     public boolean hasCard(Card card) {
-        for (Integer collectionCard :
-                cardIDs) {
-            if (collectionCard == card.getCardID()) {
+        for (Card collectionCard :
+                cards) {
+            if (collectionCard.equals(card)) {
                 return true;
             }
         }
@@ -114,9 +112,9 @@ public class Collection {
     }
 
     public boolean hasItem(int itemID) {
-        for (Integer item :
-                usableIDs) {
-            if (item == itemID) {
+        for (Usable item :
+                usables) {
+            if (item.getID() == itemID) {
                 return true;
             }
         }
@@ -134,9 +132,9 @@ public class Collection {
     }
 
     public boolean hasItem(Item item) {
-        for (Integer usable :
-                usableIDs) {
-            if (usable == item.getID()) {
+        for (Usable usable :
+                usables) {
+            if (usable.equals(item)) {
                 return true;
             }
         }
@@ -212,7 +210,6 @@ public class Collection {
     public void addCardToCollection(Card card) throws CardExistException {
         if (!this.hasCard(card)) {
            this.cards.add(card);
-           this.cardIDs.add(card.getCardID());
             return;
         }
         throw new CardExistException();
@@ -226,7 +223,6 @@ public class Collection {
     public void removeCardFromCollection(Card card) throws InvalidCardException {
         if (this.hasCard(card)) {
             this.cards.remove(card);
-            this.cardIDs.remove(card.getCardID());
             return;
         }
         throw new InvalidCardException();
@@ -235,7 +231,6 @@ public class Collection {
     public void addItemToCollection(Usable item) throws ItemExistExeption {
         if (!hasItem(item)) {
             this.usables.add(item);
-            this.usableIDs.add(item.getID());
             return;
         }
         throw new ItemExistExeption();
@@ -244,7 +239,6 @@ public class Collection {
     public void removeItemFromCollection(Usable item) throws InvalidItemException {
         if (this.hasItem(item)) {
             this.usables.remove(item);
-            this.usableIDs.remove(item.getID());
             return;
         }
         throw new InvalidItemException();
@@ -306,4 +300,6 @@ public class Collection {
     public ArrayList<Usable> getItems() {
         return usables;
     }
+
 }
+
