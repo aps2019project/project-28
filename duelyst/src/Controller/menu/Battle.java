@@ -378,13 +378,16 @@ public class Battle extends Menu {
     private void nextTurn() {
         turn++;
 
-
+        this.getPlayer().getDeck().getHero().getBuffEffects().handleOnNewTurn();
         //TODO arshia karaye marbut be turn e jadid o inja bokon (mana o updateHand o ina)
         for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
+            minion.getBuffEffects().handleOnNewTurn();
             minion.setActionTurn(0);
         }
         this.account.getPlayer().getDeck().getHero().setActionTurn(0);
         handleBuffs("beginning");
+
+
 
     }
 

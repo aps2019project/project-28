@@ -12,14 +12,15 @@ import exeption.*;
 import java.util.ArrayList;
 
 public abstract class Hermione extends Card {
-    protected int healthPoint;
 
+    protected int healthPoint;
     protected int originalHealthPoint;
     protected int attackPoint;
     protected Model.card.spell.SpecialPower SpecialPower;
     protected ArrayList<Buff> appliedBuffs;
     protected AttackType attackType;
     protected int range;
+    protected boolean comboer = false ;
     public static final int MOVE_RANGE = 2;
     protected int actionTurn;//0 move    1 attack  2 do nothing
     protected Cell location;
@@ -93,7 +94,7 @@ public abstract class Hermione extends Card {
         /*
          * handling buffs and spells that have effects when the hermione is attacking
          * */
-        this.buffEffects.handleOnAttack();
+        this.buffEffects.handleOnAttack(enemyCard);
 
         /*
          * attacking
@@ -103,7 +104,7 @@ public abstract class Hermione extends Card {
         /*
          * handling buffs and spells that have effects when the hermione is being under attack
          * */
-        enemyCard.buffEffects.handleOnDamaged(this.attackPoint);
+        enemyCard.buffEffects.handleOnDamaged(this , this.attackPoint);
 
         // TODO: 6/5/19  saE -----> get your shit out of my code :)
         {//saE's shit soon to be removed
@@ -137,7 +138,7 @@ public abstract class Hermione extends Card {
         if (this.healthPoint > 0)
             enemyCard.changeHealthPoint((-1) * this.attackPoint);
 
-        enemyCard.buffEffects.handleOnDamaged(this.attackPoint);
+        enemyCard.buffEffects.handleOnDamaged(this , this.attackPoint);
     }
 
     private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException, CardCantBeMovedException {
@@ -180,16 +181,6 @@ public abstract class Hermione extends Card {
         } catch (InvalidCardException ignored) {}
     }
 
-
-    // TODO: 6/5/19 SaE's shit soon to be removed
-                    public void reverseAP() {
-                        this.attackPoint = this.buffEffects.getOriginalAttackPoint();
-                    }
-
-                    public void reverseHP() {
-                        this.healthPoint += this.buffEffects.getChangedHealthPointDueToBuff();
-                    }
-    //
 
     public void changeHealthPoint(int healthPoint) {
         this.healthPoint += healthPoint;
@@ -267,18 +258,21 @@ public abstract class Hermione extends Card {
         return buffEffects.getOriginalAttackPoint();
     }
 
-    // TODO: 6/5/19 SaE's shit soon to be removed
-                /*
-                * in tabe ro bebar tu buffAffects dg
-                *  maslan bejaye hermione.setHoly... beshe hermione.getBuffEffects.setHoly...
-                * */
-                public void setHollyBuffLevel(int level) {
-                    this.buffEffects.setHollyBuffLevel(level);
-                }
+    public boolean isCanCounterAttack() {
+        return canCounterAttack;
+    }
 
-                public int getHollyBuffLevel() {
-                    return this.buffEffects.getHollyBuffLevel();
-                }
+    public boolean isCanAttack() {
+        return canAttack;
+    }
+
+    public void setHollyBuffLevel(int level) {
+        this.buffEffects.setHolyBuffLevel(level);
+    }
+
+    public int getHollyBuffLevel() {
+        return this.buffEffects.getHolyBuffLevel();
+    }
 
                 public void setLostHealthPointDueToBuff(int lostHealthPointDueToBuff) {
                     this.buffEffects.setChangedHealthPointDueToBuff(lostHealthPointDueToBuff);
@@ -317,6 +311,15 @@ public abstract class Hermione extends Card {
 
     public void setCanCounterAttack(boolean canCounterAttack) {
         this.canCounterAttack = canCounterAttack;
+    }
+
+
+    public boolean isComboer() {
+        return comboer;
+    }
+
+    public void setComboer(boolean comboer) {
+        this.comboer = comboer;
     }
 
 }

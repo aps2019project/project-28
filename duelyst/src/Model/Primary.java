@@ -214,7 +214,7 @@ public class Primary {
         minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
                 new SpecialPower("Persian General SpecialPower", 0, 0, 0, 0, "",
-                        null, ActionCombo.getAction()), SPATime.COMBO, "Combo"));
+                        null, ActionCombo.getAction()), SPATime.COMBO, "SPActionCombo"));
         minions.add(new Minion("Turanian Archer", 500, 1, 3,
                 4, new Range(), 5,
                 new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
@@ -353,11 +353,11 @@ public class Primary {
         minions.add(new Minion("Eurymedon",600, 5, 10,
                 4, new Melee(), 0,
                 new SpecialPower("Eurymedon SpecialPower", 0, 0, 0, 0, "",
-                        null, ActionCombo.getAction()), SPATime.COMBO, "Combo"));
+                        null, ActionCombo.getAction()), SPATime.COMBO, "SPActionCombo"));
         minions.add(new Minion("Arzhang Div",600, 3, 6,
                 6, new Melee(), 0, new SpecialPower("Arzhangs SpecialPower", 0, 0, 0, 0, "",
                 null, ActionCombo.getAction())
-                , SPATime.COMBO, "Combo"));
+                , SPATime.COMBO, "SPActionCombo"));
 
         fileWriter = new FileWriter("Minion.json", false);
         for (Minion minion :
