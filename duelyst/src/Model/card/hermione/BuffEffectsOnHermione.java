@@ -3,6 +3,9 @@ package Model.card.hermione;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.CellAffects;
+import Model.card.spell.Buff.Buff;
+import Model.card.spell.Buff.BuffActions.BuffActionPoison;
+import Model.card.spell.BuffTypes.BuffTypePassive;
 import Model.card.spell.SpellAction.ActionDeployPoison;
 import Model.card.spell.Targets.TargetRandomEnemy;
 import exeption.InvalidCellException;
@@ -37,6 +40,20 @@ public class BuffEffectsOnHermione {
             card.changeHealthPoint(nextTurnsDamage.get(0));
             nextTurnsDamage.remove(0);
         }
+
+        if (card.getLocation().getCellAffect().contains(CellAffects.fire)){
+            card.changeHealthPoint(-2);
+        }
+        if (card.getLocation().getCellAffect().contains(CellAffects.poison)){
+            Buff buff = new Buff(1, false, BuffActionPoison.getBuffAction(), new BuffTypePassive());
+            try {
+                buff.deploy(Battle.getMenu().getPlayer(), card);
+            }catch(InvalidCellException e){
+                System.err.println("weird InvalidCellException for poisonCellAffect Line52 BuffEffectsOnHermione");
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public void handleOnAttack(Hermione enemyCard) throws InvalidCellException {

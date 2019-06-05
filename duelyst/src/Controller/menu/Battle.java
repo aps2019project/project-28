@@ -529,7 +529,6 @@ public class Battle extends Menu {
 
     public void useItem(int x, int y) throws InvalidCellException {
         this.account.getPlayer().getSelectedItem().deploy(Battle.getMenu().getMap().getCell(x, y));
-        // TODO: 5/5/19 saE doroste dg?
     }
 
     public Player playerOf(Hermione hermione) throws InvalidCardException {
