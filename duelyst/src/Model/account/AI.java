@@ -75,7 +75,7 @@ public class AI extends Account {
     }
 
 
-    private void play() throws DestinationOutOfreachException, CantAttackException {
+    private void play() {
         move++;
         String command;
         map = Battle.getMenu().getMap();
@@ -99,67 +99,78 @@ public class AI extends Account {
                 }
                 move++;
             case 1:
-            case 3:
+            case 3: //selecting the hero
                 command = "Select " + collection.getMainDeck().getHero().getCardID();
                 output.set(command);
                 return;
-            case 2:
+            case 2: //move tha hero
                 Hero hero = this.player.getDeck().getHero();//collection.getMainDeck().getHero();
                 for (int i = 2; i > 0; i--) {
                     Cell[] cells = map.getCellsInDistance(hero.getLocation(), i);
                     for (Cell cell : cells) {
-                        if (cell.getCardOnCell() == null) { //TODO after arshia makes the canReach function for hermione check that too !
-                            command = "Move to " + cell.getX() + " " + cell.getY();
-                            output.set(command);
-                            return;
-                        }
+                        try {
+                            if (hero.canMove(cell.getX(), cell.getY())) {
+                                command = "Move to " + cell.getX() + " " + cell.getY();
+                                output.set(command);
+                                return;
+                            }
+                        }catch(Exception ignored){}
                     }
                 }
                 move += 2;
 
-            case 4:
+            case 4: //he attacc
                 hero = collection.getMainDeck().getHero();
-                command = attack(hero);
-                output.set(command);
-                return;
+                if(attack(hero)) return;
+
+                move++;
             default:
-                if (move > player.getMinionsInGame().size() + 5) {
-                    move = -1;
-                    output.set("End turn");
-                    return;
-                }
-                if (move % 2 == 1 && player.getMinionsInGame().size() > 0) {
-                    command = "Select " + player.getMinionsInGame().get(move - 5);
-                    output.set(command);
-                } else if (player.getMinionsInGame().size() > 0) {
-                    Minion card = player.getMinionsInGame().get(move - 6);
-                    command = attack(card);
-                    output.set(command);
-                }
+                do{
+                    if (move > player.getMinionsInGame().size() + 5) {
+                        move = -1;
+                        output.set("End turn");
+                        return;
+                    }
+                    if (move % 2 == 1 && player.getMinionsInGame().size() > 0) {
+                        command = "Select " + player.getMinionsInGame().get(move - 5);
+                        output.set(command);
+                    } else if (player.getMinionsInGame().size() > 0) {
+                        Minion card = player.getMinionsInGame().get(move - 6);
+                        if (attack(card)) return;
+                    }
+                    move++;
+                }while(player.getMinionsInGame().size() > 0) ;
+                move = -1;
+                output.set("End turn");
         }
     }
 
-    private String attack(Hermione card) throws DestinationOutOfreachException, CantAttackException {
+    private boolean attack(Hermione card){
         String command;
-        if (card.canAttack(enemy.getDeck().getHero())) {
-            command = "Attack " + enemy.getDeck().getHero();
-            output.set(command);
-        }
-        Random rand = new Random();
-        ArrayList<Minion> target = new ArrayList<>(enemy.getMinionsInGame());
-        if (target.isEmpty()) return "nope not my cup of tea";
-        int counter = 0;
-        for (int i = rand.nextInt(target.size()); true; i = rand.nextInt(target.size())) {
-            counter++;
-            if (card.canAttack(target.get(i))) {
-                command = "Attack " + target.get(i).getCardID();
+        try {
+            if (card.canAttack(enemy.getDeck().getHero())) {
+                command = "Attack " + enemy.getDeck().getHero();
                 output.set(command);
-                return command;
+                return true;
             }
-            if (counter > 30) break;
+            Random rand = new Random();
+            ArrayList<Minion> target = new ArrayList<>(enemy.getMinionsInGame());
+            if (target.isEmpty()) return false;
+            int counter = 0;
+            for (int i = rand.nextInt(target.size()); true; i = rand.nextInt(target.size())) {
+                counter++;
+                if (card.canAttack(target.get(i))) {
+                    command = "Attack " + target.get(i).getCardID();
+                    output.set(command);
+                    return true;
+                }
+                if (counter > 30) break;
+            }
+            output.set("Unfortunately AI has stopped working");
+            return false;
+        }catch(Exception ignored){
+            return false;
         }
-        output.set("Unfortunately AI has stopped working");
-        return "Unfortunately AI has stopped working";
     }
 
     private String insertMinion() {
@@ -329,14 +340,7 @@ public class AI extends Account {
 
     @Override
     public void doYourMove() {
-        try {
-            this.play(); // TODO: 6/5/19 saE in exception ha ezafe shodan be hermione.attack va Hermione.canAttack va Hermione.canMove va Hermione.move
-            // TODO: 6/5/19 ehtemalan toye play bayad handlesh koni
-            // TODO: 6/5/19 va inke tu method e attck o move canMove o canAttack check mishe lazem nist to check koni dg
-            // TODO: 6/5/19 vazehan baad e in ke handle karD in chatch haro pack kon
-        } catch (DestinationOutOfreachException | CantAttackException e) {
-            e.printStackTrace();
-        }
+        this.play();
         System.out.println("\t\t\t\t\t\t\t AI output is : " + this.output.string);
         if (output.string == null || output.string.isEmpty()) output.set("dude output is empty !");
     }

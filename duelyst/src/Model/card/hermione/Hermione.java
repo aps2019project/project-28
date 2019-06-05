@@ -103,7 +103,7 @@ public abstract class Hermione extends Card {
         enemyCard.buffEffects.handleOnDamaged(this , this.attackPoint);
     }
 
-    private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException, CardCantBeMovedException {
+    public boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException, CardCantBeMovedException {
 
         if (this.actionTurn != 0) throw new MoveTrunIsOverException();
 
