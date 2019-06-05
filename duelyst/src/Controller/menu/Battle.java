@@ -154,18 +154,20 @@ public class Battle extends Menu {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
             hermione.move(x, y);
 
-
             this.getMap().getCell(hermione.getLocation()).clear();
+
             if (this.getMap().getCell(x, y).hasFlag()) {
                 hermione.setNumberOfFlags(hermione.getNumberOfFlags());
                 hermione.setFlag(true);
             }
+
             this.getMap().getCell(x, y).setCardOnCell(hermione);
 
             if (map.getCell(x, y).hasItem()) {
                 this.getPlayer().getCollectables().add(map.getCell(x, y).getCollectable());
                 map.getCell(x, y).clearCollectable();
             }
+
             this.gameMode.getFlag(this.account.getPlayer(), hermione,
                     map.getCell(x, y));
 
