@@ -178,7 +178,7 @@ public class MenuHandler {
             private void showHermioneDetail(Hermione h){
                 System.out.println("\tName : " + h.getName());
                 System.out.println("\tClass : " + h.getAttackType().getClass().toString());
-                System.out.print("\tAttackPoint : " + h.getOriginalAttackPoint());
+                System.out.print("\tAttackPoint : " + h.getBuffEffects().getOriginalAttackPoint());
                 System.out.println("\tHealth point : " + h.getOriginalHealthPoint());
                 System.out.println("\tManaPoint : " + h.getManaPoint());
 //                System.out.println("\tSpecialPower : " + h.getSpecialPower().getInfo());
@@ -229,7 +229,7 @@ public class MenuHandler {
         //hero
         Hero.addOnHeroDetailPresented(hero -> {
             System.out.println("\tName : " + hero.getName());
-            System.out.println("\tAttackPoint : " + hero.getOriginalAttackPoint() +
+            System.out.println("\tAttackPoint : " + hero.getBuffEffects().getOriginalAttackPoint() +
                     "\tHealth point : " + hero.getOriginalHealthPoint() + "\tManaPoint : ");
             System.out.println("\tClass : " + hero.getAttackType().getClass().toString());
                 System.out.println("\tSell cost : " + hero.getPrice());

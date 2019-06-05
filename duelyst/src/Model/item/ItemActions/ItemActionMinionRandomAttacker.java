@@ -13,7 +13,7 @@ public class ItemActionMinionRandomAttacker implements ItemAction {
 
     public void deploy(Item item , Cell[] target) {
         for (Cell cell : target) {
-            cell.getCardOnCell().setHasTheDeathCurse(true);
+            cell.getCardOnCell().getBuffEffects().setHasTheDeathCurse(true);
         }
     }
 }

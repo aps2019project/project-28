@@ -25,37 +25,6 @@ public abstract class Hermione extends Card {
     protected int actionTurn;//0 move    1 attack  2 do nothing
     protected Cell location;
 
-
-    // TODO: 6/5/19 saE baad az in ke allowsAttack,allowsCounterAttack,allowsMove(tu buffAffects) ro zaD in moteghayer va getter o setter esh ro bayad hazv koni
-            /*
-            * this is saE's shit
-            *
-            * you may be asking by now what do we do with saE's shit
-            *
-            * well its simple
-            *
-            * step 1)
-            *       collect all the shits and put them here
-            *
-            * step 2)
-            *       call saE
-            *
-            * set 3)
-            *       repeat these exact same words:
-            *           saE!!! get your shit out of my code
-            *
-            * step 4)
-            *       code with joy for saE's shit is not in your code anymore
-            *
-            *           CHEERS!!!!
-            *
-            * */
-            protected boolean canAttack = true;
-            protected int attackCounter = 0;
-            protected boolean canCounterAttack = true;
-            protected boolean canMove = true;
-    //
-
     protected int numberOfFlags = 0;
     protected boolean hasFlag = false;
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
@@ -86,9 +55,8 @@ public abstract class Hermione extends Card {
         //DestinationOutOfReachException is not being thrown anymore
         if (!this.canAttack(enemyCard)) throw new CantAttackException();
 
-        // TODO: 6/5/19 saE ------> get your shit out of my code :D
-        // TODO: 6/5/19 saE's shit
-        this.attackCounter++;
+
+        this.getBuffEffects().addAttackCounter();
 
 
         /*
@@ -106,12 +74,6 @@ public abstract class Hermione extends Card {
          * */
         enemyCard.buffEffects.handleOnDamaged(this , this.attackPoint);
 
-        // TODO: 6/5/19  saE -----> get your shit out of my code :)
-        {//saE's shit soon to be removed
-            //ina bayad tu ye tabeE miraft (ehtemalan tu hamun OnDamage
-            if (enemyCard.getLocation().getCellAffect().contains(CellAffects.holly))
-                enemyCard.changeHealthPoint(1);
-        }
 
         if (enemyCard.getHealthPoint() <= 0)
             enemyCard.die();
@@ -169,14 +131,14 @@ public abstract class Hermione extends Card {
 
 
     public void spawn(Cell cell) {
-        // TODO: 6/5/19 saE's shit soon to be removed
-        this.canMove = true;
+        this.getBuffEffects().setCanMove(true);
 
         this.setLocation(cell);
     }
 
     public void die() {
         try {
+            buffEffects.handleOnDeath();
             Battle.getMenu().kill(this);
         } catch (InvalidCardException ignored) {}
     }
@@ -238,10 +200,6 @@ public abstract class Hermione extends Card {
         this.location = location;
     }
 
-    public void setCanMove(boolean canMove) {
-        this.canMove = canMove;
-    }
-
     public int getNumberOfFlags() {
         return numberOfFlags;
     }
@@ -250,39 +208,6 @@ public abstract class Hermione extends Card {
         this.numberOfFlags = numberOfFlags;
     }
 
-    public void setCanAttack(boolean canAttack) {
-        this.canAttack = canAttack;
-    }
-
-    public int getOriginalAttackPoint() {
-        return buffEffects.getOriginalAttackPoint();
-    }
-
-    public boolean isCanCounterAttack() {
-        return canCounterAttack;
-    }
-
-    public boolean isCanAttack() {
-        return canAttack;
-    }
-
-    public void setHollyBuffLevel(int level) {
-        this.buffEffects.setHolyBuffLevel(level);
-    }
-
-    public int getHollyBuffLevel() {
-        return this.buffEffects.getHolyBuffLevel();
-    }
-
-                public void setLostHealthPointDueToBuff(int lostHealthPointDueToBuff) {
-                    this.buffEffects.setChangedHealthPointDueToBuff(lostHealthPointDueToBuff);
-                }
-
-
-                public void setHasTheDeathCurse(boolean b){
-                    //inam bebin chi bude
-                }
-    //
 
     public int getOriginalHealthPoint() {
         return originalHealthPoint;
@@ -307,10 +232,6 @@ public abstract class Hermione extends Card {
 
     public void setActionTurn(int actionTurn) {
         this.actionTurn = actionTurn;
-    }
-
-    public void setCanCounterAttack(boolean canCounterAttack) {
-        this.canCounterAttack = canCounterAttack;
     }
 
 

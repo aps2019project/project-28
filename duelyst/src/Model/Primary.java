@@ -450,7 +450,7 @@ public class Primary {
                 TargetEnemyCard.getTargetInstance(), ItemActionDisArm.getItemAction()));
         usables.add(new Usable("Soul Eater", 25000, 1, 1, "on death of one of own cards, every own card gets power buff, increases attck point 1 unit",
                 TargetOwnCard.getTargetInstance(), ItemActionChangeAP.getItemAction()));
-        usables.add(new Usable("‌Baptism", 20000, 2, 0, "every minion when spawns gets holly buff, duration : 2",
+        usables.add(new Usable("‌Baptism", 20000, 2, 0, "every minion when spawns gets holy buff, duration : 2",
                 TargetOwnMinion.getTargetInstance(), ItemActionChangeAP.getItemAction()));
 
         fileWriter = new FileWriter("Usables.json", false);
