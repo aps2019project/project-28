@@ -1,6 +1,7 @@
 package Model.card.spell.Targets;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
 import Model.account.Player;
@@ -20,7 +21,7 @@ public class TargetSurroundings implements Target {
     }
     @Override
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
-        Map map = Game.battle.getMap();
+        Map map = Battle.getMenu().getMap();
         int x = cell.getX();
         int y = cell.getY();
         Cell[] cells = {map.getCell(x - 1, y - 1), map.getCell(x, y - 1), map.getCell(x + 1, y - 1),

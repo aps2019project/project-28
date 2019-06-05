@@ -240,6 +240,7 @@ public class Deck {
     }
 
     public void killHero() {
+        this.hero.die();
         this.hero = null;
         this.heroID = -1;
     }

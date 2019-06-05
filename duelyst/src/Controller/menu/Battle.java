@@ -149,7 +149,7 @@ public class Battle extends Menu {
     }
 
 
-    public void move(int x, int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException {
+    public void move(int x, int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException {
         try {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
             hermione.move(x, y);
@@ -282,7 +282,8 @@ public class Battle extends Menu {
                 ksc.increaseCounter();
             }
             if (ksc.getCounter() == 15) {
-                player[i].getDeck().getHero().die();
+//                player[i].getDeck().getHero().die();
+                player[i].getDeck().killHero();
                 //TODO @arshia game over mishe inja !
             }
         }
@@ -483,7 +484,7 @@ public class Battle extends Menu {
     }
 
     public void useItem(int x, int y) throws InvalidCellException {
-        this.account.getPlayer().getSelectedItem().deploy(Game.battle.getMap().getCell(x, y));
+        this.account.getPlayer().getSelectedItem().deploy(Battle.getMenu().getMap().getCell(x, y));
         // TODO: 5/5/19 saE doroste dg?
     }
 

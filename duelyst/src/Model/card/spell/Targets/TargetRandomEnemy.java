@@ -1,6 +1,7 @@
 package Model.card.spell.Targets;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.spell.Target;
@@ -18,7 +19,7 @@ public class TargetRandomEnemy implements Target {
 
     @Override
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
-        Player player = Game.battle.getEnemyPlayer() ;
+        Player player = Battle.getMenu().getEnemyPlayer() ;
         return TargetRandom.getTarget(player);
     }
     public Target getTargetClass() {

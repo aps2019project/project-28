@@ -1,6 +1,7 @@
 package Model.Map;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Primary;
 import Model.account.Collection;
 import Model.card.spell.Buff.Buff;
@@ -84,7 +85,7 @@ public class Map {
             for (Cell cell : cellRow) {
                 if (cell.getCellAffect().contains(CellAffects.poison)) {
                     Buff buff = new Buff(1, false, BuffActionPoison.getBuffAction(), new BuffTypePassive());
-                    buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
+                    buff.deploy(Battle.getMenu().getPlayer(), cell.getCardOnCell());
                 }
             }
         }

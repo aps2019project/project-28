@@ -1,6 +1,7 @@
 package Model.card.spell.Targets;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.hermione.Hero;
 import Model.card.spell.Target;
@@ -26,7 +27,7 @@ public class TargetAllMinionsInSurrounding implements Target {
         for (int i = 0 ; i < cells.size() ; i++){
             Cell cel = cells.get(i);
             if (cel.getCardOnCell() == null || cel.getCardOnCell() instanceof Hero ||
-                     Game.battle.getPlayer().getMinionsInGame() == null ||!Game.battle.getPlayer().getMinionsInGame().contains(cel.getCardOnCell()))
+                     Battle.getMenu().getPlayer().getMinionsInGame() == null ||!Battle.getMenu().getPlayer().getMinionsInGame().contains(cel.getCardOnCell()))
                 cells.remove(i) ;
                 i--;
         }

@@ -1,6 +1,7 @@
 package Model.card.spell.Targets;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Minion;
@@ -22,7 +23,7 @@ public class TargetAllOwnMinions implements Target {
 
     @Override
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
-        List<Minion> minions = Game.battle.getPlayer().getMinionsInGame();
+        List<Minion> minions = Battle.getMenu().getPlayer().getMinionsInGame();
         Cell[] cells = new Cell[minions.size()];
         for (int i = 0 ; i < minions.size() ; i++){
             cells[i] = minions.get(i).getLocation();

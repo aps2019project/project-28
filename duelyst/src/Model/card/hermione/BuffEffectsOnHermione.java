@@ -91,4 +91,36 @@ public class BuffEffectsOnHermione {
     public void setHasThePoisonousDagger(boolean hasThePoisonousDagger) {
         this.hasThePoisonousDagger = hasThePoisonousDagger;
     }
+
+    public boolean allowsAttack() {
+        // TODO: 6/5/19 saE
+        /*
+        * i assume its obvious that this method checks weather or not buffs and spells and .... (every little magical thing)
+        * allows the hermione to attack or not
+        * */
+
+        return true;
+    }
+
+    public boolean allowsCounterAttack() {
+        // TODO: 6/5/19 saE
+        /*
+         * i assume its obvious that this method checks weather or not buffs and spells and .... (every little magical thing)
+         * allows the hermione to counterAttack or not
+         * */
+
+        return true;
+
+    }
+
+    public boolean allowsMove() {
+        // TODO: 6/5/19 saE
+        /*
+         * i assume its obvious that this method checks weather or not buffs and spells and .... (every little magical thing)
+         * allows the hermione to move or not
+         * */
+
+        return true;
+
+    }
 }

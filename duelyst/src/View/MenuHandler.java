@@ -550,10 +550,10 @@ public class MenuHandler {
             }
             currentMenu.showMenu();
             if(currentMenu instanceof Battle)
-                Game.accounts[Game.battle.getTurn()].doYourMove();
-            commands=Game.accounts[Game.battle.getTurn()].getOutputStream();
+                Game.accounts[Battle.getMenu().getTurn()].doYourMove();
+            commands=Game.accounts[Battle.getMenu().getTurn()].getOutputStream();
 
-            System.err.println(Game.accounts[Game.battle.getTurn()].getName());
+            System.err.println(Game.accounts[Battle.getMenu().getTurn()].getName());
             System.err.println(Game.accounts[0].getName()+" , "+Game.accounts[1].getName());
        }
     }
@@ -810,15 +810,15 @@ public class MenuHandler {
         if(word[0].equals("mode")){
             switch (Integer.parseInt(word[1])){
                 case 3:
-                    Game.battle.setGameMode(new Domination());
+                    Battle.getMenu().setGameMode(new Domination());
                     currentMenu=menu.enter(GameModeMenu.getMenu());
                     break;
                 case 2:
-                    Game.battle.setGameMode(new FlagMode());
+                    Battle.getMenu().setGameMode(new FlagMode());
                     currentMenu=menu.enter(GameModeMenu.getMenu());
                     break;
                 case 1:
-                Game.battle.setGameMode(new ClassicMode());
+                Battle.getMenu().setGameMode(new ClassicMode());
                     currentMenu=menu.enter(GameModeMenu.getMenu());
                     break;
                 default:
@@ -879,6 +879,9 @@ public class MenuHandler {
                 System.out.println("please set the destination some were close");
             } catch (InvalidCellException e) {
                 System.out.println("Im afraid our little word doesnt have enough space for your ambitions");
+            } catch (DestinationIsFullException e) {
+                System.out.println("SomeBodys already there ");
+                System.out.println("another location maybe?");
             }
         } else if (word[0].equals("attack")) {
             try {

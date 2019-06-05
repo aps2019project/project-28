@@ -1,6 +1,7 @@
 package Model.card.spell.Targets;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.account.Player;
 import Model.card.spell.Spell;
@@ -19,7 +20,7 @@ public class TargetEnemyCard implements Target {
     }
     @Override
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
-        Player enemy = Game.battle.getEnemyPlayer() ;
+        Player enemy = Battle.getMenu().getEnemyPlayer() ;
         if (cell.getCardOnCell() != enemy.getDeck().getHero() && !enemy.getMinionsInGame().contains(cell.getCardOnCell())) {
             throw new InvalidCellException();
         }

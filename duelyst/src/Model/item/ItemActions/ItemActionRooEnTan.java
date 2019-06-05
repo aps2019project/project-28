@@ -1,6 +1,7 @@
 package Model.item.ItemActions;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.Buff.BuffActions.BuffActionHolly;
@@ -18,7 +19,7 @@ public class ItemActionRooEnTan implements ItemAction {
     public void deploy(Item item , Cell[] target) throws InvalidCellException {
         for (Cell cell : target) {
             Buff buff = new Buff (2 , true , BuffActionHolly.getBuffAction() , 10) ;
-            buff.deploy(Game.battle.getPlayer() , cell.getCardOnCell());
+            buff.deploy(Battle.getMenu().getPlayer() , cell.getCardOnCell());
         }
     }
 }

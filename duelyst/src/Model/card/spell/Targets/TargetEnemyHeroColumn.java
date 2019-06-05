@@ -1,6 +1,7 @@
 package Model.card.spell.Targets;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
 import Model.account.Player;
@@ -19,11 +20,11 @@ public class TargetEnemyHeroColumn implements Target {
     }
     @Override
     public Cell[] getTarget(Cell cell) throws InvalidCellException {
-        Player enemy = Game.battle.getEnemyPlayer() ;
+        Player enemy = Battle.getMenu().getEnemyPlayer() ;
         if (cell != enemy.getDeck().getHero().getLocation()) {
             throw new InvalidCellException();
         }
-        Map map = Game.battle.getMap();
+        Map map = Battle.getMenu().getMap();
         Cell[] cells = new Cell[Map.HEIGHT];
         int x = cell.getX();
         for (int y = 1; y <= map.HEIGHT; y++) {

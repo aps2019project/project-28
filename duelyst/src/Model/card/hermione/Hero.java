@@ -1,6 +1,7 @@
 package Model.card.hermione;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import View.Listeners.OnHeroDetailsPresentedListener;
 import exeption.CantSpecialPowerCooldownException;
@@ -24,7 +25,7 @@ public class Hero extends Hermione {
     @Override
     public boolean applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException , CantSpecialPowerCooldownException {
         if (this.remainCoolDOwnTime != cooldown) throw new CantSpecialPowerCooldownException() ;
-        this.SpecialPower.deploy(Game.battle.getPlayer(), Game.battle.getEnemyPlayer(), cell);
+        this.SpecialPower.deploy(Battle.getMenu().getPlayer(), Battle.getMenu().getEnemyPlayer(), cell);
         this.decreaseRemainCoolDown();
         return true ;
     }
@@ -55,12 +56,12 @@ public class Hero extends Hermione {
     }
 
     @Override
-    public void die() throws InvalidCardException {
+    public void die(){
         super.die();
-        if (Game.battle.getPlayer().getDeck().getHero().equals(this)){
-            Game.battle.getPlayer().getDeck().killHero();
-        }else if (Game.battle.getEnemyPlayer().getDeck().getHero().equals(this)){
-            Game.battle.getEnemyPlayer().getDeck().killHero();
+        if (Battle.getMenu().getPlayer().getDeck().getHero().equals(this)){
+            Battle.getMenu().getPlayer().getDeck().killHero();
+        }else if (Battle.getMenu().getEnemyPlayer().getDeck().getHero().equals(this)){
+            Battle.getMenu().getEnemyPlayer().getDeck().killHero();
         }
     }
 

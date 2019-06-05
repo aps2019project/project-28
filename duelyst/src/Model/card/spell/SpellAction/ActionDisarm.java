@@ -1,6 +1,7 @@
 package Model.card.spell.SpellAction;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.Buff.BuffActions.BuffActionDisarm;
@@ -19,7 +20,7 @@ public class ActionDisarm implements Action {
     public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
             Buff buff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionDisarm.getAction())), false, BuffActionDisarm.getBuffAction());
-            buff.deploy(Game.battle.getPlayer(), cell.getCardOnCell());
+            buff.deploy(Battle.getMenu().getPlayer(), cell.getCardOnCell());
         }
     }
 }

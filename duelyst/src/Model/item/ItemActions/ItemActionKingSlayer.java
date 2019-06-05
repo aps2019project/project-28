@@ -1,6 +1,7 @@
 package Model.item.ItemActions;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.item.Item;
 
 public class ItemActionKingSlayer implements ItemAction {
@@ -12,7 +13,7 @@ public class ItemActionKingSlayer implements ItemAction {
     }
 
     public void deploy(Item item){
-        Game.battle.getPlayer().setMaxMana(Game.battle.getPlayer().getMaxMana());
+        Battle.getMenu().getPlayer().setMaxMana(Battle.getMenu().getPlayer().getMaxMana());
 
     }
 }
