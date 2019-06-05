@@ -33,7 +33,7 @@ public class SignInMenu extends Menu {
     @Override
     public Menu enter(Menu subMenu) {
         if(this.account==null){
-            // TODO: 5/7/19 handle it better
+            // TODO: 5/7/19 handleOnAttack it better
             System.out.println("no account has been signed in yet");
             return this;
         }

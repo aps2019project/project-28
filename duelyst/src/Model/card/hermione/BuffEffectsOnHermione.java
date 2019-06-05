@@ -8,7 +8,7 @@ import exeption.InvalidCellException;
 public class BuffEffectsOnHermione {
     private Hermione card ;
     private boolean hasTheDeathCurse = false ;
-    private int HollyBuffLevel = 0 ;
+    private int hollyBuffLevel = 0 ;
     private int originalAttackPoint ;
     private int changedHealthPointDueToBuff = 0 ;
     private boolean hasTheGiantSnakeEffect = false ;
@@ -18,12 +18,25 @@ public class BuffEffectsOnHermione {
         this.card = card;
     }
 
-    public void handle() throws InvalidCellException {
+    public void handleOnAttack() throws InvalidCellException {
         if (hasThePoisonousDagger){
              Cell[] cells = TargetRandomEnemy.getTargetInstance().getTarget(card.location) ;
              ActionDeployPoison.getAction().deploy(1 , cells);
              hasThePoisonousDagger = false ;
         }
+    }
+
+    public void handleOnDeath(){
+        //TODO SAEE minion.die() -> deathCurse
+
+    }
+
+    public void handleOnDamaged(int damagePoint){
+     handleHollyBuff(damagePoint);
+    }
+
+    public void handleHollyBuff(int damagePoint){
+        card.changeHealthPoint(Integer.min(damagePoint , hollyBuffLevel));
     }
 
 
@@ -32,7 +45,7 @@ public class BuffEffectsOnHermione {
     }
 
     public int getHollyBuffLevel() {
-        return HollyBuffLevel;
+        return hollyBuffLevel;
     }
 
     public int getOriginalAttackPoint() {
@@ -48,7 +61,7 @@ public class BuffEffectsOnHermione {
     }
 
     public void setHollyBuffLevel(int hollyBuffLevel) {
-        HollyBuffLevel = hollyBuffLevel;
+        this.hollyBuffLevel = hollyBuffLevel;
     }
 
     public void setOriginalAttackPoint(int originalAttackPoint) {
