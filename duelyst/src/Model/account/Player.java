@@ -1,6 +1,7 @@
 package Model.account;
 
 import Controller.Game;
+import Controller.GameMode.GameMode;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.Card;
@@ -63,12 +64,6 @@ public class Player {
     public int getMana() {
         return mana;
     }
-
-    public void handleWin() {
-        // TODO: 5/5/19 ArshiA bezan
-    }
-
-
 
     private boolean canDeploy(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException {
         if (this.mana < card.getManaPoint()) throw new NotEnoughManaException();
