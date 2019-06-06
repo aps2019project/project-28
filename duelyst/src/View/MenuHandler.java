@@ -689,9 +689,7 @@ public class MenuHandler {
             if(word.length>= 2 && word[1].equals("collection")){
                 menu.showCollection();
             }else{
-                System.err.println("asdddddddddddddd");
                 menu.show();
-                System.err.println("asdddddddddddddd");
             }
         }else if(word[0].equals("search")){
             if(word.length>= 2 && word[1].equals("collection")){
@@ -720,7 +718,6 @@ public class MenuHandler {
             } catch (CardExistException e) {
                 System.out.println("You already have this Card. it is not wise to buy a same card twice");
             } catch (InvalidCardException e) {
-                System.err.println("hhhhhhhhhhhhhhhhhhhhh");
                 System.out.println("Me lord! we just ran out of " + name + ". im sorry!");
             } catch (ItemExistExeption itemExistExeption) {
                 System.out.println("You already have this Item. it is not wise to buy a same item twice");
@@ -743,7 +740,6 @@ public class MenuHandler {
     }
     private static void SignInMenuCommandHandler(String[] word) {
         SignInMenu menu= (SignInMenu) currentMenu;
-        System.err.println("sign in bitch");
         if(word[0].equals("create") && word[1].equals("account")){
             try {
                 menu.creatAccount(word[2],word[3],word[4]);
@@ -766,7 +762,6 @@ public class MenuHandler {
                 System.out.println("1)username      2)password");
             }
         }else if(word[0].equals("show") && word[1].equals("leaderboard")){
-            System.err.println("hey sexy lady");
             menu.showLeaderBoard();
 
         }else if(word[0].equals("save")){

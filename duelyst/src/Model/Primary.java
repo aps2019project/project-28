@@ -21,8 +21,7 @@ import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.Gson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
-import exeption.InvalidCardException;
-import exeption.InvalidItemException;
+import exeption.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -141,6 +140,35 @@ public class Primary {
             }
         }
     }
+    public static void setDefaultDecks() throws CardExistException, ItemExistExeption, DeckAlreadyHasAHeroException,
+            DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException, IOException {
+        Collection allCardAndItems = new Collection();
+        for (Card card : cards) {
+            allCardAndItems.addCardToCollection(card);
+        }
+        for (Usable item : usables) {
+            allCardAndItems.addItemToCollection(item);
+        }
+        Deck posiden = new Deck("posiden", allCardAndItems);
+        for(int i = 0 ; i < 10 ; i++){
+            posiden.addCardToDeck(spells.get(i));
+        }
+        for (int i = 0 ; i < 9 ; i++){
+            posiden.addCardToDeck(minions.get(i));
+        }
+        posiden.addCardToDeck(heroes.get(0));
+        posiden.addItemToDeck(usables.get(0));
+        saveDefaultDecks("posiden", posiden);
+    }
+
+    private static void saveDefaultDecks(String name, Deck deck) throws IOException {
+        File file  = new File("Decks"+ File.separator + name +".json");
+        YaGson gson = new YaGson();
+        FileWriter fileWriter = new FileWriter(file, false);
+        gson.toJson(deck, fileWriter);
+        fileWriter.close();
+    }
+
 
     public static void loadDefaultDecks() throws IOException {
         File folder = new File("Decks");
