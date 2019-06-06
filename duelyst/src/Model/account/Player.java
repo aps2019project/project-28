@@ -1,6 +1,7 @@
 package Model.account;
 
 import Controller.Game;
+import Controller.GameMode.GameMode;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.Card;
@@ -29,12 +30,7 @@ public class Player {
     private Deck deck;
     private Card selectedCard;
     private Item selectedItem;
-    // TODO: 6/6/19 saE's shit 2.0 :|
-                                        //ina ro ham mese hermione ye class bezan bebar untu dg
-                                        private int manaTheriac = 0;
-                                        private int maxManaTheriac = 0;
-                                        private boolean hasAssasinationDagger = false;
-    //
+    private StuffEffectsOnPlayer stuffEffectsOnPlayer ;
     private boolean hasFlag=false;
     private int flagInteger=0;
 
@@ -64,12 +60,6 @@ public class Player {
         return mana;
     }
 
-    public void handleWin() {
-        // TODO: 5/5/19 ArshiA bezan
-    }
-
-
-
     private boolean canDeploy(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException {
         if (this.mana < card.getManaPoint()) throw new NotEnoughManaException();
         if (cell.isFull()) throw new DestinationIsFullException();
@@ -83,12 +73,7 @@ public class Player {
         if(card instanceof Minion){
             Minion minion = (Minion) card;
             minion.spawn(cell);
-            // TODO: 6/6/19 SaE's shit 2.0
-                                            //tu un class e ke sakhT ye tabe ye onDeployMinion besaz ina ro bebar un tu
-                                            if (hasAssasinationDagger) {
-                                                Battle.getMenu().getEnemyPlayer().getDeck().getHero().changeHealthPoint(-1);
-                                            }
-            //
+            stuffEffectsOnPlayer.handleMinionDeploy() ;
 
             Battle.getMenu().getMap().getCell(cell).setCardOnCell((Hermione) card);
         }else if(card instanceof Spell){
@@ -164,13 +149,10 @@ public class Player {
         this.flagInteger = flagInteger;
     }
 
-    // TODO: 6/6/19 saE's shit 2.0.
-                                    public void reFillMana() {
-                                        this.mana = maxMana + maxManaTheriac;
-                                        mana += this.manaTheriac;
-                                        manaTheriac = 0;
-                                    }
-    //
+    public void reFillMana() {
+        this.mana = maxMana + stuffEffectsOnPlayer.getManaTheriac();
+    }
+
     public boolean hasItem(int id) {
         for (Collectable collectable : this.getCollectables()) {
             if (collectable.getID() == id) return true;
@@ -181,19 +163,12 @@ public class Player {
         return hasFlag;
     }
 
-    // TODO: 6/6/19 saE's shit 2.0.
-                                    public void setManaTheriac(int hasManaTheriac) {
-                                                                        this.manaTheriac = hasManaTheriac;
-                                                                    }
-                                    public void setMaxManaTheriac(int maxManaTheriac) {
-                                                                        this.maxManaTheriac += maxManaTheriac;
-                                                                    }
-                                    public void setHasAssasinationDagger(boolean hasAssasinationDagger) {
-        this.hasAssasinationDagger = hasAssasinationDagger;
-    }
-    //
 
     public void changeMana(int manaPoint) {
         this.mana+=manaPoint;
+    }
+
+    public StuffEffectsOnPlayer getStuffEffectsOnPlayer() {
+        return stuffEffectsOnPlayer;
     }
 }
