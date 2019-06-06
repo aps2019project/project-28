@@ -45,6 +45,10 @@ public class Primary {
         items.addAll(collectables);
     }
 
+    public static void main(String[] args) throws IOException {
+        Primary.Json();
+    }
+
     public static void getHeroes() throws FileNotFoundException {
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Hero.json"));
