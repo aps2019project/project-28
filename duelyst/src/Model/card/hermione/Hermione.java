@@ -13,52 +13,27 @@ import java.util.ArrayList;
 
 public abstract class Hermione extends Card {
 
+    public static final int MOVE_RANGE = 2;
+
     protected int healthPoint;
     protected int originalHealthPoint;
+
+    protected boolean comboer = false;
+
     protected int attackPoint;
-    protected Model.card.spell.SpecialPower SpecialPower;
-    protected ArrayList<Buff> appliedBuffs;
     protected AttackType attackType;
     protected int range;
-    protected boolean comboer = false ;
-    public static final int MOVE_RANGE = 2;
-    protected int actionTurn;//0 move    1 attack  2 do nothing
+
     protected Cell location;
-
-
-    // TODO: 6/5/19 saE baad az in ke allowsAttack,allowsCounterAttack,allowsMove(tu buffAffects) ro zaD in moteghayer va getter o setter esh ro bayad hazv koni
-            /*
-            * this is saE's shit
-            *
-            * you may be asking by now what do we do with saE's shit
-            *
-            * well its simple
-            *
-            * step 1)
-            *       collect all the shits and put them here
-            *
-            * step 2)
-            *       call saE
-            *
-            * set 3)
-            *       repeat these exact same words:
-            *           saE!!! get your shit out of my code
-            *
-            * step 4)
-            *       code with joy for saE's shit is not in your code anymore
-            *
-            *           CHEERS!!!!
-            *
-            * */
-            protected boolean canAttack = true;
-            protected int attackCounter = 0;
-            protected boolean canCounterAttack = true;
-            protected boolean canMove = true;
-    //
+    protected int actionTurn;//0 move    1 attack  2 do nothing
 
     protected int numberOfFlags = 0;
     protected boolean hasFlag = false;
+
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
+    protected SpecialPower SpecialPower;
+    protected ArrayList<Buff> appliedBuffs;
+
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range, String info) {
@@ -80,15 +55,13 @@ public abstract class Hermione extends Card {
         if (!this.buffEffects.allowsAttack()) throw new CantAttackException();
         return true;
     }
-
     public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
 
         //DestinationOutOfReachException is not being thrown anymore
         if (!this.canAttack(enemyCard)) throw new CantAttackException();
 
-        // TODO: 6/5/19 saE ------> get your shit out of my code :D
-        // TODO: 6/5/19 saE's shit
-        this.attackCounter++;
+
+        this.getBuffEffects().addAttackCounter();
 
 
         /*
@@ -104,14 +77,8 @@ public abstract class Hermione extends Card {
         /*
          * handling buffs and spells that have effects when the hermione is being under attack
          * */
-        enemyCard.buffEffects.handleOnDamaged(this , this.attackPoint);
+        enemyCard.buffEffects.handleOnDamaged(this, this.attackPoint);
 
-        // TODO: 6/5/19  saE -----> get your shit out of my code :)
-        {//saE's shit soon to be removed
-            //ina bayad tu ye tabeE miraft (ehtemalan tu hamun OnDamage
-            if (enemyCard.getLocation().getCellAffect().contains(CellAffects.holly))
-                enemyCard.changeHealthPoint(1);
-        }
 
         if (enemyCard.getHealthPoint() <= 0)
             enemyCard.die();
@@ -130,7 +97,6 @@ public abstract class Hermione extends Card {
                 this.attackType.canReach(this, enemyCard)
                         && this.buffEffects.allowsCounterAttack();
     }
-
     public void counterAttack(Hermione enemyCard) {
 
         if (!this.canCounterAttack(enemyCard)) return;
@@ -138,10 +104,11 @@ public abstract class Hermione extends Card {
         if (this.healthPoint > 0)
             enemyCard.changeHealthPoint((-1) * this.attackPoint);
 
-        enemyCard.buffEffects.handleOnDamaged(this , this.attackPoint);
+        enemyCard.buffEffects.handleOnDamaged(this, this.attackPoint);
     }
 
-    private boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException, CardCantBeMovedException {
+
+    public boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException, CardCantBeMovedException {
 
         if (this.actionTurn != 0) throw new MoveTrunIsOverException();
 
@@ -165,20 +132,28 @@ public abstract class Hermione extends Card {
     }
 
 
-    public abstract void applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException, CantSpecialPowerCooldownException;
-
-
     public void spawn(Cell cell) {
-        // TODO: 6/5/19 saE's shit soon to be removed
-        this.canMove = true;
+        this.getBuffEffects().setCanMove(true);
 
         this.setLocation(cell);
     }
-
     public void die() {
         try {
+            buffEffects.handleOnDeath();
             Battle.getMenu().kill(this);
-        } catch (InvalidCardException ignored) {}
+        } catch (InvalidCardException ignored) {
+        }
+    }
+
+
+    public abstract void applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException, CantSpecialPowerCooldownException;
+    public void makeNewListForAppliedBuffs() {
+        this.appliedBuffs = new ArrayList<>();
+    }
+
+
+    public boolean hasFlag() {
+        return hasFlag;
     }
 
 
@@ -187,139 +162,65 @@ public abstract class Hermione extends Card {
         if (this.healthPoint <= 0) this.healthPoint = 0;
         if (this.healthPoint >= this.originalHealthPoint) this.healthPoint = this.originalHealthPoint;
     }
-
     public void changeAttackPoint(int attackPoint) {
         this.attackPoint += attackPoint;
     }
 
+
     public int getHealthPoint() {
         return healthPoint;
     }
-
-    public void setHealthPoint(int healthPoint) {
-        this.healthPoint = healthPoint;
-    }
-
     public int getAttackPoint() {
         return attackPoint;
     }
-
-    public void setAttackPoint(int attackPoint) {
-        this.attackPoint = attackPoint;
-    }
-
     public SpecialPower getSpecialPower() {
         return SpecialPower;
     }
-
-
     public ArrayList<Buff> getAppliedBuffs() {
         return appliedBuffs;
     }
-
     public AttackType getAttackType() {
         return attackType;
     }
-
-
     public int getRange() {
         return range;
     }
-
-    public void setRange(int range) {
-        this.range = range;
-    }
-
     public Cell getLocation() {
         return location;
     }
-
-    public void setLocation(Cell location) {
-        this.location = location;
-    }
-
-    public void setCanMove(boolean canMove) {
-        this.canMove = canMove;
-    }
-
     public int getNumberOfFlags() {
         return numberOfFlags;
     }
-
-    public void setNumberOfFlags(int numberOfFlags) {
-        this.numberOfFlags = numberOfFlags;
-    }
-
-    public void setCanAttack(boolean canAttack) {
-        this.canAttack = canAttack;
-    }
-
-    public int getOriginalAttackPoint() {
-        return buffEffects.getOriginalAttackPoint();
-    }
-
-    public boolean isCanCounterAttack() {
-        return canCounterAttack;
-    }
-
-    public boolean isCanAttack() {
-        return canAttack;
-    }
-
-    public void setHollyBuffLevel(int level) {
-        this.buffEffects.setHolyBuffLevel(level);
-    }
-
-    public int getHollyBuffLevel() {
-        return this.buffEffects.getHolyBuffLevel();
-    }
-
-                public void setLostHealthPointDueToBuff(int lostHealthPointDueToBuff) {
-                    this.buffEffects.setChangedHealthPointDueToBuff(lostHealthPointDueToBuff);
-                }
-
-
-                public void setHasTheDeathCurse(boolean b){
-                    //inam bebin chi bude
-                }
-    //
-
     public int getOriginalHealthPoint() {
         return originalHealthPoint;
     }
-
-    public boolean hasFlag() {
-        return hasFlag;
-    }
-
-
     public BuffEffectsOnHermione getBuffEffects() {
         return buffEffects;
     }
 
-    public void makeNewListForAppliedBuffs() {
-        this.appliedBuffs = new ArrayList<>();
-    }
 
+    public void setHealthPoint(int healthPoint) {
+        this.healthPoint = healthPoint;
+    }
+    public void setAttackPoint(int attackPoint) {
+        this.attackPoint = attackPoint;
+    }
+    public void setRange(int range) {
+        this.range = range;
+    }
+    public void setLocation(Cell location) {
+        this.location = location;
+    }
+    public void setNumberOfFlags(int numberOfFlags) {
+        this.numberOfFlags = numberOfFlags;
+    }
     public void setFlag(boolean flag) {
         this.hasFlag = flag;
     }
-
     public void setActionTurn(int actionTurn) {
         this.actionTurn = actionTurn;
     }
-
-    public void setCanCounterAttack(boolean canCounterAttack) {
-        this.canCounterAttack = canCounterAttack;
-    }
-
-
-    public boolean isComboer() {
-        return comboer;
-    }
-
     public void setComboer(boolean comboer) {
         this.comboer = comboer;
     }
-
 }

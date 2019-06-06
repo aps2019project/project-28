@@ -14,7 +14,7 @@ public class ItemActionDeathCurse implements ItemAction {
     public void deploy(Item item, Cell[] target){
         for (Cell cell : target){
             if (cell.getCardOnCell() != null){
-                cell.getCardOnCell().setHasTheDeathCurse(true);
+                cell.getCardOnCell().getBuffEffects().setHasTheDeathCurse(true);
             }
         }
     }

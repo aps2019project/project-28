@@ -29,9 +29,12 @@ public class Player {
     private Deck deck;
     private Card selectedCard;
     private Item selectedItem;
-    private int manaTheriac = 0;
-    private int maxManaTheriac = 0;
-    private boolean hasAssasinationDagger = false;
+    // TODO: 6/6/19 saE's shit 2.0 :|
+                                        //ina ro ham mese hermione ye class bezan bebar untu dg
+                                        private int manaTheriac = 0;
+                                        private int maxManaTheriac = 0;
+                                        private boolean hasAssasinationDagger = false;
+    //
     private boolean hasFlag=false;
     private int flagInteger=0;
 
@@ -67,17 +70,28 @@ public class Player {
 
 
 
-    public void spawn(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException, InvalidCellException, InvalidCardException {
+    private boolean canDeploy(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException {
         if (this.mana < card.getManaPoint()) throw new NotEnoughManaException();
         if (cell.isFull()) throw new DestinationIsFullException();
+        return true;
+    }
+
+    public void deploy(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException, InvalidCellException, InvalidCardException {
+
+        if(!canDeploy(card, cell))return;
+
         if(card instanceof Minion){
-            Hermione hermione = (Hermione) card;
-            hermione.spawn(cell);
-            if (hasAssasinationDagger) {
-                Battle.getMenu().getEnemyPlayer().getDeck().getHero().changeHealthPoint(-1);
-            }
+            Minion minion = (Minion) card;
+            minion.spawn(cell);
+            // TODO: 6/6/19 SaE's shit 2.0
+                                            //tu un class e ke sakhT ye tabe ye onDeployMinion besaz ina ro bebar un tu
+                                            if (hasAssasinationDagger) {
+                                                Battle.getMenu().getEnemyPlayer().getDeck().getHero().changeHealthPoint(-1);
+                                            }
+            //
+
             Battle.getMenu().getMap().getCell(cell).setCardOnCell((Hermione) card);
-        }else{
+        }else if(card instanceof Spell){
             Spell spell = (Spell) card;
             spell.deploy(this, Battle.getMenu().getEnemyPlayer(), cell);
         }
@@ -94,106 +108,92 @@ public class Player {
     public Account getUser() {
         return user;
     }
-
-
     public Hand getHand() {
         return hand;
     }
-
     public int getMaxMana() {
         return maxMana;
     }
-
     public ArrayList<Collectable> getCollectables() {
         return collectables;
     }
-
     public Deck getDeck() {
         return deck;
     }
-
     public List<Minion> getMinionsInGame() {
         return (minionsInGame);
     }
-
     public List<Collectable> getUsables() {
         return Collections.unmodifiableList(collectables);
     }
-
     public Card getSelectedCard() throws NoCardHasBeenSelectedException {
         if (selectedCard == null) throw new NoCardHasBeenSelectedException();
         return selectedCard;
     }
-
-    public Item getSelectedItem() {
+    public Item getSelectedItem() throws NoItemHasBeenSelectedException {
+        if(selectedItem==null)throw new NoItemHasBeenSelectedException();
         return selectedItem;
     }
-
-    public void setSelectedCard(Card selectedCard) {
-        this.selectedCard = selectedCard;
-    }
-
-    public void setSelectedItem(Item selectedItem) {
-        this.selectedItem = selectedItem;
-    }
-
-    public void setDeck(Deck deck) {
-        this.deck = deck;
-    }
-
-    public void setMaxMana(int maxMana) {
-        this.maxMana = maxMana;
-    }
-
-    public void reFillMana() {
-        this.mana = maxMana + maxManaTheriac;
-        mana += this.manaTheriac;
-        manaTheriac = 0;
-    }
-
     public Item getItem(int ID) throws InvalidItemException {
         for (Collectable collectable : this.collectables) {
             if (collectable.getID() == ID) return collectable;
         }
         throw new InvalidItemException();
     }
+    public int getFlagInteger() {
+        return flagInteger;
+    }
 
+
+    public void setSelectedCard(Card selectedCard) {
+        this.selectedCard = selectedCard;
+    }
+    public void setSelectedItem(Item selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+    public void setMaxMana(int maxMana) {
+        this.maxMana = maxMana;
+    }
+    public void setFlag(boolean hasFlag) {
+        this.hasFlag = hasFlag;
+    }
+    public void setFlagInteger(int flagInteger) {
+        this.flagInteger = flagInteger;
+    }
+
+    // TODO: 6/6/19 saE's shit 2.0.
+                                    public void reFillMana() {
+                                        this.mana = maxMana + maxManaTheriac;
+                                        mana += this.manaTheriac;
+                                        manaTheriac = 0;
+                                    }
+    //
     public boolean hasItem(int id) {
         for (Collectable collectable : this.getCollectables()) {
             if (collectable.getID() == id) return true;
         }
         return false;
     }
-
-    public void setManaTheriac(int hasManaTheriac) {
-        this.manaTheriac = hasManaTheriac;
-    }
-
-    public void setMaxManaTheriac(int maxManaTheriac) {
-        this.maxManaTheriac += maxManaTheriac;
-    }
-
-    public void setHasAssasinationDagger(boolean hasAssasinationDagger) {
-        this.hasAssasinationDagger = hasAssasinationDagger;
-    }
-
-    public void changeMana(int manaPoint) {
-        this.mana+=manaPoint;
-    }
-
     public boolean hasFlag() {
         return hasFlag;
     }
 
-    public void setFlag(boolean hasFlag) {
-        this.hasFlag = hasFlag;
+    // TODO: 6/6/19 saE's shit 2.0.
+                                    public void setManaTheriac(int hasManaTheriac) {
+                                                                        this.manaTheriac = hasManaTheriac;
+                                                                    }
+                                    public void setMaxManaTheriac(int maxManaTheriac) {
+                                                                        this.maxManaTheriac += maxManaTheriac;
+                                                                    }
+                                    public void setHasAssasinationDagger(boolean hasAssasinationDagger) {
+        this.hasAssasinationDagger = hasAssasinationDagger;
     }
+    //
 
-    public int getFlagInteger() {
-        return flagInteger;
-    }
-
-    public void setFlagInteger(int flagInteger) {
-        this.flagInteger = flagInteger;
+    public void changeMana(int manaPoint) {
+        this.mana+=manaPoint;
     }
 }

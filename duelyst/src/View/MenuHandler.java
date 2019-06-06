@@ -103,9 +103,9 @@ public class MenuHandler {
             Battle.getMenu().addMenuClickListener(new ShowMenu());
             Battle.getMenu().addMenuClickListener(menu -> {
                 Battle battle= (Battle) menu;
-                for(int i=0;i< Map.CHAP_RAST_X;i++){
                     for(int j=0;j<Map.BALA_PAEEN_Y;j++){
-                        try {
+                        for(int i=0;i< Map.CHAP_RAST_X;i++){
+                            try {
                             Cell cell=battle.getMap().getCell(i,j);
                             if(cell.getCardOnCell() instanceof Hero){
                                 System.out.print("H ");
@@ -178,7 +178,7 @@ public class MenuHandler {
             private void showHermioneDetail(Hermione h){
                 System.out.println("\tName : " + h.getName());
                 System.out.println("\tClass : " + h.getAttackType().getClass().toString());
-                System.out.print("\tAttackPoint : " + h.getOriginalAttackPoint());
+                System.out.print("\tAttackPoint : " + h.getBuffEffects().getOriginalAttackPoint());
                 System.out.println("\tHealth point : " + h.getOriginalHealthPoint());
                 System.out.println("\tManaPoint : " + h.getManaPoint());
 //                System.out.println("\tSpecialPower : " + h.getSpecialPower().getInfo());
@@ -229,7 +229,7 @@ public class MenuHandler {
         //hero
         Hero.addOnHeroDetailPresented(hero -> {
             System.out.println("\tName : " + hero.getName());
-            System.out.println("\tAttackPoint : " + hero.getOriginalAttackPoint() +
+            System.out.println("\tAttackPoint : " + hero.getBuffEffects().getOriginalAttackPoint() +
                     "\tHealth point : " + hero.getOriginalHealthPoint() + "\tManaPoint : ");
             System.out.println("\tClass : " + hero.getAttackType().getClass().toString());
                 System.out.println("\tSell cost : " + hero.getPrice());
@@ -929,6 +929,8 @@ public class MenuHandler {
             } catch (InvalidCellException e) {
                 System.out.println("cell " + Integer.parseInt(word[1]) + " , " + Integer.parseInt(word[2]) + "says: ");
                 System.out.println("cant touch this!");
+            } catch (NoItemHasBeenSelectedException e) {
+                System.out.println("please select an item first");
             }
         }else if(word[0].equals("end") && word[1].equals("turn")){
             try {

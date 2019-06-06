@@ -11,7 +11,7 @@ public class BuffActionHP implements BuffActions {
 
     public void affect(Buff buff){
         buff.getTarget().changeHealthPoint(buff.getPerk());
-        buff.getTarget().setLostHealthPointDueToBuff(buff.getPerk());
+        buff.getTarget().getBuffEffects().changeChangedHealthPointDueToBuff(buff.getPerk());
         System.err.println("just changed some hp : " + buff.getPerk() + "on" + buff.getTarget().getName());
     }
 

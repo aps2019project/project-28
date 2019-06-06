@@ -67,28 +67,6 @@ public class Map {
         return cells;
     }
 
-    // TODO: 6/5/19 SaE's shit soon to be removed
-                    public void handleFireCellAffect() {
-                        for (Cell[] cellRow : this.board) {
-                            for (Cell cell : cellRow) {
-                                if (cell.getCellAffect().contains(CellAffects.fire)) {
-                                    cell.getCardOnCell().changeHealthPoint(-2);
-                                }
-                            }
-                        }
-                    }
-
-                    public void handlePoisonCell() throws InvalidCellException {
-                        for (Cell[] cellRow : this.board) {
-                            for (Cell cell : cellRow) {
-                                if (cell.getCellAffect().contains(CellAffects.poison)) {
-                                    Buff buff = new Buff(1, false, BuffActionPoison.getBuffAction(), new BuffTypePassive());
-                                    buff.deploy(Battle.getMenu().getPlayer(), cell.getCardOnCell());
-                                }
-                            }
-                        }
-                    }
-    //
     public static Map generate() {
         Map map = new Map();
         for (int i = 0; i < Map.CHAP_RAST_X; i++) {

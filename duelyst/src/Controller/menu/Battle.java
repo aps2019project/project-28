@@ -68,8 +68,8 @@ public class Battle extends Menu {
         this.map = this.gameMode.generateMap();
 
         try {
-            this.insert(this.player[0].getDeck().getHero(), this.map.getCell(3, 1));
-            this.insert(this.player[1].getDeck().getHero(), this.map.getCell(3, 9));
+            this.insert(this.player[0].getDeck().getHero(), this.map.getCell(Map.FIRST_HERO_X, Map.FIRST_HERO_Y));
+            this.insert(this.player[1].getDeck().getHero(), this.map.getCell(Map.SECOND_HERO_X, Map.SECOND_HERO_Y));
 //            this.map.getCell(3, 1).setCardOnCell(this.player[0].getDeck().getHero());
 //            this.player[0].getDeck().getHero().setLocation(this.map.getCell(3, 1));
 //            System.err.println();
@@ -148,13 +148,14 @@ public class Battle extends Menu {
         throw new InvalidCardException();
     }
 
-
     public void move(int x, int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException {
         try {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
-            hermione.move(x, y);
+
 
             this.getMap().getCell(hermione.getLocation()).clear();
+            hermione.move(x, y);
+
 
             if (this.getMap().getCell(x, y).hasFlag()) {
                 hermione.setNumberOfFlags(hermione.getNumberOfFlags());
@@ -234,7 +235,7 @@ public class Battle extends Menu {
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
         Card card = this.account.getPlayer().getHand().getCard(cardID);
         if (card instanceof Hermione) {
-            this.account.getPlayer().spawn(card, this.map.getCell(x, y));
+            this.account.getPlayer().deploy(card, this.map.getCell(x, y));
             this.account.getPlayer().changeMana((-1) * card.getManaPoint());
             try {
                 this.account.getPlayer().getHand().handleHand(this.account.getPlayer().getHand().getCard(cardID));
@@ -312,9 +313,10 @@ public class Battle extends Menu {
         } catch (NullPointerException ignored) {
         }
         // handleOnAttack cellAffects
-        for (Cell cell : map.getCells()) {
-            cell.checkCellAffects();
-        }
+        // TODO: 6/6/19 SaE nullpointer mide
+                                            //        for (Cell cell : map.getCells()) {
+                                            //                cell.checkCellAffects();
+                                            //        }
         // TODO: 5/5/19 other stuff maybe?
 
         for (int i = 0; i < 2; i++) {
@@ -378,7 +380,9 @@ public class Battle extends Menu {
     private void nextTurn() {
         turn++;
 
-        this.getPlayer().getDeck().getHero().getBuffEffects().handleOnNewTurn();
+    // TODO: 6/6/19 saE null pointer mide!!!
+                                            //this.getPlayer().getDeck().getHero().getBuffEffects().handleOnNewTurn();
+
         //TODO arshia karaye marbut be turn e jadid o inja bokon (mana o updateHand o ina)
         for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
             minion.getBuffEffects().handleOnNewTurn();
@@ -527,9 +531,8 @@ public class Battle extends Menu {
         }
     }
 
-    public void useItem(int x, int y) throws InvalidCellException {
+    public void useItem(int x, int y) throws InvalidCellException, NoItemHasBeenSelectedException {
         this.account.getPlayer().getSelectedItem().deploy(Battle.getMenu().getMap().getCell(x, y));
-        // TODO: 5/5/19 saE doroste dg?
     }
 
     public Player playerOf(Hermione hermione) throws InvalidCardException {
