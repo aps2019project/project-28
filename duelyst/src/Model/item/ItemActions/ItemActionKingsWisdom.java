@@ -16,6 +16,6 @@ public class ItemActionKingsWisdom implements ItemAction {
     }
 
     public void deploy(Item item, Cell[] target){
-        Battle.getMenu().getPlayer().setMaxManaTheriac(item.getPerk());
+        Battle.getMenu().getPlayer().getStuffEffectsOnPlayer().setMaxManaTheriac(item.getPerk());
     }
 }

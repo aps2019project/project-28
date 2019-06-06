@@ -36,6 +36,7 @@ public class BuffEffectsOnHermione {
     }
 
     public void handleOnNewTurn() {
+        if (nextTurnsDamage == null) System.err.println("nextTurnDamage is null for some reason !");
         if (nextTurnsDamage.size() > 0){
             card.changeHealthPoint(nextTurnsDamage.get(0));
             nextTurnsDamage.remove(0);

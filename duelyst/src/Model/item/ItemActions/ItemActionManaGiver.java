@@ -15,6 +15,6 @@ public class ItemActionManaGiver implements ItemAction {
 
     public void deploy(Item item){
         Player player = Battle.getMenu().getPlayer();
-        player.setManaTheriac(item.getPerk());
+        player.getStuffEffectsOnPlayer().setManaTheriac(item.getPerk());
     }
 }

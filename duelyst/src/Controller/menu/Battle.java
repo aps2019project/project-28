@@ -303,11 +303,11 @@ public class Battle extends Menu {
             this.player[1].getDeck().getHero().handleCoolDown();
         } catch (NullPointerException ignored) {
         }
-        // handleOnAttack cellAffects
+        // handle cellAffects
         // TODO: 6/6/19 SaE nullpointer mide
-                                            //        for (Cell cell : map.getCells()) {
-                                            //                cell.checkCellAffects();
-                                            //        }
+                                                    for (Cell cell : map.getCells()) {
+                                                            cell.checkCellAffects();
+                                                    }
         // TODO: 5/5/19 other stuff maybe?
 
         for (int i = 0; i < 2; i++) {
@@ -372,7 +372,9 @@ public class Battle extends Menu {
         turn++;
 
     // TODO: 6/6/19 saE null pointer mide!!!
-                                            //this.getPlayer().getDeck().getHero().getBuffEffects().handleOnNewTurn();
+                    if (this.getPlayer().getDeck().getHero() == null) System.err.println("hero is null");
+                    else if (this.getPlayer().getDeck().getHero().getBuffEffects() == null) System.err.println("buffeffects are null");
+                    this.getPlayer().getDeck().getHero().getBuffEffects().handleOnNewTurn();
 
         //TODO arshia karaye marbut be turn e jadid o inja bokon (mana o updateHand o ina)
         for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
