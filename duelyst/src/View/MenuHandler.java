@@ -103,9 +103,9 @@ public class MenuHandler {
             Battle.getMenu().addMenuClickListener(new ShowMenu());
             Battle.getMenu().addMenuClickListener(menu -> {
                 Battle battle= (Battle) menu;
-                for(int i=0;i< Map.CHAP_RAST_X;i++){
                     for(int j=0;j<Map.BALA_PAEEN_Y;j++){
-                        try {
+                        for(int i=0;i< Map.CHAP_RAST_X;i++){
+                            try {
                             Cell cell=battle.getMap().getCell(i,j);
                             if(cell.getCardOnCell() instanceof Hero){
                                 System.out.print("H ");

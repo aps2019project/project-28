@@ -21,14 +21,21 @@
 *.tar.gz
 *.rar
 
-.idea/encodings.xml
-.idea/duelyst.iml
-.idea/misc.xml
-.idea/modules.xml
-.idea/uiDesigner.xml
-.idea/workspace.xml
-OUT/*
-
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+#our ignores:
+
+#Fatteme:
+
+#ArshiA:
+       .idea/dictionaries/ksus.xml
+       .idea/misc.xml
+       .idea/modules.xml
+       .idea/uiDesigner.xml
+       .idea/workspace.xml
+       duelyst.iml
+       out/*
+
+
+#saE:
 
