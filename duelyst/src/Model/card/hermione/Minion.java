@@ -37,7 +37,7 @@ public class Minion extends Hermione{
                 }
             }
             try {
-                this.attack(theTarget);
+                this.attack(theTarget,false);
             }catch(CantAttackException e){
                 //TODO
             }catch (DestinationOutOfreachException e){
@@ -51,10 +51,10 @@ public class Minion extends Hermione{
     }
 
         @Override
-        public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
+        public void attack(Hermione enemyCard,boolean isComboAttack) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
             if(Battle.getMenu().getOriginalTurn()<=this.spawnTurn+1)throw new CantAttackException();
             this.itIsTime(SPATime.ATTACK);
-            super.attack(enemyCard);
+            super.attack(enemyCard,isComboAttack);
         }
 
         @Override

@@ -193,7 +193,7 @@ public class Battle extends Menu {
     public void attack(int cardID) throws NoCardHasBeenSelectedException, InvalidCardException, DestinationOutOfreachException, CantAttackException, InvalidCellException {
         Hermione myHermione = (Hermione) this.account.getPlayer().getSelectedCard();
         Hermione enemyCard = (Hermione) this.getEnemy(this.account).getDeck().getCard(cardID);
-        myHermione.attack(enemyCard);
+        myHermione.attack(enemyCard,false);
         handleDeaths();
     }
 
@@ -226,8 +226,33 @@ public class Battle extends Menu {
         handleDeaths();
     }
 
-    public void attackCombo() {
-        // TODO: 5/5/19 COMMMBOOOOOOO
+    public void attackCombo(int enemyCardId,int[] troopsId) throws CantAttackException, InvalidCardException {
+
+        /*
+        * extracting the cards
+        * */
+        Hermione enemyCard= (Hermione) this.getEnemyPlayer().getDeck().getCard(enemyCardId);
+        Hermione[]troops=new Hermione[troopsId.length];
+        for(int i=0;i<troops.length;i++)troops[i]= (Hermione) this.account.getPlayer().getDeck().getCard(troopsId[i]);
+
+        /*
+        * checking to see if all of the troops can attack the enemy card
+        * */
+        for (Hermione troop : troops) {
+            try {
+                troop.canAttack(enemyCard);
+            } catch (DestinationOutOfreachException | CantAttackException e) {
+                throw new CantAttackException();
+            }
+        }
+        for(int i=0;i<troops.length;i++){
+            try {
+                troops[i].attack(enemyCard,(i!=0));
+            } catch (DestinationOutOfreachException | InvalidCellException ignored) {
+            }
+        }
+
+
         handleDeaths();
     }
 

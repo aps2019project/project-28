@@ -55,7 +55,7 @@ public abstract class Hermione extends Card {
         if (!this.buffEffects.allowsAttack()) throw new CantAttackException();
         return true;
     }
-    public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
+    public void attack(Hermione enemyCard,boolean isComboAttack) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
 
         //DestinationOutOfReachException is not being thrown anymore
         if (!this.canAttack(enemyCard)) throw new CantAttackException();
@@ -82,7 +82,7 @@ public abstract class Hermione extends Card {
 
         if (enemyCard.getHealthPoint() <= 0)
             enemyCard.die();
-        else
+        else if(!isComboAttack)
             enemyCard.counterAttack(this);
 
         /*
