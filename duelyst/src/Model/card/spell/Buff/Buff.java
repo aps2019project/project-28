@@ -47,7 +47,8 @@ public class Buff {
         this.player = player;
         this.target = target ;
         System.err.println("asd");
-        if (target.getAppliedBuffs() == null) target.makeNewListForAppliedBuffs();
+        if (target.getAppliedBuffs() == null) System.err.println("Error ! call Saee ! and tell him that Hermione's applied " +
+                "buffs are null again ! - _ -");
         target.getAppliedBuffs().add(this);
         activeBuffs.add(this);
         this.action.affect(this);

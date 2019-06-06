@@ -326,13 +326,13 @@ public class Battle extends Menu {
         try {
             this.player[0].getDeck().getHero().handleCoolDown();
             this.player[1].getDeck().getHero().handleCoolDown();
-        } catch (NullPointerException ignored) {
-        }
+        } catch (NullPointerException ignored) {}
+
         // handle cellAffects
-        // TODO: 6/6/19 SaE nullpointer mide
-                                                    for (Cell cell : map.getCells()) {
-                                                            cell.checkCellAffects();
-                                                    }
+        for (Cell cell : map.getCells()) {
+            if (cell != null)  cell.checkCellAffects();
+        }
+
         // TODO: 5/5/19 other stuff maybe?
 
         for (int i = 0; i < 2; i++) {

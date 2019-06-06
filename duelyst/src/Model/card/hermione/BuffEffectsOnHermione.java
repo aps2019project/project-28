@@ -25,7 +25,8 @@ public class BuffEffectsOnHermione {
     private boolean canMove = true ;
     private boolean canAttack = true ;
     private int attackCounter = 0 ;
-    private ArrayList<Integer> nextTurnsDamage = new ArrayList<>();
+    private ArrayList<Integer> nextTurnsDamage;
+
 
     //special power
     private boolean holyBuffDiverter = false ;
@@ -36,7 +37,6 @@ public class BuffEffectsOnHermione {
     }
 
     public void handleOnNewTurn() {
-        if (nextTurnsDamage == null) System.err.println("nextTurnDamage is null for some reason !");
         if (nextTurnsDamage.size() > 0){
             card.changeHealthPoint(nextTurnsDamage.get(0));
             nextTurnsDamage.remove(0);
@@ -207,5 +207,9 @@ public class BuffEffectsOnHermione {
 
     public ArrayList<Integer> getNextTurnsDamage() {
         return nextTurnsDamage;
+    }
+
+    public void onSpawn() {
+        this.nextTurnsDamage = new ArrayList<>();
     }
 }

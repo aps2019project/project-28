@@ -84,6 +84,7 @@ public class Cell {
     public void checkCellAffects(){
 
         for (int i =cellAffect.size() ; i  > 0 ; i--){
+
             this.cellAffectDurations.set(i , cellAffectDurations.get(i)-1) ;
             if (this.cellAffectDurations.get(i) == 0){
                 this.cellAffect.remove(i);
