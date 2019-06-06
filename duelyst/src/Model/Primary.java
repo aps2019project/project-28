@@ -18,6 +18,7 @@ import Model.item.Item;
 import Model.item.ItemActions.*;
 import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.Gson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import exeption.InvalidCardException;
@@ -28,6 +29,8 @@ import java.util.ArrayList;
 
 public class Primary {
 
+    public static ArrayList<String> defaultNames = new ArrayList<>();
+    public static ArrayList<Deck> defaultDecks = new ArrayList<>();
     public static ArrayList<Item>  items= new ArrayList<>();
     public static ArrayList<Spell> spells = new ArrayList<>();
     public static ArrayList<Minion> minions = new ArrayList<>();
@@ -109,7 +112,13 @@ public class Primary {
         }
     }
 
-    public static void getAccounts() throws IOException, InvalidCardException, InvalidItemException {
+    public static void pre() throws InvalidCardException, InvalidItemException, IOException {
+        getAccounts();
+        loadDecks();
+        loadDefaultDecks();
+    }
+
+    public static void getAccounts() throws IOException {
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Account.json"));
         JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
@@ -122,11 +131,35 @@ public class Primary {
             }
         }
         reader.close();
+    }
+
+    public static void loadDecks() throws InvalidCardException, InvalidItemException {
         for (Account account : accounts) {
             Collection collection = account.getCollection();
             for (Deck deck : collection.getDecks()) {
                 deck.loadDeck();
             }
+        }
+    }
+
+    public static void loadDefaultDecks() throws IOException {
+        File folder = new File("Decks");
+        File[] decks = folder.listFiles();
+        for (File deck : decks) {
+            YaGson gson = new YaGson();
+            BufferedReader reader = new BufferedReader(new FileReader(deck));
+            JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+            if(jsonStreamParser.hasNext()){
+                while (jsonStreamParser.hasNext()){
+                    JsonElement jsonElement = jsonStreamParser.next();
+                    if(jsonElement.isJsonObject()){
+                        Deck defaulfDeck = gson.fromJson(jsonElement, Deck.class);
+                        defaultDecks.add(defaulfDeck);
+                        defaultNames.add(defaulfDeck.getName());
+                    }
+                }
+            }
+            reader.close();
         }
     }
 

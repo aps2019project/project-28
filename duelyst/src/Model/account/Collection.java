@@ -1,5 +1,6 @@
 package Model.account;
 
+import Model.Primary;
 import View.Listeners.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
@@ -9,6 +10,7 @@ import exeption.*;
 import java.util.ArrayList;
 
 public class Collection {
+
     private ArrayList<Deck> decks = new ArrayList<>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Usable> usables = new ArrayList<>();
@@ -24,7 +26,82 @@ public class Collection {
                 return true;
             }
         }
+        for (String defaultName : Primary.defaultNames) {
+            if(defaultName.compareTo(name) == 0)
+                return true;
+        }
         return false;
+    }
+
+    public void importDeck(String name) throws InvalidDeckException {
+        if(doesDefaultDeckExist(name)){
+            if(!hasDefaultDeck(name)){
+                Deck defaultDeck = getDefaultDeck(name);
+                if (hasDefaultDecksCards(defaultDeck)){
+                    this.decks.add(defaultDeck);
+                }
+                else {
+                    System.err.println("u dont have the cards");
+                    throw new  InvalidDeckException();
+                }
+            }
+        else{
+            System.err.println("u already have this deck");
+            throw new InvalidDeckException();
+            }
+        }
+        else{
+            System.err.println("default deck doesnt exist!");
+            throw new InvalidDeckException();
+        }
+    }
+
+    public void exportDeck(String name) throws InvalidDeckException {
+        if(doesDefaultDeckExist(name)){
+            if(hasDefaultDeck(name)){
+                Deck defaultDeck = getDefaultDeck(name);
+                this.decks.remove(defaultDeck);
+            }else throw new InvalidDeckException();
+        }else throw new InvalidDeckException();
+    }
+
+    public boolean hasDefaultDecksCards(Deck defaultDeck){
+        for (Card card : defaultDeck.getCards()) {
+            if(!this.hasCard(card)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean hasDefaultDeck(String name) throws InvalidDeckException {
+        if(doesDefaultDeckExist(name)) {
+            Deck defaultDeck = getDefaultDeck(name);
+            for (Deck deck : this.decks) {
+                if(deck.equals(defaultDeck)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean doesDefaultDeckExist(String name){
+        for (Deck defaultDeck : Primary.defaultDecks) {
+            if(defaultDeck.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Deck getDefaultDeck(String name) throws InvalidDeckException {
+        for (Deck defaultDeck : Primary.defaultDecks) {
+            if(defaultDeck.getName().equals(name)){
+                return defaultDeck;
+            }
+        }
+        throw new InvalidDeckException();
     }
 
     public Deck getDeckByName(String name) throws InvalidDeckException {

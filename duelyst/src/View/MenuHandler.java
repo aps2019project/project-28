@@ -512,7 +512,7 @@ public class MenuHandler {
     }
     //moh
     public static void main(String[] args) throws InvalidItemException, InvalidCardException, IOException {
-        Primary.getAccounts();
+        Primary.pre();
         Scanner commands=Game.accounts[0].getOutputStream();
         currentMenu.showMenu();
         String command ;
