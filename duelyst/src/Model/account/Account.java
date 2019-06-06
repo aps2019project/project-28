@@ -83,7 +83,7 @@ public class Account {
         this.ID = Account.unique++;
         this.money = Account.INITIAL_MONEY;
         this.collection = new Collection();
-        this.matchHistory = new ArrayList<Match>();
+        this.matchHistory = new ArrayList<>();
         this.wins = 0;
         this.storyModeSPX = 0;
     }
