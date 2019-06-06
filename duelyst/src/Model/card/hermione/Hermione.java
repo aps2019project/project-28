@@ -32,7 +32,7 @@ public abstract class Hermione extends Card {
 
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
     protected SpecialPower SpecialPower;
-    protected ArrayList<Buff> appliedBuffs ;
+    protected ArrayList<Buff> appliedBuffs=new ArrayList<>() ;
 
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
@@ -132,8 +132,12 @@ public abstract class Hermione extends Card {
 
 
     public void spawn(Cell cell) {
+
+        //initializing shoul be removed from code
         this.appliedBuffs = new ArrayList<>();
         this.getBuffEffects().setCanMove(true);
+        //
+
         this.getBuffEffects().onSpawn() ;
         this.setLocation(cell);
     }

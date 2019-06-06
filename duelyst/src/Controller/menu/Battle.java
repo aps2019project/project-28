@@ -166,8 +166,8 @@ public class Battle extends Menu {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
 
 
-            this.getMap().getCell(hermione.getLocation()).clear();
             hermione.move(x, y);
+            this.getMap().getCell(hermione.getLocation()).clear();
 
 
             if (this.getMap().getCell(x, y).hasFlag()) {
@@ -234,6 +234,9 @@ public class Battle extends Menu {
         Hermione enemyCard= (Hermione) this.getEnemyPlayer().getDeck().getCard(enemyCardId);
         Hermione[]troops=new Hermione[troopsId.length];
         for(int i=0;i<troops.length;i++)troops[i]= (Hermione) this.account.getPlayer().getDeck().getCard(troopsId[i]);
+
+        /*if the first card can attack combo*/
+        if(!((Minion) troops[0]).getSPActivationTime().equals(SPATime.COMBO))return;
 
         /*
         * checking to see if all of the troops can attack the enemy card
