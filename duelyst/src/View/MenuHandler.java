@@ -929,6 +929,8 @@ public class MenuHandler {
             } catch (InvalidCellException e) {
                 System.out.println("cell " + Integer.parseInt(word[1]) + " , " + Integer.parseInt(word[2]) + "says: ");
                 System.out.println("cant touch this!");
+            } catch (NoItemHasBeenSelectedException e) {
+                System.out.println("please select an item first");
             }
         }else if(word[0].equals("end") && word[1].equals("turn")){
             try {

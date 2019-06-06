@@ -13,21 +13,27 @@ import java.util.ArrayList;
 
 public abstract class Hermione extends Card {
 
+    public static final int MOVE_RANGE = 2;
+
     protected int healthPoint;
     protected int originalHealthPoint;
+
+    protected boolean comboer = false;
+
     protected int attackPoint;
-    protected Model.card.spell.SpecialPower SpecialPower;
-    protected ArrayList<Buff> appliedBuffs;
     protected AttackType attackType;
     protected int range;
-    protected boolean comboer = false ;
-    public static final int MOVE_RANGE = 2;
-    protected int actionTurn;//0 move    1 attack  2 do nothing
+
     protected Cell location;
+    protected int actionTurn;//0 move    1 attack  2 do nothing
 
     protected int numberOfFlags = 0;
     protected boolean hasFlag = false;
+
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
+    protected SpecialPower SpecialPower;
+    protected ArrayList<Buff> appliedBuffs;
+
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range, String info) {
@@ -49,7 +55,6 @@ public abstract class Hermione extends Card {
         if (!this.buffEffects.allowsAttack()) throw new CantAttackException();
         return true;
     }
-
     public void attack(Hermione enemyCard) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
 
         //DestinationOutOfReachException is not being thrown anymore
@@ -72,7 +77,7 @@ public abstract class Hermione extends Card {
         /*
          * handling buffs and spells that have effects when the hermione is being under attack
          * */
-        enemyCard.buffEffects.handleOnDamaged(this , this.attackPoint);
+        enemyCard.buffEffects.handleOnDamaged(this, this.attackPoint);
 
 
         if (enemyCard.getHealthPoint() <= 0)
@@ -92,7 +97,6 @@ public abstract class Hermione extends Card {
                 this.attackType.canReach(this, enemyCard)
                         && this.buffEffects.allowsCounterAttack();
     }
-
     public void counterAttack(Hermione enemyCard) {
 
         if (!this.canCounterAttack(enemyCard)) return;
@@ -100,8 +104,9 @@ public abstract class Hermione extends Card {
         if (this.healthPoint > 0)
             enemyCard.changeHealthPoint((-1) * this.attackPoint);
 
-        enemyCard.buffEffects.handleOnDamaged(this , this.attackPoint);
+        enemyCard.buffEffects.handleOnDamaged(this, this.attackPoint);
     }
+
 
     public boolean canMove(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException, CardCantBeMovedException {
 
@@ -127,20 +132,28 @@ public abstract class Hermione extends Card {
     }
 
 
-    public abstract void applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException, CantSpecialPowerCooldownException;
-
-
     public void spawn(Cell cell) {
         this.getBuffEffects().setCanMove(true);
 
         this.setLocation(cell);
     }
-
     public void die() {
         try {
             buffEffects.handleOnDeath();
             Battle.getMenu().kill(this);
-        } catch (InvalidCardException ignored) {}
+        } catch (InvalidCardException ignored) {
+        }
+    }
+
+
+    public abstract void applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException, CantSpecialPowerCooldownException;
+    public void makeNewListForAppliedBuffs() {
+        this.appliedBuffs = new ArrayList<>();
+    }
+
+
+    public boolean hasFlag() {
+        return hasFlag;
     }
 
 
@@ -149,98 +162,65 @@ public abstract class Hermione extends Card {
         if (this.healthPoint <= 0) this.healthPoint = 0;
         if (this.healthPoint >= this.originalHealthPoint) this.healthPoint = this.originalHealthPoint;
     }
-
     public void changeAttackPoint(int attackPoint) {
         this.attackPoint += attackPoint;
     }
 
+
     public int getHealthPoint() {
         return healthPoint;
     }
-
-    public void setHealthPoint(int healthPoint) {
-        this.healthPoint = healthPoint;
-    }
-
     public int getAttackPoint() {
         return attackPoint;
     }
-
-    public void setAttackPoint(int attackPoint) {
-        this.attackPoint = attackPoint;
-    }
-
     public SpecialPower getSpecialPower() {
         return SpecialPower;
     }
-
-
     public ArrayList<Buff> getAppliedBuffs() {
         return appliedBuffs;
     }
-
     public AttackType getAttackType() {
         return attackType;
     }
-
-
     public int getRange() {
         return range;
     }
-
-    public void setRange(int range) {
-        this.range = range;
-    }
-
     public Cell getLocation() {
         return location;
     }
-
-    public void setLocation(Cell location) {
-        this.location = location;
-    }
-
     public int getNumberOfFlags() {
         return numberOfFlags;
     }
-
-    public void setNumberOfFlags(int numberOfFlags) {
-        this.numberOfFlags = numberOfFlags;
-    }
-
-
     public int getOriginalHealthPoint() {
         return originalHealthPoint;
     }
-
-    public boolean hasFlag() {
-        return hasFlag;
-    }
-
-
     public BuffEffectsOnHermione getBuffEffects() {
         return buffEffects;
     }
 
-    public void makeNewListForAppliedBuffs() {
-        this.appliedBuffs = new ArrayList<>();
-    }
 
+    public void setHealthPoint(int healthPoint) {
+        this.healthPoint = healthPoint;
+    }
+    public void setAttackPoint(int attackPoint) {
+        this.attackPoint = attackPoint;
+    }
+    public void setRange(int range) {
+        this.range = range;
+    }
+    public void setLocation(Cell location) {
+        this.location = location;
+    }
+    public void setNumberOfFlags(int numberOfFlags) {
+        this.numberOfFlags = numberOfFlags;
+    }
     public void setFlag(boolean flag) {
         this.hasFlag = flag;
     }
-
     public void setActionTurn(int actionTurn) {
         this.actionTurn = actionTurn;
     }
-
-
-    public boolean isComboer() {
-        return comboer;
-    }
-
     public void setComboer(boolean comboer) {
         this.comboer = comboer;
     }
-
 }
