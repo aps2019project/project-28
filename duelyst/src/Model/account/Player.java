@@ -30,7 +30,7 @@ public class Player {
     private Deck deck;
     private Card selectedCard;
     private Item selectedItem;
-    private StuffEffectsOnPlayer stuffEffectsOnPlayer ;
+    private StuffEffectsOnPlayer stuffEffectsOnPlayer=new StuffEffectsOnPlayer() ;
     private boolean hasFlag=false;
     private int flagInteger=0;
 
