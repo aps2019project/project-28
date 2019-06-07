@@ -69,7 +69,7 @@ public class BuffEffectsOnHermione {
     public void handleOnDeath(){
         //death curse
         if (hasTheDeathCurse){
-            for (int i =1 ; i < 5 ; i++){
+            for (int i =1 ; i < 13 ; i++){
                 for (Cell cell : Battle.getMenu().getMap().getCellsInDistance(card.getLocation() , i)){
                     if (cell.getCardOnCell() != null &&
                             cell.getCardOnCell().getSuperCollection().getOwner().getPlayer() == Battle.getMenu().getEnemyPlayer())
