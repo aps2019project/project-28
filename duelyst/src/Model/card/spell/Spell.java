@@ -3,15 +3,42 @@ package Model.card.spell;
 import Model.account.Player;
 import Model.card.Card;
 import Model.Map.*;
-import Model.card.spell.SpellAction.Action;
-import Model.card.spell.SpellAction.ActionVoid;
+import Model.card.spell.SpellAction.*;
+import Model.card.spell.Targets.TargetSurroundings;
 import exeption.InvalidCardException;
 import exeption.InvalidCellException;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class Spell extends Card {
+    private static Set<Action> spellActions = new HashSet<>() ;
+    protected static Set<Target> targets = new HashSet<>() ;
+    static {
+        //actions
+        {
+            spellActions.add(ActionDisarm.getAction());
+            spellActions.add(ActionVoid.getAction());
+            spellActions.add(ActionChangeAP.getAction());
+            spellActions.add(ActionChangeHP.getAction());
+            spellActions.add(ActionDeployPoison.getAction());
+            spellActions.add(ActionDeployHollyBuff.getAction());
+            spellActions.add(ActionStun.getAction());
+            spellActions.add(ActionDispel.getAction());
+            spellActions.add(ActionDispelPositives.getAction());
+            spellActions.add(ActionDispelNegatives.getAction());
+            spellActions.add(ActionApplyFirecell.getAction());
+            spellActions.add(ActionHollyCell.getAction());
+            spellActions.add(ActionCombo.getAction());
+            spellActions.add(ActionPoisonCell.getAction());
+            spellActions.add(ActionKillMinion.getAction());
+            spellActions.add(ActionHealthWithProfit.getAction());
+            spellActions.add(ActionSacrifice.getAction());
+            spellActions.add(ActionGhazaBokhor.getAction());
+        }
+    }
 
     protected ArrayList<Spell> activeSpells = new ArrayList<>() ;
     protected Target target;
@@ -26,6 +53,7 @@ public class Spell extends Card {
         this.perks.add(perk) ;
         this.actions.add(action);
         this.target = target;
+        targets.add(target);
     }
 
     //custom spell :
@@ -135,8 +163,11 @@ public class Spell extends Card {
             action.deploy(this, cells);
     }
 
-    public void makeCustomSpell (ArrayList<Action> actions , ArrayList<Cell> targetCells){
-
+    public static Set<Action> getSpellActions() {
+        return spellActions;
     }
 
+    public static Set<Target> getTargets() {
+        return targets;
+    }
 }
