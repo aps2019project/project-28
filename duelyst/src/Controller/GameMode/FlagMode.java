@@ -28,7 +28,6 @@ public class FlagMode implements GameMode {
 
     @Override
     public void handleWin() {
-        System.err.println();
         for (int i = 0; i < 2; i++) {
             if (Game.accounts[i].getPlayer().getFlagInteger() >=6) {
                 Game.accounts[i].setMoney(Game.accounts[i].getMoney() + prize);
