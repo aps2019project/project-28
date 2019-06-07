@@ -326,8 +326,10 @@ public class Primary {
                 TargetEnemyHero.getTargetInstance(), ActionChangeHP.getAction()));
         spells.add(new Spell("Poison Lake", 900, 5, 1, 0, "poisonCell, duration : 1",
                 TargetThreeByThree.getTargetInstance(), ActionPoisonCell.getAction()));
-        spells.add(new Spell("Madness", 650, 0, 3, 4,"increases Attack Point 4 units, duration : 3, but the card will be disarmed",
-                TargetOwnCard.getTargetInstance(), ActionChangeAP.getAction(), ActionDisarm.getAction()));
+        Spell maddness = new Spell("Madness", 650, 0, 3, 4,"increases Attack Point 4 units, duration : 3, but the card will be disarmed",
+                TargetOwnCard.getTargetInstance(), ActionChangeAP.getAction()) ;
+        maddness.addAction(ActionDisarm.getAction() , 0 , 1 );
+        spells.add(maddness);
         spells.add(new Spell("All Disarm", 2000, 9, 1, 0, "all of enemy cards will be disarmed, duration : 1",
                 TargetAllEnemyCards.getTargetInstance(), ActionDisarm.getAction()));
         spells.add(new Spell("All Poison", 1500, 8, 4, 0, "all of enemy cards will be poisoned, duration : 4",
@@ -398,11 +400,12 @@ public class Primary {
                 4, new Hybrid(), 3,
                 new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
                         null, ActionChangeAP.getAction()), SPATime.NULL, "just an ordinary hybrid minion"));
-        minions.add(new Minion("Turanian SPY", 700, 4, 6,
-                6, new Melee(), 0,
-                new SpecialPower("Turanian Spy SpecialPower", 0, 0, 1, 4, "",
-                        TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction(),
-                        ActionDeployPoison.getAction()), SPATime.ATTACK, "enemy's card will be disarmed for 1 turn and will be poisoned for 4 turns"));
+        //TODO @fattem3 -> constructor !
+                                minions.add(new Minion("Turanian SPY", 700, 4, 6,
+                                        6, new Melee(), 0,
+                                        new SpecialPower("Turanian Spy SpecialPower", 0, 0, 1, 4, "",
+                                                TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction(),
+                                                ActionDeployPoison.getAction()), SPATime.ATTACK, "enemy's card will be disarmed for 1 turn and will be poisoned for 4 turns"));
 
         minions.add(new Minion("Turanian MaceBearer", 450, 2, 3,
                 10, new Melee(), 0,
@@ -462,16 +465,18 @@ public class Primary {
                 1, new Melee(), 0,
                 new SpecialPower("Wolf SpecialPower", 0, 0, 0, -6, "",
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
-        minions.add(new Minion("The Wizard", 550, 4, 5,
-                4, new Range(), 3,
-                new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
-                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeHP.getAction(), ActionChangeAP.getAction()),
-                SPATime.PASSIVE, "gives own and minions surrounded a power buff, increases attack point 2 units + a weakness buff, decreases health point 1 unit for one turn"));
 
-        minions.add(new Minion("The Great Wizard",550, 6, 6,
-                6, new Range(), 5, new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2, "",
-                OwnMinionAndItsSurrounding.getTargetInstance(), ActionChangeAP.getAction(), ActionDeployHollyBuff.getAction())
-                ,SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
+        //TODO @fattem3 -> constructor !
+                                        minions.add(new Minion("The Wizard", 550, 4, 5,
+                                                4, new Range(), 3,
+                                                new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
+                                                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeHP.getAction(), ActionChangeAP.getAction()),
+                                                SPATime.PASSIVE, "gives own and minions surrounded a power buff, increases attack point 2 units + a weakness buff, decreases health point 1 unit for one turn"));
+
+                                        minions.add(new Minion("The Great Wizard",550, 6, 6,
+                                                6, new Range(), 5, new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2, "",
+                                                OwnMinionAndItsSurrounding.getTargetInstance(), ActionChangeAP.getAction(), ActionDeployHollyBuff.getAction())
+                                                ,SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
         minions.add(new Minion("Genie", 500, 5, 10,
                 4, new Range(), 4,
                 new SpecialPower("Genie SpecialPower", 0, 0, -1, 1, "",
