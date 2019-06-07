@@ -36,6 +36,8 @@ public class Battle extends Menu {
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
     private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
 
+    private Match match;
+
     private GameMode gameMode;
 
     // TODO: 6/6/19 saE's imaginary shit
@@ -61,6 +63,11 @@ public class Battle extends Menu {
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
+
+        this.match=new Match(Game.accounts[0],Game.accounts[1],this.gameMode);
+        this.ongoingSpells=new ArrayList<>();
+
+
         if (Game.accounts[0].getCollection().getMainDeck() == null || Game.accounts[1].getCollection().getMainDeck() == null) {
             System.out.println("Please Select your Main Deck");
             return false;
@@ -369,15 +376,21 @@ public class Battle extends Menu {
         this.gameMode.handleWin();
 
         /*
+         * saving the match
+         * */
+        Game.accounts[0].saveMatch(this.match);
+        Game.accounts[1].saveMatch(this.match);
+
+
+
+        /*
         * handling the account for getting input and stuff
         * */
         Game.accounts[1] = Account.getDefaultAccount();
         this.account = SignInMenu.getMenu().account;
         this.turn = 0;
 
-        /*
-        * saving the match
-        * */
+
 
 
         /*
@@ -601,4 +614,13 @@ public class Battle extends Menu {
         return this.player[0];
     }
 
+    public static Battle newGame(GameMode gameMode){
+        Battle.menu.setGameMode(gameMode);
+        Battle.menu.init(Battle.menu.getParentMenu());
+        return Battle.menu;
+    }
+
+    public Match getMatch() {
+        return this.match;
+    }
 }

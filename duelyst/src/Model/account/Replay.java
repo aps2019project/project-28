@@ -1,6 +1,5 @@
 package Model.account;
 
-import Controller.Game;
 
 import java.util.Scanner;
 
@@ -29,3 +28,4 @@ public class Replay extends Player {
         return this.outputStream.scanner;
     }
 }
+

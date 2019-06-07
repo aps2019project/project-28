@@ -43,14 +43,18 @@ public class MenuHandler {
             initMenus();
         } catch (Exception ignored) {ignored.printStackTrace();
         }
-        CunsoleInput cunsoleInput = new CunsoleInput();
-        cunsoleInput.play();
+        ConsoleInput consoleInput = new ConsoleInput();
+        consoleInput.play();
 
 
     }
+
+
     public static void showMenu(){
         MenuHandler.currentMenu.showMenu();
     }
+
+
     public static void nextMove() {
         if(MenuHandler.currentMenu instanceof Battle)
             Battle.getMenu().getPlayer().doYourMove();

@@ -39,9 +39,9 @@ class ShowMenu implements OnMenuClickedListener {
     }
 }
 
-public class CunsoleOutput {
+public class ConsoleOutput {
 
-    public CunsoleOutput() {
+    public ConsoleOutput() {
         setListener();
         setPatterns();
     }
@@ -495,7 +495,7 @@ public class CunsoleOutput {
             } else if (MenuHandler.currentMenu instanceof ShopMenu){
                 ShopMenuCommandHandler(word);
             }else if(MenuHandler.currentMenu instanceof Battle){
-                BattleCommandHandler(word);
+                BattleCommandHandler(word,command);
             }else if(MenuHandler.currentMenu instanceof ChooseBattleModeMenu){
                 ChooseBattleModeMenuCommandHandler(word);
             }else if(MenuHandler.currentMenu instanceof StoryModeMenu){
@@ -779,8 +779,11 @@ public class CunsoleOutput {
             }
         }
     }
-    private static void BattleCommandHandler(String[] word) {
+    private static void BattleCommandHandler(String[] word,String command) {
         Battle menu = (Battle) MenuHandler.currentMenu;
+
+        menu.getMatch().addCommand(command,menu.getTurn());
+
         if (word[0].equals("game") && word[1].equals("info")) {
             menu.gameInfo();
         } else if (word[0].equals("show") && word.length > 1) {

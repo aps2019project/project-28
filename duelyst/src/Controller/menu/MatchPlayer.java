@@ -1,8 +1,13 @@
 package Controller.menu;
 
+import Model.account.Command;
 import Model.account.Match;
+import View.ConsoleInput;
+import View.MenuHandler;
 
-public class MatchPlayer {
+import java.util.Scanner;
+
+public class MatchPlayer extends ConsoleInput {
     private Match match;
     private Battle battle;
 
@@ -11,7 +16,22 @@ public class MatchPlayer {
         this.battle = battle;
     }
 
-    public void play(){
+    @Override
+    public void play() {
+        Battle.newGame(match.getGameMode());
+        MenuHandler.showMenu();
+        Command command;
+        long previousTime=0;
+        while((command=match.getNextCommand())!=null){
+                                                                                                                         try {
+            Thread.sleep(command.getTime()-previousTime);
+                                                                                                                         } catch (InterruptedException ignored) { }
+            this.consoleOutput.handleCommand(command.getCommand());
+            previousTime=command.getTime();
 
+            MenuHandler.showMenu();
+            MenuHandler.nextMove();
+
+        }
     }
 }

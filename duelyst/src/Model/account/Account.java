@@ -41,8 +41,6 @@ public class Account {
 
 
 
-    public void saveMatchHistory(Match match) {
-    }
 
     public static void addNewAccount(Account account) {
         if (account == null) return;
@@ -254,4 +252,8 @@ public class Account {
 //        return outputStream.scanner;
 //
 //    }
+
+    public void saveMatch(Match match){
+        this.matchHistory.add(match);
+    }
 }

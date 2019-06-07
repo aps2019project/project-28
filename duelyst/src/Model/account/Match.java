@@ -1,55 +1,44 @@
 package Model.account;
+import Controller.Game;
+import Controller.GameMode.GameMode;
 
-import Controller.menu.Battle;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-class Command {
-    Account owner;
-    String command;
-    Long time;
-
-    public Command(String command,Account owner) {
-        this.owner=owner;
-        this.command = command;
-        this.time = System.currentTimeMillis();
-    }
-}
 
 public class Match {
 
     private Account[] accounts;
     private Date lastDateModified;
     private int state; //0-->first player won    1-->second player won
-
+    private long startingTime;
 
     private ArrayList<Command>commands=new ArrayList<>();
     private int commandsPointer=0;
 
+    private GameMode gamemode;
 
-    public Match(Account first, Account second) {
+    public Match(Account first, Account second, GameMode gameMode) {
 
         // TODO: 6/7/19 fattme first o second ro inja ba json hard copy bezan plz
         this.accounts =new Account[]{first,second};
         this.lastDateModified=new Date();
+        this.startingTime=System.currentTimeMillis();
+        this.gamemode=gameMode;
     }
 
     public void addCommand(String command,int turn){
-        commands.add(new Command(command,accounts[turn]));
+        commands.add(new Command(command,accounts[turn],System.currentTimeMillis()-startingTime));
     }
 
     public Command getNextCommand() {
-        return commands.get(commandsPointer++);
-
+        if(commandsPointer<commands.size())
+            return commands.get(commandsPointer++);
+        return null;
     }
 
-
-    //    {
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//        Date date = new Date();
-//        System.out.println(formatter.format(date));
-//    }
+    public GameMode getGameMode() {
+        return gamemode;
+    }
 
 }
