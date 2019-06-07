@@ -1,7 +1,5 @@
 package Model.account;
 
-import Controller.Game;
-import Controller.Match;
 import Model.Primary;
 import com.gilecode.yagson.YaGson;
 import exeption.InvalidAccountException;
@@ -10,7 +8,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Scanner;
 
 //class ScannerWrapper{
 //    Scanner scanner;

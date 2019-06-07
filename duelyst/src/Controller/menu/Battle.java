@@ -354,15 +354,35 @@ public class Battle extends Menu {
 
         /*checkState*/
         if (this.gameMode.checkState()) {
-            this.gameMode.handleWin();
-            Game.accounts[1] = Account.getDefaultAccount();
-            this.account = SignInMenu.getMenu().account;
-            this.turn = 0;
-            MenuHandler.currentMenu = MainMenu.getMenu();
+            handleBattleFinish();
         } else {
             nextTurn();
         }
 
+    }
+
+    private void handleBattleFinish() {
+        /*
+        * giving the prize
+        * */
+        this.gameMode.handleWin();
+
+        /*
+        * handling the account for getting input and stuff
+        * */
+        Game.accounts[1] = Account.getDefaultAccount();
+        this.account = SignInMenu.getMenu().account;
+        this.turn = 0;
+
+        /*
+        * saving the match
+        * */
+
+
+        /*
+        * getting out of battle
+        * */
+        MenuHandler.currentMenu = MainMenu.getMenu();
     }
 
     private void swapPlayers() {

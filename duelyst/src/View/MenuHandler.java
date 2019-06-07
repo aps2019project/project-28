@@ -698,7 +698,6 @@ public class MenuHandler {
                 menu.showCollection();
             }else{
                 menu.show();
-                System.err.println("asdddddddddddddd");
             }
         }else if(word[0].equals("search")){
             if(word.length>= 2 && word[1].equals("collection")){
