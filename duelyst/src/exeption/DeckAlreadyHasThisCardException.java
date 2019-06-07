@@ -1,4 +1,4 @@
 package exeption;
 
-public class DeckAlreadyHasThisCardException extends Throwable {
+public class DeckAlreadyHasThisCardException extends Exception {
 }

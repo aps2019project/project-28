@@ -283,7 +283,7 @@ public class Primary {
                 deck.addCardToDeck(Primary.minions.get(6));
                 deck.addCardToDeck(Primary.minions.get(9));
                 deck.addCardToDeck(Primary.minions.get(13));
-                deck.addCardToDeck(Primary.minions.get(15));
+//                deck.addCardToDeck(Primary.minions.get(15));
                 deck.addCardToDeck(Primary.minions.get(15));
                 deck.addCardToDeck(Primary.minions.get(19));
                 deck.addCardToDeck(Primary.minions.get(23));

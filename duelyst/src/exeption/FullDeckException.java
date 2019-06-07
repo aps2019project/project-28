@@ -1,4 +1,4 @@
 package exeption;
 
-public class FullDeckException extends Throwable {
+public class FullDeckException extends Exception {
 }

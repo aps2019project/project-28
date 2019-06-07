@@ -46,9 +46,10 @@ public class Battle extends Menu {
 
     private ArrayList<OnGameCardsPresentedListenr> cardsPresenters = new ArrayList<>();
 
-    public Battle(String name) {
+    private Battle(String name) {
         super(name);
     }
+
 
     public static Battle getMenu() {
         if (Battle.menu == null) {
@@ -421,10 +422,9 @@ public class Battle extends Menu {
     private void nextTurn() {
         turn++;
 
-    // TODO: 6/6/19 saE null pointer mide!!!
-                    if (this.getPlayer().getDeck().getHero() == null) System.err.println("hero is null");
-                    else if (this.getPlayer().getDeck().getHero().getBuffEffects() == null) System.err.println("buffeffects are null");
-                    this.getPlayer().getDeck().getHero().getBuffEffects().handleOnNewTurn();
+        if (this.getPlayer().getDeck().getHero() == null) System.err.println("hero is null");
+        else if (this.getPlayer().getDeck().getHero().getBuffEffects() == null) System.err.println("buffeffects are null");
+        this.getPlayer().getDeck().getHero().getBuffEffects().handleOnNewTurn();
 
         //TODO arshia karaye marbut be turn e jadid o inja bokon (mana o updateHand o ina)
         for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
