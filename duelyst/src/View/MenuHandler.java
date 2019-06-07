@@ -517,9 +517,11 @@ public class MenuHandler {
 
     }
     //moh
-    public static void main(String[] args) throws InvalidItemException, InvalidCardException, IOException {
-        Primary.pre();
-        Scanner commands=Game.accounts[0].getOutputStream();
+    public static void main(String[] args) {
+        try {
+            Primary.pre();
+        } catch (DeckAlreadyHasThisItemException | DeckAlreadyHasAHeroException | FullDeckException | DeckAlreadyHasThisCardException | InvalidItemException | IOException | InvalidCardException ignored) { }
+        Scanner commands=Game.accounts[0].getPlayer().getOutputStream();
         currentMenu.showMenu();
         String command ;
         while(commands.hasNext()){
@@ -556,8 +558,8 @@ public class MenuHandler {
             }
             currentMenu.showMenu();
             if(currentMenu instanceof Battle)
-                Game.accounts[Battle.getMenu().getTurn()].doYourMove();
-            commands=Game.accounts[Battle.getMenu().getTurn()].getOutputStream();
+                Battle.getMenu().getPlayer().doYourMove();
+            commands=Game.accounts[Battle.getMenu().getTurn()].getPlayer().getOutputStream();
 
             System.err.println(Game.accounts[Battle.getMenu().getTurn()].getName());
             System.err.println(Game.accounts[0].getName()+" , "+Game.accounts[1].getName());

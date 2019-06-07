@@ -293,6 +293,7 @@ public class Collection {
 
     public void forcePushDeck(Deck deck){
         this.decks.add(deck);
+        this.mainDeck=deck;
         // TODO: 5/14/19 in goh khorit ro jam kon plz be hamrah e saE
     }
 

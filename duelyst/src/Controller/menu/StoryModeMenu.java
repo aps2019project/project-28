@@ -27,7 +27,7 @@ public class StoryModeMenu extends Menu {
 
     public Menu setAI(int level) {
             Game.accounts[1]= Account.AI[level];
-            Game.accounts[1].setPlayer(new AI(Game.accounts[1],));
+            Game.accounts[1].setPlayer(new AI(Game.accounts[1],2,2,Game.accounts[0].getPlayer()));
         return this.enter(Battle.getMenu());
     }
 }

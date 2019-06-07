@@ -20,7 +20,10 @@ import java.util.Scanner;
 public class Account {
 
     private static final Account defaultAccount = new Account("Duelyst","SAF","Pass the fucking word");
-    public static final Account[]AI=new Account[4];
+    public static final Account[]AI={new Account("EL_DUELYSTA","Costum","AI")
+            ,new Account("sheraider","level_1","AI")
+            ,new Account("mster_yoda","level_2","AI")
+            ,new Account("thanos","level_3","AI")};
 
     protected static int unique = 0;
     protected static final int INITIAL_MONEY = 99999999;
@@ -226,7 +229,7 @@ public class Account {
     }
 
 
-    public Player tgetPlayer() {
+    public Player getPlayer() {
         if (this.player == null)
             this.player = new Player(this, 2, 2);
         return player;
@@ -240,6 +243,10 @@ public class Account {
         Collections.sort(Account.getAccounts(), Comparator.comparingInt(o -> o.wins));
         Collections.reverse(Account.getAccounts());
         return Account.getAccounts();
+    }
+
+    public void clearCollection() {
+        this.collection=new Collection();
     }
 //    public void doYourMove(){}
 //    public Scanner getOutputStream() {
