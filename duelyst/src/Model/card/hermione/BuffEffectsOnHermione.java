@@ -212,4 +212,5 @@ public class BuffEffectsOnHermione {
     public void onSpawn() {
         this.nextTurnsDamage = new ArrayList<>();
     }
+
 }

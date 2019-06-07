@@ -17,7 +17,6 @@ import Model.card.hermione.Minion;
 import Model.card.hermione.SPATime;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
-import Model.item.KingSlayerCounter;
 import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnHandPresentedListener;
 import View.MenuHandler;
@@ -40,10 +39,7 @@ public class Battle extends Menu {
 
     private GameMode gameMode;
 
-    // TODO: 6/6/19 saE's imaginary shit
-                                        private KingSlayerCounter[] kingSlayerCountDown =
-                                                {new KingSlayerCounter(player[0]), new KingSlayerCounter(player[1])};
-    //
+
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
 
     private ArrayList<OnGameCardsPresentedListenr> cardsPresenters = new ArrayList<>();
@@ -348,17 +344,6 @@ public class Battle extends Menu {
 
         // TODO: 5/5/19 other stuff maybe?
 
-        for (int i = 0; i < 2; i++) {
-            KingSlayerCounter ksc = kingSlayerCountDown[i];
-            if (ksc.isActive()) {
-                ksc.increaseCounter();
-            }
-            if (ksc.getCounter() == 15) {
-//                player[i].getDeck().getHero().die();
-                player[i].getDeck().killHero();
-                //TODO @arshia game over mishe inja !
-            }
-        }
 
         /*checkState*/
         if (this.gameMode.checkState()) {
@@ -534,12 +519,6 @@ public class Battle extends Menu {
 
     public static int[] getMaxManaPerTurn() {
         return MAX_MANA_PER_TURN;
-    }
-
-    public KingSlayerCounter getKingSlayerCountDown(Player player) {
-        if (player.equals(this.player[0])) return kingSlayerCountDown[0];
-        else if (player.equals(this.player[1])) return kingSlayerCountDown[1];
-        return null;
     }
 
 
