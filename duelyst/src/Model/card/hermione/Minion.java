@@ -27,6 +27,7 @@ public class Minion extends Hermione{
 
     @Override
     public void die(){
+        // TODO: 6/7/19 saE's last hope for shetting my code 
         if (this.buffEffects.isHasTheDeathCurse()){
             int distance = Map.getManhattanDistance(location , Battle.getMenu().getEnemyPlayer().getDeck().getHero().getLocation()) ;
             Hermione theTarget = Battle.getMenu().getEnemyPlayer().getDeck().getHero() ;

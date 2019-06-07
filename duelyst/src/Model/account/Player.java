@@ -41,7 +41,6 @@ public class Player {
     private int flagInteger=0;
 
     protected ScannerWrapper outputStream=new ScannerWrapper();
-    // TODO: 5/9/19 move to player
 
 
 
