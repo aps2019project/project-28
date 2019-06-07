@@ -20,6 +20,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+
+class ScannerWrapper{
+    Scanner scanner;
+
+}
+
 public class Player {
     private Account user;
     private Hand hand;
@@ -33,6 +39,9 @@ public class Player {
     private StuffEffectsOnPlayer stuffEffectsOnPlayer = new StuffEffectsOnPlayer() ;
     private boolean hasFlag=false;
     private int flagInteger=0;
+
+    protected ScannerWrapper outputStream=new ScannerWrapper();
+    // TODO: 5/9/19 move to player
 
 
 
@@ -170,5 +179,18 @@ public class Player {
 
     public StuffEffectsOnPlayer getStuffEffectsOnPlayer() {
         return stuffEffectsOnPlayer;
+    }
+
+
+
+    public void doYourMove(){}
+
+    public Scanner getOutputStream() {
+        if(this.outputStream==null || this.outputStream.scanner==null){
+            this.outputStream = new ScannerWrapper();
+            this.outputStream.scanner = Game.scanner;
+        }
+        return outputStream.scanner;
+
     }
 }

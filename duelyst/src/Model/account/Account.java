@@ -12,14 +12,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
-class ScannerWrapper{
-    Scanner scanner;
-    
-}
+//class ScannerWrapper{
+//    Scanner scanner;
+//
+//}
 
 public class Account {
 
     private static final Account defaultAccount = new Account("Duelyst","SAF","Pass the fucking word");
+    public static final Account[]AI=new Account[4];
+
     protected static int unique = 0;
     protected static final int INITIAL_MONEY = 99999999;
 
@@ -34,8 +36,10 @@ public class Account {
     protected int wins;
     protected int storyModeSPX;
 
-    protected ScannerWrapper outputStream=new ScannerWrapper();
-    // TODO: 5/9/19 move to player
+//    protected ScannerWrapper outputStream=new ScannerWrapper();
+//    // TODO: 5/9/19 move to player
+
+
 
     public void saveMatchHistory(Match match) {
     }
@@ -62,14 +66,11 @@ public class Account {
                 Primary.accounts) {
             try{
                 FileWriter fileWriter = new FileWriter("Account.json", true);
-                ScannerWrapper outputStream=account.outputStream;
-                account.outputStream=null;
                 account.player=null;
                 gson.toJson(account, fileWriter);
-                account.outputStream=outputStream;
                 fileWriter.write("\n");
                 fileWriter.close();
-            } catch (IOException e) {}
+            } catch (IOException ignored) {}
         }
     }
 
@@ -225,7 +226,7 @@ public class Account {
     }
 
 
-    public Player getPlayer() {
+    public Player tgetPlayer() {
         if (this.player == null)
             this.player = new Player(this, 2, 2);
         return player;
@@ -240,13 +241,13 @@ public class Account {
         Collections.reverse(Account.getAccounts());
         return Account.getAccounts();
     }
-    public void doYourMove(){}
-    public Scanner getOutputStream() {
-        if(this.outputStream==null || this.outputStream.scanner==null){
-            this.outputStream = new ScannerWrapper();
-            this.outputStream.scanner = Game.scanner;
-        }
-        return outputStream.scanner;
-
-    }
+//    public void doYourMove(){}
+//    public Scanner getOutputStream() {
+//        if(this.outputStream==null || this.outputStream.scanner==null){
+//            this.outputStream = new ScannerWrapper();
+//            this.outputStream.scanner = Game.scanner;
+//        }
+//        return outputStream.scanner;
+//
+//    }
 }

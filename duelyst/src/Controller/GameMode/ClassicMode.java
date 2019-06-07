@@ -5,6 +5,7 @@ import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
 import Model.Primary;
+import Model.account.AI;
 import Model.account.Account;
 import Model.account.Player;
 import Model.card.hermione.Hermione;

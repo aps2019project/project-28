@@ -2,6 +2,7 @@ package Controller.menu;
 
 import Controller.Game;
 import Model.account.AI;
+import Model.account.Account;
 import exeption.*;
 
 public class StoryModeMenu extends Menu {
@@ -25,11 +26,8 @@ public class StoryModeMenu extends Menu {
     }
 
     public Menu setAI(int level) {
-        try {
-            Game.accounts[1]=new AI(level);
-        } catch (FullDeckException | DeckAlreadyHasThisCardException | InvalidDeckException | DeckAlreadyHasAHeroException | DeckAlreadyHasThisItemException e) {
-            e.printStackTrace();
-        }
+            Game.accounts[1]= Account.AI[level];
+            Game.accounts[1].setPlayer(new AI(Game.accounts[1],));
         return this.enter(Battle.getMenu());
     }
 }

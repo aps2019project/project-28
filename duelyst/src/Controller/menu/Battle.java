@@ -276,7 +276,8 @@ public class Battle extends Menu {
 
     @Deprecated
     private void handleDeaths() {
-//
+        // TODO: 6/6/19 Fatteme marg ha ok budan aya? grave yard o ina
+        //
 //        for (int i = 0; i < 2; i++) {
 //            ArrayList<Minion> deadMinions = new ArrayList<>();
 //            for (Minion minion : this.player[i].getMinionsInGame()) {
