@@ -1,5 +1,7 @@
 package Model.account;
 
+import com.gilecode.yagson.YaGson;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,11 +30,9 @@ public class Match {
     private ArrayList<Command>commands=new ArrayList<>();
 
     public Match(Account player, Account enemy) {
-
-        // TODO: 6/7/19 fattme player o enemy ro inja ba json hard copy bezan plz
-
-        this.player = player;
-        this.enemy = enemy;
+        YaGson gson = new YaGson();
+        this.player = gson.fromJson(gson.toJson(player), Account.class);
+        this.enemy = gson.fromJson(gson.toJson(enemy), Account.class);
         this.lastDateModified=new Date();
     }
 
