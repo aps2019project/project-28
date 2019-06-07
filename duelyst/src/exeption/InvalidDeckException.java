@@ -1,4 +1,4 @@
 package exeption;
 
-public class InvalidDeckException extends Throwable {
+public class InvalidDeckException extends Exception {
 }

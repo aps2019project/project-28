@@ -17,7 +17,6 @@ import Model.card.hermione.Minion;
 import Model.card.hermione.SPATime;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
-import Model.item.KingSlayerCounter;
 import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnHandPresentedListener;
 import View.MenuHandler;
@@ -36,19 +35,19 @@ public class Battle extends Menu {
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
     private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
 
+    private Match match;
+
     private GameMode gameMode;
 
-    // TODO: 6/6/19 saE's imaginary shit
-                                        private KingSlayerCounter[] kingSlayerCountDown =
-                                                {new KingSlayerCounter(player[0]), new KingSlayerCounter(player[1])};
-    //
+
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
 
     private ArrayList<OnGameCardsPresentedListenr> cardsPresenters = new ArrayList<>();
 
-    public Battle(String name) {
+    private Battle(String name) {
         super(name);
     }
+
 
     public static Battle getMenu() {
         if (Battle.menu == null) {
@@ -60,6 +59,11 @@ public class Battle extends Menu {
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
+
+        this.match=new Match(Game.accounts[0],Game.accounts[1],this.gameMode);
+        this.ongoingSpells=new ArrayList<>();
+
+
         if (Game.accounts[0].getCollection().getMainDeck() == null || Game.accounts[1].getCollection().getMainDeck() == null) {
             System.out.println("Please Select your Main Deck");
             return false;
@@ -340,17 +344,6 @@ public class Battle extends Menu {
 
         // TODO: 5/5/19 other stuff maybe?
 
-        for (int i = 0; i < 2; i++) {
-            KingSlayerCounter ksc = kingSlayerCountDown[i];
-            if (ksc.isActive()) {
-                ksc.increaseCounter();
-            }
-            if (ksc.getCounter() == 15) {
-//                player[i].getDeck().getHero().die();
-                player[i].getDeck().killHero();
-                //TODO @arshia game over mishe inja !
-            }
-        }
 
         /*checkState*/
         if (this.gameMode.checkState()) {
@@ -368,15 +361,21 @@ public class Battle extends Menu {
         this.gameMode.handleWin();
 
         /*
+         * saving the match
+         * */
+        Game.accounts[0].saveMatch(this.match);
+        Game.accounts[1].saveMatch(this.match);
+
+
+
+        /*
         * handling the account for getting input and stuff
         * */
         Game.accounts[1] = Account.getDefaultAccount();
         this.account = SignInMenu.getMenu().account;
         this.turn = 0;
 
-        /*
-        * saving the match
-        * */
+
 
 
         /*
@@ -421,10 +420,9 @@ public class Battle extends Menu {
     private void nextTurn() {
         turn++;
 
-    // TODO: 6/6/19 saE null pointer mide!!!
-                    if (this.getPlayer().getDeck().getHero() == null) System.err.println("hero is null");
-                    else if (this.getPlayer().getDeck().getHero().getBuffEffects() == null) System.err.println("buffeffects are null");
-                    this.getPlayer().getDeck().getHero().getBuffEffects().handleOnNewTurn();
+        if (this.getPlayer().getDeck().getHero() == null) System.err.println("hero is null");
+        else if (this.getPlayer().getDeck().getHero().getBuffEffects() == null) System.err.println("buffeffects are null");
+        this.getPlayer().getDeck().getHero().getBuffEffects().handleOnNewTurn();
 
         //TODO arshia karaye marbut be turn e jadid o inja bokon (mana o updateHand o ina)
         for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
@@ -523,12 +521,6 @@ public class Battle extends Menu {
         return MAX_MANA_PER_TURN;
     }
 
-    public KingSlayerCounter getKingSlayerCountDown(Player player) {
-        if (player.equals(this.player[0])) return kingSlayerCountDown[0];
-        else if (player.equals(this.player[1])) return kingSlayerCountDown[1];
-        return null;
-    }
-
 
     public void setTurn(int turn) {
         this.turn = turn;
@@ -601,4 +593,13 @@ public class Battle extends Menu {
         return this.player[0];
     }
 
+    public static Battle newGame(GameMode gameMode){
+        Battle.menu.setGameMode(gameMode);
+        Battle.menu.init(Battle.menu.getParentMenu());
+        return Battle.menu;
+    }
+
+    public Match getMatch() {
+        return this.match;
+    }
 }

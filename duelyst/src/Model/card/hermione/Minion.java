@@ -27,25 +27,6 @@ public class Minion extends Hermione{
 
     @Override
     public void die(){
-        if (this.buffEffects.isHasTheDeathCurse()){
-            int distance = Map.getManhattanDistance(location , Battle.getMenu().getEnemyPlayer().getDeck().getHero().getLocation()) ;
-            Hermione theTarget = Battle.getMenu().getEnemyPlayer().getDeck().getHero() ;
-            for (Minion minion : Battle.getMenu().getEnemyPlayer().getMinionsInGame()){
-                if (distance > Map.getManhattanDistance(location , minion.getLocation())) {
-                    distance = Map.getManhattanDistance(location , minion.getLocation()) ;
-                    theTarget = minion ;
-                }
-            }
-            try {
-                this.attack(theTarget,false);
-            }catch(CantAttackException e){
-                //TODO
-            }catch (DestinationOutOfreachException e){
-                //TODO
-            } catch (InvalidCellException e) {
-                e.printStackTrace();
-            }
-        }
         this.itIsTime(SPATime.DEATH);
         super.die();
     }

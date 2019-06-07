@@ -9,11 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-//class ScannerWrapper{
-//    Scanner scanner;
-//
-//}
-
 public class Account {
 
     private static final Account defaultAccount = new Account("Duelyst","SAF","Pass the fucking word");
@@ -36,13 +31,8 @@ public class Account {
     protected int wins;
     protected int storyModeSPX;
 
-//    protected ScannerWrapper outputStream=new ScannerWrapper();
-//    // TODO: 5/9/19 move to player
 
 
-
-    public void saveMatchHistory(Match match) {
-    }
 
     public static void addNewAccount(Account account) {
         if (account == null) return;
@@ -111,15 +101,6 @@ public class Account {
             return false;
         }
     }
-
-//    public static boolean hasAccount(int ID) {
-//        try {
-//            Account.getAccount(ID);
-//            return true;
-//        } catch (InvalidAccountException e) {
-//            return false;
-//        }
-//    }
 
     public static boolean hasAccount(Account account) {
         try {
@@ -245,13 +226,8 @@ public class Account {
     public void clearCollection() {
         this.collection=new Collection();
     }
-//    public void doYourMove(){}
-//    public Scanner getOutputStream() {
-//        if(this.outputStream==null || this.outputStream.scanner==null){
-//            this.outputStream = new ScannerWrapper();
-//            this.outputStream.scanner = Game.scanner;
-//        }
-//        return outputStream.scanner;
-//
-//    }
+
+    public void saveMatch(Match match){
+        this.matchHistory.add(match);
+    }
 }

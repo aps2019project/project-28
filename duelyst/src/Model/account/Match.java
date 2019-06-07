@@ -1,4 +1,6 @@
 package Model.account;
+import Controller.Game;
+import Controller.GameMode.GameMode;
 
 import com.gilecode.yagson.YaGson;
 
@@ -6,44 +8,44 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-class Command {
-    Player owner;
-    String command;
-    Long time;
-
-    public Command(String command,Player owner) {
-        this.owner=owner;
-        this.command = command;
-        this.time = System.currentTimeMillis();
-    }
-}
 
 public class Match {
 
-    private Account player;
-    private Account enemy;
-
+    private Account[] accounts;
     private Date lastDateModified;
-    private int state; //0-->loose    1-->win
-
+    private int state; //0-->first player won    1-->second player won
+    private long startingTime;
 
     private ArrayList<Command>commands=new ArrayList<>();
+    private int commandsPointer=0;
 
     public Match(Account player, Account enemy) {
         YaGson gson = new YaGson();
         this.player = gson.fromJson(gson.toJson(player), Account.class);
         this.enemy = gson.fromJson(gson.toJson(enemy), Account.class);
+    private GameMode gamemode;
+
+    public Match(Account first, Account second, GameMode gameMode) {
+
+        // TODO: 6/7/19 fattme first o second ro inja ba json hard copy bezan plz
+        this.accounts =new Account[]{first,second};
         this.lastDateModified=new Date();
+        this.startingTime=System.currentTimeMillis();
+        this.gamemode=gameMode;
     }
 
-    public void addCommand(String command,String owner){
-        commands.add(new Command(command));
+    public void addCommand(String command,int turn){
+        commands.add(new Command(command,accounts[turn],System.currentTimeMillis()-startingTime));
     }
 
-    //    {
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//        Date date = new Date();
-//        System.out.println(formatter.format(date));
-//    }
+    public Command getNextCommand() {
+        if(commandsPointer<commands.size())
+            return commands.get(commandsPointer++);
+        return null;
+    }
+
+    public GameMode getGameMode() {
+        return gamemode;
+    }
 
 }

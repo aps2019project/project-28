@@ -1,4 +1,4 @@
 package exeption;
 
-public class CardExistException extends Throwable {
+public class CardExistException extends Exception {
 }

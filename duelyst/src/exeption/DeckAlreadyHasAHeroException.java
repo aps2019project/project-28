@@ -1,4 +1,4 @@
 package exeption;
 
-public class DeckAlreadyHasAHeroException extends Throwable {
+public class DeckAlreadyHasAHeroException extends Exception {
 }
