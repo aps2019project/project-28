@@ -5,7 +5,6 @@ import Model.account.Player;
 import Model.card.Card;
 import Model.Map.*;
 import Model.card.spell.SpellAction.*;
-import Model.card.spell.Targets.TargetSurroundings;
 import exeption.InvalidCardException;
 import exeption.InvalidCellException;
 
@@ -23,8 +22,8 @@ public class Spell extends Card {
         {
             spellActions.add(ActionDisarm.getAction());
             spellActions.add(ActionVoid.getAction());
-            spellActions.add(ActionChangeAP.getAction());
-            spellActions.add(ActionChangeHP.getAction());
+            spellActions.add(ActionChangeAPBuff.getAction());
+            spellActions.add(ActionChangeHPBuff.getAction());
             spellActions.add(ActionDeployPoison.getAction());
             spellActions.add(ActionDeployHollyBuff.getAction());
             spellActions.add(ActionStun.getAction());

@@ -7,8 +7,8 @@ import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
 import Model.card.spell.SpellAction.*;
-import Model.card.spell.SpellAction.ActionChangeAP;
-import Model.card.spell.SpellAction.ActionChangeHP;
+import Model.card.spell.SpellAction.ActionChangeAPBuff;
+import Model.card.spell.SpellAction.ActionChangeHPBuff;
 import Model.card.spell.SpellAction.ActionDisarm;
 import Model.card.spell.SpellAction.ActionStun;
 import Model.card.spell.Targets.*;
@@ -327,19 +327,19 @@ public class Primary {
         spells.add(new Spell("Area Dispel", 1500, 2, 1, 1, "kills the negative buffs of your own cards and positive buffs of enemy cards in 2*2 area",
                 TargetTwoByTwo.getTargetInstance(), ActionDispel.getAction()));
         spells.add(new Spell("Empower", 250, 1, 1, 2, "increases Attack Point 2 units",
-                TargetOwnCard.getTargetInstance(), ActionChangeAP.getAction()));
+                TargetOwnCard.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("Fireball", 400, 1, 1, -4, "increases Attack Point 4 units",
-                TargetEnemyCard.getTargetInstance(), ActionChangeHP.getAction()));
+                TargetEnemyCard.getTargetInstance(), ActionChangeHPBuff.getAction()));
         spells.add(new Spell("God Strength", 450, 2, 1, 4, "increases Attack Point of Hero 4 units",
-                TargetOwnHero.getTargetInstance(), ActionChangeAP.getAction()));
+                TargetOwnHero.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("Hell Fire", 600, 3, 2, 0, "fireCell, duration : 2",
                 TargetTwoByTwo.getTargetInstance(), ActionApplyFirecell.getAction()));
         spells.add(new Spell("Lightning Bolt", 1250, 2, 1, -8, "attacks enemy's Hero 8 units",
-                TargetEnemyHero.getTargetInstance(), ActionChangeHP.getAction()));
+                TargetEnemyHero.getTargetInstance(), ActionChangeHPBuff.getAction()));
         spells.add(new Spell("Poison Lake", 900, 5, 1, 0, "poisonCell, duration : 1",
                 TargetThreeByThree.getTargetInstance(), ActionPoisonCell.getAction()));
         Spell maddness = new Spell("Madness", 650, 0, 3, 4,"increases Attack Point 4 units, duration : 3, but the card will be disarmed",
-                TargetOwnCard.getTargetInstance(), ActionChangeAP.getAction()) ;
+                TargetOwnCard.getTargetInstance(), ActionChangeAPBuff.getAction()) ;
         maddness.addAction(ActionDisarm.getAction() , 0 , 1 );
         spells.add(maddness);
         spells.add(new Spell("All Disarm", 2000, 9, 1, 0, "all of enemy cards will be disarmed, duration : 1",
@@ -351,13 +351,13 @@ public class Primary {
         spells.add(new Spell("Health With Profit", 2250, 0, 3, -6, "2 holy buffs, duration : 2, a weakness buff decreases health point 6 units",
                 TargetOwnCard.getTargetInstance(), ActionHealthWithProfit.getAction()));
         spells.add(new Spell("Power Up", 2500, 2, 1, 6, "gives you a powerbuff, increases attack point 6 units",
-                TargetOwnCard.getTargetInstance(), ActionChangeAP.getAction()));
+                TargetOwnCard.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("All Power", 2000, 4, -1, 2, "gives your own cards a powerbuff, increases attack point 2 units permanently",
-                TargetAllOwnCards.getTargetInstance(), ActionChangeAP.getAction()));
+                TargetAllOwnCards.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("All Attack", 1500, 4, 1, -6, "attacks all enemy cards by 6 units",
-                TargetAllEnemyCards.getTargetInstance(), ActionChangeHP.getAction()));
+                TargetAllEnemyCards.getTargetInstance(), ActionChangeHPBuff.getAction()));
         spells.add(new Spell("Weakening", 1000, 1, 1, -4,"gives an enemy minion a weakness buff, it decreases attack point 4 units",
-                TargetEnemyMinion.getTargetInstance(), ActionChangeAP.getAction()));
+                TargetEnemyMinion.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("Sacrifice", 1600, 2, 1, -6, "gives an own minion a power buff, it increases attack point 8 units , it gives weakness buff too, it decreases health point 6 units",
                 new TargetOwnMinion(), ActionSacrifice.getAction()));
         spells.add(new Spell("Kings Guard", 1750, 9, 1, 8, "it kills a random minion in hero surroundings",
@@ -393,7 +393,7 @@ public class Primary {
         minions.add(new Minion("Persian Warrior", 600, 9, 24,
                 6, new Melee(), 0,
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, -5, "",
-                        TargetEnemyCard.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK, "be tedad dafati ke dar nobat haye qabl be yek niru hamle karde, 5 vahed bishtar be an zarbe vared mikonad"));
+                        TargetEnemyCard.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "be tedad dafati ke dar nobat haye qabl be yek niru hamle karde, 5 vahed bishtar be an zarbe vared mikonad"));
         //TODO in Actionesh chie?
         minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
@@ -432,7 +432,7 @@ public class Primary {
         minions.add(new Minion("Eagle", 200, 2, 0,
                 2, new Range(), 3,
                 new SpecialPower("Eagle SpecialPower", 0, 0, 0, 10, "",
-                        TargetSingleCell.getTargetInstance(), ActionChangeHP.getAction()), SPATime.PASSIVE, "has power buff, increases health point 10 units"));
+                        TargetSingleCell.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.PASSIVE, "has power buff, increases health point 10 units"));
 
         minions.add(new Minion("Hog Rider Demon", 300, 6, 16,
                 8, new Melee(), 0, nullSpecialPower
@@ -440,7 +440,7 @@ public class Primary {
         minions.add(new Minion("One Eye Giant", 500, 7, 12,
                 11, new Hybrid(), 3,
                 new SpecialPower("One Eye Giant SpecialPower", 0, 0, 0, -2, "",
-                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeHP.getAction()), SPATime.DEATH, "attacks surrounding minions 2 points, on death"));
+                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks surrounding minions 2 points, on death"));
         minions.add(new Minion("Venomous Snake", 300, 4, 5,
                 6, new Range(), 4,
                 new SpecialPower("VenomousSnake", 0, 0, 0, 3, "",
@@ -456,29 +456,29 @@ public class Primary {
         minions.add(new Minion("Giant Snake", 500, 8, 14,
                 7, new Range(), 5,
                 new SpecialPower("Giant Snake SpecialPower", 0, 0, -1, -1, "",
-                        TargetEnemyMinionswithin2ManhattanDistance.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK, "akse holy buff"));
+                        TargetEnemyMinionswithin2ManhattanDistance.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "akse holy buff"));
         minions.add(new Minion("White Wolf", 400, 5, 8,
                 2, new Melee(), 0,
                 new SpecialPower("White Wolf SpecialPower", 0, 0, 2, -6, "",
-                        TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units, next turn, minion's health point will be decreased 4 units"));//unhanddeled
+                        TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units, next turn, minion's health point will be decreased 4 units"));//unhanddeled
         minions.add(new Minion("Leopard",400, 4, 6,
                 2, new Melee(), 0,
                 new SpecialPower("Leopard SpecialPower", 0, 0, 1, -8, "",
-                        TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 8 units"));
+                        TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 8 units"));
         minions.add(new Minion("Wolf", 400, 3, 6,
                 1, new Melee(), 0,
                 new SpecialPower("Wolf SpecialPower", 0, 0, 0, -6, "",
-                        TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
+                        TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
 
         SpecialPower theWizard =  new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
-                RandomMinionInSurrounding.getTargetInstance(), ActionChangeAP.getAction());
-        theWizard.addAction(ActionChangeHP.getAction(), -1, 1);
+                RandomMinionInSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
+        theWizard.addAction(ActionChangeHPBuff.getAction(), -1, 1);
         minions.add(new Minion("The Wizard", 550, 4, 5,
                 4, new Range(), 3, theWizard, SPATime.PASSIVE
                 ,"gives own and minions surrounded a power buff, increases attack point 2 units + a weakness buff, decreases health point 1 unit for one turn"));
 
         SpecialPower theGreatWizard = new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2, "",
-                OwnMinionAndItsSurrounding.getTargetInstance(), ActionChangeAP.getAction());
+                OwnMinionAndItsSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
         theGreatWizard.addAction(ActionDeployHollyBuff.getAction(), 0, -1);
         minions.add(new Minion("The Great Wizard",550, 6, 6,
                 6, new Range(), 5, theGreatWizard
@@ -487,7 +487,7 @@ public class Primary {
         minions.add(new Minion("Genie", 500, 5, 10,
                 4, new Range(), 4,
                 new SpecialPower("Genie SpecialPower", 0, 0, -1, 1, "",
-                        TargetAllOwnMinions.getTargetInstance(), ActionChangeAP.getAction()), SPATime.ON_TURN, "a continuous power buff, increases attack point 1 unit"));
+                        TargetAllOwnMinions.getTargetInstance(), ActionChangeAPBuff.getAction()), SPATime.ON_TURN, "a continuous power buff, increases attack point 1 unit"));
 
         /*minions.add(new Minion("Wild Goraz",500, 6, 10,
                 14, new Melee(), 0,
@@ -502,7 +502,7 @@ public class Primary {
         minions.add(new Minion("Bahman", 450, 8, 16,
                 9, new Melee(), 0,
                 new SpecialPower("Bahman SpecialPower", 0, 0, 1, -16, "",
-                        TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.SPAWN, "decreases health point of a random enemy minion 16 units "));
+                        TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.SPAWN, "decreases health point of a random enemy minion 16 units "));
 
         /*inions.add(new Minion("Ashkbus",400, 7, 14,
                 8, new Melee(), 0,
@@ -530,7 +530,7 @@ public class Primary {
         minions.add(new Minion("Siavash", 350, 4, 8,
                 5, new Melee(), 0,
                 new SpecialPower("Siavash SpecialPower", 0, 0, 0, -6, "",
-                        TargetEnemyHero.getTargetInstance(), ActionChangeHP.getAction()), SPATime.DEATH, "attacks enemy's hero 6 points, on death"));
+                        TargetEnemyHero.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks enemy's hero 6 points, on death"));
         minions.add(new Minion("Eurymedon",600, 5, 10,
                 4, new Melee(), 0,
                 new SpecialPower("Eurymedon SpecialPower", 0, 0, 0, 0, "",
@@ -552,7 +552,7 @@ public class Primary {
         ArrayList<Hero> heroes = new ArrayList<>();
         heroes.add(new Hero("White Demon", 8000, 50, 4, new Melee(), 0,
                 new SpecialPower("White Demon", 0, 1, -1, 4, "",
-                        TargetSingleCell.getTargetInstance(), ActionChangeAP.getAction())
+                        TargetSingleCell.getTargetInstance(), ActionChangeAPBuff.getAction())
                 , 0, 2, "a melee hero with special power of power buff with increasing attack point 4 units continuously"));
         heroes.add(new Hero("Simorgh", 9000, 50, 4, new Melee(), 0,
                 new SpecialPower("Simorgh", 0, 5, 1, 0, "",
@@ -576,7 +576,7 @@ public class Primary {
                 0, 3, "a melee hero with special power of hollycell for 3 turns"));
         heroes.add(new Hero("Arash", 10000, 30, 2, new Range(), 6,
                 new SpecialPower("Arash", 0, 2, 1, -4, "",
-                        TargetOwnHeroRow.getTargetInstance(), ActionChangeHP.getAction())
+                        TargetOwnHeroRow.getTargetInstance(), ActionChangeHPBuff.getAction())
                 , 0, 2, "a range hero with special power of attacking its own row cards 4 points"));
         heroes.add(new Hero("Afsane", 11000, 40, 3, new Range(), 3,
                 new SpecialPower("Afsane", 0, 1, 1, 0, "",
