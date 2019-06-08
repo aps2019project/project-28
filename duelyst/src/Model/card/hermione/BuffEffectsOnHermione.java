@@ -4,6 +4,7 @@ import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.CellAffects;
 import Model.card.spell.Buff.Buff;
+import Model.card.spell.Buff.BuffActions.BuffActionDisarm;
 import Model.card.spell.Buff.BuffActions.BuffActionPoison;
 import Model.card.spell.BuffTypes.BuffTypePassive;
 import Model.card.spell.SpellAction.ActionDeployPoison;
@@ -19,8 +20,8 @@ public class BuffEffectsOnHermione {
     private int unholyBuffLevel = 0 ;
     private int originalAttackPoint ;
     private int changedHealthPointDueToBuff = 0 ;
-    private boolean hasTheGiantSnakeEffect = false ;
     private boolean hasThePoisonousDagger = false ;
+    private boolean damoolArch = false ;
     private boolean canCounterAttack = true ;
     private boolean canMove = true ;
     private boolean canAttack = true ;
@@ -63,7 +64,10 @@ public class BuffEffectsOnHermione {
              ActionDeployPoison.getAction().deploy(1 , cells);
              hasThePoisonousDagger = false ;
         }
-
+        if (damoolArch && card instanceof Hero){
+            Buff disarm = new Buff(1 , false , BuffActionDisarm.getBuffAction());
+            disarm.deploy(Battle.getMenu().getPlayer() , enemyCard);
+        }
     }
 
     public void handleOnDeath(){
@@ -121,7 +125,7 @@ public class BuffEffectsOnHermione {
     }
 
     public void setHolyBuffLevel(int holyBuffLevel) {
-        this.holyBuffLevel = holyBuffLevel;
+        this.holyBuffLevel += holyBuffLevel;
     }
 
     public void setOriginalAttackPoint(int originalAttackPoint) {
@@ -135,12 +139,6 @@ public class BuffEffectsOnHermione {
     public void changeBackHealthPoint(){
         this.card.changeHealthPoint(-changedHealthPointDueToBuff);
     }
-
-
-    public void setHasTheGiantSnakeEffect(boolean hasTheGiantSnakeEffect) {
-        this.hasTheGiantSnakeEffect = hasTheGiantSnakeEffect;
-    }
-
 
     public void setHasThePoisonousDagger(boolean hasThePoisonousDagger) {
         this.hasThePoisonousDagger = hasThePoisonousDagger;
@@ -213,4 +211,7 @@ public class BuffEffectsOnHermione {
         this.nextTurnsDamage = new ArrayList<>();
     }
 
+    public void setDamoolArch(boolean damoolArch) {
+        this.damoolArch = damoolArch;
+    }
 }

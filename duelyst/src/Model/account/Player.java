@@ -83,7 +83,7 @@ public class Player {
         if(card instanceof Minion){
             Minion minion = (Minion) card;
             minion.spawn(cell);
-            stuffEffectsOnPlayer.handleMinionDeploy() ;
+            stuffEffectsOnPlayer.handleMinionDeploy(minion) ;
 
             Battle.getMenu().getMap().getCell(cell).setCardOnCell((Hermione) card);
         }else if(card instanceof Spell){

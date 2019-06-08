@@ -4,6 +4,7 @@ import Controller.menu.Battle;
 import Controller.menu.*;
 import Model.Primary;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 
@@ -37,6 +38,7 @@ public class MenuHandler {
 
     //moh
     public static void main(String[] args) {
+
         try {
             Primary.preprocess();
             Primary.pre();
