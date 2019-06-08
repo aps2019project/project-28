@@ -121,7 +121,7 @@ public class BuffEffectsOnHermione {
     }
 
     public void setHolyBuffLevel(int holyBuffLevel) {
-        this.holyBuffLevel = holyBuffLevel;
+        this.holyBuffLevel += holyBuffLevel;
     }
 
     public void setOriginalAttackPoint(int originalAttackPoint) {

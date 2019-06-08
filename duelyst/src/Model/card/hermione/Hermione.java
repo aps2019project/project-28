@@ -133,13 +133,14 @@ public abstract class Hermione extends Card {
 
     public void spawn(Cell cell) {
 
-        //initializing shoul be removed from code
+        //initializing should be removed from code
         this.appliedBuffs = new ArrayList<>();
         this.getBuffEffects().setCanMove(true);
         //
 
-        this.getBuffEffects().onSpawn() ;
         this.setLocation(cell);
+
+        this.getBuffEffects().onSpawn() ;
     }
     public void die() {
         try {
@@ -151,10 +152,6 @@ public abstract class Hermione extends Card {
 
 
     public abstract void applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException, CantSpecialPowerCooldownException;
-    public void makeNewListForAppliedBuffs() {
-        this.appliedBuffs = new ArrayList<>();
-    }
-
 
     public boolean hasFlag() {
         return hasFlag;

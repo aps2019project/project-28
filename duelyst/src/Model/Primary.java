@@ -3,7 +3,6 @@ package Model;
 import Model.account.Account;
 import Model.account.Collection;
 import Model.account.Deck;
-import Model.account.Player;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
@@ -18,13 +17,11 @@ import Model.item.Item;
 import Model.item.ItemActions.*;
 import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
-import com.gilecode.yagson.com.google.gson.Gson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import exeption.*;
 
 import java.io.*;
-import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
 
 public class Primary {
@@ -604,11 +601,11 @@ public class Primary {
         usables.add(new Usable("Shield AF", 4000, 1, 12, "for own hero, 12 holy buff",
                 TargetOwnHero.getTargetInstance(), ItemActionShieldAF.getItemAction()));
         usables.add(new Usable("Damool Arch", 30000, 1, 0, "only for ranged or hybrid own hero, while attacking disarms enemy card, duration : 1",
-                TargetRangedAndHybrid.getTargetInstance(), ItemActionDamoolArch.getItemAction()));
+                TargetOwnHero.getTargetInstance(), ItemActionDamoolArch.getItemAction()));
         usables.add(new Usable("Simorgh feather", 3500, 1, -2, "only for ranged or hybrid enemy hero, decreases attack point 2 units",
-                TargetRangedAndHybrid.getTargetInstance(), ItemAction30chicken.getItemAction()));
+                TargetEnemyHero.getTargetInstance(), ItemAction30chicken.getItemAction()));
         usables.add(new Usable("Terror Hood", 5000, 1, -2, "while attacking, weakness buff on random enemy card, decreases attack point 2 units",
-                TargetRandomEnemy.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetRandomEnemy.getTargetInstance(), ItemActionChangeAPBuff.getItemAction()));
         usables.add(new Usable("King Wisdom", 9000, -1, 0, "gets extra mana every turn",
                 TargetSingleCell.getTargetInstance(), ItemActionKingsWisdom.getItemAction()));
         usables.add(new Usable("Assassination Dagger", 15000, 1, 1, "while putting own cards, attacks enemy hero 1 point",
@@ -618,9 +615,9 @@ public class Primary {
         usables.add(new Usable("Shock Hammer", 15000, 1, 0, "own hero while attacking disarms an enemy card, duration : 1",
                 TargetEnemyCard.getTargetInstance(), ItemActionDisArm.getItemAction()));
         usables.add(new Usable("Soul Eater", 25000, 1, 1, "on death of one of own cards, every own card gets power buff, increases attck point 1 unit",
-                TargetOwnCard.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetOwnCard.getTargetInstance(), ItemActionChangeAPBuff.getItemAction()));
         usables.add(new Usable("‌Baptism", 20000, 2, 0, "every minion when spawns gets holy buff, duration : 2",
-                TargetOwnMinion.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetOwnMinion.getTargetInstance(), ItemActionBaptism.getItemAction()));
 
         fileWriter = new FileWriter("Usables.json", false);
         for (Usable usable :
@@ -631,16 +628,15 @@ public class Primary {
         fileWriter.close();
 
         collectables.add(new Collectable("NooshDaru", 1, 6, "increases health point of a random card 6 units",
-                TargetRandomOwn.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetRandomOwn.getTargetInstance(), ItemActionChangeHP.getItemAction()));
         collectables.add(new Collectable("Two Headed Arrow", 1, 2, "increases attack point of random ranged or hybrid 2 units",
-                TargetRangedAndHybrid.getTargetInstance(), ItemAction3HornedArrow.getItemAction()));
-        collectables.add(new Collectable("Eksir", 1, 3, "increases health point 3 units, a power buff with increasing ",
-                TargetRandomOwnMinion.getTargetInstance(), ItemActionExir.getItemAction(),
-                ItemActionChangeAP.getItemAction()));
+                TargetOwnRandomRangedAndHybridMinion.getTargetInstance(), ItemAction2HornedArrow.getItemAction()));
+        collectables.add(new Collectable("Exir", 1, 3, "increases health point 3 units, a power buff with increasing ",
+                TargetRandomOwnMinion.getTargetInstance(), ItemActionExir.getItemAction()));
         collectables.add(new Collectable("Mana's Majoon", 1, 3, "gives 3 extra mana the next turn",
                 TargetSingleCell.getTargetInstance(), ItemActionManaGiver.getItemAction()));
-        collectables.add(new Collectable("RooEnTan's Majoon",0,0, "10 holy buffs, duration : 2, for a random own card",
-                TargetRandomOwn.getTargetInstance(), ItemActionRooEnTan.getItemAction()));
+        collectables.add(new Collectable("RooEnTan's Majoon",2,10, "10 holy buffs, duration : 2, for a random own card",
+                TargetRandomOwn.getTargetInstance(), ItemActionHolyBuff.getItemAction()));
         collectables.add(new Collectable("Death's Curse", 0, 8, "8 attack points on nearest enemy card for a random minion ",
                 TargetRandomOwnMinion.getTargetInstance(), ItemActionMinionRandomAttacker.getItemAction()));
         collectables.add(new Collectable("Random damage", 1, 2, "2 attack points for random card",
