@@ -18,11 +18,13 @@ import Model.item.Item;
 import Model.item.ItemActions.*;
 import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.Gson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import exeption.*;
 
 import java.io.*;
+import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
 
 public class Primary {
@@ -453,7 +455,7 @@ public class Primary {
                 8, new Melee(), 0,
                 new SpecialPower("Fierce Lion SpecialPower", 0, 0, 0, 0, "",
                         TargetEnemyCard.getTargetInstance(), ActionDispel.getAction()), SPATime.ATTACK, "holy buff doesn't effect its attack"));
-
+        //todo fateme
         minions.add(new Minion("Giant Snake", 500, 8, 14,
                 7, new Range(), 5,
                 new SpecialPower("Giant Snake SpecialPower", 0, 0, -1, -1, "",
