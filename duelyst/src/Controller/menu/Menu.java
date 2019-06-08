@@ -3,10 +3,12 @@ package Controller.menu;
 import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
 import exeption.InvalidSubMenuException;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+//import javafx.scene.Parent;
+//import javafx.scene.Scene;
+//import javafx.fxml.FXMLLoader;
+//import javafx.scene.Parent;
+//import javafx.scene.Scene;
+//import javafx.scene.layout.Pane;
 
 
 import java.util.ArrayList;
@@ -19,9 +21,9 @@ public abstract class Menu {
     private ArrayList<Menu> subMenus;
     private ArrayList<OnMenuClickedListener> menuPresenters;
     private ArrayList<String> patterns;
-    private Scene scene ;
-    private Parent root ;
-    protected String rootPath ;
+//    private Scene scene ;
+//    private Parent root ;
+//    protected String rootPath ;
 
 //
 //    public Scene getMenuScene(){

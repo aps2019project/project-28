@@ -208,12 +208,19 @@ public class Account {
 
 
     public Player getPlayer() {
+//        System.out.println("getting the player -------------------------------------------------");
+//        System.out.println("this.name = " + this.name);
+//        System.out.println("this.player = " + this.player);
+//        if(this.player!=null)System.out.println("this.player.getClass() = " + this.player.getClass());
+//        System.out.println("got the player -----------------------------------------------------\n\n\n\n\n\n\n");
         if (this.player == null)
             this.player = new Player(this, 2, 2);
         return player;
     }
 
     public void setPlayer(Player player) {
+//        System.err.println(this.name);
+//        System.err.println(player.getClass());
         this.player = player;
     }
 

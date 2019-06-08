@@ -26,8 +26,11 @@ public class StoryModeMenu extends Menu {
     }
 
     public Menu setAI(int level) {
+        System.err.println("to vazehan bayad ejra shi");
             Game.accounts[1]= Account.AI[level];
-            Game.accounts[1].setPlayer(new AI(Game.accounts[1],2,2,Game.accounts[0].getPlayer()));
+        Game.accounts[1].setPlayer(new AI(Game.accounts[1],2,2,Game.accounts[0].getPlayer()));
+        System.err.println("you were right ");
+        System.err.println("man vazehan ejra shodam");
         return this.enter(Battle.getMenu());
     }
 }
