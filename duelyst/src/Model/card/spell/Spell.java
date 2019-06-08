@@ -1,5 +1,6 @@
 package Model.card.spell;
 
+import Model.Primary;
 import Model.account.Player;
 import Model.card.Card;
 import Model.Map.*;
@@ -8,6 +9,7 @@ import Model.card.spell.Targets.TargetSurroundings;
 import exeption.InvalidCardException;
 import exeption.InvalidCellException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -65,6 +67,9 @@ public class Spell extends Card {
         this.actions = actions ;
         this.target = null;
         this.targetCells = targetCells ;
+        try {
+            Primary.saveCustomSpell(this);
+        } catch (IOException e) { e.printStackTrace(); }
     }
 
     public Spell(String name, int price , int manaPoint, ArrayList<Integer> durations , ArrayList<Integer> perks ,

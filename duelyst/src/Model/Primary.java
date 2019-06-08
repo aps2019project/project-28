@@ -45,6 +45,7 @@ public class Primary {
 
     public static void main(String[] args) throws IOException{
         Primary.Json();
+//        setDefaultDecks();
     }
 
     public static void getHeroes() throws FileNotFoundException {
@@ -144,6 +145,7 @@ public class Primary {
             }
         }
     }
+
     public static void setDefaultDecks() throws CardExistException, ItemExistExeption, DeckAlreadyHasAHeroException,
             DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException, IOException {
         Collection allCardAndItems = new Collection();
@@ -172,7 +174,6 @@ public class Primary {
         gson.toJson(deck, fileWriter);
         fileWriter.close();
     }
-
 
     public static void loadDefaultDecks() throws IOException {
         File folder = new File("Decks");
@@ -211,6 +212,7 @@ public class Primary {
         getItems();
 
     }
+
     private static void generateAI() throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
         //level 1
         Account.AI[1].clearCollection();
@@ -304,6 +306,18 @@ public class Primary {
 
     }
 
+    public static void saveCustomSpell(Spell costumSpell) throws IOException {
+        spells.add(costumSpell);
+        YaGson gson = new YaGson();
+        FileWriter fileWriter = new FileWriter("Spell.json", false);
+        for (Spell spell :
+                spells) {
+            gson.toJson(spell, fileWriter);
+            fileWriter.write("\n");
+        }
+        fileWriter.close();
+    }
+
     public static void Json() throws IOException {
         YaGson gson = new YaGson();
 
@@ -360,23 +374,22 @@ public class Primary {
        fileWriter.close();
 
         //Minion
+        SpecialPower nullSpecialPower =  new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+                null, ActionVoid.getAction());
 
         minions.add(new Minion("Persian Archer", 300, 2, 6,
-                4, new Range(), 7,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), SPATime.NULL, "just an ordinary range minion"));
+                4, new Range(), 7, nullSpecialPower
+               , SPATime.NULL, "just an ordinary range minion"));
         minions.add(new Minion("Persian Swordsman", 400, 2, 6,
                 4, new Melee(), 0,
                 new SpecialPower("Persian SwordsMan SpecialPower", 0, 0, 0, 0, "",
                         TargetEnemyCard.getTargetInstance(), ActionStun.getAction()), SPATime.ATTACK, "while attacking, enemy's card will be stunned"));
         minions.add(new Minion("Persian Lancer", 500, 1, 5,
-                3, new Hybrid(), 3,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), SPATime.NULL, "just an ordinary hybrid minion"));
+                3, new Hybrid(), 3, nullSpecialPower
+               , SPATime.NULL, "just an ordinary hybrid minion"));
         minions.add(new Minion("Persian Horseman", 200, 4, 10,
-                6, new Melee(), 0,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), SPATime.NULL, "just an ordinary melee minion"));
+                6, new Melee(), 0, nullSpecialPower
+               , SPATime.NULL, "just an ordinary melee minion"));
         minions.add(new Minion("Persian Warrior", 600, 9, 24,
                 6, new Melee(), 0,
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, -5, "",
@@ -387,17 +400,14 @@ public class Primary {
                 new SpecialPower("Persian General SpecialPower", 0, 0, 0, 0, "",
                         null, ActionCombo.getAction()), SPATime.COMBO, "SPActionCombo"));
         minions.add(new Minion("Turanian Archer", 500, 1, 3,
-                4, new Range(), 5,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), SPATime.NULL, "just an ordinary range minion"));
+                4, new Range(), 5, nullSpecialPower
+               , SPATime.NULL, "just an ordinary range minion"));
         minions.add(new Minion("Turanian Slinger", 600, 1, 4,
-                2, new Range(), 7,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), SPATime.NULL, "just an ordinary range minion"));
+                2, new Range(), 7, nullSpecialPower
+             , SPATime.NULL, "just an ordinary range minion"));
         minions.add(new Minion("Turanian Lancer", 600, 1, 4,
-                4, new Hybrid(), 3,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), SPATime.NULL, "just an ordinary hybrid minion"));
+                4, new Hybrid(), 3, nullSpecialPower
+               , SPATime.NULL, "just an ordinary hybrid minion"));
 
         SpecialPower turanianSpy = new SpecialPower("Turanian Spy SpecialPower", 0, 0, 1, 0, "",
                 TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction());
@@ -407,30 +417,26 @@ public class Primary {
                 SPATime.ATTACK, "enemy's card will be disarmed for 1 turn and will be poisoned for 4 turns"));
 
         minions.add(new Minion("Turanian MaceBearer", 450, 2, 3,
-                10, new Melee(), 0,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), SPATime.NULL, "just a melee minion"));
+                10, new Melee(), 0, nullSpecialPower
+               , SPATime.NULL, "just a melee minion"));
         minions.add(new Minion("Turanian Prince",800, 6, 6,
                 10, new Melee(), 0,
                 new SpecialPower("Turanian Prince", 0, 0, 0, 0, "",
                         null, ActionCombo.getAction()), SPATime.COMBO, "combo"));
         minions.add(new Minion("Black Demon", 300, 9, 14,
-                10, new Hybrid(), 7,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), SPATime.NULL, "just a hybrid minion"));
+                10, new Hybrid(), 7, nullSpecialPower
+               , SPATime.NULL, "just a hybrid minion"));
         minions.add(new Minion("Stone Thrower Giant", 300, 9, 12,
-                12, new Range(), 7,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), null, "just a range minion"));
+                12, new Range(), 7, nullSpecialPower
+                ,null, "just a range minion"));
         minions.add(new Minion("Eagle", 200, 2, 0,
                 2, new Range(), 3,
                 new SpecialPower("Eagle SpecialPower", 0, 0, 0, 10, "",
                         TargetSingleCell.getTargetInstance(), ActionChangeHP.getAction()), SPATime.PASSIVE, "has power buff, increases health point 10 units"));
 
         minions.add(new Minion("Hog Rider Demon", 300, 6, 16,
-                8, new Melee(), 0,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), SPATime.NULL, "just a melee minion"));
+                8, new Melee(), 0, nullSpecialPower
+              , SPATime.NULL, "just a melee minion"));
         minions.add(new Minion("One Eye Giant", 500, 7, 12,
                 11, new Hybrid(), 3,
                 new SpecialPower("One Eye Giant SpecialPower", 0, 0, 0, -2, "",
@@ -440,9 +446,8 @@ public class Primary {
                 new SpecialPower("VenomousSnake", 0, 0, 0, 3, "",
                         TargetEnemyCard.getTargetInstance(), ActionDeployPoison.getAction()), SPATime.ATTACK, "enemy's card will be poisoned, duration : 3"));
         minions.add(new Minion("Fire Dragon", 250, 5, 9,
-                5, new Range(), 4,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), SPATime.NULL,"just an ordinary range minion"));
+                5, new Range(), 4, nullSpecialPower
+               , SPATime.NULL,"just an ordinary range minion"));
         minions.add(new Minion("Fierce Lion",600, 2, 1,
                 8, new Melee(), 0,
                 new SpecialPower("Fierce Lion SpecialPower", 0, 0, 0, 0, "",
@@ -504,13 +509,11 @@ public class Primary {
                 , SPATime.DEFEND));*///emtiazi
 
         minions.add(new Minion("Iraj", 500, 4, 6,
-                20, new Range(), 3,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), SPATime.NULL, "just a range minion"));
+                20, new Range(), 3, nullSpecialPower
+                , SPATime.NULL, "just a range minion"));
         minions.add(new Minion("Great Giant", 600, 9, 30,
-                8, new Hybrid(), 2,
-                new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                        null, ActionChangeAP.getAction()), SPATime.NULL, "just a hybrid minion"));
+                8, new Hybrid(), 2, nullSpecialPower
+              , SPATime.NULL, "just a hybrid minion"));
         minions.add(new Minion("Two Headed Giant",550, 4, 10,
                 4, new Melee(), 0,
                 new SpecialPower("Two Headed Giant SpecialPower", 0, 0, 1, 0, "",
@@ -583,9 +586,8 @@ public class Primary {
                 new SpecialPower("EsfanDar", 0, 0, -1, 3, "",
                         TargetSingleCell.getTargetInstance(), ActionDeployHollyBuff.getAction()),
                 0, 0, "a hybrid hero with a special power of  holy buffs continuously"));
-        heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4,
-                new SpecialPower("Rostam SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
-                       TargetSingleCell.getTargetInstance(), ActionChangeAP.getAction()), 0, 0, "just a hybrid hero"));
+        heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4, nullSpecialPower
+               , 0, 0, "just a hybrid hero"));
 
         fileWriter = new FileWriter("Hero.json", false);
         for (Hero hero :
@@ -654,6 +656,6 @@ public class Primary {
             fileWriter.write("\n");
         }
         fileWriter.close();
-    }
+    }//ba T bnvis tabee writo
 
 }
