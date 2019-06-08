@@ -36,7 +36,6 @@ public class BuffEffectsOnHermione {
 
 
     public BuffEffectsOnHermione(Hermione card) {
-        System.err.println("heyyyyy ghashang dokhtar ");
         this.card = card;
     }
 
@@ -216,7 +215,7 @@ public class BuffEffectsOnHermione {
     }
 
     public void onSpawn() {
-        this.canAttack=true;
+        this.canAttack = true ;
         this.nextTurnsDamage = new ArrayList<>();
     }
 
