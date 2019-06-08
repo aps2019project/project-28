@@ -27,7 +27,7 @@ public class MenuHandler {
         SinglePlayerModeMenu.getMenu().addSubMenu(StoryModeMenu.getMenu());
         SinglePlayerModeMenu.getMenu().addSubMenu(CostumeModeMenu.getMenu());
 
-        //az Single o Multi mirim gameMode
+        //az Single o Multi mirim gameModet
 
         Battle.getMenu().addSubMenu(GraveYardMenu.getMenu());
         Battle.getMenu().addSubMenu(CollectableMenu.getMenu());
