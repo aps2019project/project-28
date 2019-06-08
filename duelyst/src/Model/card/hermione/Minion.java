@@ -19,6 +19,7 @@ public class Minion extends Hermione{
     @Override
     public void spawn(Cell cell){
         super.spawn(cell);
+
         this.spawnTurn= Battle.getMenu().getOriginalTurn();
         Battle.getMenu().getAccount().getPlayer().getMinionsInGame().add(this);
         this.itIsTime(SPATime.SPAWN);
