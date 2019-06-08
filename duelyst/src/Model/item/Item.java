@@ -15,7 +15,7 @@ import java.util.Collections;
 
 public abstract class Item {
 
-    private static ArrayList<Item> items=Primary.items;
+    private static ArrayList<Item> items = Primary.items;
     private String name;
     private Target target;
     private int duration;

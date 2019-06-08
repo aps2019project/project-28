@@ -6,7 +6,7 @@ import Model.account.Deck;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
-import Model.card.spell.SpecialPowerActions.SPActionPersianChamp;
+import Model.card.spell.SpecialPowerActions.*;
 import Model.card.spell.SpellAction.*;
 import Model.card.spell.SpellAction.ActionChangeAPBuff;
 import Model.card.spell.SpellAction.ActionChangeHPBuff;
@@ -366,7 +366,7 @@ public class Primary {
         minions.add(new Minion("Persian Swordsman", 400, 2, 6,
                 4, new Melee(), 0,
                 new SpecialPower("Persian SwordsMan SpecialPower", 0, 0, 0, 0, "",
-                        TargetEnemyCard.getTargetInstance(), ActionStun.getAction()), SPATime.ATTACK, "while attacking, enemy's card will be stunned"));
+                        TargetEnemyCard.getTargetInstance(), SPActionStunWhenAttacking.getSpecialPower()), SPATime.ATTACK, "while attacking, enemy's card will be stunned"));
         minions.add(new Minion("Persian Lancer", 500, 1, 5,
                 3, new Hybrid(), 3, nullSpecialPower
                , SPATime.NULL, "just an ordinary hybrid minion"));
@@ -381,7 +381,7 @@ public class Primary {
         minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
                 new SpecialPower("Persian General SpecialPower", 0, 0, 0, 0, "",
-                        null, ActionCombo.getAction()), SPATime.COMBO, "SPActionCombo"));
+                        null, SPActionCombo.getSpecialPower()), SPATime.COMBO, "SPActionCombo"));
         minions.add(new Minion("Turanian Archer", 500, 1, 3,
                 4, new Range(), 5, nullSpecialPower
                , SPATime.NULL, "just an ordinary range minion"));
@@ -393,8 +393,8 @@ public class Primary {
                , SPATime.NULL, "just an ordinary hybrid minion"));
 
         SpecialPower turanianSpy = new SpecialPower("Turanian Spy SpecialPower", 0, 0, 1, 0, "",
-                TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction());
-        turanianSpy.addAction(ActionDeployPoison.getAction(), 0 ,4);
+                TargetEnemyCard.getTargetInstance(), SPActionTooranianSpy.getSpecialPower());
+        turanianSpy.addAction(SPActionPoisoner.getSpecialPower(), 0 ,4);
         minions.add( new Minion("Turanian SPY", 700, 4, 6,
                 6, new Melee(), 0, turanianSpy,
                 SPATime.ATTACK, "enemy's card will be disarmed for 1 turn and will be poisoned for 4 turns"));
@@ -405,7 +405,7 @@ public class Primary {
         minions.add(new Minion("Turanian Prince",800, 6, 6,
                 10, new Melee(), 0,
                 new SpecialPower("Turanian Prince", 0, 0, 0, 0, "",
-                        null, ActionCombo.getAction()), SPATime.COMBO, "combo"));
+                        null, SPActionCombo.getSpecialPower()), SPATime.COMBO, "combo"));
         minions.add(new Minion("Black Demon", 300, 9, 14,
                 10, new Hybrid(), 7, nullSpecialPower
                , SPATime.NULL, "just a hybrid minion"));
@@ -415,7 +415,7 @@ public class Primary {
         minions.add(new Minion("Eagle", 200, 2, 0,
                 2, new Range(), 3,
                 new SpecialPower("Eagle SpecialPower", 0, 0, 0, 10, "",
-                        TargetSingleCell.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.PASSIVE, "has power buff, increases health point 10 units"));
+                        TargetSingleCell.getTargetInstance(), SPActionHPBuff.getSpecialPower()), SPATime.PASSIVE, "has power buff, increases health point 10 units"));
 
         minions.add(new Minion("Hog Rider Demon", 300, 6, 16,
                 8, new Melee(), 0, nullSpecialPower
@@ -423,46 +423,46 @@ public class Primary {
         minions.add(new Minion("One Eye Giant", 500, 7, 12,
                 11, new Hybrid(), 3,
                 new SpecialPower("One Eye Giant SpecialPower", 0, 0, 0, -2, "",
-                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks surrounding minions 2 points, on death"));
+                        RandomMinionInSurrounding.getTargetInstance(), SPActionHPBuff.getSpecialPower()), SPATime.DEATH, "attacks surrounding minions 2 points, on death"));
         minions.add(new Minion("Venomous Snake", 300, 4, 5,
                 6, new Range(), 4,
                 new SpecialPower("VenomousSnake", 0, 0, 0, 3, "",
-                        TargetEnemyCard.getTargetInstance(), ActionDeployPoison.getAction()), SPATime.ATTACK, "enemy's card will be poisoned, duration : 3"));
+                        TargetEnemyCard.getTargetInstance(), SPActionPoisoner.getSpecialPower()), SPATime.ATTACK, "enemy's card will be poisoned, duration : 3"));
         minions.add(new Minion("Fire Dragon", 250, 5, 9,
                 5, new Range(), 4, nullSpecialPower
                , SPATime.NULL,"just an ordinary range minion"));
         minions.add(new Minion("Fierce Lion",600, 2, 1,
                 8, new Melee(), 0,
                 new SpecialPower("Fierce Lion SpecialPower", 0, 0, 0, 0, "",
-                        TargetEnemyCard.getTargetInstance(), ActionDispel.getAction()), SPATime.ATTACK, "holy buff doesn't effect its attack"));
-        //todo fateme
+                        TargetEnemyCard.getTargetInstance(), SPActionHolyBuffDiverter.getSpecialPower()), SPATime.ATTACK, "holy buff doesn't effect its attack"));
         minions.add(new Minion("Giant Snake", 500, 8, 14,
                 7, new Range(), 5,
                 new SpecialPower("Giant Snake SpecialPower", 0, 0, -1, -1, "",
-                        TargetEnemyMinionswithin2ManhattanDistance.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "akse holy buff"));
+                        TargetEnemyMinionswithin2ManhattanDistance.getTargetInstance(), SPActionUnholyer.getSpecialPower()), SPATime.ATTACK, "akse holy buff"));
         minions.add(new Minion("White Wolf", 400, 5, 8,
                 2, new Melee(), 0,
                 new SpecialPower("White Wolf SpecialPower", 0, 0, 2, -6, "",
-                        TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units, next turn, minion's health point will be decreased 4 units"));//unhanddeled
+                        TargetEnemyMinion.getTargetInstance(), SPActionWhiteWolf.getSpecialPower()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units, next turn, minion's health point will be decreased 4 units"));//unhanddeled
         minions.add(new Minion("Leopard",400, 4, 6,
                 2, new Melee(), 0,
                 new SpecialPower("Leopard SpecialPower", 0, 0, 1, -8, "",
-                        TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 8 units"));
+                        TargetEnemyMinion.getTargetInstance(), SPActionNextTurnDamager.getSpecialPower()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 8 units"));
         minions.add(new Minion("Wolf", 400, 3, 6,
                 1, new Melee(), 0,
                 new SpecialPower("Wolf SpecialPower", 0, 0, 0, -6, "",
-                        TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
+                        TargetEnemyMinion.getTargetInstance(), SPActionNextTurnDamager.getSpecialPower()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
 
         SpecialPower theWizard =  new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
-                RandomMinionInSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
-        theWizard.addAction(ActionChangeHPBuff.getAction(), -1, 1);
+                RandomMinionInSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());//todo fatteme
+        theWizard.addAction(SPActionHPBuff.getSpecialPower(), -1, 1);
         minions.add(new Minion("The Wizard", 550, 4, 5,
                 4, new Range(), 3, theWizard, SPATime.PASSIVE
                 ,"gives own and minions surrounded a power buff, increases attack point 2 units + a weakness buff, decreases health point 1 unit for one turn"));
 
         SpecialPower theGreatWizard = new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2, "",
-                OwnMinionAndItsSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
-        theGreatWizard.addAction(ActionDeployHollyBuff.getAction(), 0, -1);
+                OwnMinionAndItsSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());//todo fatteme
+        theGreatWizard.addAction(ActionChangeAP.getAction(), 0, -1);//todo fatteme
+
         minions.add(new Minion("The Great Wizard",550, 6, 6,
                 6, new Range(), 5, theGreatWizard
                 ,SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
@@ -471,7 +471,7 @@ public class Primary {
                 4, new Range(), 4,
                 new SpecialPower("Genie SpecialPower", 0, 0, -1, 1, "",
                         TargetAllOwnMinions.getTargetInstance(), ActionChangeAPBuff.getAction()), SPATime.ON_TURN, "a continuous power buff, increases attack point 1 unit"));
-
+        //todo
         /*minions.add(new Minion("Wild Goraz",500, 6, 10,
                 14, new Melee(), 0,
                 , SPATime.DEFEND));
@@ -485,7 +485,7 @@ public class Primary {
         minions.add(new Minion("Bahman", 450, 8, 16,
                 9, new Melee(), 0,
                 new SpecialPower("Bahman SpecialPower", 0, 0, 1, -16, "",
-                        TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.SPAWN, "decreases health point of a random enemy minion 16 units "));
+                        TargetEnemyMinion.getTargetInstance(), SPActionHPBuff.getSpecialPower()), SPATime.SPAWN, "decreases health point of a random enemy minion 16 units "));
 
         /*inions.add(new Minion("Ashkbus",400, 7, 14,
                 8, new Melee(), 0,
@@ -505,22 +505,23 @@ public class Primary {
         minions.add(new Minion("Mother Ice", 500, 3, 3,
                 4, new Range(), 5,
                 new SpecialPower("Mother Ice SpecialPower", 0, 0, 1, 0, "",
-                        TargetAllMinionsInSurrounding.getTargetInstance(), ActionStun.getAction()), SPATime.SPAWN, "enemy minions surrounding stun for 1 turn"));
+                        TargetAllMinionsInSurrounding.getTargetInstance(), SPActionStunWhenAttacking.getSpecialPower()), SPATime.SPAWN, "enemy minions surrounding stun for 1 turn"));
         minions.add(new Minion("Foolad Zereh", 650, 3, 1,
                 1, new Melee(), 0,
                 new SpecialPower("Foolad zereh SpecialPower", 0, 0, -1, 12, "",
                         TargetSingleCell.getTargetInstance(), ActionDeployHollyBuff.getAction()), SPATime.PASSIVE, "12 holy buffs continuously"));
+        //todo
         minions.add(new Minion("Siavash", 350, 4, 8,
                 5, new Melee(), 0,
                 new SpecialPower("Siavash SpecialPower", 0, 0, 0, -6, "",
-                        TargetEnemyHero.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks enemy's hero 6 points, on death"));
+                        TargetEnemyHero.getTargetInstance(), SPActionHPBuff.getSpecialPower()), SPATime.DEATH, "attacks enemy's hero 6 points, on death"));
         minions.add(new Minion("Eurymedon",600, 5, 10,
                 4, new Melee(), 0,
                 new SpecialPower("Eurymedon SpecialPower", 0, 0, 0, 0, "",
-                        null, ActionCombo.getAction()), SPATime.COMBO, "SPActionCombo"));
+                        null, SPActionCombo.getSpecialPower()), SPATime.COMBO, "SPActionCombo"));
         minions.add(new Minion("Arzhang Div",600, 3, 6,
                 6, new Melee(), 0, new SpecialPower("Arzhangs SpecialPower", 0, 0, 0, 0, "",
-                null, ActionCombo.getAction())
+                null, SPActionCombo.getSpecialPower())
                 , SPATime.COMBO, "SPActionCombo"));
 
         fileWriter = new FileWriter("Minion.json", false);
@@ -536,12 +537,12 @@ public class Primary {
         heroes.add(new Hero("White Demon", 8000, 50, 4, new Melee(), 0,
                 new SpecialPower("White Demon", 0, 1, -1, 4, "",
                         TargetSingleCell.getTargetInstance(), ActionChangeAPBuff.getAction())
-                , 0, 2, "a melee hero with special power of power buff with increasing attack point 4 units continuously"));
+                , 0, 2, "a melee hero with special power of power buff with increasing attack point 4 units continuously"));//TODO
         heroes.add(new Hero("Simorgh", 9000, 50, 4, new Melee(), 0,
                 new SpecialPower("Simorgh", 0, 5, 1, 0, "",
-                        TargetAllEnemyCards.getTargetInstance(), ActionStun.getAction())
+                        TargetAllEnemyCards.getTargetInstance(), SPActionStunWhenAttacking.getSpecialPower())
                 , 0, 8, "a melee hero with special power of stuning all enemy cards for 1 turn"));
-        heroes.add(new Hero("Seven Headed Dragon", 50, 4, 0, new Melee(), 0,
+        heroes.add(new Hero("Seven Headed Dragon", 8000, 50, 4,  new Melee(), 0,
                 new SpecialPower("Seven Headed Dragon", 0, 0, 1, 0, "",
                         TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction())
                 , 0, 1, "a melee hero with special power of disarming 1 enemy"));
@@ -551,7 +552,7 @@ public class Primary {
                 , 0, 2, "a melee hero with special power of stunning enemy for 1 turn"));
         heroes.add(new Hero("Zahak", 10000, 50, 2, new Melee(), 0,
                 new SpecialPower("Zahak", 0, 0, 3, 0, "",
-                        TargetEnemyCard.getTargetInstance(), ActionDeployPoison.getAction())
+                        TargetEnemyCard.getTargetInstance(), SPActionPoisoner.getSpecialPower())
                 , 0, 0, "a melee hero with special power of poisoning enemy 3 turns after attack"));
         heroes.add(new Hero("Kaveh", 8000, 50, 4, new Melee(), 0,
                 new SpecialPower("Kaveh", 0, 1, 3, 0, "",
@@ -559,16 +560,16 @@ public class Primary {
                 0, 3, "a melee hero with special power of hollycell for 3 turns"));
         heroes.add(new Hero("Arash", 10000, 30, 2, new Range(), 6,
                 new SpecialPower("Arash", 0, 2, 1, -4, "",
-                        TargetOwnHeroRow.getTargetInstance(), ActionChangeHPBuff.getAction())
+                        TargetOwnHeroRow.getTargetInstance(), SPActionHPBuff.getSpecialPower())
                 , 0, 2, "a range hero with special power of attacking its own row cards 4 points"));
         heroes.add(new Hero("Afsane", 11000, 40, 3, new Range(), 3,
                 new SpecialPower("Afsane", 0, 1, 1, 0, "",
-                        TargetEnemyCard.getTargetInstance(), ActionDispel.getAction())
+                        TargetEnemyCard.getTargetInstance(), SPActionDisBuffer.getSpecialPower())
                 , 0, 2, "a range hero with special power of dispelling 1 enemy card"));
         heroes.add(new Hero("EsfanDar", 12000, 35, 3, new Hybrid(), 3,
                 new SpecialPower("EsfanDar", 0, 0, -1, 3, "",
                         TargetSingleCell.getTargetInstance(), ActionDeployHollyBuff.getAction()),
-                0, 0, "a hybrid hero with a special power of  holy buffs continuously"));
+                0, 0, "a hybrid hero with a special power of  holy buffs continuously"));//todo holybuff
         heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4, nullSpecialPower
                , 0, 0, "just a hybrid hero"));
 

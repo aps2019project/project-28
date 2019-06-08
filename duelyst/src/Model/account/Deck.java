@@ -7,6 +7,7 @@ import Model.card.hermione.Minion;
 import Model.item.Item;
 import Model.item.Usable;
 import View.Listeners.OnDeckPresentedListener;
+import com.gilecode.yagson.YaGson;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -39,18 +40,23 @@ public class Deck {
 
     public void loadCards() throws InvalidCardException {
         cards = new ArrayList<>();
+        YaGson gson = new YaGson();
         for (Integer card : cardIDs) {
-            Card wantedCard = this.collection.getCard(card);
+            String jsonCard = gson.toJson(this.collection.getCard(card));
+            Card wantedCard = gson.fromJson(jsonCard, Card.class);
             cards.add(wantedCard);
         }
-        Card hero = this.collection.getCard(heroID);
-        this.hero = (Hero)hero;
+        String jsonHero = gson.toJson(this.collection.getCard(heroID));
+        Hero hero = gson.fromJson(jsonHero, Hero.class);
+        this.hero = hero;
     }
 
     public void loadItems() throws InvalidItemException {
         items = new ArrayList<>();
+        YaGson gson = new YaGson();
         for (Integer itemID : itemIDs) {
-            Item item = this.collection.getItem(itemID);
+            String jsonItem = gson.toJson(this.collection.getItem(itemID));
+            Item item = gson.fromJson(jsonItem, Item.class);
             items.add(item);
         }
     }

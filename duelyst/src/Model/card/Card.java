@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public abstract class Card {
-    private static ArrayList<Card> cards= Primary.cards;
+    //todo inja get card bzn
+
+    private static ArrayList<Card> cards = Primary.cards;
 
     public static int uniqueID =0;
 
