@@ -401,11 +401,11 @@ public class Primary {
                 new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
                         null, ActionChangeAP.getAction()), SPATime.NULL, "just an ordinary hybrid minion"));
         //TODO @fattem3 -> constructor !
-                                minions.add(new Minion("Turanian SPY", 700, 4, 6,
-                                        6, new Melee(), 0,
-                                        new SpecialPower("Turanian Spy SpecialPower", 0, 0, 1, 4, "",
-                                                TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction(),
-                                                ActionDeployPoison.getAction()), SPATime.ATTACK, "enemy's card will be disarmed for 1 turn and will be poisoned for 4 turns"));
+//                                minions.add(new Minion("Turanian SPY", 700, 4, 6,
+//                                        6, new Melee(), 0,
+//                                        new SpecialPower("Turanian Spy SpecialPower", 0, 0, 1, 4, "",
+//                                                TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction(),
+//                                                ActionDeployPoison.getAction()), SPATime.ATTACK, "enemy's card will be disarmed for 1 turn and will be poisoned for 4 turns"));
 
         minions.add(new Minion("Turanian MaceBearer", 450, 2, 3,
                 10, new Melee(), 0,
@@ -467,20 +467,20 @@ public class Primary {
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
 
         //TODO @fattem3 -> constructor !
-                                        minions.add(new Minion("The Wizard", 550, 4, 5,
-                                                4, new Range(), 3,
-                                                new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
-                                                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeHP.getAction(), ActionChangeAP.getAction()),
-                                                SPATime.PASSIVE, "gives own and minions surrounded a power buff, increases attack point 2 units + a weakness buff, decreases health point 1 unit for one turn"));
-
-                                        minions.add(new Minion("The Great Wizard",550, 6, 6,
-                                                6, new Range(), 5, new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2, "",
-                                                OwnMinionAndItsSurrounding.getTargetInstance(), ActionChangeAP.getAction(), ActionDeployHollyBuff.getAction())
-                                                ,SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
-        minions.add(new Minion("Genie", 500, 5, 10,
-                4, new Range(), 4,
-                new SpecialPower("Genie SpecialPower", 0, 0, -1, 1, "",
-                        TargetAllOwnMinions.getTargetInstance(), ActionChangeAP.getAction()), SPATime.ON_TURN, "a continuous power buff, increases attack point 1 unit"));
+//                                        minions.add(new Minion("The Wizard", 550, 4, 5,
+//                                                4, new Range(), 3,
+//                                                new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
+//                                                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeHP.getAction(), ActionChangeAP.getAction()),
+//                                                SPATime.PASSIVE, "gives own and minions surrounded a power buff, increases attack point 2 units + a weakness buff, decreases health point 1 unit for one turn"));
+//
+//                                        minions.add(new Minion("The Great Wizard",550, 6, 6,
+//                                                6, new Range(), 5, new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2, "",
+//                                                OwnMinionAndItsSurrounding.getTargetInstance(), ActionChangeAP.getAction(), ActionDeployHollyBuff.getAction())
+//                                                ,SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
+//        minions.add(new Minion("Genie", 500, 5, 10,
+//                4, new Range(), 4,
+//                new SpecialPower("Genie SpecialPower", 0, 0, -1, 1, "",
+//                        TargetAllOwnMinions.getTargetInstance(), ActionChangeAP.getAction()), SPATime.ON_TURN, "a continuous power buff, increases attack point 1 unit"));
 
         /*minions.add(new Minion("Wild Goraz",500, 6, 10,
                 14, new Melee(), 0,
