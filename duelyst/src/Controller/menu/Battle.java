@@ -146,11 +146,13 @@ public class Battle extends Menu {
 
 
     public void select(int ID) throws InvalidCardException, InvalidItemException {
+        System.err.println();
         Deck deck = this.account.getPlayer().getDeck();
         if (this.account.getPlayer().hasItem(ID)) {
             this.account.getPlayer().setSelectedItem(this.account.getPlayer().getItem(ID));
             return;
         } else if (deck.hasCard(ID)) {
+            //// TODO: 6/8/19 instance of
             for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
                 if (minion.getCardID() == ID) {
                     this.account.getPlayer().setSelectedCard(minion);

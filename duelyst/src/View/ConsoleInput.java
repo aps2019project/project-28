@@ -2,6 +2,9 @@ package View;
 
 
 
+import Controller.Game;
+import Controller.menu.Battle;
+
 import java.util.Scanner;
 
 public class ConsoleInput {
@@ -12,6 +15,12 @@ public class ConsoleInput {
         MenuHandler.showMenu();
         String command;
         while(commands.hasNext()){
+            System.err.println("heyyyyyy sexy lady");
+            try {
+                System.err.println(Battle.getMenu().getPlayer().getDeck().getHero().getBuffEffects().allowsAttack()+"allows attack");
+            }catch (Exception e){}
+            System.err.println(Game.accounts[0].getPlayer().getClass());
+            System.err.println(Game.accounts[1].getPlayer().getClass());
             command = commands.nextLine().toLowerCase().trim();
 
             consoleOutput.handleCommand(command);

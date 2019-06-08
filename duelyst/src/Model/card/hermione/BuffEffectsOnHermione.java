@@ -6,6 +6,7 @@ import Model.Map.CellAffects;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.Buff.BuffActions.BuffActionDisarm;
 import Model.card.spell.Buff.BuffActions.BuffActionPoison;
+import Model.card.spell.Buff.BuffActions.BuffActionStun;
 import Model.card.spell.BuffTypes.BuffTypePassive;
 import Model.card.spell.SpellAction.ActionDeployPoison;
 import Model.card.spell.Targets.TargetRandomEnemy;
@@ -22,6 +23,7 @@ public class BuffEffectsOnHermione {
     private int changedHealthPointDueToBuff = 0 ;
     private boolean hasThePoisonousDagger = false ;
     private boolean damoolArch = false ;
+    private boolean stunnerInAttack = false ;
     private boolean canCounterAttack = true ;
     private boolean canMove = true ;
     private boolean canAttack = true ;
@@ -34,6 +36,7 @@ public class BuffEffectsOnHermione {
 
 
     public BuffEffectsOnHermione(Hermione card) {
+        System.err.println("heyyyyy ghashang dokhtar ");
         this.card = card;
     }
 
@@ -68,6 +71,11 @@ public class BuffEffectsOnHermione {
             Buff disarm = new Buff(1 , false , BuffActionDisarm.getBuffAction());
             disarm.deploy(Battle.getMenu().getPlayer() , enemyCard);
         }
+        if (stunnerInAttack){
+            Buff stun = new Buff(1 , false , BuffActionStun.getBuffAction(), BuffTypePassive.getBuffTypeInstance());
+            stun.deploy(Battle.getMenu().getPlayer() , enemyCard);
+        }
+
     }
 
     public void handleOnDeath(){
@@ -208,10 +216,15 @@ public class BuffEffectsOnHermione {
     }
 
     public void onSpawn() {
+        this.canAttack=true;
         this.nextTurnsDamage = new ArrayList<>();
     }
 
     public void setDamoolArch(boolean damoolArch) {
         this.damoolArch = damoolArch;
+    }
+
+    public void setStunnerInAttack(boolean stunnerInAttack) {
+        this.stunnerInAttack = stunnerInAttack;
     }
 }

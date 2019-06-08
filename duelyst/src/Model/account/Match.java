@@ -34,6 +34,8 @@ public class Match {
         this.accounts[1] = gson.fromJson(secondAccount, Account.class);
         first.setPlayer(firstPlayer);
         second.setPlayer(secondPlayer);
+        accounts[0].player = firstPlayer;
+        accounts[1].player = secondPlayer;
         this.lastDateModified=new Date();
         this.startingTime=System.currentTimeMillis();
         this.gamemode=gameMode;

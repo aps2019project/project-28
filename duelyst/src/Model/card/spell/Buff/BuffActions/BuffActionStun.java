@@ -11,6 +11,7 @@ public class BuffActionStun implements BuffActions {
     }
 
     public void affect(Buff buff) {
+        System.err.println("hey bitches im fucking your code ha ha ha");
         buff.getTarget().getBuffEffects().setCanAttack(false);
         buff.getTarget().getBuffEffects().setCanMove(false);
         System.err.println("just stunned that guy : " + buff.getTarget());
