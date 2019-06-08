@@ -23,9 +23,17 @@ public class Match {
     public Match(Account first, Account second, GameMode gameMode) {
 
         this.accounts =new Account[]{first,second};
+        Player firstPlayer = first.player;
+        Player secondPlayer = second.player;
+        first.player = null;
+        second.player = null;
         YaGson gson = new YaGson();
-        this.accounts[0] = gson.fromJson(gson.toJson(first), Account.class);
-        this.accounts[1] = gson.fromJson(gson.toJson(second), Account.class);
+        String firstAccount = gson.toJson(first);
+        String secondAccount = gson.toJson(second);
+        this.accounts[0] = gson.fromJson(firstAccount, Account.class);
+        this.accounts[1] = gson.fromJson(secondAccount, Account.class);
+        accounts[0].player = firstPlayer;
+        accounts[1].player = secondPlayer;
         this.lastDateModified=new Date();
         this.startingTime=System.currentTimeMillis();
         this.gamemode=gameMode;
