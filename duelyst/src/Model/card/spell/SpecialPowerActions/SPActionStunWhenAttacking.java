@@ -21,8 +21,7 @@ public class SPActionStunWhenAttacking implements Action {
     public void deploy(Spell spell, Cell... cells) throws InvalidCellException, InvalidCardException {
         for (Cell cell : cells){
             if (cell.getCardOnCell() != null){
-                Buff stun = new Buff(1 , false , BuffActionStun.getBuffAction(), BuffTypePassive.getBuffTypeInstance());
-                stun.deploy(Battle.getMenu().getPlayer() , cell.getCardOnCell());
+                cell.getCardOnCell().getBuffEffects().setStunnerInAttack(true);
             }
         }
     }

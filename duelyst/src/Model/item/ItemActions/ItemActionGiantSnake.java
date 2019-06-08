@@ -16,7 +16,6 @@ class ItemActionGiantSnake implements ItemAction {
     public void deploy(Item item, Cell[] target)throws InvalidCellException {
         for (Cell cell : target){
             if(cell.getCardOnCell() == null || !(cell.getCardOnCell() instanceof Minion)) throw new InvalidCellException("wtf ! itemActionGiantSnake ! this shouldn't happen !") ;
-            // TODO: 6/8/19 saE cannotfindsymbol exception
             //            cell.getCardOnCell().getBuffEffects().setHasTheGiantSnakeEffect(true);
         }
     }

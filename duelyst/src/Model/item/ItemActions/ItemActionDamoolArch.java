@@ -15,7 +15,7 @@ public class ItemActionDamoolArch implements ItemAction {
     public void deploy(Item item, Cell[] target){
         for (Cell cell : target){
             if (cell.getCardOnCell() != null && !(cell.getCardOnCell().getAttackType() instanceof Melee))
-                cell.getCardOnCell().setRange(cell.getCardOnCell().getRange() + item.getPerk());
+                cell.getCardOnCell().getBuffEffects().setDamoolArch(true);
         }
     }
 }
