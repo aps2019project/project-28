@@ -17,11 +17,13 @@ import Model.item.Item;
 import Model.item.ItemActions.*;
 import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
+import com.gilecode.yagson.com.google.gson.Gson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import exeption.*;
 
 import java.io.*;
+import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
 
 public class Primary {
@@ -327,19 +329,19 @@ public class Primary {
         spells.add(new Spell("Area Dispel", 1500, 2, 1, 1, "kills the negative buffs of your own cards and positive buffs of enemy cards in 2*2 area",
                 TargetTwoByTwo.getTargetInstance(), ActionDispel.getAction()));
         spells.add(new Spell("Empower", 250, 1, 1, 2, "increases Attack Point 2 units",
-                TargetOwnCard.getTargetInstance(), ActionChangeAPBuff.getAction()));
+                TargetOwnCard.getTargetInstance(), ActionChangeAP.getAction()));
         spells.add(new Spell("Fireball", 400, 1, 1, -4, "increases Attack Point 4 units",
-                TargetEnemyCard.getTargetInstance(), ActionChangeHPBuff.getAction()));
+                TargetEnemyCard.getTargetInstance(), ActionChangeHP.getAction()));
         spells.add(new Spell("God Strength", 450, 2, 1, 4, "increases Attack Point of Hero 4 units",
-                TargetOwnHero.getTargetInstance(), ActionChangeAPBuff.getAction()));
+                TargetOwnHero.getTargetInstance(), ActionChangeAP.getAction()));
         spells.add(new Spell("Hell Fire", 600, 3, 2, 0, "fireCell, duration : 2",
                 TargetTwoByTwo.getTargetInstance(), ActionApplyFirecell.getAction()));
         spells.add(new Spell("Lightning Bolt", 1250, 2, 1, -8, "attacks enemy's Hero 8 units",
-                TargetEnemyHero.getTargetInstance(), ActionChangeHPBuff.getAction()));
+                TargetEnemyHero.getTargetInstance(), ActionChangeHP.getAction()));
         spells.add(new Spell("Poison Lake", 900, 5, 1, 0, "poisonCell, duration : 1",
                 TargetThreeByThree.getTargetInstance(), ActionPoisonCell.getAction()));
         Spell maddness = new Spell("Madness", 650, 0, 3, 4,"increases Attack Point 4 units, duration : 3, but the card will be disarmed",
-                TargetOwnCard.getTargetInstance(), ActionChangeAPBuff.getAction()) ;
+                TargetOwnCard.getTargetInstance(), ActionChangeAP.getAction()) ;
         maddness.addAction(ActionDisarm.getAction() , 0 , 1 );
         spells.add(maddness);
         spells.add(new Spell("All Disarm", 2000, 9, 1, 0, "all of enemy cards will be disarmed, duration : 1",
@@ -355,7 +357,7 @@ public class Primary {
         spells.add(new Spell("All Power", 2000, 4, -1, 2, "gives your own cards a powerbuff, increases attack point 2 units permanently",
                 TargetAllOwnCards.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("All Attack", 1500, 4, 1, -6, "attacks all enemy cards by 6 units",
-                TargetAllEnemyCards.getTargetInstance(), ActionChangeHPBuff.getAction()));
+                TargetAllEnemyCards.getTargetInstance(), ActionChangeHP.getAction()));
         spells.add(new Spell("Weakening", 1000, 1, 1, -4,"gives an enemy minion a weakness buff, it decreases attack point 4 units",
                 TargetEnemyMinion.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("Sacrifice", 1600, 2, 1, -6, "gives an own minion a power buff, it increases attack point 8 units , it gives weakness buff too, it decreases health point 6 units",
@@ -393,8 +395,7 @@ public class Primary {
         minions.add(new Minion("Persian Warrior", 600, 9, 24,
                 6, new Melee(), 0,
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, -5, "",
-                        TargetEnemyCard.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "be tedad dafati ke dar nobat haye qabl be yek niru hamle karde, 5 vahed bishtar be an zarbe vared mikonad"));
-        //TODO in Actionesh chie?
+                        TargetEnemyCard.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK, "be tedad dafati ke dar nobat haye qabl be yek niru hamle karde, 5 vahed bishtar be an zarbe vared mikonad"));
         minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
                 new SpecialPower("Persian General SpecialPower", 0, 0, 0, 0, "",
@@ -452,7 +453,7 @@ public class Primary {
                 8, new Melee(), 0,
                 new SpecialPower("Fierce Lion SpecialPower", 0, 0, 0, 0, "",
                         TargetEnemyCard.getTargetInstance(), ActionDispel.getAction()), SPATime.ATTACK, "holy buff doesn't effect its attack"));
-
+        //todo fateme
         minions.add(new Minion("Giant Snake", 500, 8, 14,
                 7, new Range(), 5,
                 new SpecialPower("Giant Snake SpecialPower", 0, 0, -1, -1, "",
@@ -603,11 +604,11 @@ public class Primary {
         usables.add(new Usable("Shield AF", 4000, 1, 12, "for own hero, 12 holy buff",
                 TargetOwnHero.getTargetInstance(), ItemActionShieldAF.getItemAction()));
         usables.add(new Usable("Damool Arch", 30000, 1, 0, "only for ranged or hybrid own hero, while attacking disarms enemy card, duration : 1",
-                TargetOwnHero.getTargetInstance(), ItemActionDamoolArch.getItemAction()));
+                TargetEnemyCard.getTargetInstance(), ItemActionDamoolArch.getItemAction()));
         usables.add(new Usable("Simorgh feather", 3500, 1, -2, "only for ranged or hybrid enemy hero, decreases attack point 2 units",
-                TargetEnemyHero.getTargetInstance(), ItemAction30chicken.getItemAction()));
+                TargetRangedAndHybrid.getTargetInstance(), ItemAction30chicken.getItemAction()));
         usables.add(new Usable("Terror Hood", 5000, 1, -2, "while attacking, weakness buff on random enemy card, decreases attack point 2 units",
-                TargetRandomEnemy.getTargetInstance(), ItemActionChangeAPBuff.getItemAction()));
+                TargetRandomEnemy.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         usables.add(new Usable("King Wisdom", 9000, -1, 0, "gets extra mana every turn",
                 TargetSingleCell.getTargetInstance(), ItemActionKingsWisdom.getItemAction()));
         usables.add(new Usable("Assassination Dagger", 15000, 1, 1, "while putting own cards, attacks enemy hero 1 point",
@@ -617,9 +618,9 @@ public class Primary {
         usables.add(new Usable("Shock Hammer", 15000, 1, 0, "own hero while attacking disarms an enemy card, duration : 1",
                 TargetEnemyCard.getTargetInstance(), ItemActionDisArm.getItemAction()));
         usables.add(new Usable("Soul Eater", 25000, 1, 1, "on death of one of own cards, every own card gets power buff, increases attck point 1 unit",
-                TargetOwnCard.getTargetInstance(), ItemActionChangeAPBuff.getItemAction()));
+                TargetOwnCard.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         usables.add(new Usable("‌Baptism", 20000, 2, 0, "every minion when spawns gets holy buff, duration : 2",
-                TargetOwnMinion.getTargetInstance(), ItemActionBaptism.getItemAction()));
+                TargetOwnMinion.getTargetInstance(), ItemActionChangeAP.getItemAction()));
 
         fileWriter = new FileWriter("Usables.json", false);
         for (Usable usable :
@@ -640,7 +641,7 @@ public class Primary {
         collectables.add(new Collectable("RooEnTan's Majoon",2,10, "10 holy buffs, duration : 2, for a random own card",
                 TargetRandomOwn.getTargetInstance(), ItemActionHolyBuff.getItemAction()));
         collectables.add(new Collectable("Death's Curse", 0, 8, "8 attack points on nearest enemy card for a random minion ",
-                TargetRandomOwnMinion.getTargetInstance(), ItemActionMinionRandomAttacker.getItemAction()));
+                TargetRandomOwnMinion.getTargetInstance(), ItemActionDeathCurse.getItemAction()));
         collectables.add(new Collectable("Random damage", 1, 2, "2 attack points for random card",
                 TargetRandomOwn.getTargetInstance(), ItemActionRandomDamage.getItemAction()));
         collectables.add(new Collectable("Blades of agility", 1, 6, "6 attack points for a random card",
