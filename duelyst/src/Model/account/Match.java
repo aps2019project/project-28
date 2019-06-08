@@ -23,9 +23,9 @@ public class Match {
     public Match(Account first, Account second, GameMode gameMode) {
 
         this.accounts =new Account[]{first,second};
-        YaGson gson = new YaGson();
-        this.accounts[0] = gson.fromJson(gson.toJson(first), Account.class);
-        this.accounts[1] = gson.fromJson(gson.toJson(second), Account.class);
+//        YaGson gson = new YaGson();
+//        this.accounts[0] = gson.fromJson(gson.toJson(first), Account.class);
+//        this.accounts[1] = gson.fromJson(gson.toJson(second), Account.class);
         this.lastDateModified=new Date();
         this.startingTime=System.currentTimeMillis();
         this.gamemode=gameMode;
