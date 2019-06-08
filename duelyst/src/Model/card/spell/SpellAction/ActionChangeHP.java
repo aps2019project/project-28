@@ -1,6 +1,5 @@
 package Model.card.spell.SpellAction;
 
-import Controller.Game;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.hermione.Hermione;
@@ -20,10 +19,14 @@ public class ActionChangeHP implements Action {
     @Override
     public void deploy(Spell spell, Cell... cells) throws InvalidCellException {
         for (Cell cell : cells) {
-            Hermione card = cell.getCardOnCell();
-            Buff buff = new Buff(spell.getDuration(spell.getIndexOfAction(ActionChangeHP.getAction())), spell.getPerk(spell.getIndexOfAction(ActionChangeHP.getAction())) > 0, BuffActionHP.getBuffAction());
-            buff.deploy(Battle.getMenu().getPlayer(), cell.getCardOnCell());
-            card.changeHealthPoint(spell.getPerk(spell.getIndexOfAction(ActionChangeHP.getAction())));
+            if (cell != null && cell.getCardOnCell() != null) {
+                try {
+                    Hermione card = cell.getCardOnCell();
+                    card.changeHealthPoint(spell.getPerk(spell.getIndexOfAction(this)));
+                } catch (NullPointerException e) {
+                    System.err.println("nullPointerException in ActionChangeHP");
+                }
+            }
         }
     }
 }

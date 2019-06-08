@@ -1,6 +1,7 @@
 package Model.item.ItemActions;
 
 import Model.Map.Cell;
+import Model.card.hermione.Melee;
 import Model.item.Item;
 
 public class ItemActionDamoolArch implements ItemAction {
@@ -13,7 +14,8 @@ public class ItemActionDamoolArch implements ItemAction {
 
     public void deploy(Item item, Cell[] target){
         for (Cell cell : target){
-            cell.getCardOnCell().setRange(cell.getCardOnCell().getRange() + item.getPerk());
+            if (cell.getCardOnCell() != null && !(cell.getCardOnCell().getAttackType() instanceof Melee))
+                cell.getCardOnCell().setRange(cell.getCardOnCell().getRange() + item.getPerk());
         }
     }
 }

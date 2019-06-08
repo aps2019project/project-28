@@ -2,6 +2,9 @@ package Model.account;
 import Controller.Game;
 import Controller.GameMode.GameMode;
 
+import com.gilecode.yagson.YaGson;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,16 +15,25 @@ public class Match {
     private Date lastDateModified;
     private int state; //0-->first player won    1-->second player won
     private long startingTime;
+    private GameMode gamemode;
 
     private ArrayList<Command>commands=new ArrayList<>();
     private int commandsPointer=0;
 
-    private GameMode gamemode;
-
     public Match(Account first, Account second, GameMode gameMode) {
 
-        // TODO: 6/7/19 fattme first o second ro inja ba json hard copy bezan plz
         this.accounts =new Account[]{first,second};
+        Player firstPlayer = first.player;
+        Player secondPlayer = second.player;
+        first.player = null;
+        second.player = null;
+        YaGson gson = new YaGson();
+        String firstAccount = gson.toJson(first);
+        String secondAccount = gson.toJson(second);
+        this.accounts[0] = gson.fromJson(firstAccount, Account.class);
+        this.accounts[1] = gson.fromJson(secondAccount, Account.class);
+        accounts[0].player = firstPlayer;
+        accounts[1].player = secondPlayer;
         this.lastDateModified=new Date();
         this.startingTime=System.currentTimeMillis();
         this.gamemode=gameMode;

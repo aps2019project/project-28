@@ -7,6 +7,7 @@ import Model.item.Item;
 import Model.item.Usable;
 import exeption.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Collection {
@@ -56,13 +57,13 @@ public class Collection {
         }
     }
 
-    public void exportDeck(String name) throws InvalidDeckException {
-        if(doesDefaultDeckExist(name)){
-            if(hasDefaultDeck(name)){
-                Deck defaultDeck = getDefaultDeck(name);
-                this.decks.remove(defaultDeck);
-            }else throw new InvalidDeckException();
-        }else throw new InvalidDeckException();
+    public void exportDeck(String name) throws InvalidDeckException, IOException{
+        if(this.hasDeck(name)){
+            Deck deck = getDeck(name);
+            Primary.defaultDecks.add(deck);
+            Primary.defaultNames.add(name);
+            Primary.setDefaultDeck(deck);
+        }
     }
 
     public boolean hasDefaultDecksCards(Deck defaultDeck){
