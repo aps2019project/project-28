@@ -6,6 +6,7 @@ import Model.account.Deck;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
+import Model.card.spell.SpecialPowerActions.SPActionPersianChamp;
 import Model.card.spell.SpellAction.*;
 import Model.card.spell.SpellAction.ActionChangeAPBuff;
 import Model.card.spell.SpellAction.ActionChangeHPBuff;
@@ -327,15 +328,15 @@ public class Primary {
         spells.add(new Spell("Area Dispel", 1500, 2, 1, 1, "kills the negative buffs of your own cards and positive buffs of enemy cards in 2*2 area",
                 TargetTwoByTwo.getTargetInstance(), ActionDispel.getAction()));
         spells.add(new Spell("Empower", 250, 1, 1, 2, "increases Attack Point 2 units",
-                TargetOwnCard.getTargetInstance(), ActionChangeAPBuff.getAction()));
+                TargetOwnCard.getTargetInstance(), ActionChangeAP.getAction()));
         spells.add(new Spell("Fireball", 400, 1, 1, -4, "increases Attack Point 4 units",
-                TargetEnemyCard.getTargetInstance(), ActionChangeHPBuff.getAction()));
+                TargetEnemyCard.getTargetInstance(), ActionChangeHP.getAction()));
         spells.add(new Spell("God Strength", 450, 2, 1, 4, "increases Attack Point of Hero 4 units",
-                TargetOwnHero.getTargetInstance(), ActionChangeAPBuff.getAction()));
+                TargetOwnHero.getTargetInstance(), ActionChangeAP.getAction()));
         spells.add(new Spell("Hell Fire", 600, 3, 2, 0, "fireCell, duration : 2",
                 TargetTwoByTwo.getTargetInstance(), ActionApplyFirecell.getAction()));
         spells.add(new Spell("Lightning Bolt", 1250, 2, 1, -8, "attacks enemy's Hero 8 units",
-                TargetEnemyHero.getTargetInstance(), ActionChangeHPBuff.getAction()));
+                TargetEnemyHero.getTargetInstance(), ActionChangeHP.getAction()));
         spells.add(new Spell("Poison Lake", 900, 5, 1, 0, "poisonCell, duration : 1",
                 TargetThreeByThree.getTargetInstance(), ActionPoisonCell.getAction()));
         Spell maddness = new Spell("Madness", 650, 0, 3, 4,"increases Attack Point 4 units, duration : 3, but the card will be disarmed",
@@ -355,7 +356,7 @@ public class Primary {
         spells.add(new Spell("All Power", 2000, 4, -1, 2, "gives your own cards a powerbuff, increases attack point 2 units permanently",
                 TargetAllOwnCards.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("All Attack", 1500, 4, 1, -6, "attacks all enemy cards by 6 units",
-                TargetAllEnemyCards.getTargetInstance(), ActionChangeHPBuff.getAction()));
+                TargetAllEnemyCards.getTargetInstance(), ActionChangeHP.getAction()));
         spells.add(new Spell("Weakening", 1000, 1, 1, -4,"gives an enemy minion a weakness buff, it decreases attack point 4 units",
                 TargetEnemyMinion.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("Sacrifice", 1600, 2, 1, -6, "gives an own minion a power buff, it increases attack point 8 units , it gives weakness buff too, it decreases health point 6 units",
@@ -393,7 +394,7 @@ public class Primary {
         minions.add(new Minion("Persian Warrior", 600, 9, 24,
                 6, new Melee(), 0,
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, -5, "",
-                        TargetEnemyCard.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "be tedad dafati ke dar nobat haye qabl be yek niru hamle karde, 5 vahed bishtar be an zarbe vared mikonad"));
+                        TargetEnemyCard.getTargetInstance(), SPActionPersianChamp.getSpecialPower()), SPATime.ATTACK, "be tedad dafati ke dar nobat haye qabl be yek niru hamle karde, 5 vahed bishtar be an zarbe vared mikonad"));
         //TODO in Actionesh chie?
         minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
