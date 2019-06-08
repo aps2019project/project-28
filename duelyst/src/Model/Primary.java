@@ -36,8 +36,8 @@ public class Primary {
     public static ArrayList<Hero> heroes = new ArrayList<>();
     public static ArrayList<Usable> usables = new ArrayList<>();
     public static ArrayList<Collectable> collectables = new ArrayList<>();
-    public static ArrayList<Account> accounts = new ArrayList<>();
     public  static  ArrayList<Card> cards = new ArrayList<>();
+    public static ArrayList<Account> accounts = new ArrayList<>();
 
 
     public static void getItems(){
@@ -47,7 +47,6 @@ public class Primary {
 
     public static void main(String[] args) throws IOException{
         Primary.Json();
-//        setDefaultDecks();
     }
 
     public static void getHeroes() throws FileNotFoundException {
@@ -116,14 +115,6 @@ public class Primary {
         }
     }
 
-    public static void pre() throws InvalidCardException, InvalidItemException, IOException, DeckAlreadyHasThisItemException, DeckAlreadyHasAHeroException, FullDeckException, DeckAlreadyHasThisCardException {
-        getAccounts();
-        loadDecks();
-        loadDefaultDecks();
-        generateAI();
-
-    }
-
     public static void getAccounts() throws IOException {
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Account.json"));
@@ -139,6 +130,20 @@ public class Primary {
         reader.close();
     }
 
+    public static  void getCards(){
+        cards.addAll(heroes);
+        cards.addAll(minions);
+        cards.addAll(spells);
+    }
+
+    public static void pre() throws InvalidCardException, InvalidItemException, IOException, DeckAlreadyHasThisItemException, DeckAlreadyHasAHeroException, FullDeckException, DeckAlreadyHasThisCardException {
+        getAccounts();
+        loadDecks();
+        loadDefaultDecks();
+        generateAI();
+
+    }
+
     public static void loadDecks() throws InvalidCardException, InvalidItemException {
         for (Account account : accounts) {
             Collection collection = account.getCollection();
@@ -148,29 +153,9 @@ public class Primary {
         }
     }
 
-    public static void setDefaultDecks() throws CardExistException, ItemExistExeption, DeckAlreadyHasAHeroException,
-            DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException, IOException {
-        Collection allCardAndItems = new Collection();
-        for (Card card : cards) {
-            allCardAndItems.addCardToCollection(card);
-        }
-        for (Usable item : usables) {
-            allCardAndItems.addItemToCollection(item);
-        }
-        Deck posiden = new Deck("posiden", allCardAndItems);
-        for(int i = 0 ; i < 10 ; i++){
-            posiden.addCardToDeck(spells.get(i));
-        }
-        for (int i = 0 ; i < 9 ; i++){
-            posiden.addCardToDeck(minions.get(i));
-        }
-        posiden.addCardToDeck(heroes.get(0));
-        posiden.addItemToDeck(usables.get(0));
-        saveDefaultDecks("posiden", posiden);
-    }
 
-    private static void saveDefaultDecks(String name, Deck deck) throws IOException {
-        File file  = new File("Decks"+ File.separator + name +".json");
+    public static void setDefaultDeck(Deck deck) throws IOException {
+        File file  = new File("Decks"+ File.separator + deck.getName() +".json");
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(file, false);
         gson.toJson(deck, fileWriter);
@@ -198,11 +183,6 @@ public class Primary {
         }
     }
 
-    public static  void getCards(){
-        cards.addAll(heroes);
-        cards.addAll(minions);
-        cards.addAll(spells);
-    }
 
     public static void preprocess() throws IOException{
         getHeroes();
