@@ -3,6 +3,11 @@ package Controller.menu;
 import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
 import exeption.InvalidSubMenuException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+
 
 import java.util.ArrayList;
 
@@ -14,7 +19,22 @@ public abstract class Menu {
     private ArrayList<Menu> subMenus;
     private ArrayList<OnMenuClickedListener> menuPresenters;
     private ArrayList<String> patterns;
+    private Scene scene ;
+    private Parent root ;
+    protected String rootPath ;
 
+//
+//    public Scene getMenuScene(){
+//        if (scene == null) {
+////            root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+//            scene = new Scene(root);
+//        }
+//        buildScene();
+//        return scene ;
+//    }
+//
+//    protected abstract void buildScene();
+//
 
     public Menu(String name) {
         this.name = name;
