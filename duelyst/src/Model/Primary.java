@@ -6,6 +6,7 @@ import Model.account.Deck;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
+import Model.card.spell.SpecialPowerActions.SPActionPersianChamp;
 import Model.card.spell.SpellAction.*;
 import Model.card.spell.SpellAction.ActionChangeAPBuff;
 import Model.card.spell.SpellAction.ActionChangeHPBuff;
@@ -321,7 +322,7 @@ public class Primary {
         spells.add(new Spell("Poison Lake", 900, 5, 1, 0, "poisonCell, duration : 1",
                 TargetThreeByThree.getTargetInstance(), ActionPoisonCell.getAction()));
         Spell maddness = new Spell("Madness", 650, 0, 3, 4,"increases Attack Point 4 units, duration : 3, but the card will be disarmed",
-                TargetOwnCard.getTargetInstance(), ActionChangeAP.getAction()) ;
+                TargetOwnCard.getTargetInstance(), ActionChangeAPBuff.getAction()) ;
         maddness.addAction(ActionDisarm.getAction() , 0 , 1 );
         spells.add(maddness);
         spells.add(new Spell("All Disarm", 2000, 9, 1, 0, "all of enemy cards will be disarmed, duration : 1",
@@ -375,7 +376,8 @@ public class Primary {
         minions.add(new Minion("Persian Warrior", 600, 9, 24,
                 6, new Melee(), 0,
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, -5, "",
-                        TargetEnemyCard.getTargetInstance(), ActionChangeHP.getAction()), SPATime.ATTACK, "be tedad dafati ke dar nobat haye qabl be yek niru hamle karde, 5 vahed bishtar be an zarbe vared mikonad"));
+                        TargetEnemyCard.getTargetInstance(), SPActionPersianChamp.getSpecialPower()), SPATime.ATTACK, "be tedad dafati ke dar nobat haye qabl be yek niru hamle karde, 5 vahed bishtar be an zarbe vared mikonad"));
+        //TODO in Actionesh chie?
         minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
                 new SpecialPower("Persian General SpecialPower", 0, 0, 0, 0, "",
@@ -584,11 +586,11 @@ public class Primary {
         usables.add(new Usable("Shield AF", 4000, 1, 12, "for own hero, 12 holy buff",
                 TargetOwnHero.getTargetInstance(), ItemActionShieldAF.getItemAction()));
         usables.add(new Usable("Damool Arch", 30000, 1, 0, "only for ranged or hybrid own hero, while attacking disarms enemy card, duration : 1",
-                TargetEnemyCard.getTargetInstance(), ItemActionDamoolArch.getItemAction()));
+                TargetOwnHero.getTargetInstance(), ItemActionDamoolArch.getItemAction()));
         usables.add(new Usable("Simorgh feather", 3500, 1, -2, "only for ranged or hybrid enemy hero, decreases attack point 2 units",
-                TargetRangedAndHybrid.getTargetInstance(), ItemAction30chicken.getItemAction()));
+                TargetEnemyHero.getTargetInstance(), ItemAction30chicken.getItemAction()));
         usables.add(new Usable("Terror Hood", 5000, 1, -2, "while attacking, weakness buff on random enemy card, decreases attack point 2 units",
-                TargetRandomEnemy.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetRandomEnemy.getTargetInstance(), ItemActionChangeAPBuff.getItemAction()));
         usables.add(new Usable("King Wisdom", 9000, -1, 0, "gets extra mana every turn",
                 TargetSingleCell.getTargetInstance(), ItemActionKingsWisdom.getItemAction()));
         usables.add(new Usable("Assassination Dagger", 15000, 1, 1, "while putting own cards, attacks enemy hero 1 point",
@@ -598,9 +600,9 @@ public class Primary {
         usables.add(new Usable("Shock Hammer", 15000, 1, 0, "own hero while attacking disarms an enemy card, duration : 1",
                 TargetEnemyCard.getTargetInstance(), ItemActionDisArm.getItemAction()));
         usables.add(new Usable("Soul Eater", 25000, 1, 1, "on death of one of own cards, every own card gets power buff, increases attck point 1 unit",
-                TargetOwnCard.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetOwnCard.getTargetInstance(), ItemActionChangeAPBuff.getItemAction()));
         usables.add(new Usable("‌Baptism", 20000, 2, 0, "every minion when spawns gets holy buff, duration : 2",
-                TargetOwnMinion.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+                TargetOwnMinion.getTargetInstance(), ItemActionBaptism.getItemAction()));
 
         fileWriter = new FileWriter("Usables.json", false);
         for (Usable usable :
@@ -621,7 +623,7 @@ public class Primary {
         collectables.add(new Collectable("RooEnTan's Majoon",2,10, "10 holy buffs, duration : 2, for a random own card",
                 TargetRandomOwn.getTargetInstance(), ItemActionHolyBuff.getItemAction()));
         collectables.add(new Collectable("Death's Curse", 0, 8, "8 attack points on nearest enemy card for a random minion ",
-                TargetRandomOwnMinion.getTargetInstance(), ItemActionDeathCurse.getItemAction()));
+                TargetRandomOwnMinion.getTargetInstance(), ItemActionMinionRandomAttacker.getItemAction()));
         collectables.add(new Collectable("Random damage", 1, 2, "2 attack points for random card",
                 TargetRandomOwn.getTargetInstance(), ItemActionRandomDamage.getItemAction()));
         collectables.add(new Collectable("Blades of agility", 1, 6, "6 attack points for a random card",
