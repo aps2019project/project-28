@@ -11,6 +11,13 @@ public class CostumeModeMenu extends Menu {
     private CostumeModeMenu(String name) {
         super(name);
     }
+
+
+    @Override
+    protected void buildScene() {
+        super.buildScene();
+    }
+
     public static CostumeModeMenu getMenu(){
         if(CostumeModeMenu.menu==null){
             menu=new CostumeModeMenu("CostumeMenu");

@@ -7,6 +7,7 @@ import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
 import exeption.NoAccountHasBeenSignedInException;
 import exeption.WrongPassException;
+import javafx.scene.control.Label;
 
 import java.util.ArrayList;
 
@@ -20,8 +21,15 @@ public class SignInMenu extends Menu {
     private SignInMenu(String name) {
         super(name);
         this.leaderBoardPresenters = new ArrayList<>();
+        this.rootPath = "Scenes/SignInMenu.fxml";
     }
 
+
+    @Override
+    protected void buildScene() {
+        super.buildScene();
+        Label label = new Label("fuck yea !");
+    }
 
     public static SignInMenu getMenu(){
         if(SignInMenu.menu==null){

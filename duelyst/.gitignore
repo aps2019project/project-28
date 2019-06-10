@@ -39,5 +39,6 @@ hs_err_pid*
 
 #saE:
     workspace.xml
+    resources/
 
 

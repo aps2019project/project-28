@@ -3,14 +3,22 @@ import Controller.Game;
 import Controller.menu.Battle;
 import Controller.menu.*;
 import Model.Primary;
+import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 
-public class MenuHandler {
+public class MenuHandler extends Application {
 
     public static Menu currentMenu;
+
+    public static Stage stage ;
 
     private static void initMenus() {
         //az SignIn Menu mirim tuye MainMenu
@@ -38,17 +46,25 @@ public class MenuHandler {
 
     //moh
     public static void main(String[] args) {
-
         try {
             Primary.preprocess();
             Primary.pre();
             initMenus();
-        } catch (Exception ignored) {ignored.printStackTrace();
-        }
+        } catch (Exception e) {e.printStackTrace();}
         ConsoleInput consoleInput = new ConsoleInput();
+        launch(args);
         consoleInput.play();
+    }
 
-
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        stage = primaryStage ;
+        Scene scene = currentMenu.getMenuScene() ;
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+        stage.show() ;
+        stage.setResizable(false);
     }
 
 

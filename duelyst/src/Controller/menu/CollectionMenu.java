@@ -15,6 +15,12 @@ public class CollectionMenu extends Menu {
     private static CollectionMenu menu;
     private Collection tempCollection;
 
+
+    @Override
+    protected void buildScene() {
+        super.buildScene();
+    }
+
     private CollectionMenu(String name) {
         super(name);
         tempCollection = new Collection();

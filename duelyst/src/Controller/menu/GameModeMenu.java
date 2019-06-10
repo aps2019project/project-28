@@ -6,6 +6,12 @@ public class GameModeMenu extends Menu {
         super(name);
     }
 
+
+    @Override
+    protected void buildScene() {
+        super.buildScene();
+    }
+
     public static GameModeMenu getMenu(){
         if(GameModeMenu.menu==null){
             GameModeMenu.menu=new GameModeMenu("GameModeMenu");

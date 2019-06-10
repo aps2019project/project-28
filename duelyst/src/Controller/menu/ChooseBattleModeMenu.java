@@ -9,6 +9,12 @@ public class ChooseBattleModeMenu extends Menu {
         super(name);
     }
 
+
+    @Override
+    protected void buildScene() {
+        super.buildScene();
+    }
+
     public static Menu getMenu() {
         if(ChooseBattleModeMenu.menu==null){
             ChooseBattleModeMenu.menu=new ChooseBattleModeMenu("BattleMode");

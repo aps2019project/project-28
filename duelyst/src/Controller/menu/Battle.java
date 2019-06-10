@@ -56,6 +56,12 @@ public class Battle extends Menu {
         return menu;
     }
 
+
+    @Override
+    protected void buildScene() {
+        super.buildScene();
+    }
+
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
