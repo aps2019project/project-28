@@ -59,9 +59,13 @@ public abstract class Hermione extends Card {
     }
     public void attack(Hermione enemyCard,boolean isComboAttack) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
 
-        //DestinationOutOfReachException is not being thrown anymore
         if (!this.canAttack(enemyCard)) throw new CantAttackException();
 
+        /*
+        * handling the graphics
+        * */
+        this.graphics.onAttack(enemyCard);
+        enemyCard.graphics.onDamage();
 
         this.getBuffEffects().addAttackCounter();
 
@@ -107,6 +111,11 @@ public abstract class Hermione extends Card {
             enemyCard.changeHealthPoint((-1) * this.attackPoint);
 
         enemyCard.buffEffects.handleOnDamaged(this, this.attackPoint);
+        /*
+         *handling the graphics
+         *  */
+        this.graphics.onAttack(enemyCard);
+        enemyCard.graphics.onDamage();
     }
 
 
@@ -127,6 +136,12 @@ public abstract class Hermione extends Card {
     public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, CardCantBeMovedException, DestinationIsFullException {
         if (!canMove(x, y)) return false;
 
+        /*
+        * handling the graphics
+        * */
+        this.graphics.onMove(new Cell(x,y));
+
+
         this.setLocation(Battle.getMenu().getMap().getCell(x, y));
 
         this.actionTurn = 1;
@@ -141,6 +156,12 @@ public abstract class Hermione extends Card {
         this.getBuffEffects().setCanMove(true);
         //
 
+        /*
+        *handling the graphics
+        *  */
+        this.graphics.onSpawn(cell);
+
+
         this.setLocation(cell);
 
         this.getBuffEffects().onSpawn() ;
@@ -148,13 +169,21 @@ public abstract class Hermione extends Card {
     public void die() {
         try {
             buffEffects.handleOnDeath();
+
+            /*
+            * handling the graphics
+            * */
+            this.graphics.onDeath();
             Battle.getMenu().kill(this);
         } catch (InvalidCardException ignored) {
         }
     }
 
 
-    public abstract void applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException, CantSpecialPowerCooldownException;
+    public void applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException, CantSpecialPowerCooldownException{
+
+        this.graphics.onSpecialPowerApplied(cell);
+    }
 
     public boolean hasFlag() {
         return hasFlag;

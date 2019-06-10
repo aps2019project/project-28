@@ -60,7 +60,8 @@ public class Minion extends Hermione{
     }
 
     @Override
-        public void applySpecialPower(Cell cell) throws InvalidCardException , InvalidCellException{
+        public void applySpecialPower(Cell cell) throws InvalidCardException, InvalidCellException, CantSpecialPowerCooldownException {
+        super.applySpecialPower(cell);
         this.SpecialPower.deploy(Battle.getMenu().getPlayer() , Battle.getMenu().getEnemyPlayer() , cell);
     }
         public SPATime getSPActivationTime() {
