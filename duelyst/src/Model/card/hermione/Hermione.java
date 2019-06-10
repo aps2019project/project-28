@@ -1,6 +1,7 @@
 package Model.card.hermione;
 
 import Controller.menu.Battle;
+import Model.Graphics.HermioneGraphics;
 import Model.Map.Cell;
 import Model.Map.CellAffects;
 import Model.Map.Map;
@@ -8,6 +9,7 @@ import Model.card.Card;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.SpecialPower;
 import exeption.*;
+import javafx.scene.Scene;
 
 import java.util.ArrayList;
 
@@ -26,13 +28,14 @@ public abstract class Hermione extends Card {
 
     protected Cell location;
     protected int actionTurn;//0 move    1 attack  2 do nothing
-
     protected int numberOfFlags = 0;
     protected boolean hasFlag = false;
 
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
     protected SpecialPower SpecialPower;
     protected ArrayList<Buff> appliedBuffs=new ArrayList<>() ;
+
+    protected HermioneGraphics graphics=new HermioneGraphics(this);
 
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
