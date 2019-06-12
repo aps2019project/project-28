@@ -3,7 +3,7 @@
     -fx-background-size: 100% 100%;
 }
 
-.signUpButton , .signInButton{
+.button{
     -fx-fill: #10284f;
     -fx-opacity: 0.8;
     /*-fx-border-radius: 0px;*/
