@@ -23,32 +23,17 @@
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="sign in menu almost finished !">
+    <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        now every time we play the collection cards would         be updated">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/menu/Scenes/SignInMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/ksus.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/ksus.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-    <list id="fe5b7bb0-3439-4162-ba6c-e3c0328c746b" name="graphics menus stated" comment="" />
-    <list id="2ccedc21-7ab1-40fc-b8e1-27c76405ed63" name="Revert &quot;graphics menus stated&quot;" comment="Revert &quot;graphics menus stated&quot;&#10;&#10;This reverts commit 4a5465b9" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
@@ -56,10 +41,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="84" column="20" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/menu/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="36" column="73" selection-start-line="36" selection-start-column="73" selection-end-line="36" selection-end-column="73" />
+            <state relative-caret-position="-167">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -68,69 +65,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/menu/SignInMenu.java">
+        <entry file="file://$PROJECT_DIR$/src/Model/Map/Cell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="49" column="58" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
+            <state relative-caret-position="154">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
               <folding>
-                <element signature="method#SignInMenu#0;class#SignInMenu#0" />
-                <element signature="e#1702#1704#0" />
-                <element signature="method#getMenu#0;class#SignInMenu#0" />
-                <element signature="method#enter#0;class#SignInMenu#0" />
-                <element signature="e#2756#2914#1" />
-                <element signature="method#creatAccount#0;class#SignInMenu#0" />
-                <element signature="method#logIn#0;class#SignInMenu#0" />
-                <element signature="e#3461#3583#1" />
-                <element signature="e#3589#3644#1" />
-                <element signature="method#logOut#0;class#SignInMenu#0" />
-                <element signature="method#save#0;class#SignInMenu#0" />
-                <element signature="method#showLeaderBoard#0;class#SignInMenu#0" />
-                <element signature="e#4003#4065#1" />
-                <element signature="method#addLeaderBoardClickedListener#0;class#SignInMenu#0" />
-                <element signature="method#help#0;class#SignInMenu#0" />
+                <element signature="e#707#708#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/menu/Scenes/StyleSheets/SignInMenu.css">
+        <entry file="file://$PROJECT_DIR$/src/Model/Map/CellAffects.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Controller/menu/Scenes/SignInMenu.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="776">
-              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="84" column="19" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
-              <folding>
-                <element signature="e#2182#2296#0" />
-                <element signature="e#2340#2341#0" expanded="true" />
-                <element signature="e#2390#2391#0" expanded="true" />
-              </folding>
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -140,58 +90,58 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="CSS File" />
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>genie</find>
-      <find>total</find>
-      <find>shuffle</find>
-      <find>counter</find>
-      <find>hollyBuffLevel</find>
-      <find>handle</find>
-      <find>end turn</find>
-      <find>.canMove</find>
-      <find>nextTurn</find>
-      <find>death</find>
-      <find>this.buffEffects</find>
-      <find>die</find>
-      <find>canMove</find>
-      <find>poison</find>
-      <find>assasinationDagger</find>
-      <find>spawn</find>
-      <find>makeNew</find>
-      <find>saee</find>
-      <find>saE</find>
-      <find>getTargets</find>
-      <find>ItemActionChangeAP</find>
-      <find>itemActionChangeAP</find>
-      <find>actionChangeAPBuff</find>
-      <find>actionChangeHPBuff</find>
-      <find>SPaction</find>
-      <find>giant snake</find>
-      <find>.play</find>
-      <find>onSpa</find>
-      <find>onspawn</find>
-      <find>static</find>
+      <find>ge</find>
+      <find>allowsAtta</find>
+      <find>allowsAttack</find>
+      <find>allows</find>
+      <find>select</find>
+      <find>insert</find>
+      <find>onspaw</find>
+      <find>sp</find>
+      <find>apply</find>
+      <find>spw</find>
+      <find>enemyCard.graphics</find>
+      <find>gra</find>
+      <find>spa</find>
+      <find>load</find>
+      <find>getG</find>
+      <find>up</find>
+      <find>upda</find>
+      <find>couldnt find the deck</find>
+      <find>could</find>
+      <find>coll</find>
+      <find>mainDeck</find>
+      <find>Couldn't find the Deck!</find>
+      <find>setAI</find>
+      <find>AI</find>
+      <find>AI</find>
+      <find>storyModeMenu</find>
+      <find>system.err</find>
+      <find>out</find>
+      <find>pre</find>
+      <find>getPla</find>
     </findStrings>
     <replaceStrings>
       <replace>getTargetInstance</replace>
       <replace>.buffEffects.canMove()</replace>
-      <replace>ItemActionChangeAPBuff</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/src/Model</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="ArshiA &lt;letmemakenewone@gmail.com&gt;" />
         <option value="Saee Saadat &lt;saee@samantha.local&gt;" />
         <option value="Saee Saadat" />
-        <option value="ArshiA &lt;letmemakenewone@gmail.com&gt;" />
         <option value="fateme &lt;fatt3me@gmail.com&gt;" />
         <option value="fa" />
       </list>
@@ -200,64 +150,64 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="master" />
+        <entry key="$PROJECT_DIR$/.." value="b1d56b8ffd6831b5711cc19c4aec08e0959abeb4" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetRandomRangedAndHybridMinion.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetOwnRandomRangedAndHybridMinion.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetEnemyRandomRangedAndHybridMinion.java" />
-        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionChangeHPBuff.java" />
-        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionChangeHP.java" />
-        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionChangeAP.java" />
-        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionChangeAPBuff.java" />
-        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionExir.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/spell/Targets/TargetOwnMelee.java" />
-        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionBaptism.java" />
+        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionMinionRandomAttacker.java" />
+        <option value="$PROJECT_DIR$/src/Model/card/spell/Buff/BuffActions/BuffActionHP.java" />
         <option value="$PROJECT_DIR$/src/Model/card/spell/Buff/BuffActions/BuffActionHolly.java" />
-        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionRooEnTan.java" />
-        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionHolyBuff.java" />
+        <option value="$PROJECT_DIR$/src/Model/card/spell/Buff/BuffActions/BuffActionAP.java" />
+        <option value="$PROJECT_DIR$/src/Model/Map/CellAffects.java" />
+        <option value="$PROJECT_DIR$/src/Model/Map/Map.java" />
+        <option value="$PROJECT_DIR$/src/Model/account/stuffEffectsOnPlayer.java" />
+        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionManaGiver.java" />
+        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionKingsWisdom.java" />
         <option value="$PROJECT_DIR$/src/Model/account/StuffEffectsOnPlayer.java" />
-        <option value="$PROJECT_DIR$/src/Model/account/Player.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/hermione/Hermione.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/spell/SpellAction/ActionChangeAPBuff.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/spell/SpellAction/ActionChangeAP.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/spell/SpellAction/ActionChangeHPBuff.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/spell/SpellAction/ActionChangeHP.java" />
-        <option value="$PROJECT_DIR$/src/Model/Primary.java" />
-        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionGiantSnake.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/spell/SpecialPowerActions/SPActionAPBuff.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/spell/SpecialPowerActions/SPActionStunWhenAttacking.java" />
-        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemAction.java" />
-        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionDamoolArch.java" />
-        <option value="$PROJECT_DIR$/src/Model/account/Match.java" />
-        <option value="$PROJECT_DIR$/src/exeption/WTFException.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/spell/Buff/BuffActions/BuffActionStun.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/hermione/BuffEffectsOnHermione.java" />
-        <option value="$PROJECT_DIR$/src/View/ConsoleInput.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/StyleSheets/SignInMenu.css" />
-        <option value="$PROJECT_DIR$/src/SignInMenu.css" />
-        <option value="$PROJECT_DIR$/SignInMenu.css" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/SignInMenu.fxml" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/GameModeMenu.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/Battle.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/ChooseBattleModeMenu.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/CollectableMenu.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/CollectionMenu.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/CostumeModeMenu.java" />
-        <option value="$PROJECT_DIR$/src/Strings.java" />
-        <option value="$PROJECT_DIR$/src/Salam.java" />
-        <option value="$PROJECT_DIR$/src/SavedStrings.java" />
-        <option value="$PROJECT_DIR$/src/stuff/SavedStrings.java" />
+        <option value="$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionAssasinationDagger.java" />
+        <option value="$PROJECT_DIR$/src/Model/Map/Cell.java" />
         <option value="$PROJECT_DIR$/src/View/MenuHandler.java" />
+        <option value="$PROJECT_DIR$/src/Model/account/Match.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Menu.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/SignInMenu.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/Scenes/StyleSheets/SignInMenu.css" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/Scenes/SignInMenu.fxml" />
+        <option value="$PROJECT_DIR$/src/Model/card/spell/Buff/BuffActions/BuffActionStun.java" />
+        <option value="$PROJECT_DIR$/src/Model/Graphics/Listeners/OnAttackListeners.java" />
+        <option value="$PROJECT_DIR$/src/Model/Graphics/Listeners/OnSpwanListener.java" />
+        <option value="$PROJECT_DIR$/src/Model/Graphics/Listeners/OnSpeacialPowerAppliedListenrs.java" />
+        <option value="$PROJECT_DIR$/src/Model/Graphics/Listeners/OnMoveListener.java" />
+        <option value="$PROJECT_DIR$/src/Model/Graphics/Listeners/OnAttackListener.java" />
+        <option value="$PROJECT_DIR$/src/Model/Graphics/Listeners/OnSpawnListener.java" />
+        <option value="$PROJECT_DIR$/src/Model/Graphics/Listeners/OnDeathListener.java" />
+        <option value="$PROJECT_DIR$/src/Model/Graphics/Listeners/OnSpeacialPowerAppliedListeners.java" />
+        <option value="$PROJECT_DIR$/src/Model/Graphics/Listeners/OnDamageListener.java" />
+        <option value="$PROJECT_DIR$/src/Model/card/hermione/Minion.java" />
+        <option value="$PROJECT_DIR$/src/Controller/menu/Battle.java" />
+        <option value="$PROJECT_DIR$/Usables.json" />
+        <option value="$PROJECT_DIR$/Spell.json" />
+        <option value="$PROJECT_DIR$/Minion.json" />
+        <option value="$PROJECT_DIR$/Hero.json" />
+        <option value="$PROJECT_DIR$/Collectables.json" />
+        <option value="$PROJECT_DIR$/src/Model/card/hermione/Hero.java" />
+        <option value="$PROJECT_DIR$/src/Model/card/hermione/Hermione.java" />
+        <option value="$PROJECT_DIR$/src/Model/Graphics/HermioneGraphics.java" />
+        <option value="$PROJECT_DIR$/src/Model/Graphics/Listeners/OnCardSelectedListener.java" />
+        <option value="$PROJECT_DIR$/src/Model/account/Deck.java" />
+        <option value="$PROJECT_DIR$/src/Model/account/Account.java" />
+        <option value="$PROJECT_DIR$/src/Model/card/Card.java" />
+        <option value="$PROJECT_DIR$/Account.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/View/ConsoleOutput.java" />
+        <option value="$PROJECT_DIR$/src/Model/Primary.java" />
+        <option value="$PROJECT_DIR$/src/View/ConsoleInput.java" />
+        <option value="$PROJECT_DIR$/src/Controller/menu/StoryModeMenu.java" />
+        <option value="$PROJECT_DIR$/src/Model/card/hermione/BuffEffectsOnHermione.java" />
+        <option value="$PROJECT_DIR$/src/Model/account/Player.java" />
+        <option value="$PROJECT_DIR$/src/Controller/menu/CostumeModeMenu.java" />
+        <option value="$PROJECT_DIR$/src/Controller/menu/CollectionMenu.java" />
+        <option value="$PROJECT_DIR$/src/Model/account/Collection.java" />
+        <option value="$PROJECT_DIR$/src/Model/account/AI.java" />
       </list>
     </option>
   </component>
@@ -267,17 +217,17 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="width" value="1280" />
-    <option name="height" value="800" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="118" />
+    <option name="width" value="960" />
+    <option name="height" value="786" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -294,27 +244,83 @@
               <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
               <item name="duelyst" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
               <item name="duelyst" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
               <item name="duelyst" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
-              <item name="Scenes" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="card" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="card" type="462c0819:PsiDirectoryNode" />
+              <item name="hermione" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="card" type="462c0819:PsiDirectoryNode" />
+              <item name="spell" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="card" type="462c0819:PsiDirectoryNode" />
+              <item name="spell" type="462c0819:PsiDirectoryNode" />
+              <item name="Buff" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="card" type="462c0819:PsiDirectoryNode" />
+              <item name="spell" type="462c0819:PsiDirectoryNode" />
+              <item name="SpecialPowerActions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="card" type="462c0819:PsiDirectoryNode" />
+              <item name="spell" type="462c0819:PsiDirectoryNode" />
+              <item name="Targets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="View" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="View" type="462c0819:PsiDirectoryNode" />
+              <item name="MenuHandler.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -325,18 +331,37 @@
             <path>
               <item name="duelyst" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="duelyst" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name=".idea" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="duelyst" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="duelyst" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name=".idea" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="libraries" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="duelyst" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="duelyst" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Controller" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="duelyst" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Controller" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Controller.menu" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="duelyst" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Controller" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Controller.menu" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Controller.menu.Scenes" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="duelyst" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Controller" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Controller.menu" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Controller.menu.Scenes" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="StyleSheets" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -350,42 +375,39 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558294397588" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/javafx-sdk-11.0.2/lib" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Controller/menu/Scenes/StyleSheets" />
-      <recent name="$PROJECT_DIR$/src/Controller/menu/Scenes" />
-      <recent name="$PROJECT_DIR$/src/Controller/menu" />
-      <recent name="$PROJECT_DIR$/src/Model" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="Model.card.spell.SpecialPowerActions" />
-      <recent name="Model.card.spell.SpellAction" />
-      <recent name="Model.item.ItemActions" />
-      <recent name="Model.card.spell.Targets" />
-    </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="Model.Graphics.Listeners" />
+      <recent name="Model.Graphics" />
       <recent name="exeption" />
       <recent name="Model.item.ItemActions" />
       <recent name="Model.card.spell.SpellAction" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Model.card.spell.SpecialPowerActions" />
+      <recent name="Model.item.ItemActions" />
+      <recent name="Model.card.spell.SpellAction" />
       <recent name="Model.card.spell.Targets" />
-      <recent name="Controller.menu" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Model" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -400,14 +422,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MenuHandler">
+    <configuration name="ManuHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="View.ManuHandler" />
+      <module name="duelyst" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="View.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MenuHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="View.MenuHandler" />
       <module name="duelyst" />
-      <option name="VM_PARAMETERS" value="--module-path ${PATH_TO_FX} --add-modules=javafx.controls,javafx.fxml " />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value=".*" />
+          <option name="PATTERN" value="View.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -428,12 +462,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MenuHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="View.MenuHandler" />
+    <configuration name="Primary" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Model.Primary" />
       <module name="duelyst" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="View.*" />
+          <option name="PATTERN" value="Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -444,8 +478,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MenuHandler" />
+        <item itemvalue="Application.Primary" />
+        <item itemvalue="Application.ManuHandler" />
         <item itemvalue="Application.MenuHandler" />
-        <item itemvalue="Application.MenuHandler" />
+        <item itemvalue="Application.Primary" />
       </list>
     </recent_temporary>
   </component>
@@ -455,7 +491,6 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="" />
-      <changelist id="fe5b7bb0-3439-4162-ba6c-e3c0328c746b" name="graphics menus stated" comment="" />
       <created>1556627517835</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -469,10 +504,72 @@
       <workItem from="1559570761637" duration="34000" />
       <workItem from="1559570855128" duration="121000" />
       <workItem from="1559574552143" duration="151000" />
-      <workItem from="1559574971307" duration="34900000" />
-      <workItem from="1559998459617" duration="11150000" />
-      <workItem from="1560150851652" duration="9668000" />
-      <workItem from="1560329941091" duration="12503000" />
+      <workItem from="1559574971307" duration="19391000" />
+      <workItem from="1560238835250" duration="6032000" />
+      <workItem from="1560332117096" duration="10316000" />
+    </task>
+    <task id="LOCAL-00056" summary="Menu Patterns bug fix 2">
+      <created>1557236176067</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1557236176067</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Menu Patterns bug fix 3">
+      <created>1557236551106</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1557236551106</updated>
+    </task>
+    <task id="LOCAL-00058" summary="json files added">
+      <created>1557237284713</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1557237284713</updated>
+    </task>
+    <task id="LOCAL-00059" summary="show Menu bug dar hale fix">
+      <created>1557238415675</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1557238415677</updated>
+    </task>
+    <task id="LOCAL-00060" summary="PATTERNS CHANGED">
+      <created>1557239021695</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1557239021695</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Collection bug fix">
+      <created>1557242215577</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1557242215577</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Collection bug fix 3">
+      <created>1557286877230</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1557286877232</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Collection bug fix 4&#10;&#10;spells info added&#10;&#10;cards and item constructors changed -&gt; info added">
+      <created>1557312414948</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1557312414950</updated>
+    </task>
+    <task id="LOCAL-00064" summary="info's added to Json files">
+      <created>1557336827662</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1557336827663</updated>
     </task>
     <task id="LOCAL-00065" summary="json kh completed">
       <created>1557342170672</created>
@@ -691,137 +788,74 @@
       <option name="project" value="LOCAL" />
       <updated>1559771281508</updated>
     </task>
-    <task id="LOCAL-00096" summary="assasination dagger was updated + null ptr almost handled ! !">
-      <created>1559821077387</created>
+    <task id="LOCAL-00096" summary="checking out to previous version">
+      <created>1560014409920</created>
       <option name="number" value="00096" />
       <option name="presentableId" value="LOCAL-00096" />
       <option name="project" value="LOCAL" />
-      <updated>1559821077387</updated>
+      <updated>1560014409921</updated>
     </task>
-    <task id="LOCAL-00097" summary="handled the nullPointers !">
-      <created>1559836689397</created>
+    <task id="LOCAL-00097" summary="saving AI&#10;&#10;written by ArshiA">
+      <created>1560014781931</created>
       <option name="number" value="00097" />
       <option name="presentableId" value="LOCAL-00097" />
       <option name="project" value="LOCAL" />
-      <updated>1559836689397</updated>
+      <updated>1560014781932</updated>
     </task>
-    <task id="LOCAL-00098" summary="removed kingSlayer">
-      <created>1559921010805</created>
+    <task id="LOCAL-00098" summary="debugging attack&#10;&#10;Written by ArshiA">
+      <created>1560021186498</created>
       <option name="number" value="00098" />
       <option name="presentableId" value="LOCAL-00098" />
       <option name="project" value="LOCAL" />
-      <updated>1559921010806</updated>
+      <updated>1560021186498</updated>
     </task>
-    <task id="LOCAL-00099" summary="added custom spell constructor">
-      <created>1559922231332</created>
+    <task id="LOCAL-00099" summary="Graphics basis&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        HermioneGraphics&#10;             onMove&#10;             onAttack&#10;             onSpawn&#10;             onDeath&#10;             onSPApplied&#10;             onDamage">
+      <created>1560169638610</created>
       <option name="number" value="00099" />
       <option name="presentableId" value="LOCAL-00099" />
       <option name="project" value="LOCAL" />
-      <updated>1559922231332</updated>
+      <updated>1560169638611</updated>
     </task>
-    <task id="LOCAL-00100" summary="custom spell + changed spell &amp; special power 's constructor !">
-      <created>1559923129037</created>
+    <task id="LOCAL-00100" summary="Graphics basis&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        Hermione&#10;             onMove&#10;             onAttack&#10;             onSpawn&#10;             onDeath&#10;             onSPApplied&#10;             onDamage">
+      <created>1560171324528</created>
       <option name="number" value="00100" />
       <option name="presentableId" value="LOCAL-00100" />
       <option name="project" value="LOCAL" />
-      <updated>1559923129037</updated>
+      <updated>1560171324528</updated>
     </task>
-    <task id="LOCAL-00101" summary="static sets of actions and targets in spell and special power to show all the choices for making custom cards :)">
-      <created>1559924743087</created>
+    <task id="LOCAL-00101" summary="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        now every time we play the collection cards would be         updated">
+      <created>1560332441214</created>
       <option name="number" value="00101" />
       <option name="presentableId" value="LOCAL-00101" />
       <option name="project" value="LOCAL" />
-      <updated>1559924743087</updated>
+      <updated>1560332441215</updated>
     </task>
-    <task id="LOCAL-00102" summary="cleaned up once again">
-      <created>1559925047513</created>
+    <task id="LOCAL-00102" summary="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        now every time we play the collection cards would          be updated">
+      <created>1560333322660</created>
       <option name="number" value="00102" />
       <option name="presentableId" value="LOCAL-00102" />
       <option name="project" value="LOCAL" />
-      <updated>1559925047513</updated>
+      <updated>1560333322660</updated>
     </task>
-    <task id="LOCAL-00103" summary="actions and targets and all that good stuff">
-      <created>1559984058510</created>
+    <task id="LOCAL-00103" summary="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        a lot of bug fix for the Account adding saving method">
+      <created>1560341136547</created>
       <option name="number" value="00103" />
       <option name="presentableId" value="LOCAL-00103" />
       <option name="project" value="LOCAL" />
-      <updated>1559984058511</updated>
+      <updated>1560341136548</updated>
     </task>
-    <task id="LOCAL-00104" summary="changeAP/HP / changeAP/HPBuff">
-      <created>1559985048906</created>
+    <task id="LOCAL-00104" summary="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        now every time we play the collection cards would         be updated">
+      <created>1560341397642</created>
       <option name="number" value="00104" />
       <option name="presentableId" value="LOCAL-00104" />
       <option name="project" value="LOCAL" />
-      <updated>1559985048906</updated>
+      <updated>1560341397642</updated>
     </task>
-    <task id="LOCAL-00105" summary="primary">
-      <created>1559986459788</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1559986459788</updated>
-    </task>
-    <task id="LOCAL-00106" summary="stunner attacker">
-      <created>1560001496521</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1560001496526</updated>
-    </task>
-    <task id="LOCAL-00107" summary="reviving AI">
-      <created>1560003748217</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1560003748217</updated>
-    </task>
-    <task id="LOCAL-00108" summary="cleaned up a lil bit">
-      <created>1560010738519</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1560010738519</updated>
-    </task>
-    <task id="LOCAL-00109" summary="graphics menus stated">
-      <created>1560155460101</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1560155460105</updated>
-    </task>
-    <task id="LOCAL-00110" summary="beginning of graphics -&gt; menus">
-      <created>1560155984811</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1560155984811</updated>
-    </task>
-    <task id="LOCAL-00111" summary="sign in menu almost finished !">
-      <created>1560343278718</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1560343278728</updated>
-    </task>
-    <task id="LOCAL-00112" summary="sign in menu almost finished 2!">
-      <created>1560355976524</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1560355976524</updated>
-    </task>
-    <task id="LOCAL-00113" summary="sign in menu almost finished !">
-      <created>1560356238076</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1560356238077</updated>
-    </task>
-    <option name="localTasksCounter" value="114" />
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123209000" />
+    <option name="totallyTimeSpent" value="109977000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -833,10 +867,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="32" width="1920" height="1048" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21728595" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1189968" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -846,16 +879,16 @@
       <window_info id="Learn" order="7" weight="0.32977587" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32633054" />
-      <window_info anchor="bottom" auto_hide="true" id="Debug" order="2" weight="0.4397759" />
+      <window_info anchor="bottom" auto_hide="true" id="Debug" order="2" weight="0.4393771" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" auto_hide="true" id="Run" order="5" weight="0.3529412" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32633054" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49893278" weight="0.6640712" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3259177" />
       <window_info anchor="bottom" id="TeamCity" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49928367" weight="0.32633054" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007163" side_tool="true" weight="0.32769832" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32633054" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.18627451" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49893278" visible="true" weight="0.32480535" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010672" side_tool="true" weight="0.6662959" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49786553" weight="0.58424723" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49786553" weight="0.3259177" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32899868" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
@@ -871,8 +904,44 @@
       <window_info anchor="right" id="Key Promoter X" order="9" />
       <window_info anchor="right" id="Database" order="10" />
       <window_info anchor="right" id="Module Dependencies" order="11" weight="0.32956383" />
-      <window_info anchor="right" id="Preview" order="12" weight="0.32956383" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1430096" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Learn" order="7" weight="0.32977587" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32633054" />
+      <window_info anchor="bottom" auto_hide="true" id="Debug" order="2" weight="0.4393771" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" auto_hide="true" id="Run" order="5" sideWeight="0.49893278" weight="0.55839825" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3259177" />
+      <window_info anchor="bottom" id="TeamCity" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49893278" weight="0.32502493" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010672" side_tool="true" weight="0.6662959" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49786553" weight="0.58424723" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49786553" weight="0.3259177" />
+      <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32899868" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.3295129" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="LuaJ" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Key Promoter X" order="9" />
+      <window_info anchor="right" id="Database" order="10" />
+      <window_info anchor="right" id="Module Dependencies" order="11" weight="0.32956383" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -918,6 +987,14 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="working on AI , fixed some bugs and corrected the outputs of it ! + added getTargetClass to all targets" />
+    <MESSAGE value="fixed AI" />
+    <MESSAGE value="working on stun" />
+    <MESSAGE value="stun and some structural stuff in buffs are done" />
+    <MESSAGE value="handled arshia's problem with my beautiful AI" />
+    <MESSAGE value="just committing so i can pull" />
+    <MESSAGE value="arraylist for actions !" />
+    <MESSAGE value="fixed some actions problems" />
     <MESSAGE value="did some stuff i dont remember" />
     <MESSAGE value="just to collect some dust you know ?" />
     <MESSAGE value="AI Works Now :)" />
@@ -925,503 +1002,444 @@
     <MESSAGE value="cleaned out the &quot;feces&quot; :) and handled the onDeath onAttack onDeath onNewTurn stuff in buffEffects&#10;also handled the allowance of move-attack-cAttack which was basically redundant !" />
     <MESSAGE value="updated AI and did some TODOs" />
     <MESSAGE value="cleaned up a lil bit more finished up my TODOs ^_^" />
-    <MESSAGE value="assasination dagger was updated + null ptr almost handled ! !" />
-    <MESSAGE value="handled the nullPointers !" />
-    <MESSAGE value="removed kingSlayer" />
-    <MESSAGE value="added custom spell constructor" />
-    <MESSAGE value="custom spell + changed spell &amp; special power 's constructor !" />
-    <MESSAGE value="static sets of actions and targets in spell and special power to show all the choices for making custom cards :)" />
-    <MESSAGE value="cleaned up once again" />
-    <MESSAGE value="actions and targets and all that good stuff" />
-    <MESSAGE value="changeAP/HP / changeAP/HPBuff" />
-    <MESSAGE value="damool arch" />
-    <MESSAGE value="primary" />
-    <MESSAGE value="stunner attacker" />
-    <MESSAGE value="reviving AI" />
-    <MESSAGE value="cleaned up a lil bit" />
-    <MESSAGE value="graphics menus stated" />
-    <MESSAGE value="beginning of graphics -&gt; menus" />
-    <MESSAGE value="sign in menu almost finished 2!" />
-    <MESSAGE value="sign in menu almost finished !" />
-    <option name="LAST_COMMIT_MESSAGE" value="sign in menu almost finished !" />
+    <MESSAGE value="checking out to previous version" />
+    <MESSAGE value="saving AI&#10;&#10;written by ArshiA" />
+    <MESSAGE value="debuging attack&#10;&#10;Written by ArshiA" />
+    <MESSAGE value="debugging attack&#10;&#10;Written by ArshiA" />
+    <MESSAGE value="Graphics basis&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        HermioneGraphics&#10;             onMove&#10;             onAttack&#10;             onSpawn&#10;             onDeath&#10;             onSPApplied&#10;             onDamage" />
+    <MESSAGE value="Graphics basis&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        Hermione&#10;             onMove&#10;             onAttack&#10;             onSpawn&#10;             onDeath&#10;             onSPApplied&#10;             onDamage" />
+    <MESSAGE value="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        now every time we play the collection cards would be         updated" />
+    <MESSAGE value="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        now every time we play the collection cards would          be updated" />
+    <MESSAGE value="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        a lot of bug fix for the Account adding saving method" />
+    <MESSAGE value="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        now every time we play the collection cards would         be updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        now every time we play the collection cards would         be updated" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Model/card/hermione/Hermione.java</url>
+          <line>164</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/View/ConsoleOutput.java</url>
+          <line>654</line>
+          <properties />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpellAction/ActionChangeAPBuff.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Buff/BuffActions/BuffActionHP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="273">
+          <caret line="13" column="92" lean-forward="true" selection-start-line="13" selection-start-column="92" selection-end-line="13" selection-end-column="92" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpellAction/ActionChangeAP.java">
+    <entry file="file://$PROJECT_DIR$/src/exeption/InvalidCellException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="29" selection-end-column="13" />
+        <state relative-caret-position="42">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpellAction/ActionChangeHPBuff.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Buff/BuffActions/BuffActions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="105">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpellAction/ActionChangeHP.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Buff/Buff.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="26" column="81" lean-forward="true" selection-start-line="26" selection-start-column="81" selection-end-line="26" selection-end-column="81" />
+        <state relative-caret-position="257">
+          <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="85" column="61" lean-forward="true" selection-start-line="85" selection-start-column="61" selection-end-line="85" selection-end-column="61" />
-          <folding>
-            <element signature="e#3351#3352#0" expanded="true" />
-            <element signature="e#3386#3387#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionHolyBuff.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionManaGiver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
-          <caret line="19" column="93" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
+          <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionExir.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionKingsWisdom.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="27" column="104" lean-forward="true" selection-start-line="27" selection-start-column="104" selection-end-line="27" selection-end-column="104" />
+        <state relative-caret-position="273">
+          <caret line="18" column="63" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpecialPower.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionAssasinationDagger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+        <state relative-caret-position="273">
+          <caret line="18" column="94" lean-forward="true" selection-start-line="18" selection-start-column="94" selection-end-line="18" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/StuffEffectsOnPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="22" column="18" lean-forward="true" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#237#238#0" expanded="true" />
+            <element signature="e#414#415#0" expanded="true" />
+            <element signature="e#337#338#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#565#566#0" expanded="true" />
+            <element signature="e#599#600#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionGiantSnake.java">
+    <entry file="jar://$PROJECT_DIR$/lib/yagson-0.5.jar!/com/gilecode/yagson/com/google/gson/JsonStreamParser.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="18" column="58" selection-start-line="18" selection-start-column="58" selection-end-line="18" selection-end-column="58" />
+        <state relative-caret-position="361">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpecialPowerActions/SPActionAP.java">
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/SinglePlayerModeMenu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpecialPowerActions/SPActionHPBuff.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/card/hermione/SPATime.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpecialPowerActions/SPActionAPBuff.java" />
-    <entry file="file://$PROJECT_DIR$/src/Model/card/hermione/Minion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpecialPowerActions/SPActionTooranianSpy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpecialPowerActions/SPActionDisBuffer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/item/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="20" column="25" lean-forward="true" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-          <folding>
-            <element signature="initializer##0;class#Item#0" />
-            <element signature="method#Item#0;class#Item#0" />
-            <element signature="method#getItem#0;class#Item#0" />
-            <element signature="e#1270#1334#1" />
-            <element signature="method#hasItem#0;class#Item#0" />
-            <element signature="e#1473#1564#1" />
-            <element signature="e#1510#1554#1" />
-            <element signature="method#getItem#1;class#Item#0" />
-            <element signature="e#1710#1793#1" />
-            <element signature="method#hasItem#1;class#Item#0" />
-            <element signature="e#1904#1972#0" />
-            <element signature="e#2004#2041#0" />
-            <element signature="method#deploy#0;class#Item#0" />
-            <element signature="method#deploy#1;class#Item#0" />
-            <element signature="method#increaseAttackPoint#0;class#Item#0" />
-            <element signature="method#addNewOnItemDeatilPresentedListener#0;class#Item#0" />
-            <element signature="n#!!block;n#setComment#0;n#Item#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/item/ItemActions/ItemAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/item/ItemActions/ItemActionDamoolArch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpecialPowerActions/SPActionNextTurnDamager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpecialPowerActions/SPActionPoisoner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpecialPowerActions/SPActionStunWhenAttacking.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/spell/SpecialPowerActions/SPActionWhiteWolf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="63">
+          <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/account/Match.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="22" selection-start-column="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Deck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/card/hermione/BuffEffectsOnHermione.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="203" selection-start-line="203" selection-end-line="203" />
+        <state relative-caret-position="735">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
           <folding>
-            <element signature="e#1288#1289#0" expanded="true" />
-            <element signature="e#1320#1321#0" expanded="true" />
-            <element signature="e#4145#4146#0" expanded="true" />
-            <element signature="e#4225#4226#0" expanded="true" />
-            <element signature="e#4269#4270#0" expanded="true" />
-            <element signature="e#4308#4309#0" expanded="true" />
-            <element signature="e#4345#4346#0" expanded="true" />
-            <element signature="e#4381#4382#0" expanded="true" />
-            <element signature="e#4424#4425#0" expanded="true" />
-            <element signature="e#4466#4467#0" expanded="true" />
-            <element signature="e#4517#4518#0" expanded="true" />
-            <element signature="e#4567#4568#0" expanded="true" />
-            <element signature="e#4632#4633#0" expanded="true" />
-            <element signature="e#4688#4689#0" expanded="true" />
-            <element signature="e#4743#4744#0" expanded="true" />
-            <element signature="e#4794#4795#0" expanded="true" />
-            <element signature="e#4861#4862#0" expanded="true" />
-            <element signature="e#4923#4924#0" expanded="true" />
-            <element signature="e#5130#5131#0" expanded="true" />
-            <element signature="e#5203#5204#0" expanded="true" />
-            <element signature="e#5381#5382#0" expanded="true" />
-            <element signature="e#5414#5415#0" expanded="true" />
-            <element signature="e#5458#5459#0" expanded="true" />
-            <element signature="e#5498#5499#0" expanded="true" />
-            <element signature="e#5597#5598#0" expanded="true" />
-            <element signature="e#5624#5625#0" expanded="true" />
-            <element signature="e#5666#5667#0" expanded="true" />
-            <element signature="e#5698#5699#0" expanded="true" />
-            <element signature="e#5764#5765#0" expanded="true" />
-            <element signature="e#5820#5821#0" expanded="true" />
-            <element signature="e#5868#5869#0" expanded="true" />
-            <element signature="e#5906#5907#0" expanded="true" />
-            <element signature="e#5943#5944#0" expanded="true" />
-            <element signature="e#5979#5980#0" expanded="true" />
-            <element signature="e#6017#6018#0" expanded="true" />
-            <element signature="e#6053#6054#0" expanded="true" />
-            <element signature="e#6104#6105#0" expanded="true" />
-            <element signature="e#6146#6147#0" expanded="true" />
-            <element signature="e#6189#6190#0" expanded="true" />
-            <element signature="e#6228#6229#0" expanded="true" />
-            <element signature="e#6293#6294#0" expanded="true" />
-            <element signature="e#6349#6350#0" expanded="true" />
-            <element signature="e#6388#6389#0" expanded="true" />
-            <element signature="e#6426#6427#0" expanded="true" />
-            <element signature="e#6488#6489#0" expanded="true" />
-            <element signature="e#6543#6544#0" expanded="true" />
-            <element signature="e#6597#6598#0" expanded="true" />
-            <element signature="e#6635#6636#0" expanded="true" />
-            <element signature="e#6445#6446#0" expanded="true" />
-            <element signature="e#6489#6490#0" expanded="true" />
-            <element signature="e#6880#6881#0" expanded="true" />
-            <element signature="e#6934#6935#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/card/spell/Buff/BuffActions/BuffActionStun.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+        <state relative-caret-position="252">
+          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/exeption/WTFException.java" />
+    <entry file="file://$PROJECT_DIR$/src/Model/Map/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Graphics/Listeners/OnMoveListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="15" lean-forward="true" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Graphics/Listeners/OnAttackListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Graphics/Listeners/OnSpawnListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Graphics/Listeners/OnDeathListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="15" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Graphics/Listeners/OnSpeacialPowerAppliedListeners.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Graphics/Listeners/OnDamageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/card/hermione/Minion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="65" column="27" lean-forward="true" selection-start-line="48" selection-start-column="17" selection-end-line="65" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/card/hermione/BuffEffectsOnHermione.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="140" selection-start-line="140" selection-end-line="140" />
+          <folding>
+            <element signature="e#4918#4919#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Usables.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Minion.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Spell.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Collectables.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hero.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/card/hermione/Hermione.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="142" column="35" selection-start-line="142" selection-start-column="30" selection-end-line="142" selection-end-column="37" />
-          <folding>
-            <element signature="e#943#1469#0" />
-            <element signature="e#1476#1848#0" />
-            <element signature="e#1853#2932#0" />
-            <element signature="e#2202#2304#0" />
-            <element signature="e#2366#2403#0" />
-            <element signature="e#2475#2586#0" />
-            <element signature="e#2818#2897#0" />
-            <element signature="e#2939#3139#0" />
-            <element signature="e#3144#3426#0" />
-            <element signature="e#3433#4097#0" />
-            <element signature="e#4102#4443#0" />
-            <element signature="e#4725#4905#0" />
-            <element signature="e#4757#4850#0" />
-            <element signature="e#5116#5371#0" />
-          </folding>
+        <state relative-caret-position="42">
+          <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/card/hermione/Hero.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+        <state relative-caret-position="370">
+          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/card/Card.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="187" column="23" selection-start-line="187" selection-start-column="23" selection-end-line="187" selection-end-column="23" />
+        <state>
+          <caret column="19" selection-start-column="19" selection-end-line="39" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/ConsoleInput.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/Graphics/HermioneGraphics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SignInMenu.css" />
-    <entry file="file://$PROJECT_DIR$/SignInMenu.css" />
-    <entry file="jar://$PATH_TO_FX$/javafx.graphics.jar!/javafx/application/Application.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-391">
-          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/ChooseBattleModeMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="27" />
+        <state relative-caret-position="882">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
           <folding>
-            <element signature="e#264#265#0" expanded="true" />
-            <element signature="e#298#299#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#859#860#0" expanded="true" />
+            <element signature="e#899#900#0" expanded="true" />
+            <element signature="n#!!block;n#onMove#0;n#HermioneGraphics#0" />
+            <element signature="n#!!block;n#onAttack#0;n#HermioneGraphics#0" />
+            <element signature="n#!!block;n#onSpawn#0;n#HermioneGraphics#0" />
+            <element signature="n#!!block;n#onDeath#0;n#HermioneGraphics#0" />
+            <element signature="method#onDamage#0;class#HermioneGraphics#0" />
+            <element signature="n#!!block;n#onSpecialPowerApplied#0;n#HermioneGraphics#0" />
+            <element signature="n#!!block;n#addMoveListener#0;n#HermioneGraphics#0" />
+            <element signature="n#!!block;n#addAttackListenr#0;n#HermioneGraphics#0" />
+            <element signature="n#!!block;n#addSpawnListenr#0;n#HermioneGraphics#0" />
+            <element signature="n#!!block;n#addDeathListener#0;n#HermioneGraphics#0" />
+            <element signature="method#addDamageListeners#0;class#HermioneGraphics#0" />
+            <element signature="method#addSpecialPowerAppliedListener#0;class#HermioneGraphics#0" />
+            <element signature="method#addCardSelectedListener#0;class#HermioneGraphics#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Graphics/Listeners/OnCardSelectedListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/menu/CostumeModeMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="273">
+          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/exeption/InvalidDeckException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Deck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="172" selection-start-line="172" selection-end-line="172" />
           <folding>
-            <element signature="e#355#356#0" expanded="true" />
-            <element signature="e#389#390#0" expanded="true" />
+            <element signature="e#3100#3101#0" expanded="true" />
+            <element signature="e#3127#3128#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/CollectableMenu.java">
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/CollectionMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="27" />
-          <folding>
-            <element signature="e#295#296#0" expanded="true" />
-            <element signature="e#329#330#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="188">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Account.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ConsoleOutput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="132" column="21" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/menu/Battle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="61" column="8" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="27" />
+        <state relative-caret-position="301">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="32" column="27" lean-forward="true" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ConsoleInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/StoryModeMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
           <folding>
-            <element signature="e#1422#1574#0" />
-            <element signature="e#1488#1547#1" />
-            <element signature="e#1623#1624#0" expanded="true" />
-            <element signature="e#1657#1658#0" expanded="true" />
+            <element signature="e#499#500#0" expanded="true" />
+            <element signature="e#527#528#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/GameModeMenu.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/account/AI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="27" />
+        <state relative-caret-position="792">
+          <caret line="116" column="13" lean-forward="true" selection-start-line="116" selection-start-column="13" selection-end-line="116" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="158" selection-start-line="158" selection-end-line="158" />
           <folding>
-            <element signature="e#220#221#0" expanded="true" />
-            <element signature="e#254#255#0" expanded="true" />
+            <element signature="e#4642#4643#0" expanded="true" />
+            <element signature="e#8685#8686#0" expanded="true" />
+            <element signature="e#8725#8726#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#3357#3358#0" expanded="true" />
+            <element signature="e#3392#3393#0" expanded="true" />
+            <element signature="e#3420#3421#0" expanded="true" />
+            <element signature="e#3447#3448#0" expanded="true" />
+            <element signature="e#3492#3493#0" expanded="true" />
+            <element signature="e#3530#3531#0" expanded="true" />
+            <element signature="e#4375#4376#0" expanded="true" />
+            <element signature="e#4423#4424#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="142" column="17" lean-forward="true" selection-start-line="142" selection-start-column="17" selection-end-line="142" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="213" column="24" selection-start-line="213" selection-start-column="18" selection-end-line="213" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3793#3794#0" expanded="true" />
+            <element signature="e#3883#3884#0" expanded="true" />
+            <element signature="e#4604#4605#0" expanded="true" />
+            <element signature="e#4637#4638#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Map/Cell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#707#708#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Map/CellAffects.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        <state relative-caret-position="105">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Salam.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stuff.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stuff/SavedStrings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="69" selection-start-line="4" selection-start-column="69" selection-end-line="4" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/CollectionMenu.java">
+    <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="27" />
-          <folding>
-            <element signature="e#523#524#0" expanded="true" />
-            <element signature="e#557#558#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="36" column="73" selection-start-line="36" selection-start-column="73" selection-end-line="36" selection-end-column="73" />
+          <caret line="84" column="20" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/SignInMenu.java">
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="49" column="58" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
+        <state relative-caret-position="-167">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
           <folding>
-            <element signature="method#SignInMenu#0;class#SignInMenu#0" />
-            <element signature="e#1702#1704#0" />
-            <element signature="method#getMenu#0;class#SignInMenu#0" />
-            <element signature="method#enter#0;class#SignInMenu#0" />
-            <element signature="e#2756#2914#1" />
-            <element signature="method#creatAccount#0;class#SignInMenu#0" />
-            <element signature="method#logIn#0;class#SignInMenu#0" />
-            <element signature="e#3461#3583#1" />
-            <element signature="e#3589#3644#1" />
-            <element signature="method#logOut#0;class#SignInMenu#0" />
-            <element signature="method#save#0;class#SignInMenu#0" />
-            <element signature="method#showLeaderBoard#0;class#SignInMenu#0" />
-            <element signature="e#4003#4065#1" />
-            <element signature="method#addLeaderBoardClickedListener#0;class#SignInMenu#0" />
-            <element signature="method#help#0;class#SignInMenu#0" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="84" column="19" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
-          <folding>
-            <element signature="e#2182#2296#0" />
-            <element signature="e#2340#2341#0" expanded="true" />
-            <element signature="e#2390#2391#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Scenes/StyleSheets/SignInMenu.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="776">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Scenes/SignInMenu.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
   <component name="masterDetails">
