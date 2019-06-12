@@ -174,7 +174,6 @@ public class Primary {
     }
 
     private static void loadDeck(Deck deck) throws InvalidItemException, InvalidCardException {
-        System.err.println("deck"+ deck.getName() + "is loading");
         ArrayList<Card> deckCards = new ArrayList<>();
         ArrayList<Item> deckItems = new ArrayList<>();
         for (Card card : deck.getCards()) {
@@ -185,7 +184,6 @@ public class Primary {
         deck.setCards(deckCards);
         for (Item item : deck.getItems()) {
             deckItems.add(Primary.getItem(item.getName()));
-            System.err.println(item.getName());
         }
         deck.setItems(deckItems);
     }
