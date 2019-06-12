@@ -6,8 +6,13 @@ import Model.Primary;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Paint;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,7 +23,8 @@ public class MenuHandler extends Application {
 
     public static Menu currentMenu;
 
-    public static Stage stage ;
+    private static Stage stage;
+    public final Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
     private static void initMenus() {
         //az SignIn Menu mirim tuye MainMenu
@@ -50,7 +56,9 @@ public class MenuHandler extends Application {
             Primary.preprocess();
             Primary.pre();
             initMenus();
-        } catch (Exception e) {e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ConsoleInput consoleInput = new ConsoleInput();
         launch(args);
         consoleInput.play();
@@ -58,27 +66,42 @@ public class MenuHandler extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        stage = primaryStage ;
-        Scene scene = currentMenu.getMenuScene() ;
-        stage.setScene(scene);
+        stage = primaryStage;
+        Pane p = new Pane() ;
+        p.setStyle("-fx-background-color: BLACK");
+        Scene loadingScene = new Scene(p);
+        stage.setScene(loadingScene);
+
         stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-        stage.show() ;
         stage.setResizable(false);
+        stage.setFullScreenExitHint("");
+//        stage.setOnCloseRequest(Event::consume) ; //TODO -> handle exit button
+        stage.setOnCloseRequest(e -> {
+            try {
+                stop();
+            } catch (Exception ignored) {}
+        });
+        currentMenu.goToScene(primaryStage , primaryScreenBounds);
+        primaryStage.show() ;
+
     }
 
-
-    public static void showMenu(){
+    public static void showMenu() {
         MenuHandler.currentMenu.showMenu();
     }
 
 
     public static void nextMove() {
-        if(MenuHandler.currentMenu instanceof Battle)
+        if (MenuHandler.currentMenu instanceof Battle)
             Battle.getMenu().getPlayer().doYourMove();
     }
 
     public static Scanner getGameScanner() {
         return Game.accounts[Battle.getMenu().getTurn()].getPlayer().getOutputStream();
+    }
+
+    public static Stage getStage() {
+        return stage;
     }
 }

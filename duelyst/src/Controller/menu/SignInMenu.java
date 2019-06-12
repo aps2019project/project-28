@@ -5,9 +5,17 @@ import View.Listeners.OnLeaderBoardClickedListener;
 import Model.account.Account;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
-import exeption.NoAccountHasBeenSignedInException;
 import exeption.WrongPassException;
-import javafx.scene.control.Label;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -18,17 +26,64 @@ public class SignInMenu extends Menu {
     private Account temporaryAccount;
     private ArrayList<OnLeaderBoardClickedListener> leaderBoardPresenters;
 
+    private AnchorPane pane ;
+    private TextField usernameInput ;
+    private PasswordField passwordField ;
+    private Button signUpButton ;
+    private Button signInButton ;
+
     private SignInMenu(String name) {
         super(name);
-        this.leaderBoardPresenters = new ArrayList<>();
         this.rootPath = "Scenes/SignInMenu.fxml";
+        this.leaderBoardPresenters = new ArrayList<>();
     }
-
 
     @Override
     protected void buildScene() {
         super.buildScene();
-        Label label = new Label("fuck yea !");
+
+        pane = (AnchorPane) scene.lookup("#pane");
+        if (pane == null) System.err.println("pane input is null");
+        usernameInput = (TextField)scene.lookup("#username");
+        if (usernameInput == null) System.err.println("username input is null");
+        passwordField = (PasswordField) scene.lookup("#pass");
+        if (passwordField == null) System.err.println("pass input is null");
+        signInButton = (Button)scene.lookup("#signInButton");
+        if (signInButton == null) System.err.println("signin input is null");
+        signUpButton = (Button)scene.lookup("#signUpButton");
+        if (signUpButton == null) System.err.println("signUpButton is null");
+
+        pane.setMinHeight(bounds.getHeight());
+        pane.setMinWidth(bounds.getWidth());
+
+
+//
+//        background.fitWidthProperty().bind(stage.widthProperty());
+//        background.fitHeightProperty().bind(stage.heightProperty());
+//
+//        double WIDTH = background.getFitWidth();
+//        double HEIGHT = stage.getHeight();
+//        Image backImg = new Image("resources/images/signInBackground.jpg" , WIDTH , HEIGHT , false , true) ;
+//
+//        background.setImage(backImg) ;
+//        background.setLayoutX(0);
+//        background.setLayoutY(0);
+//        //frame :
+//        {
+//            frame.xProperty().bind(background.fitWidthProperty().multiply(0.5));
+//            frame.yProperty().bind(background.fitHeightProperty().divide(2.5));
+//            frame.heightProperty().bind(background.fitHeightProperty().divide(2));
+//            frame.widthProperty().bind(background.fitWidthProperty().divide(2.5));
+//            frame.setId("frame");
+//        }
+//
+//        //inputs
+//        {
+//            usernameInput.getLayoutX()
+//        }
+//
+//        root.getChildren().addAll(background , frame );
+
     }
 
     public static SignInMenu getMenu(){

@@ -3,9 +3,12 @@ package Controller.menu;
 import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
 import exeption.InvalidSubMenuException;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 
 import java.io.IOException;
@@ -19,26 +22,31 @@ public abstract class Menu {
     private ArrayList<Menu> subMenus;
     private ArrayList<OnMenuClickedListener> menuPresenters;
     private ArrayList<String> patterns;
+    protected Stage stage ;
     protected Scene scene ;
     protected Parent root ;
     protected String rootPath ;
+    protected Rectangle2D bounds ;
 
 
-    public Scene getMenuScene(){
+    public void goToScene(Stage stage , Rectangle2D bounds){
+        if (this.stage == null) this.stage = stage ;
+        if (this.bounds == null) this.bounds = bounds ;
         if (scene == null) {
             try {
-                System.out.println(rootPath);
                 root = FXMLLoader.load(getClass().getResource(rootPath));
             }catch (IOException ignored) {
                 System.err.println("couldn't load the fxml file");
             }
-            scene = new Scene(root);
+            scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
         }
         buildScene();
-        return scene ;
+        stage.setScene(scene);
+        stage.setFullScreen(true);
     }
 
-    protected void buildScene(){}
+    protected void buildScene(){
+    }
 
 
     public Menu(String name) {
