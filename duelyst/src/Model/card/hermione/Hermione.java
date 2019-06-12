@@ -35,9 +35,8 @@ public abstract class Hermione extends Card {
     protected SpecialPower SpecialPower;
     protected ArrayList<Buff> appliedBuffs=new ArrayList<>() ;
 
-    protected HermioneGraphics graphics=new HermioneGraphics(this);
-
-
+    protected HermioneGraphics graphics;
+    protected Cell fuckYouAll;
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range, String info) {
         super(name, price, manaPoint, info);
@@ -48,6 +47,10 @@ public abstract class Hermione extends Card {
         this.attackType = attackType;
         this.range = range;
         this.originalHealthPoint = this.healthPoint;
+        this.graphics=new HermioneGraphics(this);
+
+
+        this.fuckYouAll=new Cell(3,3);
     }
 
 
@@ -59,9 +62,13 @@ public abstract class Hermione extends Card {
     }
     public void attack(Hermione enemyCard,boolean isComboAttack) throws DestinationOutOfreachException, CantAttackException, InvalidCellException {
 
-        //DestinationOutOfReachException is not being thrown anymore
         if (!this.canAttack(enemyCard)) throw new CantAttackException();
 
+        /*
+        * handling the graphics
+        * */
+        this.getGraphics().onAttack(enemyCard);
+        enemyCard.getGraphics().onDamage();
 
         this.getBuffEffects().addAttackCounter();
 
@@ -107,6 +114,11 @@ public abstract class Hermione extends Card {
             enemyCard.changeHealthPoint((-1) * this.attackPoint);
 
         enemyCard.buffEffects.handleOnDamaged(this, this.attackPoint);
+        /*
+         *handling the graphics
+         *  */
+        this.getGraphics().onAttack(enemyCard);
+        enemyCard.getGraphics().onDamage();
     }
 
 
@@ -127,6 +139,12 @@ public abstract class Hermione extends Card {
     public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, CardCantBeMovedException, DestinationIsFullException {
         if (!canMove(x, y)) return false;
 
+        /*
+        * handling the graphics
+        * */
+        this.getGraphics().onMove(new Cell(x,y));
+
+
         this.setLocation(Battle.getMenu().getMap().getCell(x, y));
 
         this.actionTurn = 1;
@@ -141,6 +159,17 @@ public abstract class Hermione extends Card {
         this.getBuffEffects().setCanMove(true);
         //
 
+
+        System.err.println(this.fuckYouAll.getX());
+
+        System.err.println(cell.getX());
+
+        /*
+        *handling the graphics
+        *  */
+        this.getGraphics().onSpawn(cell);
+
+
         this.setLocation(cell);
 
         this.getBuffEffects().onSpawn() ;
@@ -148,13 +177,21 @@ public abstract class Hermione extends Card {
     public void die() {
         try {
             buffEffects.handleOnDeath();
+
+            /*
+            * handling the graphics
+            * */
+            this.getGraphics().onDeath();
             Battle.getMenu().kill(this);
         } catch (InvalidCardException ignored) {
         }
     }
 
 
-    public abstract void applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException, CantSpecialPowerCooldownException;
+    public void applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException, CantSpecialPowerCooldownException{
+
+        this.getGraphics().onSpecialPowerApplied(cell);
+    }
 
     public boolean hasFlag() {
         return hasFlag;
@@ -226,5 +263,8 @@ public abstract class Hermione extends Card {
     }
     public void setComboer(boolean comboer) {
         this.comboer = comboer;
+    }
+    public HermioneGraphics getGraphics() {
+        return graphics;
     }
 }

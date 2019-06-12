@@ -36,7 +36,6 @@ public class BuffEffectsOnHermione {
 
 
     public BuffEffectsOnHermione(Hermione card) {
-        System.err.println("heyyyyy ghashang dokhtar ");
         this.card = card;
     }
 

@@ -49,7 +49,9 @@ public class Minion extends Hermione{
             try {
                 if (this.SPActivationTime == null || !this.SPActivationTime.equals(currentState) || this.SPActivationTime==SPATime.NULL) return;
                 this.applySpecialPower(this.getLocation());
-            }catch(InvalidCellException | InvalidCardException ignored){}
+            }catch(InvalidCellException | InvalidCardException ignored){} catch (CantSpecialPowerCooldownException e) {
+                e.printStackTrace();
+            }
         }
 
 
@@ -60,7 +62,8 @@ public class Minion extends Hermione{
     }
 
     @Override
-        public void applySpecialPower(Cell cell) throws InvalidCardException , InvalidCellException{
+        public void applySpecialPower(Cell cell) throws InvalidCardException, InvalidCellException, CantSpecialPowerCooldownException {
+        super.applySpecialPower(cell);
         this.SpecialPower.deploy(Battle.getMenu().getPlayer() , Battle.getMenu().getEnemyPlayer() , cell);
     }
         public SPATime getSPActivationTime() {

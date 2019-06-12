@@ -79,7 +79,6 @@ public class CollectionMenu extends Menu {
     public void addToDeck(int ID, String deckName) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException,
             FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidDeckException, InvalidItemException {
         this.tempCollection.getDeckByName(deckName).addToDeck(ID);
-//        System.err.println(this.tempCollection.getDeckByName(deckName).getHero());
     }
 
 

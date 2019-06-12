@@ -9,6 +9,7 @@ import exeption.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class Collection {
 
@@ -32,6 +33,30 @@ public class Collection {
                 return true;
         }
         return false;
+    }
+
+
+    public void updateCollection(){
+        ArrayList<Card>newCards=new ArrayList<>();
+        this.getCards().forEach(c-> {
+            try {
+                newCards.add(Card.getCard(c.getCardID()));
+            } catch (InvalidCardException ignored) {
+                ignored.printStackTrace();
+            }
+        });
+
+        ArrayList<Usable>newItems=new ArrayList<>();
+        this.getItems().forEach(i -> {
+            try {
+                newItems.add((Usable)Item.getItem(i.getID()));
+            } catch (InvalidItemException ignored) {
+                ignored.printStackTrace();
+            }
+        });
+        this.setCards(newCards);
+        this.setItems(newItems);
+        this.getDecks().forEach(Deck::updateDeck);
     }
 
     public void importDeck(String name) throws InvalidDeckException {
@@ -159,7 +184,6 @@ public class Collection {
     }
 
     public boolean hasCard(String name) {
-        System.err.println("TO BE FOUND :"+ name);
         for (Card collectionCard : cards) {
             if (collectionCard.getName().toLowerCase().equals(name)) {
                 return true;
@@ -248,11 +272,11 @@ public class Collection {
         throw new InvalidDeckException();
     }
 
-    public boolean addNewDeck(String name) throws DeckAlreadyExistException {
+    public void addNewDeck(String name) throws DeckAlreadyExistException {
         if (!this.hasDeck(name)) {
             Deck newDeck = new Deck(name,this);
             this.decks.add(newDeck);
-            return true;
+            return;
         }
         throw new DeckAlreadyExistException();
     }
@@ -265,6 +289,7 @@ public class Collection {
         }
         throw new InvalidDeckException();
     }
+
 
     public void addCardToDeck(int cardID, String deckName) throws InvalidCardException, InvalidDeckException, DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException {
         Card card = this.getCard(cardID);
@@ -378,5 +403,12 @@ public class Collection {
         return usables;
     }
 
+    private void setCards(ArrayList<Card> Cards) {
+        this.cards=Cards;
+    }
+
+    private void setItems(ArrayList<Usable> Items) {
+        this.usables=Items;
+    }
 }
 
