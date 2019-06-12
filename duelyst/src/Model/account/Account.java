@@ -219,8 +219,6 @@ public class Account {
     }
 
     public void setPlayer(Player player) {
-//        System.err.println(this.name);
-//        System.err.println(player.getClass());
         this.player = player;
     }
 

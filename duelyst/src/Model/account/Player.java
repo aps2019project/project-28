@@ -185,7 +185,7 @@ public class Player {
 
 
     public void doYourMove(){
-        System.err.println("ArshiA mn player e pedar am");
+
     }
 
     public Scanner getOutputStream() {

@@ -25,7 +25,6 @@ public class CostumeModeMenu extends Menu {
 
         Game.accounts[1]=Account.AI[0];
 
-        System.err.println("debug");
         return this.enter(Battle.getMenu());
     }
 

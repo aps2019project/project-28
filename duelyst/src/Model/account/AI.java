@@ -200,7 +200,6 @@ public class AI extends Player {
 
     @Override
     public void doYourMove() {
-        System.err.println("ArshiA mn player e pesar am");
         this.play();
         System.out.println("_____________________________________");
         System.out.println("AI output is : " + this.output);

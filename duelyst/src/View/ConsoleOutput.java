@@ -705,7 +705,6 @@ public class ConsoleOutput {
             } catch (CardExistException e) {
                 System.out.println("You already have this Card. it is not wise to buy a same card twice");
             } catch (InvalidCardException e) {
-                System.err.println("hhhhhhhhhhhhhhhhhhhhh");
                 System.out.println("Me lord! we just ran out of " + name + ". im sorry!");
             } catch (ItemExistExeption itemExistExeption) {
                 System.out.println("You already have this Item. it is not wise to buy a same item twice");
@@ -819,7 +818,6 @@ public class ConsoleOutput {
                 System.out.println("im afraid that you dont acquire this item");
             }
         } else if (word[0].equals("move") && word[1].equals("to")) {
-            System.err.println();
             try {
                 menu.move(Integer.parseInt(word[2]), Integer.parseInt(word[3]));
             } catch (NoCardHasBeenSelectedException e) {

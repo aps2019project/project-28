@@ -27,9 +27,6 @@ public class GraveYardMenu extends Menu {
     }
 
     public void showCards() {
-//        for (Card card : this.account.getPlayer().getDeck().getGraveYard()) {
-//            System.err.println("HOLALALALALLAA: "+card.getName());
-//        }
         for (Card card : this.account.getPlayer().getDeck().getGraveYard()) {
             for (OnCardDetailsPresentedListener presenter : card.getCardDetailsPresenters()) {
                 presenter.showCardDetail(card);
