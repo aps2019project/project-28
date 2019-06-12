@@ -41,7 +41,6 @@ public class MenuHandler {
 
         try {
             Primary.preprocess();
-            Primary.pre();
             initMenus();
         } catch (Exception ignored) {ignored.printStackTrace();
         }

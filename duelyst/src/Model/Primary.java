@@ -9,7 +9,6 @@ import Model.card.spell.*;
 import Model.card.spell.SpecialPowerActions.*;
 import Model.card.spell.SpellAction.*;
 import Model.card.spell.SpellAction.ActionChangeAPBuff;
-import Model.card.spell.SpellAction.ActionChangeHPBuff;
 import Model.card.spell.SpellAction.ActionDisarm;
 import Model.card.spell.SpellAction.ActionStun;
 import Model.card.spell.Targets.*;
@@ -18,20 +17,18 @@ import Model.item.Item;
 import Model.item.ItemActions.*;
 import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
-import com.gilecode.yagson.com.google.gson.Gson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import exeption.*;
 
 import java.io.*;
-import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
 
 public class Primary {
 
     public static ArrayList<String> defaultNames = new ArrayList<>();
     public static ArrayList<Deck> defaultDecks = new ArrayList<>();
-    public static ArrayList<Item>  items= new ArrayList<>();
+    public static ArrayList<Item>  items = new ArrayList<>();
     public static ArrayList<Spell> spells = new ArrayList<>();
     public static ArrayList<Minion> minions = new ArrayList<>();
     public static ArrayList<Hero> heroes = new ArrayList<>();
@@ -40,30 +37,39 @@ public class Primary {
     public  static  ArrayList<Card> cards = new ArrayList<>();
     public static ArrayList<Account> accounts = new ArrayList<>();
 
-
-    public static void getItems(){
-        items.addAll(usables);
-        items.addAll(collectables);
+    public static void preprocess() throws IOException, InvalidCardException, InvalidItemException,
+            DeckAlreadyHasThisItemException, DeckAlreadyHasAHeroException, FullDeckException, DeckAlreadyHasThisCardException {
+        getSpells();
+        getMinions();
+        getHeroes();
+        getUsables();
+        getCollectables();
+        getCards();
+        getItems();
+        getAccounts();
+        loadDecks();
+        loadDefaultDecks();
+        generateAI();
     }
 
     public static void main(String[] args) throws IOException{
         Primary.Json();
     }
 
-    public static void getHeroes() throws FileNotFoundException {
+    private static void getSpells() throws FileNotFoundException {
         YaGson gson = new YaGson();
-        BufferedReader reader = new BufferedReader(new FileReader("Hero.json"));
+        BufferedReader reader = new BufferedReader(new FileReader("Spell.json"));
         JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
         while (jsonStreamParser.hasNext()) {
             JsonElement jsonElement = jsonStreamParser.next();
             if (jsonElement.isJsonObject()) {
-                Hero hero = gson.fromJson(jsonElement, Hero.class);
-                heroes.add(hero);
+                Spell spell = gson.fromJson(jsonElement, Spell.class);
+                spells.add(spell);
             }
         }
     }
 
-    public static void getMinions() throws FileNotFoundException {
+    private static void getMinions() throws FileNotFoundException {
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Minion.json"));
         JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
@@ -76,7 +82,20 @@ public class Primary {
         }
     }
 
-    public static void getUsables() throws FileNotFoundException {
+    private static void getHeroes() throws FileNotFoundException {
+        YaGson gson = new YaGson();
+        BufferedReader reader = new BufferedReader(new FileReader("Hero.json"));
+        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+        while (jsonStreamParser.hasNext()) {
+            JsonElement jsonElement = jsonStreamParser.next();
+            if (jsonElement.isJsonObject()) {
+                Hero hero = gson.fromJson(jsonElement, Hero.class);
+                heroes.add(hero);
+            }
+        }
+    }
+
+    private static void getUsables() throws FileNotFoundException {
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Usables.json"));
         JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
@@ -89,7 +108,7 @@ public class Primary {
         }
     }
 
-    public static void getCollectables() throws FileNotFoundException {
+    private static void getCollectables() throws FileNotFoundException {
 
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Collectables.json"));
@@ -103,20 +122,34 @@ public class Primary {
         }
     }
 
-    public static void getSpells() throws FileNotFoundException {
-        YaGson gson = new YaGson();
-        BufferedReader reader = new BufferedReader(new FileReader("Spell.json"));
-        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
-        while (jsonStreamParser.hasNext()) {
-            JsonElement jsonElement = jsonStreamParser.next();
-            if (jsonElement.isJsonObject()) {
-                Spell spell = gson.fromJson(jsonElement, Spell.class);
-                spells.add(spell);
-            }
-        }
+    private static  void getCards(){
+        cards.addAll(heroes);
+        cards.addAll(minions);
+        cards.addAll(spells);
     }
 
-    public static void getAccounts() throws IOException {
+    private static void getItems(){
+        items.addAll(usables);
+        items.addAll(collectables);
+    }
+
+    private static Card getCard( int id) throws InvalidCardException {
+        for (Card card : cards) {
+            if(card.getCardID() == id)
+                return card;
+        }
+        throw new InvalidCardException();
+    }
+
+    private static Item getItem( int id) throws InvalidItemException {
+        for (Item item : items) {
+            if(item.getID() == id)
+                return item;
+        }
+        throw new InvalidItemException();
+    }
+
+    private static void getAccounts() throws IOException {
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Account.json"));
         JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
@@ -131,29 +164,29 @@ public class Primary {
         reader.close();
     }
 
-    public static  void getCards(){
-        cards.addAll(heroes);
-        cards.addAll(minions);
-        cards.addAll(spells);
-    }
-
-    public static void pre() throws InvalidCardException, InvalidItemException, IOException, DeckAlreadyHasThisItemException, DeckAlreadyHasAHeroException, FullDeckException, DeckAlreadyHasThisCardException {
-        getAccounts();
-        loadDecks();
-        loadDefaultDecks();
-        generateAI();
-
-    }
-
-    public static void loadDecks() throws InvalidCardException, InvalidItemException {
+    private static void loadDecks() throws InvalidCardException, InvalidItemException {
         for (Account account : accounts) {
             Collection collection = account.getCollection();
             for (Deck deck : collection.getDecks()) {
-                deck.loadDeck();
+                loadDeck(deck);
             }
         }
     }
 
+    private static void loadDeck(Deck deck) throws InvalidItemException, InvalidCardException {
+        ArrayList<Card> deckCards = new ArrayList<>();
+        ArrayList<Item> deckItems = new ArrayList<>();
+        for (Card card : deck.getCards()) {
+            deckCards.add(getCard(card.getCardID()));
+            if(card instanceof Hero)
+                deck.setHero((Hero) card);
+        }
+        deck.setCards(deckCards);
+        for (Item item : items) {
+            deckItems.add(getItem(item.getID()));
+        }
+        deck.setItems(deckItems);
+    }
 
     public static void setDefaultDeck(Deck deck) throws IOException {
         File file  = new File("Decks"+ File.separator + deck.getName() +".json");
@@ -163,7 +196,7 @@ public class Primary {
         fileWriter.close();
     }
 
-    public static void loadDefaultDecks() throws IOException {
+    private static void loadDefaultDecks() throws IOException {
         File folder = new File("Decks");
         File[] decks = folder.listFiles();
         for (File deck : decks) {
@@ -184,111 +217,6 @@ public class Primary {
         }
     }
 
-
-    public static void preprocess() throws IOException{
-        getHeroes();
-        getMinions();
-        getSpells();
-        getUsables();
-        getCollectables();
-        getCards();
-        getItems();
-
-    }
-
-    private static void generateAI() throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
-        //level 1
-        Account.AI[1].clearCollection();
-        Deck deck = new Deck("AIDeck",Account.AI[1].getCollection());
-                deck.addCardToDeck(Primary.heroes.get(0));
-
-                deck.addCardToDeck(Primary.minions.get(0));
-                deck.addCardToDeck(Primary.minions.get(8));
-                deck.addCardToDeck(Primary.minions.get(10));
-                deck.addCardToDeck(Primary.minions.get(15));
-                deck.addCardToDeck(Primary.minions.get(12));
-                deck.addCardToDeck(Primary.minions.get(16));
-                deck.addCardToDeck(Primary.minions.get(17));
-                deck.addCardToDeck(Primary.minions.get(20));
-                deck.addCardToDeck(Primary.minions.get(21));
-                deck.addCardToDeck(Primary.minions.get(25));
-                deck.addCardToDeck(Primary.minions.get(33));
-                deck.addCardToDeck(Primary.minions.get(35));
-
-                deck.addCardToDeck(Primary.spells.get(0));
-                deck.addCardToDeck(Primary.spells.get(6));
-                deck.addCardToDeck(Primary.spells.get(9));
-                deck.addCardToDeck(Primary.spells.get(10));
-                deck.addCardToDeck(Primary.spells.get(11));
-                deck.addCardToDeck(Primary.spells.get(17));
-                deck.addCardToDeck(Primary.spells.get(19));
-
-                deck.addItemToDeck(Primary.usables.get(0));
-
-                Account.AI[1].getCollection().forcePushDeck(deck);
-         //level 2
-        Account.AI[2].clearCollection();
-        deck = new Deck("AIDeck",Account.AI[2].getCollection());
-
-                deck.addCardToDeck(Primary.heroes.get(4));
-
-                deck.addCardToDeck(Primary.minions.get(1));
-                deck.addCardToDeck(Primary.minions.get(2));
-                deck.addCardToDeck(Primary.minions.get(4));
-                deck.addCardToDeck(Primary.minions.get(7));
-                deck.addCardToDeck(Primary.minions.get(11));
-                deck.addCardToDeck(Primary.minions.get(14));
-//                    deck.addCardToDeck(Primary.minions.get(14));
-                deck.addCardToDeck(Primary.minions.get(18));
-                deck.addCardToDeck(Primary.minions.get(22));
-                deck.addCardToDeck(Primary.minions.get(26));
-                deck.addCardToDeck(Primary.minions.get(29));
-                deck.addCardToDeck(Primary.minions.get(32));
-                deck.addCardToDeck(Primary.minions.get(34));
-
-                deck.addCardToDeck(Primary.spells.get(1));
-                deck.addCardToDeck(Primary.spells.get(2));
-                deck.addCardToDeck(Primary.spells.get(4));
-                deck.addCardToDeck(Primary.spells.get(7));
-                deck.addCardToDeck(Primary.spells.get(8));
-                deck.addCardToDeck(Primary.spells.get(12));
-                deck.addCardToDeck(Primary.spells.get(18));
-
-                deck.addItemToDeck(Primary.usables.get(9));
-
-                Account.AI[2].getCollection().forcePushDeck(deck);
-
-        Account.AI[3].clearCollection();
-        deck=new Deck("AIDeck",Account.AI[3].getCollection());
-                deck.addCardToDeck(Primary.heroes.get(6));
-
-                deck.addCardToDeck(Primary.minions.get(5));
-                deck.addCardToDeck(Primary.minions.get(6));
-                deck.addCardToDeck(Primary.minions.get(9));
-                deck.addCardToDeck(Primary.minions.get(13));
-//                deck.addCardToDeck(Primary.minions.get(15));
-                deck.addCardToDeck(Primary.minions.get(15));
-                deck.addCardToDeck(Primary.minions.get(19));
-                deck.addCardToDeck(Primary.minions.get(23));
-                deck.addCardToDeck(Primary.minions.get(24));
-                deck.addCardToDeck(Primary.minions.get(27));
-                deck.addCardToDeck(Primary.minions.get(28));
-                deck.addCardToDeck(Primary.minions.get(30));
-                deck.addCardToDeck(Primary.minions.get(33));
-
-                deck.addCardToDeck(Primary.spells.get(4));
-                deck.addCardToDeck(Primary.spells.get(9));
-                deck.addCardToDeck(Primary.spells.get(11));
-                deck.addCardToDeck(Primary.spells.get(13));
-                deck.addCardToDeck(Primary.spells.get(14));
-                deck.addCardToDeck(Primary.spells.get(15));
-                deck.addCardToDeck(Primary.spells.get(16));
-
-                deck.addItemToDeck(Primary.usables.get(4));
-        Account.AI[3].getCollection().forcePushDeck(deck);
-
-    }
-
     public static void saveCustomSpell(Spell costumSpell) throws IOException {
         spells.add(costumSpell);
         YaGson gson = new YaGson();
@@ -301,7 +229,7 @@ public class Primary {
         fileWriter.close();
     }
 
-    public static void Json() throws IOException {
+    private static void Json() throws IOException {
         YaGson gson = new YaGson();
 
         //Spell
@@ -642,4 +570,97 @@ public class Primary {
         fileWriter.close();
     }//ba T bnvis tabee writo
 
+    private static void generateAI() throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException,
+            FullDeckException, DeckAlreadyHasThisItemException {
+        //level 1
+        Account.AI[1].clearCollection();
+        Deck deck = new Deck("AIDeck",Account.AI[1].getCollection());
+        deck.addCardToDeck(Primary.heroes.get(0));
+
+        deck.addCardToDeck(Primary.minions.get(0));
+        deck.addCardToDeck(Primary.minions.get(8));
+        deck.addCardToDeck(Primary.minions.get(10));
+        deck.addCardToDeck(Primary.minions.get(15));
+        deck.addCardToDeck(Primary.minions.get(12));
+        deck.addCardToDeck(Primary.minions.get(16));
+        deck.addCardToDeck(Primary.minions.get(17));
+        deck.addCardToDeck(Primary.minions.get(20));
+        deck.addCardToDeck(Primary.minions.get(21));
+        deck.addCardToDeck(Primary.minions.get(25));
+        deck.addCardToDeck(Primary.minions.get(33));
+        deck.addCardToDeck(Primary.minions.get(35));
+
+        deck.addCardToDeck(Primary.spells.get(0));
+        deck.addCardToDeck(Primary.spells.get(6));
+        deck.addCardToDeck(Primary.spells.get(9));
+        deck.addCardToDeck(Primary.spells.get(10));
+        deck.addCardToDeck(Primary.spells.get(11));
+        deck.addCardToDeck(Primary.spells.get(17));
+        deck.addCardToDeck(Primary.spells.get(19));
+
+        deck.addItemToDeck(Primary.usables.get(0));
+
+        Account.AI[1].getCollection().forcePushDeck(deck);
+        //level 2
+        Account.AI[2].clearCollection();
+        deck = new Deck("AIDeck",Account.AI[2].getCollection());
+
+        deck.addCardToDeck(Primary.heroes.get(4));
+
+        deck.addCardToDeck(Primary.minions.get(1));
+        deck.addCardToDeck(Primary.minions.get(2));
+        deck.addCardToDeck(Primary.minions.get(4));
+        deck.addCardToDeck(Primary.minions.get(7));
+        deck.addCardToDeck(Primary.minions.get(11));
+        deck.addCardToDeck(Primary.minions.get(14));
+//                    deck.addCardToDeck(Primary.minions.get(14));
+        deck.addCardToDeck(Primary.minions.get(18));
+        deck.addCardToDeck(Primary.minions.get(22));
+        deck.addCardToDeck(Primary.minions.get(26));
+        deck.addCardToDeck(Primary.minions.get(29));
+        deck.addCardToDeck(Primary.minions.get(32));
+        deck.addCardToDeck(Primary.minions.get(34));
+
+        deck.addCardToDeck(Primary.spells.get(1));
+        deck.addCardToDeck(Primary.spells.get(2));
+        deck.addCardToDeck(Primary.spells.get(4));
+        deck.addCardToDeck(Primary.spells.get(7));
+        deck.addCardToDeck(Primary.spells.get(8));
+        deck.addCardToDeck(Primary.spells.get(12));
+        deck.addCardToDeck(Primary.spells.get(18));
+
+        deck.addItemToDeck(Primary.usables.get(9));
+
+        Account.AI[2].getCollection().forcePushDeck(deck);
+
+        Account.AI[3].clearCollection();
+        deck=new Deck("AIDeck",Account.AI[3].getCollection());
+        deck.addCardToDeck(Primary.heroes.get(6));
+
+        deck.addCardToDeck(Primary.minions.get(5));
+        deck.addCardToDeck(Primary.minions.get(6));
+        deck.addCardToDeck(Primary.minions.get(9));
+        deck.addCardToDeck(Primary.minions.get(13));
+//                deck.addCardToDeck(Primary.minions.get(15));
+        deck.addCardToDeck(Primary.minions.get(15));
+        deck.addCardToDeck(Primary.minions.get(19));
+        deck.addCardToDeck(Primary.minions.get(23));
+        deck.addCardToDeck(Primary.minions.get(24));
+        deck.addCardToDeck(Primary.minions.get(27));
+        deck.addCardToDeck(Primary.minions.get(28));
+        deck.addCardToDeck(Primary.minions.get(30));
+        deck.addCardToDeck(Primary.minions.get(33));
+
+        deck.addCardToDeck(Primary.spells.get(4));
+        deck.addCardToDeck(Primary.spells.get(9));
+        deck.addCardToDeck(Primary.spells.get(11));
+        deck.addCardToDeck(Primary.spells.get(13));
+        deck.addCardToDeck(Primary.spells.get(14));
+        deck.addCardToDeck(Primary.spells.get(15));
+        deck.addCardToDeck(Primary.spells.get(16));
+
+        deck.addItemToDeck(Primary.usables.get(4));
+        Account.AI[3].getCollection().forcePushDeck(deck);
+
+    }
 }

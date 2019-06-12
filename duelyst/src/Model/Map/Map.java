@@ -17,13 +17,13 @@ import java.util.Random;
 
 public class Map {
     private static ArrayList<Map> maps;
-    public static final int BALA_PAEEN_Y=5;
-    public static final int CHAP_RAST_X=9;
-    public static final int FIRST_HERO_X=0;
-    public static final int FIRST_HERO_Y=2;
-    public static final int SECOND_HERO_X=8;
-    public static final int SECOND_HERO_Y=2;
-    public static final int MAX_COLLECTABLE_ON_MAP=3;
+    public static final int BALA_PAEEN_Y = 5;
+    public static final int CHAP_RAST_X = 9;
+    public static final int FIRST_HERO_X = 0;
+    public static final int FIRST_HERO_Y = 2;
+    public static final int SECOND_HERO_X = 8;
+    public static final int SECOND_HERO_Y = 2;
+    public static final int MAX_COLLECTABLE_ON_MAP = 3;
 
 
     private Cell[][] board = new Cell[Map.CHAP_RAST_X + 1][Map.BALA_PAEEN_Y + 1];
