@@ -184,7 +184,6 @@ public class Collection {
     }
 
     public boolean hasCard(String name) {
-        System.err.println("TO BE FOUND :"+ name);
         for (Card collectionCard : cards) {
             if (collectionCard.getName().toLowerCase().equals(name)) {
                 return true;
