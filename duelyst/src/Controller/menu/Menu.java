@@ -42,10 +42,10 @@ public abstract class Menu {
         }
         buildScene();
         stage.setScene(scene);
-        stage.setFullScreen(true);
     }
 
     protected void buildScene(){
+        //TODO music ! seriously i have busted my ass trying to make it happen but it just doesn't want to happen ! -_-
     }
 
 

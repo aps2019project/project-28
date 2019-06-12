@@ -11,6 +11,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Paint;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -66,13 +68,14 @@ public class MenuHandler extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         stage = primaryStage;
         Pane p = new Pane() ;
         p.setStyle("-fx-background-color: BLACK");
         Scene loadingScene = new Scene(p);
         stage.setScene(loadingScene);
 
-        stage.setFullScreen(true);
+        stage.setFullScreen(false); //TODO make it true in the end !
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.setResizable(false);
         stage.setFullScreenExitHint("");

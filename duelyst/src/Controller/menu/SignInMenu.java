@@ -1,22 +1,18 @@
 package Controller.menu;
 
 import Controller.Game;
+import Controller.GraphicsControlls;
 import View.Listeners.OnLeaderBoardClickedListener;
 import Model.account.Account;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 
@@ -29,6 +25,7 @@ public class SignInMenu extends Menu {
 
     private AnchorPane pane ;
     private TextField usernameInput ;
+    private TextField nameInput ;
     private PasswordField passwordField ;
     private Button signUpButton ;
     private Button signInButton ;
@@ -43,8 +40,10 @@ public class SignInMenu extends Menu {
     @Override
     protected void buildScene() {
         super.buildScene();
-        scene.setUserAgentStylesheet("/Controller/menu/Scenes/StyleSheets/SignInMenu.css");
+
+        scene.setUserAgentStylesheet("Controller/menu/Scenes/StyleSheets/SignInMenu.css");
         pane = (AnchorPane) scene.lookup("#pane");
+
         usernameInput = (TextField)scene.lookup("#username");
         passwordField = (PasswordField) scene.lookup("#pass");
         signInButton = (Button)scene.lookup("#signInButton");
@@ -58,38 +57,66 @@ public class SignInMenu extends Menu {
             if (signUpButton == null) System.err.println("signUpButton is null");
         } //check if they're found
 
+        GraphicsControlls.setButtonPressedStyles(signInButton , "button1clicked");
+        GraphicsControlls.setButtonPressedStyles(signUpButton , "button2clicked");
+
+        signInButton.setOnAction(e -> signInButtonClicked());
+        signUpButton.setOnAction(e -> signUpButtonClicked());
+
 
         pane.setMinHeight(bounds.getHeight());
         pane.setMinWidth(bounds.getWidth());
 
 
-//
-//        background.fitWidthProperty().bind(stage.widthProperty());
-//        background.fitHeightProperty().bind(stage.heightProperty());
-//
-//        double WIDTH = background.getFitWidth();
-//        double HEIGHT = stage.getHeight();
-//        Image backImg = new Image("resources/images/signInBackground.jpg" , WIDTH , HEIGHT , false , true) ;
-//
-//        background.setImage(backImg) ;
-//        background.setLayoutX(0);
-//        background.setLayoutY(0);
-//        //frame :
-//        {
-//            frame.xProperty().bind(background.fitWidthProperty().multiply(0.5));
-//            frame.yProperty().bind(background.fitHeightProperty().divide(2.5));
-//            frame.heightProperty().bind(background.fitHeightProperty().divide(2));
-//            frame.widthProperty().bind(background.fitWidthProperty().divide(2.5));
-//            frame.setId("frame");
-//        }
-//
-//        //inputs
-//        {
-//            usernameInput.getLayoutX()
-//        }
-//
-//        root.getChildren().addAll(background , frame );
+    }
 
+    private void signUpButtonClicked() {
+        if (nameInput == null) {
+            nameInput = new TextField();
+            nameInput.setPromptText("Name");
+            nameInput.setMinHeight(usernameInput.getHeight());
+            nameInput.setFont(new Font("Songti SC Bold", 27));
+            frame.getChildren().add(0, nameInput);
+        }
+        else {
+            if (usernameInput.getText() != null && !usernameInput.getText().isEmpty()) {
+                if (passwordField.getText() != null && !passwordField.getText().isEmpty()) {
+                    if (nameInput.getText() != null && !nameInput.getText().isEmpty()) {
+
+                        try {
+                            creatAccount(nameInput.getText(), usernameInput.getText(), passwordField.getText());
+                        } catch (AccountAlreadyExistsException e) {
+                            usernameInput.setText("");
+                            usernameInput.setPromptText("this username already exists !");
+                        }
+
+                    } else nameInput.setStyle(nameInput.getStyle() + "fx-border-color : red ;");
+                } else passwordField.setStyle(passwordField.getStyle() + "fx-border-color : red ;");
+            } else usernameInput.setStyle(usernameInput.getStyle() + "fx-border-color : red ;");
+        }
+    }
+
+    private void signInButtonClicked() {
+        if (usernameInput.getText()!=null && !usernameInput.getText().isEmpty()){
+            if (passwordField.getText()!=null && !passwordField.getText().isEmpty()){
+                try {
+                    logIn(usernameInput.getText() , passwordField.getText());
+                }catch(InvalidAccountException e1){
+                    usernameInput.setText("");
+                    passwordField.setText("");
+                    usernameInput.setPromptText("incorrect username");
+                }catch (WrongPassException e2){
+                    passwordField.setText("");
+                    passwordField.setPromptText("wrong password");
+                }
+            }
+            else{
+                passwordField.setStyle(passwordField.getStyle() + "fx-border-color : red") ;
+            }
+        }
+        else{
+            usernameInput.setStyle(usernameInput.getStyle() + "fx-border-color : red");
+        }
     }
 
     public static SignInMenu getMenu(){

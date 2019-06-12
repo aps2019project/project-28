@@ -2,12 +2,13 @@
     -fx-background-image: url("../../../../resources/images/signInBackground.jpg");
     -fx-background-size: 100% 100%;
 }
-
-.button{
-    -fx-fill: #10284f;
-    -fx-opacity: 0.8;
-    /*-fx-border-radius: 0px;*/
-    fx-text-fill : white ;
+.text-field{
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-opacity: 0.5;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-padding: 0 0 0 10 ;
 }
 
 .frame{
