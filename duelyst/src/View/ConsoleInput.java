@@ -16,12 +16,7 @@ public class ConsoleInput {
         MenuHandler.showMenu();
         String command;
         while(commands.hasNext()){
-            try {
-                System.out.println("Game.accounts[0].getCollection().getMainDeck().getHero().getGraphics() = " + Game.accounts[0].getCollection().getMainDeck().getHero().getGraphics());
-                System.out.println("Game.accounts[1].getCollection().getMainDeck().getHero().getGraphics() = " + Game.accounts[1].getCollection().getMainDeck().getHero().getGraphics());
-                System.err.println("heyyyyyy sexy lady");
-                System.err.println(Battle.getMenu().getPlayer().getDeck().getHero().getBuffEffects().allowsAttack()+"allows attack");
-            }catch (Exception e){}
+            System.out.println("MenuHandler.currentMenu = " + MenuHandler.currentMenu);
             System.err.println(Game.accounts[0].getPlayer().getClass());
             System.err.println(Game.accounts[1].getPlayer().getClass());
             command = commands.nextLine().toLowerCase().trim();

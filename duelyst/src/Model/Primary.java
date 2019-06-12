@@ -137,9 +137,10 @@ public class Primary {
         cards.addAll(spells);
     }
 
-    public static void pre() throws IOException {
+    public static void pre() throws IOException, DeckAlreadyHasThisItemException, DeckAlreadyHasAHeroException, FullDeckException, DeckAlreadyHasThisCardException {
         getAccounts();
         Account.updateAccounts();
+        generateAI();
     }
 
 

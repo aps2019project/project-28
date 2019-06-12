@@ -561,8 +561,9 @@ public class ConsoleOutput {
         if(word[0].equals("select")){
             CostumeModeMenu menu= (CostumeModeMenu) MenuHandler.currentMenu;
             try {
-                MenuHandler.currentMenu=menu.selectDeck(word[1]);
+                MenuHandler.currentMenu=menu.selectDeck(word[2]);
             } catch (InvalidDeckException e) {
+                System.err.println(word[2]);
                 System.out.println("Couldnt find the deck");
             }
         }
@@ -651,6 +652,7 @@ public class ConsoleOutput {
                 System.out.println("Couldn't find the Deck!");
             }
         }else if(word[0].equals("validate") && word[1].equals("deck")){
+            System.err.println("debug");
             String name = getName(word , 2) ;
             try {
                 if(menu.validateDeck(name)){
@@ -664,6 +666,7 @@ public class ConsoleOutput {
         }else if(word[0].equals("select") && word[1].equals("deck")){
             String name = getName(word , 2) ;
             try {
+                System.err.println(name);
                 menu.selectDeck(name);
             } catch (InvalidDeckException e) {
                 System.out.println("Couldn't find the Deck!");
@@ -898,11 +901,10 @@ public class ConsoleOutput {
     }
 
     private static String getName(String[] word , int startPoint) {
-        String name = "" ;
+        StringBuilder name = new StringBuilder();
         for (int i = startPoint ; i < word.length ; i++){
-            name = name + word[i] + " " ;
+            name.append(word[i]).append(" ");
         }
-        name = name.substring(0 , name.length()-1) ;
-        return name;
+        return name.substring(0, name.length() - 1);
     }
 }
