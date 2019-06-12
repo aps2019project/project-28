@@ -1,5 +1,6 @@
 package Model.account;
 
+import Model.Primary;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
@@ -14,13 +15,17 @@ import java.util.Collections;
 
 public class Deck {
     private Collection collection;
-    private ArrayList<Integer> cardIDs = new ArrayList<>();
-    private ArrayList<Integer> itemIDs = new ArrayList<>();
-    private int heroID;
+    // TODO: 6/12/19 fatteme in ID ha va tabe haE ke barashun zaD ro bar dar khodam handle kardamesh
+                    private ArrayList<Integer> cardIDs = new ArrayList<>();
+                    private ArrayList<Integer> itemIDs = new ArrayList<>();
+                    private int heroID;
+    //
+
+
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Card> graveYard = new ArrayList<>();
-    private static ArrayList<OnDeckPresentedListener> deckPresenters = new ArrayList<OnDeckPresentedListener>();
+    private static ArrayList<OnDeckPresentedListener> deckPresenters = new ArrayList<>();
     private Hero hero;
     private String name;
     private int ID;
@@ -32,6 +37,35 @@ public class Deck {
         this.collection=collection;
     }
 
+    public void updateDeck() {
+        ArrayList<Card>newCards=new ArrayList<>();
+        this.getCards().forEach(c-> {
+            try {
+                newCards.add(this.collection.getCard(c.getCardID()));
+            } catch (InvalidCardException ignored) {
+                ignored.printStackTrace();
+            }
+        });
+        ArrayList<Item>newItems=new ArrayList<>();
+        this.getItems().forEach(i-> {
+            try {
+                newItems.add(this.collection.getItem(i.getID()));
+            } catch (InvalidItemException e) {
+                e.printStackTrace();
+            }
+        });
+
+
+        try {
+            this.hero= (Hero) this.collection.getCard(this.hero.getCardID());
+        } catch (InvalidCardException ignored) {
+            ignored.printStackTrace();
+        }
+
+        this.setItems(newItems);
+        this.setCards(newCards);
+    }
+
     public void loadDeck() throws InvalidItemException, InvalidCardException {
         loadItems();
         loadCards();
@@ -40,7 +74,7 @@ public class Deck {
     public void loadCards() throws InvalidCardException {
         cards = new ArrayList<>();
         for (Integer card : cardIDs) {
-            Card wantedCard = this.collection.getCard(card);
+            Card wantedCard = Card.getCard(card);
             cards.add(wantedCard);
         }
         Card hero = this.collection.getCard(heroID);
@@ -50,7 +84,7 @@ public class Deck {
     public void loadItems() throws InvalidItemException {
         items = new ArrayList<>();
         for (Integer itemID : itemIDs) {
-            Item item = this.collection.getItem(itemID);
+            Item item = Item.getItem(itemID);
             items.add(item);
         }
     }
@@ -256,5 +290,13 @@ public class Deck {
             usables.add((Usable) item);
         }
         return usables;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
     }
 }

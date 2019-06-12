@@ -81,6 +81,7 @@ public class Battle extends Menu {
     }
 
     private void insert(Hermione hermione, Cell cell) throws InvalidCellException {
+        System.out.println("hermione.getGraphics() = " + hermione.getGraphics());
         hermione.spawn(cell);
         this.map.getCell(cell).setCardOnCell(hermione);
     }

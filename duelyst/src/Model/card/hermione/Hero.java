@@ -2,6 +2,7 @@ package Model.card.hermione;
 
 import Controller.menu.Battle;
 import Model.Map.Cell;
+import Model.account.Deck;
 import View.Listeners.OnHeroDetailsPresentedListener;
 import exeption.CantSpecialPowerCooldownException;
 import exeption.InvalidCardException;

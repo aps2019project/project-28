@@ -137,21 +137,9 @@ public class Primary {
         cards.addAll(spells);
     }
 
-    public static void pre() throws InvalidCardException, InvalidItemException, IOException, DeckAlreadyHasThisItemException, DeckAlreadyHasAHeroException, FullDeckException, DeckAlreadyHasThisCardException {
+    public static void pre() throws IOException {
         getAccounts();
-        loadDecks();
-        loadDefaultDecks();
-        generateAI();
-
-    }
-
-    public static void loadDecks() throws InvalidCardException, InvalidItemException {
-        for (Account account : accounts) {
-            Collection collection = account.getCollection();
-            for (Deck deck : collection.getDecks()) {
-                deck.loadDeck();
-            }
-        }
+        Account.updateAccounts();
     }
 
 

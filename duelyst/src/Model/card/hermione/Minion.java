@@ -49,7 +49,9 @@ public class Minion extends Hermione{
             try {
                 if (this.SPActivationTime == null || !this.SPActivationTime.equals(currentState) || this.SPActivationTime==SPATime.NULL) return;
                 this.applySpecialPower(this.getLocation());
-            }catch(InvalidCellException | InvalidCardException ignored){}
+            }catch(InvalidCellException | InvalidCardException ignored){} catch (CantSpecialPowerCooldownException e) {
+                e.printStackTrace();
+            }
         }
 
 

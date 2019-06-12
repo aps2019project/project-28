@@ -13,6 +13,10 @@ public class HermioneGraphics {
     private ArrayList<OnDeathListener> deathListeners = new ArrayList<>();
     private ArrayList<OnDamageListener> damageListeners= new ArrayList<>();
     private ArrayList<OnSpeacialPowerAppliedListeners>SPApliedListenrs= new ArrayList<>();
+    private ArrayList<OnCardSelectedListener>selectedListeners= new ArrayList<>();
+
+
+    // TODO: 6/11/19 onCardSelected where to use
 
     private Hermione hermione;
 
@@ -38,6 +42,7 @@ public class HermioneGraphics {
     public void onSpecialPowerApplied(Cell cell){
         this.SPApliedListenrs.forEach(l->l.show(cell));
     }
+    public void OnCardSelected(String state){this.selectedListeners.forEach(l->l.show(state));}
 
     public void addMoveListener(OnMoveListener moveListener){
         this.moveListeners.add(moveListener);
@@ -54,5 +59,8 @@ public class HermioneGraphics {
     public void addDamageListeners(OnDamageListener damageListener){this.damageListeners.add(damageListener);}
     public void addSpecialPowerAppliedListener(OnSpeacialPowerAppliedListeners specialPowerAppliedListener){
         this.SPApliedListenrs.add(specialPowerAppliedListener);
+    }
+    public void addCardSelectedListener(OnCardSelectedListener cardSelectedListener){
+        this.selectedListeners.add(cardSelectedListener);
     }
 }
