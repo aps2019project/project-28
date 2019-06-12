@@ -1,22 +1,15 @@
 .root{
-    /*-fx-background-color: BLACK;*/
     -fx-background-image: url("../../../../resources/images/signInBackground.jpg");
     -fx-background-size: 100% 100%;
 }
 
-
-
-#frame{
-    -fx-fill: transparent;
-    -fx-stroke: black;
-    -fx-stroke-width: 2;
-    -fx-stroke-dash-array: 10 10 20 20;
-    -fx-stroke-dash-offset: 6;
-    -fx-stroke-line-cap: butt;
-}
-#singUpButton , #signInButton{
+.signUpButton , .signInButton{
     -fx-fill: #10284f;
-    -fx-opacity: 0.7;
-    -fx-border-radius: 0px;
+    -fx-opacity: 0.8;
+    /*-fx-border-radius: 0px;*/
     fx-text-fill : white ;
+}
+
+.frame{
+    -fx-fill: RED;
 }

@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -31,6 +32,7 @@ public class SignInMenu extends Menu {
     private PasswordField passwordField ;
     private Button signUpButton ;
     private Button signInButton ;
+    private VBox frame ;
 
     private SignInMenu(String name) {
         super(name);
@@ -41,17 +43,21 @@ public class SignInMenu extends Menu {
     @Override
     protected void buildScene() {
         super.buildScene();
-
+        scene.setUserAgentStylesheet("/Controller/menu/Scenes/StyleSheets/SignInMenu.css");
         pane = (AnchorPane) scene.lookup("#pane");
-        if (pane == null) System.err.println("pane input is null");
         usernameInput = (TextField)scene.lookup("#username");
-        if (usernameInput == null) System.err.println("username input is null");
         passwordField = (PasswordField) scene.lookup("#pass");
-        if (passwordField == null) System.err.println("pass input is null");
         signInButton = (Button)scene.lookup("#signInButton");
-        if (signInButton == null) System.err.println("signin input is null");
         signUpButton = (Button)scene.lookup("#signUpButton");
-        if (signUpButton == null) System.err.println("signUpButton is null");
+        frame = (VBox) scene.lookup("#frame");
+        {
+            if (pane == null) System.err.println("pane input is null");
+            if (usernameInput == null) System.err.println("username input is null");
+            if (passwordField == null) System.err.println("pass input is null");
+            if (signInButton == null) System.err.println("signInButton is null");
+            if (signUpButton == null) System.err.println("signUpButton is null");
+        } //check if they're found
+
 
         pane.setMinHeight(bounds.getHeight());
         pane.setMinWidth(bounds.getWidth());
