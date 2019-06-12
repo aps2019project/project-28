@@ -90,9 +90,9 @@ public class SignInMenu extends Menu {
                             usernameInput.setPromptText("this username already exists !");
                         }
 
-                    } else nameInput.setStyle(nameInput.getStyle() + "fx-border-color : red ;");
-                } else passwordField.setStyle(passwordField.getStyle() + "fx-border-color : red ;");
-            } else usernameInput.setStyle(usernameInput.getStyle() + "fx-border-color : red ;");
+                    } else nameInput.getStyleClass().add("wrong-text-field");
+                } else passwordField.getStyleClass().add("wrong-text-field");
+            } else usernameInput.getStyleClass().add("wrong-text-field");
         }
     }
 
@@ -109,14 +109,9 @@ public class SignInMenu extends Menu {
                     passwordField.setText("");
                     passwordField.setPromptText("wrong password");
                 }
-            }
-            else{
-                passwordField.setStyle(passwordField.getStyle() + "fx-border-color : red") ;
-            }
-        }
-        else{
-            usernameInput.setStyle(usernameInput.getStyle() + "fx-border-color : red");
-        }
+            } else passwordField.getStyleClass().add("wrong-text-field");
+        } else usernameInput.getStyleClass().add("wrong-text-field");
+
     }
 
     public static SignInMenu getMenu(){

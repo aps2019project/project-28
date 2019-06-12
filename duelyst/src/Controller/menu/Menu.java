@@ -4,9 +4,12 @@ import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
 import exeption.InvalidSubMenuException;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -27,6 +30,7 @@ public abstract class Menu {
     protected Parent root ;
     protected String rootPath ;
     protected Rectangle2D bounds ;
+    protected String mousePath = "resources/ui/mouse_auto@2x.png";
 
 
     public void goToScene(Stage stage , Rectangle2D bounds){
@@ -46,6 +50,7 @@ public abstract class Menu {
 
     protected void buildScene(){
         //TODO music ! seriously i have busted my ass trying to make it happen but it just doesn't want to happen ! -_-
+        scene.setOnMouseEntered(e -> scene.setCursor(new ImageCursor(new Image(mousePath))));
     }
 
 
