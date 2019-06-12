@@ -1,13 +1,10 @@
 package Model.account;
 
 import Model.card.Card;
-import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
-import Model.card.hermione.Minion;
 import Model.item.Item;
 import Model.item.Usable;
 import View.Listeners.OnDeckPresentedListener;
-import com.gilecode.yagson.YaGson;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -21,12 +18,23 @@ public class Deck {
     private static ArrayList<OnDeckPresentedListener> deckPresenters = new ArrayList<OnDeckPresentedListener>();
     private Hero hero;
     private String name;
-    final static int CARD_SIZE = 20;
-    final static int ITEM_SIZE = 1;
+    private int id;
+    final public static int CARD_SIZE = 20;
+    final public static int ITEM_SIZE = 1;
+    private static int idGenerator = 1;
 
     public Deck(String name,Collection collection) {
         this.name = name;
         this.collection=collection;
+        this.id = idGenerator++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setCollection(Collection collection) {

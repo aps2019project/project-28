@@ -133,17 +133,17 @@ public class Primary {
         items.addAll(collectables);
     }
 
-    private static Card getCard( int id) throws InvalidCardException {
+    private static Card getCard(String name) throws InvalidCardException {
         for (Card card : cards) {
-            if(card.getCardID() == id)
+            if(card.getName().compareTo(name) == 0)
                 return card;
         }
         throw new InvalidCardException();
     }
 
-    private static Item getItem( int id) throws InvalidItemException {
+    private static Item getItem(String name) throws InvalidItemException {
         for (Item item : items) {
-            if(item.getID() == id)
+            if(item.getName().compareTo(name) == 0)
                 return item;
         }
         throw new InvalidItemException();
@@ -174,16 +174,18 @@ public class Primary {
     }
 
     private static void loadDeck(Deck deck) throws InvalidItemException, InvalidCardException {
+        System.err.println("deck"+ deck.getName() + "is loading");
         ArrayList<Card> deckCards = new ArrayList<>();
         ArrayList<Item> deckItems = new ArrayList<>();
         for (Card card : deck.getCards()) {
-            deckCards.add(getCard(card.getCardID()));
+            deckCards.add(Primary.getCard(card.getName()));
             if(card instanceof Hero)
                 deck.setHero((Hero) card);
         }
         deck.setCards(deckCards);
-        for (Item item : items) {
-            deckItems.add(getItem(item.getID()));
+        for (Item item : deck.getItems()) {
+            deckItems.add(Primary.getItem(item.getName()));
+            System.err.println(item.getName());
         }
         deck.setItems(deckItems);
     }

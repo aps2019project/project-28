@@ -40,7 +40,7 @@ public class MenuHandler {
     public static void main(String[] args) {
 
         try {
-            Primary.preprocess();
+           Primary.preprocess();
             initMenus();
         } catch (Exception ignored) {ignored.printStackTrace();
         }
