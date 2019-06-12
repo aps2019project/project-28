@@ -28,16 +28,20 @@ hs_err_pid*
 #Fatteme:
 
 #ArshiA:
-       .idea/dictionaries/ksus.xml
        .idea/misc.xml
        .idea/modules.xml
        .idea/uiDesigner.xml
        .idea/workspace.xml
        duelyst.iml
+
        out/*
 
+       .idea/dictionaries/*
+       .idea/inspectionProfiles/*
+       .idea/libraries/*
+
+       copy/*
 
 #saE:
     workspace.xml
-
 
