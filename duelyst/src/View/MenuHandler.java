@@ -25,12 +25,9 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 
-public class MenuHandler extends Application {
+public class MenuHandler {
 
     public static Menu currentMenu;
-
-    private static Stage stage;
-    public final Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
     private static void initMenus() {
         //az SignIn Menu mirim tuye MainMenu
@@ -52,7 +49,8 @@ public class MenuHandler extends Application {
         Battle.getMenu().addSubMenu(GraveYardMenu.getMenu());
         Battle.getMenu().addSubMenu(CollectableMenu.getMenu());
 
-        currentMenu = SignInMenu.getMenu();
+        currentMenu=SignInMenu.getMenu().enter();
+//        currentMenu = SignInMenu.getMenu();
     }
 
 
@@ -65,34 +63,12 @@ public class MenuHandler extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ConsoleInput consoleInput = new ConsoleInput();
-        launch(args);
-        consoleInput.play();
+        GraphicInput input = GraphicInput.getGraphicInput();
+
+//        launch(args);
+        input.play(args);
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
-        stage = primaryStage;
-        Pane p = new Pane() ;
-        p.setStyle("-fx-background-color: BLACK");
-        Scene loadingScene = new Scene(p);
-        stage.setScene(loadingScene);
-
-        stage.setFullScreen(false); //TODO make it true in the end !
-        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-        stage.setResizable(false);
-        stage.setFullScreenExitHint("");
-//        stage.setOnCloseRequest(Event::consume) ; //TODO -> handle exit button
-        stage.setOnCloseRequest(e -> {
-            try {
-                stop();
-            } catch (Exception ignored) {}
-        });
-        currentMenu.goToScene(primaryStage , primaryScreenBounds);
-        primaryStage.show() ;
-
-    }
 
     public static void showMenu() {
         MenuHandler.currentMenu.showMenu();
@@ -106,9 +82,5 @@ public class MenuHandler extends Application {
 
     public static Scanner getGameScanner() {
         return Game.accounts[Battle.getMenu().getTurn()].getPlayer().getOutputStream();
-    }
-
-    public static Stage getStage() {
-        return stage;
     }
 }
