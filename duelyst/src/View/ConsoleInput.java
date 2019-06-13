@@ -4,10 +4,11 @@ package View;
 
 import java.util.Scanner;
 
-public class ConsoleInput {
+public class ConsoleInput implements Input {
     protected ConsoleOutput consoleOutput =new ConsoleOutput();
 
-    public void play(){
+    @Override
+    public void start(String... args) {
         Scanner commands= MenuHandler.getGameScanner();
         MenuHandler.showMenu();
         String command;
@@ -22,5 +23,4 @@ public class ConsoleInput {
             commands=MenuHandler.getGameScanner();
         }
     }
-
 }

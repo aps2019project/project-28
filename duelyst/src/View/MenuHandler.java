@@ -45,9 +45,9 @@ public class MenuHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ConsoleInput input = new ConsoleInput();
+        Input input = new ConsoleInput();
 
-        input.play();
+        input.start(args);
     }
 
 
