@@ -36,7 +36,7 @@ public abstract class Hermione extends Card {
     protected ArrayList<Buff> appliedBuffs=new ArrayList<>() ;
 
     protected HermioneGraphics graphics;
-    protected Cell fuckYouAll;
+
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range, String info) {
         super(name, price, manaPoint, info);
@@ -50,7 +50,6 @@ public abstract class Hermione extends Card {
         this.graphics=new HermioneGraphics(this);
 
 
-        this.fuckYouAll=new Cell(3,3);
     }
 
 
@@ -153,17 +152,6 @@ public abstract class Hermione extends Card {
 
 
     public void spawn(Cell cell) {
-
-        //initializing should be removed from code
-        this.appliedBuffs = new ArrayList<>();
-        this.getBuffEffects().setCanMove(true);
-        //
-
-
-        System.err.println(this.fuckYouAll.getX());
-
-        System.err.println(cell.getX());
-
         /*
         *handling the graphics
         *  */
