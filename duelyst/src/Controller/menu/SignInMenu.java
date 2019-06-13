@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 
 import java.util.ArrayList;
@@ -40,6 +41,8 @@ public class SignInMenu extends Menu {
     @Override
     protected void buildScene() {
         super.buildScene();
+
+
 
         scene.setUserAgentStylesheet("Controller/menu/Scenes/StyleSheets/SignInMenu.css");
         pane = (AnchorPane) scene.lookup("#pane");

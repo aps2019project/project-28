@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import stuff.Resources;
 
 
 import java.io.IOException;
@@ -30,7 +31,7 @@ public abstract class Menu {
     protected Parent root ;
     protected String rootPath ;
     protected Rectangle2D bounds ;
-    protected String mousePath = "resources/ui/mouse_auto@2x.png";
+    protected String mousePath = Resources.mouse_auto.getPath();
 
 
     public void goToScene(Stage stage , Rectangle2D bounds){
