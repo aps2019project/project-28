@@ -35,6 +35,7 @@ public class MenuHandler extends Application {
     private static void initMenus() {
         //az SignIn Menu mirim tuye MainMenu
 
+
         SignInMenu.getMenu().addSubMenu(MainMenu.getMenu());
 
         MainMenu.getMenu().addSubMenu(CollectionMenu.getMenu());

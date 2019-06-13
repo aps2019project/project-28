@@ -28,11 +28,6 @@ hs_err_pid*
 #Fatteme:
 
 #ArshiA:
-       .idea/misc.xml
-       .idea/modules.xml
-       .idea/uiDesigner.xml
-       .idea/workspace.xml
-       duelyst.iml
 
        out/*
 
@@ -43,6 +38,10 @@ hs_err_pid*
        copy/*
 
 #saE:
-    workspace.xml
-    resources/
-
+#mutial
+            resources/
+           .idea/misc.xml
+           .idea/modules.xml
+           .idea/uiDesigner.xml
+           .idea/workspace.xml
+            duelyst.iml

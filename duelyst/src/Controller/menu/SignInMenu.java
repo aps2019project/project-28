@@ -15,6 +15,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SignInMenu extends Menu {
@@ -34,15 +36,13 @@ public class SignInMenu extends Menu {
 
     private SignInMenu(String name) {
         super(name);
-        this.rootPath = "Scenes/SignInMenu.fxml";
         this.leaderBoardPresenters = new ArrayList<>();
+        this.rootPath = "Scenes/SignInMenu.fxml";
     }
 
     @Override
     protected void buildScene() {
         super.buildScene();
-
-
 
         scene.setUserAgentStylesheet("Controller/menu/Scenes/StyleSheets/SignInMenu.css");
         pane = (AnchorPane) scene.lookup("#pane");
