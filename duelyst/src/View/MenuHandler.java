@@ -3,25 +3,6 @@ import Controller.Game;
 import Controller.menu.Battle;
 import Controller.menu.*;
 import Model.Primary;
-import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Paint;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 
@@ -64,10 +45,9 @@ public class MenuHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        GraphicInput input = GraphicInput.getGraphicInput();
+        ConsoleInput input = new ConsoleInput();
 
-//        launch(args);
-        input.play(args);
+        input.play();
     }
 
 

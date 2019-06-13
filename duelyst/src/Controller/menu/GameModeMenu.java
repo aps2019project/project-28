@@ -7,10 +7,10 @@ public class GameModeMenu extends Menu {
     }
 
 
-    @Override
-    protected void buildScene() {
-        super.buildScene();
-    }
+//    @Override
+//    protected void buildScene() {
+//        super.buildScene();
+//    }
 
     public static GameModeMenu getMenu(){
         if(GameModeMenu.menu==null){

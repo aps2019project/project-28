@@ -10,10 +10,10 @@ public class ChooseBattleModeMenu extends Menu {
     }
 
 
-    @Override
-    protected void buildScene() {
-        super.buildScene();
-    }
+//    @Override
+//    protected void buildScene() {
+//        super.buildScene();
+//    }
 
     public static Menu getMenu() {
         if(ChooseBattleModeMenu.menu==null){

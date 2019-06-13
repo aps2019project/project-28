@@ -1,24 +1,20 @@
 package Controller.menu;
 
-import View.GraphicInput;
 import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
 import exeption.InvalidSubMenuException;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import stuff.Resources;
 
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public abstract class Menu {
 
@@ -36,26 +32,26 @@ public abstract class Menu {
     protected String mousePath = Resources.mouse_auto.getPath();
 
 
-    private void goToScene(Stage stage , Rectangle2D bounds){
-        if (this.stage == null) this.stage = stage ;
-        if (this.bounds == null) this.bounds = bounds ;
-        if (scene == null) {
-            try {
-                System.out.println(rootPath);
-                root = FXMLLoader.load(getClass().getResource(rootPath));
-            }catch (IOException ignored) {
-                System.err.println("couldn't load the fxml file");
-            }
-            scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
-        }
-        buildScene();
-        stage.setScene(scene);
-    }
+//    private void goToScene(Stage stage , Rectangle2D bounds){
+//        if (this.stage == null) this.stage = stage ;
+//        if (this.bounds == null) this.bounds = bounds ;
+//        if (scene == null) {
+//            try {
+//                System.out.println(rootPath);
+//                root = FXMLLoader.load(getClass().getResource(rootPath));
+//            }catch (IOException ignored) {
+//                System.err.println("couldn't load the fxml file");
+//            }
+//            scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
+//        }
+//        buildScene();
+//        stage.setScene(scene);
+//    }
 
-    protected void buildScene(){
-        //TODO music ! seriously i have busted my ass trying to make it happen but it just doesn't want to happen ! -_-
-        scene.setOnMouseEntered(e -> scene.setCursor(new ImageCursor(new Image(mousePath))));
-    }
+//    protected void buildScene(){
+//        //TODO music ! seriously i have busted my ass trying to make it happen but it just doesn't want to happen ! -_-
+//        scene.setOnMouseEntered(e -> scene.setCursor(new ImageCursor(new Image(mousePath))));
+//    }
 
 
     public Menu(String name) {
@@ -67,17 +63,17 @@ public abstract class Menu {
 
     public Menu enter(Menu subMenu){
         if(!subMenu.init(this))return this;
-        stage = GraphicInput.getGraphicInput().getStage() ;
-        bounds = GraphicInput.getGraphicInput().getPrimaryScreenBounds() ;
-        subMenu.goToScene(stage , bounds);
+//        stage = GraphicInput.getGraphicInput().getStage() ;
+//        bounds = GraphicInput.getGraphicInput().getPrimaryScreenBounds() ;
+//        subMenu.goToScene(stage , bounds);
         return subMenu;
     }
 
     public Menu enter(){
 //        if(!subMenu.init(this))return this;
-        stage = GraphicInput.getGraphicInput().getStage() ;
-        bounds = GraphicInput.getGraphicInput().getPrimaryScreenBounds() ;
-        goToScene(stage , bounds);
+//        stage = GraphicInput.getGraphicInput().getStage() ;
+//        bounds = GraphicInput.getGraphicInput().getPrimaryScreenBounds() ;
+//        goToScene(stage , bounds);
         return this;
     }
 

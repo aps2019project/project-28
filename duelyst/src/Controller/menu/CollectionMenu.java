@@ -16,10 +16,10 @@ public class CollectionMenu extends Menu {
     private Collection tempCollection;
 
 
-    @Override
-    protected void buildScene() {
-        super.buildScene();
-    }
+//    @Override
+//    protected void buildScene() {
+//        super.buildScene();
+//    }
 
     private CollectionMenu(String name) {
         super(name);
