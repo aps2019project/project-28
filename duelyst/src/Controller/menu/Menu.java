@@ -1,5 +1,6 @@
 package Controller.menu;
 
+import View.GraphicInput;
 import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
 import exeption.InvalidSubMenuException;
@@ -35,11 +36,12 @@ public abstract class Menu {
     protected String mousePath = Resources.mouse_auto.getPath();
 
 
-    public void goToScene(Stage stage , Rectangle2D bounds){
+    private void goToScene(Stage stage , Rectangle2D bounds){
         if (this.stage == null) this.stage = stage ;
         if (this.bounds == null) this.bounds = bounds ;
         if (scene == null) {
             try {
+                System.out.println(rootPath);
                 root = FXMLLoader.load(getClass().getResource(rootPath));
             }catch (IOException ignored) {
                 System.err.println("couldn't load the fxml file");
@@ -65,7 +67,18 @@ public abstract class Menu {
 
     public Menu enter(Menu subMenu){
         if(!subMenu.init(this))return this;
+        stage = GraphicInput.getGraphicInput().getStage() ;
+        bounds = GraphicInput.getGraphicInput().getPrimaryScreenBounds() ;
+        subMenu.goToScene(stage , bounds);
         return subMenu;
+    }
+
+    public Menu enter(){
+//        if(!subMenu.init(this))return this;
+        stage = GraphicInput.getGraphicInput().getStage() ;
+        bounds = GraphicInput.getGraphicInput().getPrimaryScreenBounds() ;
+        goToScene(stage , bounds);
+        return this;
     }
 
     public boolean init(Menu parentMenu) {
