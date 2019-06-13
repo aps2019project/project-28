@@ -169,6 +169,7 @@ public abstract class Hermione extends Card {
             /*
             * handling the graphics
             * */
+
             this.getGraphics().onDeath();
             Battle.getMenu().kill(this);
         } catch (InvalidCardException ignored) {
