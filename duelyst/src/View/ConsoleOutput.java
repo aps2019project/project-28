@@ -538,7 +538,7 @@ public class ConsoleOutput {
         }else if(word[0].equals("exit")){
             if(MenuHandler.currentMenu.getParentMenu()==null) System.out.println("This is the root menu!");
             else {
-                MenuHandler.currentMenu=MenuHandler.currentMenu.exit();
+                MenuHandler.currentMenu= MenuHandler.currentMenu.exit();
                 return true;
             }
         }
@@ -743,7 +743,6 @@ public class ConsoleOutput {
         }else if(word[0].equals("login")){
             try {
                 menu.logIn(word[1],word[2]);
-                MenuHandler.currentMenu=menu.enter(MainMenu.getMenu());
             } catch (InvalidAccountException e) {
                 System.out.println("Account doesnt exist");
             } catch (WrongPassException e) {

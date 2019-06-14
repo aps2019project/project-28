@@ -2,6 +2,7 @@ package Controller.menu;
 
 import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
+import View.MenuHandler;
 import exeption.InvalidSubMenuException;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
@@ -64,6 +65,8 @@ public abstract class Menu {
 
     public Menu enter(Menu subMenu){
         if(!subMenu.init(this))return this;
+        if (MenuHandler.getStage() != null) MenuHandler.getStage().setTitle(this.name);
+        subMenu.goToScene(stage , bounds);
         return subMenu;
     }
 

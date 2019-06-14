@@ -19,7 +19,7 @@ public class ConsoleInput {
             MenuHandler.showMenu();
             MenuHandler.nextMove();
 
-            commands=MenuHandler.getGameScanner();
+            commands= MenuHandler.getGameScanner();
         }
     }
 

@@ -1,18 +1,18 @@
 package Controller.menu;
 
 import Controller.Game;
-import Controller.GraphicsControlls;
 import View.Listeners.OnLeaderBoardClickedListener;
 import Model.account.Account;
+import View.MenuHandler;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 
 import java.util.ArrayList;
@@ -52,20 +52,18 @@ public class SignInMenu extends Menu {
         signInButton = (Button)scene.lookup("#signInButton");
         signUpButton = (Button)scene.lookup("#signUpButton");
         frame = (VBox) scene.lookup("#frame");
-        {
-            if (pane == null) System.err.println("pane input is null");
-            if (usernameInput == null) System.err.println("username input is null");
-            if (passwordField == null) System.err.println("pass input is null");
-            if (signInButton == null) System.err.println("signInButton is null");
-            if (signUpButton == null) System.err.println("signUpButton is null");
-        } //check if they're found
 
-        GraphicsControlls.setButtonPressedStyles(signInButton , "button1clicked");
-        GraphicsControlls.setButtonPressedStyles(signUpButton , "button2clicked");
+        GraphicsControlls.setButtonStyle("button1" , signInButton);
+        GraphicsControlls.setButtonStyle("button2" , signUpButton);
 
         signInButton.setOnAction(e -> signInButtonClicked());
         signUpButton.setOnAction(e -> signUpButtonClicked());
 
+        scene.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER){
+                signInButtonClicked();
+            }
+        });
 
         pane.setMinHeight(bounds.getHeight());
         pane.setMinWidth(bounds.getWidth());
@@ -138,6 +136,16 @@ public class SignInMenu extends Menu {
         if (Account.hasAccount(username))
             throw new AccountAlreadyExistsException();
         temporaryAccount = new Account(name, username, password);
+        save() ;
+        try {
+            logIn(username , password);
+        } catch (InvalidAccountException e) {
+            System.err.println("InvalidAccount after creating an account and then trying to login ! \n " +
+                    "signInMenu : 137");
+        } catch (WrongPassException e) {
+            System.err.println("WrongPassword after creating an account and then trying to login ! \n " +
+                    "signInMenu : 137");
+        }
     }
 
     public void logIn(String username, String password) throws InvalidAccountException, WrongPassException {
@@ -146,6 +154,7 @@ public class SignInMenu extends Menu {
             Game.accounts[0] = account;
             Game.hasLoggedIn = true;
             this.account=account;
+            MenuHandler.currentMenu=menu.enter(MainMenu.getMenu());
         } else {
             throw new WrongPassException();
         }

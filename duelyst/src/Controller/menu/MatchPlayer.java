@@ -5,8 +5,6 @@ import Model.account.Match;
 import View.ConsoleInput;
 import View.MenuHandler;
 
-import java.util.Scanner;
-
 public class MatchPlayer extends ConsoleInput {
     private Match match;
     private Battle battle;
