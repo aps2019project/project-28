@@ -131,6 +131,7 @@ public abstract class Menu {
         throw new InvalidSubMenuException();
 
     }
+
     public void setParentMenu(Menu parentMenu) {
         this.parentMenu = parentMenu;
     }
