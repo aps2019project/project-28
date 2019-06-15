@@ -2,12 +2,10 @@ package Controller.menu;
 
 import Model.account.Command;
 import Model.account.Match;
-import View.ConsoleInput;
+import View.ConsoleView;
 import View.MenuHandler;
 
-import java.util.Scanner;
-
-public class MatchPlayer extends ConsoleInput {
+public class MatchPlayer extends ConsoleView {
     private Match match;
     private Battle battle;
 
@@ -17,7 +15,7 @@ public class MatchPlayer extends ConsoleInput {
     }
 
     @Override
-    public void play() {
+    public void play(String... args) {
         Battle.newGame(match.getGameMode());
         MenuHandler.showMenu();
         Command command;

@@ -1,19 +1,16 @@
 package Controller.menu;
 
+import Controller.menu.Graphics.MenuGraphics;
 import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
 import exeption.InvalidSubMenuException;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import stuff.Resources;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Menu {
@@ -24,12 +21,19 @@ public abstract class Menu {
     private ArrayList<Menu> subMenus;
     private ArrayList<OnMenuClickedListener> menuPresenters;
     private ArrayList<String> patterns;
-    protected Stage stage ;
-    protected Scene scene ;
-    protected Parent root ;
-    protected String rootPath ;
-    protected Rectangle2D bounds ;
-    protected String mousePath = Resources.mouse_auto.getPath();
+    private MenuGraphics graphic=new MenuGraphics(this);
+
+
+    // TODO: 6/15/19 here i am with another part of S.A.E.E 's shit
+    // this episode is called : shit every where , saE returns
+                protected Stage stage ;
+                protected Scene scene ;
+                protected Parent root ;
+                protected String rootPath ;
+                protected Rectangle2D bounds ;
+                protected String mousePath = Resources.mouse_auto.getPath();
+    //
+
 
 
 //    private void goToScene(Stage stage , Rectangle2D bounds){
@@ -47,7 +51,7 @@ public abstract class Menu {
 //        buildScene();
 //        stage.setScene(scene);
 //    }
-
+//
 //    protected void buildScene(){
 //        //TODO music ! seriously i have busted my ass trying to make it happen but it just doesn't want to happen ! -_-
 //        scene.setOnMouseEntered(e -> scene.setCursor(new ImageCursor(new Image(mousePath))));
@@ -59,20 +63,23 @@ public abstract class Menu {
         this.menuPresenters=new ArrayList<>();
         this.subMenus = new ArrayList<>();
         this.patterns = new ArrayList<>();
+
     }
 
     public Menu enter(Menu subMenu){
         if(!subMenu.init(this))return this;
-//        stage = GraphicInput.getGraphicInput().getStage() ;
-//        bounds = GraphicInput.getGraphicInput().getPrimaryScreenBounds() ;
+        // TODO: 6/15/19 handle graphics
+//        stage = GraphicView.getGraphicInput().getStage() ;
+//        bounds = GraphicView.getGraphicInput().getPrimaryScreenBounds() ;
 //        subMenu.goToScene(stage , bounds);
         return subMenu;
     }
 
     public Menu enter(){
 //        if(!subMenu.init(this))return this;
-//        stage = GraphicInput.getGraphicInput().getStage() ;
-//        bounds = GraphicInput.getGraphicInput().getPrimaryScreenBounds() ;
+        // TODO: 6/15/19 handle graphics
+//        stage = GraphicView.getGraphicInput().getStage() ;
+//        bounds = GraphicView.getGraphicInput().getPrimaryScreenBounds() ;
 //        goToScene(stage , bounds);
         return this;
     }
@@ -146,5 +153,13 @@ public abstract class Menu {
 
     public Menu exit() {
         return parentMenu;
+    }
+
+    public MenuGraphics getGraphic() {
+        return graphic;
+    }
+
+    public void setGraphic(MenuGraphics graphic) {
+        this.graphic = graphic;
     }
 }

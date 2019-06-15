@@ -1,7 +1,6 @@
 package Controller.menu;
 
 import Controller.Game;
-import Controller.GraphicsControlls;
 import View.Listeners.OnLeaderBoardClickedListener;
 import Model.account.Account;
 import exeption.AccountAlreadyExistsException;
@@ -12,11 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
-import javafx.scene.text.Font;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class SignInMenu extends Menu {

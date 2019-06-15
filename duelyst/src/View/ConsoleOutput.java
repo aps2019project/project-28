@@ -4,6 +4,8 @@ import Controller.GameMode.ClassicMode;
 import Controller.GameMode.Domination;
 import Controller.GameMode.FlagMode;
 import Controller.menu.*;
+//import SignInMenu;
+import Controller.menu.SignInMenu;
 import Model.Map.Cell;
 import Model.Map.Map;
 import Model.account.Account;

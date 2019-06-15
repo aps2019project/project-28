@@ -2,7 +2,10 @@ package View;
 import Controller.Game;
 import Controller.menu.Battle;
 import Controller.menu.*;
+//import SignInMenu;
+import Controller.menu.SignInMenu;
 import Model.Primary;
+
 import java.util.Scanner;
 
 
@@ -31,8 +34,8 @@ public class MenuHandler {
         Battle.getMenu().addSubMenu(GraveYardMenu.getMenu());
         Battle.getMenu().addSubMenu(CollectableMenu.getMenu());
 
-        currentMenu=SignInMenu.getMenu().enter();
-//        currentMenu = SignInMenu.getMenu();
+//        currentMenu=SignInMenu.getMenu().enter();
+        currentMenu = SignInMenu.getMenu();
     }
 
 
@@ -45,9 +48,9 @@ public class MenuHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Input input = new ConsoleInput();
-
-        input.start(args);
+//        View input =new ConsoleView();
+        View input=new GraphicView();
+        input.play(args);
     }
 
 

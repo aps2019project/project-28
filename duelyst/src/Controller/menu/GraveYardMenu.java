@@ -8,9 +8,10 @@ public class GraveYardMenu extends Menu {
 
     private static GraveYardMenu menu;
 
-    private GraveYardMenu(String name) {
+    public GraveYardMenu(String name) {
         super(name);
     }
+
 
     public static GraveYardMenu getMenu(){
         if(GraveYardMenu.menu==null){
