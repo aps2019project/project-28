@@ -3,13 +3,11 @@ package Controller.menu.Graphics.FXMLController;
 import Controller.menu.Menu;
 import Controller.menu.SignInMenu;
 import javafx.scene.ImageCursor;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 public class FXMLController {
-    protected Menu menu= SignInMenu.getMenu();
-
-
-
+    protected Menu menu;
 //    private void goToScene(Stage stage , Rectangle2D bounds){
 //        if (this.menu.getGraphic().getStage() == null) this.menu.getGraphic().setStage(stage) ;
 //        if (this.menu.getGraphic().getBounds() == null) this.menu.getGraphic().setBounds(bounds) ;
@@ -27,7 +25,39 @@ public class FXMLController {
 //    }
 
     public void init(){
+        /*
+        *only called once the FXML is being loaded
+        *
+        * very few configuration that only concerns the FXMLController and its attribute
+        * note that no field is set yet so you may not use them
+        * you can only set them
+        *
+        * not that scenes objects (such as button and labels and....) should not be used in this method cuz they are not
+        * yet set
+        *
+        * if you wish to work with them use the method build scene
+        * */
+    }
+
+
+    public void buildScene(){
+        /*
+        * only called once after the FXML is fully loaded
+        *
+        * use this method to work with the scenes objects (such as button ,label and ....)
+        * */
         this.menu.getGraphic().getScene().setOnMouseEntered(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
+
+    }
+
+    public void updateScene(){
+        /*
+        * called when the current menu is changed to this (every time we enter the menu)
+        *
+        * use this method for the update you wish to make
+        *
+        * note that due to your code this method can be used in other functions as well
+        * */
     }
 
     public void initialize(){

@@ -45,8 +45,11 @@ public class MenuGraphics {
             FXMLLoader rootLoader= new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
 //            this.root= FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
             this.root=rootLoader.load();
+
             this.controller=rootLoader.getController();
             this.controller.setMenu(this.menu);
+            this.controller.buildScene();
+
             this.scene.setRoot(this.root);
         }catch (IOException ignored) {
             ignored.printStackTrace();
