@@ -1,12 +1,9 @@
-package Controller.menu.Scenes;
+package Controller.menu.Graphics.FXMLController;
 
-import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
 import Controller.menu.SignInMenu;
 import Model.account.Account;
-import View.MenuHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,7 +18,7 @@ import stuff.Resources;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LeaderBoardController {
+public class LeaderBoardFXMLC {
     private static Stage stage ;
     private static Scene scene ;
     private static ScrollPane scrollPane ;
@@ -30,7 +27,7 @@ public class LeaderBoardController {
     public static void showLeaderBoard(ArrayList<Account> accounts){
         stage = new Stage();
         try {
-            Parent root = FXMLLoader.load(LeaderBoardController.class.getResource("LeaderBoard.fxml"));
+            Parent root = FXMLLoader.load(Controller.menu.Graphics.FXMLController.LeaderBoardFXMLC.class.getResource("LeaderBoard.fxml"));
             scene = new Scene(root , 800 , 600);
         }catch(IOException e){
             System.err.println("couldn't load the freaking popup due to IOException");

@@ -15,6 +15,13 @@ public class GraphicView extends Application implements View{
     private static Stage stage;
     private static Rectangle2D primaryScreenBounds ;
 
+
+
+    public static void setScene(Scene scene) {
+        GraphicView.stage.setScene(scene);
+        stage.show();
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -36,11 +43,11 @@ public class GraphicView extends Application implements View{
             } catch (Exception ignored) {}
         });
 
-
         initializeGraphicMenu();
-        primaryStage.setScene(SignInMenu.getMenu().getGraphic().getScene());
-
-        primaryStage.show() ;
+        MenuHandler.startMenus();
+//        primaryStage.setScene(SignInMenu.getMenu().getGraphic().getScene());
+//
+//        primaryStage.show() ;
 
     }
 

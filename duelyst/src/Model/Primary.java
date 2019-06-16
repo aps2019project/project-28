@@ -1,5 +1,6 @@
 package Model;
 
+import Model.Graphics.Listeners.OnAttackListener;
 import Model.account.Account;
 import Model.account.Collection;
 import Model.account.Deck;
@@ -630,4 +631,19 @@ public class Primary {
         fileWriter.close();
     }//ba T bnvis tabee writo
 
+
+    private void setGraphicsForHermione() throws FileNotFoundException {
+
+        // TODO: 6/16/19 fatteme
+        /*hero no.0*/
+        Hero hero=heroes.get(0);
+        hero.getGraphics().addAttackListenr(new OnAttackListener() {
+            @Override
+            public void show(Hermione enemyCard) {
+                System.out.println("animation");
+
+            }
+        });
+
+    }
 }

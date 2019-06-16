@@ -56,19 +56,12 @@ public class MenuGraphics {
             System.err.println("couldn't load the fxml file");
         }
 
-        // TODO: 6/16/19 for setting the controller ---------->FXMLLoader.geController
-
     }
 
-
-
-
-
-
-
-
-
-
+    public void enter() {
+        this.controller.updateScene();
+        GraphicView.setScene(this.scene);
+    }
 
 
 

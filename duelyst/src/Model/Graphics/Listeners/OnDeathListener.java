@@ -1,6 +1,5 @@
 package Model.Graphics.Listeners;
 
-public class OnDeathListener {
-    public void show() {
-    }
+public interface OnDeathListener {
+    public void show();
 }

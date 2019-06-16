@@ -67,8 +67,8 @@ public class SignInMenuFXMLC extends FXMLController {
             }
         });
 
-        GraphicsControlls.setButtonPressedStyles(signInButton , "button1clicked");
-        GraphicsControlls.setButtonPressedStyles(signUpButton , "button2clicked");
+        GraphicsControlls.setButtonStyle( "button1clicked",signInButton);
+        GraphicsControlls.setButtonStyle( "button2clicked",signInButton);
 
         signInButton.setOnAction(e -> signInButtonClicked());
         signUpButton.setOnAction(e -> signUpButtonClicked());

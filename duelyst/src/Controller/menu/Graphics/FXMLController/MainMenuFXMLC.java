@@ -17,7 +17,7 @@ import javafx.scene.text.Font;
 
 public class MainMenuFXMLC extends FXMLController {
 
-
+/*
     private Button battleButton ;
     private Button collectionButton ;
     private Button shopButton ;
@@ -56,5 +56,5 @@ public class MainMenuFXMLC extends FXMLController {
 
     private void enterSubMenu(Menu subMenu){
         menu.enter(subMenu);
-    }
+    }*/
 }

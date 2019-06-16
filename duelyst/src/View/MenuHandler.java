@@ -34,7 +34,6 @@ public class MenuHandler {
         Battle.getMenu().addSubMenu(GraveYardMenu.getMenu());
         Battle.getMenu().addSubMenu(CollectableMenu.getMenu());
 
-//        currentMenu=SignInMenu.getMenu().enter();
         currentMenu = SignInMenu.getMenu();
     }
 
@@ -50,7 +49,12 @@ public class MenuHandler {
         }
 //        View input =new ConsoleView();
         View input=new GraphicView();
+
         input.play(args);
+    }
+
+    public static void startMenus() {
+        currentMenu= SignInMenu.getMenu().enter();
     }
 
 

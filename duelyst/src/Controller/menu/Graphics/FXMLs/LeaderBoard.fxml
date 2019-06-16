@@ -1,4 +1,6 @@
+<!--
 <?xml version="1.0" encoding="UTF-8"?>
+-->
 
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -8,7 +10,10 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane
+        fx:controller="Controller.menu.Graphics.FXMLController."
+        xmlns:fx="http://javafx.com/fxml"
+        fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" layoutX="141.0" prefHeight="500.0" prefWidth="681.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
    </children>

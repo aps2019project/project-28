@@ -61,18 +61,13 @@ public abstract class Menu {
     public Menu enter(Menu subMenu){
         if(!subMenu.init(this))return this;
         // TODO: 6/15/19 handle graphics
-//        stage = GraphicView.getGraphicInput().getStage() ;
-//        bounds = GraphicView.getGraphicInput().getPrimaryScreenBounds() ;
-//        subMenu.goToScene(stage , bounds);
-        return subMenu;
+        subMenu.getGraphic().enter();
+       return subMenu;
     }
 
     public Menu enter(){
-//        if(!subMenu.init(this))return this;
         // TODO: 6/15/19 handle graphics
-//        stage = GraphicView.getGraphicInput().getStage() ;
-//        bounds = GraphicView.getGraphicInput().getPrimaryScreenBounds() ;
-//        goToScene(stage , bounds);
+        this.getGraphic().enter();
         return this;
     }
 
