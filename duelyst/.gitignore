@@ -31,11 +31,12 @@ hs_err_pid*
 
        out/*
 
-       .idea/dictionaries/*
-       .idea/inspectionProfiles/*
-       .idea/libraries/*
+       .idea/dictionaries/
+       .idea/inspectionProfiles/
+       .idea/libraries/
+       lib
+       OUT
 
-       copy/*
 
 #saE:
 #mutial
