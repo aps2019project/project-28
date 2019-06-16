@@ -2,59 +2,49 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.*;
 import Controller.menu.Graphics.GraphicsControlls;
-import exeption.AccountAlreadyExistsException;
-import exeption.InvalidAccountException;
-import exeption.WrongPassException;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
 public class MainMenuFXMLC extends FXMLController {
 
-/*
-    private Button battleButton ;
-    private Button collectionButton ;
-    private Button shopButton ;
-    private Button exitButton ;
+    @FXML
+    private Button battleMenuButton;
+    @FXML
+    private Button collectionMenuButton;
+    @FXML
+    private Button shopMenuButton;
+    @FXML
+    private Button exitMenuButton;
 
 
-
-    public MainMenuFXMLC(Menu menu) {
-        super(menu);
-    }
-    public MainMenuFXMLC() {
-        super();
-    }
 
 
     @Override
     public void buildScene() {
         super.buildScene();
-        scene = menu.getGraphic().getScene();
+        Scene scene = menu.getGraphic().getScene();
 
         scene.setUserAgentStylesheet("Controller/menu/Scenes/StyleSheets/MainMenu.css");
-        battleButton = (Button)scene.lookup("#battleMenuButton");
-        collectionButton = (Button)scene.lookup("#collectionMenuButton");
-        shopButton = (Button)scene.lookup("#shopMenuButton");
-        exitButton = (Button)scene.lookup("#exitMenuButton");
-        exitButton.setStyle("-fx-text-fill: red;");
+        exitMenuButton.setStyle("-fx-text-fill: red;");
 
-        GraphicsControlls.setButtonStyle("menu-button" , battleButton ,
-                collectionButton , shopButton , exitButton );
+        GraphicsControlls.setButtonStyle("menu-button" , battleMenuButton,
+                collectionMenuButton, shopMenuButton, exitMenuButton);
 
-        exitButton.setOnAction(e -> ((SignInMenu)menu.getParentMenu()).logOut());
-        collectionButton.setOnAction(e -> enterSubMenu(CollectionMenu.getMenu()));
-        shopButton.setOnAction(e -> enterSubMenu(ShopMenu.getMenu()));
-        battleButton.setOnAction(e -> enterSubMenu(ChooseBattleModeMenu.getMenu()));
+        // TODO: 6/16/19 saE in exit e nabayad log out kone jeD
+        // ye log out tu signInMenu bezar harvaght ke loggedIn bud va tu signInMenu buDm un dokme he zaher she
+        // alan in dokme he ro set mikonam ke bargarde sign in menu
+                exitMenuButton.setOnAction(e->enterSubMenu(SignInMenu.getMenu()));
+        //
+
+        collectionMenuButton.setOnAction(e -> enterSubMenu(CollectionMenu.getMenu()));
+        shopMenuButton.setOnAction(e -> enterSubMenu(ShopMenu.getMenu()));
+        battleMenuButton.setOnAction(e -> enterSubMenu(ChooseBattleModeMenu.getMenu()));
     }
 
     private void enterSubMenu(Menu subMenu){
         menu.enter(subMenu);
-    }*/
+    }
 }

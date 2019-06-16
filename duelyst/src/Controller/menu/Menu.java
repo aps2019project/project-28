@@ -139,7 +139,7 @@ public abstract class Menu {
     }
 
     public Menu exit() {
-        return parentMenu;
+        return parentMenu.enter();
     }
 
     public MenuGraphics getGraphic() {

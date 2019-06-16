@@ -11,7 +11,7 @@
 
 
 <AnchorPane
-        fx:controller="Controller.menu.Graphics.FXMLController."
+        fx:controller="Controller.menu.Graphics.FXMLController.LeaderBoardFXMLC"
         xmlns:fx="http://javafx.com/fxml"
         fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>

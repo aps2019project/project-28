@@ -2,6 +2,7 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.SignInMenu;
 import Model.account.Account;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.ImageCursor;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 public class LeaderBoardFXMLC {
     private static Stage stage ;
     private static Scene scene ;
+    @FXML
     private static ScrollPane scrollPane ;
     private static VBox vbox ;
 

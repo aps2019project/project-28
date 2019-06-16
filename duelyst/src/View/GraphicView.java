@@ -1,6 +1,7 @@
 package View;
 
 //import SignInMenu;
+import Controller.menu.MainMenu;
 import Controller.menu.SignInMenu;
 import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
 import javafx.application.Application;
@@ -10,6 +11,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import sample.Main;
 
 public class GraphicView extends Application implements View{
     private static Stage stage;
@@ -53,23 +55,20 @@ public class GraphicView extends Application implements View{
 
     private static void initializeGraphicMenu() {
         setRootPaths();
-//        setFXMLControllers();
         initGraphics();
     }
 
     private static void initGraphics() {
         //initializing graphics for each menu
         SignInMenu.getMenu().getGraphic().init();
+        MainMenu.getMenu().getGraphic().init();
     }
 
-//    private static void setFXMLControllers() {
-//        //setting FXMLController for each menu
-//        SignInMenu.getMenu().getGraphic().setController(new SignInMenuFXMLC(SignInMenu.getMenu()));
-//    }
 
     private static void setRootPaths() {
         //setting root Path for each menu
         SignInMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SignInMenu.fxml");
+        MainMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MainMenu.fxml");
     }
 
     public void play(String...args) {

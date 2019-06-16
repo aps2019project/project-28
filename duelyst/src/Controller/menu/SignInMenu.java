@@ -71,6 +71,7 @@ public class SignInMenu extends Menu {
     }
 
     public void logIn(String username, String password) throws InvalidAccountException, WrongPassException {
+        System.err.println("debug");
         Account account = Account.getAccount(username);
         if (account.getPassword().equals(password)) {
             Game.accounts[0] = account;
@@ -85,7 +86,7 @@ public class SignInMenu extends Menu {
     public void logOut() {
         Game.hasLoggedIn = false;
         this.account=null;
-        MenuHandler.currentMenu = exit();
+//        MenuHandler.currentMenu = exit();
         //TODO how the fuck am i supposed to do it though ?!
     }
 
