@@ -9,12 +9,24 @@
 .button1{
     -fx-background-image: url("../../../../resources/ui/button_primary.png");
  }
-.button1clicked{
+.button1Clicked{
     -fx-background-image: url("../../../../resources/ui/button_primary_glow.png");
 }
 .button2{
     -fx-background-image: url("../../../../resources/ui/button_secondary.png");
 }
-.button2clicked{
+.button2Clicked{
     -fx-background-image: url("../../../../resources/ui/button_secondary_glow.png");
+}
+.menu-button{
+    -fx-background-image: url("../../../../resources/ui/diamond_main_menu_container@2x.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100% 100%;
+    -fx-text-fill: white;
+}
+.menu-buttonClicked{
+    -fx-background-image: url("../../../../resources/ui/gold_main_menu_container@2x.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100% 100%;
+    -fx-text-fill: white;
 }

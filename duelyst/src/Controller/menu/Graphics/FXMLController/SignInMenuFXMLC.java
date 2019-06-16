@@ -1,5 +1,6 @@
 package Controller.menu.Graphics.FXMLController;
 
+import Controller.menu.Graphics.GraphicsControlls;
 import Controller.menu.SignInMenu;
 import Controller.menu.Graphics.FXMLController.FXMLController;
 import Controller.menu.Menu;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -33,7 +35,11 @@ public class SignInMenuFXMLC extends FXMLController {
     private Button signUpButton;
     @FXML
     private VBox frame;
+    @FXML
+    private Button showLeaderBoard ;
     private TextField nameInput;
+
+
 
     public SignInMenuFXMLC(Menu menu) {
         super(menu);
@@ -43,47 +49,43 @@ public class SignInMenuFXMLC extends FXMLController {
     }
 
 
-
-
+    @Override
     public void buildScene() {
         super.buildScene();
-        Scene scene=this.menu.getGraphic().getScene();
-        Rectangle2D bounds=this.menu.getGraphic().getBounds();
-        this.menu.getGraphic().getScene().setOnMouseEntered(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
+        scene = menu.getGraphic().getScene();
+        Rectangle2D bounds = menu.getGraphic().getBounds();
+
 
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/SignInMenu.css");
         pane = (AnchorPane) scene.lookup("#pane");
 
-        /*
-        * there is no more need for them
-        * */
-//        usernameInput = (TextField)scene.lookup("#username");
-//        passwordField = (PasswordField) scene.lookup("#pass");
-//        signInButton = (Button)scene.lookup("#signInButton");
-//        signUpButton = (Button)scene.lookup("#signUpButton");
-        frame = (VBox) scene.lookup("#frame");
-//        {
-//            if (pane == null) System.err.println("pane input is null");
-//            if (usernameInput == null) System.err.println("username input is null");
-//            if (passwordField == null) System.err.println("pass input is null");
-//            if (signInButton == null) System.err.println("signInButton is null");
-//            if (signUpButton == null) System.err.println("signUpButton is null");
-//        } //check if they're found
+        {
+            usernameInput = (TextField) scene.lookup("#username");
+            passwordField = (PasswordField) scene.lookup("#pass");
+            signInButton = (Button) scene.lookup("#signInButton");
+            signUpButton = (Button) scene.lookup("#signUpButton");
+            showLeaderBoard = (Button) scene.lookup("#showLeaderBoard");
+            frame = (VBox) scene.lookup("#frame");
+        }//load the elements !
+        GraphicsControlls.setButtonStyle("button1" , signInButton);
+        GraphicsControlls.setButtonStyle("button2" , signUpButton);
 
+        signInButton.setOnAction(e -> signInButtonClicked());
+        signUpButton.setOnAction(e -> signUpButtonClicked());
+        showLeaderBoard.setOnAction(e -> ((SignInMenu)menu).showLeaderBoard());
 
-        // TODO: 6/15/19 bring them back to life after you fixed your FXML
-//        GraphicsControlls.setButtonPressedStyles(signInButton , "button1clicked");
-//        GraphicsControlls.setButtonPressedStyles(signUpButton , "button2clicked");
-//
-//        signInButton.setOnAction(e -> signInButtonClicked());
-//        signUpButton.setOnAction(e -> signUpButtonClicked());
+        scene.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER){
+                signInButtonClicked();
+            }
+        });
 
-
-//        pane.setMinHeight(bounds.getHeight());
-//        pane.setMinWidth(bounds.getWidth());
+        pane.setMinHeight(bounds.getHeight());
+        pane.setMinWidth(bounds.getWidth());
 
 
     }
+
 
     private void signUpButtonClicked() {
         if (nameInput == null) {
@@ -99,7 +101,7 @@ public class SignInMenuFXMLC extends FXMLController {
                     if (nameInput.getText() != null && !nameInput.getText().isEmpty()) {
 
                         try {
-                            SignInMenu.getMenu().creatAccount(nameInput.getText(), usernameInput.getText(), passwordField.getText());
+                            ((SignInMenu)menu).creatAccount(nameInput.getText(), usernameInput.getText(), passwordField.getText());
                         } catch (AccountAlreadyExistsException e) {
                             usernameInput.setText("");
                             usernameInput.setPromptText("this username already exists !");
@@ -111,11 +113,11 @@ public class SignInMenuFXMLC extends FXMLController {
         }
     }
 
-    private void signInButtonClicked() {
+    private  void signInButtonClicked() {
         if (usernameInput.getText()!=null && !usernameInput.getText().isEmpty()){
             if (passwordField.getText()!=null && !passwordField.getText().isEmpty()){
                 try {
-                    SignInMenu.getMenu().logIn(usernameInput.getText() , passwordField.getText());
+                    ((SignInMenu)menu).logIn(usernameInput.getText() , passwordField.getText());
                 }catch(InvalidAccountException e1){
                     usernameInput.setText("");
                     passwordField.setText("");
@@ -129,4 +131,7 @@ public class SignInMenuFXMLC extends FXMLController {
 
     }
 
+    public void setUsernameInput(String username){
+        this.usernameInput.setText(username);
+    }
 }

@@ -13,12 +13,13 @@ import java.io.IOException;
 
 public class FXMLController {
     protected Menu menu= SignInMenu.getMenu();
+    protected Scene scene ;
 
     public FXMLController(Menu menu) {
         this.menu = menu;
     }
 
-    public FXMLController(){};
+    public FXMLController(){}
 
 //    private void goToScene(Stage stage , Rectangle2D bounds){
 //        if (this.menu.getGraphic().getStage() == null) this.menu.getGraphic().setStage(stage) ;
