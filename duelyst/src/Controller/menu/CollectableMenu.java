@@ -10,8 +10,8 @@ public class CollectableMenu extends Menu {
     private static CollectableMenu menu;
 
 //    @Override
-//    protected void buildScene() {
-//        super.buildScene();
+//    protected void init() {
+//        super.init();
 //    }
 
     private CollectableMenu(String name) {

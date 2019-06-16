@@ -46,7 +46,7 @@ public class GraphicView extends Application implements View{
 
     private static void initializeGraphicMenu() {
         setRootPaths();
-        setFXMLControllers();
+//        setFXMLControllers();
         initGraphics();
     }
 
@@ -55,10 +55,10 @@ public class GraphicView extends Application implements View{
         SignInMenu.getMenu().getGraphic().init();
     }
 
-    private static void setFXMLControllers() {
-        //setting FXMLController for each menu
-        SignInMenu.getMenu().getGraphic().setController(new SignInMenuFXMLC(SignInMenu.getMenu()));
-    }
+//    private static void setFXMLControllers() {
+//        //setting FXMLController for each menu
+//        SignInMenu.getMenu().getGraphic().setController(new SignInMenuFXMLC(SignInMenu.getMenu()));
+//    }
 
     private static void setRootPaths() {
         //setting root Path for each menu

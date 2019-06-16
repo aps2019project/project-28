@@ -1,7 +1,7 @@
 package Controller.menu.Graphics.FXMLController;
 
+import Controller.menu.Graphics.GraphicsControlls;
 import Controller.menu.SignInMenu;
-import Controller.menu.Graphics.FXMLController.FXMLController;
 import Controller.menu.Menu;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
@@ -35,45 +35,49 @@ public class SignInMenuFXMLC extends FXMLController {
     private VBox frame;
     private TextField nameInput;
 
-    public SignInMenuFXMLC(Menu menu) {
-        super(menu);
-    }
-    public SignInMenuFXMLC() {
-        super();
-    }
 
 
 
 
-    public void buildScene() {
-        super.buildScene();
+
+    @Override
+    public void init() {
+        super.init();
         Scene scene=this.menu.getGraphic().getScene();
         Rectangle2D bounds=this.menu.getGraphic().getBounds();
         this.menu.getGraphic().getScene().setOnMouseEntered(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
 
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/SignInMenu.css");
-        pane = (AnchorPane) scene.lookup("#pane");
 
         /*
         * there is no more need for them
         * */
+//        pane = (AnchorPane) scene.lookup("#pane");
 //        usernameInput = (TextField)scene.lookup("#username");
 //        passwordField = (PasswordField) scene.lookup("#pass");
 //        signInButton = (Button)scene.lookup("#signInButton");
 //        signUpButton = (Button)scene.lookup("#signUpButton");
-        frame = (VBox) scene.lookup("#frame");
-//        {
-//            if (pane == null) System.err.println("pane input is null");
-//            if (usernameInput == null) System.err.println("username input is null");
-//            if (passwordField == null) System.err.println("pass input is null");
-//            if (signInButton == null) System.err.println("signInButton is null");
-//            if (signUpButton == null) System.err.println("signUpButton is null");
-//        } //check if they're found
+//        frame = (VBox) scene.lookup("#frame");
+/*        {
+            if (pane == null) System.err.println("pane input is null");
+            if (usernameInput == null) System.err.println("username input is null");
+            if (passwordField == null) System.err.println("pass input is null");
+            if (signInButton == null) System.err.println("signInButton is null");
+            if (signUpButton == null) System.err.println("signUpButton is null");
+        } //check if they're found*/
 
 
+
+//        buildScene();
+
+
+    }
+
+    private void buildScene() {
         // TODO: 6/15/19 bring them back to life after you fixed your FXML
-//        GraphicsControlls.setButtonPressedStyles(signInButton , "button1clicked");
-//        GraphicsControlls.setButtonPressedStyles(signUpButton , "button2clicked");
+        System.err.println("debuf");
+        GraphicsControlls.setButtonPressedStyles(signInButton , "button1clicked");
+        GraphicsControlls.setButtonPressedStyles(signUpButton , "button2clicked");
 //
 //        signInButton.setOnAction(e -> signInButtonClicked());
 //        signUpButton.setOnAction(e -> signUpButtonClicked());
@@ -81,8 +85,6 @@ public class SignInMenuFXMLC extends FXMLController {
 
 //        pane.setMinHeight(bounds.getHeight());
 //        pane.setMinWidth(bounds.getWidth());
-
-
     }
 
     private void signUpButtonClicked() {

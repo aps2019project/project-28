@@ -48,11 +48,11 @@ public abstract class Menu {
 //            }
 //            scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
 //        }
-//        buildScene();
+//        init();
 //        stage.setScene(scene);
 //    }
 //
-//    protected void buildScene(){
+//    protected void init(){
 //        //TODO music ! seriously i have busted my ass trying to make it happen but it just doesn't want to happen ! -_-
 //        scene.setOnMouseEntered(e -> scene.setCursor(new ImageCursor(new Image(mousePath))));
 //    }

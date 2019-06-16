@@ -14,8 +14,8 @@ public class CostumeModeMenu extends Menu {
 
 
 //    @Override
-//    protected void buildScene() {
-//        super.buildScene();
+//    protected void init() {
+//        super.init();
 //    }
 
     public static CostumeModeMenu getMenu(){

@@ -36,19 +36,25 @@ public class MenuGraphics {
     }
 
     public void init(){
-        this.stage= GraphicView.getStage() ;
+        this.stage= GraphicView.getStage();
         this.bounds=GraphicView.getPrimaryScreenBounds();
         this.scene=new Scene(new Group(), this.bounds.getWidth(), this.bounds.getHeight());
 
         try {
             System.out.println(this.menu.getGraphic().getRootPath());
-            this.root= FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
+            FXMLLoader rootLoader= new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
+//            this.root= FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
+            this.root=rootLoader.load();
+            this.controller=rootLoader.getController();
+            this.controller.setMenu(this.menu);
+            this.scene.setRoot(this.root);
         }catch (IOException ignored) {
             ignored.printStackTrace();
             System.err.println("couldn't load the fxml file");
         }
-        this.scene.setRoot(this.root);
-        this.controller.buildScene();
+
+        // TODO: 6/16/19 for setting the controller ---------->FXMLLoader.geController
+
     }
 
 

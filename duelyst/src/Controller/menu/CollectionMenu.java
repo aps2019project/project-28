@@ -17,8 +17,8 @@ public class CollectionMenu extends Menu {
 
 
 //    @Override
-//    protected void buildScene() {
-//        super.buildScene();
+//    protected void init() {
+//        super.init();
 //    }
 
     private CollectionMenu(String name) {
