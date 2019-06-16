@@ -3,6 +3,7 @@ package Controller.menu;
 import Controller.Game;
 import View.Listeners.OnLeaderBoardClickedListener;
 import Model.account.Account;
+import View.MenuHandler;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
@@ -57,6 +58,16 @@ public class SignInMenu extends Menu {
         if (Account.hasAccount(username))
             throw new AccountAlreadyExistsException();
         temporaryAccount = new Account(name, username, password);
+        save() ;
+        try {
+            logIn(username , password);
+        } catch (InvalidAccountException e) {
+            System.err.println("InvalidAccount after creating an account and then trying to login ! \n " +
+                    "signInMenu : 137");
+        } catch (WrongPassException e) {
+            System.err.println("WrongPassword after creating an account and then trying to login ! \n " +
+                    "signInMenu : 137");
+        }
     }
 
     public void logIn(String username, String password) throws InvalidAccountException, WrongPassException {
@@ -65,6 +76,7 @@ public class SignInMenu extends Menu {
             Game.accounts[0] = account;
             Game.hasLoggedIn = true;
             this.account=account;
+            MenuHandler.currentMenu=menu.enter(MainMenu.getMenu());
         } else {
             throw new WrongPassException();
         }
@@ -73,6 +85,8 @@ public class SignInMenu extends Menu {
     public void logOut() {
         Game.hasLoggedIn = false;
         this.account=null;
+        MenuHandler.currentMenu = exit();
+        //TODO how the fuck am i supposed to do it though ?!
     }
 
     public void save() {

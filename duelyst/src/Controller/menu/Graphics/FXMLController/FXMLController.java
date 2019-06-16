@@ -1,10 +1,9 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.Menu;
-import Controller.menu.SignInMenu;
 import javafx.scene.ImageCursor;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
+
 
 public class FXMLController {
     protected Menu menu;

@@ -24,15 +24,7 @@ public abstract class Menu {
     private MenuGraphics graphic=new MenuGraphics(this);
 
 
-    // TODO: 6/15/19 here i am with another part of S.A.E.E 's shit
-    // this episode is called : shit every where , saE returns
-                protected Stage stage ;
-                protected Scene scene ;
-                protected Parent root ;
                 protected String rootPath ;
-                protected Rectangle2D bounds ;
-                protected String mousePath = Resources.mouse_auto.getPath();
-    //
 
 
 

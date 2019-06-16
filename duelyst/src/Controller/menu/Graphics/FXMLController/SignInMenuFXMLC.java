@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -33,6 +34,8 @@ public class SignInMenuFXMLC extends FXMLController {
     private Button signUpButton;
     @FXML
     private VBox frame;
+    @FXML
+    private Button showLeaderBoard ;
     private TextField nameInput;
 
 
@@ -53,8 +56,16 @@ public class SignInMenuFXMLC extends FXMLController {
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/SignInMenu.css");
 
 
+        signInButton.setOnAction(e -> signInButtonClicked());
+        signUpButton.setOnAction(e -> signUpButtonClicked());
+        showLeaderBoard.setOnAction(e -> ((SignInMenu)menu).showLeaderBoard());
 
         Rectangle2D bounds=this.menu.getGraphic().getBounds();
+        scene.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER){
+                signInButtonClicked();
+            }
+        });
 
         GraphicsControlls.setButtonPressedStyles(signInButton , "button1clicked");
         GraphicsControlls.setButtonPressedStyles(signUpButton , "button2clicked");
@@ -81,7 +92,7 @@ public class SignInMenuFXMLC extends FXMLController {
                     if (nameInput.getText() != null && !nameInput.getText().isEmpty()) {
 
                         try {
-                            SignInMenu.getMenu().creatAccount(nameInput.getText(), usernameInput.getText(), passwordField.getText());
+                            ((SignInMenu)menu).creatAccount(nameInput.getText(), usernameInput.getText(), passwordField.getText());
                         } catch (AccountAlreadyExistsException e) {
                             usernameInput.setText("");
                             usernameInput.setPromptText("this username already exists !");
@@ -97,7 +108,7 @@ public class SignInMenuFXMLC extends FXMLController {
         if (usernameInput.getText()!=null && !usernameInput.getText().isEmpty()){
             if (passwordField.getText()!=null && !passwordField.getText().isEmpty()){
                 try {
-                    SignInMenu.getMenu().logIn(usernameInput.getText() , passwordField.getText());
+                    ((SignInMenu)menu).logIn(usernameInput.getText() , passwordField.getText());
                 }catch(InvalidAccountException e1){
                     usernameInput.setText("");
                     passwordField.setText("");
@@ -111,4 +122,7 @@ public class SignInMenuFXMLC extends FXMLController {
 
     }
 
+    public void setUsernameInput(String username){
+        this.usernameInput.setText(username);
+    }
 }
