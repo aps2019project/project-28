@@ -1,6 +1,5 @@
 package Controller.menu;
 
-import Model.account.Account;
 
 public class MainMenu extends Menu {
     private static MainMenu menu;

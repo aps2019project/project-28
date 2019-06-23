@@ -22,14 +22,6 @@ public class SignInMenu extends Menu {
     private Account temporaryAccount;
     private ArrayList<OnLeaderBoardClickedListener> leaderBoardPresenters;
 
-    private AnchorPane pane ;
-    private TextField usernameInput ;
-    private TextField nameInput ;
-    private PasswordField passwordField ;
-    private Button signUpButton ;
-    private Button signInButton ;
-    private VBox frame ;
-
     private SignInMenu(String name) {
         super(name);
         this.leaderBoardPresenters = new ArrayList<>();
@@ -47,7 +39,6 @@ public class SignInMenu extends Menu {
     @Override
     public Menu enter(Menu subMenu) {
         if(this.account==null){
-            // TODO: 5/7/19 handleOnAttack it better
             System.out.println("no account has been signed in yet");
             return this;
         }
@@ -86,8 +77,6 @@ public class SignInMenu extends Menu {
     public void logOut() {
         Game.hasLoggedIn = false;
         this.account=null;
-//        MenuHandler.currentMenu = exit();
-        //TODO how the fuck am i supposed to do it though ?!
     }
 
     public void save() {
