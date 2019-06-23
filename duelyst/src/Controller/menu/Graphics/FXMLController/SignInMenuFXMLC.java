@@ -1,19 +1,16 @@
 package Controller.menu.Graphics.FXMLController;
 
-import Controller.menu.Graphics.GraphicsControlls;
+import Controller.menu.Graphics.GraphicsControls;
 import Controller.menu.SignInMenu;
-import Controller.menu.Menu;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -67,8 +64,8 @@ public class SignInMenuFXMLC extends FXMLController {
             }
         });
 
-        GraphicsControlls.setButtonStyle( "button1clicked",signInButton);
-        GraphicsControlls.setButtonStyle( "button2clicked",signInButton);
+        GraphicsControls.setButtonStyle( "button1clicked",signInButton);
+        GraphicsControls.setButtonStyle( "button2clicked",signInButton);
 
         signInButton.setOnAction(e -> signInButtonClicked());
         signUpButton.setOnAction(e -> signUpButtonClicked());

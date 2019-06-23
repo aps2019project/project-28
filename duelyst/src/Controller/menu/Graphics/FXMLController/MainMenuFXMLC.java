@@ -1,9 +1,7 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.*;
-import Controller.menu.Graphics.GraphicsControlls;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import Controller.menu.Graphics.GraphicsControls;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,7 +28,7 @@ public class MainMenuFXMLC extends FXMLController {
         scene.setUserAgentStylesheet("Controller/menu/Scenes/StyleSheets/MainMenu.css");
         exitMenuButton.setStyle("-fx-text-fill: red;");
 
-        GraphicsControlls.setButtonStyle("menu-button" , battleMenuButton,
+        GraphicsControls.setButtonStyle("menu-button" , battleMenuButton,
                 collectionMenuButton, shopMenuButton, exitMenuButton);
 
         // TODO: 6/16/19 saE in exit e nabayad log out kone jeD
