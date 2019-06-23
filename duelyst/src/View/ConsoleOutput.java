@@ -766,24 +766,12 @@ public class ConsoleOutput {
     private static void ChooseBattleModeMenuCommandHandler(String[] word) {
         ChooseBattleModeMenu menu= (ChooseBattleModeMenu) ChooseBattleModeMenu.getMenu();
         if(word[0].equals("mode")){
-            switch (Integer.parseInt(word[1])){
-                case 3:
-                    Battle.getMenu().setGameMode(new Domination());
-                    MenuHandler.currentMenu=menu.enter(GameModeMenu.getMenu());
-                    break;
-                case 2:
-                    Battle.getMenu().setGameMode(new FlagMode());
-                    MenuHandler.currentMenu=menu.enter(GameModeMenu.getMenu());
-                    break;
-                case 1:
-                    Battle.getMenu().setGameMode(new ClassicMode());
-                    MenuHandler.currentMenu=menu.enter(GameModeMenu.getMenu());
-                    break;
-                default:
-                    System.out.println("please Enter a Number between 1 and 3");
-            }
+            menu.setMode(Integer.parseInt(word[1]));
         }
     }
+
+
+
     private static void BattleCommandHandler(String[] word,String command) {
         Battle menu = (Battle) MenuHandler.currentMenu;
 

@@ -1,10 +1,13 @@
 package View;
 import Controller.Game;
+import Controller.GameMode.FlagMode;
 import Controller.menu.Battle;
 import Controller.menu.*;
 //import SignInMenu;
 import Controller.menu.SignInMenu;
 import Model.Primary;
+import exeption.InvalidAccountException;
+import exeption.WrongPassException;
 
 import java.util.Scanner;
 
@@ -48,13 +51,26 @@ public class MenuHandler {
             e.printStackTrace();
         }
 //        View input =new ConsoleView();
-        View input=new GraphicView();
+        View input = new GraphicView();
 
         input.play(args);
     }
 
     public static void startMenus() {
-        currentMenu= SignInMenu.getMenu().enter();
+        currentMenu= Battle.getMenu().enter();
+    }
+
+    public static void dirtyPeaceShit() {
+        currentMenu= SignInMenu.getMenu();
+        try {
+            SignInMenu.getMenu().logIn( "warlord","1");
+            ChooseBattleModeMenu.getMenu().setMode(1);
+            System.err.println();
+            StoryModeMenu.getMenu().setAI(1);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

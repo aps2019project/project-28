@@ -1,9 +1,11 @@
 package View;
 
 //import SignInMenu;
+import Controller.menu.Battle;
 import Controller.menu.MainMenu;
 import Controller.menu.SignInMenu;
 import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
+import Model.Primary;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -14,10 +16,9 @@ import javafx.stage.Stage;
 import sample.Main;
 
 public class GraphicView extends Application implements View{
+
     private static Stage stage;
     private static Rectangle2D primaryScreenBounds ;
-
-
 
     public static void setScene(Scene scene) {
         GraphicView.stage.setScene(scene);
@@ -27,13 +28,14 @@ public class GraphicView extends Application implements View{
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        Primary.initGraphics();
+
         stage = primaryStage;
         primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         Pane p = new Pane() ;
         p.setStyle("-fx-background-color: BLACK");
         Scene loadingScene = new Scene(p);
         stage.setScene(loadingScene);
-
         stage.setFullScreen(false); //TODO make it true in the end !
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.setResizable(false);
@@ -44,8 +46,8 @@ public class GraphicView extends Application implements View{
                 stop();
             } catch (Exception ignored) {}
         });
-
         initializeGraphicMenu();
+        MenuHandler.dirtyPeaceShit();
         MenuHandler.startMenus();
 //        primaryStage.setScene(SignInMenu.getMenu().getGraphic().getScene());
 //
@@ -62,6 +64,7 @@ public class GraphicView extends Application implements View{
         //initializing graphics for each menu
         SignInMenu.getMenu().getGraphic().init();
         MainMenu.getMenu().getGraphic().init();
+        Battle.getMenu().getGraphic().init();
     }
 
 
@@ -69,6 +72,7 @@ public class GraphicView extends Application implements View{
         //setting root Path for each menu
         SignInMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SignInMenu.fxml");
         MainMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MainMenu.fxml");
+        Battle.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/Battle.fxml");
     }
 
     public void play(String...args) {
