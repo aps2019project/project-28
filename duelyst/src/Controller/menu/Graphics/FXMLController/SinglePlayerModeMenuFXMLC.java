@@ -21,7 +21,7 @@ public class SinglePlayerModeMenuFXMLC extends FXMLController {
     @Override
     public void buildScene() {
         super.buildScene();
-/*        Scene scene = menu.getGraphic().getScene();
+        Scene scene = menu.getGraphic().getScene();
 
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/MainMenu.css");
 
@@ -32,11 +32,11 @@ public class SinglePlayerModeMenuFXMLC extends FXMLController {
         backButton.setOnAction(e->{
             enterSubMenu(MainMenu.getMenu());
         });
-        GraphicsControlls.setBackButtonOnPress(backButton);
+        GraphicsControls.setBackButtonOnPress(backButton);
 
 
         storyButton.setOnAction(e -> enterSubMenu(StoryModeMenu.getMenu()));
-        customButton.setOnAction(e -> enterSubMenu(CostumeModeMenu.getMenu()));*/
+        customButton.setOnAction(e -> enterSubMenu(CostumeModeMenu.getMenu()));
     }
 
     private void enterSubMenu(Menu subMenu){
