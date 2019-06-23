@@ -13,8 +13,16 @@ public class GraphicsControls {
         for (Button button : buttons) {
             if (!button.getStyleClass().contains(buttonStyle)) button.getStyleClass().add(buttonStyle);
 
-            button.setOnMousePressed(e -> button.getStyleClass().add(onPressStyle));
-            button.setOnMouseReleased(e -> button.getStyleClass().remove(onPressStyle));
+            button.setOnMousePressed(e -> {
+                button.getStyleClass().add(onPressStyle);
+                button.setTranslateX(-1);
+                button.setTranslateY(1);
+            });
+            button.setOnMouseReleased(e -> {
+                button.getStyleClass().remove(onPressStyle);
+                button.setTranslateX(0);
+                button.setTranslateY(0);
+            });
         }
     }
 
@@ -23,9 +31,9 @@ public class GraphicsControls {
             backButton.setTranslateX(-5);
             backButton.setTranslateY(-5);
         });
-        backButton.setOnMousePressed(e -> {
-            backButton.setTranslateX(5);
-            backButton.setTranslateY(5);
+        backButton.setOnMouseReleased(e -> {
+            backButton.setTranslateX(0);
+            backButton.setTranslateY(0);
         });
     }
 }

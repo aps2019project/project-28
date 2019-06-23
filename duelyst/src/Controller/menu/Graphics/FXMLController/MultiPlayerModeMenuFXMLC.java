@@ -27,9 +27,8 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
 
 
         signInButton.setOnAction(e -> signInButtonClicked());
-//        backButton.setOnAction(e->{
-//
-//        });
+        backButton.setOnAction(e-> enterSubMenu(ChooseBattleModeMenu.getMenu()));
+        GraphicsControls.setBackButtonOnPress(backButton);
 
         scene.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER){

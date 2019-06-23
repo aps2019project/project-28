@@ -60,12 +60,16 @@ public class SignInMenuFXMLC extends FXMLController {
         Rectangle2D bounds=this.menu.getGraphic().getBounds();
         scene.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER){
-                signInButtonClicked();
+                if (nameInput == null)
+                    signInButtonClicked();
+                else
+                    signUpButtonClicked();
             }
         });
 
-        GraphicsControls.setButtonStyle( "button1clicked",signInButton);
-        GraphicsControls.setButtonStyle( "button2clicked",signInButton);
+        GraphicsControls.setButtonStyle( "button1",signInButton);
+        GraphicsControls.setButtonStyle( "button2",signUpButton);
+        GraphicsControls.setButtonStyle("menu-button" , showLeaderBoard);
 
         signInButton.setOnAction(e -> signInButtonClicked());
         signUpButton.setOnAction(e -> signUpButtonClicked());

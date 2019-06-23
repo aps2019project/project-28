@@ -79,6 +79,7 @@ public class GraphicView extends Application implements View{
         ChooseBattleModeMenu.getMenu().getGraphic().init();
         SinglePlayerModeMenu.getMenu().getGraphic().init();
         MultiPlayerModeMenu.getMenu().getGraphic().init();
+        StoryModeMenu.getMenu().getGraphic().init();
     }
 
 
@@ -90,6 +91,7 @@ public class GraphicView extends Application implements View{
         ChooseBattleModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ChooseBattleMode.fxml");
         SinglePlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SinglePlayerModeMenu.fxml");
         MultiPlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MultiPlayerModeMenu.fxml");
+        StoryModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/StoryMode.fxml");
     }
 
     public void play(String...args) {

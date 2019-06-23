@@ -6,14 +6,16 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
-public class SinglePlayerModeMenuFXMLC extends FXMLController {
+public class StoryModeFXMLC extends FXMLController {
 
     @FXML
     private Button backButton;
     @FXML
-    private Button storyButton;
+    private Button mode1;
     @FXML
-    private Button customButton;
+    private Button mode2;
+    @FXML
+    private Button mode3;
 
 
 
@@ -26,17 +28,29 @@ public class SinglePlayerModeMenuFXMLC extends FXMLController {
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/MainMenu.css");
 
 
-        GraphicsControls.setButtonStyle("menu-button" , storyButton , customButton);
+        GraphicsControls.setButtonStyle("menu-button" , mode1 , mode2 , mode3);
 
 
         backButton.setOnAction(e->{
-            enterSubMenu(ChooseBattleModeMenu.getMenu());
+            enterSubMenu(SinglePlayerModeMenu.getMenu());
         });
         GraphicsControls.setBackButtonOnPress(backButton);
 
 
-        storyButton.setOnAction(e -> enterSubMenu(StoryModeMenu.getMenu()));
-        customButton.setOnAction(e -> enterSubMenu(CostumeModeMenu.getMenu()));
+        mode1.setOnAction(e -> {
+            ((StoryModeMenu)menu).setAI(1);
+            enterSubMenu(Battle.getMenu());
+        });
+        mode2.setOnAction(e -> {
+            ((StoryModeMenu)menu).setAI(2);
+            enterSubMenu(Battle.getMenu());
+        });
+        mode3.setOnAction(e -> {
+            ((StoryModeMenu)menu).setAI(3);
+            enterSubMenu(Battle.getMenu());
+        });
+
+
     }
 
     private void enterSubMenu(Menu subMenu){
