@@ -47,7 +47,8 @@ public class LeaderBoardFXMLC {
             FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(LeaderBoardFXMLC.class.getClassLoader().getResource(rootPath)));
             root = rootLoader.load();
             Scene scene = new Scene(root, GraphicView.getPrimaryScreenBounds().getWidth(), GraphicView.getPrimaryScreenBounds().getHeight());
-//                    GraphicView.setScene(scene);
+            scene.setOnMouseEntered(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
+            scene.setOnMouseMoved(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
 
             LeaderBoardFXMLC controller = rootLoader.getController();
             controller.show(accounts,scene);
@@ -56,17 +57,6 @@ public class LeaderBoardFXMLC {
 
     public void show(ArrayList<Account> accounts,Scene scene) {
         stage = new Stage();
-//        try {
-//            FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
-//            Parent root = FXMLLoader.load(getClass().getResource(this.rootPath));
-//            Parent root = rootLoader.load();
-//            scene = new Scene(root , 800 , 600);
-//        }catch(IOException e){
-//            System.err.println("couldn't load the freaking popup due to IOException");
-//            e.printStackTrace();
-//        }catch (Exception e){
-//            System.err.println("couldn't load the freaking popup");
-//        }
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/LeaderBoard.css");
         scrollPane =(ScrollPane) scene.lookup("#scrollPane");
         vbox = new VBox();

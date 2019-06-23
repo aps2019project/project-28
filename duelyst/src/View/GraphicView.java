@@ -3,26 +3,18 @@ package View;
 //import SignInMenu;
 import Controller.menu.*;
 import Controller.menu.Graphics.FXMLController.LeaderBoardFXMLC;
-import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
 import Model.account.Account;
 import View.Listeners.OnLeaderBoardClickedListener;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import sample.Main;
 
-import javax.swing.*;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Root;
 
 public class GraphicView extends Application implements View{
     private static Stage stage;

@@ -39,7 +39,6 @@ public class MenuGraphics {
         this.stage= GraphicView.getStage();
         this.bounds=GraphicView.getPrimaryScreenBounds();
         this.scene=new Scene(new Group(), this.bounds.getWidth(), this.bounds.getHeight());
-
         try {
             System.out.println(this.menu.getGraphic().getRootPath());
             System.err.println();

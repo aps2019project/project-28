@@ -46,6 +46,7 @@ public class FXMLController {
         * use this method to work with the scenes objects (such as button ,label and ....)
         * */
         this.menu.getGraphic().getScene().setOnMouseEntered(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
+        this.menu.getGraphic().getScene().setOnMouseMoved(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
 
     }
 
