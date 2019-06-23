@@ -42,6 +42,7 @@ public class MenuGraphics {
 
         try {
             System.out.println(this.menu.getGraphic().getRootPath());
+            System.err.println();
             FXMLLoader rootLoader= new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
 //            this.root= FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
             this.root=rootLoader.load();

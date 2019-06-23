@@ -1,7 +1,7 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.*;
-import Controller.menu.Graphics.GraphicsControlls;
+import Controller.menu.Graphics.GraphicsControls;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,12 +21,12 @@ public class SinglePlayerModeMenuFXMLC extends FXMLController {
     @Override
     public void buildScene() {
         super.buildScene();
-        Scene scene = menu.getGraphic().getScene();
+/*        Scene scene = menu.getGraphic().getScene();
 
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/MainMenu.css");
 
 
-        GraphicsControlls.setButtonStyle("menu-button" , storyButton , customButton);
+        GraphicsControls.setButtonStyle("menu-button" , storyButton , customButton);
 
 
         backButton.setOnAction(e->{
@@ -43,7 +43,7 @@ public class SinglePlayerModeMenuFXMLC extends FXMLController {
 
 
         storyButton.setOnAction(e -> enterSubMenu(StoryModeMenu.getMenu()));
-        customButton.setOnAction(e -> enterSubMenu(CostumeModeMenu.getMenu()));
+        customButton.setOnAction(e -> enterSubMenu(CostumeModeMenu.getMenu()));*/
     }
 
     private void enterSubMenu(Menu subMenu){
