@@ -1,8 +1,8 @@
 package View;
 
 //import SignInMenu;
-import Controller.menu.MainMenu;
-import Controller.menu.SignInMenu;
+import Controller.menu.*;
+import Controller.menu.Graphics.FXMLController.LeaderBoardFXMLC;
 import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
@@ -56,19 +56,31 @@ public class GraphicView extends Application implements View{
     private static void initializeGraphicMenu() {
         setRootPaths();
         initGraphics();
+        setListeners();
+    }
+
+    private static void setListeners() {
+        SignInMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC.getLeaderBoard());
     }
 
     private static void initGraphics() {
         //initializing graphics for each menu
         SignInMenu.getMenu().getGraphic().init();
         MainMenu.getMenu().getGraphic().init();
+        ChooseBattleModeMenu.getMenu().getGraphic().init();
+        SinglePlayerModeMenu.getMenu().getGraphic().init();
+        MultiPlayerModeMenu.getMenu().getGraphic().init();
     }
 
 
     private static void setRootPaths() {
         //setting root Path for each menu
         SignInMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SignInMenu.fxml");
+        LeaderBoardFXMLC.getLeaderBoard().setRootPath("Controller/menu/Graphics/FXMLs/LeaderBoard.fxml");
         MainMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MainMenu.fxml");
+        ChooseBattleModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ChooseBattleMode.fxml");
+        SinglePlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SinglePlayerModeMenuFXMLC.fxml");
+        SinglePlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MultiPlayerModeMenuFXMLC.fxml");
     }
 
     public void play(String...args) {
