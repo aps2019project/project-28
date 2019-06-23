@@ -32,14 +32,7 @@ public class SinglePlayerModeMenuFXMLC extends FXMLController {
         backButton.setOnAction(e->{
             enterSubMenu(MainMenu.getMenu());
         });
-        backButton.setOnMousePressed(e -> {
-            backButton.setTranslateX(-5);
-            backButton.setTranslateY(-5);
-        });
-        backButton.setOnMousePressed(e -> {
-            backButton.setTranslateX(5);
-            backButton.setTranslateY(5);
-        });
+        GraphicsControlls.setBackButtonOnPress(backButton);
 
 
         storyButton.setOnAction(e -> enterSubMenu(StoryModeMenu.getMenu()));
