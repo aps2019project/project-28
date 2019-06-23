@@ -39,15 +39,15 @@ public class StoryModeFXMLC extends FXMLController {
 
         mode1.setOnAction(e -> {
             ((StoryModeMenu)menu).setAI(1);
-            enterSubMenu(Battle.getMenu());
+            ((StoryModeMenu) menu).showDeckSelector(menu.getAccount());
         });
         mode2.setOnAction(e -> {
             ((StoryModeMenu)menu).setAI(2);
-            enterSubMenu(Battle.getMenu());
+            ((StoryModeMenu) menu).showDeckSelector(menu.getAccount());
         });
         mode3.setOnAction(e -> {
             ((StoryModeMenu)menu).setAI(3);
-            enterSubMenu(Battle.getMenu());
+            ((StoryModeMenu) menu).showDeckSelector(menu.getAccount());
         });
 
 

@@ -586,7 +586,7 @@ public class ConsoleOutput {
     private static void storyModeMenuCommandHandler(String[] word) {
         StoryModeMenu menu= (StoryModeMenu) MenuHandler.currentMenu;
         if(word[0].equals("level")) {
-            MenuHandler.currentMenu=menu.setAI(Integer.parseInt(word[1]));
+//            MenuHandler.currentMenu=menu.setAI(Integer.parseInt(word[1]));
         }
     }
     private static void CollectionMenuCommandHandler(String[] word) {

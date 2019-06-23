@@ -2,6 +2,7 @@ package View;
 
 //import SignInMenu;
 import Controller.menu.*;
+import Controller.menu.Graphics.FXMLController.DeckSelectorFXMLC;
 import Controller.menu.Graphics.FXMLController.LeaderBoardFXMLC;
 import Controller.menu.Battle;
 import Controller.menu.MainMenu;
@@ -71,12 +72,13 @@ public class GraphicView extends Application implements View{
     }
 
     private static void setListeners() {
-        SignInMenu.getMenu().addLeaderBoardClickedListener(new OnLeaderBoardClickedListener() {
-            @Override
-            public void show(ArrayList<Account> accounts) {
+        SignInMenu.getMenu().addLeaderBoardClickedListener(accounts -> {
 //            this.root= FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
-                  LeaderBoardFXMLC.makeNewScene(accounts);
-            }
+              LeaderBoardFXMLC.makeNewScene(accounts);
+        });
+
+        StoryModeMenu.getMenu().setDeckSelectorListener((account , menu)-> {
+            DeckSelectorFXMLC.makeNewScene(account , menu);
         });
     }
 
@@ -95,7 +97,6 @@ public class GraphicView extends Application implements View{
     private static void setRootPaths() {
         //setting root Path for each menu
         SignInMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SignInMenu.fxml");
-        LeaderBoardFXMLC.getLeaderBoard().setRootPath("Controller/menu/Graphics/FXMLs/LeaderBoard.fxml");
         MainMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MainMenu.fxml");
         Battle.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/Battle.fxml");
         ChooseBattleModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ChooseBattleMode.fxml");

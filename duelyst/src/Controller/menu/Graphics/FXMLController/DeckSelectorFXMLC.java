@@ -1,80 +1,80 @@
 package Controller.menu.Graphics.FXMLController;
 
-import Controller.menu.SignInMenu;
+import Controller.menu.DeckSelectorHavingMenu;
+import Controller.menu.Menu;
 import Model.account.Account;
+import Model.account.Deck;
 import View.GraphicView;
-import View.Listeners.OnLeaderBoardClickedListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.Axis;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import stuff.Resources;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Objects;
 
-public class LeaderBoardFXMLC {
-//    private static LeaderBoardFXMLC leaderBoard ;
+public class DeckSelectorFXMLC {
+//    private static DeckSelectorFXMLC deckSelector;
     private Stage stage ;
     @FXML
     private ScrollPane scrollPane ;
     private VBox vbox ;
 
-//    public static LeaderBoardFXMLC getLeaderBoard(){
-//        if (leaderBoard == null) leaderBoard = new LeaderBoardFXMLC() ;
-//        return leaderBoard;
+//
+//    public static DeckSelectorFXMLC getDeckSelector(){
+//        if (deckSelector == null) deckSelector = new DeckSelectorFXMLC() ;
+//        return deckSelector;
 //    }
-//    public  LeaderBoardFXMLC(){
-//        leaderBoard=this;
+//    public DeckSelectorFXMLC(){
+//        deckSelector =this;
 //    }
 
-    public static void makeNewScene(ArrayList<Account>accounts) {
+    public static void makeNewScene(Account account , DeckSelectorHavingMenu menu) {
         try {
             Parent root;
-            String rootPath = "Controller/menu/Graphics/FXMLs/LeaderBoard.fxml";
-            FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(LeaderBoardFXMLC.class.getClassLoader().getResource(rootPath)));
+            String rootPath = "Controller/menu/Graphics/FXMLs/DeckSelector.fxml";
+            FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(DeckSelectorFXMLC.class.getClassLoader().getResource(rootPath)));
             root = rootLoader.load();
             Scene scene = new Scene(root, GraphicView.getPrimaryScreenBounds().getWidth(), GraphicView.getPrimaryScreenBounds().getHeight());
             scene.setOnMouseEntered(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
             scene.setOnMouseMoved(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
 
-            LeaderBoardFXMLC controller = rootLoader.getController();
-            controller.show(accounts,scene);
+            DeckSelectorFXMLC controller = rootLoader.getController();
+            controller.show(account,scene , menu);
         }catch (Exception e){}
     }
 
-    public void show(ArrayList<Account> accounts,Scene scene) {
+    public void show(Account account , Scene scene ,DeckSelectorHavingMenu menu) {
         stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/LeaderBoard.css");
         scrollPane =(ScrollPane) scene.lookup("#scrollPane");
         vbox = new VBox();
         vbox.setAlignment(Pos.TOP_CENTER);
         vbox.setFillWidth(true);
         vbox.setMinWidth(400);
-        vbox.setSpacing(20);
+        vbox.setSpacing(30);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
 
         int index = 1;
-        for (Account account : accounts){
+        for (Deck deck : account.getCollection().getDecks()){
             HBox hbox = new HBox();
             hbox.setAlignment(Pos.CENTER_LEFT);
-            Label label = new Label(index+"- " + account.getName() + " (" + account.getUsername() + ")"
-                    + " Wins : " + account.getWins());
+            Label label = new Label(index+"- " + deck.getName() + " (" + deck.getHero() + ")");
             label.getStyleClass().add("nameLabel");
             label.setOnMouseClicked(e -> {
-                SignInMenuFXMLC fxmlc = (SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController() ;
-                fxmlc.setUsernameInput(account.getUsername());
+                account.getCollection().setMainDeck(deck);
+                menu.selectDeck(account , deck);
                 stage.close();
             });
             label.setCursor(new ImageCursor(new Image(Resources.mouse_assist.getPath())));
