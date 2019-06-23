@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
-public class GraphicsControlls {
+public class GraphicsControls {
     //will set the buttons styleID and handles the change for when it's pressed !
     // do not use for backButton !
     public static void setButtonStyle(String buttonStyle , Button...buttons){

@@ -1,7 +1,7 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.*;
-import Controller.menu.Graphics.GraphicsControlls;
+import Controller.menu.Graphics.GraphicsControls;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -37,8 +37,8 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
             }
         });
 
-        GraphicsControlls.setButtonStyle( "button1clicked",signInButton);
-        GraphicsControlls.setButtonStyle( "button2clicked",signInButton);
+        GraphicsControls.setButtonStyle( "button1clicked",signInButton);
+        GraphicsControls.setButtonStyle( "button2clicked",signInButton);
 
         signInButton.setOnAction(e -> signInButtonClicked());
     }

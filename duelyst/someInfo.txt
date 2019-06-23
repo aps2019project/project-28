@@ -1,1 +1,1 @@
-font : Songti SC Bold
+tfont : Songti SC Bold

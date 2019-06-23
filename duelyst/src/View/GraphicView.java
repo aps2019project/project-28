@@ -7,9 +7,13 @@ import Controller.menu.Battle;
 import Controller.menu.MainMenu;
 import Controller.menu.SignInMenu;
 import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
+import Model.account.Account;
+import View.Listeners.OnLeaderBoardClickedListener;
 import Model.Primary;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
@@ -17,10 +21,19 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import sample.Main;
 
+import javax.swing.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Objects;
+
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Root;
+
 public class GraphicView extends Application implements View{
 
     private static Stage stage;
     private static Rectangle2D primaryScreenBounds ;
+
+
 
     public static void setScene(Scene scene) {
         GraphicView.stage.setScene(scene);
@@ -38,6 +51,7 @@ public class GraphicView extends Application implements View{
         p.setStyle("-fx-background-color: BLACK");
         Scene loadingScene = new Scene(p);
         stage.setScene(loadingScene);
+
         stage.setFullScreen(false); //TODO make it true in the end !
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.setResizable(false);
@@ -48,6 +62,7 @@ public class GraphicView extends Application implements View{
                 stop();
             } catch (Exception ignored) {}
         });
+
         initializeGraphicMenu();
         MenuHandler.startMenus();
 //        primaryStage.setScene(SignInMenu.getMenu().getGraphic().getScene());
@@ -63,7 +78,13 @@ public class GraphicView extends Application implements View{
     }
 
     private static void setListeners() {
-        SignInMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC.getLeaderBoard());
+        SignInMenu.getMenu().addLeaderBoardClickedListener(new OnLeaderBoardClickedListener() {
+            @Override
+            public void show(ArrayList<Account> accounts) {
+//            this.root= FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
+                  LeaderBoardFXMLC.makeNewScene(accounts);
+            }
+        });
     }
 
     private static void initGraphics() {

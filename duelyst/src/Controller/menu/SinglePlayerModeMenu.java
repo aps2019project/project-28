@@ -9,6 +9,7 @@ public class SinglePlayerModeMenu extends Menu {
     private SinglePlayerModeMenu(String name) {
         super(name);
     }
+
     public static SinglePlayerModeMenu getMenu(){
         if(SinglePlayerModeMenu.menu==null){
             SinglePlayerModeMenu.menu=new SinglePlayerModeMenu("SinglePlayer");

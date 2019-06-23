@@ -1,7 +1,7 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.*;
-import Controller.menu.Graphics.GraphicsControlls;
+import Controller.menu.Graphics.GraphicsControls;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,13 +26,13 @@ public class ChooseBattleModeFXMLC extends FXMLController {
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/MainMenu.css");
 
 
-        GraphicsControlls.setButtonStyle("menu-button" , singlePlayer , multiPlayer);
+        GraphicsControls.setButtonStyle("menu-button" , singlePlayer , multiPlayer);
 
 
         backButton.setOnAction(e->{
             enterSubMenu(MainMenu.getMenu());
         });
-        GraphicsControlls.setBackButtonOnPress(backButton);
+        GraphicsControls.setBackButtonOnPress(backButton);
 
 
         multiPlayer.setOnAction(e -> enterSubMenu(MultiPlayerModeMenu.getMenu()));
