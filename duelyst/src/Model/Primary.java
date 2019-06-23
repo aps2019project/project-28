@@ -617,9 +617,18 @@ public class Primary {
 
     public static void initGraphics() throws FileNotFoundException {
         setHermionesAvatars();
+        setCardsAvatar();
         setGraphicsForHermiones();
-//        setBattleGraphicsForHermione();
+        setBattleGraphicsForHermione();
     }
+
+    private static void setCardsAvatar(){
+        for (Card card : cards) {
+            Image image = new Image("../../../../resources/ui/artifact_f6_winterblade.png");
+            card.getCardGraphics().setAvatar(image);
+        }
+    }
+
     private static void setHermionesAvatars() throws FileNotFoundException {
         //heroes
         for (Hero hero : heroes) {
@@ -630,24 +639,22 @@ public class Primary {
             setHermioneAvatar(minion, "resources/units/boss_decepticle.png");
         }
     }
-
     private static void setHermioneAvatar(Hermione hermione, String path) throws FileNotFoundException {
 
         Image image = new Image(path);
-//        hermione.getGraphics().setAvatar(image);
+        hermione.getGraphics().setAvatar(image);
     }
 
     private static void setGraphicsForHermiones(){
         for (Hero hero : heroes) {
-            setGraohicForHermione(hero);
+            setGraphicForHermione(hero);
         }
 
         for (Minion minion : minions) {
-            setGraohicForHermione(minion);
+            setGraphicForHermione(minion);
         }
     }
-
-    private static void setGraohicForHermione(Hermione hermione) {
+    private static void setGraphicForHermione(Hermione hermione) {
         hermione.getGraphics().addAttackListenr(new OnAttackListener() {
             @Override
             public void show(Hermione enemyCard) {
@@ -707,7 +714,7 @@ public class Primary {
         });
     }
 
-    private void setBattleGraphicsForHermione(){
+    private static void setBattleGraphicsForHermione(){
         for (Hero hero : heroes) {
             hero.getGraphics().addSpawnListenr(new OnSpawnListener() {
                 @Override

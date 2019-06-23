@@ -1,13 +1,10 @@
 package View;
 import Controller.Game;
-import Controller.GameMode.FlagMode;
 import Controller.menu.Battle;
 import Controller.menu.*;
 //import SignInMenu;
 import Controller.menu.SignInMenu;
 import Model.Primary;
-import exeption.InvalidAccountException;
-import exeption.WrongPassException;
 
 import java.util.Scanner;
 
@@ -18,7 +15,6 @@ public class MenuHandler {
 
     private static void initMenus() {
         //az SignIn Menu mirim tuye MainMenu
-
 
         SignInMenu.getMenu().addSubMenu(MainMenu.getMenu());
 
