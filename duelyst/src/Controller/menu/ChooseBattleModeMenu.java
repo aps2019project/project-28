@@ -3,6 +3,11 @@ package Controller.menu;
 //it is finished
 
 
+import Controller.GameMode.ClassicMode;
+import Controller.GameMode.Domination;
+import Controller.GameMode.FlagMode;
+import View.MenuHandler;
+
 public class ChooseBattleModeMenu extends Menu {
     private static ChooseBattleModeMenu menu;
     private ChooseBattleModeMenu( String name) {
@@ -15,11 +20,31 @@ public class ChooseBattleModeMenu extends Menu {
 //        super.init();
 //    }
 
-    public static Menu getMenu() {
+    public static ChooseBattleModeMenu getMenu() {
         if(ChooseBattleModeMenu.menu==null){
             ChooseBattleModeMenu.menu=new ChooseBattleModeMenu("BattleMode");
         }
         return menu;
+    }
+
+
+    public void setMode(int mode) {
+        switch (mode){
+            case 3:
+                Battle.getMenu().setGameMode(new Domination());
+                MenuHandler.currentMenu=this.enter(GameModeMenu.getMenu());
+                break;
+            case 2:
+                Battle.getMenu().setGameMode(new FlagMode());
+                MenuHandler.currentMenu=this.enter(GameModeMenu.getMenu());
+                break;
+            case 1:
+                Battle.getMenu().setGameMode(new ClassicMode());
+                MenuHandler.currentMenu=this.enter(GameModeMenu.getMenu());
+                break;
+            default:
+                System.out.println("please Enter a Number between 1 and 3");
+        }
     }
 
     @Override

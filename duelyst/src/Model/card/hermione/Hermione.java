@@ -152,6 +152,7 @@ public abstract class Hermione extends Card {
 
 
     public void spawn(Cell cell) {
+        System.err.println("debug");
         /*
         *handling the graphics
         *  */

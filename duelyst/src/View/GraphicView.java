@@ -3,8 +3,13 @@ package View;
 //import SignInMenu;
 import Controller.menu.*;
 import Controller.menu.Graphics.FXMLController.LeaderBoardFXMLC;
+import Controller.menu.Battle;
+import Controller.menu.MainMenu;
+import Controller.menu.SignInMenu;
+import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
 import Model.account.Account;
 import View.Listeners.OnLeaderBoardClickedListener;
+import Model.Primary;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -17,6 +22,7 @@ import java.util.ArrayList;
 
 
 public class GraphicView extends Application implements View{
+
     private static Stage stage;
     private static Rectangle2D primaryScreenBounds ;
 
@@ -29,6 +35,8 @@ public class GraphicView extends Application implements View{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        Primary.initGraphics();
 
         stage = primaryStage;
         primaryScreenBounds = Screen.getPrimary().getVisualBounds();
@@ -79,6 +87,7 @@ public class GraphicView extends Application implements View{
         ChooseBattleModeMenu.getMenu().getGraphic().init();
         SinglePlayerModeMenu.getMenu().getGraphic().init();
         MultiPlayerModeMenu.getMenu().getGraphic().init();
+        Battle.getMenu().getGraphic().init();
         StoryModeMenu.getMenu().getGraphic().init();
     }
 
@@ -88,6 +97,7 @@ public class GraphicView extends Application implements View{
         SignInMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SignInMenu.fxml");
         LeaderBoardFXMLC.getLeaderBoard().setRootPath("Controller/menu/Graphics/FXMLs/LeaderBoard.fxml");
         MainMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MainMenu.fxml");
+        Battle.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/Battle.fxml");
         ChooseBattleModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ChooseBattleMode.fxml");
         SinglePlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SinglePlayerModeMenu.fxml");
         MultiPlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MultiPlayerModeMenu.fxml");

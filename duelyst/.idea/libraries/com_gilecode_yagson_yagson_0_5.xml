@@ -5,6 +5,8 @@
       <root url="jar://$MAVEN_REPOSITORY$/com/gilecode/yagson/yagson/0.5/yagson-0.5.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/yagson-0.5-sources.jar!/com/gilecode/yagson" />
+    </SOURCES>
   </library>
 </component>

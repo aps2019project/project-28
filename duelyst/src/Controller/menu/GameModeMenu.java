@@ -1,5 +1,10 @@
 package Controller.menu;
 
+import Controller.GameMode.ClassicMode;
+import Controller.GameMode.Domination;
+import Controller.GameMode.FlagMode;
+import View.MenuHandler;
+
 public class GameModeMenu extends Menu {
     private static GameModeMenu menu;
     private GameModeMenu(String name) {

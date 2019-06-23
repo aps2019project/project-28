@@ -1,8 +1,11 @@
 package Model.Graphics;
 
+import Controller.menu.Battle;
+import Controller.menu.Menu;
 import Model.Graphics.Listeners.*;
 import Model.Map.Cell;
 import Model.card.hermione.Hermione;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
@@ -16,11 +19,16 @@ public class HermioneGraphics {
     private ArrayList<OnCardSelectedListener>selectedListeners= new ArrayList<>();
 
 
+    private Image avatar;
+
+
     // TODO: 6/11/19 onCardSelected where to use
 
     private Hermione hermione;
 
-
+    public Menu getBattleMenu(){
+        return Battle.getMenu();
+    }
 
     public HermioneGraphics(Hermione hermione) {
         this.hermione = hermione;
@@ -62,5 +70,14 @@ public class HermioneGraphics {
     }
     public void addCardSelectedListener(OnCardSelectedListener cardSelectedListener){
         this.selectedListeners.add(cardSelectedListener);
+    }
+
+
+    public Image getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Image avatar) {
+        this.avatar = avatar;
     }
 }

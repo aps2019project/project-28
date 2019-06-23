@@ -16,7 +16,6 @@ public class MenuHandler {
     private static void initMenus() {
         //az SignIn Menu mirim tuye MainMenu
 
-
         SignInMenu.getMenu().addSubMenu(MainMenu.getMenu());
 
         MainMenu.getMenu().addSubMenu(CollectionMenu.getMenu());
@@ -48,13 +47,26 @@ public class MenuHandler {
             e.printStackTrace();
         }
 //        View input =new ConsoleView();
-        View input=new GraphicView();
+        View input = new GraphicView();
 
         input.play(args);
     }
 
     public static void startMenus() {
-        currentMenu= SignInMenu.getMenu().enter();
+        currentMenu= Battle.getMenu().enter();
+    }
+
+    public static void dirtyPeaceShit() {
+        currentMenu= SignInMenu.getMenu();
+        try {
+            SignInMenu.getMenu().logIn( "warlord","1");
+            ChooseBattleModeMenu.getMenu().setMode(1);
+            System.err.println();
+            StoryModeMenu.getMenu().setAI(1);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

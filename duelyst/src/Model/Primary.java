@@ -1,6 +1,10 @@
 package Model;
 
-import Model.Graphics.Listeners.OnAttackListener;
+import Controller.menu.Graphics.FXMLController.BattleFXMLC;
+import Controller.menu.Graphics.FXMLController.FXMLController;
+import Model.Graphics.Listeners.*;
+import Model.Graphics.SpriteAnimation;
+import Model.Map.Cell;
 import Model.account.Account;
 import Model.account.Collection;
 import Model.account.Deck;
@@ -23,7 +27,12 @@ import com.gilecode.yagson.com.google.gson.Gson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import exeption.*;
+import javafx.animation.Animation;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.*;
 import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
@@ -292,8 +301,6 @@ public class Primary {
     }
 
     public static void Json() throws IOException {
-        YaGson gson = new YaGson();
-
         //Spell
         spells.add(new Spell("Total Disarm", 1000, 0, -1, 1, "disarm till the end",
                 TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction()));
@@ -338,13 +345,7 @@ public class Primary {
         spells.add(new Spell("Shock", 1200, 1, 2, 0, "an enemy card will be stuned, duration : 2",
                 TargetEnemyCard.getTargetInstance(), ActionStun.getAction()));
 
-       FileWriter fileWriter = new FileWriter("Spell.json", false);
-       for (Spell spell :
-                spells) {
-            gson.toJson(spell, fileWriter);
-            fileWriter.write("\n");
-        }
-       fileWriter.close();
+        writeJson(spells, "Spell.json");
 
         //Minion
         SpecialPower nullSpecialPower =  new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
@@ -512,15 +513,7 @@ public class Primary {
                 6, new Melee(), 0, new SpecialPower("Arzhangs SpecialPower", 0, 0, 0, 0, "",
                 null, ActionCombo.getAction())
                 , SPATime.COMBO, "SPActionCombo"));
-
-        fileWriter = new FileWriter("Minion.json", false);
-        for (Minion minion :
-                minions) {
-            gson.toJson(minion, fileWriter);
-            fileWriter.write("\n");
-        }
-        fileWriter.close();
-
+        writeJson(minions, "Minion.json" );
         //Hero
         ArrayList<Hero> heroes = new ArrayList<>();
         heroes.add(new Hero("White Demon", 8000, 50, 4, new Melee(), 0,
@@ -562,13 +555,7 @@ public class Primary {
         heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4, nullSpecialPower
                , 0, 0, "just a hybrid hero"));
 
-        fileWriter = new FileWriter("Hero.json", false);
-        for (Hero hero :
-                heroes) {
-            gson.toJson(hero, fileWriter);
-            fileWriter.write("\n");
-        }
-        fileWriter.close();
+        writeJson(heroes, "Hero.json");
 
         //item
         usables.add(new Usable("Wisdom Crown", 300, 3, 1, "increases mana first 3 turn",
@@ -594,13 +581,7 @@ public class Primary {
         usables.add(new Usable("‌Baptism", 20000, 2, 0, "every minion when spawns gets holy buff, duration : 2",
                 TargetOwnMinion.getTargetInstance(), ItemActionBaptism.getItemAction()));
 
-        fileWriter = new FileWriter("Usables.json", false);
-        for (Usable usable :
-                usables) {
-            gson.toJson(usable, fileWriter);
-            fileWriter.write("\n");
-        }
-        fileWriter.close();
+        writeJson(usables, "Usables.json");
 
         collectables.add(new Collectable("NooshDaru", 1, 6, "increases health point of a random card 6 units",
                 TargetRandomOwn.getTargetInstance(), ItemActionChangeHP.getItemAction()));
@@ -620,30 +601,127 @@ public class Primary {
                 TargetRandomOwn.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Chineese Sword", 1, 5, "5 attack points for melee",
                 TargetMelee.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+        writeJson(collectables, "Collectables.json");
+    }
 
-        fileWriter = new FileWriter("Collectables.json", false);
-
-        for (Collectable collectable :
-                collectables) {
-            gson.toJson(collectable, fileWriter);
+    private static <E> void writeJson(ArrayList<E> arrays, String path) throws IOException {
+        YaGson gson = new YaGson();
+        FileWriter fileWriter = new FileWriter(path, false);
+        for (E e:
+                arrays) {
+            gson.toJson(e, fileWriter);
             fileWriter.write("\n");
         }
         fileWriter.close();
-    }//ba T bnvis tabee writo
+    }
 
+    public static void initGraphics() throws FileNotFoundException {
+        setHermionesAvatars();
+        setCardsAvatar();
+        setGraphicsForHermiones();
+        setBattleGraphicsForHermione();
+    }
 
-    private void setGraphicsForHermione() throws FileNotFoundException {
+    private static void setCardsAvatar(){
+        for (Card card : cards) {
+            Image image = new Image("../../../../resources/ui/artifact_f6_winterblade.png");
+            card.getCardGraphics().setAvatar(image);
+        }
+    }
 
-        // TODO: 6/16/19 fatteme
-        /*hero no.0*/
-        Hero hero=heroes.get(0);
-        hero.getGraphics().addAttackListenr(new OnAttackListener() {
+    private static void setHermionesAvatars() throws FileNotFoundException {
+        //heroes
+        for (Hero hero : heroes) {
+            setHermioneAvatar(hero, "resources/units/boss_borealjuggernaut.png");
+        }
+        //minions
+        for (Minion minion : minions) {
+            setHermioneAvatar(minion, "resources/units/boss_decepticle.png");
+        }
+    }
+    private static void setHermioneAvatar(Hermione hermione, String path) throws FileNotFoundException {
+
+        Image image = new Image(path);
+        hermione.getGraphics().setAvatar(image);
+    }
+
+    private static void setGraphicsForHermiones(){
+        for (Hero hero : heroes) {
+            setGraphicForHermione(hero);
+        }
+
+        for (Minion minion : minions) {
+            setGraphicForHermione(minion);
+        }
+    }
+    private static void setGraphicForHermione(Hermione hermione) {
+        hermione.getGraphics().addAttackListenr(new OnAttackListener() {
             @Override
             public void show(Hermione enemyCard) {
                 System.out.println("animation");
 
             }
         });
+        hermione.getGraphics().addCardSelectedListener(new OnCardSelectedListener() {
+            @Override
+            public void show(String state) {
 
+            }
+        });
+        hermione.getGraphics().addDamageListeners(new OnDamageListener() {
+            @Override
+            public void show() {
+
+            }
+        });
+        hermione.getGraphics().addDeathListener(new OnDeathListener() {
+            @Override
+            public void show() {
+
+            }
+        });
+        hermione.getGraphics().addMoveListener(new OnMoveListener() {
+            @Override
+            public void show(Cell cell) {
+
+            }
+        });
+        hermione.getGraphics().addSpawnListenr(new OnSpawnListener() {
+            @Override
+            public void show(Cell cell) {
+                BattleFXMLC controller = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                ImageView imageView = new ImageView(hermione.getGraphics().getAvatar());
+                controller.addToScene(imageView);
+                imageView.setX(controller.getMapX() + cell.getX() * controller.getCellWidth());
+                imageView.setY(controller.getMapY() + cell.getY() * controller.getCellHeight());
+                final Animation animation = new SpriteAnimation(
+                        imageView,
+                        Duration.millis(2000),
+                        1, 1,
+                        0, 0,
+                        85, 85
+                );
+                animation.setCycleCount(Animation.INDEFINITE);
+                animation.play();
+            }
+        });
+
+        hermione.getGraphics().addSpecialPowerAppliedListener(new OnSpeacialPowerAppliedListeners() {
+            @Override
+            public void show(Cell cell) {
+
+            }
+        });
+    }
+
+    private static void setBattleGraphicsForHermione(){
+        for (Hero hero : heroes) {
+            hero.getGraphics().addSpawnListenr(new OnSpawnListener() {
+                @Override
+                public void show(Cell cell) {
+
+                }
+            });
+        }
     }
 }

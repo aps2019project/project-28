@@ -1,5 +1,6 @@
 package Model.card.spell;
 
+import Model.Graphics.CardGraphics;
 import Model.Primary;
 import Model.account.Player;
 import Model.card.Card;
@@ -41,12 +42,12 @@ public class Spell extends Card {
         }
     }
 
-    protected ArrayList<Spell> activeSpells = new ArrayList<>() ;
+    private ArrayList<Spell> activeSpells = new ArrayList<>() ;
     protected Target target;
-    protected Cell[] targetCells = new Cell[Map.CHAP_RAST_X*Map.BALA_PAEEN_Y];
+    private Cell[] targetCells = new Cell[Map.CHAP_RAST_X*Map.BALA_PAEEN_Y];
     protected ArrayList<Action> actions = new ArrayList<>();
-    protected ArrayList<Integer> perks = new ArrayList<>();
-    protected ArrayList<Integer> durations = new ArrayList<>();
+    private ArrayList<Integer> perks = new ArrayList<>();
+    private ArrayList<Integer> durations = new ArrayList<>();
 
     public Spell(String name, int price , int manaPoint, int duration , int perk , String info, Target target, Action action ) {
         super( name, price, manaPoint, info);
@@ -174,4 +175,6 @@ public class Spell extends Card {
     public static Set<Target> getTargets() {
         return targets;
     }
+
+
 }

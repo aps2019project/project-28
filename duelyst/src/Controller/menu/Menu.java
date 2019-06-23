@@ -61,13 +61,13 @@ public abstract class Menu {
     public Menu enter(Menu subMenu){
         if(!subMenu.init(this))return this;
         // TODO: 6/15/19 handle graphics
-        subMenu.getGraphic().enter();
+     //   subMenu.getGraphic().enter();
        return subMenu;
     }
 
     public Menu enter(){
         // TODO: 6/15/19 handle graphics
-        this.getGraphic().enter();
+   //     this.getGraphic().enter();
         return this;
     }
 
