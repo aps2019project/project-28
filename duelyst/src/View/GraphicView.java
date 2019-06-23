@@ -1,10 +1,8 @@
 package View;
 
 //import SignInMenu;
-import Controller.menu.ChooseBattleModeMenu;
+import Controller.menu.*;
 import Controller.menu.Graphics.FXMLController.LeaderBoardFXMLC;
-import Controller.menu.MainMenu;
-import Controller.menu.SignInMenu;
 import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
@@ -70,6 +68,8 @@ public class GraphicView extends Application implements View{
         SignInMenu.getMenu().getGraphic().init();
         MainMenu.getMenu().getGraphic().init();
         ChooseBattleModeMenu.getMenu().getGraphic().init();
+        SinglePlayerModeMenu.getMenu().getGraphic().init();
+        MultiPlayerModeMenu.getMenu().getGraphic().init();
     }
 
 
@@ -79,6 +79,8 @@ public class GraphicView extends Application implements View{
         LeaderBoardFXMLC.getLeaderBoard().setRootPath("Controller/menu/Graphics/FXMLs/LeaderBoard.fxml");
         MainMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MainMenu.fxml");
         ChooseBattleModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ChooseBattleMode.fxml");
+        SinglePlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SinglePlayerModeMenuFXMLC.fxml");
+        SinglePlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MultiPlayerModeMenuFXMLC.fxml");
     }
 
     public void play(String...args) {
