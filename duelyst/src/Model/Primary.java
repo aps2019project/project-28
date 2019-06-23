@@ -617,17 +617,17 @@ public class Primary {
 
     public static void initGraphics() throws FileNotFoundException {
         setHermionesAvatars();
-        setCardsAvatar();
+//        setCardsAvatar();
         setGraphicsForHermiones();
         setBattleGraphicsForHermione();
     }
 
-    private static void setCardsAvatar(){
-        for (Card card : cards) {
-            Image image = new Image("../../../../resources/ui/artifact_f6_winterblade.png");
-            card.getCardGraphics().setAvatar(image);
-        }
-    }
+//    private static void setCardsAvatar(){
+//        for (Card card : cards) {
+//            Image image = new Image("../../../../resources/icons/artifact_f1_goldenvitriol.png");
+//            card.getCardGraphics().setAvatar(image);
+//        }
+//    }
 
     private static void setHermionesAvatars() throws FileNotFoundException {
         //heroes

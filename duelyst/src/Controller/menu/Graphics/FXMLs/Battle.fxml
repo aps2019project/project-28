@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane  fx:id="frame" prefHeight="800.0" prefWidth="1280.0" styleClass="root" stylesheets="@../StyleSheets/Battle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.BattleFXMLC">
+<AnchorPane fx:id="frame" prefHeight="800.0" prefWidth="1280.0" styleClass="root" stylesheets="@../StyleSheets/Battle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.BattleFXMLC">
    <children>
-      <ImageView fitHeight="858.0" fitWidth="1433.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../resources/maps/battlemap0_middleground.png" />
-         </image>
-      </ImageView>
       <VBox alignment="CENTER" layoutX="254.0" layoutY="274.0" prefHeight="316.0" prefWidth="828.0" visible="false" />
-      <GridPane fx:id="gridPane" hgap="5.0" layoutX="367.0" layoutY="293.0" vgap="5.0" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="367.0" AnchorPane.rightAnchor="443.0" AnchorPane.topAnchor="270.0">
+
+       <GridPane fx:id="gridPane" hgap="5.0" layoutX="316.0" layoutY="249.0" prefHeight="334.0" prefWidth="632.0" vgap="5.0" AnchorPane.bottomAnchor="217.0" AnchorPane.leftAnchor="316.0" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="249.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -85,5 +83,108 @@
             <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ffffff3b" height="62.0" stroke="#ffffff00" strokeType="INSIDE" styleClass="cell" width="63.0" GridPane.columnIndex="8" GridPane.rowIndex="4" />
          </children>
       </GridPane>
+
+       <Button fx:id="endTurn" ellipsisString="" layoutX="1043.0" layoutY="583.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="245.0" styleClass="endTurnButton" stylesheets="@../StyleSheets/Buttons.css" text="END TURN" textFill="WHITE" />
+      <HBox layoutX="998.0" layoutY="678.0" prefHeight="55.0" prefWidth="335.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="175.0" styleClass="battleMenuButtonClicked" stylesheets="@../StyleSheets/Buttons.css" text="MENU" textFill="WHITE" />
+            <Button fx:id="graveYard" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="56.0" prefWidth="177.0" styleClass="graveYardButton" stylesheets="@../StyleSheets/Buttons.css" text="GRAVEYARD" textFill="WHITE" />
+         </children>
+      </HBox>
+      <GridPane id="hand" layoutX="285.0" layoutY="609.0" prefHeight="138.0" prefWidth="704.0" styleClass="cardBackground">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fitHeight="143.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" />
+            <ImageView fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="4" />
+            <ImageView fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="3" />
+            <ImageView fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="2" />
+            <ImageView fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <GridPane id="handManas" layoutX="303.0" layoutY="701.0" prefHeight="30.0" prefWidth="694.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../resources/ui/icon_mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../../../../resources/ui/icon_mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+               <image>
+                  <Image url="@../../../../resources/ui/icon_mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+               <image>
+                  <Image url="@../../../../resources/ui/icon_mana.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+               <image>
+                  <Image url="@../../../../resources/ui/icon_mana.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <GridPane id="mana" layoutX="154.0" layoutY="51.0" prefHeight="30.0" prefWidth="289.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <GridPane id="mana" layoutX="925.0" layoutY="36.0" prefHeight="30.0" prefWidth="289.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <ImageView fitHeight="187.0" fitWidth="191.0" layoutX="98.0" layoutY="576.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../resources/ui/replace_background.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -65,7 +65,6 @@ public class Battle extends Menu {
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
-
         this.match=new Match(Game.accounts[0],Game.accounts[1],this.gameMode);
         this.ongoingSpells=new ArrayList<>();
 

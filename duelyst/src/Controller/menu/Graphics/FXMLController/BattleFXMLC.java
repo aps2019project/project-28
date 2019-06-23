@@ -3,6 +3,7 @@ package Controller.menu.Graphics.FXMLController;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -10,11 +11,16 @@ import javafx.scene.shape.Rectangle;
 
 public class BattleFXMLC extends FXMLController {
 
-
+    @FXML
+    public Button endTurn;
+    @FXML
+    public Button graveYard;
     @FXML
     private AnchorPane frame;
     @FXML
     private GridPane gridPane;
+
+
     private Double mapX;
     private Double mapY;
     private Double cellWidth;
@@ -22,6 +28,10 @@ public class BattleFXMLC extends FXMLController {
 
     @Override
     public void buildScene() {
+        super.buildScene();
+        Scene scene = menu.getGraphic().getScene();
+
+
     }
 
     public void addToScene(Node... nodes){

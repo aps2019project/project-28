@@ -59,15 +59,14 @@ public abstract class Menu {
     }
 
     public Menu enter(Menu subMenu){
-        if(!subMenu.init(this))return this;
-        // TODO: 6/15/19 handle graphics
-     //   subMenu.getGraphic().enter();
-       return subMenu;
+        if(!subMenu.init(this)) return this;
+        subMenu.getGraphic().enter();
+        return subMenu;
     }
 
     public Menu enter(){
         // TODO: 6/15/19 handle graphics
-   //     this.getGraphic().enter();
+        this.getGraphic().enter();
         return this;
     }
 
@@ -76,6 +75,7 @@ public abstract class Menu {
         this.setAccount(parentMenu.account);
         return true;
     }
+
     public void addPattern(String pattern) {
         this.patterns.add(pattern);
     }

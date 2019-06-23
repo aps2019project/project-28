@@ -59,9 +59,8 @@ public class GraphicView extends Application implements View{
 
         initializeGraphicMenu();
         MenuHandler.startMenus();
-//        primaryStage.setScene(SignInMenu.getMenu().getGraphic().getScene());
-//
-//        primaryStage.show() ;
+        primaryStage.setScene(SignInMenu.getMenu().getGraphic().getScene());
+        primaryStage.show() ;
 
     }
 

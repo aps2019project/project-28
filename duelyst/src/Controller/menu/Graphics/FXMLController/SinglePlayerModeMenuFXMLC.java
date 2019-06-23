@@ -16,8 +16,6 @@ public class SinglePlayerModeMenuFXMLC extends FXMLController {
     private Button customButton;
 
 
-
-
     @Override
     public void buildScene() {
         super.buildScene();
@@ -28,12 +26,11 @@ public class SinglePlayerModeMenuFXMLC extends FXMLController {
 
         GraphicsControls.setButtonStyle("menu-button" , storyButton , customButton);
 
-
         backButton.setOnAction(e->{
             enterSubMenu(ChooseBattleModeMenu.getMenu());
         });
-        GraphicsControls.setBackButtonOnPress(backButton);
 
+        GraphicsControls.setBackButtonOnPress(backButton);
 
         storyButton.setOnAction(e -> enterSubMenu(StoryModeMenu.getMenu()));
         customButton.setOnAction(e -> enterSubMenu(CostumeModeMenu.getMenu()));
