@@ -14,9 +14,12 @@ import javafx.scene.chart.Axis;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import stuff.Resources;
 
 import java.io.IOException;
@@ -44,7 +47,7 @@ public class LeaderBoardFXMLC {
             String rootPath = "Controller/menu/Graphics/FXMLs/LeaderBoard.fxml";
             FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(LeaderBoardFXMLC.class.getClassLoader().getResource(rootPath)));
             root = rootLoader.load();
-            Scene scene = new Scene(root, GraphicView.getPrimaryScreenBounds().getWidth(), GraphicView.getPrimaryScreenBounds().getHeight());
+            Scene scene = new Scene(root, 800, 500);
             scene.setOnMouseEntered(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
             scene.setOnMouseMoved(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
 
@@ -55,7 +58,16 @@ public class LeaderBoardFXMLC {
 
     public void show(ArrayList<Account> accounts,Scene scene) {
         stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/LeaderBoard.css");
+        stage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+            if (! isNowFocused) {
+                stage.hide();
+            }
+        });
+
         scrollPane =(ScrollPane) scene.lookup("#scrollPane");
         vbox = new VBox();
         vbox.setAlignment(Pos.TOP_CENTER);

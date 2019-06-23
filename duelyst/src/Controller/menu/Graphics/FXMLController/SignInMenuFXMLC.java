@@ -33,6 +33,7 @@ public class SignInMenuFXMLC extends FXMLController {
     private VBox frame;
     @FXML
     private Button showLeaderBoard ;
+
     private TextField nameInput;
 
 
@@ -106,7 +107,7 @@ public class SignInMenuFXMLC extends FXMLController {
     }
 
     private void signInButtonClicked() {
-        System.err.println("debug");
+        System.err.println("singInButtonClicked");
         if (usernameInput.getText()!=null && !usernameInput.getText().isEmpty()){
             if (passwordField.getText()!=null && !passwordField.getText().isEmpty()){
                 try {

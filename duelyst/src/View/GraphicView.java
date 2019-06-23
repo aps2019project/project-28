@@ -37,7 +37,7 @@ public class GraphicView extends Application implements View{
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Primary.initGraphics();
+//        Primary.initGraphics();
 
         stage = primaryStage;
         primaryScreenBounds = Screen.getPrimary().getVisualBounds();
@@ -50,7 +50,7 @@ public class GraphicView extends Application implements View{
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.setResizable(false);
         stage.setFullScreenExitHint("");
-//        stage.setOnCloseRequest(Event::consume) ; //TODO -> handle exit button
+        //TODO -> handle exit button
         stage.setOnCloseRequest(e -> {
             try {
                 stop();
