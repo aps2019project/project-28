@@ -107,7 +107,6 @@ public class SignInMenuFXMLC extends FXMLController {
     }
 
     private void signInButtonClicked() {
-        System.err.println("singInButtonClicked");
         if (usernameInput.getText()!=null && !usernameInput.getText().isEmpty()){
             if (passwordField.getText()!=null && !passwordField.getText().isEmpty()){
                 try {

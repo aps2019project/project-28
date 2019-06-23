@@ -1,5 +1,8 @@
 package Controller.menu.Graphics.FXMLController;
 
+import Controller.GameMode.ClassicMode;
+import Controller.GameMode.Domination;
+import Controller.GameMode.FlagMode;
 import Controller.menu.*;
 import Controller.menu.Graphics.GraphicsControls;
 import javafx.fxml.FXML;
@@ -40,14 +43,17 @@ public class StoryModeFXMLC extends FXMLController {
         mode1.setOnAction(e -> {
             ((StoryModeMenu)menu).setAI(1);
             ((StoryModeMenu) menu).showDeckSelector(menu.getAccount());
+            Battle.getMenu().setGameMode(new ClassicMode());
         });
         mode2.setOnAction(e -> {
             ((StoryModeMenu)menu).setAI(2);
             ((StoryModeMenu) menu).showDeckSelector(menu.getAccount());
+            Battle.getMenu().setGameMode(new FlagMode());
         });
         mode3.setOnAction(e -> {
             ((StoryModeMenu)menu).setAI(3);
             ((StoryModeMenu) menu).showDeckSelector(menu.getAccount());
+            Battle.getMenu().setGameMode(new Domination());
         });
 
 
