@@ -2,6 +2,7 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.SignInMenu;
 import Model.account.Account;
+import View.Listeners.OnLeaderBoardClickedListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -18,21 +19,34 @@ import stuff.Resources;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class LeaderBoardFXMLC {
-    private static Stage stage ;
-    private static Scene scene ;
+public class LeaderBoardFXMLC implements OnLeaderBoardClickedListener {
+    private static LeaderBoardFXMLC leaderBoard ;
+    private String rootPath ;
+    private Stage stage ;
+    private Scene scene ;
     @FXML
-    private static ScrollPane scrollPane ;
-    private static VBox vbox ;
+    private ScrollPane scrollPane ;
+    private VBox vbox ;
 
-    public static void showLeaderBoard(ArrayList<Account> accounts){
+    public static LeaderBoardFXMLC getLeaderBoard(){
+        if (leaderBoard == null) leaderBoard = new LeaderBoardFXMLC() ;
+        return leaderBoard;
+    }
+    private LeaderBoardFXMLC(){}
+
+    @Override
+    public void show(ArrayList<Account> accounts) {
         stage = new Stage();
         try {
-            Parent root = FXMLLoader.load(Controller.menu.Graphics.FXMLController.LeaderBoardFXMLC.class.getResource("LeaderBoard.fxml"));
+//            FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
+            Parent root = FXMLLoader.load(getClass().getResource(this.rootPath));
+//            Parent root = rootLoader.load();
             scene = new Scene(root , 800 , 600);
         }catch(IOException e){
             System.err.println("couldn't load the freaking popup due to IOException");
+            e.printStackTrace();
         }catch (Exception e){
             System.err.println("couldn't load the freaking popup");
         }
@@ -52,11 +66,10 @@ public class LeaderBoardFXMLC {
             hbox.setAlignment(Pos.CENTER_LEFT);
             Label label = new Label(index+"- " + account.getName() + " (" + account.getUsername() + ")"
                     + " Wins : " + account.getWins());
-            System.out.println("hellow : " + label.getText());
             label.getStyleClass().add("nameLabel");
             label.setOnMouseClicked(e -> {
-                 SignInMenuFXMLC fxmlc = (SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController() ;
-                 fxmlc.setUsernameInput(account.getUsername());
+                SignInMenuFXMLC fxmlc = (SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController() ;
+                fxmlc.setUsernameInput(account.getUsername());
                 stage.close();
             });
             label.setCursor(new ImageCursor(new Image(Resources.mouse_assist.getPath())));
@@ -67,5 +80,9 @@ public class LeaderBoardFXMLC {
         scrollPane.setContent(vbox);
         stage.setScene(scene);
         stage.show() ;
+    }
+
+    public void setRootPath(String rootPath) {
+        this.rootPath = rootPath;
     }
 }
