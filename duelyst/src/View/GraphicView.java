@@ -4,14 +4,25 @@ package View;
 import Controller.menu.*;
 import Controller.menu.Graphics.FXMLController.LeaderBoardFXMLC;
 import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
+import Model.account.Account;
+import View.Listeners.OnLeaderBoardClickedListener;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import sample.Main;
+
+import javax.swing.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Objects;
+
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Root;
 
 public class GraphicView extends Application implements View{
     private static Stage stage;
@@ -60,7 +71,13 @@ public class GraphicView extends Application implements View{
     }
 
     private static void setListeners() {
-        SignInMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC.getLeaderBoard());
+        SignInMenu.getMenu().addLeaderBoardClickedListener(new OnLeaderBoardClickedListener() {
+            @Override
+            public void show(ArrayList<Account> accounts) {
+//            this.root= FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
+                  LeaderBoardFXMLC.makeNewScene(accounts);
+            }
+        });
     }
 
     private static void initGraphics() {
@@ -80,8 +97,7 @@ public class GraphicView extends Application implements View{
         MainMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MainMenu.fxml");
         ChooseBattleModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ChooseBattleMode.fxml");
         SinglePlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SinglePlayerModeMenu.fxml");
-
-        MultiPlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MultiPlayerModeMenuFXMLC.fxml");
+        MultiPlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MultiPlayerModeMenu.fxml");
     }
 
     public void play(String...args) {
