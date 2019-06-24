@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.menu.Battle;
 import Controller.menu.Graphics.FXMLController.BattleFXMLC;
 import Controller.menu.Graphics.FXMLController.FXMLController;
 import Model.Graphics.Listeners.*;
@@ -28,6 +29,7 @@ import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import exeption.*;
 import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -36,6 +38,8 @@ import java.awt.*;
 import java.io.*;
 import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
+
+import static java.lang.Math.abs;
 
 public class Primary {
 
@@ -192,7 +196,6 @@ public class Primary {
         getCollectables();
         getCards();
         getItems();
-
     }
 
     private static void generateAI() throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
@@ -616,93 +619,137 @@ public class Primary {
     }
 
     public static void initGraphics() throws FileNotFoundException {
-        setHermionesAvatars();
-//        setCardsAvatar();
+//        setHermionesAvatars();
         setGraphicsForHermiones();
-        setBattleGraphicsForHermione();
     }
-
-//    private static void setCardsAvatar(){
-//        for (Card card : cards) {
-//            Image image = new Image("../../../../resources/icons/artifact_f1_goldenvitriol.png");
-//            card.getCardGraphics().setAvatar(image);
-//        }
-//    }
 
     private static void setHermionesAvatars() throws FileNotFoundException {
         //heroes
         for (Hero hero : heroes) {
-            setHermioneAvatar(hero, "resources/units/boss_borealjuggernaut.png");
+            Image image = new Image("/resources/units/boss_andromeda.png");
+            hero.getGraphics().setAvatar(image);
         }
-        //minions
-        for (Minion minion : minions) {
-            setHermioneAvatar(minion, "resources/units/boss_decepticle.png");
-        }
-    }
-    private static void setHermioneAvatar(Hermione hermione, String path) throws FileNotFoundException {
-
-        Image image = new Image(path);
-        hermione.getGraphics().setAvatar(image);
     }
 
     private static void setGraphicsForHermiones(){
         for (Hero hero : heroes) {
             setGraphicForHermione(hero);
         }
-
         for (Minion minion : minions) {
             setGraphicForHermione(minion);
         }
     }
+
     private static void setGraphicForHermione(Hermione hermione) {
-        hermione.getGraphics().addAttackListenr(new OnAttackListener() {
-            @Override
-            public void show(Hermione enemyCard) {
-                System.out.println("animation");
 
-            }
-        });
-        hermione.getGraphics().addCardSelectedListener(new OnCardSelectedListener() {
-            @Override
-            public void show(String state) {
-
-            }
-        });
-        hermione.getGraphics().addDamageListeners(new OnDamageListener() {
-            @Override
-            public void show() {
-
-            }
-        });
-        hermione.getGraphics().addDeathListener(new OnDeathListener() {
-            @Override
-            public void show() {
-
-            }
-        });
-        hermione.getGraphics().addMoveListener(new OnMoveListener() {
-            @Override
-            public void show(Cell cell) {
-
-            }
-        });
         hermione.getGraphics().addSpawnListenr(new OnSpawnListener() {
             @Override
             public void show(Cell cell) {
-                BattleFXMLC controller = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
-                ImageView imageView = new ImageView(hermione.getGraphics().getAvatar());
-                controller.addToScene(imageView);
-                imageView.setX(controller.getMapX() + cell.getX() * controller.getCellWidth());
-                imageView.setY(controller.getMapY() + cell.getY() * controller.getCellHeight());
+                ImageView imageView = new ImageView(new Image("/resources/units/boss_andromeda.png"));
+//                hermione.getGraphics().setImageView(imageView);
+                BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                imageView.setX(battle.getMapX() + battle.getCellWidth()*cell.getX());
+                imageView.setY(battle.getMapY() + battle.getCellHeight()*cell.getY());
+                battle.addToScene(imageView);
                 final Animation animation = new SpriteAnimation(
                         imageView,
                         Duration.millis(2000),
-                        1, 1,
+                        8, 1,
                         0, 0,
-                        85, 85
+                        1024/10, 1024/10
                 );
                 animation.setCycleCount(Animation.INDEFINITE);
                 animation.play();
+            }
+        });
+
+        hermione.getGraphics().addAttackListenr(new OnAttackListener() {//todo vaghT attack bzne dg chizi nis nemayesh bde
+            @Override
+            public void show(Hermione enemyCard) {
+                BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                hermione.getGraphics().getImageView().setX(battle.getMapX() + battle.getCellWidth()*hermione.getLocation().getX());
+                hermione.getGraphics().getImageView().setY(battle.getMapY() + battle.getCellHeight()*hermione.getLocation().getY());
+                final Animation animation = new SpriteAnimation(
+                        hermione.getGraphics().getImageView(),
+                        Duration.millis(2000),
+                        8, 1,
+                        4*1024/10 , 0,
+                        1024/10, 1024/10
+                );
+                animation.setCycleCount(1);
+                animation.play();
+            }
+        });
+
+        hermione.getGraphics().addCardSelectedListener(new OnCardSelectedListener() {
+            @Override
+            public void show(String state) {
+                try {
+                    Battle.getMenu().select(hermione.getCardID());
+                }
+                catch (InvalidCardException | InvalidItemException e) { e.printStackTrace(); }
+
+            }
+        });
+
+        hermione.getGraphics().addDamageListeners(new OnDamageListener() {
+            @Override
+            public void show() {
+                BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                hermione.getGraphics().getImageView().setX(battle.getMapX() + battle.getCellWidth()*hermione.getLocation().getX());
+                hermione.getGraphics().getImageView().setY(battle.getMapY() + battle.getCellHeight()*hermione.getLocation().getY());
+                final Animation animation = new SpriteAnimation(
+                        hermione.getGraphics().getImageView(),
+                        Duration.millis(2000),
+                        8, 1,
+                        2*1024/10 , 0,
+                        1024/10, 1024/10
+                );
+                animation.setCycleCount(1);
+                animation.play();
+            }
+        });
+
+        hermione.getGraphics().addDeathListener(new OnDeathListener() {
+            @Override
+            public void show() {
+                BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                hermione.getGraphics().getImageView().setX(battle.getMapX() + battle.getCellWidth()*hermione.getLocation().getX());
+                hermione.getGraphics().getImageView().setY(battle.getMapY() + battle.getCellHeight()*hermione.getLocation().getY());
+                final Animation animation = new SpriteAnimation(
+                        hermione.getGraphics().getImageView(),
+                        Duration.millis(2000),
+                        8, 1,
+                        1024/10 , 0,
+                        1024/10, 1024/10
+                );
+                animation.setCycleCount(1);
+                animation.play();
+            }
+        });
+
+        hermione.getGraphics().addMoveListener(new OnMoveListener() {
+            @Override
+            public void show(Cell cell) {
+                BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                int count = 100;
+                int xDistance = abs(hermione.getLocation().getX() - cell.getX());
+                int yDistance = abs(hermione.getLocation().getY() - cell.getY());
+                double xStep = xDistance * battle.getMapWidth() / 9.0;
+                double yStep = yDistance * battle.getMapHeight() / 5.0;
+
+                AnimationTimer animationTimer = new AnimationTimer() {
+                    @Override
+                    public void handle(long now) {//todo check it @graphic
+                        if(abs(hermione.getGraphics().getImageView().getX() - cell.getX()) < 1
+                                && abs(hermione.getGraphics().getImageView().getY() - cell.getY()) < 1){
+                            this.stop();
+                        }
+                            hermione.getGraphics().getImageView().setX(hermione.getGraphics().getImageView().getX() + xStep/count);
+                            hermione.getGraphics().getImageView().setY(hermione.getGraphics().getImageView().getY() + yStep/count);
+                    }
+                };
+                animationTimer.start();
             }
         });
 
@@ -714,14 +761,5 @@ public class Primary {
         });
     }
 
-    private static void setBattleGraphicsForHermione(){
-        for (Hero hero : heroes) {
-            hero.getGraphics().addSpawnListenr(new OnSpawnListener() {
-                @Override
-                public void show(Cell cell) {
 
-                }
-            });
-        }
-    }
 }

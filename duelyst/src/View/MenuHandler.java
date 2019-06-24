@@ -6,7 +6,9 @@ import Controller.menu.*;
 import Controller.menu.SignInMenu;
 import Model.Primary;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
+
 
 
 public class MenuHandler {
@@ -38,7 +40,7 @@ public class MenuHandler {
 
 
     //moh
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         try {
             Primary.preprocess();
             Primary.pre();
@@ -48,7 +50,6 @@ public class MenuHandler {
         }
 //        View input = new ConsoleView();
         View input = new GraphicView();
-
         input.play(args);
     }
 

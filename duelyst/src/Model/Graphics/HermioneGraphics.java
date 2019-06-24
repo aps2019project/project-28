@@ -6,6 +6,7 @@ import Model.Graphics.Listeners.*;
 import Model.Map.Cell;
 import Model.card.hermione.Hermione;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 
@@ -17,9 +18,8 @@ public class HermioneGraphics {
     private ArrayList<OnDamageListener> damageListeners= new ArrayList<>();
     private ArrayList<OnSpeacialPowerAppliedListeners>SPApliedListenrs= new ArrayList<>();
     private ArrayList<OnCardSelectedListener>selectedListeners= new ArrayList<>();
-
-
     private Image avatar;
+    private ImageView imageView;
 
 
     // TODO: 6/11/19 onCardSelected where to use
@@ -41,7 +41,11 @@ public class HermioneGraphics {
         this.attackListeners.forEach(l->l.show(enemyCard));
     }
     public void onSpawn(Cell cell){
-        this.spawnListeners.forEach(l->l.show(cell));
+        for (OnSpawnListener spawn:
+             spawnListeners) {
+            spawn.show(cell);
+        }
+//        this.spawnListeners.forEach(l->l.show(cell));
     }
     public void onDeath(){
         this.deathListeners.forEach(l->l.show());
@@ -50,7 +54,7 @@ public class HermioneGraphics {
     public void onSpecialPowerApplied(Cell cell){
         this.SPApliedListenrs.forEach(l->l.show(cell));
     }
-    public void OnCardSelected(String state){this.selectedListeners.forEach(l->l.show(state));}
+    public void onCardSelected(String state){this.selectedListeners.forEach(l->l.show(state));}
 
     public void addMoveListener(OnMoveListener moveListener){
         this.moveListeners.add(moveListener);
@@ -79,5 +83,13 @@ public class HermioneGraphics {
 
     public void setAvatar(Image avatar) {
         this.avatar = avatar;
+    }
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
     }
 }

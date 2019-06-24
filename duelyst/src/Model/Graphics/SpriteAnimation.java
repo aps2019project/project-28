@@ -10,8 +10,8 @@ public class SpriteAnimation extends Transition {
     private final ImageView imageView;
     private final int count;
     private final int columns;
-    private final int offsetX;
-    private final int offsetY;
+    private final double offsetX;
+    private final double offsetY;
     private final int width;
     private final int height;
     private int lastIndex;
@@ -20,7 +20,7 @@ public class SpriteAnimation extends Transition {
             ImageView imageView,
             Duration duration,
             int count, int columns,
-            int offsetX, int offsetY,
+            double offsetX, double offsetY,
             int width, int height) {
             this.imageView = imageView;
             this.count = count;
@@ -37,8 +37,8 @@ public class SpriteAnimation extends Transition {
     protected void interpolate(double k) {
         final int index = Math.min((int) Math.floor(k * count), count - 1);
         if (index != lastIndex) {
-            final int x = (index % columns) * width + offsetX;
-            final int y = (index / columns) * height + offsetY;
+            final double x = (index % columns) * width + offsetX;
+            final double y = (index / columns) * height + offsetY;
             imageView.setViewport(new Rectangle2D(x, y, width, height));
             lastIndex = index;
         }

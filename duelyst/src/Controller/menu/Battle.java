@@ -3,6 +3,7 @@ package Controller.menu;
 import Controller.Game;
 import Controller.GameMode.GameMode;
 import Model.Map.Cell;
+import Model.Primary;
 import Model.card.hermione.Hero;
 import Model.card.spell.Buff.Buff;
 import Model.item.Item;
@@ -22,6 +23,7 @@ import View.Listeners.OnHandPresentedListener;
 import View.MenuHandler;
 import exeption.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -65,6 +67,12 @@ public class Battle extends Menu {
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
+        try {
+            Primary.initGraphics();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         this.match=new Match(Game.accounts[0],Game.accounts[1],this.gameMode);
         this.ongoingSpells=new ArrayList<>();
 
@@ -90,6 +98,7 @@ public class Battle extends Menu {
         hermione.spawn(cell);
         this.map.getCell(cell).setCardOnCell(hermione);
     }
+
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
         Card card = this.account.getPlayer().getHand().getCard(cardID);
 

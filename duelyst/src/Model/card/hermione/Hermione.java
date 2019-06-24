@@ -34,8 +34,7 @@ public abstract class Hermione extends Card {
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
     protected SpecialPower SpecialPower;
     protected ArrayList<Buff> appliedBuffs=new ArrayList<>() ;
-
-    protected HermioneGraphics graphics;
+    protected HermioneGraphics graphics = new HermioneGraphics(this);
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , SpecialPower specialPower, AttackType attackType, int range, String info) {
@@ -47,9 +46,7 @@ public abstract class Hermione extends Card {
         this.attackType = attackType;
         this.range = range;
         this.originalHealthPoint = this.healthPoint;
-        this.graphics=new HermioneGraphics(this);
-
-
+//        this.graphics=new HermioneGraphics(this);
     }
 
 
@@ -153,14 +150,8 @@ public abstract class Hermione extends Card {
 
     public void spawn(Cell cell) {
         System.err.println("debug");
-        /*
-        *handling the graphics
-        *  */
         this.getGraphics().onSpawn(cell);
-
-
         this.setLocation(cell);
-
         this.getBuffEffects().onSpawn() ;
     }
     public void die() {

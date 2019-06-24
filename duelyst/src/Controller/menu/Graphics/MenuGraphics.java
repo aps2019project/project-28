@@ -20,6 +20,7 @@ public class MenuGraphics {
 
     private Stage stage ;
     private Scene scene ;
+    private Group group;
 
     private Parent root ;
     private String rootPath ;
@@ -38,7 +39,8 @@ public class MenuGraphics {
     public void init(){
         this.stage= GraphicView.getStage();
         this.bounds=GraphicView.getPrimaryScreenBounds();
-        this.scene=new Scene(new Group(), this.bounds.getWidth(), this.bounds.getHeight());
+        this.group = new Group();
+        this.scene=new Scene(this.group, this.bounds.getWidth(), this.bounds.getHeight());
         try {
             System.out.println(this.menu.getGraphic().getRootPath());
             System.err.println();
@@ -83,6 +85,10 @@ public class MenuGraphics {
     }
     public Scene getScene() {
         return scene;
+    }
+
+    public Group getGroup() {
+        return group;
     }
     public void setScene(Scene scene) {
         this.scene = scene;

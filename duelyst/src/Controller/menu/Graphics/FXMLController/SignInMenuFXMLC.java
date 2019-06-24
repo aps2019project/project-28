@@ -37,10 +37,6 @@ public class SignInMenuFXMLC extends FXMLController {
     private TextField nameInput;
 
 
-
-
-
-
     @Override
     public void init() {
         super.init();
@@ -50,9 +46,8 @@ public class SignInMenuFXMLC extends FXMLController {
     public  void buildScene() {
         super.buildScene();
 
-        Scene scene=this.menu.getGraphic().getScene();
+        Scene scene = this.menu.getGraphic().getScene();
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/SignInMenu.css");
-
 
         signInButton.setOnAction(e -> signInButtonClicked());
         signUpButton.setOnAction(e -> signUpButtonClicked());
@@ -74,7 +69,6 @@ public class SignInMenuFXMLC extends FXMLController {
 
         signInButton.setOnAction(e -> signInButtonClicked());
         signUpButton.setOnAction(e -> signUpButtonClicked());
-
 
         pane.setMinHeight(bounds.getHeight());
         pane.setMinWidth(bounds.getWidth());
