@@ -25,7 +25,7 @@ public class MainMenuFXMLC extends FXMLController {
         super.buildScene();
         Scene scene = menu.getGraphic().getScene();
 
-        scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/MainMenu.css");
+        scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/Menu.css");
         exitMenuButton.setStyle("-fx-text-fill: red;");
 
         GraphicsControls.setButtonStyle("menu-button" , battleMenuButton,
@@ -40,7 +40,7 @@ public class MainMenuFXMLC extends FXMLController {
 
         collectionMenuButton.setOnAction(e -> enterSubMenu(CollectionMenu.getMenu()));
         shopMenuButton.setOnAction(e -> enterSubMenu(ShopMenu.getMenu()));
-        battleMenuButton.setOnAction(e -> enterSubMenu(ChooseBattleModeMenu.getMenu()));
+        battleMenuButton.setOnAction(e -> enterSubMenu(GameModeMenu.getMenu()));
     }
 
     private void enterSubMenu(Menu subMenu){

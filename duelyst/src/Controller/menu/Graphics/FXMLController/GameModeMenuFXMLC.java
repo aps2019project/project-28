@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
-public class ChooseBattleModeFXMLC extends FXMLController {
+public class GameModeMenuFXMLC extends FXMLController {
 
     @FXML
     private Button backButton;
@@ -23,7 +23,7 @@ public class ChooseBattleModeFXMLC extends FXMLController {
         super.buildScene();
         Scene scene = menu.getGraphic().getScene();
 
-        scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/MainMenu.css");
+        scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/Menu.css");
 
 
         GraphicsControls.setButtonStyle("menu-button" , singlePlayer , multiPlayer);

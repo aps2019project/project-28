@@ -66,6 +66,7 @@ public class Battle extends Menu {
 
     @Override
     public boolean init(Menu parentMenu) {
+        System.out.println("initiating Battle in " + this.gameMode.getClass());
         super.init(parentMenu);
         try {
             Primary.initGraphics();
@@ -88,7 +89,7 @@ public class Battle extends Menu {
         try {
             this.insert(this.player[0].getDeck().getHero(), this.map.getCell(Map.FIRST_HERO_X, Map.FIRST_HERO_Y));
             this.insert(this.player[1].getDeck().getHero(), this.map.getCell(Map.SECOND_HERO_X, Map.SECOND_HERO_Y));
-        } catch (InvalidCellException ignored) {ignored.printStackTrace();}
+        } catch (InvalidCellException e) {e.printStackTrace();}
 
         return true;
     }

@@ -1,6 +1,7 @@
 package View;
 
 //import SignInMenu;
+import Controller.Game;
 import Controller.menu.*;
 import Controller.menu.Graphics.FXMLController.DeckSelectorFXMLC;
 import Controller.menu.Graphics.FXMLController.LeaderBoardFXMLC;
@@ -9,6 +10,7 @@ import Controller.menu.MainMenu;
 import Controller.menu.SignInMenu;
 import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
 import Model.account.Account;
+import Model.card.Card;
 import View.Listeners.OnLeaderBoardClickedListener;
 import Model.Primary;
 import javafx.application.Application;
@@ -38,6 +40,13 @@ public class GraphicView extends Application implements View{
     public void start(Stage primaryStage) throws Exception {
 
 //        Primary.initGraphics();
+
+        //TODO just so there is another deck you know !
+        {
+            Account.getAccount("a").getCollection().addNewDeck("aDeck");
+            Account.getAccount("a").getCollection().getDeckByName("aDeck").addCardToDeck(Card.getCard(1));
+            Account.getAccount("a").getCollection().getDeckByName("aDeck").addCardToDeck(Card.getCard("simorgh"));
+        }
 
         stage = primaryStage;
         primaryScreenBounds = Screen.getPrimary().getVisualBounds();
@@ -71,12 +80,21 @@ public class GraphicView extends Application implements View{
     }
 
     private static void setListeners() {
-        SignInMenu.getMenu().addLeaderBoardClickedListener(accounts -> {
-//            this.root= FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
-              LeaderBoardFXMLC.makeNewScene(accounts);
+        SignInMenu.getMenu().addLeaderBoardClickedListener((accounts , fxmlc) -> {
+              LeaderBoardFXMLC.makeNewScene(accounts , fxmlc);
+        });
+
+        MultiPlayerModeMenu.getMenu().addLeaderBoardClickedListener((accounts , fxmlc) -> {
+            LeaderBoardFXMLC.makeNewScene(accounts , fxmlc);
         });
 
         StoryModeMenu.getMenu().setDeckSelectorListener((account , menu)-> {
+            DeckSelectorFXMLC.makeNewScene(account , menu);
+        });
+
+
+
+        MultiPlayerModeMenu.getMenu().setDeckSelectorListener((account , menu)-> {
             DeckSelectorFXMLC.makeNewScene(account , menu);
         });
     }
@@ -85,7 +103,8 @@ public class GraphicView extends Application implements View{
         //initializing graphics for each menu
         SignInMenu.getMenu().getGraphic().init();
         MainMenu.getMenu().getGraphic().init();
-        ChooseBattleModeMenu.getMenu().getGraphic().init();
+        GameModeMenu.getMenu().getGraphic().init();
+        ChooseBattleModeMenu.getMenu().getGraphic().init() ;
         SinglePlayerModeMenu.getMenu().getGraphic().init();
         MultiPlayerModeMenu.getMenu().getGraphic().init();
         Battle.getMenu().getGraphic().init();
@@ -98,10 +117,11 @@ public class GraphicView extends Application implements View{
         SignInMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SignInMenu.fxml");
         MainMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MainMenu.fxml");
         Battle.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/Battle.fxml");
-        ChooseBattleModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ChooseBattleMode.fxml");
+        GameModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/GameModeMenu.fxml");
         SinglePlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SinglePlayerModeMenu.fxml");
         MultiPlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MultiPlayerModeMenu.fxml");
         StoryModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/StoryMode.fxml");
+        ChooseBattleModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ChooseBattleModeMenu.fxml");
     }
 
     public void play(String...args) {

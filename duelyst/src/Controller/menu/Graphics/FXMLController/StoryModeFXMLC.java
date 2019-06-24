@@ -28,7 +28,7 @@ public class StoryModeFXMLC extends FXMLController {
         super.buildScene();
         Scene scene = menu.getGraphic().getScene();
 
-        scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/MainMenu.css");
+        scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/Menu.css");
 
 
         GraphicsControls.setButtonStyle("menu-button" , mode1 , mode2 , mode3);

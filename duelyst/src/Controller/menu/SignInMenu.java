@@ -1,6 +1,7 @@
 package Controller.menu;
 
 import Controller.Game;
+import Controller.menu.Graphics.FXMLController.LeaderBoardHavingFXMLC;
 import View.Listeners.OnLeaderBoardClickedListener;
 import Model.account.Account;
 import View.MenuHandler;
@@ -87,7 +88,7 @@ public class SignInMenu extends Menu {
     public void showLeaderBoard() {
         Account.sort();
         for (OnLeaderBoardClickedListener presenter : this.leaderBoardPresenters) {
-            presenter.show(Account.getAccounts());
+            presenter.show(Account.getAccounts() , (LeaderBoardHavingFXMLC) SignInMenu.getMenu().getGraphic().getController());
         }
     }
 

@@ -16,7 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
-public class SignInMenuFXMLC extends FXMLController {
+public class SignInMenuFXMLC extends FXMLController implements LeaderBoardHavingFXMLC{
 
 
     @FXML

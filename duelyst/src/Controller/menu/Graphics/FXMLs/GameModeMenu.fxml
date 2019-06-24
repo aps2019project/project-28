@@ -11,7 +11,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.ChooseBattleModeFXMLC">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.GameModeMenuFXMLC">
    <children>
       <ImageView fitHeight="237.0" fitWidth="510.0" layoutX="53.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="345.8399963378906" AnchorPane.leftAnchor="53.0" AnchorPane.topAnchor="343.1600036621094">
          <image>

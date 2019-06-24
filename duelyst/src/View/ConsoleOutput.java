@@ -5,6 +5,7 @@ import Controller.GameMode.Domination;
 import Controller.GameMode.FlagMode;
 import Controller.menu.*;
 //import SignInMenu;
+import Controller.menu.Graphics.FXMLController.LeaderBoardHavingFXMLC;
 import Controller.menu.SignInMenu;
 import Model.Map.Cell;
 import Model.Map.Map;
@@ -23,6 +24,7 @@ import Model.item.Item;
 import Model.item.OnItemDetailPresentedListener;
 import Model.item.Usable;
 import View.Listeners.OnHeroDetailsPresentedListener;
+import View.Listeners.OnLeaderBoardClickedListener;
 import View.Listeners.OnMenuClickedListener;
 import exeption.*;
 
@@ -138,12 +140,12 @@ public class ConsoleOutput {
             });
         }
         //signIn menu
-        SignInMenu.getMenu().addLeaderBoardClickedListener(accounts -> {
+        SignInMenu.getMenu().addLeaderBoardClickedListener((accounts, fxmlc) -> {
             System.out.println("LeaderBoard:");
-            int i=0;
+            int i = 0;
             for (Account account : accounts) {
                 i++;
-                System.out.println(i+") "+account.getName() + " - Wins: " +account.getWins());
+                System.out.println(i + ") " + account.getName() + " - Wins: " + account.getWins());
             }
         });
 
