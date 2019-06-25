@@ -1,11 +1,8 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.Graphics.GraphicsControls;
+import Controller.menu.ShopMenu;
 import Model.account.Account;
-import Model.card.Card;
-import Model.card.hermione.Hermione;
-import Model.card.hermione.Hero;
-import Model.card.spell.Spell;
 import Model.item.Item;
 import Model.item.Usable;
 import javafx.fxml.FXML;
@@ -14,8 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import stuff.Resources;
 
@@ -23,25 +18,23 @@ import stuff.Resources;
 public class ItemCardFXMLC {
 
     @FXML
-    private ImageView imageView , heroStamp;
+    private ImageView imageView ;
     @FXML
     private Label name , price , count;
     private int counter = 0 ;
     @FXML
     private Button buy;
-    @FXML
-    private AnchorPane pane ;
 
 
 
-    public void builditemCard(Usable item , Account account){
+    public void builditemCard(Usable item , Account account , ShopMenuFXMLC fxmlc){
         Image itemBackground = new Image("Resources/card_backgrounds/card_back_agenor.png");
 
         name.setText(item.getName());
         price.setText("Price : " + item.getPrice()+"$");
         GraphicsControls.setButtonStyle("shopping-button" , buy);
         if (account.getMoney() >= item.getPrice()){
-            buy.setOnAction(e -> buy());
+            buy.setOnAction(e -> buy(item , fxmlc));
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_card.getPath())));
         }else{
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_disabled.getPath())));
@@ -50,11 +43,7 @@ public class ItemCardFXMLC {
         for (Usable c : account.getCollection().getUsables()){
             if (c.equals(item)) counter++ ;
         }
-        if (counter == 0) count.setText("You don't have this Item");
-        else {
-            count.setText("You own " + counter + " unit");
-            if (counter > 1) count.setText(count.getText() + "s");
-        }
+        setCountText();
         //TODO item graphics !!!
 //        try {
 //            imageView.setImage(item.getGraphics());
@@ -63,7 +52,24 @@ public class ItemCardFXMLC {
 //        }
     }
 
-    private void buy() {
+    private void setCountText() {
+        if (counter == 0) count.setText("You don't have this Item");
+        else {
+            count.setText("You own " + counter + " unit");
+            if (counter > 1) count.setText(count.getText() + "s");
+        }
+    }
+
+    private void buy(Item item , ShopMenuFXMLC fxmlc) {
+        try {
+            ShopMenu.getMenu().buy(item.getName());
+            counter++;
+            setCountText();
+            fxmlc.updateBalance();
+        }catch(Exception e){
+            System.err.println("error has been occurred while buying Item in ItemCardFXMLC");
+            e.printStackTrace();
+        }
     }
 
 }

@@ -13,16 +13,26 @@
          <children>
             <HBox prefHeight="56.0" prefWidth="1159.0">
                <children>
-                  <Button fx:id="cardTab" mnemonicParsing="false" prefHeight="56.0" prefWidth="633.0" stylesheets="@../StyleSheets/Buttons.css" styleClass="tab-button" text="Cards">
+                  <Button fx:id="cardTab" mnemonicParsing="false" prefHeight="56.0" prefWidth="317.0" styleClass="tab-button" stylesheets="@../StyleSheets/Buttons.css" text="Cards">
                      <font>
                         <Font name="Verdana Bold" size="26.0" />
                      </font>
                   </Button>
-                  <Button fx:id="itemTab" mnemonicParsing="false" prefHeight="56.0" prefWidth="634.0" stylesheets="@../StyleSheets/Buttons.css" styleClass="tab-button" text="Items">
+                  <Button fx:id="itemTab" mnemonicParsing="false" prefHeight="56.0" prefWidth="285.0" styleClass="tab-button" stylesheets="@../StyleSheets/Buttons.css" text="Items">
                      <font>
                         <Font name="Verdana Bold" size="26.0" />
                      </font>
                   </Button>
+                  <Button fx:id="sellTab" mnemonicParsing="false" prefHeight="56.0" prefWidth="270.0" styleClass="tab-button" stylesheets="@../StyleSheets/Buttons.css" text="Sell">
+                     <font>
+                        <Font name="Verdana Bold" size="26.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="balance" alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="406.0" text="Balance : ">
+                     <font>
+                        <Font name="Verdana Bold" size="20.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="697.0" prefWidth="1280.0" stylesheets="@../StyleSheets/Card.css">

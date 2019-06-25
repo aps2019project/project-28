@@ -1,7 +1,9 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.Graphics.GraphicsControls;
+import Controller.menu.ShopMenu;
 import Model.account.Account;
+import Model.account.Shop;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
@@ -34,7 +36,7 @@ public class CardCardFXMLC {
     private AnchorPane pane ;
 
 
-    public void buildCardCard(Card card , Account account){
+    public void buildCardCard(Card card , Account account , ShopMenuFXMLC fxmlc){
 
         Image cardBackground = new Image("Resources/card_backgrounds/card_back_shimzar.png") ;
         Image hero_stamp = new Image ("Resources/images/hero_stamp.png");
@@ -44,7 +46,7 @@ public class CardCardFXMLC {
         price.setText("Price : " + card.getPrice()+"$");
         GraphicsControls.setButtonStyle("shopping-button" , buy);
         if (account.getMoney() >= card.getPrice()){
-            buy.setOnAction(e -> buy());
+            buy.setOnAction(e -> buy(card , fxmlc));
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_card.getPath())));
         }else{
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_disabled.getPath())));
@@ -62,11 +64,7 @@ public class CardCardFXMLC {
         for (Card c : account.getCollection().getCards()){
             if (c.equals(card)) counter++ ;
         }
-        if (counter == 0) count.setText("You don't have this Card");
-        else {
-            count.setText("You own " + counter + " unit");
-            if (counter > 1) count.setText(count.getText() + "s");
-        }
+        setCountText();
         try {
             imageView.setImage(card.getCardGraphics().getAvatar());
         }catch(NullPointerException e){
@@ -74,7 +72,24 @@ public class CardCardFXMLC {
         }
     }
 
-    private void buy() {
+    private void setCountText() {
+        if (counter == 0) count.setText("You don't have this Card");
+        else {
+            count.setText("You own " + counter + " unit");
+            if (counter > 1) count.setText(count.getText() + "s");
+        }
+    }
+
+    private void buy(Card card , ShopMenuFXMLC fxmlc) {
+        try {
+            ShopMenu.getMenu().buy(card.getName());
+            counter++;
+            setCountText();
+            fxmlc.updateBalance();
+        }catch(Exception e){
+            System.err.println("error has been occurred while buying card in CardCardFXMLC");
+            e.printStackTrace();
+        }
     }
 
 }
