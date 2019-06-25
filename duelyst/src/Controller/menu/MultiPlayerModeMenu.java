@@ -55,13 +55,13 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
 
     @Override
     public void showDeckSelector(Account account) {
-        deckSelectorListener.show(account , this);
+        deckSelectorListener.show(account , this , "");
     }
 
     @Override
     public void selectDeck(Account account, Deck deck) {
         account.getCollection().setMainDeck(deck);
-        if (account != this.account) MenuHandler.currentMenu = ChooseBattleModeMenu.getMenu().enter();
+        if (account != this.account) MenuHandler.setCurrentMenu(ChooseBattleModeMenu.getMenu().enter());
         else showDeckSelector(Game.accounts[1]);
     }
 

@@ -32,8 +32,6 @@ public class ChooseBattleModeMenuFXMLC extends FXMLController {
         GraphicsControls.setButtonStyle("menu-button" , classic , domination , flag);
 
         GraphicsControls.setBackButtonOnPress(backButton);
-        backButton.setOnAction(e -> MenuHandler.currentMenu = MultiPlayerModeMenu.getMenu().enter());
-
 
 
         classic.setOnAction(e -> ((ChooseBattleModeMenu)menu).setMode(1) );

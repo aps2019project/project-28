@@ -69,7 +69,7 @@ public class SignInMenu extends Menu {
             Game.accounts[0] = account;
             Game.hasLoggedIn = true;
             this.account=account;
-            MenuHandler.currentMenu=menu.enter(MainMenu.getMenu());
+            MenuHandler.setCurrentMenu(menu.enter(MainMenu.getMenu()));
         } else {
             throw new WrongPassException();
         }

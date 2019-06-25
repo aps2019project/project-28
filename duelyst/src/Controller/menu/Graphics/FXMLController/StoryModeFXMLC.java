@@ -33,10 +33,6 @@ public class StoryModeFXMLC extends FXMLController {
 
         GraphicsControls.setButtonStyle("menu-button" , mode1 , mode2 , mode3);
 
-
-        backButton.setOnAction(e->{
-            enterSubMenu(SinglePlayerModeMenu.getMenu());
-        });
         GraphicsControls.setBackButtonOnPress(backButton);
 
 
@@ -57,9 +53,5 @@ public class StoryModeFXMLC extends FXMLController {
         });
 
 
-    }
-
-    private void enterSubMenu(Menu subMenu){
-        menu.enter(subMenu);
     }
 }

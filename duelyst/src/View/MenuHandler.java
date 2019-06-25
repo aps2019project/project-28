@@ -2,18 +2,19 @@ package View;
 import Controller.Game;
 import Controller.menu.Battle;
 import Controller.menu.*;
-//import SignInMenu;
 import Controller.menu.SignInMenu;
 import Model.Primary;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
 
 public class MenuHandler {
 
-    public static Menu currentMenu;
+    private static Menu currentMenu;
+    private static ArrayList<Menu> lastMenus = new ArrayList<>();
 
     private static void initMenus() {
         //az SignIn Menu mirim tuye MainMenu
@@ -28,7 +29,7 @@ public class MenuHandler {
         GameModeMenu.getMenu().addSubMenu(MultiPlayerModeMenu.getMenu());
 
         SinglePlayerModeMenu.getMenu().addSubMenu(StoryModeMenu.getMenu());
-        SinglePlayerModeMenu.getMenu().addSubMenu(CostumeModeMenu.getMenu());
+        SinglePlayerModeMenu.getMenu().addSubMenu(CustomModeMenu.getMenu());
 
         //az Single o Multi mirim gameModet
 
@@ -54,7 +55,7 @@ public class MenuHandler {
     }
 
     public static void startMenus() {
-        currentMenu= Battle.getMenu().enter();
+        currentMenu= SignInMenu.getMenu().enter();
     }
 
     public static void dirtyPeaceShit() {
@@ -83,5 +84,24 @@ public class MenuHandler {
 
     public static Scanner getGameScanner() {
         return Game.accounts[Battle.getMenu().getTurn()].getPlayer().getOutputStream();
+    }
+
+    public static void setCurrentMenu(Menu currentMenu) {
+        if (MenuHandler.currentMenu != null)MenuHandler.lastMenus.add(MenuHandler.currentMenu);
+        MenuHandler.currentMenu = currentMenu;
+        for (Menu menu : lastMenus) System.out.println("menus -> " + menu.getName());
+    }
+
+    public static Menu getCurrentMenu() {
+        return currentMenu;
+    }
+
+    public static ArrayList<Menu> getLastMenus() {
+        return lastMenus;
+    }
+
+    public static void goBack() {
+        currentMenu = lastMenus.get(lastMenus.size()-1).enter();
+        lastMenus.remove(lastMenus.size()-1);
     }
 }

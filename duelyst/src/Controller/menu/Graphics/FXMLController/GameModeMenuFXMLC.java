@@ -2,6 +2,7 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.*;
 import Controller.menu.Graphics.GraphicsControls;
+import View.MenuHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,9 +30,6 @@ public class GameModeMenuFXMLC extends FXMLController {
         GraphicsControls.setButtonStyle("menu-button" , singlePlayer , multiPlayer);
 
 
-        backButton.setOnAction(e->{
-            enterSubMenu(MainMenu.getMenu());
-        });
         GraphicsControls.setBackButtonOnPress(backButton);
 
 
@@ -40,6 +38,6 @@ public class GameModeMenuFXMLC extends FXMLController {
     }
 
     private void enterSubMenu(Menu subMenu){
-        menu.enter(subMenu);
+        MenuHandler.setCurrentMenu(menu.enter(subMenu));
     }
 }

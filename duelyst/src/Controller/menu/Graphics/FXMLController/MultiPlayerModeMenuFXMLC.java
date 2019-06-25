@@ -38,7 +38,6 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController implements LeaderBo
 
 
         signInButton.setOnAction(e -> signInButtonClicked());
-        backButton.setOnAction(e-> enterSubMenu(GameModeMenu.getMenu()));
         GraphicsControls.setBackButtonOnPress(backButton);
 
         scene.setOnKeyPressed(e -> {
@@ -72,9 +71,6 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController implements LeaderBo
 
     }
 
-    private void enterSubMenu(Menu subMenu){
-        menu.enter(subMenu);
-    }
 
     @Override
     public void setUsernameInput(String username) {

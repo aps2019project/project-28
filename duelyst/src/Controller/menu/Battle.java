@@ -77,7 +77,6 @@ public class Battle extends Menu {
         this.match=new Match(Game.accounts[0],Game.accounts[1],this.gameMode);
         this.ongoingSpells=new ArrayList<>();
 
-
         if (Game.accounts[0].getCollection().getMainDeck() == null || Game.accounts[1].getCollection().getMainDeck() == null) {
             System.out.println("Please Select your Main Deck");
             return false;
@@ -89,7 +88,22 @@ public class Battle extends Menu {
         try {
             this.insert(this.player[0].getDeck().getHero(), this.map.getCell(Map.FIRST_HERO_X, Map.FIRST_HERO_Y));
             this.insert(this.player[1].getDeck().getHero(), this.map.getCell(Map.SECOND_HERO_X, Map.SECOND_HERO_Y));
-        } catch (InvalidCellException e) {e.printStackTrace();}
+        } catch (NullPointerException e){
+            e.printStackTrace();
+            System.out.println("\n");
+            if (this.player[1] == null) System.err.println("player 1 is null");
+            else if (this.player[1].getDeck() == null) System.err.println("deck is null !");
+            else if (this.player[1].getDeck().getHero() == null) System.err.println("hero is null");
+            else if (this.map == null) System.err.println("map is null !");
+            else {
+                try {
+                    if (this.map.getCell(Map.SECOND_HERO_X, Map.SECOND_HERO_Y) == null) System.err.println("getCell is null");
+                } catch (InvalidCellException ex) {
+                    ex.printStackTrace();
+                }
+                System.out.println("\n\n\n");
+            }
+        }catch (InvalidCellException e) {e.printStackTrace();}
 
         return true;
     }
@@ -399,7 +413,7 @@ public class Battle extends Menu {
         /*
         * getting out of battle
         * */
-        MenuHandler.currentMenu = MainMenu.getMenu();
+        MenuHandler.setCurrentMenu(MainMenu.getMenu());
     }
 
     private void swapPlayers() {

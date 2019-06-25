@@ -43,7 +43,7 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
         deckSelectorListener = ds ;
     }
     public void showDeckSelector(Account account){
-        deckSelectorListener.show(account , getMenu());
+        deckSelectorListener.show(account , getMenu() , "");
     }
 
 }

@@ -46,6 +46,7 @@ public class GraphicView extends Application implements View{
             Account.getAccount("a").getCollection().addNewDeck("aDeck");
             Account.getAccount("a").getCollection().getDeckByName("aDeck").addCardToDeck(Card.getCard(1));
             Account.getAccount("a").getCollection().getDeckByName("aDeck").addCardToDeck(Card.getCard("simorgh"));
+//            Account.getAccount("a").getCollection().getDeckByName("aDeck").validateDeck();
         }
 
         stage = primaryStage;
@@ -88,14 +89,16 @@ public class GraphicView extends Application implements View{
             LeaderBoardFXMLC.makeNewScene(accounts , fxmlc);
         });
 
-        StoryModeMenu.getMenu().setDeckSelectorListener((account , menu)-> {
-            DeckSelectorFXMLC.makeNewScene(account , menu);
+        StoryModeMenu.getMenu().setDeckSelectorListener((account , menu , title)-> {
+            DeckSelectorFXMLC.makeNewScene(account , menu, title);
         });
 
+        CustomModeMenu.getMenu().setDeckSelectorListener((account , menu , title)-> {
+            DeckSelectorFXMLC.makeNewScene(account , menu, title);
+        });
 
-
-        MultiPlayerModeMenu.getMenu().setDeckSelectorListener((account , menu)-> {
-            DeckSelectorFXMLC.makeNewScene(account , menu);
+        MultiPlayerModeMenu.getMenu().setDeckSelectorListener((account , menu , title)-> {
+            DeckSelectorFXMLC.makeNewScene(account , menu, title);
         });
     }
 
@@ -109,6 +112,7 @@ public class GraphicView extends Application implements View{
         MultiPlayerModeMenu.getMenu().getGraphic().init();
         Battle.getMenu().getGraphic().init();
         StoryModeMenu.getMenu().getGraphic().init();
+        CustomModeMenu.getMenu().getGraphic().init();
     }
 
 
@@ -122,6 +126,7 @@ public class GraphicView extends Application implements View{
         MultiPlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MultiPlayerModeMenu.fxml");
         StoryModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/StoryMode.fxml");
         ChooseBattleModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ChooseBattleModeMenu.fxml");
+        CustomModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CustomModeMenu.fxml");
     }
 
     public void play(String...args) {
