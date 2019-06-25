@@ -119,5 +119,12 @@ public abstract class Card {
         this.info = info;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Card)) return false ;
+        Card card = (Card)obj ;
+        if (card.getName().equals(this.name)) return true ;
+        return false ;
+    }
 }
 

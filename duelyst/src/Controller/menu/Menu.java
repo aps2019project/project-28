@@ -3,6 +3,7 @@ package Controller.menu;
 import Controller.menu.Graphics.MenuGraphics;
 import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
+import View.MenuHandler;
 import exeption.InvalidSubMenuException;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -123,6 +124,7 @@ public abstract class Menu {
     }
 
     public Account getAccount() {
+        if (this.account == null) this.account = MenuHandler.getAccount() ;
         return this.account;
     }
 

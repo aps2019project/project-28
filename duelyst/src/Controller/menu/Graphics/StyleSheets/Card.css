@@ -1,0 +1,9 @@
+.card-root{
+    -fx-background-color: #DDDDDD;
+    -fx-opacity: 0.8;
+    -fx-background-size: 100% 100%;
+}
+.card-image{
+    -fx-background-image: url("../../../../resources/images/cardImageBackground.png");
+    -fx-background-size: 100% 100%;
+}

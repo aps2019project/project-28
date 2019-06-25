@@ -19,6 +19,11 @@ public class Usable extends Item {
 
     @Override
     public void deploy() {
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Usable)) return false ;
+        return (((Usable)obj).getName().equals(this.getName())) ;
     }
 }
