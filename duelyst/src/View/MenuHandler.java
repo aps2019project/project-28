@@ -54,7 +54,8 @@ public class MenuHandler {
     }
 
     public static void startMenus() {
-        currentMenu= Battle.getMenu().enter();
+//        SignInMenu.getMenu().logIn("warlord","1");
+        currentMenu= SignInMenu.getMenu().enter();
     }
 
     public static void dirtyPeaceShit() {
