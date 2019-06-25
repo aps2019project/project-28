@@ -4,7 +4,12 @@ import Controller.menu.MainMenu;
 import View.MenuHandler;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
+
+import java.awt.*;
 
 public class GraphicsControls {
     //will set the buttons styleID and handles the change for when it's pressed !
@@ -37,5 +42,24 @@ public class GraphicsControls {
             backButton.setTranslateX(0);
             backButton.setTranslateY(0);
         });
+    }
+
+    public static void setCellStyle(String cellStyle, Rectangle rectangle, ImageView imageView){
+        String enteredStyle = cellStyle + "Entered";
+        if(!rectangle.getStyleClass().contains(cellStyle)) rectangle.setStyle(cellStyle);
+
+       imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                rectangle.getStyleClass().add(enteredStyle);
+            }
+        });
+        imageView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                rectangle.getStyleClass().remove(enteredStyle);
+            }
+        });
+
     }
 }

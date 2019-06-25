@@ -3,13 +3,11 @@ package Model.card.hermione;
 import Controller.menu.Battle;
 import Model.Graphics.HermioneGraphics;
 import Model.Map.Cell;
-import Model.Map.CellAffects;
 import Model.Map.Map;
 import Model.card.Card;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.SpecialPower;
 import exeption.*;
-import javafx.scene.Scene;
 
 import java.util.ArrayList;
 
@@ -149,7 +147,6 @@ public abstract class Hermione extends Card {
 
 
     public void spawn(Cell cell) {
-        System.err.println("debug");
         this.getGraphics().onSpawn(cell);
         this.setLocation(cell);
         this.getBuffEffects().onSpawn() ;

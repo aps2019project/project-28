@@ -2,6 +2,7 @@ package View;
 import Controller.Game;
 import Controller.menu.Battle;
 import Controller.menu.*;
+//import SignInMenu;
 import Controller.menu.SignInMenu;
 import Model.Primary;
 
@@ -55,6 +56,7 @@ public class MenuHandler {
     }
 
     public static void startMenus() {
+//        SignInMenu.getMenu().logIn("warlord","1");
         currentMenu= SignInMenu.getMenu().enter();
     }
 

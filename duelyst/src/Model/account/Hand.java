@@ -14,7 +14,7 @@ public class Hand {
 
     private ArrayList<Card> deck = new ArrayList<>();
     private static ArrayList<OnHandPresentedListener> handPresenters = new ArrayList<>();
-    private static final int SIZE = 5;
+    public static final int SIZE = 5;
     private Card[] cards = new Card[SIZE];
     private Card nextCard;
 

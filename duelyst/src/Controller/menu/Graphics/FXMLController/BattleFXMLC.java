@@ -1,50 +1,125 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.Battle;
+import Controller.menu.Graphics.GraphicsControls;
 import Model.account.Hand;
 import Model.card.Card;
 import Model.card.hermione.Hero;
-import exeption.InvalidCardException;
-import exeption.InvalidItemException;
+import exeption.DeckIsEmptyException;
+import exeption.HandFullException;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
-
 
 public class BattleFXMLC extends FXMLController {
 
     @FXML
     public Button endTurn;
-    @FXML
     public Button graveYard;
-    public ImageView hand0;
-    public ImageView hand1;
-    public ImageView hand2;
-    public ImageView hand3;
-    public ImageView hand4;
+    public Button menuButton;
+
     @FXML
     private AnchorPane frame;
+
     @FXML
-    private GridPane gridPane;
+    private GridPane map;
+    private Rectangle[][] rectangles = new Rectangle[9][5];
     private Double mapX;
     private Double mapY;
     private Double cellWidth;
     private Double cellHeight;
 
+
+    @FXML
+    public GridPane handFrame;
+    private Double handWidth;
+    private Hand playerHand;
+    private ImageView[] hand = new ImageView[Hand.SIZE];
+
+    @FXML
+    public GridPane handManaFrame;
+
+    private Hero hero;
+    private Hero enemyHero;
+
     @Override
     public void buildScene() {
         super.buildScene();
-//        Hand hand = Battle.getMenu().getPlayer().getHand();
-//        hand0 = new ImageView("resources/ui/collection_card_rarity_common.png");
-//        hand1 = new ImageView("resources/ui/collection_card_rarity_common.png");
-//        hand2 = new ImageView("resources/ui/collection_card_rarity_common.png");
-//        hand3 = new ImageView("resources/ui/collection_card_rarity_common.png");
-//        hand4 = new ImageView("resources/ui/collection_card_rarity_common.png");
+
+        for(int i = 0 ; i < 9 ; i++){
+            for (int j = 0 ; j < 5 ; j++){
+                Rectangle rectangle = getRectangle(i, j);
+                ImageView imageView = getCell(i , j);
+                GraphicsControls.setCellStyle("cell", rectangle, imageView);
+            }
+        }
+
+        GraphicsControls.setButtonStyle("endTurnButton", endTurn);
+        endTurn.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                try {
+                    Battle.getMenu().endTurn();
+                    turnUpdate();
+                } catch (HandFullException | DeckIsEmptyException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void updateScene() {
+        super.updateScene();
+        turnUpdate();
+    }
+
+    private void turnUpdate(){
+        playerHand = Battle.getMenu().getPlayer().getHand();
+        Card[] playerHandCards = playerHand.getCards();
+        handWidth = handFrame.getPrefWidth() / Hand.SIZE;
+        hero = Battle.getMenu().getPlayer().getDeck().getHero();
+        enemyHero = Battle.getMenu().getEnemyPlayer().getDeck().getHero();
+
+        for (int i = 0 ; i < Hand.SIZE ;  i++) {
+            if(playerHandCards[i] != null) {
+                hand[i] = new ImageView(new Image("resources/ui/ranked_chevron_empty.png"));
+                hand[i].setX(handFrame.getLayoutX() + i * handWidth);
+                hand[i].setY(handFrame.getLayoutY());
+                this.addToScene(hand[i]);
+            }
+        }
+
+    }
+
+
+    public ImageView getCell(int x , int y){
+        for (Node node : map.getChildren()) {
+            System.out.println(GridPane.getColumnIndex(node) + "" + GridPane.getRowIndex(node));
+            if (GridPane.getColumnIndex(node) == x && GridPane.getRowIndex(node) == y) {
+                if(node instanceof ImageView)
+                    return (ImageView) node;
+            }
+        }
+        return null;
+    }
+
+    public Rectangle getRectangle(int x, int y){
+        for(Node node : map.getChildren()){
+            if(GridPane.getColumnIndex(node) == x && GridPane.getRowIndex(node) == y){
+                if(node instanceof Rectangle){
+                    return (Rectangle) node;
+                }
+            }
+        }
+        return null;
     }
 
     public void addToScene(Node... nodes){
@@ -52,22 +127,22 @@ public class BattleFXMLC extends FXMLController {
     }
 
     public Double getMapX() {
-        mapX = gridPane.getLayoutX();
-        cellWidth = gridPane.getWidth()/9;
+        mapX = map.getLayoutX();
         return mapX;
     }
 
     public Double getMapY() {
-        mapY = gridPane.getLayoutY();
-        cellHeight = gridPane.getHeight()/5;
+        mapY = map.getLayoutY();
         return mapY;
     }
 
     public Double getCellWidth() {
+        cellWidth = map.getMaxWidth()/9;
         return cellWidth;
     }
 
     public Double getCellHeight() {
+        cellHeight = map.getHeight()/5;
         return cellHeight;
     }
 
@@ -76,62 +151,10 @@ public class BattleFXMLC extends FXMLController {
     }
 
     public double getMapWidth() {
-        return gridPane.getWidth();
+        return map.getWidth();
     }
 
     public double getMapHeight(){
-        return gridPane.getHeight();
+        return map.getHeight();
     }
-
-    private void setCellEvents() {
-        cell00.setStyle("cell");
-        cell00.setOnMouseEntered(event -> cell00.getStyleClass().add("cellSelected"));
-        cell00.setOnMouseExited(event -> cell00.getStyleClass().remove("cellSelected"));
-    }
-
-    public Rectangle cell00;
-    public Rectangle cell01;
-    public Rectangle cell02;
-    public Rectangle cell03;
-    public Rectangle cell04;
-    public Rectangle cell10;
-    public Rectangle cell11;
-    public Rectangle cell12;
-    public Rectangle cell13;
-    public Rectangle cell14;
-    public Rectangle cell20;
-    public Rectangle cell21;
-    public Rectangle cell22;
-    public Rectangle cell23;
-    public Rectangle cell24;
-    public Rectangle cell30;
-    public Rectangle cell31;
-    public Rectangle cell32;
-    public Rectangle cell33;
-    public Rectangle cell34;
-    public Rectangle cell40;
-    public Rectangle cell41;
-    public Rectangle cell42;
-    public Rectangle cell43;
-    public Rectangle cell44;
-    public Rectangle cell50;
-    public Rectangle cell51;
-    public Rectangle cell52;
-    public Rectangle cell53;
-    public Rectangle cell54;
-    public Rectangle cell60;
-    public Rectangle cell61;
-    public Rectangle cell62;
-    public Rectangle cell63;
-    public Rectangle cell64;
-    public Rectangle cell70;
-    public Rectangle cell71;
-    public Rectangle cell72;
-    public Rectangle cell73;
-    public Rectangle cell74;
-    public Rectangle cell80;
-    public Rectangle cell81;
-    public Rectangle cell82;
-    public Rectangle cell83;
-    public Rectangle cell84;
 }
