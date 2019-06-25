@@ -5,8 +5,6 @@ import Controller.menu.Menu;
 import Model.Graphics.Listeners.*;
 import Model.Map.Cell;
 import Model.card.hermione.Hermione;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 
@@ -19,7 +17,8 @@ public class HermioneGraphics {
     private ArrayList<OnDamageListener> damageListeners = new ArrayList<>();
     private ArrayList<OnSpeacialPowerAppliedListeners> SPApliedListenrs = new ArrayList<>();
     private ArrayList<OnCardSelectedListener> selectedListeners = new ArrayList<>();
-    private String avatar;
+    private String units;
+    private String unitGifs;
 
     // TODO: 6/11/19 onCardSelected where to use
     private Hermione hermione;
@@ -69,10 +68,7 @@ public class HermioneGraphics {
     }
 
     public void addSpawnListener(OnSpawnListener spawnListener) {
-        System.err.println("debug");
         this.spawnListeners.add(spawnListener);
-
-        System.err.println("debug");
     }
 
     public void addDeathListener(OnDeathListener deathListener) {
@@ -91,12 +87,19 @@ public class HermioneGraphics {
         this.selectedListeners.add(cardSelectedListener);
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setUnits(String units) {
+        this.units = units;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getUnits() {
+        return units;
     }
 
+    public String getUnitGifs() {
+        return unitGifs;
+    }
+
+    public void setUnitGifs(String unitGifs) {
+        this.unitGifs = unitGifs;
+    }
 }

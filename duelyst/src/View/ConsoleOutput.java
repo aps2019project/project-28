@@ -654,7 +654,6 @@ public class ConsoleOutput {
                 System.out.println("Couldn't find the Deck!");
             }
         }else if(word[0].equals("validate") && word[1].equals("deck")){
-            System.err.println("debug");
             String name = getName(word , 2) ;
             try {
                 if(menu.validateDeck(name)){

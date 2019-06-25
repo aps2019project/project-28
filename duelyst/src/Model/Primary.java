@@ -619,16 +619,17 @@ public class Primary {
 
     public static void setHermionesAvatars() throws FileNotFoundException {
         for (Hero hero : heroes) {
-            hero.getGraphics().setAvatar("resources/units/boss_andromeda.png");
+            hero.getGraphics().setUnits("resources/units/boss_andromeda.png");
+            hero.getGraphics().setUnitGifs("resources/unit_gifs/boss_andromeda_breathing.gif");
         }
         for (Minion minion : minions) {
-            minion.getGraphics().setAvatar("resources/units/boss_andromeda.png");
+            minion.getGraphics().setUnits("resources/units/boss_andromeda.png");
+            minion.getGraphics().setUnitGifs("resources/unit_gifs/boss_andromeda_breathing.gif");
         }
     }
 
     private static void setGraphicsForHermiones(){
         for (Hero hero : heroes) {
-            System.err.println("debug");
             setGraphicForHermione(hero);
         }
         for (Minion minion : minions) {
@@ -642,7 +643,7 @@ public class Primary {
             @Override
             public void show(Cell cell){
                 BattleFXMLC controller = (BattleFXMLC)Battle.getMenu().getGraphic().getController();
-                Image image = new Image(hermione.getGraphics().getAvatar());
+                Image image = new Image(hermione.getGraphics().getUnits());
                 ImageView imageView = controller.getCell(cell.getX(), cell.getY());
                 imageView.setImage(image);
                 final Animation animation = new SpriteAnimation(
