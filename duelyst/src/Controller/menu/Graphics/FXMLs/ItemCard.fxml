@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1160.0" styleClass="card-root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.CardCardFXMLC">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1160.0" styleClass="card-root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.ItemCardFXMLC">
    <children>
       <ImageView fx:id="imageView" fitHeight="372.0" fitWidth="362.0" layoutX="760.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="card-image" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0" />
       <VBox layoutX="10.0" layoutY="9.0" prefHeight="394.0" prefWidth="627.0">
@@ -16,20 +16,11 @@
                   <Font name="Verdana Bold" size="46.0" />
                </font>
             </Label>
-            <HBox fx:id="firstHbox" prefHeight="74.0" prefWidth="627.0">
-               <children>
-                  <Label fx:id="ap" prefHeight="74.0" prefWidth="340.0" text="Attack Point :" textFill="#00c32a">
-                     <font>
-                        <Font name="Verdana Bold" size="33.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="hp" prefHeight="74.0" prefWidth="318.0" text="Health Point :" textFill="#bf0000">
-                     <font>
-                        <Font name="Verdana Bold" size="33.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
+            <Label fx:id="info" prefHeight="81.0" prefWidth="627.0" text="&gt;&gt; Usable">
+               <font>
+                  <Font name="Verdana Bold" size="26.0" />
+               </font>
+            </Label>
             <Label fx:id="price" prefHeight="81.0" prefWidth="627.0">
                <font>
                   <Font name="Verdana Bold" size="33.0" />

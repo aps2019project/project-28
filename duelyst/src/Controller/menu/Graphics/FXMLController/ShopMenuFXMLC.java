@@ -4,6 +4,8 @@ import Controller.menu.CustomModeMenu;
 import Controller.menu.Graphics.GraphicsControls;
 import Controller.menu.Menu;
 import Model.card.Card;
+import Model.item.Item;
+import Model.item.Usable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -57,7 +59,7 @@ public class ShopMenuFXMLC extends FXMLController {
 
 
     private void makeCardsVBox() {
-        cardsVbox.setSpacing(10);
+        cardsVbox.setSpacing(15);
 
         for (Card cart : Card.getCards()) {
             FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
@@ -76,6 +78,22 @@ public class ShopMenuFXMLC extends FXMLController {
 
 
     private void makeItemsVBox() {
+        itemsVbox.setSpacing(15);
+
+        for (Item item : Usable.getItems()){
+            if (item instanceof Usable){
+                FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                        "Controller/menu/Graphics/FXMLs/ItemCard.fxml")));
+                try {
+                    Parent card = rootLoader.load();
+                    ItemCardFXMLC fxmlc = rootLoader.getController();
+                    fxmlc.builditemCard((Usable)item , menu.getAccount());
+                    itemsVbox.getChildren().add(card);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
     }
 

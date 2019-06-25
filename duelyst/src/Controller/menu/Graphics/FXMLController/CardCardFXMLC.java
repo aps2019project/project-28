@@ -34,15 +34,12 @@ public class CardCardFXMLC {
     private AnchorPane pane ;
 
 
-    public static double cardWidth ;
-
     public void buildCardCard(Card card , Account account){
 
-        Image cardBackground = new Image("Resources/card_backgrounds/card_back_humble_bundle@2x.png") ;
+        Image cardBackground = new Image("Resources/card_backgrounds/card_back_shimzar.png") ;
         Image hero_stamp = new Image ("Resources/images/hero_stamp.png");
         Image spell_stamp = new Image ("Resources/images/spell_stamp.png");
 
-        cardWidth = pane.getWidth();
         name.setText(card.getName());
         price.setText("Price : " + card.getPrice()+"$");
         GraphicsControls.setButtonStyle("shopping-button" , buy);
