@@ -18,3 +18,11 @@
     -fx-width: 20;
     -fx-height: 25;
 }
+
+.mana{
+    -fx-image: url("../../../../resources/ui/icon_mana.png");
+}
+
+.emptyMana{
+     -fx-image: url("../../../../resources/ui/icon_mana_inactive.png");
+}

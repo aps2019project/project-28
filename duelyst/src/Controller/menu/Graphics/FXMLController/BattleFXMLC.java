@@ -31,6 +31,8 @@ public class BattleFXMLC extends FXMLController {
     public Button endTurn;
     public Button graveYard;
     public Button menuButton;
+    public GridPane playerMana;
+    public GridPane enemyMana;
     @FXML
     private AnchorPane frame;
     @FXML
@@ -197,6 +199,7 @@ public class BattleFXMLC extends FXMLController {
 
     private void turnUpdate(){
         updateHand();
+        updateMana();
     }
 
     private void updateHand(){
@@ -224,6 +227,23 @@ public class BattleFXMLC extends FXMLController {
         }
     }
 
+    private void updateMana(){
+        int mana = Battle.getMenu().getPlayer().getMana();
+        for (int i = 0 ; i < mana ; i++){
+            playerMana.getChildren().get(i).getStyleClass().add("mana");
+        }
+        for (int i = mana ; i < 9 ; i++){
+            playerMana.getChildren().get(i).getStyleClass().add("emptyMana");
+        }
+        int enemyManaNumber = Battle.getMenu().getEnemyPlayer().getMana();
+        for (int i = 0 ; i < enemyManaNumber ; i++){
+            enemyMana.getChildren().get(i).getStyleClass().add("mana");
+        }
+        for (int i = enemyManaNumber ; i < 9 ; i++){
+            enemyMana.getChildren().get(i).getStyleClass().add("emptyMana");
+        }
+
+    }
     private Card getCardOnHand(int index){
         for (int i = 0 ; i < Hand.SIZE ;  i++) {
             if (((ImageView)(handFrame.getChildren().get(i))).getImage() != null){

@@ -44,7 +44,6 @@ public class GraphicsControls {
         });
     }
 
-
     public static void setCellStyle(String cellStyle, Rectangle rectangle, ImageView imageView){
         String enteredStyle = cellStyle + "Entered";
         if(!rectangle.getStyleClass().contains(cellStyle)) rectangle.setStyle(cellStyle);

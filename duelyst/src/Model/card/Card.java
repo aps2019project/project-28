@@ -1,5 +1,6 @@
 package Model.card;
 
+import Model.Graphics.Listeners.CardGraphics;
 import Model.Graphics.SpellGraphics;
 import Model.Primary;
 import Model.account.Collection;
@@ -19,6 +20,7 @@ public abstract class Card {
     private int manaPoint;
     private static ArrayList<OnCardDetailsPresentedListener> cardDetailsPresenters=new ArrayList<>();
     private String info;
+    private CardGraphics cardGraphics;
 
     public Card( String name, int price, int manaPoint, String info) {
         this.cardID = uniqueID++;
@@ -26,6 +28,7 @@ public abstract class Card {
         this.price = price;
         this.manaPoint = manaPoint;
         this.info = info;
+        this.cardGraphics = new CardGraphics();
     }
 
     public void setSuperCollection(Collection superCollection) {
@@ -125,6 +128,14 @@ public abstract class Card {
         Card card = (Card)obj ;
         if (card.getName().equals(this.name)) return true ;
         return false ;
+    }
+
+    public CardGraphics getCardGraphics() {
+        return cardGraphics;
+    }
+
+    public void setCardGraphics(CardGraphics cardGraphics) {
+        this.cardGraphics = cardGraphics;
     }
 }
 
