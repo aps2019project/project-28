@@ -4,7 +4,9 @@ import Controller.menu.Graphics.GraphicsControls;
 import Model.account.Account;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
+import Model.card.hermione.Hero;
 import Model.card.spell.Spell;
+import View.MenuHandler;
 import javafx.fxml.FXML;
 import javafx.scene.ImageCursor;
 import javafx.scene.control.Button;
@@ -20,7 +22,7 @@ import stuff.Resources;
 public class CardCardFXMLC {
 
     @FXML
-    private ImageView imageView;
+    private ImageView imageView , heroStamp;
     @FXML
     private Label name , price , ap , hp , count;
     private int counter = 0 ;
@@ -31,9 +33,18 @@ public class CardCardFXMLC {
     @FXML
     private AnchorPane pane ;
 
+
+    public static double cardWidth ;
+
     public void buildCardCard(Card card , Account account){
+
+        Image cardBackground = new Image("Resources/card_backgrounds/card_back_humble_bundle@2x.png") ;
+        Image hero_stamp = new Image ("Resources/images/hero_stamp.png");
+        Image spell_stamp = new Image ("Resources/images/spell_stamp.png");
+
+        cardWidth = pane.getWidth();
         name.setText(card.getName());
-        price.setText(card.getPrice()+"");
+        price.setText("Price : " + card.getPrice()+"$");
         GraphicsControls.setButtonStyle("shopping-button" , buy);
         if (account.getMoney() >= card.getPrice()){
             buy.setOnAction(e -> buy());
@@ -44,18 +55,26 @@ public class CardCardFXMLC {
         }
         if (card instanceof Spell){
             pane.getChildren().remove(firstHbox);
+            heroStamp.setImage(spell_stamp);
         }else{
             Hermione h = (Hermione) card ;
-            ap.setText(ap.getText() + h.getAttackType());
+            ap.setText(ap.getText() + h.getAttackPoint());
             hp.setText(hp.getText() + h.getHealthPoint());
+            if (h instanceof Hero) heroStamp.setImage(hero_stamp);
         }
         for (Card c : account.getCollection().getCards()){
             if (c.equals(card)) counter++ ;
         }
         if (counter == 0) count.setText("You don't have this Card");
-        count.setText("You own " + counter + " unit");
-        if (counter > 1 ) count.setText(count.getText() + "s");
-        imageView.setImage(card.getCardGraphics().getAvatar());
+        else {
+            count.setText("You own " + counter + " unit");
+            if (counter > 1) count.setText(count.getText() + "s");
+        }
+        try {
+            imageView.setImage(card.getCardGraphics().getAvatar());
+        }catch(NullPointerException e){
+            imageView.setImage(cardBackground);
+        }
     }
 
     private void buy() {

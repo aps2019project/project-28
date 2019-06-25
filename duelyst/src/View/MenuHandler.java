@@ -5,6 +5,7 @@ import Controller.menu.*;
 //import SignInMenu;
 import Controller.menu.SignInMenu;
 import Model.Primary;
+import Model.account.Account;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class MenuHandler {
 
     private static Menu currentMenu;
     private static ArrayList<Menu> lastMenus = new ArrayList<>();
+    private static Account account ;
 
     private static void initMenus() {
         //az SignIn Menu mirim tuye MainMenu
@@ -105,5 +107,13 @@ public class MenuHandler {
     public static void goBack() {
         currentMenu = lastMenus.get(lastMenus.size()-1).enter();
         lastMenus.remove(lastMenus.size()-1);
+    }
+
+    public static Account getAccount() {
+        return account;
+    }
+
+    public static void setAccount(Account account) {
+        MenuHandler.account = account;
     }
 }

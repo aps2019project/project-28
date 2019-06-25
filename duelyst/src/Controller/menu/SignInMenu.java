@@ -69,6 +69,7 @@ public class SignInMenu extends Menu {
             Game.accounts[0] = account;
             Game.hasLoggedIn = true;
             this.account=account;
+            MenuHandler.setAccount(account);
             MenuHandler.setCurrentMenu(menu.enter(MainMenu.getMenu()));
         } else {
             throw new WrongPassException();
@@ -78,6 +79,7 @@ public class SignInMenu extends Menu {
     public void logOut() {
         Game.hasLoggedIn = false;
         this.account=null;
+        MenuHandler.setAccount(null);
     }
 
     public void save() {

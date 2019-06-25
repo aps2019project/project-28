@@ -6,43 +6,43 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1280.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.CardCardFXMLC">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1160.0" styleClass="card-root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.CardCardFXMLC">
    <children>
-      <ImageView fx:id="imageView" fitHeight="517.0" fitWidth="428.0" layoutX="760.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" styleClass="card-image" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="50.0" />
-      <VBox layoutX="10.0" layoutY="9.0" prefHeight="583.0" prefWidth="627.0">
+      <ImageView fx:id="imageView" fitHeight="372.0" fitWidth="362.0" layoutX="760.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="card-image" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0" />
+      <VBox layoutX="10.0" layoutY="9.0" prefHeight="394.0" prefWidth="627.0">
          <children>
-            <Label id="name" fx:id="name" prefHeight="119.0" prefWidth="941.0" text="Simorgh">
+            <Label id="name" fx:id="name" prefHeight="70.0" prefWidth="627.0" text="Simorgh">
                <font>
-                  <Font name="Verdana Bold" size="62.0" />
+                  <Font name="Verdana Bold" size="46.0" />
                </font>
             </Label>
-            <HBox fx:id="firstHbox" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="firstHbox" prefHeight="74.0" prefWidth="627.0">
                <children>
-                  <Label fx:id="ap" prefHeight="100.0" prefWidth="307.0" text="Attack Point :" textFill="#00c32a">
+                  <Label fx:id="ap" prefHeight="74.0" prefWidth="340.0" text="Attack Point :" textFill="#00c32a">
                      <font>
                         <Font name="Verdana Bold" size="33.0" />
                      </font>
                   </Label>
-                  <Label fx:id="hp" prefHeight="100.0" prefWidth="318.0" text="Health Point :" textFill="#bf0000">
+                  <Label fx:id="hp" prefHeight="74.0" prefWidth="318.0" text="Health Point :" textFill="#bf0000">
                      <font>
                         <Font name="Verdana Bold" size="33.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <Label fx:id="price" prefHeight="119.0" prefWidth="941.0">
+            <Label fx:id="price" prefHeight="81.0" prefWidth="627.0">
                <font>
-                  <Font name="Verdana Bold" size="45.0" />
+                  <Font name="Verdana Bold" size="33.0" />
                </font>
             </Label>
-            <Label fx:id="count" prefHeight="119.0" prefWidth="941.0">
+            <Label fx:id="count" prefHeight="91.0" prefWidth="627.0">
                <font>
-                  <Font name="Verdana Bold" size="45.0" />
+                  <Font name="Verdana Bold" size="33.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button id="shopping-button" fx:id="buy" mnemonicParsing="false" prefHeight="104.0" prefWidth="237.0" stylesheets="@../StyleSheets/Buttons.css" text="BUY">
+                  <Button id="shopping-button" fx:id="buy" mnemonicParsing="false" prefHeight="94.0" prefWidth="237.0" stylesheets="@../StyleSheets/Buttons.css" text="BUY">
                      <font>
                         <Font name="Verdana Bold" size="52.0" />
                      </font>
@@ -51,5 +51,6 @@
             </HBox>
          </children>
       </VBox>
+      <ImageView fx:id="heroStamp" fitHeight="139.0" fitWidth="214.0" layoutX="659.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" rotate="-33.7" />
    </children>
 </AnchorPane>

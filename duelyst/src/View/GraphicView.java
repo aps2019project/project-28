@@ -113,7 +113,6 @@ public class GraphicView extends Application implements View{
         Battle.getMenu().getGraphic().init();
         StoryModeMenu.getMenu().getGraphic().init();
         CustomModeMenu.getMenu().getGraphic().init();
-        ShopMenu.getMenu().getGraphic().init();
     }
 
 
@@ -121,7 +120,6 @@ public class GraphicView extends Application implements View{
         //setting root Path for each menu
         SignInMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SignInMenu.fxml");
         MainMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MainMenu.fxml");
-        Battle.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/Battle.fxml");
         GameModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/GameModeMenu.fxml");
         SinglePlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/SinglePlayerModeMenu.fxml");
         MultiPlayerModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/MultiPlayerModeMenu.fxml");
@@ -129,6 +127,8 @@ public class GraphicView extends Application implements View{
         ChooseBattleModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ChooseBattleModeMenu.fxml");
         CustomModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CustomModeMenu.fxml");
         ShopMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ShopMenu.fxml");
+
+        Battle.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/Battle.fxml");
     }
 
     public void play(String...args) {

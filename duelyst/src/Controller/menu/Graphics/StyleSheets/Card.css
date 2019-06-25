@@ -1,5 +1,6 @@
-.root{
-    -fx-background-image: url("../../../../resources/images/mainMenuBackground.jpg");
+.card-root{
+    -fx-background-color: #DDDDDD;
+    -fx-opacity: 0.8;
     -fx-background-size: 100% 100%;
 }
 .card-image{
