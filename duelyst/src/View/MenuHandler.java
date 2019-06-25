@@ -93,7 +93,6 @@ public class MenuHandler {
     public static void setCurrentMenu(Menu currentMenu) {
         if (MenuHandler.currentMenu != null)MenuHandler.lastMenus.add(MenuHandler.currentMenu);
         MenuHandler.currentMenu = currentMenu;
-        for (Menu menu : lastMenus) System.out.println("menus -> " + menu.getName());
     }
 
     public static Menu getCurrentMenu() {

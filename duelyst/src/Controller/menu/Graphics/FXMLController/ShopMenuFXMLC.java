@@ -62,7 +62,7 @@ public class ShopMenuFXMLC extends FXMLController {
             scrollPane.setContent(itemsVbox);
         });
         sellTab.setOnAction(e -> {
-            tabPressed(itemTab);
+            tabPressed(sellTab);
             tabReleased(cardTab);
             tabReleased(itemTab);
             scrollPane.setContent(sellTabVbox);
@@ -77,6 +77,15 @@ public class ShopMenuFXMLC extends FXMLController {
     }
 
     private void makeSellTabVbox() {
+        sellTabVbox.setSpacing(15);
+        FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                "Controller/menu/Graphics/FXMLs/MainMenu.fxml")));
+        try {
+            Parent card = rootLoader.load();
+            sellTabVbox.getChildren().add(card);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
