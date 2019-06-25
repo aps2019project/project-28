@@ -55,12 +55,6 @@ public class Battle extends Menu {
         return menu;
     }
 
-
-//    @Override
-//    protected void init() {
-//        super.init();
-//    }
-
     @Override
     public boolean init(Menu parentMenu) {
         System.out.println("initiating Battle in " + this.gameMode.getClass());

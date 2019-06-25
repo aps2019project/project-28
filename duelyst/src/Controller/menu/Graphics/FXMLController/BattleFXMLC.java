@@ -53,13 +53,14 @@ public class BattleFXMLC extends FXMLController {
     public void buildScene() {
         super.buildScene();
 
-        for (int i = 0 ; i < 9 ; i++){
+        for(int i = 0 ; i < 9 ; i++){
             for (int j = 0 ; j < 5 ; j++){
-                Rectangle rectangle = (Rectangle) map.getChildren().get(j * 9 + i);
-                rectangles[i][j] = rectangle;
-                GraphicsControls.setCellStyle("cell", rectangles[i][j]);
+
             }
         }
+//                Rectangle rectangle = (Rectangle) map.getChildren().get(j * 9 + i);
+//                rectangles[i][j] = rectangle;
+//                GraphicsControls.setCellStyle("cell", rectangles[i][j]);
 
         GraphicsControls.setButtonStyle("endTurnButton", endTurn);
         endTurn.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -97,20 +98,26 @@ public class BattleFXMLC extends FXMLController {
             }
         }
 
-//        for (Minion minion : Battle.getMenu().getPlayer().getMinionsInGame()) {
-//            ImageView imageView = getCell(minion.)
-//            imageView.setImage(new Image(minion.getGraphics().getAvatar()));
-//        }
-
-
     }
 
 
     public ImageView getCell(int x , int y){
         for (Node node : map.getChildren()) {
+            System.out.println(GridPane.getColumnIndex(node) + "" + GridPane.getRowIndex(node));
             if (GridPane.getColumnIndex(node) == x && GridPane.getRowIndex(node) == y) {
                 if(node instanceof ImageView)
                     return (ImageView) node;
+            }
+        }
+        return null;
+    }
+
+    public Rectangle getRectangle(int x, int y){
+        for(Node node : map.getChildren()){
+            if(GridPane.getColumnIndex(node) == x && GridPane.getRowIndex(node) == y){
+                if(node instanceof Rectangle){
+                    return (Rectangle) node;
+                }
             }
         }
         return null;
