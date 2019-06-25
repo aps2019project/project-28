@@ -38,7 +38,7 @@
 }
 
 .graveYardButtonClicked{
-    -fx-background-image: url("../../../../resources/ui/button_primary_right_glow@.png");
+    -fx-background-image: url("../../../../resources/ui/button_primary_right_glow.png");
 }
 
 
@@ -56,6 +56,18 @@
 }
 .back-button{
     -fx-background-image: url("../../../../resources/ui/button_back_corner.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100% 100%;
+}
+.shopping-button{
+    -fx-background-image: url("../../../../resources/ui/button_primary.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100% 100%;
+    -fx-text-fill: WHITE;
+
+}
+.shopping-buttonClicked{
+    -fx-background-image: url("../../../../resources/ui/button_primary_glow.png");
     -fx-background-repeat: stretch;
     -fx-background-size: 100% 100%;
 }
