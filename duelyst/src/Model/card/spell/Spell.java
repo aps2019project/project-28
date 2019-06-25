@@ -142,7 +142,8 @@ public class Spell extends Card {
                     throw new InvalidCellException();
                 }
             }
-            for (Action action : actions){
+            for (int i = 0 ; i < actions.size() ; i++){
+                Action action = actions.get(i);
                 try {
                     action.deploy(this, targetCells);
                     int index = getIndexOfAction(action) ;
