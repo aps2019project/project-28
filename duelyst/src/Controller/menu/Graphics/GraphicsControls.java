@@ -4,6 +4,8 @@ import Controller.menu.MainMenu;
 import View.MenuHandler;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 
@@ -42,17 +44,17 @@ public class GraphicsControls {
         });
     }
 
-    public static void setCellStyle(String cellStyle, Rectangle rectangle){
+    public static void setCellStyle(String cellStyle, Rectangle rectangle, ImageView imageView){
         String enteredStyle = cellStyle + "Entered";
         if(!rectangle.getStyleClass().contains(cellStyle)) rectangle.setStyle(cellStyle);
 
-        rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+       imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 rectangle.getStyleClass().add(enteredStyle);
             }
         });
-        rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
+        imageView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 rectangle.getStyleClass().remove(enteredStyle);

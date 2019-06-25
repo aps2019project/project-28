@@ -55,12 +55,11 @@ public class BattleFXMLC extends FXMLController {
 
         for(int i = 0 ; i < 9 ; i++){
             for (int j = 0 ; j < 5 ; j++){
-
+                Rectangle rectangle = getRectangle(i, j);
+                ImageView imageView = getCell(i , j);
+                GraphicsControls.setCellStyle("cell", rectangle, imageView);
             }
         }
-//                Rectangle rectangle = (Rectangle) map.getChildren().get(j * 9 + i);
-//                rectangles[i][j] = rectangle;
-//                GraphicsControls.setCellStyle("cell", rectangles[i][j]);
 
         GraphicsControls.setButtonStyle("endTurnButton", endTurn);
         endTurn.setOnKeyPressed(new EventHandler<KeyEvent>() {
