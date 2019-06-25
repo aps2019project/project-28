@@ -12,8 +12,8 @@ public class SpriteAnimation extends Transition {
     private final int columns;
     private final double offsetX;
     private final double offsetY;
-    private final int width;
-    private final int height;
+    private final double width;
+    private final double height;
     private int lastIndex;
 
     public SpriteAnimation(
@@ -21,7 +21,7 @@ public class SpriteAnimation extends Transition {
             Duration duration,
             int count, int columns,
             double offsetX, double offsetY,
-            int width, int height) {
+            double width, double height) {
             this.imageView = imageView;
             this.count = count;
             this.columns = columns;

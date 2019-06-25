@@ -24,6 +24,7 @@ import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
+import com.sun.scenario.effect.impl.prism.PrImage;
 import exeption.*;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
@@ -615,6 +616,7 @@ public class Primary {
     public static void initGraphics() throws FileNotFoundException {
         setHermionesAvatars();
         setGraphicsForHermiones();
+        setIconForCards();
     }
 
     public static void setHermionesAvatars() throws FileNotFoundException {
@@ -743,6 +745,16 @@ public class Primary {
             }
         });
     }
-
+        
+    private static void setIconForCards(){
+        for (Spell spell : spells) {
+            spell.getSpellGraphics().setIcon("resources/icons/artifact_boss_frostarmor.png");
+            spell.getSpellGraphics().setIconGif("resources/ui/icon_gold.png");
+        }
+        for (Minion minion : minions) {
+            minion.getGraphics().setIcon("resources/icons/artifact_boss_frostarmor.png");
+            minion.getGraphics().setIconGif("resources/ui/icon_gold.png");
+        }
+    }
 
 }

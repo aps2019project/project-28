@@ -1,6 +1,6 @@
 package Model.card.spell;
 
-import Model.Graphics.CardGraphics;
+import Model.Graphics.SpellGraphics;
 import Model.Primary;
 import Model.account.Player;
 import Model.card.Card;
@@ -48,6 +48,7 @@ public class Spell extends Card {
     protected ArrayList<Action> actions = new ArrayList<>();
     private ArrayList<Integer> perks = new ArrayList<>();
     private ArrayList<Integer> durations = new ArrayList<>();
+    private SpellGraphics spellGraphics = new SpellGraphics();
 
     public Spell(String name, int price , int manaPoint, int duration , int perk , String info, Target target, Action action ) {
         super( name, price, manaPoint, info);
@@ -176,5 +177,11 @@ public class Spell extends Card {
         return targets;
     }
 
+    public SpellGraphics getSpellGraphics() {
+        return spellGraphics;
+    }
 
+    public void setSpellGraphics(SpellGraphics spellGraphics) {
+        this.spellGraphics = spellGraphics;
+    }
 }

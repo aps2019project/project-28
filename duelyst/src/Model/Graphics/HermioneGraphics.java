@@ -8,7 +8,7 @@ import Model.card.hermione.Hermione;
 
 import java.util.ArrayList;
 
-public class HermioneGraphics {
+public class HermioneGraphics extends SpellGraphics {
 
     private ArrayList<OnMoveListener> moveListeners = new ArrayList<>();
     private ArrayList<OnAttackListener> attackListeners = new ArrayList<>();

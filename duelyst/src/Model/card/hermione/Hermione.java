@@ -44,7 +44,6 @@ public abstract class Hermione extends Card {
         this.attackType = attackType;
         this.range = range;
         this.originalHealthPoint = this.healthPoint;
-//        this.graphics=new HermioneGraphics(this);
     }
 
 
