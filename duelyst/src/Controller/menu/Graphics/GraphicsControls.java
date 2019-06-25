@@ -1,6 +1,7 @@
 package Controller.menu.Graphics;
 
 import Controller.menu.MainMenu;
+import View.MenuHandler;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -30,6 +31,7 @@ public class GraphicsControls {
     }
 
     public static void setBackButtonOnPress(Button backButton){
+        backButton.setOnAction(e -> MenuHandler.goBack());
         backButton.setOnMousePressed(e -> {
             backButton.setTranslateX(-5);
             backButton.setTranslateY(-5);

@@ -118,7 +118,7 @@ public class ConsoleOutput {
             });
             CollectableMenu.getMenu().addMenuClickListener(new ShowMenu());
             CollectionMenu.getMenu().addMenuClickListener(new ShowMenu());
-            CostumeModeMenu.getMenu().addMenuClickListener(new ShowMenu());
+            CustomModeMenu.getMenu().addMenuClickListener(new ShowMenu());
             GameModeMenu.getMenu().addMenuClickListener(new ShowMenu());
             GraveYardMenu.getMenu().addMenuClickListener(new ShowMenu());
             MainMenu.getMenu().addMenuClickListener(new ShowMenu());
@@ -138,12 +138,12 @@ public class ConsoleOutput {
             });
         }
         //signIn menu
-        SignInMenu.getMenu().addLeaderBoardClickedListener(accounts -> {
+        SignInMenu.getMenu().addLeaderBoardClickedListener((accounts, fxmlc) -> {
             System.out.println("LeaderBoard:");
-            int i=0;
+            int i = 0;
             for (Account account : accounts) {
                 i++;
-                System.out.println(i+") "+account.getName() + " - Wins: " +account.getWins());
+                System.out.println(i + ") " + account.getName() + " - Wins: " + account.getWins());
             }
         });
 
@@ -342,15 +342,15 @@ public class ConsoleOutput {
         setStoryModePattern();
         setSinglePlayerModePattern();
         setMultiPlayerModeMenuPattern();
-        setCostumeModeMenuPattern();
+        setCustomModeMenuPattern();
     }
-    private static void setCostumeModeMenuPattern() {
-        CostumeModeMenu.getMenu().addPattern("enter [\\w]+");
-        CostumeModeMenu.getMenu().addPattern("[\\d]+");
-        CostumeModeMenu.getMenu().addPattern("help");
-        CostumeModeMenu.getMenu().addPattern("show");
-        CostumeModeMenu.getMenu().addPattern("exit");
-        CostumeModeMenu.getMenu().addPattern("select [\\w]+");
+    private static void setCustomModeMenuPattern() {
+        CustomModeMenu.getMenu().addPattern("enter [\\w]+");
+        CustomModeMenu.getMenu().addPattern("[\\d]+");
+        CustomModeMenu.getMenu().addPattern("help");
+        CustomModeMenu.getMenu().addPattern("show");
+        CustomModeMenu.getMenu().addPattern("exit");
+        CustomModeMenu.getMenu().addPattern("select [\\w]+");
     }
     private static void setMultiPlayerModeMenuPattern() {
         MultiPlayerModeMenu.getMenu().addPattern("enter [\\w]+");
@@ -486,27 +486,27 @@ public class ConsoleOutput {
         try {
 //            command = commands.nextLine().toLowerCase().trim();
             String[] word = command.split(" ");
-            if (!MenuHandler.currentMenu.allowsCommand(command)) {
+            if (!MenuHandler.getCurrentMenu().allowsCommand(command)) {
                 System.out.println("Invalid Command");
             }else if (commonCommandHandler(word)) {
 
-            } else if (MenuHandler.currentMenu instanceof SignInMenu) {
+            } else if (MenuHandler.getCurrentMenu() instanceof SignInMenu) {
                 SignInMenuCommandHandler(word);
-            } else if (MenuHandler.currentMenu instanceof CollectionMenu) {
+            } else if (MenuHandler.getCurrentMenu() instanceof CollectionMenu) {
                 CollectionMenuCommandHandler(word);
-            } else if (MenuHandler.currentMenu instanceof ShopMenu){
+            } else if (MenuHandler.getCurrentMenu() instanceof ShopMenu){
                 ShopMenuCommandHandler(word);
-            }else if(MenuHandler.currentMenu instanceof Battle){
+            }else if(MenuHandler.getCurrentMenu() instanceof Battle){
                 BattleCommandHandler(word,command);
-            }else if(MenuHandler.currentMenu instanceof ChooseBattleModeMenu){
+            }else if(MenuHandler.getCurrentMenu() instanceof ChooseBattleModeMenu){
                 ChooseBattleModeMenuCommandHandler(word);
-            }else if(MenuHandler.currentMenu instanceof StoryModeMenu){
+            }else if(MenuHandler.getCurrentMenu() instanceof StoryModeMenu){
                 storyModeMenuCommandHandler(word);
-            }else if(MenuHandler.currentMenu instanceof MultiPlayerModeMenu){
+            }else if(MenuHandler.getCurrentMenu() instanceof MultiPlayerModeMenu){
                 MultiPlayerMenuCommandHandler(word);
-            }else if(MenuHandler.currentMenu instanceof CostumeModeMenu){
-                CostumeModeMenuCommandHandler(word);
-            }else if(MenuHandler.currentMenu instanceof GraveYardMenu){
+            }else if(MenuHandler.getCurrentMenu() instanceof CustomModeMenu){
+                CustomModeMenuCommandHandler(word);
+            }else if(MenuHandler.getCurrentMenu() instanceof GraveYardMenu){
                 GraveYardMenuCommandHandler(word);
             }
         }
@@ -519,28 +519,28 @@ public class ConsoleOutput {
     private static boolean commonCommandHandler(String[] word) {
         /*common commands*/
         if(word[0].equals("help")){
-            MenuHandler.currentMenu.help();
+            MenuHandler.getCurrentMenu().help();
             return true;
         }
         else if(word.length >= 2 && word[0].equals("show") && word[1].equals("menu")){
-            MenuHandler.currentMenu.showMenu();
+            MenuHandler.getCurrentMenu().showMenu();
             return true;
         }else if(word[0].equals("enter")){
             try {
 
                 try {
-                    MenuHandler.currentMenu = MenuHandler.currentMenu.enter(MenuHandler.currentMenu.getMenuFromSubMenus(word[1]));
+                    MenuHandler.setCurrentMenu(MenuHandler.getCurrentMenu().enter(MenuHandler.getCurrentMenu().getMenuFromSubMenus(word[1])));
                 } catch (InvalidSubMenuException e) {
                     System.out.println("the requested menu doesnt exist");
                 }
             }catch (IndexOutOfBoundsException e){
-                System.out.println("please choose a number between 1 and " + MenuHandler.currentMenu.getSubMenus().size());
+                System.out.println("please choose a number between 1 and " + MenuHandler.getCurrentMenu().getSubMenus().size());
             }
             return true;
         }else if(word[0].equals("exit")){
-            if(MenuHandler.currentMenu.getParentMenu()==null) System.out.println("This is the root menu!");
+            if(MenuHandler.getCurrentMenu().getParentMenu()==null) System.out.println("This is the root menu!");
             else {
-                MenuHandler.currentMenu=MenuHandler.currentMenu.exit();
+                MenuHandler.setCurrentMenu(MenuHandler.getCurrentMenu().exit());
                 return true;
             }
         }
@@ -548,7 +548,7 @@ public class ConsoleOutput {
     }
 
     private static void GraveYardMenuCommandHandler(String[] word) {
-        GraveYardMenu menu= (GraveYardMenu) MenuHandler.currentMenu;
+        GraveYardMenu menu= (GraveYardMenu) MenuHandler.getCurrentMenu();
         if(word[0].equals("show")&& word[1].equals("cards")){
             menu.showCards();
         }else if(word[0].equals("show") && word[1].equals("card") && word[2].equals("info")){
@@ -559,11 +559,11 @@ public class ConsoleOutput {
             }
         }
     }
-    private static void CostumeModeMenuCommandHandler(String[] word) {
+    private static void CustomModeMenuCommandHandler(String[] word) {
         if(word[0].equals("select")){
-            CostumeModeMenu menu= (CostumeModeMenu) MenuHandler.currentMenu;
+            CustomModeMenu menu= (CustomModeMenu) MenuHandler.getCurrentMenu();
             try {
-                MenuHandler.currentMenu=menu.selectDeck(word[2]);
+                MenuHandler.setCurrentMenu(menu.selectDeck(word[2]));
             } catch (InvalidDeckException e) {
                 System.err.println(word[2]);
                 System.out.println("Couldnt find the deck");
@@ -571,11 +571,11 @@ public class ConsoleOutput {
         }
     }
     private static void MultiPlayerMenuCommandHandler(String[] word) {
-        MultiPlayerModeMenu menu= (MultiPlayerModeMenu) MenuHandler.currentMenu;
+        MultiPlayerModeMenu menu= (MultiPlayerModeMenu) MenuHandler.getCurrentMenu();
         if(word[0].equals("select") && word[1].equals("user")){
             try {
                 menu.selectUser(word[2],word[3]);
-                MenuHandler.currentMenu=menu.enter(Battle.getMenu());
+                MenuHandler.setCurrentMenu(menu.enter(Battle.getMenu()));
             } catch (InvalidAccountException e) {
                 System.out.println("this account doesnt exist");
             } catch (WrongPassException e) {
@@ -584,13 +584,13 @@ public class ConsoleOutput {
         }
     }
     private static void storyModeMenuCommandHandler(String[] word) {
-        StoryModeMenu menu= (StoryModeMenu) MenuHandler.currentMenu;
+        StoryModeMenu menu= (StoryModeMenu) MenuHandler.getCurrentMenu();
         if(word[0].equals("level")) {
-//            MenuHandler.currentMenu=menu.setAI(Integer.parseInt(word[1]));
+//            MenuHandler.getCurrentMenu()=menu.setAI(Integer.parseInt(word[1]));
         }
     }
     private static void CollectionMenuCommandHandler(String[] word) {
-        CollectionMenu menu= (CollectionMenu) MenuHandler.currentMenu;
+        CollectionMenu menu= (CollectionMenu) MenuHandler.getCurrentMenu();
         if(word[0].equals("show")){
             if(word.length>= 3 && word[1].equals("all") && word[2].equals("decks")){
                 menu.showAllDecks();
@@ -676,7 +676,7 @@ public class ConsoleOutput {
         }
     }
     private static void ShopMenuCommandHandler(String[] word) {
-        ShopMenu menu = (ShopMenu) MenuHandler.currentMenu;
+        ShopMenu menu = (ShopMenu) MenuHandler.getCurrentMenu();
         if(word[0].equals("show")){
             if(word.length>= 2 && word[1].equals("collection")){
                 menu.showCollection();
@@ -732,7 +732,7 @@ public class ConsoleOutput {
         }
     }
     private static void SignInMenuCommandHandler(String[] word) {
-        SignInMenu menu= (SignInMenu) MenuHandler.currentMenu;
+        SignInMenu menu= (SignInMenu) MenuHandler.getCurrentMenu();
         if(word[0].equals("create") && word[1].equals("account")){
             try {
                 menu.creatAccount(word[2],word[3],word[4]);
@@ -745,7 +745,7 @@ public class ConsoleOutput {
         }else if(word[0].equals("login")){
             try {
                 menu.logIn(word[1],word[2]);
-                MenuHandler.currentMenu=menu.enter(MainMenu.getMenu());
+                MenuHandler.setCurrentMenu(menu.enter(MainMenu.getMenu()));
             } catch (InvalidAccountException e) {
                 System.out.println("Account doesnt exist");
             } catch (WrongPassException e) {
@@ -764,7 +764,7 @@ public class ConsoleOutput {
         }
     }
     private static void ChooseBattleModeMenuCommandHandler(String[] word) {
-        ChooseBattleModeMenu menu= (ChooseBattleModeMenu) ChooseBattleModeMenu.getMenu();
+        ChooseBattleModeMenu menu= ChooseBattleModeMenu.getMenu();
         if(word[0].equals("mode")){
             menu.setMode(Integer.parseInt(word[1]));
         }
@@ -773,7 +773,7 @@ public class ConsoleOutput {
 
 
     private static void BattleCommandHandler(String[] word,String command) {
-        Battle menu = (Battle) MenuHandler.currentMenu;
+        Battle menu = (Battle) MenuHandler.getCurrentMenu();
 
         menu.getMatch().addCommand(command,menu.getTurn());
 

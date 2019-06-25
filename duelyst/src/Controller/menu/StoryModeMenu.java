@@ -27,7 +27,7 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
         super.help();
     }
 
-    public void setAI(int level) {
+    public void  setAI(int level) {
         Game.accounts[1]= Account.AI[level];
         Game.accounts[1].setPlayer(new AI(Game.accounts[1],2,2,Game.accounts[0].getPlayer()));
     }
@@ -43,7 +43,7 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
         deckSelectorListener = ds ;
     }
     public void showDeckSelector(Account account){
-        deckSelectorListener.show(account , getMenu());
+        deckSelectorListener.show(account , getMenu() , "");
     }
 
 }

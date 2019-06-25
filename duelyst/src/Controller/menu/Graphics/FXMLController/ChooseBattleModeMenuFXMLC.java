@@ -7,14 +7,18 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
-public class SinglePlayerModeMenuFXMLC extends FXMLController {
+public class ChooseBattleModeMenuFXMLC extends FXMLController {
 
     @FXML
     private Button backButton;
     @FXML
-    private Button storyButton;
+    private Button classic;
     @FXML
-    private Button customButton;
+    private Button domination;
+    @FXML
+    private Button flag;
+
+
 
 
     @Override
@@ -25,15 +29,17 @@ public class SinglePlayerModeMenuFXMLC extends FXMLController {
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/Menu.css");
 
 
-        GraphicsControls.setButtonStyle("menu-button" , storyButton , customButton);
+        GraphicsControls.setButtonStyle("menu-button" , classic , domination , flag);
 
         GraphicsControls.setBackButtonOnPress(backButton);
 
-        storyButton.setOnAction(e -> enterSubMenu(StoryModeMenu.getMenu()));
-        customButton.setOnAction(e -> enterSubMenu(CustomModeMenu.getMenu()));
+
+        classic.setOnAction(e -> ((ChooseBattleModeMenu)menu).setMode(1) );
+        domination.setOnAction(e ->((ChooseBattleModeMenu)menu).setMode(3));
+        flag.setOnAction(e -> ((ChooseBattleModeMenu)menu).setMode(2));
     }
 
     private void enterSubMenu(Menu subMenu){
-        MenuHandler.setCurrentMenu(menu.enter(subMenu));
+        menu.enter(subMenu);
     }
 }

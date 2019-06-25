@@ -27,21 +27,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class LeaderBoardFXMLC {
-//    private static LeaderBoardFXMLC leaderBoard ;
     private Stage stage ;
     @FXML
     private ScrollPane scrollPane ;
     private VBox vbox ;
 
-//    public static LeaderBoardFXMLC getLeaderBoard(){
-//        if (leaderBoard == null) leaderBoard = new LeaderBoardFXMLC() ;
-//        return leaderBoard;
-//    }
-//    public  LeaderBoardFXMLC(){
-//        leaderBoard=this;
-//    }
 
-    public static void makeNewScene(ArrayList<Account>accounts) {
+    public static void makeNewScene(ArrayList<Account>accounts , LeaderBoardHavingFXMLC fxmlc) {
         try {
             Parent root;
             String rootPath = "Controller/menu/Graphics/FXMLs/LeaderBoard.fxml";
@@ -52,11 +44,11 @@ public class LeaderBoardFXMLC {
             scene.setOnMouseMoved(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
 
             LeaderBoardFXMLC controller = rootLoader.getController();
-            controller.show(accounts,scene);
+            controller.show(accounts,scene , fxmlc);
         }catch (Exception e){}
     }
 
-    public void show(ArrayList<Account> accounts,Scene scene) {
+    public void show(ArrayList<Account> accounts,Scene scene , LeaderBoardHavingFXMLC fxmlc) {
         stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -85,7 +77,6 @@ public class LeaderBoardFXMLC {
                     + " Wins : " + account.getWins());
             label.getStyleClass().add("nameLabel");
             label.setOnMouseClicked(e -> {
-                SignInMenuFXMLC fxmlc = (SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController() ;
                 fxmlc.setUsernameInput(account.getUsername());
                 stage.close();
             });

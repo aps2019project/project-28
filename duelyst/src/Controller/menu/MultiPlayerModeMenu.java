@@ -1,12 +1,23 @@
 package Controller.menu;
 
 import Controller.Game;
+import Controller.menu.Graphics.FXMLController.LeaderBoardHavingFXMLC;
 import Model.account.Account;
+import Model.account.Deck;
+import View.Listeners.OnDeckSelectorClickedListener;
+import View.Listeners.OnLeaderBoardClickedListener;
+import View.MenuHandler;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
 
-public class MultiPlayerModeMenu extends Menu {
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu {
     private static MultiPlayerModeMenu menu;
+    private OnDeckSelectorClickedListener deckSelectorListener ;
+    private OnLeaderBoardClickedListener leaderBoardPresenters;
+
     private MultiPlayerModeMenu(String name) {
         super(name);
     }
@@ -24,6 +35,7 @@ public class MultiPlayerModeMenu extends Menu {
             Game.accounts[0]=this.account;
             Game.accounts[1] = account;
             Battle.getMenu().setPlayer(Game.accounts[0].getPlayer(), Game.accounts[1].getPlayer());
+            showDeckSelector(this.account);
 
         } else {
             throw new WrongPassException();
@@ -34,5 +46,39 @@ public class MultiPlayerModeMenu extends Menu {
     public void help() {
         super.help();
         System.out.println("4)select user [username] [password]");
+    }
+
+    @Override
+    public void setDeckSelectorListener(OnDeckSelectorClickedListener ds) {
+        deckSelectorListener = ds ;
+    }
+
+    @Override
+    public void showDeckSelector(Account account) {
+        deckSelectorListener.show(account , this , "");
+    }
+
+    @Override
+    public void selectDeck(Account account, Deck deck) {
+        account.getCollection().setMainDeck(deck);
+        if (account != this.account) MenuHandler.setCurrentMenu(ChooseBattleModeMenu.getMenu().enter());
+        else showDeckSelector(Game.accounts[1]);
+    }
+
+    public void addLeaderBoardClickedListener(OnLeaderBoardClickedListener presenter) {
+        this.leaderBoardPresenters = presenter ;
+    }
+
+    public void showLeaderBoard() {
+        Account.sort();
+        ArrayList<Account> accounts = new ArrayList<>() ;
+        for (Account account : Account.getAccounts()){
+            if (account != menu.getAccount()){
+                accounts.add(account);
+            }
+        }
+
+        leaderBoardPresenters.show(accounts , (LeaderBoardHavingFXMLC)getGraphic().getController());
+
     }
 }

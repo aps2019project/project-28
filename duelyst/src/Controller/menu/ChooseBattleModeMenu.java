@@ -32,15 +32,15 @@ public class ChooseBattleModeMenu extends Menu {
         switch (mode){
             case 3:
                 Battle.getMenu().setGameMode(new Domination());
-                MenuHandler.currentMenu=this.enter(GameModeMenu.getMenu());
+                MenuHandler.setCurrentMenu(this.enter(Battle.getMenu()));
                 break;
             case 2:
                 Battle.getMenu().setGameMode(new FlagMode());
-                MenuHandler.currentMenu=this.enter(GameModeMenu.getMenu());
+                MenuHandler.setCurrentMenu(this.enter(Battle.getMenu()));
                 break;
             case 1:
                 Battle.getMenu().setGameMode(new ClassicMode());
-                MenuHandler.currentMenu=this.enter(GameModeMenu.getMenu());
+                MenuHandler.setCurrentMenu(this.enter(Battle.getMenu()));
                 break;
             default:
                 System.out.println("please Enter a Number between 1 and 3");

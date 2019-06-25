@@ -2,6 +2,7 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.*;
 import Controller.menu.Graphics.GraphicsControls;
+import View.MenuHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,7 +26,7 @@ public class MainMenuFXMLC extends FXMLController {
         super.buildScene();
         Scene scene = menu.getGraphic().getScene();
 
-        scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/MainMenu.css");
+        scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/Menu.css");
         exitMenuButton.setStyle("-fx-text-fill: red;");
 
         GraphicsControls.setButtonStyle("menu-button" , battleMenuButton,
@@ -40,10 +41,10 @@ public class MainMenuFXMLC extends FXMLController {
 
         collectionMenuButton.setOnAction(e -> enterSubMenu(CollectionMenu.getMenu()));
         shopMenuButton.setOnAction(e -> enterSubMenu(ShopMenu.getMenu()));
-        battleMenuButton.setOnAction(e -> enterSubMenu(ChooseBattleModeMenu.getMenu()));
+        battleMenuButton.setOnAction(e -> enterSubMenu(GameModeMenu.getMenu()));
     }
 
     private void enterSubMenu(Menu subMenu){
-        menu.enter(subMenu);
+        MenuHandler.setCurrentMenu(menu.enter(subMenu));
     }
 }
