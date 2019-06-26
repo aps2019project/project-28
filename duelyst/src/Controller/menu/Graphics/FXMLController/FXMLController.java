@@ -50,6 +50,10 @@ public class FXMLController {
 
     }
 
+    public void enterScene(){
+
+    }
+
     public void updateScene(){
         /*
         * called when the current menu is changed to this (every time we enter the menu)

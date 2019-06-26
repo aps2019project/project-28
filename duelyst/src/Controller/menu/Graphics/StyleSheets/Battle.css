@@ -1,6 +1,6 @@
 .root{
     -fx-background-image: url("../../../../resources/maps/battlemap0_middleground.png");
-    -fx-background-size: 100% 100%;
+     -fx-background-size: 100% 100%;
 }
 
 .cardBackground{
@@ -24,5 +24,5 @@
 }
 
 .emptyMana{
-     -fx-image: url("../../../../resources/ui/icon_mana_inactive.png");
+    -fx-image: url("../../../../resources/ui/icon_mana_inactive.png");
 }

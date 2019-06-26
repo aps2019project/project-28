@@ -12,7 +12,7 @@ import java.util.Comparator;
 public class Account {
 
     private static final Account defaultAccount = new Account("Duelyst","SAF","Pass the fucking word");
-    public static final Account[]AI={new Account("EL_DUELYSTA","Costum","AI")
+    public static final Account[] AI={new Account("EL_DUELYSTA","Costum","AI")
             ,new Account("sheraider","level_1","AI")
             ,new Account("mster_yoda","level_2","AI")
             ,new Account("thanos","level_3","AI")};
@@ -30,6 +30,7 @@ public class Account {
     protected ArrayList<Match> matchHistory;
     protected int wins;
     protected int storyModeSPX;
+    private String avatar;
 
 
 
@@ -233,5 +234,13 @@ public class Account {
 
     public void saveMatch(Match match){
         this.matchHistory.add(match);
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

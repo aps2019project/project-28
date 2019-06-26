@@ -32,12 +32,6 @@ public class AI extends Player {
         this.enemy=enemy;
     }
 
-
-
-
-
-
-
     private void play() {
         move++;
         String command;

@@ -39,7 +39,8 @@ public class GraphicView extends Application implements View{
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-//        Primary.initGraphics();
+
+        Primary.initGraphics();
 
         //TODO just so there is another deck you know !
         {

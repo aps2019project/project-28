@@ -20,6 +20,7 @@ import Model.card.spell.Targets.*;
 import Model.item.Collectable;
 import Model.item.Item;
 import Model.item.ItemActions.*;
+import Model.item.OnItemDetailPresentedListener;
 import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
@@ -151,7 +152,6 @@ public class Primary {
         getAccounts();
         Account.updateAccounts();
         generateAI();
-        initGraphics();
     }
 
     public static void setDefaultDeck(Deck deck) throws IOException {
@@ -617,6 +617,8 @@ public class Primary {
         setHermionesAvatars();
         setGraphicsForHermiones();
         setIconForCards();
+        setAccountAvatars();
+        setItemListeners();
     }
 
     public static void setHermionesAvatars() throws FileNotFoundException {
@@ -732,6 +734,7 @@ public class Primary {
                 AnimationTimer animationTimer = new AnimationTimer() {
                     @Override
                     public void handle(long now) {
+
                     }
                 };
                 animationTimer.start();
@@ -754,6 +757,26 @@ public class Primary {
         for (Minion minion : minions) {
             minion.getGraphics().setIcon("resources/icons/artifact_boss_frostarmor.png");
             minion.getGraphics().setIconGif("resources/ui/icon_gold.png");
+        }
+    }
+
+    private static void setAccountAvatars(){
+        for (Account account : accounts) {
+            account.setAvatar("resources/profile_icons/f3_f6_bundle_icon-2.png");
+        }
+        Account.AI[0].setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
+        Account.AI[1].setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
+        Account.AI[2].setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
+    }
+
+    private static void setItemListeners(){
+        for (Collectable collectable : collectables) {
+            collectable.addNewOnItemDeatilPresentedListener(new OnItemDetailPresentedListener() {
+                @Override
+                public void showItemDetail(Item item) {
+
+                }
+            });
         }
     }
 

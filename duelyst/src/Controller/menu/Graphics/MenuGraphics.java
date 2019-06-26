@@ -61,6 +61,7 @@ public class MenuGraphics {
     }
 
     public void enter() {
+        this.getController().enterScene();
         this.controller.updateScene();
         GraphicView.setScene(this.scene);
     }

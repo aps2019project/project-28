@@ -30,6 +30,8 @@ public class Battle extends Menu {
 
     private Map map;
     private Player[] player = new Player[2];
+    private Player ownPLayer;
+    private Player opponentPlayer;
     private int turn = 0;
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
     private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
@@ -93,7 +95,7 @@ public class Battle extends Menu {
         return true;
     }
 
-    public void insert(Hermione hermione, Cell cell) throws InvalidCellException {
+    private void insert(Hermione hermione, Cell cell) throws InvalidCellException {
         System.out.println("hermione.getGraphics() = " + hermione.getGraphics());
         hermione.spawn(cell);
         this.map.getCell(cell).setCardOnCell(hermione);
@@ -487,7 +489,9 @@ public class Battle extends Menu {
 
     public void setPlayer(Player firstPlayer, Player secondPlayer) {
         this.player[0] = firstPlayer;
+        this.ownPLayer = firstPlayer;
         this.player[1] = secondPlayer;
+        this.opponentPlayer = secondPlayer;
     }
 
     public void addGameInfoPresentedListener(OnGameInfoPresentedListener presenter) {
@@ -618,5 +622,13 @@ public class Battle extends Menu {
 
     public Match getMatch() {
         return this.match;
+    }
+
+    public Player getOwnPLayer() {
+        return ownPLayer;
+    }
+
+    public Player getOpponentPlayer() {
+        return opponentPlayer;
     }
 }

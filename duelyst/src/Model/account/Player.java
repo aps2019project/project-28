@@ -27,6 +27,7 @@ class ScannerWrapper{
 }
 
 public class Player {
+
     private Account user;
     private Hand hand;
     private int maxMana = 2;
