@@ -274,6 +274,22 @@ public class BattleFXMLC extends FXMLController {
                 event.consume();
             }
         });
+
+        ownSP.setOnDragExited(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent event) {
+                ownSP.getStyleClass().remove("specialPowerDragged");
+                ownSP.getStyleClass().add("specialPower");
+            }
+        });
+
+        opponentSP.setOnDragExited(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent event) {
+                opponentSP.getStyleClass().remove("specialPowerDragged");
+                opponentSP.getStyleClass().add("specialPowe");
+            }
+        });
     }
 
     private void specialPowerTarget(){
