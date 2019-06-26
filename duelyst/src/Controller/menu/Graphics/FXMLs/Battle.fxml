@@ -310,5 +310,7 @@
                 <TextField prefHeight="83.0" prefWidth="136.0" styleClass="info" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             </children>
         </GridPane>
+      <ImageView fx:id="ownSP" fitHeight="62.0" fitWidth="63.0" layoutX="257.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true" styleClass="specialPower" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="410.0" />
+      <ImageView fx:id="opponentSP" fitHeight="62.0" fitWidth="63.0" layoutX="910.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true" styleClass="specialPower" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="410.0" />
     </children>
 </AnchorPane>

@@ -39,6 +39,9 @@ public class BattleFXMLC extends FXMLController {
     public ImageView secondPlayer;
     public ImageView nextCardOnHand;
     public GridPane handInfo;
+    public ImageView ownSP;
+    public ImageView opponentSP;
+
     @FXML
     private AnchorPane frame;
     @FXML
@@ -108,6 +111,8 @@ public class BattleFXMLC extends FXMLController {
         updateMana();
         updateHand();
         updateMap();
+        specialPowerSource();
+        specialPowerTarget();
         //use items
 //        Battle.getMenu().useItem();
 
@@ -246,6 +251,63 @@ public class BattleFXMLC extends FXMLController {
         }
     }
 
+    private void specialPowerSource(){
+        ownSP.setOnDragDetected(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ownSP.getStyleClass().add("specialPowerDragged");
+                Dragboard db = ownSP.startDragAndDrop(TransferMode.ANY);
+                ClipboardContent content = new ClipboardContent();
+                content.putImage(ownSP.getImage());
+                db.setContent(content);
+                event.consume();
+            }
+        });
+        opponentSP.setOnDragDetected(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                opponentSP.getStyleClass().add("specialPowerDragged");
+                Dragboard db = opponentSP.startDragAndDrop(TransferMode.ANY);
+                ClipboardContent content = new ClipboardContent();
+                content.putImage(opponentSP.getImage());
+                db.setContent(content);
+                event.consume();
+            }
+        });
+    }
+
+    private void specialPowerTarget(){
+        for (int i = 0 ; i < 9 ; i++){
+            for(int j = 0 ; j < 5 ; j++){
+                ImageView cell = getCell(i, j);
+                int finalI = i;
+                int finalJ = j;
+                cell.setOnDragOver(new EventHandler<DragEvent>() {
+                    @Override
+                    public void handle(DragEvent event) {
+                        ImageView source = (ImageView) event.getGestureSource();
+                        if (source.getId().compareTo("ownSP") == 0 || source.getId().compareTo("opponentSP") == 0) {
+                            try {
+                                Battle.getMenu().useSpecialPower(finalI, finalJ);
+                                event.acceptTransferModes(TransferMode.ANY);
+                            } catch (InvalidCellException | CantSpecialPowerCooldownException | InvalidCardException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+                cell.setOnDragDropped(new EventHandler<DragEvent>() {
+                    @Override
+                    public void handle(DragEvent event) {
+                        ImageView source = (ImageView) event.getGestureSource();
+                        source.getStyleClass().remove("specialPowerDragged");
+                        source.getStyleClass().add("specialPower");
+                    }
+                });
+            }
+        }
+    }
+
     private void updateHand(){
         Card[] playerHandCards = Battle.getMenu().getPlayer().getHand().getCards();
         for (int i = 0 ; i < Hand.SIZE ;  i++) {
@@ -372,6 +434,11 @@ public class BattleFXMLC extends FXMLController {
 
     public void addToScene(Node... nodes){
         this.frame.getChildren().addAll(nodes);
+    }
+
+    private boolean isEmpty(ImageView imageView){
+        if(imageView.getImage() == null) return true;
+        return false;
     }
 
     public void removeFromScene(Node... nodes) {

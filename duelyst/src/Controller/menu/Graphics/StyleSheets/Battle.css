@@ -38,13 +38,13 @@
 }
 
 .specialPower{
-     -fx-background-image: url("../../../../resources/ui/collection_card_rarity_legendary.png");
+     -fx-image: url("../../../../resources/ui/collection_card_rarity_legendary.png");
 }
 
 .specialPowerDragged{
-  -fx-background-image: url("../../../../resources/ui/collection_card_rarity_epic.png");
+  -fx-image: url("../../../../resources/ui/collection_card_rarity_epic.png");
 }
 
 .specialPowerDisabled{
-      -fx-background-image: url("../../../../resources/ui/collection_card_rarity_common.png");
+      -fx-image: url("../../../../resources/ui/collection_card_rarity_common.png");
 }
