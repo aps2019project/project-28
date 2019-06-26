@@ -662,15 +662,15 @@ public class Primary {
             }
         });
 
-        hermione.getGraphics().addAttackListenr(new OnAttackListener() {//todo vaghT attack bzne dg chizi nis nemayesh bde
+        hermione.getGraphics().addAttackListenr(new OnAttackListener() {//todo fix this shit
             @Override
             public void show(Hermione enemyCard){
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
                 final Animation animation = new SpriteAnimation(
-                        battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
+                        battle.getCell(hermione.getLocation().getX(),hermione.getLocation().getY()),
                         Duration.millis(2000),
                         8, 1,
-                        4*1024/10 , 0,
+                        2*1024/10 , 0,
                         1024/10, 1024/10
                 );
                 animation.setCycleCount(1);
@@ -681,11 +681,6 @@ public class Primary {
         hermione.getGraphics().addCardSelectedListener(new OnCardSelectedListener() {
             @Override
             public void show(String state) {
-                try {
-                    Battle.getMenu().select(hermione.getCardID());
-                }
-                catch (InvalidCardException | InvalidItemException e) { e.printStackTrace(); }
-
             }
         });
 
@@ -697,7 +692,7 @@ public class Primary {
                         battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
                         Duration.millis(2000),
                         8, 1,
-                        2*1024/10 , 0,
+                        4*1024/10 , 0,
                         1024/10, 1024/10
                 );
                 animation.setCycleCount(1);
@@ -725,19 +720,17 @@ public class Primary {
             @Override
             public void show(Cell cell) {
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
-                int count = 100;
-                int xDistance = abs(hermione.getLocation().getX() - cell.getX());
-                int yDistance = abs(hermione.getLocation().getY() - cell.getY());
-                double xStep = xDistance * battle.getMapWidth() / 9.0;
-                double yStep = yDistance * battle.getMapHeight() / 5.0;
-
-                AnimationTimer animationTimer = new AnimationTimer() {
-                    @Override
-                    public void handle(long now) {
-
-                    }
-                };
-                animationTimer.start();
+                ImageView imageView = battle.getCell(cell.getX(), cell.getY());
+                imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                final Animation animation = new SpriteAnimation(
+                        imageView,
+                        Duration.millis(2000),
+                        8, 1,
+                        1024/10 , 0,
+                        1024/10, 1024/10
+                );
+                animation.setCycleCount(Animation.INDEFINITE);
+                animation.play();
             }
         });
 

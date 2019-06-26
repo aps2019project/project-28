@@ -37,8 +37,6 @@
     -fx-background-size: 100% 100%;
 }
 
-
-
 .endTurnButton{
     -fx-background-image: url("../../../../resources/ui/button_end_turn_mine.png");
 }

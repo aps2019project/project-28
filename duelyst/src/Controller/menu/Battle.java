@@ -161,10 +161,22 @@ public class Battle extends Menu {
         }
     }
 
+    public void select(Object obj) throws InvalidCardException, InvalidItemException {
+        Deck deck=this.account.getPlayer().getDeck();
+        if(deck.has(obj)){
+            if(obj instanceof Item)
+                select(((Item) obj).getID());
+            else if(obj instanceof Card)
+                select(((Hermione) obj).getCardID());
+            return;
+        }
+        throw new InvalidItemException();
+    }
 
     public void select(int ID) throws InvalidCardException, InvalidItemException {
         System.err.println();
         Deck deck = this.account.getPlayer().getDeck();
+        // TODO: 2019-06-26 player chera hasItem dare ArshiA ya
         if (this.account.getPlayer().hasItem(ID)) {
             this.account.getPlayer().setSelectedItem(this.account.getPlayer().getItem(ID));
             return;

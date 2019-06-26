@@ -299,4 +299,15 @@ public class Deck {
     public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
+
+    public boolean has(Object object) {
+        for (Item item : this.items) {
+            if(item==object)return true;
+        }
+        for (Card card : this.cards) {
+            if(card== object)return true;
+        }
+        if(this.hero==object)return true;
+        return false;
+    }
 }
