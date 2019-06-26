@@ -39,8 +39,6 @@ public class BattleFXMLC extends FXMLController {
     public ImageView secondPlayer;
     public ImageView nextCardOnHand;
     public GridPane handInfo;
-    public Button ownPlayerSpecialPower;
-    public Button opponentPlayerSpecialPower;
     @FXML
     private AnchorPane frame;
     @FXML
@@ -63,7 +61,6 @@ public class BattleFXMLC extends FXMLController {
         GraphicsControls.setButtonStyle("endTurnButton", endTurn);
         GraphicsControls.setButtonStyle(".battleMenuButton", menuButton);
         GraphicsControls.setButtonStyle(".graveYardButton", graveYard);
-        GraphicsControls.setButtonStyle("specialPowerButton", opponentPlayerSpecialPower, ownPlayerSpecialPower);
     }
 
 
@@ -247,13 +244,6 @@ public class BattleFXMLC extends FXMLController {
                 });
             }
         }
-
-        opponentPlayerSpecialPower.setOnDragDetected(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-
-            }
-        });
     }
 
     private void updateHand(){
