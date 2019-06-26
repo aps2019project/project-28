@@ -43,8 +43,6 @@
     -fx-background-size: 100% 100%;
 }
 
-
-
 .endTurnButton{
     -fx-background-image: url("../../../../resources/ui/button_end_turn_mine.png");
 }
@@ -64,6 +62,14 @@
 
 .graveYardButtonClicked{
     -fx-background-image: url("../../../../resources/ui/button_primary_right_glow.png");
+}
+
+.showCollectables{
+    -fx-background-image: url("../../../../resources/ui/button_icon_middle.png");
+}
+
+.showCollectablesClicked{
+    -fx-background-image: url("../../../../resources/ui/button_icon_middle_glow.png");
 }
 
 .shopping-button{

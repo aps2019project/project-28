@@ -29,14 +29,20 @@ import com.sun.scenario.effect.impl.prism.PrImage;
 import exeption.*;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.*;
 import java.util.ArrayList;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.toRadians;
 
 public class Primary {
 
@@ -619,6 +625,7 @@ public class Primary {
         setIconForCards();
         setAccountAvatars();
         setItemListeners();
+        setItemGraphics();
     }
 
     public static void setHermionesAvatars() throws FileNotFoundException {
@@ -647,9 +654,8 @@ public class Primary {
             @Override
             public void show(Cell cell){
                 BattleFXMLC controller = (BattleFXMLC)Battle.getMenu().getGraphic().getController();
-                Image image = new Image(hermione.getGraphics().getUnits());
                 ImageView imageView = controller.getCell(cell.getX(), cell.getY());
-                imageView.setImage(image);
+                imageView.setImage(new Image(hermione.getGraphics().getUnits()));
                 final Animation animation = new SpriteAnimation(
                     imageView,
                     Duration.millis(2000),
@@ -662,15 +668,15 @@ public class Primary {
             }
         });
 
-        hermione.getGraphics().addAttackListenr(new OnAttackListener() {//todo vaghT attack bzne dg chizi nis nemayesh bde
+        hermione.getGraphics().addAttackListenr(new OnAttackListener() {//todo fix this shit
             @Override
             public void show(Hermione enemyCard){
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
                 final Animation animation = new SpriteAnimation(
-                        battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
+                        battle.getCell(hermione.getLocation().getX(),hermione.getLocation().getY()),
                         Duration.millis(2000),
                         8, 1,
-                        4*1024/10 , 0,
+                        2*1024/10 , 0,
                         1024/10, 1024/10
                 );
                 animation.setCycleCount(1);
@@ -681,11 +687,6 @@ public class Primary {
         hermione.getGraphics().addCardSelectedListener(new OnCardSelectedListener() {
             @Override
             public void show(String state) {
-                try {
-                    Battle.getMenu().select(hermione.getCardID());
-                }
-                catch (InvalidCardException | InvalidItemException e) { e.printStackTrace(); }
-
             }
         });
 
@@ -697,10 +698,10 @@ public class Primary {
                         battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
                         Duration.millis(2000),
                         8, 1,
-                        2*1024/10 , 0,
+                        4*1024/10 , 0,
                         1024/10, 1024/10
                 );
-                animation.setCycleCount(1);
+                animation.setCycleCount(2);
                 animation.play();
             }
         });
@@ -725,19 +726,17 @@ public class Primary {
             @Override
             public void show(Cell cell) {
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
-                int count = 100;
-                int xDistance = abs(hermione.getLocation().getX() - cell.getX());
-                int yDistance = abs(hermione.getLocation().getY() - cell.getY());
-                double xStep = xDistance * battle.getMapWidth() / 9.0;
-                double yStep = yDistance * battle.getMapHeight() / 5.0;
-
-                AnimationTimer animationTimer = new AnimationTimer() {
-                    @Override
-                    public void handle(long now) {
-
-                    }
-                };
-                animationTimer.start();
+                ImageView imageView = battle.getCell(cell.getX(), cell.getY());
+                final Animation animation = new SpriteAnimation(
+                        imageView,
+                        Duration.millis(2000),
+                        8, 1,
+                        1024/10 , 0,
+                        1024/10, 1024/10
+                );
+                imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                animation.setCycleCount(Animation.INDEFINITE);
+                animation.play();
             }
         });
 
@@ -764,9 +763,9 @@ public class Primary {
         for (Account account : accounts) {
             account.setAvatar("resources/profile_icons/f3_f6_bundle_icon-2.png");
         }
-        Account.AI[0].setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
-        Account.AI[1].setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
-        Account.AI[2].setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
+        for (Account account : Account.AI) {
+            account.setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
+        }
     }
 
     private static void setItemListeners(){
@@ -774,10 +773,34 @@ public class Primary {
             collectable.addNewOnItemDeatilPresentedListener(new OnItemDetailPresentedListener() {
                 @Override
                 public void showItemDetail(Item item) {
+                    if(!hasItem(item.getName())){
+                        Label textField = new Label(item.getName());
+                        textField.setPrefWidth(300);
+                        BattleFXMLC battleFXMLC = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
+                        battleFXMLC.showCollectable.getChildren().add(textField);
+                        GridPane.setRowIndex(textField, battleFXMLC.showCollectable.getChildren().size());
+                    }
+                }
 
+                private boolean hasItem(String name) {
+                    BattleFXMLC battleFXMLC = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
+                    for (Node child : battleFXMLC.showCollectable.getChildren()) {
+                        if(((Label)child).getText().compareTo(name) == 0){
+                            return true;
+                        }
+                    }
+                    return false;
                 }
             });
         }
     }
+
+    private static void setItemGraphics(){
+        for (Collectable collectable : collectables) {
+            collectable.getItemGraphics().setAvatar("resources/arena/card_fade_particles.png");
+        }
+    }
+
+
 
 }

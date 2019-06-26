@@ -36,3 +36,25 @@
     -fx-background-radius: 20;
     -fx-opacity: 0.5;
 }
+
+.specialPower{
+     -fx-image: url("../../../../resources/ui/collection_card_rarity_legendary.png");
+}
+
+.specialPowerDragged{
+  -fx-image: url("../../../../resources/ui/collection_card_rarity_epic.png");
+}
+
+.specialPowerDisabled{
+      -fx-image: url("../../../../resources/ui/collection_card_rarity_common.png");
+}
+
+.showCollectable{
+    -fx-background-color: ffffff;
+    -fx-opacity: 0;
+}
+
+.showCollectableEntered{
+    -fx-background-color: ffffff;
+    -fx-opacity: 1;
+}
