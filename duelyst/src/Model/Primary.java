@@ -29,8 +29,12 @@ import com.sun.scenario.effect.impl.prism.PrImage;
 import exeption.*;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.*;
@@ -648,9 +652,8 @@ public class Primary {
             @Override
             public void show(Cell cell){
                 BattleFXMLC controller = (BattleFXMLC)Battle.getMenu().getGraphic().getController();
-                Image image = new Image(hermione.getGraphics().getUnits());
                 ImageView imageView = controller.getCell(cell.getX(), cell.getY());
-                imageView.setImage(image);
+                imageView.setImage(new Image(hermione.getGraphics().getUnits()));
                 final Animation animation = new SpriteAnimation(
                     imageView,
                     Duration.millis(2000),
@@ -696,7 +699,7 @@ public class Primary {
                         4*1024/10 , 0,
                         1024/10, 1024/10
                 );
-                animation.setCycleCount(1);
+                animation.setCycleCount(2);
                 animation.play();
             }
         });
@@ -722,7 +725,6 @@ public class Primary {
             public void show(Cell cell) {
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
                 ImageView imageView = battle.getCell(cell.getX(), cell.getY());
-                imageView.setImage(new Image(hermione.getGraphics().getUnits()));
                 final Animation animation = new SpriteAnimation(
                         imageView,
                         Duration.millis(2000),
@@ -730,6 +732,7 @@ public class Primary {
                         1024/10 , 0,
                         1024/10, 1024/10
                 );
+                imageView.setImage(new Image(hermione.getGraphics().getUnits()));
                 animation.setCycleCount(Animation.INDEFINITE);
                 animation.play();
             }
@@ -768,7 +771,10 @@ public class Primary {
             collectable.addNewOnItemDeatilPresentedListener(new OnItemDetailPresentedListener() {
                 @Override
                 public void showItemDetail(Item item) {
-
+                    TextField textField = new TextField(item.getName());
+                    BattleFXMLC battleFXMLC = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
+                    battleFXMLC.getShowCollectableFXMLC().gridPane.getChildren().add(textField);
+                    GridPane.setRowIndex(textField, battleFXMLC.getShowCollectableFXMLC().gridPane.getChildren().size());
                 }
             });
         }

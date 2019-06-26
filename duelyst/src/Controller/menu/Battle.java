@@ -21,6 +21,9 @@ import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnHandPresentedListener;
 import View.MenuHandler;
 import exeption.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -162,12 +165,16 @@ public class Battle extends Menu {
     }
 
     public void select(Object obj) throws InvalidCardException, InvalidItemException {
-        Deck deck=this.account.getPlayer().getDeck();
+        Deck deck = this.account.getPlayer().getDeck();
         if(deck.has(obj)){
             if(obj instanceof Item)
                 select(((Item) obj).getID());
-            else if(obj instanceof Card)
+            else if(obj instanceof Card) {
+                if(obj instanceof Hermione)
                 select(((Hermione) obj).getCardID());
+                if(obj instanceof Spell)
+                    select(((Spell)obj).getCardID());
+            }
             return;
         }
         throw new InvalidItemException();

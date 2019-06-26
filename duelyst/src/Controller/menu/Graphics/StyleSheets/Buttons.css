@@ -58,6 +58,14 @@
     -fx-background-image: url("../../../../resources/ui/button_primary_right_glow.png");
 }
 
+.showCollectables{
+    -fx-background-image: url("../../../../resources/ui/button_icon_middle.png");
+}
+
+.showCollectablesClicked{
+    -fx-background-image: url("../../../../resources/ui/button_icon_middle_glow.png");
+}
+
 .shopping-button{
     -fx-background-image: url("../../../../resources/ui/button_primary.png");
     -fx-background-repeat: stretch;

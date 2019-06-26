@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane fx:id="frame" prefHeight="800.0" prefWidth="1280.0" styleClass="root" stylesheets="@../StyleSheets/Battle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.BattleFXMLC">
+<AnchorPane fx:id="frame" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.BattleFXMLC">
     <children>
 
         <GridPane fx:id="map" hgap="1.0" layoutX="406.0" layoutY="272.0" prefHeight="342.0" prefWidth="699.0" vgap="2.0" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="370.0" AnchorPane.topAnchor="280.0">
@@ -312,5 +313,14 @@
         </GridPane>
       <ImageView fx:id="ownSP" fitHeight="62.0" fitWidth="63.0" layoutX="257.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true" styleClass="specialPower" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="410.0" />
       <ImageView fx:id="opponentSP" fitHeight="62.0" fitWidth="63.0" layoutX="910.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true" styleClass="specialPower" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="410.0" />
+      <Button fx:id="showCollectables" layoutX="71.0" layoutY="368.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="81.0" styleClass="showCollectables" text="show" textFill="WHITE" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="350.0" />
+      <Label fx:id="ownPlayerInfo" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0" />
+      <Label fx:id="opponentPlayerInfo" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0" />
+      <TextField fx:id="nextCardOnHandInfo" opacity="0.0" prefHeight="50.0" styleClass="info" stylesheets="@../StyleSheets/Battle.css" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="50.0" />
+      <Label fx:id="errorLable" prefHeight="40.0" prefWidth="400.0" textFill="RED" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="30.0" />
     </children>
+   <stylesheets>
+      <URL value="@../StyleSheets/Battle.css" />
+      <URL value="@../StyleSheets/Buttons.css" />
+   </stylesheets>
 </AnchorPane>
