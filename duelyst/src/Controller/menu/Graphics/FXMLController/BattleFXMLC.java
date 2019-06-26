@@ -105,7 +105,24 @@ public class BattleFXMLC extends FXMLController {
                 Battle.getMenu().showCollectable();
             }
         });
-
+        showCollectable.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                for (Node child : showCollectable.getChildren()) {
+                    Label itemLable = (Label)child;
+                    itemLable.setOnDragDetected(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            Dragboard db = itemLable.startDragAndDrop(TransferMode.ANY);
+                            ClipboardContent content = new ClipboardContent();
+                            content.putString(itemLable.getText());
+                            db.setContent(content);
+                            event.consume();
+                        }
+                    });
+                }
+            }
+        });
         showCollectable.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
