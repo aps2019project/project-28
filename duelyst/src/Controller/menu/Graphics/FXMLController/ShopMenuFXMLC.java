@@ -3,9 +3,11 @@ package Controller.menu.Graphics.FXMLController;
 import Controller.menu.CustomModeMenu;
 import Controller.menu.Graphics.GraphicsControls;
 import Controller.menu.Menu;
+import Controller.menu.ShopMenu;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
+import View.MenuHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -24,12 +26,12 @@ import java.util.Objects;
 public class ShopMenuFXMLC extends FXMLController {
 
     @FXML
-    private Button backButton , cardTab , itemTab , sellTab;
+    private Button backButton , cardTab , itemTab;
     @FXML
     private Label balance ;
     @FXML
     private ScrollPane scrollPane ;
-    private VBox cardsVbox = new VBox() , itemsVbox = new VBox() , sellTabVbox = new VBox();
+    private VBox cardsVbox = new VBox() , itemsVbox = new VBox() ;
 
     @Override
     public void buildScene() {
@@ -39,33 +41,27 @@ public class ShopMenuFXMLC extends FXMLController {
         makeCardsVBox();
         scrollPane.setContent(cardsVbox);
         makeItemsVBox();
-        makeSellTabVbox();
 
         GraphicsControls.setBackButtonOnPress(backButton);
+        backButton.setOnAction(e -> {
+//            ShopMenu.getMenu().save() ;
+            MenuHandler.goBack();
+        });
+
         tabPressed(cardTab);
         cardTab.setOnMousePressed(e -> tabPressed(cardTab));
         itemTab.setOnMousePressed(e -> tabPressed(itemTab));
-        sellTab.setOnMousePressed(e -> tabPressed(sellTab));
         cardTab.setOnMouseReleased(e -> tabReleased(cardTab));
         itemTab.setOnMouseReleased(e -> tabReleased(itemTab));
-        sellTab.setOnMouseReleased(e -> tabReleased(sellTab));
         cardTab.setOnAction(e -> {
             tabPressed(cardTab);
             tabReleased(itemTab);
-            tabReleased(sellTab);
             scrollPane.setContent(cardsVbox);
         });
         itemTab.setOnAction(e -> {
             tabPressed(itemTab);
             tabReleased(cardTab);
-            tabReleased(sellTab);
             scrollPane.setContent(itemsVbox);
-        });
-        sellTab.setOnAction(e -> {
-            tabPressed(sellTab);
-            tabReleased(cardTab);
-            tabReleased(itemTab);
-            scrollPane.setContent(sellTabVbox);
         });
         scrollPane.setPadding(new Insets(0 , 60 , 0 , 60));
         updateBalance();
@@ -76,17 +72,6 @@ public class ShopMenuFXMLC extends FXMLController {
         balance.setText("Balance : " + menu.getAccount().getMoney() + "$");
     }
 
-    private void makeSellTabVbox() {
-        sellTabVbox.setSpacing(15);
-        FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
-                "Controller/menu/Graphics/FXMLs/MainMenu.fxml")));
-        try {
-            Parent card = rootLoader.load();
-            sellTabVbox.getChildren().add(card);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     private void makeCardsVBox() {
@@ -129,6 +114,7 @@ public class ShopMenuFXMLC extends FXMLController {
     }
 
     private void tabPressed(Button tab) {
+//        ShopMenu.getMenu().save() ;
         tab.getStyleClass().add("tab-button-selected");
     }
 

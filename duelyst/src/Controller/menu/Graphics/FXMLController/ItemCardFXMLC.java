@@ -20,8 +20,8 @@ public class ItemCardFXMLC {
     @FXML
     private ImageView imageView ;
     @FXML
-    private Label name , price , count;
-    private int counter = 0 ;
+    private Label name , price , exist;
+    private boolean exists = false ;
     @FXML
     private Button buy;
 
@@ -33,38 +33,45 @@ public class ItemCardFXMLC {
         name.setText(item.getName());
         price.setText("Price : " + item.getPrice()+"$");
         GraphicsControls.setButtonStyle("shopping-button" , buy);
-        if (account.getMoney() >= item.getPrice()){
-            buy.setOnAction(e -> buy(item , fxmlc));
-            buy.setCursor(new ImageCursor(new Image(Resources.mouse_card.getPath())));
-        }else{
-            buy.setCursor(new ImageCursor(new Image(Resources.mouse_disabled.getPath())));
-            price.setTextFill(Color.RED);
-        }
         for (Usable c : account.getCollection().getUsables()){
-            if (c.equals(item)) counter++ ;
+            if (c.equals(item)) {
+                exists = true ;
+                break;
+            }
         }
-        setCountText();
+        existanceCheck();
         //TODO item graphics !!!
 //        try {
 //            imageView.setImage(item.getGraphics());
 //        }catch(NullPointerException e){
             imageView.setImage(itemBackground);
 //        }
+        if (account.getMoney() >= item.getPrice() && !exists){
+            buy.setOnAction(e -> buy(item , fxmlc));
+            buy.setCursor(new ImageCursor(new Image(Resources.mouse_card.getPath())));
+        }else{
+            buy.setCursor(new ImageCursor(new Image(Resources.mouse_disabled.getPath())));
+            if (exists) exist.setTextFill(Color.RED);
+            else price.setTextFill(Color.RED);
+            buy.setDisable(true);
+        }
     }
 
-    private void setCountText() {
-        if (counter == 0) count.setText("You don't have this Item");
+    private void existanceCheck() {
+        if (!exists) exist.setText("You don't have this Item");
         else {
-            count.setText("You own " + counter + " unit");
-            if (counter > 1) count.setText(count.getText() + "s");
+            exist.setText("You own this item");
+            buy.setDisable(true);
+            buy.getStyleClass().remove("shopping-button");
+            buy.getStyleClass().add("shopping-button-disabled");
         }
     }
 
     private void buy(Item item , ShopMenuFXMLC fxmlc) {
         try {
             ShopMenu.getMenu().buy(item.getName());
-            counter++;
-            setCountText();
+            exists = true ;
+            existanceCheck();
             fxmlc.updateBalance();
         }catch(Exception e){
             System.err.println("error has been occurred while buying Item in ItemCardFXMLC");
