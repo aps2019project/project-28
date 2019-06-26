@@ -3,3 +3,4 @@
 {"@type":"Model.account.Account","@val":{"name":"arshia","username":"arshia","password":"1","ID":0,"money":99999999,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0,"avatar":null}}
 {"@type":"Model.account.Account","@val":{"name":"Saee","username":"saee","password":"1","ID":0,"money":99999999,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0,"avatar":null}}
 {"@type":"Model.account.Account","@val":{"name":"a","username":"a","password":"1","ID":0,"money":99999999,"collection":{"decks":[],"cards":[],"usables":[]},"matchHistory":[],"wins":0,"storyModeSPX":0,"avatar":null}}
+

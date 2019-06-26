@@ -26,3 +26,13 @@
 .emptyMana{
     -fx-image: url("../../../../resources/ui/icon_mana_inactive.png");
 }
+
+.info{
+     -fx-background-radius: 20;
+     -fx-opacity: 0;
+}
+
+.infoEntered{
+    -fx-background-radius: 20;
+    -fx-opacity: 0.5;
+}

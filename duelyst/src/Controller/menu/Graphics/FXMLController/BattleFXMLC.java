@@ -18,6 +18,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
@@ -37,6 +39,7 @@ public class BattleFXMLC extends FXMLController {
     public ImageView firstPlayer;
     public ImageView secondPlayer;
     public ImageView nextCardOnHand;
+    public GridPane handInfo;
 
     @FXML
     private AnchorPane frame;
@@ -66,26 +69,24 @@ public class BattleFXMLC extends FXMLController {
     @Override
     public void buildScene() {
         super.buildScene();
-        endTurn.setOnKeyPressed(new EventHandler<KeyEvent>() {
+       endTurn.setOnMousePressed(new EventHandler<MouseEvent>() {
+           @Override
+           public void handle(MouseEvent event) {
+               try {
+                   Battle.getMenu().endTurn();
+                   updateScene();
+               } catch (HandFullException | DeckIsEmptyException e) { e.printStackTrace(); }
+           }
+       });
+        menuButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(KeyEvent event) {
-                try {
-                    Battle.getMenu().endTurn();
-                    updateScene();
-                } catch (HandFullException | DeckIsEmptyException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        menuButton.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
+            public void handle(MouseEvent event) {
                 MenuHandler.setCurrentMenu(MainMenu.getMenu());
             }
         });
-        graveYard.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        graveYard.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(KeyEvent event) {
+            public void handle(MouseEvent event) {
                 MenuHandler.setCurrentMenu(GraveYardMenu.getMenu());
             }
         });
@@ -97,7 +98,7 @@ public class BattleFXMLC extends FXMLController {
         super.enterScene();
         firstPlayer.setImage(new Image(Battle.getMenu().getPlayer().getUser().getAvatar()));
         secondPlayer.setImage(new Image(Battle.getMenu().getEnemyPlayer().getUser().getAvatar()));
-//        updateScene();
+        updateScene();
     }
 
     @Override
@@ -258,40 +259,56 @@ public class BattleFXMLC extends FXMLController {
             animation.setCycleCount(Animation.INDEFINITE);
             animation.play();
         }
+        handOnHover();
+    }
+
+    private void handOnHover(){
+        for (Node child : handFrame.getChildren()) {
+            ImageView image = (ImageView) child;
+            image.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    int i = handFrame.getChildren().indexOf(child);
+                    TextField info = (TextField) handInfo.getChildren().get(i);
+                    Card card = getCardOnHand(i);
+                    info.getStyleClass().add("infoEntered");
+                    info.setText(card.getName());
+                }
+            });
+            image.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    int i = handFrame.getChildren().indexOf(child);
+                    TextField info = (TextField) handInfo.getChildren().get(i);
+                    info.getStyleClass().remove("infoEntered");
+                    info.setText("");
+                }
+            });
+        }
     }
 
     private void updateMana(){
+        String manaURL = "resources/ui/icon_mana.png";
+        String inactiveManaURL = "resources/ui/icon_mana_inactive.png";
         int mana = Battle.getMenu().getOwnPLayer().getMana();
-        System.err.println(mana);
         for (int i = 0 ; i < mana ; i++){
-            if(playerMana.getChildren().get(i).getStyleClass().contains("emptyMana"))
-                playerMana.getChildren().get(i).getStyleClass().remove("emptyMana");
-            ((ImageView)playerMana.getChildren().get(i)).setImage(new Image("resources/ui/icon_mana.png"));
+            ((ImageView)playerMana.getChildren().get(i)).setImage(new Image(manaURL));
         }
         for (int i = mana ; i < 9 ; i++){
-//            playerMana.getChildren().get(i).getStyleClass().add("emptyMana");
-            ((ImageView)playerMana.getChildren().get(i)).setImage(new Image("resources/ui/icon_mana_inactive.png"));
+            ((ImageView)playerMana.getChildren().get(i)).setImage(new Image(inactiveManaURL));
         }
         int enemyManaNumber = Battle.getMenu().getOpponentPlayer().getMana();
-        System.err.println(enemyManaNumber);
         for (int i = 0 ; i < enemyManaNumber ; i++){
-            if(enemyMana.getChildren().get(i).getStyleClass().contains("emptyMana"))
-                enemyMana.getChildren().get(i).getStyleClass().remove("emptyMana");
-//            enemyMana.getChildren().get(i).getStyleClass().add("mana");
-            ((ImageView)enemyMana.getChildren().get(i)).setImage(new Image("resources/ui/icon_mana.png"));
+            ((ImageView)enemyMana.getChildren().get(i)).setImage(new Image(manaURL));
         }
         for (int i = enemyManaNumber ; i < 9 ; i++){
-//            enemyMana.getChildren().get(i).getStyleClass().add("emptyMana");
-            ((ImageView)enemyMana.getChildren().get(i)).setImage(new Image("resources/ui/icon_mana_inactive.png"));
+            ((ImageView)enemyMana.getChildren().get(i)).setImage(new Image(inactiveManaURL));
         }
-
     }
 
     private Card getCardOnHand(int index){
-        for (int i = 0 ; i < Hand.SIZE ;  i++) {
-            if (((ImageView)(handFrame.getChildren().get(i))).getImage() != null){
-                return Battle.getMenu().getPlayer().getHand().getCards()[i];
-            }
+        if (((ImageView)(handFrame.getChildren().get(index))).getImage() != null){
+            return Battle.getMenu().getPlayer().getHand().getCards()[index];
         }
         return null;
     }
