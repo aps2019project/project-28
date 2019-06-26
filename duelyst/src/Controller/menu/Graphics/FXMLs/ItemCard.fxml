@@ -26,7 +26,7 @@
                   <Font name="Verdana Bold" size="33.0" />
                </font>
             </Label>
-            <Label fx:id="count" prefHeight="91.0" prefWidth="627.0">
+            <Label fx:id="exist" prefHeight="91.0" prefWidth="627.0">
                <font>
                   <Font name="Verdana Bold" size="33.0" />
                </font>

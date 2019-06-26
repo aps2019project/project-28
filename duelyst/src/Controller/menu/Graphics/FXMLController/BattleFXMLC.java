@@ -205,9 +205,7 @@ public class BattleFXMLC extends FXMLController {
             Card card = getCardOnHand(i);
             if(card != null){
                 ImageView cardView = (ImageView) handFrame.getChildren().get(i);
-                cardView.setOnDragDetected(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
+                cardView.setOnDragDetected(e -> {
                         Dragboard db = cardView.startDragAndDrop(TransferMode.ANY);
                         ClipboardContent content = new ClipboardContent();
                         if(card instanceof Hermione)
@@ -215,8 +213,7 @@ public class BattleFXMLC extends FXMLController {
                         else if(card instanceof Spell)
                             content.putImage(new Image(((Spell)card).getSpellGraphics().getIconGif()));
                         db.setContent(content);
-                        event.consume();
-                    }
+                        e.consume();
                 });
             }
         }

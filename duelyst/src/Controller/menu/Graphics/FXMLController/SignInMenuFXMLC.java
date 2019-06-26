@@ -54,7 +54,7 @@ public class SignInMenuFXMLC extends FXMLController implements LeaderBoardHaving
         showLeaderBoard.setOnAction(e -> ((SignInMenu)menu).showLeaderBoard());
 
                         //todo
-                        usernameInput.setText("a");
+                        usernameInput.setText("warlord");
                         passwordField.setText("1");
 
         Rectangle2D bounds=this.menu.getGraphic().getBounds();
