@@ -29,6 +29,7 @@ import com.sun.scenario.effect.impl.prism.PrImage;
 import exeption.*;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -41,6 +42,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.toRadians;
 
 public class Primary {
 
@@ -771,10 +773,22 @@ public class Primary {
             collectable.addNewOnItemDeatilPresentedListener(new OnItemDetailPresentedListener() {
                 @Override
                 public void showItemDetail(Item item) {
-                    TextField textField = new TextField(item.getName());
+                    if(!hasItem(item.getName())){
+                        Label textField = new Label(item.getName());
+                        BattleFXMLC battleFXMLC = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
+                        battleFXMLC.showCollectable.getChildren().add(textField);
+                        GridPane.setRowIndex(textField, battleFXMLC.showCollectable.getChildren().size());
+                    }
+                }
+
+                private boolean hasItem(String name) {
                     BattleFXMLC battleFXMLC = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
-                    battleFXMLC.showCollectable.getChildren().add(textField);
-                    GridPane.setRowIndex(textField, battleFXMLC.showCollectable.getChildren().size());
+                    for (Node child : battleFXMLC.showCollectable.getChildren()) {
+                        if(((Label)child).getText().compareTo(name) == 0){
+                            return true;
+                        }
+                    }
+                    return false;
                 }
             });
         }

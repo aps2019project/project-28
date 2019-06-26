@@ -105,6 +105,13 @@ public class BattleFXMLC extends FXMLController {
                 Battle.getMenu().showCollectable();
             }
         });
+
+        showCollectable.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                showCollectable.getStyleClass().remove("showCollectableEntered");
+            }
+        });
     }
 
     @Override
