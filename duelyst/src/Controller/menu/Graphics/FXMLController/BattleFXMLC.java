@@ -110,6 +110,7 @@ public class BattleFXMLC extends FXMLController {
             @Override
             public void handle(MouseEvent event) {
                 showCollectable.getStyleClass().remove("showCollectableEntered");
+                showCollectable.getChildren().clear();
             }
         });
     }

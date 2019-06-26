@@ -775,6 +775,7 @@ public class Primary {
                 public void showItemDetail(Item item) {
                     if(!hasItem(item.getName())){
                         Label textField = new Label(item.getName());
+                        textField.setPrefWidth(300);
                         BattleFXMLC battleFXMLC = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
                         battleFXMLC.showCollectable.getChildren().add(textField);
                         GridPane.setRowIndex(textField, battleFXMLC.showCollectable.getChildren().size());
