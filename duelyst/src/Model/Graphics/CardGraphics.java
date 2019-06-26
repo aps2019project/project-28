@@ -1,4 +1,4 @@
-package Model.Graphics.Listeners;
+package Model.Graphics;
 
 import javafx.scene.image.Image;
 

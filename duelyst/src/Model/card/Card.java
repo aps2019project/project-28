@@ -1,7 +1,6 @@
 package Model.card;
 
-import Model.Graphics.Listeners.CardGraphics;
-import Model.Graphics.SpellGraphics;
+import Model.Graphics.CardGraphics;
 import Model.Primary;
 import Model.account.Collection;
 import exeption.InvalidCardException;

@@ -5,6 +5,7 @@ import Controller.menu.Graphics.GraphicsControls;
 import Controller.menu.GraveYardMenu;
 import Controller.menu.MainMenu;
 import Model.Graphics.SpriteAnimation;
+import Model.Map.Cell;
 import Model.account.Hand;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
@@ -287,7 +288,7 @@ public class BattleFXMLC extends FXMLController {
             @Override
             public void handle(DragEvent event) {
                 opponentSP.getStyleClass().remove("specialPowerDragged");
-                opponentSP.getStyleClass().add("specialPowe");
+                opponentSP.getStyleClass().add("specialPower");
             }
         });
     }
@@ -412,8 +413,15 @@ public class BattleFXMLC extends FXMLController {
         try {
             for (int i = 0 ; i < 9 ; i++){
                 for (int j = 0 ; j < 5 ; j++){
-                    if(Battle.getMenu().getMap().getCell(i, j).getCardOnCell() == null){
+                    Cell cell = Battle.getMenu().getMap().getCell(i, j);
+                    if(cell.getCardOnCell() == null){
                         getCell(i, j).setImage(null);
+                    }
+                    if(cell.hasItem()){
+                        getCell(i , j).setImage(new Image(Battle.getMenu().getMap().getCell(i, j).getCollectable().getItemGraphics().getAvatar()));
+                    }
+                    if(cell.hasFlag()){
+                        getCell(i, j).setImage(new Image("resources/ui/collection_card_rarity_rare@2x.png"));
                     }
                 }
             }
@@ -453,7 +461,13 @@ public class BattleFXMLC extends FXMLController {
     }
 
     private boolean isEmpty(ImageView imageView){
-        if(imageView.getImage() == null) return true;
+        try {
+            Cell cell = Battle.getMenu().getMap().getCell(GridPane.getColumnIndex(imageView), GridPane.getRowIndex(imageView));
+            if(cell.getCardOnCell() == null) return true;
+        } catch (InvalidCellException e) {
+            e.printStackTrace();
+            return true;
+        }
         return false;
     }
 

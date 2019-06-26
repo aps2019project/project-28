@@ -619,6 +619,7 @@ public class Primary {
         setIconForCards();
         setAccountAvatars();
         setItemListeners();
+        setItemGraphics();
     }
 
     public static void setHermionesAvatars() throws FileNotFoundException {
@@ -757,9 +758,9 @@ public class Primary {
         for (Account account : accounts) {
             account.setAvatar("resources/profile_icons/f3_f6_bundle_icon-2.png");
         }
-        Account.AI[0].setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
-        Account.AI[1].setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
-        Account.AI[2].setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
+        for (Account account : Account.AI) {
+            account.setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
+        }
     }
 
     private static void setItemListeners(){
@@ -772,5 +773,13 @@ public class Primary {
             });
         }
     }
+
+    private static void setItemGraphics(){
+        for (Collectable collectable : collectables) {
+            collectable.getItemGraphics().setAvatar("resources/arena/card_fade_particles.png");
+        }
+    }
+
+
 
 }
