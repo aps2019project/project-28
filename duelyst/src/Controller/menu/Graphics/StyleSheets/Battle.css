@@ -48,3 +48,13 @@
 .specialPowerDisabled{
       -fx-image: url("../../../../resources/ui/collection_card_rarity_common.png");
 }
+
+.showCollectable{
+    -fx-background-color: ffffff;
+    -fx-opacity: 0;
+}
+
+.showCollectableEntered{
+    -fx-background-color: ffffff;
+    -fx-opacity: 1;
+}

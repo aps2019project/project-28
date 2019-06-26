@@ -773,8 +773,8 @@ public class Primary {
                 public void showItemDetail(Item item) {
                     TextField textField = new TextField(item.getName());
                     BattleFXMLC battleFXMLC = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
-                    battleFXMLC.getShowCollectableFXMLC().gridPane.getChildren().add(textField);
-                    GridPane.setRowIndex(textField, battleFXMLC.getShowCollectableFXMLC().gridPane.getChildren().size());
+                    battleFXMLC.showCollectable.getChildren().add(textField);
+                    GridPane.setRowIndex(textField, battleFXMLC.showCollectable.getChildren().size());
                 }
             });
         }

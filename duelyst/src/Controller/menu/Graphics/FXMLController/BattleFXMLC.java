@@ -47,7 +47,8 @@ public class BattleFXMLC extends FXMLController {
     public Label opponentPlayerInfo;
     public TextField nextCardOnHandInfo;
     public Label errorLable;
-    private showCollectableFXMLC showCollectableFXMLC;
+    public GridPane showCollectable;
+
     @FXML
     private AnchorPane frame;
     @FXML
@@ -100,7 +101,8 @@ public class BattleFXMLC extends FXMLController {
         showCollectables.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                showCollectableFXMLC = Controller.menu.Graphics.FXMLController.showCollectableFXMLC.makeNewScene();
+                showCollectable.getStyleClass().add("showCollectableEntered");
+                Battle.getMenu().showCollectable();
             }
         });
     }
@@ -517,9 +519,5 @@ public class BattleFXMLC extends FXMLController {
 
     public double getMapHeight(){
         return map.getHeight();
-    }
-
-    public Controller.menu.Graphics.FXMLController.showCollectableFXMLC getShowCollectableFXMLC() {
-        return showCollectableFXMLC;
     }
 }
