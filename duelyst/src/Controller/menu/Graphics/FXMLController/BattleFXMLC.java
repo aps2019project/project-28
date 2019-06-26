@@ -62,6 +62,7 @@ public class BattleFXMLC extends FXMLController {
         GraphicsControls.setButtonStyle(".graveYardButton", graveYard);
     }
 
+
     @Override
     public void buildScene() {
         super.buildScene();
@@ -261,6 +262,7 @@ public class BattleFXMLC extends FXMLController {
 
     private void updateMana(){
         int mana = Battle.getMenu().getOwnPLayer().getMana();
+        System.err.println(mana);
         for (int i = 0 ; i < mana ; i++){
             if(playerMana.getChildren().get(i).getStyleClass().contains("emptyMana"))
                 playerMana.getChildren().get(i).getStyleClass().remove("emptyMana");
@@ -271,6 +273,7 @@ public class BattleFXMLC extends FXMLController {
             ((ImageView)playerMana.getChildren().get(i)).setImage(new Image("resources/ui/icon_mana_inactive.png"));
         }
         int enemyManaNumber = Battle.getMenu().getOpponentPlayer().getMana();
+        System.err.println(enemyManaNumber);
         for (int i = 0 ; i < enemyManaNumber ; i++){
             if(enemyMana.getChildren().get(i).getStyleClass().contains("emptyMana"))
                 enemyMana.getChildren().get(i).getStyleClass().remove("emptyMana");
