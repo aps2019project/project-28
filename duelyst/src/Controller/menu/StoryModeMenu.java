@@ -16,6 +16,7 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
     }
 
     public static StoryModeMenu getMenu(){
+        System.err.println("debug");
         if(StoryModeMenu.menu==null){
             StoryModeMenu.menu=new StoryModeMenu("StoryModeMenu");
         }
@@ -27,9 +28,11 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
         super.help();
     }
 
-    public void  setAI(int level) {
+    public Menu  setAI(int level) {
+        System.err.println("debug");
         Game.accounts[1]= Account.AI[level];
         Game.accounts[1].setPlayer(new AI(Game.accounts[1],2,2,Game.accounts[0].getPlayer()));
+        return this.enter(Battle.getMenu());
     }
 
     @Override

@@ -62,7 +62,7 @@ public class Battle extends Menu {
 
     @Override
     public boolean init(Menu parentMenu) {
-        System.out.println("initiating Battle in " + this.gameMode.getClass());
+//        System.out.println("initiating Battle in " + this.gameMode.getClass());
         super.init(parentMenu);
         this.match=new Match(Game.accounts[0],Game.accounts[1],this.gameMode);
         this.ongoingSpells=new ArrayList<>();

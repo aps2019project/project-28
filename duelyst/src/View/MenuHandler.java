@@ -20,6 +20,7 @@ public class MenuHandler {
     private static Account account ;
 
     private static void initMenus() {
+        System.err.println("debug");
         //az SignIn Menu mirim tuye MainMenu
 
         SignInMenu.getMenu().addSubMenu(MainMenu.getMenu());
@@ -34,6 +35,7 @@ public class MenuHandler {
         SinglePlayerModeMenu.getMenu().addSubMenu(StoryModeMenu.getMenu());
         SinglePlayerModeMenu.getMenu().addSubMenu(CustomModeMenu.getMenu());
 
+
         //az Single o Multi mirim gameModet
 
         Battle.getMenu().addSubMenu(GraveYardMenu.getMenu());
@@ -47,18 +49,17 @@ public class MenuHandler {
     public static void main(String[] args) throws FileNotFoundException {
         try {
             Primary.preprocess();
-            Primary.pre();
+//            Primary.pre();
             initMenus();
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        View input = new ConsoleView();
-        View input = new GraphicView();
+        View input = new ConsoleView();
+//        View input = new GraphicView();
         input.play(args);
     }
 
     public static void startMenus() {
-//        SignInMenu.getMenu().logIn("warlord","1");
         currentMenu= SignInMenu.getMenu().enter();
     }
 

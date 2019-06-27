@@ -64,6 +64,7 @@ public abstract class Menu {
         try {
             subMenu.getGraphic().enter();
         }catch (Exception e){
+            System.err.println("graphic error---------------------");
             e.printStackTrace();
         }
         return subMenu;
@@ -74,6 +75,7 @@ public abstract class Menu {
         try {
             this.getGraphic().enter();
         }catch (Exception e){
+            System.err.println("graphic error---------------------");
             e.printStackTrace();
         }
         return this;

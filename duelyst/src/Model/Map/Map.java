@@ -105,4 +105,28 @@ public class Map {
         } catch (InvalidCellException ignored) {ignored.printStackTrace();}
         return returnCell;
     }
+
+//    public ArrayList<Cell> getPath(Cell startPoint,Cell endPoint){
+//        ArrayList<Cell>path=new ArrayList<>();
+//
+//    }
+//    private  ArrayList<Cell> findPath(Cell startPoint,Cell endPoint,int turn,ArrayList<Cell>path){
+//        if(turn==0)return path;
+//        int dx[]={-1,0,1,0};
+//        int dy[]={0,-1,0,1};
+//
+//        for(int i=0;i<4;i++){
+//            int nx=startPoint.getX()+dx[i];
+//            int ny=startPoint.getY()+dy[i];
+//
+//            Cell cell;
+//            try {
+//                cell=this.getCell(nx,ny);
+//            } catch (InvalidCellException e) {
+//                continue;
+//            }
+//
+//        }
+//    }
+
 }
