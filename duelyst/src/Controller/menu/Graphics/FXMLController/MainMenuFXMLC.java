@@ -17,6 +17,8 @@ public class MainMenuFXMLC extends FXMLController {
     private Button shopMenuButton;
     @FXML
     private Button exitMenuButton;
+    @FXML
+    private Button craftButton ;
 
 
 
@@ -30,7 +32,7 @@ public class MainMenuFXMLC extends FXMLController {
         exitMenuButton.setStyle("-fx-text-fill: red;");
 
         GraphicsControls.setButtonStyle("menu-button" , battleMenuButton,
-                collectionMenuButton, shopMenuButton, exitMenuButton);
+                collectionMenuButton, shopMenuButton, craftButton , exitMenuButton);
 
 
                 exitMenuButton.setOnAction(e->{
@@ -48,6 +50,7 @@ public class MainMenuFXMLC extends FXMLController {
             enterSubMenu(ShopMenu.getMenu());
         });
         battleMenuButton.setOnAction(e -> enterSubMenu(GameModeMenu.getMenu()));
+        craftButton.setOnAction(e -> enterSubMenu(CraftingMenu.getMenu()));
     }
 
     private void enterSubMenu(Menu subMenu){

@@ -114,6 +114,7 @@ public class GraphicView extends Application implements View{
         Battle.getMenu().getGraphic().init();
         StoryModeMenu.getMenu().getGraphic().init();
         CustomModeMenu.getMenu().getGraphic().init();
+        CraftingMenu.getMenu().getGraphic().init();
     }
 
 
@@ -129,6 +130,7 @@ public class GraphicView extends Application implements View{
         CustomModeMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CustomModeMenu.fxml");
         ShopMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ShopMenu.fxml");
         CollectionMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CollectionMenu.fxml");
+        CraftingMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMenu.fxml");
 
         Battle.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/Battle.fxml");
     }

@@ -3,6 +3,7 @@ package Model.card.hermione;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
+import Model.card.spell.Spell;
 import exeption.*;
 
 public class Minion extends Hermione{
@@ -11,7 +12,7 @@ public class Minion extends Hermione{
     // TODO: 5/15/19 ArshiA check for SPATime handling
 
     public Minion(String name, int price, int manaPoint, int healthPoint, int attackPoint, AttackType attackType, int range,
-                  Model.card.spell.SpecialPower specialPower,SPATime SPActivationTime, String info) {
+                  Spell specialPower, SPATime SPActivationTime, String info) {
         super(name, price, manaPoint, healthPoint, attackPoint, specialPower, attackType, range, info);
         this.SPActivationTime = SPActivationTime;
     }

@@ -7,6 +7,7 @@ import Model.Map.Map;
 import Model.card.Card;
 import Model.card.spell.Buff.Buff;
 import Model.card.spell.SpecialPower;
+import Model.card.spell.Spell;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -30,12 +31,12 @@ public abstract class Hermione extends Card {
     protected boolean hasFlag = false;
 
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
-    protected SpecialPower SpecialPower;
+    protected Spell SpecialPower;
     protected ArrayList<Buff> appliedBuffs=new ArrayList<>() ;
     protected HermioneGraphics graphics = new HermioneGraphics(this);
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
-            , SpecialPower specialPower, AttackType attackType, int range, String info) {
+            , Spell specialPower, AttackType attackType, int range, String info) {
         super(name, price, manaPoint, info);
         this.healthPoint = healthPoint;
         this.attackPoint = attackPoint;
@@ -194,7 +195,7 @@ public abstract class Hermione extends Card {
     public int getAttackPoint() {
         return attackPoint;
     }
-    public SpecialPower getSpecialPower() {
+    public Spell getSpecialPower() {
         return SpecialPower;
     }
     public ArrayList<Buff> getAppliedBuffs() {

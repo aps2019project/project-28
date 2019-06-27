@@ -98,3 +98,9 @@
     -fx-opacity: 0.3;
     -fx-text-fill: WHITE;
 }
+.radio-button{
+    -fx-background-color: transparent;
+}
+.radio-buttonClicked{
+    -fx-background-color: transparent;
+}
