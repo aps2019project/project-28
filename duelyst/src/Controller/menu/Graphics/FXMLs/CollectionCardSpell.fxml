@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="197.0" prefWidth="157.0" styleClass="card-root" stylesheets="@../StyleSheets/CollectionSpell.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.CollectionCardSpellFXMLC">
+   <children>
+      <Label fx:id="name" alignment="CENTER" layoutX="9.0" layoutY="135.0" prefHeight="16.0" prefWidth="142.0" text="Card Name" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="avatar" fitHeight="106.0" fitWidth="112.0" layoutX="28.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../resources/images/spell_stamp.png" />
+         </image></ImageView>
+      <Button fx:id="sellButton" alignment="CENTER" layoutX="37.0" layoutY="164.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="86.0" styleClass="shopping-button" stylesheets="@../StyleSheets/Buttons.css" text="Sell : 2000$" textAlignment="CENTER">
+         <font>
+            <Font name="Verdana Bold" size="8.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -11,22 +11,22 @@
       <ImageView fx:id="imageView" fitHeight="372.0" fitWidth="362.0" layoutX="760.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="card-image" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0" />
       <VBox layoutX="10.0" layoutY="9.0" prefHeight="394.0" prefWidth="627.0">
          <children>
-            <Label id="name" fx:id="name" prefHeight="70.0" prefWidth="627.0">
+            <Label id="name" fx:id="name" prefHeight="70.0" prefWidth="627.0" textFill="WHITE">
                <font>
                   <Font name="Verdana Bold" size="46.0" />
                </font>
             </Label>
-            <Label fx:id="info" prefHeight="81.0" prefWidth="627.0" text="&gt;&gt; Usable">
+            <Label fx:id="info" prefHeight="81.0" prefWidth="627.0" text="&gt;&gt; Usable" textFill="#d7d7d7">
                <font>
                   <Font name="Verdana Bold" size="26.0" />
                </font>
             </Label>
-            <Label fx:id="price" prefHeight="81.0" prefWidth="627.0">
+            <Label fx:id="price" prefHeight="81.0" prefWidth="627.0" textFill="WHITE">
                <font>
                   <Font name="Verdana Bold" size="33.0" />
                </font>
             </Label>
-            <Label fx:id="exist" prefHeight="91.0" prefWidth="627.0">
+            <Label fx:id="exist" prefHeight="91.0" prefWidth="627.0" textFill="WHITE">
                <font>
                   <Font name="Verdana Bold" size="33.0" />
                </font>
