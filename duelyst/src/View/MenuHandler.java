@@ -54,8 +54,8 @@ public class MenuHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        View input = new ConsoleView();
-//        View input = new GraphicView();
+//        View input = new ConsoleView();
+        View input = new GraphicView();
         input.play(args);
     }
 

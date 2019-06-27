@@ -1,6 +1,7 @@
 package Controller.menu;
 
 import Controller.Game;
+import Controller.GameMode.ClassicMode;
 import Controller.GameMode.GameMode;
 import Model.Map.Cell;
 import Model.card.hermione.Hero;
@@ -40,8 +41,9 @@ public class Battle extends Menu {
     private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
 
     private Match match;
+    // TODO: 6/27/19 in khat e Zr age menu ha OK shode lazem nist new she
 
-    private GameMode gameMode;
+    private GameMode gameMode=new ClassicMode();
 
 
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
