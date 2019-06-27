@@ -15,7 +15,7 @@
                <children>
                   <Button fx:id="hermioneTab" mnemonicParsing="false" prefHeight="56.0" prefWidth="383.0" styleClass="tab-button" stylesheets="@../StyleSheets/Buttons.css" text="        Heros | Minions">
                      <font>
-                        <Font name="Verdana Bold" size="26.0" />
+                        <Font name="Verdana Bold" size="22.0" />
                      </font>
                   </Button>
                   <Button fx:id="spellTab" mnemonicParsing="false" prefHeight="56.0" prefWidth="270.0" styleClass="tab-button" stylesheets="@../StyleSheets/Buttons.css" text="Spells">
@@ -28,9 +28,14 @@
                         <Font name="Verdana Bold" size="26.0" />
                      </font>
                   </Button>
-                  <Label fx:id="balance" alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="406.0" text="Balance : ">
+                  <Button fx:id="decksTab" mnemonicParsing="false" prefHeight="56.0" prefWidth="285.0" styleClass="tab-button" stylesheets="@../StyleSheets/Buttons.css" text="decks">
                      <font>
-                        <Font name="Verdana Bold" size="20.0" />
+                        <Font name="Verdana Bold" size="26.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="balance" alignment="CENTER" prefHeight="56.0" prefWidth="406.0" text="Balance : ">
+                     <font>
+                        <Font name="Verdana Bold" size="17.0" />
                      </font>
                   </Label>
                </children>

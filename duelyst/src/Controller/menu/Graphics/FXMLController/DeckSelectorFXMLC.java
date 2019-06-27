@@ -47,7 +47,7 @@ public class DeckSelectorFXMLC {
             String rootPath = "Controller/menu/Graphics/FXMLs/DeckSelector.fxml";
             FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(DeckSelectorFXMLC.class.getClassLoader().getResource(rootPath)));
             root = rootLoader.load();
-            Scene scene = new Scene(root, GraphicView.getPrimaryScreenBounds().getWidth()/1.8, GraphicView.getPrimaryScreenBounds().getHeight()/2);
+            Scene scene = new Scene(root, 800, 500);
             scene.setOnMouseEntered(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
             scene.setOnMouseMoved(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
             if (title.isEmpty()) title = account.getName() + "! " + "Select your Legendary Deck" ;

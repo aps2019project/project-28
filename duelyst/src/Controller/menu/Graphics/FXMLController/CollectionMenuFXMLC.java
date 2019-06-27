@@ -27,12 +27,12 @@ import java.util.Objects;
 public class CollectionMenuFXMLC extends FXMLController {
 
     @FXML
-    private Button backButton , hermioneTab, itemTab , spellTab;
+    private Button backButton , hermioneTab, itemTab , spellTab , decksTab;
     @FXML
     private Label balance ;
     @FXML
     private ScrollPane scrollPane ;
-    private VBox hermionesVbox = new VBox() , spellsVbox = new VBox() , itemsVbox = new VBox();
+    private VBox hermionesVbox = new VBox() , spellsVbox = new VBox() , itemsVbox = new VBox() , decksVbox = new VBox();
 
     @Override
     public void buildScene() {
@@ -42,6 +42,7 @@ public class CollectionMenuFXMLC extends FXMLController {
         buildCardsVbox() ;
         scrollPane.setContent(hermionesVbox);
         buildItemsVbox();
+        buildDecksVbox();
 
         GraphicsControls.setBackButtonOnPress(backButton);
         backButton.setOnAction(e -> {
@@ -50,6 +51,18 @@ public class CollectionMenuFXMLC extends FXMLController {
         });
         setTabPressedStuff();
         updateBalance();
+    }
+
+    private void buildDecksVbox() {
+        HBox firstRow = new HBox();
+        firstRow.setFillHeight(true);
+        firstRow.setStyle("-fx-background-color:#50505050 ; ");
+        firstRow.setAlignment(Pos.CENTER);
+        Button newDeck = new Button("new Deck");
+        newDeck.setOnAction(e -> NewDeckFXMLC.makeNewScene(menu.getAccount()));
+        firstRow.getChildren().add(newDeck);
+
+        decksVbox.getChildren().add(firstRow);
     }
 
     private void buildCardsVbox() {
@@ -124,26 +137,38 @@ public class CollectionMenuFXMLC extends FXMLController {
         hermioneTab.setOnMousePressed(e -> tabPressed(hermioneTab));
         itemTab.setOnMousePressed(e -> tabPressed(itemTab));
         spellTab.setOnMousePressed(e -> tabPressed(spellTab));
+        decksTab.setOnMousePressed(e -> tabPressed(decksTab));
         hermioneTab.setOnMouseReleased(e -> tabReleased(hermioneTab));
         itemTab.setOnMouseReleased(e -> tabReleased(itemTab));
         spellTab.setOnMouseReleased(e -> tabReleased(spellTab));
+        decksTab.setOnMouseReleased(e -> tabReleased(decksTab));
         hermioneTab.setOnAction(e -> {
             tabPressed(hermioneTab);
             tabReleased(itemTab);
             tabReleased(spellTab);
+            tabReleased(decksTab);
             scrollPane.setContent(hermionesVbox);
         });
         itemTab.setOnAction(e -> {
             tabPressed(itemTab);
             tabReleased(hermioneTab);
             tabReleased(spellTab);
+            tabReleased(decksTab);
             scrollPane.setContent(itemsVbox);
         });
         spellTab.setOnAction(e -> {
             tabPressed(spellTab);
             tabReleased(hermioneTab);
             tabReleased(itemTab);
+            tabReleased(decksTab);
             scrollPane.setContent(spellsVbox);
+        });
+        decksTab.setOnAction(e -> {
+            tabPressed(decksTab);
+            tabReleased(hermioneTab);
+            tabReleased(itemTab);
+            tabReleased(spellTab);
+            scrollPane.setContent(decksVbox);
         });
     }
 
