@@ -50,11 +50,25 @@
 }
 
 .showCollectable{
-    -fx-background-color: ffffff;
+    -fx-background-color: #000000;
     -fx-opacity: 0;
 }
 
 .showCollectableEntered{
-    -fx-background-color: ffffff;
-    -fx-opacity: 1;
+    -fx-background-color: #000000;
+    -fx-opacity: .5;
+}
+
+
+.playerInfo{
+  -fx-image: url("../../../../resources/arena/run_current_game.png");
+
+}
+
+.showItemLable{
+    -fx-text-fill: #ffffff;
+    -fx-pref-width: 200;
+    -fx-font-family: "Didot";
+    -fx-font-size: 20.0;
+    -fx-alignment: "CENTER";
 }

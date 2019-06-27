@@ -34,21 +34,20 @@ public class BattleFXMLC extends FXMLController {
     public Button endTurn;
     public Button graveYard;
     public Button menuButton;
+    public Button showCollectableButton;
     public GridPane playerMana;
     public GridPane enemyMana;
+    public GridPane handInfo;
+    public GridPane showCollectable;
     public ImageView firstPlayer;
     public ImageView secondPlayer;
     public ImageView nextCardOnHand;
-    public GridPane handInfo;
     public ImageView ownSP;
     public ImageView opponentSP;
-    public Button showCollectables;
     public Label ownPlayerInfo;
     public Label opponentPlayerInfo;
-    public TextField nextCardOnHandInfo;
     public Label errorLable;
-    public GridPane showCollectable;
-
+    public TextField nextCardOnHandInfo;
     @FXML
     private AnchorPane frame;
     @FXML
@@ -71,6 +70,7 @@ public class BattleFXMLC extends FXMLController {
         GraphicsControls.setButtonStyle("endTurnButton", endTurn);
         GraphicsControls.setButtonStyle(".battleMenuButton", menuButton);
         GraphicsControls.setButtonStyle(".graveYardButton", graveYard);
+        GraphicsControls.setButtonStyle("showCollectableButton", showCollectableButton);
     }
 
     @Override
@@ -92,9 +92,10 @@ public class BattleFXMLC extends FXMLController {
                 //todo: end game bezan
             }
         });
+
         graveYard.setOnMousePressed(e -> GraveYardFXMLC.makeNewScene(menu.getAccount()));
 
-        showCollectables.setOnMousePressed(new EventHandler<MouseEvent>() {
+        showCollectableButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 showCollectable.getStyleClass().add("showCollectableEntered");
