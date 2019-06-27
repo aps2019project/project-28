@@ -3,6 +3,7 @@ package Model.card.hermione;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.account.Deck;
+import Model.card.spell.Spell;
 import View.Listeners.OnHeroDetailsPresentedListener;
 import exeption.CantSpecialPowerCooldownException;
 import exeption.InvalidCardException;
@@ -34,7 +35,7 @@ public class Hero extends Hermione {
 
 
     public Hero(String name, int price, int healthPoint, int attackPoint,
-                AttackType attackType, int range, Model.card.spell.SpecialPower specialPower, int manaPoint, int cooldown, String info) {
+                AttackType attackType, int range, Spell specialPower, int manaPoint, int cooldown, String info) {
         super(name, price, manaPoint, healthPoint, attackPoint, specialPower, attackType, range, info);
         this.cooldown = cooldown;
     }

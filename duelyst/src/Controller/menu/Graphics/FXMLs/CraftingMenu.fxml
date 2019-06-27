@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.CraftingMenuFXML">
+   <children>
+      <Button fx:id="backButton" alignment="CENTER" layoutX="4.0" layoutY="6.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="106.0" styleClass="back-button" stylesheets="@../StyleSheets/Buttons.css" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <VBox fx:id="vbox" layoutX="448.0" layoutY="48.0" prefHeight="685.0" prefWidth="802.0" spacing="15.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="48.0" />
+      <Button fx:id="craft" layoutX="679.0" layoutY="751.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="152.0" stylesheets="@../StyleSheets/Buttons.css" text="Craft">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="reset" layoutX="826.0" layoutY="748.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="152.0" stylesheets="@../StyleSheets/Buttons.css" text="Reset">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Button>
+      <VBox fx:id="jks" layoutX="48.0" layoutY="191.0" prefHeight="212.0" prefWidth="200.0" style="-fx-background-color: #40404040;" stylesheets="@../StyleSheets/Buttons.css" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="191.0">
+         <children>
+            <Button fx:id="heroT" mnemonicParsing="false" prefHeight="67.0" prefWidth="215.0" text="Hero" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="35.0" />
+               </font>
+            </Button>
+            <Button fx:id="minionT" mnemonicParsing="false" prefHeight="67.0" prefWidth="215.0" text="Minion" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="35.0" />
+               </font>
+            </Button>
+            <Button fx:id="spellT" mnemonicParsing="false" prefHeight="67.0" prefWidth="215.0" text="Spell" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="35.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
