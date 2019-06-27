@@ -2,6 +2,7 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.*;
 import Controller.menu.Graphics.GraphicsControls;
+import Model.account.Account;
 import View.MenuHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -18,7 +19,7 @@ public class MainMenuFXMLC extends FXMLController {
     @FXML
     private Button exitMenuButton;
     @FXML
-    private Button craftButton ;
+    private Button craftButton , saveButton;
 
 
 
@@ -32,7 +33,7 @@ public class MainMenuFXMLC extends FXMLController {
         exitMenuButton.setStyle("-fx-text-fill: red;");
 
         GraphicsControls.setButtonStyle("menu-button" , battleMenuButton,
-                collectionMenuButton, shopMenuButton, craftButton , exitMenuButton);
+                collectionMenuButton, shopMenuButton, craftButton , exitMenuButton , saveButton);
 
 
                 exitMenuButton.setOnAction(e->{
@@ -51,6 +52,7 @@ public class MainMenuFXMLC extends FXMLController {
         });
         battleMenuButton.setOnAction(e -> enterSubMenu(GameModeMenu.getMenu()));
         craftButton.setOnAction(e -> enterSubMenu(CraftingMenu.getMenu()));
+        saveButton.setOnAction(e -> Account.save());
     }
 
     private void enterSubMenu(Menu subMenu){
