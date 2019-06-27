@@ -155,9 +155,6 @@ public class Primary {
     }
 
     public static void pre() throws IOException, DeckAlreadyHasThisItemException, DeckAlreadyHasAHeroException, FullDeckException, DeckAlreadyHasThisCardException {
-        getAccounts();
-        Account.updateAccounts();
-        generateAI();
     }
 
     public static void setDefaultDeck(Deck deck) throws IOException {
@@ -189,7 +186,7 @@ public class Primary {
         }
     }
 
-    public static void preprocess() throws IOException{
+    public static void preprocess() throws Exception{
         getHeroes();
         getMinions();
         getSpells();
@@ -197,6 +194,13 @@ public class Primary {
         getCollectables();
         getCards();
         getItems();
+
+        getAccounts();
+        Account.updateAccounts();
+        System.err.println("debug");
+        generateAI();
+
+
     }
 
     private static void generateAI() throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {

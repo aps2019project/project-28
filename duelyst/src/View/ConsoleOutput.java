@@ -584,9 +584,10 @@ public class ConsoleOutput {
         }
     }
     private static void storyModeMenuCommandHandler(String[] word) {
+        System.err.println("debug");
         StoryModeMenu menu= (StoryModeMenu) MenuHandler.getCurrentMenu();
         if(word[0].equals("level")) {
-//            MenuHandler.getCurrentMenu()=menu.setAI(Integer.parseInt(word[1]));
+            MenuHandler.setCurrentMenu(menu.setAI(Integer.parseInt(word[1])));
         }
     }
     private static void CollectionMenuCommandHandler(String[] word) {
@@ -764,6 +765,7 @@ public class ConsoleOutput {
     }
     private static void ChooseBattleModeMenuCommandHandler(String[] word) {
         ChooseBattleModeMenu menu= ChooseBattleModeMenu.getMenu();
+        System.err.println("debug");
         if(word[0].equals("mode")){
             menu.setMode(Integer.parseInt(word[1]));
         }

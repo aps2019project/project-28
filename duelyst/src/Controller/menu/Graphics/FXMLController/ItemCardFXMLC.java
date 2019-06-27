@@ -28,7 +28,7 @@ public class ItemCardFXMLC {
 
 
     public void builditemCard(Usable item , Account account , ShopMenuFXMLC fxmlc){
-        Image itemBackground = new Image("Resources/card_backgrounds/card_back_agenor.png");
+        Image itemBackground = new Image("resources/card_backgrounds/card_back_agenor.png");
 
         name.setText(item.getName());
         price.setText("Price : " + item.getPrice()+"$");
