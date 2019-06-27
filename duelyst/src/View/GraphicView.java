@@ -29,6 +29,7 @@ public class GraphicView extends Application implements View{
     private static Stage stage;
     private static Rectangle2D primaryScreenBounds ;
 
+    private CommandHandler commandHandler;
 
 
     public static void setScene(Scene scene) {
@@ -36,11 +37,18 @@ public class GraphicView extends Application implements View{
         stage.show();
     }
 
+    public GraphicView(CommandHandler commandHandler) {
+        this.commandHandler = commandHandler;
+        commandHandler.setOutputStream(System.out);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
 
+
         Primary.initGraphics();
+
 
         //TODO just so there is another deck you know !
         {
