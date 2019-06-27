@@ -67,7 +67,7 @@ public class DeckSelectorFXMLC {
             }
         });
 
-        scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/LeaderBoard.css");
+        scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/DeckSelector.css");
 
         title.setText(titleText);
 

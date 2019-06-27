@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class CollectionMenuFXMLC extends FXMLController {
     public void buildScene() {
         super.buildScene();
         Scene scene = menu.getGraphic().getScene();
-        scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/ShopMenu.css");
+        scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/CollectionMenu.css");
         buildCardsVbox() ;
         scrollPane.setContent(hermionesVbox);
         buildItemsVbox();
@@ -158,6 +159,7 @@ public class CollectionMenuFXMLC extends FXMLController {
     }
 
     public void updateBalance() {
+        balance.setTextFill(Color.WHITE);
         balance.setText("Balance : " + menu.getAccount().getMoney() + "$");
     }
 }
