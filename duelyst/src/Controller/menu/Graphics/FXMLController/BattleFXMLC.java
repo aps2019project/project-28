@@ -92,12 +92,8 @@ public class BattleFXMLC extends FXMLController {
                 //todo: end game bezan
             }
         });
-        graveYard.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                MenuHandler.setCurrentMenu(GraveYardMenu.getMenu());
-            }
-        });
+        graveYard.setOnMousePressed(e -> GraveYardFXMLC.makeNewScene(menu.getAccount()));
+
         showCollectables.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -135,8 +131,12 @@ public class BattleFXMLC extends FXMLController {
     @Override
     public void enterScene() {
         super.enterScene();
-        firstPlayer.setImage(new Image(Battle.getMenu().getPlayer().getUser().getAvatar()));
-        secondPlayer.setImage(new Image(Battle.getMenu().getEnemyPlayer().getUser().getAvatar()));
+        try {
+            firstPlayer.setImage(new Image(Battle.getMenu().getPlayer().getUser().getAvatar()));
+            secondPlayer.setImage(new Image(Battle.getMenu().getEnemyPlayer().getUser().getAvatar()));
+        }catch (Exception e){
+            System.err.println("couldn't load the images for players !");
+        }
         updateScene();
     }
 
