@@ -46,7 +46,7 @@ public class MenuHandler {
 
 
     //moh
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         try {
             Primary.preprocess();
 //            Primary.pre();
@@ -63,18 +63,6 @@ public class MenuHandler {
         currentMenu= SignInMenu.getMenu().enter();
     }
 
-    public static void dirtyPeaceShit() {
-        currentMenu= SignInMenu.getMenu();
-        try {
-            SignInMenu.getMenu().logIn( "warlord","1");
-            ChooseBattleModeMenu.getMenu().setMode(1);
-            System.err.println();
-            StoryModeMenu.getMenu().setAI(1);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
     public static void showMenu() {
