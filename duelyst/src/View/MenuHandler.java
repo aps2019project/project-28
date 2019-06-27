@@ -18,6 +18,7 @@ public class MenuHandler {
     private static Menu currentMenu;
     private static ArrayList<Menu> lastMenus = new ArrayList<>();
     private static Account account ;
+    private static CommandHandler commandHandler=new CommandHandler();
 
     private static void initMenus() {
         System.err.println("debug");
@@ -54,8 +55,8 @@ public class MenuHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        View input = new ConsoleView();
-        View input = new GraphicView();
+        View input = new ConsoleView(commandHandler);
+//        View input = new GraphicView(commandHandler);
         input.play(args);
     }
 
@@ -69,12 +70,10 @@ public class MenuHandler {
         MenuHandler.currentMenu.showMenu();
     }
 
-
     public static void nextMove() {
         if (MenuHandler.currentMenu instanceof Battle)
             Battle.getMenu().getPlayer().doYourMove();
     }
-
     public static Scanner getGameScanner() {
         return Game.accounts[Battle.getMenu().getTurn()].getPlayer().getOutputStream();
     }
@@ -84,15 +83,12 @@ public class MenuHandler {
         MenuHandler.currentMenu = currentMenu;
         currentMenu.enter();
     }
-
     public static Menu getCurrentMenu() {
         return currentMenu;
     }
-
     public static ArrayList<Menu> getLastMenus() {
         return lastMenus;
     }
-
     public static void goBack() {
         currentMenu = lastMenus.get(lastMenus.size()-1).enter();
         lastMenus.remove(lastMenus.size()-1);
@@ -101,8 +97,16 @@ public class MenuHandler {
     public static Account getAccount() {
         return account;
     }
-
     public static void setAccount(Account account) {
         MenuHandler.account = account;
+    }
+
+
+    public static CommandHandler getCommandHandler() {
+        return commandHandler;
+    }
+
+    public static void setCommandHandler(CommandHandler commandHandler) {
+        MenuHandler.commandHandler = commandHandler;
     }
 }

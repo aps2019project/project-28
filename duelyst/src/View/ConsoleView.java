@@ -5,7 +5,12 @@ package View;
 import java.util.Scanner;
 
 public class ConsoleView implements View{
-    protected ConsoleOutput consoleOutput =new ConsoleOutput();
+    protected CommandHandler commandHandler;
+
+    public ConsoleView(CommandHandler commandHandler) {
+        this.commandHandler = commandHandler;
+        commandHandler.setOutputStream(System.out);
+    }
 
     @Override
     public void play(String... args) {
@@ -15,7 +20,7 @@ public class ConsoleView implements View{
         while(commands.hasNext()){
             command = commands.nextLine().toLowerCase().trim();
 
-            consoleOutput.handleCommand(command);
+            commandHandler.handleCommand(command);
 
             MenuHandler.showMenu();
             MenuHandler.nextMove();
