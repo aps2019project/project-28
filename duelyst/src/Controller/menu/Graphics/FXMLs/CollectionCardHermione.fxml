@@ -8,12 +8,12 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="197.0" prefWidth="157.0" styleClass="card-root" stylesheets="@../StyleSheets/CollectionCard.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.CollectionCardHermioneFXMLC">
    <children>
-      <Label fx:id="ap" alignment="CENTER" layoutX="27.0" layoutY="110.0" text="20" textFill="#48ff00">
+      <Label fx:id="ap" alignment="CENTER" layoutX="27.0" layoutY="110.0" prefHeight="16.0" prefWidth="19.0" text="20" textFill="#48ff00">
          <font>
             <Font name="Verdana Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="hp" alignment="CENTER" layoutX="110.0" layoutY="110.0" text="20" textAlignment="CENTER" textFill="#ff4100">
+      <Label fx:id="hp" alignment="CENTER" layoutX="110.0" layoutY="110.0" prefHeight="16.0" prefWidth="19.0" text="20" textAlignment="CENTER" textFill="#ff4100">
          <font>
             <Font name="Verdana Bold" size="13.0" />
          </font>

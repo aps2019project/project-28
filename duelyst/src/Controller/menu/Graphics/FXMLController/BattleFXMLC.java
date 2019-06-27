@@ -92,12 +92,9 @@ public class BattleFXMLC extends FXMLController {
                 //todo: end game bezan
             }
         });
-        graveYard.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                MenuHandler.setCurrentMenu(GraveYardMenu.getMenu());
-            }
-        });
+
+        graveYard.setOnMousePressed(e -> GraveYardFXMLC.makeNewScene(menu.getAccount()));
+
         showCollectableButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -135,8 +132,12 @@ public class BattleFXMLC extends FXMLController {
     @Override
     public void enterScene() {
         super.enterScene();
-        firstPlayer.setImage(new Image(Battle.getMenu().getPlayer().getUser().getAvatar()));
-        secondPlayer.setImage(new Image(Battle.getMenu().getEnemyPlayer().getUser().getAvatar()));
+        try {
+            firstPlayer.setImage(new Image(Battle.getMenu().getPlayer().getUser().getAvatar()));
+            secondPlayer.setImage(new Image(Battle.getMenu().getEnemyPlayer().getUser().getAvatar()));
+        }catch (Exception e){
+            System.err.println("couldn't load the images for players !");
+        }
         updateScene();
     }
 
@@ -372,9 +373,9 @@ public class BattleFXMLC extends FXMLController {
     }
     private void updateInfo(){
         ownPlayerInfo.setText(Battle.getMenu().getOwnPLayer().getDeck().getHero().getName() + "\n"
-                + "HealthPoint : "+ "\n" + Battle.getMenu().getOwnPLayer().getDeck().getHero().getHealthPoint());
+                + "HealthPoint : "+ Battle.getMenu().getOwnPLayer().getDeck().getHero().getHealthPoint());
         opponentPlayerInfo.setText(Battle.getMenu().getOpponentPlayer().getDeck().getHero().getName() + "\n"
-                + "HealthPoint : "+ "\n" + Battle.getMenu().getOpponentPlayer().getDeck().getHero().getHealthPoint());
+                + "HealthPoint : "+ Battle.getMenu().getOpponentPlayer().getDeck().getHero().getHealthPoint());
     }
     private void updateHand(){
         Card[] playerHandCards = Battle.getMenu().getPlayer().getHand().getCards();

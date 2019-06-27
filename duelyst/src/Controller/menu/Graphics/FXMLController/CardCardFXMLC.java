@@ -59,11 +59,11 @@ public class CardCardFXMLC {
             }
         }
         existanceCheck();
-        try {
-            imageView.setImage(card.getCardGraphics().getAvatar());
-        }catch(NullPointerException e){
+//        try {
+//            imageView.setImage(card.getCardGraphics().getAvatar());
+//        }catch(NullPointerException e){
             imageView.setImage(cardBackground);
-        }
+//        }
         if (account.getMoney() >= card.getPrice() && !exists){
             buy.setOnAction(e -> buy(card , fxmlc));
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_card.getPath())));
