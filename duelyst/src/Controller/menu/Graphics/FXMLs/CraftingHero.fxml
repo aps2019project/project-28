@@ -63,11 +63,6 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1183.0" spacing="50.0">
                <children>
-                  <TextField fx:id="manapoint" alignment="CENTER" prefHeight="98.0" prefWidth="341.0" promptText="Mana Point">
-                     <font>
-                        <Font name="Verdana Bold" size="33.0" />
-                     </font>
-                  </TextField>
                   <TextField fx:id="cost" alignment="CENTER" prefHeight="98.0" prefWidth="339.0" promptText="Cost">
                      <font>
                         <Font name="Verdana Bold" size="33.0" />
