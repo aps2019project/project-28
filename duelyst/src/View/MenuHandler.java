@@ -20,51 +20,23 @@ public class MenuHandler {
     private static Account account ;
     private static CommandHandler commandHandler=new CommandHandler();
 
-    private static void initMenus() {
-        System.err.println("debug");
-        //az SignIn Menu mirim tuye MainMenu
-
-        SignInMenu.getMenu().addSubMenu(MainMenu.getMenu());
-
-        MainMenu.getMenu().addSubMenu(CollectionMenu.getMenu());
-        MainMenu.getMenu().addSubMenu(ShopMenu.getMenu());
-        MainMenu.getMenu().addSubMenu(ChooseBattleModeMenu.getMenu());
-
-        GameModeMenu.getMenu().addSubMenu(SinglePlayerModeMenu.getMenu());
-        GameModeMenu.getMenu().addSubMenu(MultiPlayerModeMenu.getMenu());
-
-        SinglePlayerModeMenu.getMenu().addSubMenu(StoryModeMenu.getMenu());
-        SinglePlayerModeMenu.getMenu().addSubMenu(CustomModeMenu.getMenu());
-
-
-        //az Single o Multi mirim gameModet
-
-        Battle.getMenu().addSubMenu(GraveYardMenu.getMenu());
-        Battle.getMenu().addSubMenu(CollectableMenu.getMenu());
-
-        currentMenu = SignInMenu.getMenu();
-    }
-
-
     //moh
     public static void main(String[] args) {
         try {
             Primary.preprocess();
-//            Primary.pre();
             initMenus();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        View input = new ConsoleView(commandHandler);
-//        View input = new GraphicView(commandHandler);
+//        View input = new ConsoleView();
+        View input = new GraphicView();
+        input.setCommandHandler(commandHandler);
         input.play(args);
     }
 
     public static void startMenus() {
         currentMenu= SignInMenu.getMenu().enter();
     }
-
-
 
     public static void showMenu() {
         MenuHandler.currentMenu.showMenu();
@@ -102,11 +74,30 @@ public class MenuHandler {
     }
 
 
-    public static CommandHandler getCommandHandler() {
-        return commandHandler;
+    private static void initMenus() {
+        System.err.println("debug");
+        //az SignIn Menu mirim tuye MainMenu
+
+        SignInMenu.getMenu().addSubMenu(MainMenu.getMenu());
+
+        MainMenu.getMenu().addSubMenu(CollectionMenu.getMenu());
+        MainMenu.getMenu().addSubMenu(ShopMenu.getMenu());
+        MainMenu.getMenu().addSubMenu(ChooseBattleModeMenu.getMenu());
+
+        GameModeMenu.getMenu().addSubMenu(SinglePlayerModeMenu.getMenu());
+        GameModeMenu.getMenu().addSubMenu(MultiPlayerModeMenu.getMenu());
+
+        SinglePlayerModeMenu.getMenu().addSubMenu(StoryModeMenu.getMenu());
+        SinglePlayerModeMenu.getMenu().addSubMenu(CustomModeMenu.getMenu());
+
+
+        //az Single o Multi mirim gameMode
+
+        Battle.getMenu().addSubMenu(GraveYardMenu.getMenu());
+        Battle.getMenu().addSubMenu(CollectableMenu.getMenu());
+
+        currentMenu = SignInMenu.getMenu();
     }
 
-    public static void setCommandHandler(CommandHandler commandHandler) {
-        MenuHandler.commandHandler = commandHandler;
-    }
+
 }

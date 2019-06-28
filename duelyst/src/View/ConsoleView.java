@@ -2,19 +2,18 @@ package View;
 
 
 
+import Controller.menu.Menu;
+
 import java.util.Scanner;
 
 public class ConsoleView implements View{
     protected CommandHandler commandHandler;
 
-    public ConsoleView(CommandHandler commandHandler) {
-        this.commandHandler = commandHandler;
-        commandHandler.setOutputStream(System.out);
-    }
 
     @Override
     public void play(String... args) {
         Scanner commands= MenuHandler.getGameScanner();
+        MenuHandler.startMenus();
         MenuHandler.showMenu();
         String command;
         while(commands.hasNext()){
@@ -28,5 +27,10 @@ public class ConsoleView implements View{
             commands=MenuHandler.getGameScanner();
         }
 
+    }
+
+    @Override
+    public void setCommandHandler(CommandHandler commandHandler) {
+        this.commandHandler=commandHandler;
     }
 }

@@ -10,8 +10,7 @@ public class MatchPlayer extends ConsoleView {
     private Match match;
     private Battle battle;
 
-    public MatchPlayer(Match match, Battle battle, CommandHandler commandHandler) {
-        super(commandHandler);
+    public MatchPlayer(Match match, Battle battle) {
         this.match = match;
         this.battle = battle;
     }
@@ -26,7 +25,7 @@ public class MatchPlayer extends ConsoleView {
                                                                                                                          try {
             Thread.sleep(command.getTime()-previousTime);
                                                                                                                          } catch (InterruptedException ignored) { }
-            this.commandHandler.handleCommand(command.getCommand());
+//            this.commandHandler.handleCommand(command.getCommand());
             previousTime=command.getTime();
 
             MenuHandler.showMenu();

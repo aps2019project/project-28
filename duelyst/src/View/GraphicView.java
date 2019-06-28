@@ -11,17 +11,14 @@ import Controller.menu.SignInMenu;
 import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
 import Model.account.Account;
 import Model.card.Card;
-import View.Listeners.OnLeaderBoardClickedListener;
 import Model.Primary;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 
 
 public class GraphicView extends Application implements View{
@@ -37,15 +34,11 @@ public class GraphicView extends Application implements View{
         stage.show();
     }
 
-    public GraphicView(CommandHandler commandHandler) {
-        this.commandHandler = commandHandler;
-        commandHandler.setOutputStream(System.out);
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-
+        System.err.println("debug");
 
         Primary.initGraphics();
 
@@ -58,17 +51,8 @@ public class GraphicView extends Application implements View{
 //            Account.getAccount("a").getCollection().getDeckByName("aDeck").validateDeck();
         }
 
-        stage = primaryStage;
-        primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        Pane p = new Pane() ;
-        p.setStyle("-fx-background-color: BLACK");
-        Scene loadingScene = new Scene(p);
-        stage.setScene(loadingScene);
+        configStage(primaryStage);
 
-        stage.setFullScreen(false); //TODO make it true in the end !
-        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-        stage.setResizable(false);
-        stage.setFullScreenExitHint("");
         //TODO -> handle exit button
         stage.setOnCloseRequest(e -> {
             try {
@@ -78,11 +62,16 @@ public class GraphicView extends Application implements View{
 
         initializeGraphicMenu();
         MenuHandler.startMenus();
-//        primaryStage.setScene(SignInMenu.getMenu().getGraphic().getScene());
-//        primaryStage.show() ;
-
     }
 
+    private void configStage(Stage primaryStage) {
+        stage = primaryStage;
+        primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setFullScreen(false); //TODO make it true in the end !
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+        stage.setResizable(false);
+        stage.setFullScreenExitHint("");
+    }
     private static void initializeGraphicMenu() {
         setRootPaths();
         initGraphics();
@@ -139,12 +128,16 @@ public class GraphicView extends Application implements View{
         ShopMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/ShopMenu.fxml");
         CollectionMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CollectionMenu.fxml");
         CraftingMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMenu.fxml");
-
         Battle.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/Battle.fxml");
     }
 
     public void play(String...args) {
         launch(args);
+    }
+
+    @Override
+    public void setCommandHandler(CommandHandler commandHandler) {
+        this.commandHandler=commandHandler;
     }
 
 

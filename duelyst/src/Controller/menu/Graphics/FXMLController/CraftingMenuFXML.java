@@ -124,14 +124,14 @@ public class CraftingMenuFXML extends FXMLController {
             if (x.getClass().toString().equals(action.getText())) targett.set(x);
         });
 
-        try {
+        /*try {
             Spell spell = new Spell(name.getText(), Integer.parseInt(cost.getText()), Integer.parseInt(manapoint.getText()),
                     Integer.parseInt(duration.getText()), Integer.parseInt(perk.getText()), "", targett.getOpaque(),
                     actionnn.getOpaque());
             CraftingMenu.getMenu().addToShop(spell);
         }catch (Exception exc){
             System.err.println("couldn't make the spell sry !");
-        }
+        }*/
 
     }
 
