@@ -4,4 +4,10 @@
 }
 .text-field{
     -fx-font-family: Verdana;
+    -fx-background-color: #FFAA3090;
+    -fx-text-fill: white;
+}
+.choice-box{
+    -fx-font-family: Verdana;
+    -fx-background-color: #FFAA3090;
 }

@@ -107,7 +107,7 @@
 }
 
 .deck-button{
-    -fx-background-image: url("../../../../resources/ui/button_primary_left@2x.png");
+    -fx-background-image: url("../../../../resources/ui/button_primary.png");
     -fx-background-size: 100% 100%;
     -fx-text-fill: RED;
     -fx-font-weight: BOLD;
@@ -115,7 +115,7 @@
     -fx-font-size: 16;
 }
 .deck-buttonClicked{
-    -fx-background-image: url("../../../../resources/ui/button_primary_left_glow@2x.png");
+    -fx-background-image: url("../../../../resources/ui/button_primary_glow.png");
     -fx-background-size: 100% 100%;
     -fx-text-fill: RED;
     -fx-font-family: Verdana;
