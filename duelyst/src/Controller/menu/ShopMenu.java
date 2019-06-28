@@ -128,7 +128,7 @@ public class ShopMenu extends Menu {
 
     public void save() {
         this.account.setCollection(this.tempCollection);
-        Account.save();
+        //Account.save();
     }
 
 

@@ -79,25 +79,15 @@ public class GraphicView extends Application implements View{
     }
 
     private static void setListeners() {
-        SignInMenu.getMenu().addLeaderBoardClickedListener((accounts , fxmlc) -> {
-              LeaderBoardFXMLC.makeNewScene(accounts , fxmlc);
-        });
+        SignInMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC::makeNewScene);
 
-        MultiPlayerModeMenu.getMenu().addLeaderBoardClickedListener((accounts , fxmlc) -> {
-            LeaderBoardFXMLC.makeNewScene(accounts , fxmlc);
-        });
+        MultiPlayerModeMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC::makeNewScene);
 
-        StoryModeMenu.getMenu().setDeckSelectorListener((account , menu , title)-> {
-            DeckSelectorFXMLC.makeNewScene(account , menu, title);
-        });
+        StoryModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
 
-        CustomModeMenu.getMenu().setDeckSelectorListener((account , menu , title)-> {
-            DeckSelectorFXMLC.makeNewScene(account , menu, title);
-        });
+        CustomModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
 
-        MultiPlayerModeMenu.getMenu().setDeckSelectorListener((account , menu , title)-> {
-            DeckSelectorFXMLC.makeNewScene(account , menu, title);
-        });
+        MultiPlayerModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
     }
 
     private static void initGraphics() {

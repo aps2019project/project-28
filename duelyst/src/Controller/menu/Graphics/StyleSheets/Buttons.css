@@ -98,9 +98,27 @@
     -fx-opacity: 0.3;
     -fx-text-fill: WHITE;
 }
+
 .radio-button{
     -fx-background-color: transparent;
 }
 .radio-buttonClicked{
     -fx-background-color: transparent;
+}
+
+.deck-button{
+    -fx-background-image: url("../../../../resources/ui/button_primary_left@2x.png");
+    -fx-background-size: 100% 100%;
+    -fx-text-fill: RED;
+    -fx-font-weight: BOLD;
+    -fx-font-family: Verdana;
+    -fx-font-size: 16;
+}
+.deck-buttonClicked{
+    -fx-background-image: url("../../../../resources/ui/button_primary_left_glow@2x.png");
+    -fx-background-size: 100% 100%;
+    -fx-text-fill: RED;
+    -fx-font-family: Verdana;
+    -fx-font-weight : BOLD;
+    -fx-font-size: 16;
 }

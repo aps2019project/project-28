@@ -405,7 +405,7 @@ public class Battle extends Menu {
          * */
         Game.accounts[0].saveMatch(this.match);
         Game.accounts[1].saveMatch(this.match);
-        Account.save();
+        //Account.save();
 
 
         /*

@@ -272,11 +272,11 @@ public class Collection {
         throw new InvalidDeckException();
     }
 
-    public void addNewDeck(String name) throws DeckAlreadyExistException {
+    public Deck addNewDeck(String name) throws DeckAlreadyExistException {
         if (!this.hasDeck(name)) {
             Deck newDeck = new Deck(name,this);
             this.decks.add(newDeck);
-            return;
+            return newDeck;
         }
         throw new DeckAlreadyExistException();
     }
