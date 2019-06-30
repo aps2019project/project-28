@@ -22,7 +22,7 @@ public class TargetTwoByTwo implements Target {
         int x = cell.getX();
         int y = cell.getY();
         Map map = Battle.getMenu().getMap();
-        if (x == Map.CHAP_RAST_X || y == Map.BALA_PAEEN_Y) {
+        if (x == Map.WHIDTH || y == Map.HEIGHT) {
             throw new InvalidCellException();
         }
         Cell[] cells = {cell, map.getCell(x, y + 1), map.getCell(x + 1, y), map.getCell(x + 1, y + 1)};

@@ -44,7 +44,7 @@ public class Spell extends Card {
 
     private ArrayList<Spell> activeSpells = new ArrayList<>() ;
     protected Target target;
-    private Cell[] targetCells = new Cell[Map.CHAP_RAST_X*Map.BALA_PAEEN_Y];
+    private Cell[] targetCells = new Cell[Map.WHIDTH *Map.HEIGHT];
     protected ArrayList<Action> actions = new ArrayList<>();
     private ArrayList<Integer> perks = new ArrayList<>();
     private ArrayList<Integer> durations = new ArrayList<>();

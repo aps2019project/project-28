@@ -23,9 +23,9 @@ public class TargetEnemyHeroColumn implements Target {
             throw new InvalidCellException();
         }
         Map map = Battle.getMenu().getMap();
-        Cell[] cells = new Cell[Map.BALA_PAEEN_Y];
+        Cell[] cells = new Cell[Map.HEIGHT];
         int x = cell.getX();
-        for (int y = 1; y <= map.BALA_PAEEN_Y; y++) {
+        for (int y = 1; y <= map.HEIGHT; y++) {
             cells[y - 1] = map.getCell(x, y);
         }
         return cells ;

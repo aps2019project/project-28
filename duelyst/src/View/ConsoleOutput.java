@@ -23,10 +23,8 @@ import Model.item.Usable;
 import View.Listeners.OnHeroDetailsPresentedListener;
 import View.Listeners.OnMenuClickedListener;
 import exeption.InvalidCellException;
-import exeption.InvalidSubMenuException;
 
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 
 class ShowMenu implements OnMenuClickedListener {
@@ -140,8 +138,8 @@ public class ConsoleOutput {
             Battle.getMenu().addMenuClickListener(new ShowMenu());
             Battle.getMenu().addMenuClickListener(menu -> {
                 Battle battle= (Battle) menu;
-                for(int j = 0; j< Map.BALA_PAEEN_Y; j++){
-                    for(int i=0;i< Map.CHAP_RAST_X;i++){
+                for(int j = 0; j< Map.HEIGHT; j++){
+                    for(int i = 0; i< Map.WHIDTH; i++){
                         try {
                             Cell cell=battle.getMap().getCell(i,j);
                             if(cell.getCardOnCell() instanceof Hero){

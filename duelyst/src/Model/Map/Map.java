@@ -1,12 +1,6 @@
 package Model.Map;
 
-import Controller.Game;
-import Controller.menu.Battle;
 import Model.Primary;
-import Model.account.Collection;
-import Model.card.spell.Buff.Buff;
-import Model.card.spell.Buff.BuffActions.BuffActionPoison;
-import Model.card.spell.BuffTypes.BuffTypePassive;
 import Model.item.Collectable;
 import Model.item.Flag;
 import exeption.InvalidCellException;
@@ -14,68 +8,48 @@ import exeption.InvalidCellException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import java.util.function.Consumer;
 
 public class Map {
-    public static final int BALA_PAEEN_Y=5;
-    public static final int CHAP_RAST_X=9;
+    public static final int HEIGHT =5;
+    public static final int WHIDTH =9;
     public static final int FIRST_HERO_X=0;
     public static final int FIRST_HERO_Y=2;
     public static final int SECOND_HERO_X=8;
     public static final int SECOND_HERO_Y=2;
     public static final int MAX_COLLECTABLE_ON_MAP=3;
 
-
     private static final int[]dx={-1,-1, 0, 1,1,1,0,-1};
     private static final int[]dy={ 0,-1,-1,-1,0,1,1, 1};
 
-
-
-    private Cell[][] board = new Cell[Map.CHAP_RAST_X + 1][Map.BALA_PAEEN_Y + 1];
+    private Cell[][] board = new Cell[Map.WHIDTH + 1][Map.HEIGHT + 1];
     private ArrayList<Flag> flags;
-    public static int getManhattanDistance(Cell cell1, Cell cell2) {
-        return Math.abs(cell1.getX() - cell2.getX()) + Math.abs(cell1.getY() - cell2.getY());
-    }
 
+
+    public static int getManhattanDistance(Cell start, Cell end) {
+        return Math.abs(start.getX() - end.getX()) + Math.abs(start.getY() - end.getY());
+    }
     public Cell[] getCellsInDistance(Cell cell, int distance) {
-        ArrayList<Cell> cells = new ArrayList<>();
-        for (Cell[] cel1 : this.board) {
-            for (Cell cel : cel1) {
+        ArrayList<Cell> retVal = new ArrayList<>();
+        for (Cell[] cells : this.board) {
+            for (Cell cel : cells) {
                 if (cel == null) continue;
-                if (Map.getManhattanDistance(cell, cel) == distance) cells.add(cel);
+                if (Map.getManhattanDistance(cell, cel) == distance) retVal.add(cel);
             }
         }
-        Cell[] cellsArray = new Cell[cells.size()];
-        cellsArray=cells.toArray(cellsArray);
+        Cell[] cellsArray = new Cell[retVal.size()];
+        cellsArray=retVal.toArray(cellsArray);
         return cellsArray;
     }
-
     public static int getRadiusDistance(Cell cell1, Cell cell2) {
         if (cell1 == null || cell2 == null) return Integer.MAX_VALUE;
         return Integer.max(Math.abs(cell1.getX() - cell2.getX()), Math.abs(cell1.getY() - cell2.getY()));
     }
 
-    public Cell getCell(int x, int y) throws InvalidCellException {
-        if (x >= CHAP_RAST_X || y >= BALA_PAEEN_Y || x < 0 || y < 0) throw new InvalidCellException();
-        return board[x][y];
-    }
-
-    public Cell getCell(Cell cell) throws InvalidCellException {
-        return getCell(cell.getX(),cell.getY());
-    }
-
-    public ArrayList<Cell> getCells() {
-        ArrayList<Cell> cells = new ArrayList<>();
-        for (int i = 0; i < board.length; i++) {
-            Collections.addAll(cells, board[i]);
-        }
-        return cells;
-    }
 
     public static Map generate() {
         Map map = new Map();
-        for (int i = 0; i < Map.CHAP_RAST_X; i++) {
-            for (int j = 0; j < BALA_PAEEN_Y; j++) {
+        for (int i = 0; i < Map.WHIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
                 map.board[i][j] = new Cell(i, j);
             }
         }
@@ -91,14 +65,21 @@ public class Map {
         return map;
     }
 
+    public ArrayList<Cell> getCells() {
+        ArrayList<Cell> cells = new ArrayList<>();
+        for (int i = 0; i < board.length; i++) {
+            Collections.addAll(cells, board[i]);
+        }
+        return cells;
+    }
     public  Cell getRandomEmptyCell(){
         Random random=new Random();
         int x = 0;
         int y = 0;
         boolean cant=true;
         while (cant) {
-            x = random.nextInt(Map.CHAP_RAST_X);
-            y = random.nextInt(Map.BALA_PAEEN_Y);
+            x = random.nextInt(Map.WHIDTH);
+            y = random.nextInt(Map.HEIGHT);
             try {
                 if (!this.getCell(x, y).hasItem() && !this.getCell(x, y).hasFlag() && !this.getCell(x, y).isFull()) cant = false;
                 if((x==Map.FIRST_HERO_X && y==Map.FIRST_HERO_Y) || (x==SECOND_HERO_X || x==SECOND_HERO_Y))cant=true;
@@ -110,6 +91,14 @@ public class Map {
         } catch (InvalidCellException ignored) {ignored.printStackTrace();}
         return returnCell;
     }
+    public Cell getCell(int x, int y) throws InvalidCellException {
+        if (x >= WHIDTH || y >= HEIGHT || x < 0 || y < 0) throw new InvalidCellException();
+        return board[x][y];
+    }
+    public Cell getCell(Cell cell) throws InvalidCellException {
+        return getCell(cell.getX(),cell.getY());
+    }
+
 
     public ArrayList<Cell> getPath(Cell start,Cell end,int maxTurns){
         ArrayList<Cell>retVal=this.findPath(start,end,0,maxTurns);
