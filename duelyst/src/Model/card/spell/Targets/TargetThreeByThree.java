@@ -1,13 +1,9 @@
 package Model.card.spell.Targets;
 
-import Controller.Game;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
-import Model.account.Player;
-import Model.card.spell.Spell;
 import Model.card.spell.Target;
-import Model.card.spell.Targets.TargetEnemyCard;
 import exeption.InvalidCellException;
 
 public class TargetThreeByThree implements Target {

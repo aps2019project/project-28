@@ -70,6 +70,8 @@ public class SignInMenu extends Menu {
             Game.hasLoggedIn = true;
             this.account=account;
             MenuHandler.setAccount(account);
+            // TODO: 6/30/19 in ro azin ja bardar or not
+
             MenuHandler.setCurrentMenu(menu.enter(MainMenu.getMenu()));
         } else {
             throw new WrongPassException();

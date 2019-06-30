@@ -10,6 +10,8 @@ import Controller.menu.MainMenu;
 import Controller.menu.SignInMenu;
 import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
 import Model.account.Account;
+import Model.account.player.CGI;
+import Model.account.player.GGI;
 import Model.card.Card;
 import Model.Primary;
 import javafx.application.Application;
@@ -136,8 +138,9 @@ public class GraphicView extends Application implements View{
     }
 
     @Override
-    public void setCommandHandler(CommandHandler commandHandler) {
-        this.commandHandler=commandHandler;
+    public void setGIs() {
+        Game.setUserGI(GGI.class);
+        Game.setBotGI(CGI.class);
     }
 
 

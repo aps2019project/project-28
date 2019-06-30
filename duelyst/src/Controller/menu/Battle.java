@@ -4,6 +4,7 @@ import Controller.Game;
 import Controller.GameMode.ClassicMode;
 import Controller.GameMode.GameMode;
 import Model.Map.Cell;
+import Model.account.player.Player;
 import Model.card.hermione.Hero;
 import Model.card.spell.Buff.Buff;
 import Model.item.Item;
@@ -22,8 +23,6 @@ import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnHandPresentedListener;
 import View.MenuHandler;
 import exeption.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -509,6 +508,11 @@ public class Battle extends Menu {
     }
 
     public void setPlayer(Player firstPlayer, Player secondPlayer) {
+
+        Game.setGI(firstPlayer);
+        Game.setGI(secondPlayer);
+
+
         this.player[0] = firstPlayer;
         this.ownPLayer = firstPlayer;
         this.player[1] = secondPlayer;

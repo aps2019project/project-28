@@ -96,6 +96,9 @@ public abstract class Menu {
     }
 
     public void addMenuClickListener(OnMenuClickedListener presenter) {
+        System.err.println("presenter?");
+//        if(this.menuPresenters.size()>0)
+//            throw new NullPointerException();
         this.menuPresenters.add(presenter);
     }
 
@@ -124,7 +127,7 @@ public abstract class Menu {
 
     public Menu getMenuFromSubMenus(String name) throws InvalidSubMenuException {
         for (Menu subMenu : this.subMenus) {
-            if (subMenu.name.toLowerCase().trim().equals(name)) return subMenu;
+            if (subMenu.name.toLowerCase().trim().equals(name.toLowerCase())) return subMenu;
         }
         throw new InvalidSubMenuException();
 

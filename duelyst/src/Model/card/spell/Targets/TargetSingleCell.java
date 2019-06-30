@@ -1,8 +1,6 @@
 package Model.card.spell.Targets;
 
 import Model.Map.Cell;
-import Model.account.Player;
-import Model.card.spell.Spell;
 import Model.card.spell.Target;
 import exeption.InvalidCellException;
 

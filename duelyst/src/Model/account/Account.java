@@ -1,6 +1,8 @@
 package Model.account;
 
+import Controller.Game;
 import Model.Primary;
+import Model.account.player.Player;
 import com.gilecode.yagson.YaGson;
 import exeption.InvalidAccountException;
 
@@ -213,8 +215,10 @@ public class Account {
 
 
     public Player getPlayer() {
-        if (this.player == null)
+        if (this.player == null){
             this.player = new Player(this, 2, 2);
+            Game.setDefaultGI(player);
+        }
         return player;
     }
 

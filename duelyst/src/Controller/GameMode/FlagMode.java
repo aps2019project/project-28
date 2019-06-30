@@ -5,7 +5,7 @@ import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
 import Model.account.Account;
-import Model.account.Player;
+import Model.account.player.Player;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Minion;
 

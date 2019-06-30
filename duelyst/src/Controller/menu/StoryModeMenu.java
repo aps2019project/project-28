@@ -1,11 +1,10 @@
 package Controller.menu;
 
 import Controller.Game;
-import Model.account.AI;
+import Model.account.player.AI;
 import Model.account.Account;
 import Model.account.Deck;
 import View.Listeners.OnDeckSelectorClickedListener;
-import exeption.*;
 
 public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
     private static StoryModeMenu menu;

@@ -20,17 +20,16 @@ public class MenuHandler {
     private static Account account ;
     private static CommandHandler commandHandler=new CommandHandler();
 
-    //moh
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         try {
             Primary.preprocess();
             initMenus();
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        View input = new ConsoleView();
-        View input = new GraphicView();
-        input.setCommandHandler(commandHandler);
+            System.err.println("debug");
+        View input = new ConsoleView();
+//        View input = new GraphicView();
         input.play(args);
     }
 
@@ -38,16 +37,14 @@ public class MenuHandler {
         currentMenu= SignInMenu.getMenu().enter();
     }
 
+
+
     public static void showMenu() {
         MenuHandler.currentMenu.showMenu();
     }
 
     public static void nextMove() {
-        if (MenuHandler.currentMenu instanceof Battle)
-            Battle.getMenu().getPlayer().doYourMove();
-    }
-    public static Scanner getGameScanner() {
-        return Game.accounts[Battle.getMenu().getTurn()].getPlayer().getOutputStream();
+        Game.accounts[Battle.getMenu().getTurn()].getPlayer().getGI().intervene();
     }
 
     public static void setCurrentMenu(Menu currentMenu) {
@@ -73,7 +70,6 @@ public class MenuHandler {
         MenuHandler.account = account;
     }
 
-
     private static void initMenus() {
         System.err.println("debug");
         //az SignIn Menu mirim tuye MainMenu
@@ -98,6 +94,4 @@ public class MenuHandler {
 
         currentMenu = SignInMenu.getMenu();
     }
-
-
 }

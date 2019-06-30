@@ -1,7 +1,7 @@
 package Model.card.spell.Targets;
 
 import Model.Map.Cell;
-import Model.account.Player;
+import Model.account.player.Player;
 import Model.card.hermione.Minion;
 
 public class TargetAllCards{

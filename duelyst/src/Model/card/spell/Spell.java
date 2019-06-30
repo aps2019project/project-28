@@ -2,7 +2,7 @@ package Model.card.spell;
 
 import Model.Graphics.SpellGraphics;
 import Model.Primary;
-import Model.account.Player;
+import Model.account.player.Player;
 import Model.card.Card;
 import Model.Map.*;
 import Model.card.spell.SpellAction.*;

@@ -1,9 +1,8 @@
 package Model.card.spell.SpellAction;
 
-import Controller.Game;
 import Controller.menu.Battle;
 import Model.Map.Cell;
-import Model.account.Player;
+import Model.account.player.Player;
 import Model.card.spell.Spell;
 import exeption.InvalidCardException;
 
