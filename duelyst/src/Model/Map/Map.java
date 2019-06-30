@@ -14,9 +14,9 @@ import exeption.InvalidCellException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.function.Consumer;
 
 public class Map {
-    private static ArrayList<Map> maps;
     public static final int BALA_PAEEN_Y=5;
     public static final int CHAP_RAST_X=9;
     public static final int FIRST_HERO_X=0;
@@ -24,6 +24,11 @@ public class Map {
     public static final int SECOND_HERO_X=8;
     public static final int SECOND_HERO_Y=2;
     public static final int MAX_COLLECTABLE_ON_MAP=3;
+
+
+    private static final int[]dx={-1,-1, 0, 1,1,1,0,-1};
+    private static final int[]dy={ 0,-1,-1,-1,0,1,1, 1};
+
 
 
     private Cell[][] board = new Cell[Map.CHAP_RAST_X + 1][Map.BALA_PAEEN_Y + 1];
@@ -106,27 +111,36 @@ public class Map {
         return returnCell;
     }
 
-//    public ArrayList<Cell> getPath(Cell startPoint,Cell endPoint){
-//        ArrayList<Cell>path=new ArrayList<>();
-//
-//    }
-//    private  ArrayList<Cell> findPath(Cell startPoint,Cell endPoint,int turn,ArrayList<Cell>path){
-//        if(turn==0)return path;
-//        int dx[]={-1,0,1,0};
-//        int dy[]={0,-1,0,1};
-//
-//        for(int i=0;i<4;i++){
-//            int nx=startPoint.getX()+dx[i];
-//            int ny=startPoint.getY()+dy[i];
-//
-//            Cell cell;
-//            try {
-//                cell=this.getCell(nx,ny);
-//            } catch (InvalidCellException e) {
-//                continue;
-//            }
-//
-//        }
-//    }
+    public ArrayList<Cell> getPath(Cell start,Cell end,int maxTurns){
+        ArrayList<Cell>retVal=this.findPath(start,end,0,maxTurns);
+        Collections.reverse(retVal);
+        return retVal;
+    }
+    private ArrayList<Cell> findPath(Cell start, Cell end,int turn,int maxTurns) {
+        ArrayList<Cell>retVal;
 
+        // break conditions
+        if(turn>maxTurns)return null;
+        if(start.getX()==end.getX() && start.getY()==end.getY()){
+            return new ArrayList<>();
+        }
+
+        for(int i=0;i<dx.length;i++){
+            try {
+                Cell neighbor=this.getCell(start.getX()+dx[i],start.getY()+dy[i]);
+
+                //bad situation
+                if(neighbor.getCardOnCell()!=null)continue;
+
+
+                retVal=findPath(neighbor, end,turn+1,maxTurns);
+
+                if(retVal!=null){
+                    retVal.add(neighbor);
+                    return retVal;
+                }
+            } catch (InvalidCellException ignored) { }
+        }
+        return null;
+    }
 }

@@ -3,13 +3,10 @@ import Controller.menu.*;
 import exeption.*;
 
 import java.io.OutputStream;
-import java.util.ArrayList;
 
 public class CommandHandler {
 
-    protected OutputStream output;
-
-    {
+    static {
         setPatterns();
     }
 
@@ -18,17 +15,12 @@ public class CommandHandler {
     }
 
 
-    public void setOutputStream(OutputStream output) {
-        this.output = output;
-    }
-
 
     //commandHandler
     public  void handleCommand(String command) {
         command=command.toLowerCase();
         System.out.println("command = " + command);
         try {
-            ;
             String[] word = command.toLowerCase().split(" ");
             if (!MenuHandler.getCurrentMenu().allowsCommand(command)) {
                 System.out.println("MenuHandler.getCurrentMenu() = " + MenuHandler.getCurrentMenu());
@@ -327,7 +319,6 @@ public class CommandHandler {
         for (int i = 0; i < word.length; i++) {
             System.err.print(word[i]);
         }
-        ;
 
         if (word[0].equals("game") && word[1].equals("info")) {
             menu.gameInfo();
@@ -404,9 +395,7 @@ public class CommandHandler {
             try {
                 menu.useSpecialPower(Integer.parseInt(word[3]), Integer.parseInt(word[4]));
             }catch(InvalidCellException e){
-//                System.out.println("sorry but you have to pick a different cell");
-//                System.out.println(e.getMessage());
-                e.printStackTrace();
+                System.out.println("sorry but you have to pick a different cell");
             }catch (InvalidCardException e){
                 System.out.println("sorry ! invalid card");
             }catch (CantSpecialPowerCooldownException e){
