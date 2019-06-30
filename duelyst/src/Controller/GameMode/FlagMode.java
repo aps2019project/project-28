@@ -35,7 +35,7 @@ public class FlagMode implements GameMode {
 //                return;
             }
         }
-        Account.save();
+        //Account.save();
     }
 
     @Override

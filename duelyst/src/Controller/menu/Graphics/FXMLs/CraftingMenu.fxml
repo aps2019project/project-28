@@ -5,40 +5,37 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.CraftingMenuFXML">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.CraftingMenuFXMLC">
    <children>
-      <Button fx:id="backButton" alignment="CENTER" layoutX="4.0" layoutY="6.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="106.0" styleClass="back-button" stylesheets="@../StyleSheets/Buttons.css" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <VBox fx:id="vbox" layoutX="448.0" layoutY="48.0" prefHeight="685.0" prefWidth="802.0" spacing="15.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="48.0" />
-      <Button fx:id="craft" layoutX="679.0" layoutY="751.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="152.0" stylesheets="@../StyleSheets/Buttons.css" text="Craft">
-         <font>
-            <Font name="Verdana Bold" size="22.0" />
-         </font>
-      </Button>
-      <Button fx:id="reset" layoutX="826.0" layoutY="748.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="152.0" stylesheets="@../StyleSheets/Buttons.css" text="Reset">
-         <font>
-            <Font name="Verdana Bold" size="22.0" />
-         </font>
-      </Button>
-      <VBox fx:id="jks" layoutX="48.0" layoutY="191.0" prefHeight="212.0" prefWidth="200.0" style="-fx-background-color: #40404040;" stylesheets="@../StyleSheets/Buttons.css" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="191.0">
+      <ImageView fitHeight="237.0" fitWidth="510.0" layoutX="53.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="345.8399963378906" AnchorPane.leftAnchor="53.0" AnchorPane.topAnchor="343.1600036621094">
+         <image>
+            <Image url="@../../../../resources/images/duelystGrayLogo.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER" layoutX="2.0" layoutY="322.0" prefHeight="113.0" prefWidth="1283.0" spacing="50.0" AnchorPane.bottomAnchor="365.0" AnchorPane.topAnchor="322.0">
          <children>
-            <Button fx:id="heroT" mnemonicParsing="false" prefHeight="67.0" prefWidth="215.0" text="Hero" textFill="WHITE">
+            <Button fx:id="hero" alignment="CENTER" mnemonicParsing="false" prefHeight="94.0" prefWidth="421.0" styleClass="menu-button" stylesheets="@../StyleSheets/Buttons.css" text="Hero" textAlignment="CENTER">
                <font>
-                  <Font name="Verdana Bold" size="35.0" />
+                  <Font name="Songti SC Bold" size="43.0" />
                </font>
             </Button>
-            <Button fx:id="minionT" mnemonicParsing="false" prefHeight="67.0" prefWidth="215.0" text="Minion" textFill="WHITE">
+            <Button fx:id="spell" alignment="CENTER" mnemonicParsing="false" prefHeight="94.0" prefWidth="421.0" styleClass="menu-button" stylesheets="@../StyleSheets/Buttons.css" text="Spell" textAlignment="CENTER">
                <font>
-                  <Font name="Verdana Bold" size="35.0" />
+                  <Font name="Songti SC Bold" size="43.0" />
                </font>
             </Button>
-            <Button fx:id="spellT" mnemonicParsing="false" prefHeight="67.0" prefWidth="215.0" text="Spell" textFill="WHITE">
-               <font>
-                  <Font name="Verdana Bold" size="35.0" />
-               </font>
-            </Button>
+             <Button fx:id="minion" alignment="CENTER" mnemonicParsing="false" prefHeight="94.0" prefWidth="421.0" styleClass="menu-button" stylesheets="@../StyleSheets/Buttons.css" text="Minion" textAlignment="CENTER">
+                 <font>
+                     <Font name="Songti SC Bold" size="43.0" />
+                 </font>
+             </Button>
          </children>
-      </VBox>
+      </HBox>
+      <Button fx:id="backButton" alignment="CENTER" layoutX="4.0" layoutY="6.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="106.0" styleClass="back-button" stylesheets="@../StyleSheets/Buttons.css" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Songti SC Bold" size="43.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

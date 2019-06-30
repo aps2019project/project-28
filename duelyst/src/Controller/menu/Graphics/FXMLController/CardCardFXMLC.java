@@ -33,8 +33,7 @@ public class CardCardFXMLC {
     @FXML
     private AnchorPane pane ;
 
-
-    public void buildCardCard(Card card , Account account , ShopMenuFXMLC fxmlc){
+    public void buildCardCard(Card card , Account account){
 
         Image cardBackground = new Image("resources/card_backgrounds/card_back_shimzar.png") ;
         Image hero_stamp = new Image ("resources/images/hero_stamp.png");
@@ -62,10 +61,9 @@ public class CardCardFXMLC {
 //        try {
 //            imageView.setImage(card.getCardGraphics().getAvatar());
 //        }catch(NullPointerException e){
-            imageView.setImage(cardBackground);
+        imageView.setImage(cardBackground);
 //        }
         if (account.getMoney() >= card.getPrice() && !exists){
-            buy.setOnAction(e -> buy(card , fxmlc));
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_card.getPath())));
         }else{
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_disabled.getPath())));
@@ -74,6 +72,13 @@ public class CardCardFXMLC {
             buy.setDisable(true);
         }
     }
+
+    public void buildCardCard(Card card , Account account , ShopMenuFXMLC fxmlc){
+        buildCardCard(card , account);
+        buy.setOnAction(e -> buy(card , fxmlc));
+    }
+
+
     private void existanceCheck() {
         if (!exists) exist.setText("You don't have this Item");
         else {
@@ -94,6 +99,10 @@ public class CardCardFXMLC {
             System.err.println("error has been occurred while buying card in CardCardFXMLC");
             e.printStackTrace();
         }
+    }
+
+    public Button getButton(){
+        return buy ;
     }
 
 }

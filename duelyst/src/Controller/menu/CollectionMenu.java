@@ -1,5 +1,7 @@
 package Controller.menu;
 
+import Controller.menu.Graphics.FXMLController.Popup;
+import Model.item.Usable;
 import View.Listeners.OnCollectionPresentedListener;
 import Model.account.*;
 import Model.card.Card;
@@ -7,13 +9,17 @@ import Model.card.OnCardDetailsPresentedListener;
 import Model.item.Item;
 import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnDeckPresentedListener;
+import View.Listeners.OnDeckSelectorClickedListener;
 import com.gilecode.yagson.YaGson;
 import exeption.*;
 
-public class CollectionMenu extends Menu {
+public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
 
     private static CollectionMenu menu;
     private Collection tempCollection;
+    private Deck selectedDeck ;
+
+    private OnDeckSelectorClickedListener onDeckSelectorClickedListener ;
 
 
 //    @Override
@@ -43,7 +49,7 @@ public class CollectionMenu extends Menu {
 
     public void save() {
         this.account.setCollection(this.tempCollection);
-        Account.save();
+        //Account.save();
     }
 
     public void showCollection() {
@@ -66,9 +72,9 @@ public class CollectionMenu extends Menu {
         }
     }
 
-    public void createNewDeck(String deckName) throws DeckAlreadyExistException {
+    public Deck createNewDeck(String deckName) throws DeckAlreadyExistException {
         if (this.tempCollection.hasDeck(deckName)) throw new DeckAlreadyExistException();
-        this.tempCollection.addNewDeck(deckName);
+        return this.tempCollection.addNewDeck(deckName);
     }
 
     public void deleteDeck(String deckName) throws InvalidDeckException {
@@ -125,5 +131,50 @@ public class CollectionMenu extends Menu {
     public Menu exit() {
         this.save();
         return super.exit();
+    }
+
+    public boolean isTheCardInTheDeck(Card card){
+        if (selectedDeck == null) return false ;
+        return selectedDeck.hasCard(card) ;
+    }
+    public boolean isTheItemInTheDeck(Item item){
+        if (selectedDeck == null) return false ;
+        return selectedDeck.hasItem(item.getID()) ;
+    }
+
+    public void setSelectedDeck(Deck selectedDeck) {
+        this.selectedDeck = selectedDeck;
+    }
+    public void addCardToDeck(Card card) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException {
+        if (selectedDeck != null){
+            selectedDeck.addCardToDeck(card);
+        }
+    }
+
+    public void removeFromDeck(int id) throws InvalidCardException, InvalidItemException {
+        if (selectedDeck != null){
+            selectedDeck.removeFromDeck(id);
+        }
+    }
+
+    public void addItemToDeck(Usable item) throws FullDeckException, DeckAlreadyHasThisItemException {
+        if (selectedDeck != null)
+            selectedDeck.addItemToDeck(item);
+    }
+
+    @Override
+    public void selectDeck(Account account, Deck deck) {
+        account.getCollection().getDecks().remove(deck);
+        //Account.save();
+    }
+
+    @Override
+    public void setDeckSelectorListener(OnDeckSelectorClickedListener ds) {
+        onDeckSelectorClickedListener = ds ;
+    }
+
+    @Override
+    public void showDeckSelector(Account account) {
+        onDeckSelectorClickedListener.show(menu.getAccount(), this , "Which deck do you wish to remove?");
     }
 }

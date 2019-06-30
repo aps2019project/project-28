@@ -3,12 +3,10 @@ package View;
 //import SignInMenu;
 import Controller.Game;
 import Controller.menu.*;
-import Controller.menu.Graphics.FXMLController.DeckSelectorFXMLC;
-import Controller.menu.Graphics.FXMLController.LeaderBoardFXMLC;
+import Controller.menu.Graphics.FXMLController.*;
 import Controller.menu.Battle;
 import Controller.menu.MainMenu;
 import Controller.menu.SignInMenu;
-import Controller.menu.Graphics.FXMLController.SignInMenuFXMLC;
 import Model.account.Account;
 import Model.account.player.CGI;
 import Model.account.player.GGI;
@@ -81,25 +79,15 @@ public class GraphicView extends Application implements View{
     }
 
     private static void setListeners() {
-        SignInMenu.getMenu().addLeaderBoardClickedListener((accounts , fxmlc) -> {
-              LeaderBoardFXMLC.makeNewScene(accounts , fxmlc);
-        });
+        SignInMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC::makeNewScene);
 
-        MultiPlayerModeMenu.getMenu().addLeaderBoardClickedListener((accounts , fxmlc) -> {
-            LeaderBoardFXMLC.makeNewScene(accounts , fxmlc);
-        });
+        MultiPlayerModeMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC::makeNewScene);
 
-        StoryModeMenu.getMenu().setDeckSelectorListener((account , menu , title)-> {
-            DeckSelectorFXMLC.makeNewScene(account , menu, title);
-        });
+        StoryModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
 
-        CustomModeMenu.getMenu().setDeckSelectorListener((account , menu , title)-> {
-            DeckSelectorFXMLC.makeNewScene(account , menu, title);
-        });
+        CustomModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
 
-        MultiPlayerModeMenu.getMenu().setDeckSelectorListener((account , menu , title)-> {
-            DeckSelectorFXMLC.makeNewScene(account , menu, title);
-        });
+        MultiPlayerModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
     }
 
     private static void initGraphics() {
@@ -114,6 +102,9 @@ public class GraphicView extends Application implements View{
         StoryModeMenu.getMenu().getGraphic().init();
         CustomModeMenu.getMenu().getGraphic().init();
         CraftingMenu.getMenu().getGraphic().init();
+        CraftingHeroMenu.getMenu().getGraphic().init();
+        CraftingMinionMenu.getMenu().getGraphic().init();
+        CraftingSpellMenu.getMenu().getGraphic().init();
     }
 
 
@@ -131,6 +122,10 @@ public class GraphicView extends Application implements View{
         CollectionMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CollectionMenu.fxml");
         CraftingMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMenu.fxml");
         Battle.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/Battle.fxml");
+        CraftingMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMenu.fxml");
+        CraftingHeroMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingHero.fxml");
+        CraftingMinionMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMinion.fxml");
+        CraftingSpellMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingSpell.fxml");
     }
 
     public void play(String...args) {

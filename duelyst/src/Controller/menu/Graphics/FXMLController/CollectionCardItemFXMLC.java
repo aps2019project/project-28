@@ -42,4 +42,8 @@ public class CollectionCardItemFXMLC {
             pane.getChildren().remove(sellButton);
         }
     }
+
+    public Button getButton() {
+        return sellButton;
+    }
 }

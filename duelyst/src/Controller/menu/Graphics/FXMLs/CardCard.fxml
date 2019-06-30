@@ -41,7 +41,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button id="shopping-button" fx:id="buy" mnemonicParsing="false" prefHeight="94.0" prefWidth="237.0" stylesheets="@../StyleSheets/Buttons.css" text="BUY">
+                  <Button fx:id="buy" mnemonicParsing="false" prefHeight="94.0" prefWidth="237.0" styleClass="shopping-button" stylesheets="@../StyleSheets/Buttons.css" text="BUY">
                      <font>
                         <Font name="Verdana Bold" size="52.0" />
                      </font>
@@ -51,6 +51,6 @@
          </children>
       </VBox>
       <ImageView fx:id="heroStamp" fitHeight="139.0" fitWidth="214.0" layoutX="659.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" rotate="-33.7" />
-      <ImageView fx:id="imageView"  fitHeight="369.0" fitWidth="300.0" layoutX="837.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+      <ImageView fx:id="imageView" fitHeight="369.0" fitWidth="300.0" layoutX="837.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
    </children>
 </AnchorPane>

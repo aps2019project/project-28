@@ -72,8 +72,6 @@ public class ShopMenuFXMLC extends FXMLController {
         balance.setText("Balance : " + menu.getAccount().getMoney() + "$");
     }
 
-
-
     private void makeCardsVBox() {
         cardsVbox.setSpacing(15);
 
@@ -88,7 +86,6 @@ public class ShopMenuFXMLC extends FXMLController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 

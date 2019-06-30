@@ -47,4 +47,8 @@ public class CollectionCardSpellFXMLC {
             pane.getChildren().remove(sellButton);
         }
     }
+
+    public Button getButton() {
+        return sellButton;
+    }
 }

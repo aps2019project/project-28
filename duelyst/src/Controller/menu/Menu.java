@@ -164,4 +164,5 @@ public abstract class Menu {
     public void setGraphic(MenuGraphics graphic) {
         this.graphic = graphic;
     }
+
 }

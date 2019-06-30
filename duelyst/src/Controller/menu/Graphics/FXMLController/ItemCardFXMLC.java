@@ -25,9 +25,12 @@ public class ItemCardFXMLC {
     @FXML
     private Button buy;
 
-
-
     public void builditemCard(Usable item , Account account , ShopMenuFXMLC fxmlc){
+        builditemCard(item , account);
+        buy.setOnAction(e -> buy(item , fxmlc));
+    }
+
+    public void builditemCard(Usable item , Account account){
         Image itemBackground = new Image("resources/card_backgrounds/card_back_agenor.png");
 
         name.setText(item.getName());
@@ -47,7 +50,6 @@ public class ItemCardFXMLC {
             imageView.setImage(itemBackground);
 //        }
         if (account.getMoney() >= item.getPrice() && !exists){
-            buy.setOnAction(e -> buy(item , fxmlc));
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_card.getPath())));
         }else{
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_disabled.getPath())));
@@ -79,4 +81,7 @@ public class ItemCardFXMLC {
         }
     }
 
+    public Button getButton() {
+        return buy;
+    }
 }

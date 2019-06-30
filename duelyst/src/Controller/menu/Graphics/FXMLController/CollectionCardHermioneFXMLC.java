@@ -77,4 +77,8 @@ public class CollectionCardHermioneFXMLC {
             pane.getChildren().remove(sellButton);
         }
     }
+
+    public Button getButton(){
+        return sellButton;
+    }
 }

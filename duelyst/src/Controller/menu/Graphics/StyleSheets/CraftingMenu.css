@@ -4,4 +4,14 @@
 }
 .text-field{
     -fx-font-family: Verdana;
+    -fx-background-color: #FFAA3090;
+    -fx-text-fill: white;
+}
+.text-field-wrong{
+    -fx-border-color: red;
+    -fx-border-width: 5px;
+}
+.choice-box{
+    -fx-font-family: Verdana;
+    -fx-background-color: #FFAA3090;
 }
