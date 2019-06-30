@@ -27,9 +27,9 @@ public class MenuHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-            System.err.println("debug");
-        View input = new ConsoleView();
-//        View input = new GraphicView();
+            ;
+//        View input = new ConsoleView();
+        View input = new GraphicView();
         input.play(args);
     }
 
@@ -44,13 +44,15 @@ public class MenuHandler {
     }
 
     public static void nextMove() {
+        ;
+
         Game.accounts[Battle.getMenu().getTurn()].getPlayer().getGI().intervene();
     }
 
-    public static void setCurrentMenu(Menu currentMenu) {
+    public static void setCurrentMenu(Menu menu) {
         if (MenuHandler.currentMenu != null)MenuHandler.lastMenus.add(MenuHandler.currentMenu);
-        MenuHandler.currentMenu = currentMenu;
-        currentMenu.enter();
+        currentMenu=currentMenu.enter(menu);
+
     }
     public static Menu getCurrentMenu() {
         return currentMenu;
@@ -71,7 +73,7 @@ public class MenuHandler {
     }
 
     private static void initMenus() {
-        System.err.println("debug");
+        ;
         //az SignIn Menu mirim tuye MainMenu
 
         SignInMenu.getMenu().addSubMenu(MainMenu.getMenu());

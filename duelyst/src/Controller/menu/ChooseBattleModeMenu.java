@@ -30,7 +30,7 @@ public class ChooseBattleModeMenu extends Menu {
 
 
     public void setMode(int mode) {
-        System.err.println("debug");
+        ;
         switch (mode){
             case 3:
                 Battle.getMenu().setGameMode(new Domination());

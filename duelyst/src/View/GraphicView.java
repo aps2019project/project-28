@@ -26,8 +26,6 @@ public class GraphicView extends Application implements View{
     private static Stage stage;
     private static Rectangle2D primaryScreenBounds ;
 
-    private CommandHandler commandHandler;
-
 
     public static void setScene(Scene scene) {
         GraphicView.stage.setScene(scene);
@@ -38,8 +36,8 @@ public class GraphicView extends Application implements View{
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        System.err.println("debug");
-
+        ;
+        setGIs();
         Primary.initGraphics();
 
 
@@ -62,6 +60,13 @@ public class GraphicView extends Application implements View{
 
         initializeGraphicMenu();
         MenuHandler.startMenus();
+        new Thread(() -> {
+            while(true){
+                MenuHandler.showMenu();
+                MenuHandler.nextMove();
+            }
+        }).start();
+
     }
 
     private void configStage(Stage primaryStage) {
@@ -80,13 +85,9 @@ public class GraphicView extends Application implements View{
 
     private static void setListeners() {
         SignInMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC::makeNewScene);
-
         MultiPlayerModeMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC::makeNewScene);
-
         StoryModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
-
         CustomModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
-
         MultiPlayerModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
     }
 
@@ -136,6 +137,7 @@ public class GraphicView extends Application implements View{
     public void setGIs() {
         Game.setUserGI(GGI.class);
         Game.setBotGI(CGI.class);
+        Game.setDefaultGI(CGI.class);
     }
 
 

@@ -103,7 +103,9 @@ public abstract class Menu {
     }
 
     public boolean allowsCommand(String command) {
+        System.out.println("im out there checking");
         for (String pattern : this.patterns) {
+            System.out.println("pattern = " + pattern);
             if (command.matches(pattern)) return true;
         }
         return false;

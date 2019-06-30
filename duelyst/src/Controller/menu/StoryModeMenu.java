@@ -5,6 +5,7 @@ import Model.account.player.AI;
 import Model.account.Account;
 import Model.account.Deck;
 import View.Listeners.OnDeckSelectorClickedListener;
+import View.MenuHandler;
 
 public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
     private static StoryModeMenu menu;
@@ -15,7 +16,7 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
     }
 
     public static StoryModeMenu getMenu(){
-        System.err.println("debug");
+        ;
         if(StoryModeMenu.menu==null){
             StoryModeMenu.menu=new StoryModeMenu("StoryModeMenu");
         }
@@ -27,11 +28,12 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
         super.help();
     }
 
-    public Menu  setAI(int level) {
-        System.err.println("debug");
+    public void   setAI(int level) {
+        ;
         Game.accounts[1]= Account.AI[level];
         Game.accounts[1].setPlayer(new AI(Game.accounts[1],2,2,Game.accounts[0].getPlayer()));
-        return this.enter(Battle.getMenu());
+        ;
+        MenuHandler.setCurrentMenu(Battle.getMenu());
     }
 
     @Override

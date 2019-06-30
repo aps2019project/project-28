@@ -17,11 +17,8 @@ public class ConsoleView implements View{
     @Override
     public void play(String... args) {
         setGIs();
-        System.err.println("debug");
+        ;
         MenuHandler.startMenus();
-        MenuHandler.showMenu();
-
-
         while(true){
             MenuHandler.showMenu();
             MenuHandler.nextMove();

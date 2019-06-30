@@ -198,7 +198,7 @@ public class Primary {
 
         getAccounts();
         Account.updateAccounts();
-        System.err.println("debug");
+        ;
         generateAI();
 
 

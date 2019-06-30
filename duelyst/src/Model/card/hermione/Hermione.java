@@ -133,7 +133,7 @@ public abstract class Hermione extends Card {
     public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, CardCantBeMovedException, DestinationIsFullException {
 
         // TODO: 2019-06-26 move cell begire va location ro cell bezare ke be battle kari nadashte bashe
-        System.err.println("debug");
+        ;
         if (!canMove(x, y)) return false;
         System.err.println("debugg");
         /*
