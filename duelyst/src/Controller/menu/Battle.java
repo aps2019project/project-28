@@ -209,6 +209,11 @@ public class Battle extends Menu {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
 
 
+            //conditions that are related to the map and not to the hermione
+            if (this.getMap().getCell(x, y).isFull()) throw new DestinationIsFullException();
+            if(this.getMap().getPath(hermione.getLocation(),new Cell(x,y),2)==null)throw new DestinationOutOfreachException();
+
+
             if(hermione.canMove(x,y))this.getMap().getCell(hermione.getLocation()).clear();
             hermione.move(x, y);
 

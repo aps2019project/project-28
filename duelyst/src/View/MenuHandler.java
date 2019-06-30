@@ -18,7 +18,6 @@ public class MenuHandler {
     private static Menu currentMenu;
     private static ArrayList<Menu> lastMenus = new ArrayList<>();
     private static Account account ;
-    private static CommandHandler commandHandler=new CommandHandler();
 
         public static void main(String[] args) {
         try {
@@ -27,7 +26,6 @@ public class MenuHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
-            ;
 //        View input = new ConsoleView();
         View input = new GraphicView();
         input.play(args);
@@ -56,9 +54,6 @@ public class MenuHandler {
     }
     public static Menu getCurrentMenu() {
         return currentMenu;
-    }
-    public static ArrayList<Menu> getLastMenus() {
-        return lastMenus;
     }
     public static void goBack() {
         currentMenu = lastMenus.get(lastMenus.size()-1).enter();

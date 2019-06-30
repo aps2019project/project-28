@@ -120,7 +120,6 @@ public abstract class Hermione extends Card {
 
         if (this.actionTurn != 0) throw new MoveTrunIsOverException();
 
-        if (Battle.getMenu().getMap().getCell(x, y).isFull()) throw new DestinationIsFullException();
 
         if (Map.getManhattanDistance(this.location, new Cell(x, y)) > MOVE_RANGE)
             throw new DestinationOutOfreachException();
