@@ -70,6 +70,13 @@ public class SignInMenu extends Menu {
             Game.hasLoggedIn = true;
             this.account=account;
             MenuHandler.setAccount(account);
+            new Thread("initializing shop and collection"){
+                @Override
+                public void run() {
+                    ShopMenu.getMenu().getGraphic().init();
+                    CollectionMenu.getMenu().getGraphic().init();
+                }
+            }.start();
             MenuHandler.setCurrentMenu(menu.enter(MainMenu.getMenu()));
         } else {
             throw new WrongPassException();

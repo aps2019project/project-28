@@ -99,10 +99,6 @@ public class GraphicView extends Application implements View{
         Battle.getMenu().getGraphic().init();
         StoryModeMenu.getMenu().getGraphic().init();
         CustomModeMenu.getMenu().getGraphic().init();
-        CraftingMenu.getMenu().getGraphic().init();
-        CraftingHeroMenu.getMenu().getGraphic().init();
-        CraftingMinionMenu.getMenu().getGraphic().init();
-        CraftingSpellMenu.getMenu().getGraphic().init();
     }
 
 

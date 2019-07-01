@@ -25,25 +25,19 @@ import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
-import com.sun.scenario.effect.impl.prism.PrImage;
 import exeption.*;
 import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.io.*;
 import java.util.ArrayList;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.toRadians;
 
 public class Primary {
 
@@ -423,7 +417,7 @@ public class Primary {
         minions.add(new Minion("One Eye Giant", 500, 7, 12,
                 11, new Hybrid(), 3,
                 new SpecialPower("One Eye Giant SpecialPower", 0, 0, 0, -2, "",
-                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks surrounding minions 2 points, on death"));
+                        TargetRandomEnemyMinionInSurrounding.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks surrounding minions 2 points, on death"));
         minions.add(new Minion("Venomous Snake", 300, 4, 5,
                 6, new Range(), 4,
                 new SpecialPower("VenomousSnake", 0, 0, 0, 3, "",
@@ -454,7 +448,7 @@ public class Primary {
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
 
         SpecialPower theWizard =  new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
-                RandomMinionInSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
+                TargetRandomEnemyMinionInSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
         theWizard.addAction(ActionChangeHPBuff.getAction(), -1, 1);
         minions.add(new Minion("The Wizard", 550, 4, 5,
                 4, new Range(), 3, theWizard, SPATime.PASSIVE
