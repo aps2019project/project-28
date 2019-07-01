@@ -10,7 +10,7 @@
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.CraftingMinionFXMLC">
    <children>
       <Button fx:id="backButton" alignment="CENTER" layoutX="4.0" layoutY="6.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="106.0" styleClass="back-button" stylesheets="@../StyleSheets/Buttons.css" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <VBox fx:id="vbox" alignment="TOP_CENTER" fillWidth="false" layoutX="64.0" layoutY="47.0" prefHeight="594.0" prefWidth="1186.0" spacing="15.0" AnchorPane.bottomAnchor="159.0" AnchorPane.rightAnchor="30.0">
+      <VBox fx:id="vbox" alignment="TOP_CENTER" fillWidth="false" layoutX="61.0" layoutY="101.0" prefHeight="594.0" prefWidth="1186.0" spacing="15.0" AnchorPane.bottomAnchor="105.0" AnchorPane.rightAnchor="33.0">
          <children>
             <TextField fx:id="name" alignment="CENTER" prefHeight="73.0" prefWidth="486.0" promptText="Name">
                <font>
@@ -33,7 +33,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1198.0" spacing="40.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Attack Type :" wrappingWidth="240.5980224609375">
+                  <Text fill="#ff00d9" strokeType="OUTSIDE" strokeWidth="0.0" text="Attack Type :" wrappingWidth="240.5980224609375">
                      <font>
                         <Font name="Verdana Bold" size="31.0" />
                      </font>
@@ -48,7 +48,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1198.0" spacing="40.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Special Power :" wrappingWidth="270.42699432373047">
+                  <Text fill="#ff00d9" strokeType="OUTSIDE" strokeWidth="0.0" text="Special Power :" wrappingWidth="270.42699432373047">
                      <font>
                         <Font name="Verdana Bold" size="31.0" />
                      </font>

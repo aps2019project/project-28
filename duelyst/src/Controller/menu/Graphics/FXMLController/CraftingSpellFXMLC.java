@@ -4,6 +4,8 @@ import Controller.menu.Graphics.GraphicsControls;
 import Model.card.hermione.AttackType;
 import Model.card.hermione.SPATime;
 import Model.card.spell.Spell;
+import Model.card.spell.Target;
+import Model.card.spell.Targets.*;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -20,13 +22,9 @@ public class CraftingSpellFXMLC extends FXMLController {
     @FXML
     private VBox vbox ;
     @FXML
-    private TextField name , ap , hp , range , cost , manapoint ;
+    private TextField name , perk , cost , manapoint ;
     @FXML
-    private ChoiceBox<Spell> specialPower ;
-    @FXML
-    private ChoiceBox<AttackType> attackType ;
-    @FXML
-    private ChoiceBox<SPATime> spa ;
+    private ChoiceBox<String> target , action ;
 
 
     @Override
@@ -41,38 +39,54 @@ public class CraftingSpellFXMLC extends FXMLController {
 
         setUpChoiceboxes();
 
-        reset.setOnAction(e -> {
-            for (Node node : vbox.getChildren()){
-                if (node instanceof TextField){
-                    ((TextField)node).setText("");
-                }
-                if (node instanceof HBox){
-                    for (Node n : ((HBox) node).getChildren()){
-                        if (n instanceof TextField){
-                            ((TextField)n).setText("");
-                        }
+        reset.setOnAction(e -> resetbuttonClicekd());
+
+    }
+
+    private void resetbuttonClicekd() {
+        for (Node node : vbox.getChildren()){
+            if (node instanceof TextField){
+                ((TextField)node).setText("");
+            }
+            if (node instanceof HBox){
+                for (Node n : ((HBox) node).getChildren()){
+                    if (n instanceof TextField){
+                        ((TextField)n).setText("");
                     }
                 }
             }
-        });
-
+        }
     }
 
     private void setUpChoiceboxes() {
-
+        String[] targetNames = {
+                "All Own cards",
+                "All Enemies",
+                "Own Hero",
+                "Enemy Hero",
+                "Own Minion",
+                "Enemy Minion",
+                "Random Own",
+                "Random Enemy",
+                "Own Hero Row" ,
+                "Enemy Hero Column",
+                "3 Random Enemies",
+        };
+        Target[] targets = {
+                TargetAllOwnCards.getTargetInstance(),
+                TargetAllEnemyCards.getTargetInstance(),
+                TargetOwnHero.getTargetInstance(),
+                TargetEnemyHero.getTargetInstance(),
+                TargetOwnMinion.getTargetInstance(),
+                TargetEnemyMinion.getTargetInstance(),
+                TargetRandomOwn.getTargetInstance(),
+                TargetRandomEnemy.getTargetInstance(),
+                TargetOwnHeroRow.getTargetInstance(),
+                TargetEnemyHeroColumn.getTargetInstance(),
+                Target3RandomEnemy.getTargetInstance()
+        };
     }
 
-    private void hero() {
-
-    }
-
-    private void minion() {
-
-    }
-
-    private void spell() {
-
-    }
 
 
 }

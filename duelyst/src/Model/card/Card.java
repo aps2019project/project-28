@@ -3,6 +3,7 @@ package Model.card;
 import Model.Graphics.CardGraphics;
 import Model.Primary;
 import Model.account.Collection;
+import exeption.CardExistException;
 import exeption.InvalidCardException;
 
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public abstract class Card {
     }
     public static Card getCard(String name) throws InvalidCardException {
         for (Card card : Card.cards) {
-            if(card.getName().toLowerCase().equals(name))return card;
+            if(card.getName().toLowerCase().equals(name.toLowerCase()))return card;
         }
         throw new InvalidCardException();
     }
@@ -139,6 +140,11 @@ public abstract class Card {
 
     public void setCardGraphics(CardGraphics cardGraphics) {
         this.cardGraphics = cardGraphics;
+    }
+
+    public static void addCardToCards(Card card) throws CardExistException {
+        if (!cards.contains(card)) cards.add(card);
+        else throw new CardExistException();
     }
 }
 

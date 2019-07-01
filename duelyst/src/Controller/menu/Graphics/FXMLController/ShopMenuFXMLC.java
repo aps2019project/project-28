@@ -16,6 +16,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ShopMenuFXMLC extends FXMLController {
@@ -27,6 +29,8 @@ public class ShopMenuFXMLC extends FXMLController {
     @FXML
     private ScrollPane scrollPane ;
     private VBox cardsVbox = new VBox() , itemsVbox = new VBox() ;
+    private List<Card> cards = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
     @Override
     public void buildScene() {
@@ -69,17 +73,19 @@ public class ShopMenuFXMLC extends FXMLController {
 
     private void makeCardsVBox() {
         cardsVbox.setSpacing(15);
-
         for (Card cart : Card.getCards()) {
-            FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
-                    "Controller/menu/Graphics/FXMLs/CardCard.fxml")));
-            try {
-                Parent card = rootLoader.load();
-                CardCardFXMLC fxmlc = rootLoader.getController();
-                fxmlc.buildCardCard(cart , menu.getAccount() , this);
-                cardsVbox.getChildren().add(card);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (!cards.contains(cart)) {
+                cards.add(cart);
+                FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                        "Controller/menu/Graphics/FXMLs/CardCard.fxml")));
+                try {
+                    Parent card = rootLoader.load();
+                    CardCardFXMLC fxmlc = rootLoader.getController();
+                    fxmlc.buildCardCard(cart, menu.getAccount(), this);
+                    cardsVbox.getChildren().add(card);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -89,7 +95,8 @@ public class ShopMenuFXMLC extends FXMLController {
         itemsVbox.setSpacing(15);
 
         for (Item item : Usable.getItems()){
-            if (item instanceof Usable){
+            if (item instanceof Usable && (!items.contains(item))){
+                items.add(item);
                 FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
                         "Controller/menu/Graphics/FXMLs/ItemCard.fxml")));
                 try {

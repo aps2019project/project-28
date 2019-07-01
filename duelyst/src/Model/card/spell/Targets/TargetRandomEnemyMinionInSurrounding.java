@@ -1,5 +1,6 @@
 package Model.card.spell.Targets;
 
+import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Minion;
@@ -9,12 +10,12 @@ import java.util.Random ;
 
 import java.util.ArrayList;
 
-public class RandomMinionInSurrounding implements Target {
-    private static RandomMinionInSurrounding obj;
+public class TargetRandomEnemyMinionInSurrounding implements Target {
+    private static TargetRandomEnemyMinionInSurrounding obj;
 
-    public static RandomMinionInSurrounding getTargetInstance() {
+    public static TargetRandomEnemyMinionInSurrounding getTargetInstance() {
         if (obj == null) {
-            obj =  new RandomMinionInSurrounding();
+            obj =  new TargetRandomEnemyMinionInSurrounding();
         }
         return obj ;
     }
@@ -29,7 +30,8 @@ public class RandomMinionInSurrounding implements Target {
         }
         ArrayList<Hermione> minions = new ArrayList<>() ;
         for (Cell cel : cells){
-            if (cel.getCardOnCell().getClass().equals(Minion.class)){
+            if (cel.getCardOnCell() instanceof Minion &&
+                    cel.getCardOnCell().getSuperCollection().getOwner().getPlayer().equals(Battle.getMenu().getEnemyPlayer()) ){
                 minions.add(cel.getCardOnCell()) ;
             }
         }
