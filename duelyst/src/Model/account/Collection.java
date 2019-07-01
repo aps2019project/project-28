@@ -9,7 +9,6 @@ import exeption.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 public class Collection {
 
@@ -40,7 +39,7 @@ public class Collection {
         ArrayList<Card>newCards=new ArrayList<>();
         this.getCards().forEach(c-> {
             try {
-                newCards.add(Card.getCard(c.getCardID()));
+                newCards.add(Card.getCard(c.getID()));
             } catch (InvalidCardException ignored) {
                 ignored.printStackTrace();
             }
@@ -166,7 +165,7 @@ public class Collection {
     public boolean hasCard(int cardID) {
         for (Card card :
                 cards) {
-            if (card.getCardID() == cardID) {
+            if (card.getID() == cardID) {
                 return true;
             }
         }
@@ -195,7 +194,7 @@ public class Collection {
     public Card getCard(int cardID) throws InvalidCardException {
         for (Card card :
                 cards) {
-            if (card.getCardID() == cardID) {
+            if (card.getID() == cardID) {
                 return card;
             }
         }
@@ -353,7 +352,7 @@ public class Collection {
     public ArrayList<Card> getAllCardsByID(int ID) {
         ArrayList<Card> returnArray = new ArrayList<>();
         for (Card card : this.cards) {
-            if (card.getCardID() == ID) returnArray.add(card);
+            if (card.getID() == ID) returnArray.add(card);
         }
         return returnArray;
     }

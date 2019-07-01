@@ -184,7 +184,7 @@ public class BattleFXMLC extends FXMLController {
                                 Card card = getCardOnHand(GridPane.getColumnIndex(source));
                                 if (card != null) {
                                     try {
-                                        Battle.getMenu().insert(card.getCardID(), finalI, finalJ);
+                                        Battle.getMenu().insert(card.getID(), finalI, finalJ);
                                     } catch (DestinationIsFullException e) {
                                         errorLable.setText("there's already a card there!");
                                     } catch (NotEnoughManaException e) {
@@ -247,7 +247,7 @@ public class BattleFXMLC extends FXMLController {
                                     Hermione attacker = Battle.getMenu().getMap().getCell(GridPane.getColumnIndex(attackSource), GridPane.getRowIndex(attackSource)).getCardOnCell();
                                     Hermione attacked = Battle.getMenu().getMap().getCell(finalI, finalJ).getCardOnCell();
                                     Battle.getMenu().select(attacker);
-                                    Battle.getMenu().attack(attacked.getCardID());
+                                    Battle.getMenu().attack(attacked.getID());
                                 } catch (InvalidCellException | CantAttackException |
                                         NoCardHasBeenSelectedException | InvalidCardException |
                                         DestinationOutOfreachException | InvalidItemException e) { e.printStackTrace(); }

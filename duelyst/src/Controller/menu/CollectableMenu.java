@@ -1,10 +1,5 @@
 package Controller.menu;
 
-import Controller.Game;
-import Model.item.Item;
-import Model.item.OnItemDetailPresentedListener;
-import exeption.InvalidCellException;
-
 public class CollectableMenu extends Menu {
 
     private static CollectableMenu menu;

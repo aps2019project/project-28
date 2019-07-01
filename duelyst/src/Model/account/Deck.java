@@ -1,10 +1,7 @@
 package Model.account;
 
-import Model.Primary;
 import Model.card.Card;
-import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
-import Model.card.hermione.Minion;
 import Model.item.Item;
 import Model.item.Usable;
 import View.Listeners.OnDeckPresentedListener;
@@ -41,7 +38,7 @@ public class Deck {
         ArrayList<Card>newCards=new ArrayList<>();
         this.getCards().forEach(c-> {
             try {
-                newCards.add(this.collection.getCard(c.getCardID()));
+                newCards.add(this.collection.getCard(c.getID()));
             } catch (InvalidCardException ignored) {
                 ignored.printStackTrace();
             }
@@ -57,7 +54,7 @@ public class Deck {
 
 
         try {
-            this.hero= (Hero) this.collection.getCard(this.hero.getCardID());
+            this.hero= (Hero) this.collection.getCard(this.hero.getID());
         } catch (InvalidCardException ignored) {
             ignored.printStackTrace();
         }
@@ -116,7 +113,7 @@ public class Deck {
     public boolean hasCard(int cardID) {
         for (Card card :
                 cards) {
-            if (card.getCardID() == cardID)
+            if (card.getID() == cardID)
                 return true;
         }
         return false;
@@ -140,7 +137,7 @@ public class Deck {
 
     public Card getCard(int cardID) throws InvalidCardException {
         for (Card card : this.getCards()) {
-            if (card.getCardID() == cardID)
+            if (card.getID() == cardID)
                 return card;
         }
         throw new InvalidCardException();
@@ -189,7 +186,7 @@ public class Deck {
         if (!this.hasCard(cardID))
             throw new InvalidCardException();
         for (Card card : cards) {
-            if (card.getCardID() == cardID) {
+            if (card.getID() == cardID) {
                 willBeRemoved = card;
                 break;
             }
@@ -199,7 +196,7 @@ public class Deck {
             heroID = -1;
         }
         cards.remove(willBeRemoved);
-        cardIDs.remove(willBeRemoved.getCardID());
+        cardIDs.remove(willBeRemoved.getID());
     }
 
     public void moveAllToGraveYard(ArrayList<? extends Card> deads){
@@ -235,14 +232,14 @@ public class Deck {
 
 
     public boolean addCardToDeck(Card card) throws DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasAHeroException {
-        if (this.hasCard(card.getCardID())) throw new DeckAlreadyHasThisCardException();
+        if (this.hasCard(card.getID())) throw new DeckAlreadyHasThisCardException();
         if (this.cardIDs.size() >= CARD_SIZE) throw new FullDeckException();
         if (this.hero != null && card instanceof Hero) throw new DeckAlreadyHasAHeroException();
         cards.add(card);
-        cardIDs.add(card.getCardID());
+        cardIDs.add(card.getID());
         if (this.hero == null && card instanceof Hero) {
             this.hero = (Hero) card;
-            this.heroID = card.getCardID();
+            this.heroID = card.getID();
         }
         return true;
     }

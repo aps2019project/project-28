@@ -20,30 +20,24 @@ import Model.card.spell.Targets.*;
 import Model.item.Collectable;
 import Model.item.Item;
 import Model.item.ItemActions.*;
-import Model.item.OnItemDetailPresentedListener;
+import View.Listeners.OnItemDetailPresentedListener;
 import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
-import com.sun.scenario.effect.impl.prism.PrImage;
 import exeption.*;
 import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 import java.io.*;
 import java.util.ArrayList;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.toRadians;
 
 public class Primary {
 

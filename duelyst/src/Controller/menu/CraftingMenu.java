@@ -1,21 +1,10 @@
 package Controller.menu;
 
-import Model.account.Account;
-import Model.account.Collection;
 import Model.account.Shop;
 import Model.card.Card;
-import Model.card.OnCardDetailsPresentedListener;
 import Model.card.hermione.*;
 import Model.card.spell.SpecialPower;
-import Model.item.Item;
-import Model.item.OnItemDetailPresentedListener;
-import View.Listeners.OnCollectionPresentedListener;
-import View.Listeners.OnSearchClickedListener;
-import View.Listeners.OnSearchCollectionClickedListener;
-import View.Listeners.OnShowClickedListener;
 import exeption.*;
-
-import java.util.ArrayList;
 
 public class CraftingMenu extends Menu {
 

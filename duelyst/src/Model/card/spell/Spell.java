@@ -154,7 +154,7 @@ public class Spell extends Card {
                         perks.remove(index);
                     }
                 }catch (NullPointerException e){
-                    System.err.println("it was deployed ! but it didn't do anything ! i hope that's cool ! " + this.getName() + " " + this.getCardID());
+                    System.err.println("it was deployed ! but it didn't do anything ! i hope that's cool ! " + this.getName() + " " + this.getID());
                 }
             }
             if (actions.size() == 0) activeSpells.remove(this);

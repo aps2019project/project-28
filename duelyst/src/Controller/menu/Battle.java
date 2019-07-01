@@ -1,7 +1,6 @@
 package Controller.menu;
 
 import Controller.Game;
-import Controller.GameMode.ClassicMode;
 import Controller.GameMode.GameMode;
 import Model.Map.Cell;
 import Model.account.player.Player;
@@ -19,7 +18,7 @@ import Model.card.hermione.Minion;
 import Model.card.hermione.SPATime;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
-import Model.item.OnItemDetailPresentedListener;
+import View.Listeners.OnItemDetailPresentedListener;
 import View.Listeners.OnHandPresentedListener;
 import View.MenuHandler;
 import exeption.*;
@@ -166,9 +165,9 @@ public class Battle extends Menu {
                 select(((Item) obj).getID());
             else if(obj instanceof Card) {
                 if(obj instanceof Hermione)
-                select(((Hermione) obj).getCardID());
+                select(((Hermione) obj).getID());
                 if(obj instanceof Spell)
-                    select(((Spell)obj).getCardID());
+                    select(((Spell)obj).getID());
             }
             return;
         }
@@ -185,7 +184,7 @@ public class Battle extends Menu {
         } else if (deck.hasCard(ID)) {
             //// TODO: 6/8/19 instance of
             for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
-                if (minion.getCardID() == ID) {
+                if (minion.getID() == ID) {
                     this.account.getPlayer().setSelectedCard(minion);
                     return;
                 }
