@@ -86,7 +86,7 @@ public class Hand {
 
     public Card getCard(int cardID) throws InvalidCardException {
         for (Card card : this.cards) {
-            if (card.getCardID() == cardID) return card;
+            if (card.getID() == cardID) return card;
         }
         throw new InvalidCardException();
     }

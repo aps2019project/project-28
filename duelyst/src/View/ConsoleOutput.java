@@ -18,7 +18,7 @@ import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
 import Model.item.Item;
-import Model.item.OnItemDetailPresentedListener;
+import View.Listeners.OnItemDetailPresentedListener;
 import Model.item.Usable;
 import View.Listeners.OnHeroDetailsPresentedListener;
 import View.Listeners.OnMenuClickedListener;
@@ -104,7 +104,7 @@ public class ConsoleOutput {
                 System.out.print(i+") ");
                 for (OnHeroDetailsPresentedListener presenter : Hero.getHeroDetailsPresenters()) {
                     presenter.show((Hero) card);
-                    if(showID) System.out.println("\tID: "+card.getCardID());
+                    if(showID) System.out.println("\tID: "+card.getID());
                 }
             }
         }
@@ -116,7 +116,7 @@ public class ConsoleOutput {
                 System.out.print(i+") ");
                 for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
                     presenter.showCardDetail(card);
-//                    if(showID) System.out.println("\tID: "+card.getCardID());
+//                    if(showID) System.out.println("\tID: "+card.getID());
                 }
             }
         }
@@ -208,7 +208,7 @@ public class ConsoleOutput {
                 System.out.println("\tAction : " + s.getInfo());
                 System.out.println("\tSell cost : " + s.getPrice());
                 System.out.println("\tName : " + s.getName());
-                System.out.println("\tID : "+s.getCardID());
+                System.out.println("\tID : "+s.getID());
             }
             private void showHermioneDetail(Hermione h){
                 System.out.println("\tName : " + h.getName());
@@ -218,7 +218,7 @@ public class ConsoleOutput {
                 System.out.println("\tManaPoint : " + h.getManaPoint());
 //                System.out.println("\tSpecialPower : " + h.getSpecialPower().getInfo());
                 System.out.println("\tSell cost : " + h.getPrice());
-                System.out.println("\tID : "+h.getCardID());
+                System.out.println("\tID : "+h.getID());
             }
             private void showHermioneInfo(Hermione h){
                 System.out.println("\tName : " + h.getName());
@@ -227,7 +227,7 @@ public class ConsoleOutput {
                         "\tHealth point : " + h.getHealthPoint() + "\tManaPoint : " + h.getSpecialPower().getManaPoint());
                 System.out.println("\tSpecialPower : " + h.getSpecialPower().getInfo());
                 System.out.println("\tSell cost : " + h.getPrice());
-                System.out.println("\tID : "+h.getCardID());
+                System.out.println("\tID : "+h.getID());
             }
 
             @Override
@@ -352,7 +352,7 @@ public class ConsoleOutput {
                 i++;
                 System.out.println();
                 System.out.println(i+ ") "+ card.getName());
-                System.out.println("\tid: "+card.getCardID());
+                System.out.println("\tid: "+card.getID());
             }
         });
 
@@ -371,7 +371,7 @@ public class ConsoleOutput {
             System.out.println("\t" + h.getName() + " : ");
             System.out.println("\t\tHealth Point: " + h.getHealthPoint() + ",location: " + h.getLocation().getX() + "," + h.getLocation().getY());
             System.out.println("\t\tAction: "+h.getInfo());
-            System.out.println("\t\tID: "+h.getCardID());
+            System.out.println("\t\tID: "+h.getID());
         });
 
     }

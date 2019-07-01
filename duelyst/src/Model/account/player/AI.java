@@ -56,7 +56,7 @@ public class AI extends Bot {
                 move++;
             case 1:
             case 3: //selecting the hero
-                command = "Select " + this.getDeck().getHero().getCardID();
+                command = "Select " + this.getDeck().getHero().getID();
                 output=(command);
                 return;
             case 2: //move tha hero
@@ -116,7 +116,7 @@ public class AI extends Bot {
             for (int i = rand.nextInt(target.size()); true; i = rand.nextInt(target.size())) {
                 counter++;
                 if (card.canAttack(target.get(i))) {
-                    command = "Attack " + target.get(i).getCardID();
+                    command = "Attack " + target.get(i).getID();
                     output=(command);
                     return true;
                 }
