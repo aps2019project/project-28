@@ -2,7 +2,6 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.Battle;
 import Controller.menu.Graphics.GraphicsControls;
-import Controller.menu.GraveYardMenu;
 import Controller.menu.MainMenu;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
