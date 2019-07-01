@@ -425,7 +425,7 @@ public class Battle extends Menu {
         /*
         * getting out of battle
         * */
-        MenuHandler.setCurrentMenu(MainMenu.getMenu());
+        MenuHandler.enterMenu(MainMenu.getMenu());
     }
 
     private void swapPlayers() {

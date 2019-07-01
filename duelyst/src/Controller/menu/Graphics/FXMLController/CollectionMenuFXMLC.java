@@ -55,7 +55,8 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         GraphicsControls.setBackButtonOnPress(backButton);
         backButton.setOnAction(e -> {
 //            ShopMenu.getMenu().save() ;
-            MenuHandler.goBack();
+//            MenuHandler.exitMenu();
+
         });
         setTabPressedStuff();
         updateBalance();

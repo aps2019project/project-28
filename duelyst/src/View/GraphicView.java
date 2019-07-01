@@ -13,12 +13,13 @@ import Model.account.player.GGI;
 import Model.card.Card;
 import Model.Primary;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
+import javafx.stage.WindowEvent;
 
 
 public class GraphicView extends Application implements View{
@@ -36,7 +37,6 @@ public class GraphicView extends Application implements View{
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        ;
         setGIs();
         Primary.initGraphics();
 
@@ -76,6 +76,7 @@ public class GraphicView extends Application implements View{
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.setResizable(false);
         stage.setFullScreenExitHint("");
+        stage.setOnHiding(event -> System.exit(0));
     }
     private static void initializeGraphicMenu() {
         setRootPaths();
@@ -103,9 +104,9 @@ public class GraphicView extends Application implements View{
         StoryModeMenu.getMenu().getGraphic().init();
         CustomModeMenu.getMenu().getGraphic().init();
         CraftingMenu.getMenu().getGraphic().init();
-        CraftingHeroMenu.getMenu().getGraphic().init();
-        CraftingMinionMenu.getMenu().getGraphic().init();
-        CraftingSpellMenu.getMenu().getGraphic().init();
+        CraftingMenu.getHeroMenu().getGraphic().init();
+        CraftingMenu.getMinionMenu().getGraphic().init();
+        CraftingMenu.getSpellMenu().getGraphic().init();
     }
 
 
@@ -124,9 +125,9 @@ public class GraphicView extends Application implements View{
         CraftingMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMenu.fxml");
         Battle.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/Battle.fxml");
         CraftingMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMenu.fxml");
-        CraftingHeroMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingHero.fxml");
-        CraftingMinionMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMinion.fxml");
-        CraftingSpellMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingSpell.fxml");
+        CraftingMenu.getHeroMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingHero.fxml");
+        CraftingMenu.getMinionMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMinion.fxml");
+        CraftingMenu.getSpellMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingSpell.fxml");
     }
 
     public void play(String...args) {

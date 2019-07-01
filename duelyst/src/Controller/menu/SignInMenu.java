@@ -8,12 +8,6 @@ import View.MenuHandler;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -72,7 +66,7 @@ public class SignInMenu extends Menu {
             MenuHandler.setAccount(account);
             // TODO: 6/30/19 in ro azin ja bardar or not
 
-            MenuHandler.setCurrentMenu(menu.enter(MainMenu.getMenu()));
+            MenuHandler.enterMenu(menu.enter(MainMenu.getMenu()));
         } else {
             throw new WrongPassException();
         }

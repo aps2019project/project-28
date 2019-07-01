@@ -33,7 +33,7 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
         Game.accounts[1]= Account.AI[level];
         Game.accounts[1].setPlayer(new AI(Game.accounts[1],2,2,Game.accounts[0].getPlayer()));
         ;
-        MenuHandler.setCurrentMenu(Battle.getMenu());
+        MenuHandler.enterMenu(Battle.getMenu());
     }
 
     @Override

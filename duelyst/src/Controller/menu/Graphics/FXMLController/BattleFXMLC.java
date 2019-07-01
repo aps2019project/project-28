@@ -2,7 +2,6 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.Battle;
 import Controller.menu.Graphics.GraphicsControls;
-import Controller.menu.GraveYardMenu;
 import Controller.menu.MainMenu;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
@@ -88,7 +87,7 @@ public class BattleFXMLC extends FXMLController {
         menuButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                MenuHandler.setCurrentMenu(MainMenu.getMenu());
+                MenuHandler.enterMenu(MainMenu.getMenu());
                 //todo: end game bezan
             }
         });
