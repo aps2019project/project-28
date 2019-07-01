@@ -40,9 +40,7 @@ public class Battle extends Menu {
     private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
 
     private Match match;
-    // TODO: 6/27/19 in khat e Zr age menu ha OK shode lazem nist new she
-
-    private GameMode gameMode=new ClassicMode();
+    private GameMode gameMode;
 
 
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
@@ -108,21 +106,17 @@ public class Battle extends Menu {
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
         Card card = this.account.getPlayer().getHand().getCard(cardID);
 
-        if (card instanceof Hermione) {
+        this.account.getPlayer().deploy(card, this.map.getCell(x, y),this.getEnemyPlayer());
 
-            this.account.getPlayer().deploy(card, this.map.getCell(x, y));
-            this.account.getPlayer().changeMana((-1) * card.getManaPoint());
+        if (card instanceof Hermione)
+            this.getMap().getCell(x,y).setCardOnCell((Hermione) card);
 
-            try { this.account.getPlayer().getHand().handleHand(card);
-            } catch (DeckIsEmptyException | HandFullException ignored) { ignored.printStackTrace(); }
-
-        } else if (card instanceof Spell) {
-            try {
-                ((Spell) card).deploy(this.account.getPlayer(), Battle.getMenu().getEnemy(this.account), Battle.getMenu().getMap().getCell(x, y));
-                this.account.getPlayer().changeMana((-1) * card.getManaPoint());
-                this.account.getPlayer().getHand().handleHand(card);
-            } catch (InvalidCellException | HandFullException | DeckIsEmptyException ignored) { ignored.printStackTrace();}
+        try {
+            this.account.getPlayer().getHand().handleHand(card);
+        } catch (DeckIsEmptyException | HandFullException e) {
+            e.printStackTrace();
         }
+
         // TODO: 5/5/19 one more exception  (read the doc)
         handleDeaths();
     }
@@ -316,6 +310,9 @@ public class Battle extends Menu {
     }
 
     public void showHand() {
+        System.err.println("debug");
+        if(this.account!=null)
+        System.out.println("this.account = " + this.account);
         Hand hand = this.account.getPlayer().getHand();
         for (OnHandPresentedListener presenter : Hand.getHandPresenters()) {
             presenter.showHand(hand);

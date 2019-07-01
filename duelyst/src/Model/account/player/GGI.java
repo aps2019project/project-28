@@ -1,14 +1,14 @@
 package Model.account.player;
 
+
 public class GGI implements GameInterFace {
     private Player player;
 
     @Override
     public void intervene() {
         try {
-            System.err.println("Graphic GI ");
             Thread.sleep(1000);
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

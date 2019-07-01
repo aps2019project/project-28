@@ -47,6 +47,7 @@ public class SignInMenu extends Menu {
         temporaryAccount = new Account(name, username, password);
         save() ;
         try {
+            System.err.println("debug");
             logIn(username , password);
         } catch (InvalidAccountException e) {
             System.err.println("InvalidAccount after creating an account and then trying to login ! \n " +
@@ -58,6 +59,7 @@ public class SignInMenu extends Menu {
     }
 
     public void logIn(String username, String password) throws InvalidAccountException, WrongPassException {
+        System.err.println("debug");
         Account account = Account.getAccount(username);
         if (account.getPassword().equals(password)) {
             Game.accounts[0] = account;

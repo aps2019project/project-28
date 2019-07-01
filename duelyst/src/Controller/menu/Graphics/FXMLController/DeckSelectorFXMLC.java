@@ -88,9 +88,10 @@ public class DeckSelectorFXMLC {
             if (deck.getHero() != null) {
                 label.setText(label.getText() + " (" + deck.getHero().getName() + ")");
                 label.setOnMouseClicked(e -> {
-                    account.getCollection().setMainDeck(deck);
+//                    account.getCollection().setMainDeck(deck);
                     menu.selectDeck(account, deck);
                     stage.close();
+                    System.err.println("debug");
                 });
                 label.setCursor(new ImageCursor(new Image(Resources.mouse_assist.getPath())));
             }else{
