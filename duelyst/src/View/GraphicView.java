@@ -34,6 +34,7 @@ public class GraphicView extends Application implements View{
     public static void setScene(Scene scene) {
         GraphicView.stage.setScene(scene);
         stage.show();
+
     }
 
 

@@ -40,9 +40,7 @@ public class Battle extends Menu {
     private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
 
     private Match match;
-    // TODO: 6/27/19 in khat e Zr age menu ha OK shode lazem nist new she
-
-    private GameMode gameMode=new ClassicMode();
+    private GameMode gameMode;
 
 
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
@@ -117,6 +115,16 @@ public class Battle extends Menu {
                 this.account.getPlayer().changeMana((-1) * card.getManaPoint());
                 this.account.getPlayer().getHand().handleHand(card);
             } catch (InvalidCellException ignored) { ignored.printStackTrace();}
+
+        this.account.getPlayer().deploy(card, this.map.getCell(x, y),this.getEnemyPlayer());
+
+        if (card instanceof Hermione)
+            this.getMap().getCell(x,y).setCardOnCell((Hermione) card);
+
+        try {
+            this.account.getPlayer().getHand().handleHand(card);
+        } catch (DeckIsEmptyException | HandFullException e) {
+            e.printStackTrace();
         }
         // TODO: 5/5/19 one more exception  (read the doc)
         handleDeaths();
@@ -305,9 +313,13 @@ public class Battle extends Menu {
         Cell cell = map.getCell(x, y);
         this.account.getPlayer().getDeck().getHero().applySpecialPower(cell);
         handleDeaths();
+
     }
 
     public void showHand() {
+        System.err.println("debug");
+        if(this.account!=null)
+        System.out.println("this.account = " + this.account);
         Hand hand = this.account.getPlayer().getHand();
         for (OnHandPresentedListener presenter : Hand.getHandPresenters()) {
             presenter.showHand(hand);
@@ -496,6 +508,7 @@ public class Battle extends Menu {
 
     public void showCollectable() {
         for (Collectable collectable : this.account.getPlayer().getCollectables()) {
+            System.err.println(collectable.getName());
             for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
                 presenter.showItemDetail(collectable);
             }

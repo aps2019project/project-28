@@ -99,7 +99,7 @@ public class CommandHandler {
         if(word[0].equals("select")){
             CustomModeMenu menu= (CustomModeMenu) MenuHandler.getCurrentMenu();
             try {
-                MenuHandler.enterMenu(menu.selectDeck(word[2]));
+                menu.selectDeck(word[2]);
             } catch (InvalidDeckException e) {
                 System.out.println("Couldnt find the deck");
             }

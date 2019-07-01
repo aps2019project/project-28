@@ -6,7 +6,6 @@ public class GGI implements GameInterFace {
     @Override
     public void intervene() {
         try {
-//            System.err.println("Graphic GI ");
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();

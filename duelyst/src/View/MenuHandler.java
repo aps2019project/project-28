@@ -61,7 +61,6 @@ public class MenuHandler {
     }
 
     private static void initMenus() {
-        ;
         //az SignIn Menu mirim tuye MainMenu
 
         SignInMenu.getMenu().addSubMenu(MainMenu.getMenu());

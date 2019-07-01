@@ -50,7 +50,7 @@ public class MainMenuFXMLC extends FXMLController {
             ShopMenu.getMenu().getGraphic().init();
             enterSubMenu(ShopMenu.getMenu());
         });
-        battleMenuButton.setOnAction(e -> enterSubMenu(GameModeMenu.getMenu()));
+        battleMenuButton.setOnAction(e -> enterSubMenu(ChooseBattleModeMenu.getMenu()));
         craftButton.setOnAction(e -> enterSubMenu(CraftingMenu.getMenu()));
         saveButton.setOnAction(e -> Account.save());
     }

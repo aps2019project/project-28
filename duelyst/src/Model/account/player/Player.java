@@ -79,9 +79,10 @@ public class Player {
         return true;
     }
 
-    public void deploy(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException, InvalidCellException, InvalidCardException {
+    public void deploy(Card card, Cell cell,Player enemy) throws NotEnoughManaException, DestinationIsFullException, InvalidCellException, InvalidCardException {
 
         if(!canDeploy(card, cell))return;
+        this.setMana(this.getMana()-card.getManaPoint());
 
         if(card instanceof Minion){
             Minion minion = (Minion) card;
@@ -91,7 +92,7 @@ public class Player {
             Battle.getMenu().getMap().getCell(cell).setCardOnCell((Hermione) card);
         }else if(card instanceof Spell){
             Spell spell = (Spell) card;
-            spell.deploy(this, Battle.getMenu().getEnemyPlayer(), cell);
+            spell.deploy(this, enemy, cell);
         }
     }
 

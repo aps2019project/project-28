@@ -3,6 +3,7 @@ package Controller.menu;
 import Controller.Game;
 import Model.account.Account;
 import Model.account.Deck;
+import Model.account.player.AI;
 import View.Listeners.OnDeckSelectorClickedListener;
 import View.MenuHandler;
 import exeption.*;
@@ -22,15 +23,16 @@ public class CustomModeMenu extends Menu implements DeckSelectorHavingMenu{
         }
         return menu;
     }
-    public Menu selectDeck(String deckName) throws InvalidDeckException {
+    public void selectDeck(String deckName) throws InvalidDeckException {
         Deck deck=this.account.getCollection().getDeckByName(deckName);
-
-        Account.AI[0].clearCollection();
-        Account.AI[0].getCollection().forcePushDeck(deck);
 
         Game.accounts[1]=Account.AI[0];
 
-        return this.enter(ChooseBattleModeMenu.getMenu());
+        Account.AI[0].clearCollection();
+        Account.AI[0].getCollection().forcePushDeck(deck);
+        Account.AI[0].setPlayer(new AI(Game.accounts[1],2,2,Game.accounts[0].getPlayer()));
+
+        MenuHandler.enterMenu(this.enter(Battle.getMenu()));
     }
 
     @Override
@@ -42,15 +44,10 @@ public class CustomModeMenu extends Menu implements DeckSelectorHavingMenu{
 
     @Override
     public void selectDeck(Account account, Deck deck) {
-        if (!mainDeckSelected){
-            account.getCollection().setMainDeck(deck);
-            mainDeckSelected = true ;
-            showDeckSelector(account);
-        }else{
-            try {
-                MenuHandler.enterMenu(selectDeck(deck.getName()));
-            } catch (InvalidDeckException ignored) {}
-        }
+       /*account is useless*/
+        try {
+            selectDeck(deck.getName());
+        } catch (InvalidDeckException ignored) { }
     }
 
     @Override
