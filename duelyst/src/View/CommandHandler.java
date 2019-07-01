@@ -21,8 +21,6 @@ public class CommandHandler {
         try {
             String[] word = command.toLowerCase().split(" ");
             if (!MenuHandler.getCurrentMenu().allowsCommand(command)) {
-                System.out.println("MenuHandler.getCurrentMenu() = " + MenuHandler.getCurrentMenu());
-                System.out.println("command = " + command);
                 System.out.println("Invalid Command");
                 Thread.sleep(1000);
             }else if (commonCommandHandler(word)) {
@@ -78,7 +76,7 @@ public class CommandHandler {
         }else if(word[0].equals("exit")){
             if(MenuHandler.getCurrentMenu().getParentMenu()==null) System.out.println("This is the root menu!");
             else {
-                MenuHandler.enterMenu(MenuHandler.getCurrentMenu().exit());
+                MenuHandler.getCurrentMenu().exit();
                 return true;
             }
         }

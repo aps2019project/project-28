@@ -150,6 +150,7 @@ public class Primary {
     }
 
     public static void pre() throws IOException, DeckAlreadyHasThisItemException, DeckAlreadyHasAHeroException, FullDeckException, DeckAlreadyHasThisCardException {
+
     }
 
     public static void setDefaultDeck(Deck deck) throws IOException {
@@ -192,7 +193,6 @@ public class Primary {
 
         getAccounts();
         Account.updateAccounts();
-        ;
         generateAI();
 
 

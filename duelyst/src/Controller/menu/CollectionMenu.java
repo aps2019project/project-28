@@ -127,9 +127,9 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
     }
 
     @Override
-    public Menu exit() {
+    public void exit() {
         this.save();
-        return super.exit();
+        super.exit();
     }
 
     public boolean isTheCardInTheDeck(Card card){

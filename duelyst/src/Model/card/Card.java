@@ -3,6 +3,10 @@ package Model.card;
 import Model.Graphics.CardGraphics;
 import Model.Primary;
 import Model.account.Collection;
+import Model.card.hermione.Hero;
+import Model.card.hermione.Minion;
+import Model.card.spell.SpecialPower;
+import Model.card.spell.Spell;
 import exeption.InvalidCardException;
 
 import java.util.ArrayList;
@@ -22,17 +26,22 @@ public abstract class Card {
     private CardGraphics cardGraphics;
 
     public Card( String name, int price, int manaPoint, String info) {
-        this.cardID = uniqueID++;
         this.name = name;
         this.price = price;
         this.manaPoint = manaPoint;
         this.info = info;
         this.cardGraphics = new CardGraphics();
+        this.cardID=uniqueID++;
     }
 
 
-    public static String gererateID(Card card){
-        return card.getClass()+":";
+    public static int gererateID(Card card){
+        System.out.println("card = " + card);
+        String toBeHashed = "";
+        if(card instanceof Hero)toBeHashed="hero:"+card.getName();
+        if(card instanceof Minion)toBeHashed="minion:"+card.getName();
+        if(card instanceof Spell)toBeHashed="spell:"+card.getName();
+        return toBeHashed.hashCode();
     }
 
     public void setSuperCollection(Collection superCollection) {
@@ -140,6 +149,10 @@ public abstract class Card {
 
     public void setCardGraphics(CardGraphics cardGraphics) {
         this.cardGraphics = cardGraphics;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("\"\".hashCode() = " + "".hashCode());
     }
 }
 

@@ -28,6 +28,7 @@ public class Domination implements GameMode {
         for(int i=0;i<2 ;i++){
             if(Game.accounts[i].getPlayer().getFlagInteger()>numberOfFlags/2){
                 Game.accounts[i].setMoney(Game.accounts[i].getMoney() + prize);
+                System.err.println("debug");
                 Game.accounts[i].setWins(Game.accounts[i].getWins() + 1);
             }
         }

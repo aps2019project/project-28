@@ -1,5 +1,6 @@
 package Controller.menu;
 
+import Model.account.Account;
 import View.Listeners.OnCollectionPresentedListener;
 import View.Listeners.OnSearchClickedListener;
 import View.Listeners.OnSearchCollectionClickedListener;
@@ -120,14 +121,14 @@ public class ShopMenu extends Menu {
     }
 
     @Override
-    public Menu exit() {
+    public void exit() {
         this.save();
-        return super.exit();
+        super.exit();
     }
 
     public void save() {
         this.account.setCollection(this.tempCollection);
-        //Account.save();
+        Account.save();
     }
 
 

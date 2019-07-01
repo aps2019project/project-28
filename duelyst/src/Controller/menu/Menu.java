@@ -25,32 +25,6 @@ public abstract class Menu {
     private MenuGraphics graphic=new MenuGraphics(this);
 
 
-                protected String rootPath ;
-
-
-
-//    private void goToScene(Stage stage , Rectangle2D bounds){
-//        if (this.stage == null) this.stage = stage ;
-//        if (this.bounds == null) this.bounds = bounds ;
-//        if (scene == null) {
-//            try {
-//                System.out.println(rootPath);
-//                root = FXMLLoader.load(getClass().getResource(rootPath));
-//            }catch (IOException ignored) {
-//                System.err.println("couldn't load the fxml file");
-//            }
-//            scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
-//        }
-//        init();
-//        stage.setScene(scene);
-//    }
-//
-//    protected void init(){
-//        //TODO music ! seriously i have busted my ass trying to make it happen but it just doesn't want to happen ! -_-
-//        scene.setOnMouseEntered(e -> scene.setCursor(new ImageCursor(new Image(mousePath))));
-//    }
-
-
     public Menu(String name) {
         this.name = name;
         this.menuPresenters=new ArrayList<>();
@@ -82,7 +56,7 @@ public abstract class Menu {
     }
 
     public boolean init(Menu parentMenu) {
-        this.setParentMenu(parentMenu);
+        if(this.parentMenu==null)this.setParentMenu(parentMenu);
         this.setAccount(parentMenu.account);
         return true;
     }
@@ -103,9 +77,7 @@ public abstract class Menu {
     }
 
     public boolean allowsCommand(String command) {
-        System.out.println("im out there checking");
         for (String pattern : this.patterns) {
-            System.out.println("pattern = " + pattern);
             if (command.matches(pattern)) return true;
         }
         return false;
@@ -155,8 +127,9 @@ public abstract class Menu {
         return name;
     }
 
-    public Menu exit() {
-        return parentMenu.enter();
+    public void exit() {
+        System.err.println("Debug");
+        MenuHandler.enterMenu(this.parentMenu);
     }
 
     public MenuGraphics getGraphic() {

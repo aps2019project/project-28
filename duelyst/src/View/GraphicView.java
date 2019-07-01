@@ -44,9 +44,9 @@ public class GraphicView extends Application implements View{
 
         //TODO just so there is another deck you know !
         {
-            Account.getAccount("a").getCollection().addNewDeck("aDeck");
-            Account.getAccount("a").getCollection().getDeckByName("aDeck").addCardToDeck(Card.getCard(1));
-            Account.getAccount("a").getCollection().getDeckByName("aDeck").addCardToDeck(Card.getCard("simorgh"));
+//            Account.getAccount("a").getCollection().addNewDeck("aDeck");
+//            Account.getAccount("a").getCollection().getDeckByName("aDeck").addCardToDeck(Card.getCard(1));
+//            Account.getAccount("a").getCollection().getDeckByName("aDeck").addCardToDeck(Card.getCard("simorgh"));
 //            Account.getAccount("a").getCollection().getDeckByName("aDeck").validateDeck();
         }
 

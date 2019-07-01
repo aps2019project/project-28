@@ -405,8 +405,14 @@ public class Battle extends Menu {
          * */
         Game.accounts[0].saveMatch(this.match);
         Game.accounts[1].saveMatch(this.match);
-        //Account.save();
+        Account.save();
 
+
+        /*
+        * destroying the players
+        * */
+        Game.accounts[0].setPlayer(null);
+        Game.accounts[1].setPlayer(null);
 
         /*
         * handling the account for getting input and stuff

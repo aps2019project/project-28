@@ -5,6 +5,9 @@ import Model.Primary;
 import Model.account.player.Player;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
+import Model.card.hermione.Hero;
+import Model.card.hermione.Minion;
+import Model.card.spell.Spell;
 import Model.card.spell.Target;
 import Model.item.ItemActions.ItemAction;
 import View.Listeners.OnItemDetailPresentedListener;
@@ -39,6 +42,14 @@ public abstract class Item {
         this.duration = duration;
         this.itemID = Card.uniqueID++;
         this.info = info;
+
+    }
+
+    public static int gererateID(Item item){
+        String toBeHashed = "";
+        if(item instanceof Usable)toBeHashed="usable:"+item.getName();
+        if(item instanceof Collectable)toBeHashed="collectable:"+item.getName();
+        return toBeHashed.hashCode();
     }
 
     public static Item getItem(int itemID) throws InvalidItemException {

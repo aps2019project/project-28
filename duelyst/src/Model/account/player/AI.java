@@ -105,7 +105,7 @@ public class AI extends Bot {
         String command;
         try {
             if (card.canAttack(enemy.getDeck().getHero())) {
-                command = "Attack " + enemy.getDeck().getHero();
+                command = "Attack " + enemy.getDeck().getHero().getID();
                 output=(command);
                 return true;
             }
@@ -134,7 +134,7 @@ public class AI extends Bot {
         for (Card card : this.getHand().getCards()) {
             if (card.getClass().equals(Minion.class)) {
                 if (this.getMana() >= card.getPrice()) {
-                    command = "Insert " + card.getName() + " in ";
+                    command = "Insert " + card.getID() + " in ";
                     break;
                 }
             }
@@ -162,7 +162,7 @@ public class AI extends Bot {
         for (Card card : this.getHand().getCards()) {
             if (card.getClass().equals(Spell.class)) {
                 if (this.getMana() >= card.getPrice()) {
-                    command = "Insert " + card.getName() + " in ";
+                    command = "Insert " + card.getID() + " in ";
                     spell = (Spell) card;
                     break;
                 }

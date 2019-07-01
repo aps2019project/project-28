@@ -21,7 +21,6 @@ public class SignInMenu extends Menu {
     private SignInMenu(String name) {
         super(name);
         this.leaderBoardPresenters = new ArrayList<>();
-        this.rootPath = "Scenes/SignInMenu.fxml";
     }
 
 
