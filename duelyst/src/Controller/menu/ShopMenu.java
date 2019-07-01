@@ -4,13 +4,12 @@ import View.Listeners.OnCollectionPresentedListener;
 import View.Listeners.OnSearchClickedListener;
 import View.Listeners.OnSearchCollectionClickedListener;
 import View.Listeners.OnShowClickedListener;
-import Model.account.Account;
 import Model.account.Collection;
 import Model.account.Shop;
 import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
 import Model.item.Item;
-import Model.item.OnItemDetailPresentedListener;
+import View.Listeners.OnItemDetailPresentedListener;
 import exeption.*;
 
 import java.util.ArrayList;

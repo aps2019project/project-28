@@ -20,7 +20,7 @@ import Model.card.spell.Targets.*;
 import Model.item.Collectable;
 import Model.item.Item;
 import Model.item.ItemActions.*;
-import Model.item.OnItemDetailPresentedListener;
+import View.Listeners.OnItemDetailPresentedListener;
 import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
@@ -192,7 +192,7 @@ public class Primary {
 
         getAccounts();
         Account.updateAccounts();
-        System.err.println("debug");
+        ;
         generateAI();
 
 

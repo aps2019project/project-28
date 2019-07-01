@@ -2,11 +2,9 @@ package Model.card.spell.Targets;
 
 import Controller.menu.Battle;
 import Model.Map.Cell;
-import Model.account.Player;
 import Model.card.hermione.Melee;
 import Model.card.hermione.Minion;
 import Model.card.spell.Target;
-import exeption.InvalidCellException;
 
 import java.util.ArrayList;
 import java.util.List;

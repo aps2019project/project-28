@@ -1,8 +1,5 @@
 package Controller.menu.Graphics.FXMLController;
 
-import Controller.GameMode.ClassicMode;
-import Controller.GameMode.Domination;
-import Controller.GameMode.FlagMode;
 import Controller.menu.*;
 import Controller.menu.Graphics.GraphicsControls;
 import View.MenuHandler;
@@ -38,15 +35,14 @@ public class CraftingMenuFXMLC extends FXMLController {
 
 
         hero.setOnAction(e -> {
-            MenuHandler.setCurrentMenu(CraftingHeroMenu.getMenu());
+            MenuHandler.enterMenu(CraftingMenu.getHeroMenu());
         });
         spell.setOnAction(e -> {
-            MenuHandler.setCurrentMenu(CraftingSpellMenu.getMenu());
+            MenuHandler.enterMenu(CraftingMenu.getSpellMenu());
         });
         minion.setOnAction(e -> {
-            MenuHandler.setCurrentMenu(CraftingMinionMenu.getMenu());
+            MenuHandler.enterMenu(CraftingMenu.getMinionMenu());
         });
-
 
     }
 }

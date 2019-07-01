@@ -58,10 +58,11 @@ public class MainMenuFXMLC extends FXMLController {
             CraftingSpellMenu.getMenu().getGraphic().init();
             enterSubMenu(CraftingMenu.getMenu());
         });
+        battleMenuButton.setOnAction(e -> enterSubMenu(ChooseBattleModeMenu.getMenu()));
         saveButton.setOnAction(e -> Account.save());
     }
 
     private void enterSubMenu(Menu subMenu){
-        MenuHandler.setCurrentMenu(menu.enter(subMenu));
+        MenuHandler.enterMenu(menu.enter(subMenu));
     }
 }

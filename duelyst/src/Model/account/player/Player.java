@@ -1,18 +1,19 @@
-package Model.account;
+package Model.account.player;
 
 import Controller.Game;
-import Controller.GameMode.GameMode;
 import Controller.menu.Battle;
 import Model.Map.Cell;
+import Model.account.Account;
+import Model.account.Deck;
+import Model.account.Hand;
+import Model.account.StuffEffectsOnPlayer;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
-import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
 import Model.item.Item;
 import com.gilecode.yagson.YaGson;
-import com.gilecode.yagson.com.google.gson.Gson;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class Player {
     private boolean hasFlag=false;
     private int flagInteger=0;
 
+    private GameInterFace GI;
     protected ScannerWrapper outputStream=new ScannerWrapper();
 
 
@@ -77,9 +79,10 @@ public class Player {
         return true;
     }
 
-    public void deploy(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException, InvalidCellException, InvalidCardException {
+    public void deploy(Card card, Cell cell,Player enemy) throws NotEnoughManaException, DestinationIsFullException, InvalidCellException, InvalidCardException {
 
         if(!canDeploy(card, cell))return;
+        this.setMana(this.getMana()-card.getManaPoint());
 
         if(card instanceof Minion){
             Minion minion = (Minion) card;
@@ -89,7 +92,7 @@ public class Player {
             Battle.getMenu().getMap().getCell(cell).setCardOnCell((Hermione) card);
         }else if(card instanceof Spell){
             Spell spell = (Spell) card;
-            spell.deploy(this, Battle.getMenu().getEnemyPlayer(), cell);
+            spell.deploy(this, enemy, cell);
         }
     }
 
@@ -184,9 +187,20 @@ public class Player {
     }
 
 
+    public GameInterFace getGI() {
+        return GI;
+    }
+
+    public void setGI(GameInterFace GI) {
+        this.GI = GI;
+    }
 
     public void doYourMove(){
     }
+
+
+
+
 
     public Scanner getOutputStream() {
         if(this.outputStream==null || this.outputStream.scanner==null){

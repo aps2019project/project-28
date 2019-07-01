@@ -2,7 +2,7 @@ package Model.card.spell;
 
 import Model.Graphics.SpellGraphics;
 import Model.Primary;
-import Model.account.Player;
+import Model.account.player.Player;
 import Model.card.Card;
 import Model.Map.*;
 import Model.card.spell.SpellAction.*;
@@ -44,7 +44,7 @@ public class Spell extends Card {
 
     private ArrayList<Spell> activeSpells = new ArrayList<>() ;
     protected Target target;
-    private Cell[] targetCells = new Cell[Map.CHAP_RAST_X*Map.BALA_PAEEN_Y];
+    private Cell[] targetCells = new Cell[Map.WHIDTH *Map.HEIGHT];
     protected ArrayList<Action> actions = new ArrayList<>();
     private ArrayList<Integer> perks = new ArrayList<>();
     private ArrayList<Integer> durations = new ArrayList<>();
@@ -154,7 +154,7 @@ public class Spell extends Card {
                         perks.remove(index);
                     }
                 }catch (NullPointerException e){
-                    System.err.println("it was deployed ! but it didn't do anything ! i hope that's cool ! " + this.getName() + " " + this.getCardID());
+                    System.err.println("it was deployed ! but it didn't do anything ! i hope that's cool ! " + this.getName() + " " + this.getID());
                 }
             }
             if (actions.size() == 0) activeSpells.remove(this);

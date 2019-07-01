@@ -1,9 +1,6 @@
 package Controller.menu.Graphics.FXMLController;
 
-import Controller.menu.CustomModeMenu;
 import Controller.menu.Graphics.GraphicsControls;
-import Controller.menu.Menu;
-import Controller.menu.ShopMenu;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
@@ -11,13 +8,11 @@ import View.MenuHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -49,7 +44,7 @@ public class ShopMenuFXMLC extends FXMLController {
         GraphicsControls.setBackButtonOnPress(backButton);
         backButton.setOnAction(e -> {
 //            ShopMenu.getMenu().save() ;
-            MenuHandler.goBack();
+            MenuHandler.exitMenu();
         });
 
         tabPressed(cardTab);

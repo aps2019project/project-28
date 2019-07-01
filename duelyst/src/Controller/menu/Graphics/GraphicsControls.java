@@ -1,15 +1,11 @@
 package Controller.menu.Graphics;
 
-import Controller.menu.MainMenu;
 import View.MenuHandler;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
-
-import java.awt.*;
 
 public class GraphicsControls {
     //will set the buttons styleID and handles the change for when it's pressed !
@@ -33,7 +29,7 @@ public class GraphicsControls {
     }
 
     public static void setBackButtonOnPress(Button backButton){
-        backButton.setOnAction(e -> MenuHandler.goBack());
+        backButton.setOnAction(e -> MenuHandler.exitMenu());
         backButton.setOnMousePressed(e -> {
             backButton.setTranslateX(-5);
             backButton.setTranslateY(-5);

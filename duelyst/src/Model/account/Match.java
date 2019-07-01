@@ -1,10 +1,9 @@
 package Model.account;
-import Controller.Game;
 import Controller.GameMode.GameMode;
 
+import Model.account.player.Player;
 import com.gilecode.yagson.YaGson;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 

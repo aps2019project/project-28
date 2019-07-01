@@ -32,8 +32,4 @@ public class CustomModeFXMLC extends FXMLController {
         showDeckSelectorButton.setLayoutY(menu.getGraphic().getBounds().getHeight()/2 - showDeckSelectorButton.getHeight());
 
     }
-
-    private void enterSubMenu(Menu subMenu){
-        menu.enter(subMenu);
-    }
 }

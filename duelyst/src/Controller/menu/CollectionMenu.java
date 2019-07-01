@@ -1,13 +1,12 @@
 package Controller.menu;
 
-import Controller.menu.Graphics.FXMLController.Popup;
 import Model.item.Usable;
 import View.Listeners.OnCollectionPresentedListener;
 import Model.account.*;
 import Model.card.Card;
 import Model.card.OnCardDetailsPresentedListener;
 import Model.item.Item;
-import Model.item.OnItemDetailPresentedListener;
+import View.Listeners.OnItemDetailPresentedListener;
 import View.Listeners.OnDeckPresentedListener;
 import View.Listeners.OnDeckSelectorClickedListener;
 import com.gilecode.yagson.YaGson;

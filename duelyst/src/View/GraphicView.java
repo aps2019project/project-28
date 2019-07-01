@@ -8,15 +8,18 @@ import Controller.menu.Battle;
 import Controller.menu.MainMenu;
 import Controller.menu.SignInMenu;
 import Model.account.Account;
+import Model.account.player.CGI;
+import Model.account.player.GGI;
 import Model.card.Card;
 import Model.Primary;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
+import javafx.stage.WindowEvent;
 
 
 public class GraphicView extends Application implements View{
@@ -24,20 +27,18 @@ public class GraphicView extends Application implements View{
     private static Stage stage;
     private static Rectangle2D primaryScreenBounds ;
 
-    private CommandHandler commandHandler;
-
 
     public static void setScene(Scene scene) {
         GraphicView.stage.setScene(scene);
         stage.show();
+
     }
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        System.err.println("debug");
-
+        setGIs();
         Primary.initGraphics();
 
 
@@ -60,6 +61,13 @@ public class GraphicView extends Application implements View{
 
         initializeGraphicMenu();
         MenuHandler.startMenus();
+        new Thread(() -> {
+            while(true){
+                MenuHandler.showMenu();
+                MenuHandler.nextMove();
+            }
+        }).start();
+
     }
 
     private void configStage(Stage primaryStage) {
@@ -69,6 +77,7 @@ public class GraphicView extends Application implements View{
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.setResizable(false);
         stage.setFullScreenExitHint("");
+        stage.setOnHiding(event -> System.exit(0));
     }
     private static void initializeGraphicMenu() {
         setRootPaths();
@@ -78,13 +87,9 @@ public class GraphicView extends Application implements View{
 
     private static void setListeners() {
         SignInMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC::makeNewScene);
-
         MultiPlayerModeMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC::makeNewScene);
-
         StoryModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
-
         CustomModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
-
         MultiPlayerModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
     }
 
@@ -127,8 +132,10 @@ public class GraphicView extends Application implements View{
     }
 
     @Override
-    public void setCommandHandler(CommandHandler commandHandler) {
-        this.commandHandler=commandHandler;
+    public void setGIs() {
+        Game.setUserGI(GGI.class);
+        Game.setBotGI(CGI.class);
+        Game.setDefaultGI(CGI.class);
     }
 
 

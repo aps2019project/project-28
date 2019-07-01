@@ -96,11 +96,16 @@ public abstract class Menu {
     }
 
     public void addMenuClickListener(OnMenuClickedListener presenter) {
+        System.err.println("presenter?");
+//        if(this.menuPresenters.size()>0)
+//            throw new NullPointerException();
         this.menuPresenters.add(presenter);
     }
 
     public boolean allowsCommand(String command) {
+        System.out.println("im out there checking");
         for (String pattern : this.patterns) {
+            System.out.println("pattern = " + pattern);
             if (command.matches(pattern)) return true;
         }
         return false;
@@ -124,7 +129,7 @@ public abstract class Menu {
 
     public Menu getMenuFromSubMenus(String name) throws InvalidSubMenuException {
         for (Menu subMenu : this.subMenus) {
-            if (subMenu.name.toLowerCase().trim().equals(name)) return subMenu;
+            if (subMenu.name.toLowerCase().trim().equals(name.toLowerCase())) return subMenu;
         }
         throw new InvalidSubMenuException();
 

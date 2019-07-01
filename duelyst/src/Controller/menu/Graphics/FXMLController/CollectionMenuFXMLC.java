@@ -1,16 +1,12 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.CollectionMenu;
-import Controller.menu.DeckSelectorHavingMenu;
 import Controller.menu.Graphics.GraphicsControls;
-import Model.account.Account;
 import Model.account.Deck;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Spell;
 import Model.item.Usable;
-import View.Listeners.OnDeckSelectorClickedListener;
-import View.MenuHandler;
 import exeption.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,7 +51,8 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         GraphicsControls.setBackButtonOnPress(backButton);
         backButton.setOnAction(e -> {
 //            ShopMenu.getMenu().save() ;
-            MenuHandler.goBack();
+//            MenuHandler.exitMenu();
+
         });
         setTabPressedStuff();
         updateBalance();
@@ -314,7 +311,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             button.setText("Remove");
             button.setOnAction(e -> {
                 try {
-                    ((CollectionMenu) menu).removeFromDeck(card.getCardID());
+                    ((CollectionMenu) menu).removeFromDeck(card.getID());
                 } catch (InvalidCardException ex) {
                     Popup.popup("This card does not exist on this deck !");
                 } catch (InvalidItemException ignored) {

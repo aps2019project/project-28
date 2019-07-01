@@ -1,10 +1,9 @@
-package Model.account;
+package Model.account.player;
 
-import Controller.Game;
 import Controller.menu.Battle;
 import Model.Map.Cell;
 import Model.Map.Map;
-import Model.Primary;
+import Model.account.Account;
 import Model.card.Card;
 
 import Model.card.hermione.Hermione;
@@ -19,14 +18,14 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class AI extends Player {
+public class AI extends Bot {
     int move = -1; //0: insert card , 1&3: select hero, 2: move Hero ,
     // 4: attack with hero ,and then : minions : select-move-select-attack
     private Map map;
     private Player enemy;
     public String output;
 
-    public AI(Account user, int maxMana, int mana,Player enemy) {
+    public AI(Account user, int maxMana, int mana, Player enemy) {
         super(user, maxMana, mana);
         this.map=Battle.getMenu().getMap();
         this.enemy=enemy;
@@ -57,7 +56,7 @@ public class AI extends Player {
                 move++;
             case 1:
             case 3: //selecting the hero
-                command = "Select " + this.getDeck().getHero().getCardID();
+                command = "Select " + this.getDeck().getHero().getID();
                 output=(command);
                 return;
             case 2: //move tha hero
@@ -117,7 +116,7 @@ public class AI extends Player {
             for (int i = rand.nextInt(target.size()); true; i = rand.nextInt(target.size())) {
                 counter++;
                 if (card.canAttack(target.get(i))) {
-                    command = "Attack " + target.get(i).getCardID();
+                    command = "Attack " + target.get(i).getID();
                     output=(command);
                     return true;
                 }

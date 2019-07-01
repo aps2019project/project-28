@@ -1,9 +1,9 @@
 package Controller.menu;
 
 import Controller.Game;
-import Controller.GameMode.ClassicMode;
 import Controller.GameMode.GameMode;
 import Model.Map.Cell;
+import Model.account.player.Player;
 import Model.card.hermione.Hero;
 import Model.card.spell.Buff.Buff;
 import Model.item.Item;
@@ -18,12 +18,10 @@ import Model.card.hermione.Minion;
 import Model.card.hermione.SPATime;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
-import Model.item.OnItemDetailPresentedListener;
+import View.Listeners.OnItemDetailPresentedListener;
 import View.Listeners.OnHandPresentedListener;
 import View.MenuHandler;
 import exeption.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,9 +39,7 @@ public class Battle extends Menu {
     private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
 
     private Match match;
-    // TODO: 6/27/19 in khat e Zr age menu ha OK shode lazem nist new she
-
-    private GameMode gameMode=new ClassicMode();
+    private GameMode gameMode;
 
 
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
@@ -109,21 +105,17 @@ public class Battle extends Menu {
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
         Card card = this.account.getPlayer().getHand().getCard(cardID);
 
-        if (card instanceof Hermione) {
+        this.account.getPlayer().deploy(card, this.map.getCell(x, y),this.getEnemyPlayer());
 
-            this.account.getPlayer().deploy(card, this.map.getCell(x, y));
-            this.account.getPlayer().changeMana((-1) * card.getManaPoint());
+        if (card instanceof Hermione)
+            this.getMap().getCell(x,y).setCardOnCell((Hermione) card);
 
-            try { this.account.getPlayer().getHand().handleHand(card);
-            } catch (DeckIsEmptyException | HandFullException ignored) { ignored.printStackTrace(); }
-
-        } else if (card instanceof Spell) {
-            try {
-                ((Spell) card).deploy(this.account.getPlayer(), Battle.getMenu().getEnemy(this.account), Battle.getMenu().getMap().getCell(x, y));
-                this.account.getPlayer().changeMana((-1) * card.getManaPoint());
-                this.account.getPlayer().getHand().handleHand(card);
-            } catch (InvalidCellException | HandFullException | DeckIsEmptyException ignored) { ignored.printStackTrace();}
+        try {
+            this.account.getPlayer().getHand().handleHand(card);
+        } catch (DeckIsEmptyException | HandFullException e) {
+            e.printStackTrace();
         }
+
         // TODO: 5/5/19 one more exception  (read the doc)
         handleDeaths();
     }
@@ -173,9 +165,9 @@ public class Battle extends Menu {
                 select(((Item) obj).getID());
             else if(obj instanceof Card) {
                 if(obj instanceof Hermione)
-                select(((Hermione) obj).getCardID());
+                select(((Hermione) obj).getID());
                 if(obj instanceof Spell)
-                    select(((Spell)obj).getCardID());
+                    select(((Spell)obj).getID());
             }
             return;
         }
@@ -192,7 +184,7 @@ public class Battle extends Menu {
         } else if (deck.hasCard(ID)) {
             //// TODO: 6/8/19 instance of
             for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
-                if (minion.getCardID() == ID) {
+                if (minion.getID() == ID) {
                     this.account.getPlayer().setSelectedCard(minion);
                     return;
                 }
@@ -208,6 +200,11 @@ public class Battle extends Menu {
     public void move(int x, int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException {
         try {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
+
+
+            //conditions that are related to the map and not to the hermione
+            if (this.getMap().getCell(x, y).isFull()) throw new DestinationIsFullException();
+            if(this.getMap().getPath(hermione.getLocation(),new Cell(x,y),2)==null)throw new DestinationOutOfreachException();
 
 
             if(hermione.canMove(x,y))this.getMap().getCell(hermione.getLocation()).clear();
@@ -312,6 +309,9 @@ public class Battle extends Menu {
     }
 
     public void showHand() {
+        System.err.println("debug");
+        if(this.account!=null)
+        System.out.println("this.account = " + this.account);
         Hand hand = this.account.getPlayer().getHand();
         for (OnHandPresentedListener presenter : Hand.getHandPresenters()) {
             presenter.showHand(hand);
@@ -421,7 +421,7 @@ public class Battle extends Menu {
         /*
         * getting out of battle
         * */
-        MenuHandler.setCurrentMenu(MainMenu.getMenu());
+        MenuHandler.enterMenu(MainMenu.getMenu());
     }
 
     private void swapPlayers() {
@@ -509,6 +509,11 @@ public class Battle extends Menu {
     }
 
     public void setPlayer(Player firstPlayer, Player secondPlayer) {
+
+        Game.setGI(firstPlayer);
+        Game.setGI(secondPlayer);
+
+
         this.player[0] = firstPlayer;
         this.ownPLayer = firstPlayer;
         this.player[1] = secondPlayer;

@@ -8,12 +8,6 @@ import View.MenuHandler;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -64,12 +58,16 @@ public class SignInMenu extends Menu {
     }
 
     public void logIn(String username, String password) throws InvalidAccountException, WrongPassException {
+        System.err.println("debug");
         Account account = Account.getAccount(username);
         if (account.getPassword().equals(password)) {
             Game.accounts[0] = account;
             Game.hasLoggedIn = true;
             this.account=account;
             MenuHandler.setAccount(account);
+            // TODO: 6/30/19 in ro azin ja bardar or not
+
+            MenuHandler.enterMenu(menu.enter(MainMenu.getMenu()));
             new Thread("initializing shop and collection"){
                 @Override
                 public void run() {

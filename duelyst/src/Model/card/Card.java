@@ -31,6 +31,11 @@ public abstract class Card {
         this.cardGraphics = new CardGraphics();
     }
 
+
+    public static String gererateID(Card card){
+        return card.getClass()+":";
+    }
+
     public void setSuperCollection(Collection superCollection) {
         this.superCollection = superCollection;
     }
@@ -61,7 +66,7 @@ public abstract class Card {
 
     public static Card getCard(int cardID) throws InvalidCardException {
         for (Card card : Card.cards) {
-            if(card.getCardID()==cardID)return card;
+            if(card.getID()==cardID)return card;
         }
         throw new InvalidCardException();
     }
@@ -91,7 +96,7 @@ public abstract class Card {
     }
 
 
-    public int getCardID() {
+    public int getID() {
         return cardID;
     }
 

@@ -2,5 +2,5 @@ package View;
 
 public interface View {
     void play(String...args);
-    void setCommandHandler(CommandHandler commandHandler);
+    void setGIs();
 }

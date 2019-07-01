@@ -1,4 +1,5 @@
 package View;
+
 import Controller.Game;
 import Controller.menu.Battle;
 import Controller.menu.*;
@@ -12,15 +13,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-
 public class MenuHandler {
 
     private static Menu currentMenu;
     private static ArrayList<Menu> lastMenus = new ArrayList<>();
-    private static Account account ;
-    private static CommandHandler commandHandler=new CommandHandler();
+    private static Account account;
 
-    //moh
     public static void main(String[] args) {
         try {
             Primary.preprocess();
@@ -30,52 +28,39 @@ public class MenuHandler {
         }
 //        View input = new ConsoleView();
         View input = new GraphicView();
-        input.setCommandHandler(commandHandler);
         input.play(args);
     }
 
     public static void startMenus() {
-        currentMenu= SignInMenu.getMenu().enter();
+        currentMenu = SignInMenu.getMenu().enter();
     }
-
     public static void showMenu() {
         MenuHandler.currentMenu.showMenu();
     }
-
     public static void nextMove() {
-        if (MenuHandler.currentMenu instanceof Battle)
-            Battle.getMenu().getPlayer().doYourMove();
-    }
-    public static Scanner getGameScanner() {
-        return Game.accounts[Battle.getMenu().getTurn()].getPlayer().getOutputStream();
+        Game.accounts[Battle.getMenu().getTurn()].getPlayer().getGI().intervene();
     }
 
-    public static void setCurrentMenu(Menu currentMenu) {
-        if (MenuHandler.currentMenu != null)MenuHandler.lastMenus.add(MenuHandler.currentMenu);
-        MenuHandler.currentMenu = currentMenu;
-        currentMenu.enter();
-    }
     public static Menu getCurrentMenu() {
         return currentMenu;
     }
-    public static ArrayList<Menu> getLastMenus() {
-        return lastMenus;
+    public static void enterMenu(Menu menu) {
+        if (MenuHandler.currentMenu != null) MenuHandler.lastMenus.add(MenuHandler.currentMenu);
+        currentMenu = currentMenu.enter(menu);
     }
-    public static void goBack() {
-        currentMenu = lastMenus.get(lastMenus.size()-1).enter();
-        lastMenus.remove(lastMenus.size()-1);
+    public static void exitMenu() {
+        MenuHandler.currentMenu = MenuHandler.currentMenu.exit();
     }
 
     public static Account getAccount() {
         return account;
     }
+
     public static void setAccount(Account account) {
         MenuHandler.account = account;
     }
 
-
     private static void initMenus() {
-        System.err.println("debug");
         //az SignIn Menu mirim tuye MainMenu
 
         SignInMenu.getMenu().addSubMenu(MainMenu.getMenu());
@@ -96,8 +81,10 @@ public class MenuHandler {
         Battle.getMenu().addSubMenu(GraveYardMenu.getMenu());
         Battle.getMenu().addSubMenu(CollectableMenu.getMenu());
 
+        CraftingMenu.getMenu().addSubMenu(CraftingMenu.getHeroMenu());
+        CraftingMenu.getMenu().addSubMenu(CraftingMenu.getMinionMenu());
+        CraftingMenu.getMenu().addSubMenu(CraftingMenu.getSpellMenu());
+
         currentMenu = SignInMenu.getMenu();
     }
-
-
 }

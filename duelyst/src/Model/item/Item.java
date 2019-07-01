@@ -2,11 +2,12 @@ package Model.item;
 
 import Model.Map.Cell;
 import Model.Primary;
-import Model.account.Player;
+import Model.account.player.Player;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Target;
 import Model.item.ItemActions.ItemAction;
+import View.Listeners.OnItemDetailPresentedListener;
 import exeption.InvalidCellException;
 import exeption.InvalidItemException;
 

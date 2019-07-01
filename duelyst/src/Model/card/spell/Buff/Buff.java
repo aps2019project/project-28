@@ -1,6 +1,6 @@
 package Model.card.spell.Buff;
 
-import Model.account.Player;
+import Model.account.player.Player;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Buff.BuffActions.BuffActions;
 import Model.card.spell.BuffTypes.BuffTypes;

@@ -1,8 +1,7 @@
 package Model.item.ItemActions;
 
-import Controller.Game;
 import Controller.menu.Battle;
-import Model.account.Player;
+import Model.account.player.Player;
 import Model.item.Item;
 
 public class ItemActionManaGiver implements ItemAction {

@@ -1,11 +1,9 @@
 package Model.card.spell.Targets;
 
-        import Controller.Game;
         import Controller.menu.Battle;
         import Model.Map.Cell;
-        import Model.account.Player;
+        import Model.account.player.Player;
         import Model.card.hermione.Hermione;
-        import Model.card.hermione.Minion;
         import Model.card.spell.Target;
         import exeption.InvalidCellException;
 

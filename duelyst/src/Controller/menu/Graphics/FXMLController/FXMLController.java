@@ -2,6 +2,7 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.Menu;
 import javafx.scene.ImageCursor;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 
@@ -36,6 +37,7 @@ public class FXMLController {
         *
         * if you wish to work with them use the method build scene
         * */
+
     }
 
 
@@ -47,7 +49,6 @@ public class FXMLController {
         * */
         this.menu.getGraphic().getScene().setOnMouseEntered(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
         this.menu.getGraphic().getScene().setOnMouseMoved(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
-
     }
 
     public void enterScene(){
