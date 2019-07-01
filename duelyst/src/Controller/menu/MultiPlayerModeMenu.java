@@ -11,7 +11,6 @@ import exeption.InvalidAccountException;
 import exeption.WrongPassException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu {
     private static MultiPlayerModeMenu menu;
@@ -61,7 +60,7 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
     @Override
     public void selectDeck(Account account, Deck deck) {
         account.getCollection().setMainDeck(deck);
-        if (account != this.account) MenuHandler.setCurrentMenu(ChooseBattleModeMenu.getMenu().enter());
+        if (account != this.account) MenuHandler.enterMenu(ChooseBattleModeMenu.getMenu().enter());
         else showDeckSelector(Game.accounts[1]);
     }
 

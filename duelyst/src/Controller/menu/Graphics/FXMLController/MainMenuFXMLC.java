@@ -56,6 +56,6 @@ public class MainMenuFXMLC extends FXMLController {
     }
 
     private void enterSubMenu(Menu subMenu){
-        MenuHandler.setCurrentMenu(menu.enter(subMenu));
+        MenuHandler.enterMenu(menu.enter(subMenu));
     }
 }

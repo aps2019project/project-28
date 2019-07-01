@@ -2,8 +2,6 @@ package View;
 import Controller.menu.*;
 import exeption.*;
 
-import java.io.OutputStream;
-
 public class CommandHandler {
 
     static {
@@ -67,7 +65,7 @@ public class CommandHandler {
             try {
 
                 try {
-                    MenuHandler.setCurrentMenu(MenuHandler.getCurrentMenu().enter(MenuHandler.getCurrentMenu().getMenuFromSubMenus(word[1])));
+                    MenuHandler.enterMenu(MenuHandler.getCurrentMenu().enter(MenuHandler.getCurrentMenu().getMenuFromSubMenus(word[1])));
                 } catch (InvalidSubMenuException e) {
                     System.out.println("the requested menu doesnt exist");
                 }
@@ -78,7 +76,7 @@ public class CommandHandler {
         }else if(word[0].equals("exit")){
             if(MenuHandler.getCurrentMenu().getParentMenu()==null) System.out.println("This is the root menu!");
             else {
-                MenuHandler.setCurrentMenu(MenuHandler.getCurrentMenu().exit());
+                MenuHandler.enterMenu(MenuHandler.getCurrentMenu().exit());
                 return true;
             }
         }
@@ -101,7 +99,7 @@ public class CommandHandler {
         if(word[0].equals("select")){
             CustomModeMenu menu= (CustomModeMenu) MenuHandler.getCurrentMenu();
             try {
-                MenuHandler.setCurrentMenu(menu.selectDeck(word[2]));
+                MenuHandler.enterMenu(menu.selectDeck(word[2]));
             } catch (InvalidDeckException e) {
                 System.out.println("Couldnt find the deck");
             }
@@ -112,7 +110,7 @@ public class CommandHandler {
         if(word[0].equals("select") && word[1].equals("user")){
             try {
                 menu.selectUser(word[2],word[3]);
-                MenuHandler.setCurrentMenu(menu.enter(Battle.getMenu()));
+                MenuHandler.enterMenu(menu.enter(Battle.getMenu()));
             } catch (InvalidAccountException e) {
                 System.out.println("this account doesnt exist");
             } catch (WrongPassException e) {
@@ -282,7 +280,7 @@ public class CommandHandler {
         }else if(word[0].equals("login")){
             try {
                 menu.logIn(word[1],word[2]);
-                MenuHandler.setCurrentMenu(menu.enter(MainMenu.getMenu()));
+                MenuHandler.enterMenu(menu.enter(MainMenu.getMenu()));
             } catch (InvalidAccountException e) {
                 System.out.println("Account doesnt exist");
             } catch (WrongPassException e) {

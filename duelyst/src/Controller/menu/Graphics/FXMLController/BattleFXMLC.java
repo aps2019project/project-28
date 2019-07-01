@@ -584,6 +584,7 @@ public class BattleFXMLC extends FXMLController {
         }
         return null;
     }
+
     private Rectangle getRectangle(int x, int y){
         for(Node node : map.getChildren()){
             if(GridPane.getColumnIndex(node) == x && GridPane.getRowIndex(node) == y){

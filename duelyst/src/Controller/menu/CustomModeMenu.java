@@ -48,7 +48,7 @@ public class CustomModeMenu extends Menu implements DeckSelectorHavingMenu{
             showDeckSelector(account);
         }else{
             try {
-                MenuHandler.setCurrentMenu(selectDeck(deck.getName()));
+                MenuHandler.enterMenu(selectDeck(deck.getName()));
             } catch (InvalidDeckException ignored) {}
         }
     }
