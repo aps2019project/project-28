@@ -7,6 +7,7 @@ import Controller.menu.*;
 import Controller.menu.SignInMenu;
 import Model.Primary;
 import Model.account.Account;
+import Model.mediator.LocalAccountMediator;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -20,15 +21,28 @@ public class MenuHandler {
     private static Account account;
 
     public static void main(String[] args) {
+
+        configLocal();
+//        configNetwork();
+
         try {
             Primary.preprocess();
             initMenus();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
         View input = new ConsoleView();
 //        View input = new GraphicView();
         input.play(args);
+    }
+
+    private static void configNetwork() {
+    }
+
+    private static void configLocal() {
+        Account.setAccountMediator(new LocalAccountMediator());
     }
 
     public static void startMenus() {

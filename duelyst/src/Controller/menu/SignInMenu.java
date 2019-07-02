@@ -41,12 +41,9 @@ public class SignInMenu extends Menu {
     }
 
     public void creatAccount(String name, String username, String password) throws AccountAlreadyExistsException {
-        if (Account.hasAccount(username))
-            throw new AccountAlreadyExistsException();
-        temporaryAccount = new Account(name, username, password);
-        save() ;
+
+        Account.addNewAccount(new Account(name,username,password));
         try {
-            System.err.println("debug");
             logIn(username , password);
         } catch (InvalidAccountException e) {
             System.err.println("InvalidAccount after creating an account and then trying to login ! \n " +
@@ -80,8 +77,6 @@ public class SignInMenu extends Menu {
     }
 
     public void save() {
-        Account.addNewAccount(temporaryAccount);
-        temporaryAccount = null;
     }
 
     public void showLeaderBoard() {
