@@ -27,13 +27,7 @@ public class MenuHandler {
 
 //        configLocal();
         configNetwork();
-
-        try {
-            Primary.preprocess();
-            initMenus();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        initMenus();
 
 
         View input = new ConsoleView();
@@ -52,6 +46,11 @@ public class MenuHandler {
 
     private static void configLocal() {
         Account.setAccountMediator(new LocalAccountMediator());
+        try {
+            Primary.preprocess();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void startMenus() {

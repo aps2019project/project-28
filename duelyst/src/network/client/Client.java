@@ -70,4 +70,30 @@ public class Client {
         }
         return null;
     }
+    public void sendTaskDone(){
+        Message message=Message.getDoneMessage();
+        message.setAuth(authToken);
+        message.setMenu(MenuHandler.getCurrentMenu());
+        YaGson json = new YaGson();
+        String string = json.toJson(message);
+        try {
+            this.getOutput().println(string);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void sendTaskFailed(){
+        Message message=Message.getFailedMessage();
+        message.setAuth(authToken);
+        message.setMenu(MenuHandler.getCurrentMenu());
+        YaGson json = new YaGson();
+        String string = json.toJson(message);
+        try {
+            this.getOutput().println(string);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

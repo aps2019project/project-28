@@ -42,8 +42,11 @@ public class Account {
 
 
 
+    public static void addNewAccount(String name,String username,String password) throws AccountAlreadyExistsException {
+        addNewAccount(new Account(name,username,password));
+    }
 
-    public static void addNewAccount(Account account) throws AccountAlreadyExistsException {
+        public static void addNewAccount(Account account) throws AccountAlreadyExistsException {
         accountMediator.addNewAccount(account);
     }
 

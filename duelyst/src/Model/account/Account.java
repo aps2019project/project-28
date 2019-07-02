@@ -44,11 +44,23 @@ public class Account {
 
 
     public static boolean addNewAccount(Account account) throws AccountAlreadyExistsException {
-        return accountMediator.addNewAccount(account);
+        try {
+            return accountMediator.addNewAccount(account);
+        } catch (AccountAlreadyExistsException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     public static void save() {
-        accountMediator.save();
+        try {
+            accountMediator.save();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static Account getDefaultAccount(){
@@ -67,11 +79,25 @@ public class Account {
     }
 
     public static Account getAccount(String username) throws InvalidAccountException {
-        return accountMediator.getAccount(username);
+        try {
+            return accountMediator.getAccount(username);
+        } catch (InvalidAccountException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static Account getAccount(int ID) throws InvalidAccountException {
-        return accountMediator.getAccount(ID);
+        try {
+            return accountMediator.getAccount(ID);
+        } catch (InvalidAccountException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static boolean hasAccount(String username) {
@@ -84,10 +110,23 @@ public class Account {
     }
 
     public static ArrayList<Account> getAccounts() {
-        return accountMediator.getAccounts();
+        try {
+            return accountMediator.getAccounts();
+        } catch (Exception e) {
+            e.printStackTrace();
+            while (true){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+//            return null;
+        }
     }
 
     public static void updateAccounts() {
+        System.err.println("debug");
         Account.getAccounts().forEach(acc->acc.getCollection().updateCollection());
     }
 

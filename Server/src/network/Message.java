@@ -52,4 +52,10 @@ public class Message implements Serializable {
     public void setMenu(String menu) {
         this.menu = menu;
     }
+    public static Message getFailedMessage(){
+        return new Message("failed!");
+    }
+    public static Message getDoneMessage(){
+        return new Message("Done!");
+    }
 }

@@ -71,10 +71,7 @@ public abstract class Menu implements Serializable {
     }
 
     public void addMenuClickListener(OnMenuClickedListener presenter) {
-        System.err.println("presenter?");
-//        if(this.menuPresenters.size()>0)
-//            throw new NullPointerException();
-        this.menuPresenters.add(presenter);
+      this.menuPresenters.add(presenter);
     }
 
     public boolean allowsCommand(String command) {

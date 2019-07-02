@@ -36,8 +36,9 @@ public class MenuHandler {
 
         View input = new ConsoleView();
 //        View input = new GraphicView();
-        input.play(args);
-//        MainServer.main(null);
+
+//        input.play(args);
+        MainServer.main(null);
     }
 
     private static void configNetwork() throws IOException {

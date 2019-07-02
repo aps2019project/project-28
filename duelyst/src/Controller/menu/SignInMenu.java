@@ -41,7 +41,7 @@ public class SignInMenu extends Menu {
     }
 
     public void creatAccount(String name, String username, String password) throws AccountAlreadyExistsException, InvalidAccountException, WrongPassException {
-
+        System.err.println("debug");
         if(!Account.addNewAccount(new Account(name, username, password)))return;
 //        try {
             logIn(username , password);

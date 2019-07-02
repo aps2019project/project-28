@@ -20,8 +20,7 @@ public class MainServer {
             Socket socket=server.accept();
             Client client=new Client(socket);
             System.err.println("client found");
-//            new Thread(() -> communicate(client)).start();
-            communicate(client);
+            new Thread(() -> communicate(client)).start();
         }
     }
 
