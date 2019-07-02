@@ -96,6 +96,8 @@ public class SignInMenuFXMLC extends FXMLController implements LeaderBoardHaving
                         } catch (AccountAlreadyExistsException e) {
                             usernameInput.setText("");
                             usernameInput.setPromptText("this username already exists !");
+                        } catch (WrongPassException | InvalidAccountException e) {
+                            e.printStackTrace();
                         }
 
                     } else nameInput.getStyleClass().add("wrong-text-field");

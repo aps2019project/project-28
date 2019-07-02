@@ -1,6 +1,8 @@
 package network.server;
 
-import View.CommandHandler;
+import View.MessageHandler;
+import network.Message;
+import network.client.Client;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -9,17 +11,32 @@ import java.net.Socket;
 public class MainServer {
     private static final int DEFAULT_PORT=8000;
     private static ServerSocket server;
-    private static CommandHandler commandHandler=new CommandHandler();
+    private static MessageHandler messageHandler=new MessageHandler();
 
     public static void main(String[] args) throws IOException {
         server=new ServerSocket(DEFAULT_PORT);
         while(true){
-            Socket client=server.accept();
-            new Thread(() -> communicate(client)).start();
+            System.err.println("waiting for connection");
+            Socket socket=server.accept();
+            Client client=new Client(socket);
+            System.err.println("client found");
+//            new Thread(() -> communicate(client)).start();
+            communicate(client);
         }
     }
 
-    private static void communicate(Socket client) {
+    private static void communicate(Client client){
+        while(true){
+                Message message= client.read();
+                System.err.println("message read");
+                System.out.println("message.getText() = " + message.getText());
+                handleMessage(message,client);
+            }
+    }
+
+    private static void handleMessage(Message message, Client client) {
+        Message respond=messageHandler.handleMessage(message);
+            client.write(respond);
 
     }
 }

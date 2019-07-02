@@ -4,8 +4,6 @@ import Model.account.Account;
 import Model.account.player.Bot;
 import Model.account.player.GameInterFace;
 import Model.account.player.Player;
-import network.client.Client;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
@@ -17,8 +15,6 @@ public class Game {
     private static Class userGI;
     private static Class botGI;
     private static Class defaultGI;
-
-    private static Client client;
 
 
     public static void setFirstAccount(Account account) {
@@ -80,12 +76,6 @@ public class Game {
     }
 
 
-    public static Client getClient() {
-        return client;
-    }
 
-    public static void setClient(Client client) {
-        Game.client = client;
-    }
 }
 

@@ -1,15 +1,33 @@
 package network;
 
+import Controller.menu.Menu;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Message {
+public class Message implements Serializable {
     private String text;
     private ArrayList<Object> carry=new ArrayList<>();
+    private Auth authToken=null;
+    private String menu;
+
+    public Message(String text, Auth authToken) {
+
+        this.text = text;
+        this.authToken=authToken;
+    }
 
     public Message(String text) {
         this.text = text;
     }
 
+    public Auth getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuth(Auth authToken) {
+        this.authToken = authToken;
+    }
 
     public void addCarry(Object carry) {
         this.carry.add(carry);
@@ -21,5 +39,17 @@ public class Message {
 
     public ArrayList<Object> getCarry() {
         return carry;
+    }
+
+    public String getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu.getName();
+    }
+
+    public void setMenu(String menu) {
+        this.menu = menu;
     }
 }

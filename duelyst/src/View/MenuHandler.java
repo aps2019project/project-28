@@ -8,6 +8,7 @@ import Controller.menu.SignInMenu;
 import Model.Primary;
 import Model.account.Account;
 import Model.mediator.LocalAccountMediator;
+import Model.mediator.NetAccountMediator;
 import network.client.Client;
 
 import java.io.FileNotFoundException;
@@ -24,8 +25,8 @@ public class MenuHandler {
 
     public static void main(String[] args) throws IOException {
 
-        configLocal();
-//        configNetwork();
+//        configLocal();
+        configNetwork();
 
         try {
             Primary.preprocess();
@@ -35,14 +36,14 @@ public class MenuHandler {
         }
 
 
-//        View input = new ConsoleView();
-        View input = new GraphicView();
+        View input = new ConsoleView();
+//        View input = new GraphicView();
         input.play(args);
     }
 
     private static void configNetwork() throws IOException {
         // TODO: 7/2/19 bayad beshe network Mediator
-        Account.setAccountMediator(new LocalAccountMediator());
+        Account.setAccountMediator(new NetAccountMediator());
 
 
         Game.setClient(new Client());

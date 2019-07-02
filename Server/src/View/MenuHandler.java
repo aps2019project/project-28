@@ -8,11 +8,11 @@ import Controller.menu.SignInMenu;
 import Model.Primary;
 import Model.account.Account;
 import Model.mediator.LocalAccountMediator;
+import network.server.MainServer;
+import sample.Main;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class MenuHandler {
@@ -37,6 +37,7 @@ public class MenuHandler {
         View input = new ConsoleView();
 //        View input = new GraphicView();
         input.play(args);
+//        MainServer.main(null);
     }
 
     private static void configNetwork() throws IOException {

@@ -276,6 +276,10 @@ public class CommandHandler {
             } catch(ArrayIndexOutOfBoundsException e){
                 System.out.println("please enter in the fallowing order");
                 System.out.println("1)name     2)username      3)password");
+            } catch (WrongPassException e) {
+                System.out.println("Wrong Password");
+            } catch (InvalidAccountException e) {
+                System.out.println("seems like your account doesnt exist");
             }
         }else if(word[0].equals("login")){
             try {
@@ -300,7 +304,6 @@ public class CommandHandler {
     }
     private static void ChooseBattleModeMenuCommandHandler(String[] word) {
         ChooseBattleModeMenu menu= ChooseBattleModeMenu.getMenu();
-        ;
         if(word[0].equals("mode")){
             menu.setMode(Integer.parseInt(word[1]));
         }

@@ -12,9 +12,10 @@ import javafx.stage.Stage;
 import stuff.Resources;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Menu {
+public abstract class Menu implements Serializable {
 
     protected Account account;
     private String name;

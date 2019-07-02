@@ -40,18 +40,18 @@ public class SignInMenu extends Menu {
         return super.enter(subMenu);
     }
 
-    public void creatAccount(String name, String username, String password) throws AccountAlreadyExistsException {
+    public void creatAccount(String name, String username, String password) throws AccountAlreadyExistsException, InvalidAccountException, WrongPassException {
 
         if(!Account.addNewAccount(new Account(name, username, password)))return;
-        try {
+//        try {
             logIn(username , password);
-        } catch (InvalidAccountException e) {
-            System.err.println("InvalidAccount after creating an account and then trying to login ! \n " +
-                    "signInMenu : 137");
-        } catch (WrongPassException e) {
-            System.err.println("WrongPassword after creating an account and then trying to login ! \n " +
-                    "signInMenu : 137");
-        }
+//        } catch (InvalidAccountException e) {
+//            System.err.println("InvalidAccount after creating an account and then trying to login ! \n " +
+//                    "signInMenu : 137");
+//        } catch (WrongPassException e) {
+//            System.err.println("WrongPassword after creating an account and then trying to login ! \n " +
+//                    "signInMenu : 137");
+//        }
     }
 
     public void logIn(String username, String password) throws InvalidAccountException, WrongPassException {

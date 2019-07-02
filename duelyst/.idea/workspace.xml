@@ -23,27 +23,27 @@
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="changed some backgrounds !">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/com_gilecode_yagson_yagson_0_53.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_gilecode_yagson_yagson_0_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/com_gilecode_yagson_yagson_0_5.xml" afterDir="false" />
+    <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Server/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Server/src/View/MessageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Account.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Account.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Controller/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Controller/menu/Graphics/FXMLController/SignInMenuFXMLC.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Controller/menu/Graphics/FXMLController/SignInMenuFXMLC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Controller/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Controller/menu/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Controller/menu/SignInMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Controller/menu/SignInMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/mediator/NetAccountMediator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/View/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/View/CommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/View/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/View/MenuHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/network/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/network/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/network/server/MainServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/network/server/MainServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/duelyst.iml" beforeDir="false" afterPath="$PROJECT_DIR$/duelyst.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameMode/ClassicMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameMode/ClassicMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameMode/Domination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameMode/Domination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameMode/FlagMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameMode/FlagMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Battle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/CustomModeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/CustomModeMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/MultiPlayerModeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/MultiPlayerModeMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/SignInMenuFXMLC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/SignInMenuFXMLC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/menu/SignInMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/SignInMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/StoryModeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/StoryModeMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Map/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/hermione/Hermione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/hermione/Hermione.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ConsoleView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ConsoleView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MenuHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/network/client/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/Auth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/network/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/network/server/Server.java" beforeDir="false" />
     </list>
     <list id="fe5b7bb0-3439-4162-ba6c-e3c0328c746b" name="graphics menus stated" comment="" />
     <list id="2ccedc21-7ab1-40fc-b8e1-27c76405ed63" name="Revert &quot;graphics menus stated&quot;" comment="Revert &quot;graphics menus stated&quot;&#10;&#10;This reverts commit 4a5465b9" />
@@ -59,58 +59,98 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
+        <entry file="file://$PROJECT_DIR$/src/Model/mediator/NetAccountMediator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+            <state relative-caret-position="167">
+              <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/account/player/Player.java">
+        <entry file="file://$PROJECT_DIR$/src/network/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="57" column="8" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Map/Map.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="103" column="13" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="13" />
+            <state relative-caret-position="312">
+              <caret line="70" column="20" selection-end-line="73" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#630#631#0" expanded="true" />
+                <element signature="e#666#667#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/menu/CollectionMenu.java">
+        <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+            <state relative-caret-position="167">
+              <caret line="63" column="72" selection-start-line="63" selection-start-column="72" selection-end-line="63" selection-end-column="72" />
+              <folding>
+                <element signature="e#1543#1544#0" expanded="true" />
+                <element signature="e#1634#1635#0" expanded="true" />
+                <element signature="e#1677#1678#0" expanded="true" />
+                <element signature="e#1711#1712#0" expanded="true" />
+                <element signature="method#initMenus#0;class#MenuHandler#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+        <entry file="file://$PROJECT_DIR$/src/View/ConsoleView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+            <state relative-caret-position="175">
+              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/network/Message.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#387#388#0" expanded="true" />
+                <element signature="e#419#420#0" expanded="true" />
+                <element signature="e#528#529#0" expanded="true" />
+                <element signature="e#570#571#0" expanded="true" />
+                <element signature="e#872#873#0" expanded="true" />
+                <element signature="e#904#905#0" expanded="true" />
+                <element signature="e#1009#1010#0" expanded="true" />
+                <element signature="e#1041#1042#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/network/Auth.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/menu/SignInMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="58" column="38" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
+        <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state relative-caret-position="167">
+              <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -127,11 +167,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>setOnMouse</find>
-      <find>setOnMouseEntered</find>
-      <find>LeaderBoard.fxml</find>
-      <find>addMen</find>
-      <find>show</find>
       <find>stage.close</find>
       <find>scene.</find>
       <find>signINbutton</find>
@@ -157,6 +192,11 @@
       <find>.getGraphics</find>
       <find>db</find>
       <find>setA</find>
+      <find>MenuHan</find>
+      <find>CommandHan</find>
+      <find>SignInMenu</find>
+      <find>choose</find>
+      <find>Client</find>
     </findStrings>
     <replaceStrings>
       <replace>getTargetInstance</replace>
@@ -173,8 +213,8 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="Saee Saadat &lt;saee@samantha.local&gt;" />
         <option value="ArshiA &lt;letmemakenewone@gmail.com&gt;" />
+        <option value="Saee Saadat &lt;saee@samantha.local&gt;" />
         <option value="Saee Saadat" />
         <option value="fateme &lt;fatt3me@gmail.com&gt;" />
         <option value="fa" />
@@ -194,24 +234,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/MultiPlayerModeMenuFXMLC.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/Hbox.fxml" />
-        <option value="$PROJECT_DIR$/src/Model/card/Card.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/GraphicsControls.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/Menu.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/SignInMenu.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/ShopMenu.fxml" />
-        <option value="$PROJECT_DIR$/src/Model/item/Usable.java" />
-        <option value="$PROJECT_DIR$/src/View/MenuHandler.java" />
-        <option value="$PROJECT_DIR$/src/Model/card/spell/Spell.java" />
-        <option value="$PROJECT_DIR$/src/Model/account/Collection.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/ItemCard.fxml" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/CollectionCard.css" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CollectionCardFXMLC.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/ShopMenu.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/ShopMenuFXMLC.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/CollectionCardHermione.fxml" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/SignInMenuFXMLC.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/Card.css" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/CollectionSpell.css" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/CollectionCardSpell.fxml" />
@@ -245,6 +272,19 @@
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/MainMenuFXMLC.java" />
         <option value="$PROJECT_DIR$/src/Model/Map/Map.java" />
         <option value="$PROJECT_DIR$/src/Model/Primary.java" />
+        <option value="$PROJECT_DIR$/src/exeption/network/ConnectionInerruptedException.java" />
+        <option value="$PROJECT_DIR$/src/Model/account/Account.java" />
+        <option value="$PROJECT_DIR$/src/Model/mediator/LocalAccountMediator.java" />
+        <option value="$PROJECT_DIR$/src/network/client/Auth.java" />
+        <option value="$PROJECT_DIR$/src/Controller/menu/SignInMenu.java" />
+        <option value="$PROJECT_DIR$/src/View/CommandHandler.java" />
+        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/SignInMenuFXMLC.java" />
+        <option value="$PROJECT_DIR$/src/View/MenuHandler.java" />
+        <option value="$PROJECT_DIR$/src/network/Auth.java" />
+        <option value="$PROJECT_DIR$/src/Controller/menu/Menu.java" />
+        <option value="$PROJECT_DIR$/src/network/client/Client.java" />
+        <option value="$PROJECT_DIR$/src/network/Message.java" />
+        <option value="$PROJECT_DIR$/src/Model/mediator/NetAccountMediator.java" />
       </list>
     </option>
   </component>
@@ -255,6 +295,7 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="32" />
     <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
@@ -325,12 +366,32 @@
             <path>
               <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
               <item name="duelyst" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
               <item name="duelyst" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="network" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -361,9 +422,12 @@
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Model" />
-      <recent name="$PROJECT_DIR$" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="network.client" />
+      <recent name="exeption.network" />
+      <recent name="Controller.menu.Graphics.FXMLController" />
+      <recent name="Model.Graphics.Listeners" />
+      <recent name="Model.Graphics" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets" />
@@ -376,12 +440,9 @@
       <recent name="Model.card.spell.SpecialPowerActions" />
       <recent name="Model.item.ItemActions" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="Controller.menu.Graphics.FXMLController" />
-      <recent name="Model.Graphics.Listeners" />
-      <recent name="Model.Graphics" />
-      <recent name="exeption" />
-      <recent name="Model.item.ItemActions" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Model" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -487,28 +548,7 @@
       <workItem from="1560238835250" duration="6032000" />
       <workItem from="1560332117096" duration="21773000" />
       <workItem from="1561648778689" duration="7190000" />
-      <workItem from="1562062434773" duration="1039000" />
-    </task>
-    <task id="LOCAL-00078" summary="working on it">
-      <created>1557868748660</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1557868748661</updated>
-    </task>
-    <task id="LOCAL-00079" summary="working on AI , fixed some bugs and corrected the outputs of it ! + added getTargetClass to all targets">
-      <created>1557898031812</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1557898031814</updated>
-    </task>
-    <task id="LOCAL-00080" summary="fixed AI">
-      <created>1557906839332</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1557906839332</updated>
+      <workItem from="1562062434773" duration="11144000" />
     </task>
     <task id="LOCAL-00081" summary="working on stun">
       <created>1557911241838</created>
@@ -832,11 +872,32 @@
       <option name="project" value="LOCAL" />
       <updated>1561664789770</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="im done with git">
+      <created>1562063627669</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1562063627669</updated>
+    </task>
+    <task id="LOCAL-00128" summary="im done with git">
+      <created>1562064395715</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1562064395715</updated>
+    </task>
+    <task id="LOCAL-00129" summary="NetAccountMediator&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       NetAccountMediator.creatAccount">
+      <created>1562066583741</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1562066583741</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196065000" />
+    <option name="totallyTimeSpent" value="206170000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -849,7 +910,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-36" width="1920" height="1116" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.226254" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -861,14 +921,14 @@
       <window_info id="Learn" order="7" weight="0.32977587" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32633054" />
-      <window_info anchor="bottom" auto_hide="true" id="Debug" order="2" weight="0.62885153" />
+      <window_info anchor="bottom" auto_hide="true" id="Debug" order="2" sideWeight="0.4994664" weight="0.22440538" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info active="true" anchor="bottom" auto_hide="true" id="Run" order="5" sideWeight="0.49893278" visible="true" weight="0.5180972" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.49839914" visible="true" weight="0.4146846" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3259177" />
       <window_info anchor="bottom" id="TeamCity" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49893278" weight="0.32352942" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010672" side_tool="true" weight="0.6662959" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49893278" weight="0.32264736" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50053364" side_tool="true" weight="0.6287487" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49786553" weight="0.5840336" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49786553" weight="0.3247156" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32899868" />
@@ -887,6 +947,43 @@
       <window_info anchor="right" id="Database" order="10" />
       <window_info anchor="right" id="Module Dependencies" order="11" weight="0.32956383" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.226254" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Learn" order="7" weight="0.32977587" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32633054" />
+      <window_info anchor="bottom" auto_hide="true" id="Debug" order="2" sideWeight="0.4994664" weight="0.22440538" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49839914" weight="0.50361943" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3259177" />
+      <window_info anchor="bottom" id="TeamCity" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49893278" weight="0.32264736" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50053364" side_tool="true" weight="0.6287487" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49786553" weight="0.5840336" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49786553" weight="0.3247156" />
+      <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32899868" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.3295129" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="LuaJ" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Key Promoter X" order="9" />
+      <window_info anchor="right" id="Database" order="10" />
+      <window_info anchor="right" id="Module Dependencies" order="11" weight="0.32956383" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -932,8 +1029,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        now every time we play the collection cards would be         updated" />
-    <MESSAGE value="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        now every time we play the collection cards would          be updated" />
     <MESSAGE value="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        a lot of bug fix for the Account adding saving method" />
     <MESSAGE value="safe commit&#10;&#10;written by ArshiA&#10;&#10;updates:" />
     <MESSAGE value="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        now every time we play the collection cards would         be updated" />
@@ -957,7 +1052,9 @@
     <MESSAGE value="changed some backgrounds !" />
     <MESSAGE value="GraveYard is done" />
     <MESSAGE value="added a crafting menu which does not work !" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a crafting menu which does not work !" />
+    <MESSAGE value="im done with git" />
+    <MESSAGE value="NetAccountMediator&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       NetAccountMediator.creatAccount" />
+    <option name="LAST_COMMIT_MESSAGE" value="NetAccountMediator&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       NetAccountMediator.creatAccount" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -974,135 +1071,16 @@
           <properties />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Model/mediator/NetAccountMediator.java</url>
+          <line>13</line>
+          <properties />
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/Card.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/CollectionCardSpell.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="20" column="15" lean-forward="true" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/CollectionSpell.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="92" selection-start-line="1" selection-start-column="92" selection-end-line="1" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/ShopMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="104" selection-start-line="104" selection-end-line="104" />
-          <folding>
-            <element signature="method#getMenu#0;class#ShopMenu#0" />
-            <element signature="e#1016#1079#1" />
-            <element signature="method#init#0;class#ShopMenu#0" />
-            <element signature="method#showCollection#0;class#ShopMenu#0" />
-            <element signature="e#1416#1524#1" />
-            <element signature="method#search#0;class#ShopMenu#0" />
-            <element signature="method#searchCollection#0;class#ShopMenu#0" />
-            <element signature="method#searchInGivenCollection#0;class#ShopMenu#0" />
-            <element signature="e#2046#2264#1" />
-            <element signature="e#2191#2254#1" />
-            <element signature="e#2300#2516#1" />
-            <element signature="e#2443#2506#1" />
-            <element signature="e#2884#2941#1" />
-            <element signature="e#3091#3308#1" />
-            <element signature="e#3621#4060#1" />
-            <element signature="e#3717#3785#1" />
-            <element signature="e#3866#3934#1" />
-            <element signature="e#3940#4050#1" />
-            <element signature="method#show#0;class#ShopMenu#0" />
-            <element signature="e#4611#4684#1" />
-            <element signature="method#exit#0;class#ShopMenu#0" />
-            <element signature="method#help#0;class#ShopMenu#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/CollectionCardItem.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="369" selection-start-line="8" selection-start-column="369" selection-end-line="8" selection-end-column="369" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/CollectionItem.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/SignInMenuFXMLC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="56" column="54" selection-start-line="56" selection-start-column="54" selection-end-line="56" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/ShopMenuFXMLC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="64" selection-end-column="11" />
-          <folding>
-            <element signature="e#3882#3883#0" expanded="true" />
-            <element signature="e#3947#3948#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/CollectionRow.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/ItemCardFXMLC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="47" column="11" lean-forward="true" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CollectionCardItemFXMLC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CollectionCardSpellFXMLC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="46" column="50" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CollectionCardHermioneFXMLC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="78" column="5" lean-forward="true" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/CardCard.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
@@ -1338,17 +1316,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/player/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="57" column="8" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
+        <state relative-caret-position="189">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -1369,17 +1340,143 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/account/player/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        <state relative-caret-position="204">
+          <caret line="57" column="8" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/exeption/network/ConnectionInerruptedException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/mediator/LocalAccountMediator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/SignInMenuFXMLC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="99" column="25" selection-start-line="99" selection-start-column="25" selection-end-line="99" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+          <folding>
+            <element signature="e#2523#2524#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/CommandHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/player/CGI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/Auth.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="70" column="20" selection-end-line="73" />
+          <folding>
+            <element signature="e#630#631#0" expanded="true" />
+            <element signature="e#666#667#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ConsoleView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="167">
+          <caret line="63" column="72" selection-start-line="63" selection-start-column="72" selection-end-line="63" selection-end-column="72" />
+          <folding>
+            <element signature="e#1543#1544#0" expanded="true" />
+            <element signature="e#1634#1635#0" expanded="true" />
+            <element signature="e#1677#1678#0" expanded="true" />
+            <element signature="e#1711#1712#0" expanded="true" />
+            <element signature="method#initMenus#0;class#MenuHandler#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#387#388#0" expanded="true" />
+            <element signature="e#419#420#0" expanded="true" />
+            <element signature="e#528#529#0" expanded="true" />
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#872#873#0" expanded="true" />
+            <element signature="e#904#905#0" expanded="true" />
+            <element signature="e#1009#1010#0" expanded="true" />
+            <element signature="e#1041#1042#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/mediator/NetAccountMediator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/SignInMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="58" column="38" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

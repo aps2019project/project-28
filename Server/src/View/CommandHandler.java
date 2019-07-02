@@ -276,6 +276,10 @@ public class CommandHandler {
             } catch(ArrayIndexOutOfBoundsException e){
                 System.out.println("please enter in the fallowing order");
                 System.out.println("1)name     2)username      3)password");
+            } catch (WrongPassException e) {
+                e.printStackTrace();
+            } catch (InvalidAccountException e) {
+                e.printStackTrace();
             }
         }else if(word[0].equals("login")){
             try {
