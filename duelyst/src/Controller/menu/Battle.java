@@ -2,7 +2,6 @@ package Controller.menu;
 
 import Controller.Game;
 import Controller.GameMode.GameMode;
-import Controller.menu.network.NetworkHandler;
 import Model.Map.Cell;
 import Model.account.player.Player;
 import Model.card.hermione.Hero;
@@ -43,8 +42,6 @@ public class Battle extends Menu {
     private Match match;
     private GameMode gameMode;
 
-    private NetworkHandler network=new NetworkHandler();
-
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
 
     private ArrayList<OnGameCardsPresentedListenr> cardsPresenters = new ArrayList<>();
@@ -66,18 +63,17 @@ public class Battle extends Menu {
         super.init(parentMenu);
 
         this.map=null;
-        this.network.handleInit();
 
 
-        this.match=new Match(Game.accounts[0],Game.accounts[1],this.gameMode);
+        this.match=new Match(Game.getAccount(0),Game.getAccount(1),this.gameMode);
         this.ongoingSpells=new ArrayList<>();
 
-        if (Game.accounts[0].getCollection().getMainDeck() == null || Game.accounts[1].getCollection().getMainDeck() == null) {
+        if (Game.getAccount(0).getCollection().getMainDeck() == null || Game.getAccount(1).getCollection().getMainDeck() == null) {
             System.out.println("Please Select your Main Deck");
             return false;
         }
 
-        setPlayer(Game.accounts[0].getPlayer(), Game.accounts[1].getPlayer());
+        setPlayer(Game.getAccount(0).getPlayer(), Game.getAccount(1).getPlayer());
         if(this.map==null)
             this.map = this.gameMode.generateMap();
 
@@ -114,7 +110,6 @@ public class Battle extends Menu {
 
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
 
-        this.network.handleInsert(cardID, x, y);
 
 
         Card card = this.account.getPlayer().getHand().getCard(cardID);
@@ -190,7 +185,6 @@ public class Battle extends Menu {
 
     public void select(int ID) throws InvalidCardException, InvalidItemException {
 
-        this.network.handleSelect(ID);
 
 
         Deck deck = this.account.getPlayer().getDeck();
@@ -216,7 +210,6 @@ public class Battle extends Menu {
 
     public void move(int x, int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException {
 
-        this.network.handleMove(x,y);
 
 
         try {
@@ -253,7 +246,6 @@ public class Battle extends Menu {
     }
 
     public void attack(int cardID) throws NoCardHasBeenSelectedException, InvalidCardException, DestinationOutOfreachException, CantAttackException, InvalidCellException {
-        this.network.handleAttack(cardID);
 
         Hermione myHermione = (Hermione) this.account.getPlayer().getSelectedCard();
         Hermione enemyCard = (Hermione) this.getEnemy(this.account).getDeck().getCard(cardID);
@@ -292,7 +284,6 @@ public class Battle extends Menu {
 
     public void attackCombo(int enemyCardId,int[] troopsId) throws CantAttackException, InvalidCardException {
 
-        this.network.handleattackCombo(enemyCardId,troopsId);
 
 
         /*
@@ -328,7 +319,6 @@ public class Battle extends Menu {
 
     public void useSpecialPower(int x, int y) throws InvalidCellException, CantSpecialPowerCooldownException, InvalidCardException {
 
-        this.network.handleSpecialPower(x,y);
 
         Cell cell = map.getCell(x, y);
         this.account.getPlayer().getDeck().getHero().applySpecialPower(cell);
@@ -366,7 +356,6 @@ public class Battle extends Menu {
 
     public void endTurn() throws HandFullException, DeckIsEmptyException {
 
-        this.network.handleEndTurn();
 
         /*updating hand*/
         this.account.getPlayer().getHand().updateHand();
@@ -431,21 +420,21 @@ public class Battle extends Menu {
         /*
          * saving the match
          * */
-        Game.accounts[0].saveMatch(this.match);
-        Game.accounts[1].saveMatch(this.match);
+        Game.getAccount(0).saveMatch(this.match);
+        Game.getAccount(1).saveMatch(this.match);
         Account.save();
 
 
         /*
         * destroying the players
         * */
-        Game.accounts[0].setPlayer(null);
-        Game.accounts[1].setPlayer(null);
+        Game.getAccount(0).setPlayer(null);
+        Game.getAccount(1).setPlayer(null);
 
         /*
         * handling the account for getting input and stuff
         * */
-        Game.accounts[1] = Account.getDefaultAccount();
+        Game.setSecondAccount(Account.getDefaultAccount());
         this.account = SignInMenu.getMenu().account;
         this.turn = 0;
 
@@ -574,10 +563,6 @@ public class Battle extends Menu {
     }
 
     public Map getMap() {
-        Map map=this.network.getMap();
-        if(map!=null){
-            this.map=map;
-        }
         return this.map;
     }
 
@@ -652,9 +637,6 @@ public class Battle extends Menu {
     }
 
     public void useItem(int x, int y) throws InvalidCellException, NoItemHasBeenSelectedException {
-
-        network.handleUseItem(x,y);
-
         this.account.getPlayer().getSelectedItem().deploy(Battle.getMenu().getMap().getCell(x, y));
     }
 

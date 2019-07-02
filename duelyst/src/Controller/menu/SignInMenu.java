@@ -58,7 +58,7 @@ public class SignInMenu extends Menu {
         System.err.println("debug");
         Account account = Account.getAccount(username);
         if (account.getPassword().equals(password)) {
-            Game.accounts[0] = account;
+            Game.setFirstAccount(account);
             Game.hasLoggedIn = true;
             this.account=account;
             MenuHandler.setAccount(account);

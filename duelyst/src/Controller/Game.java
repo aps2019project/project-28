@@ -1,46 +1,36 @@
 package Controller;
 
-import Controller.menu.Battle;
 import Model.account.Account;
-import Controller.menu.Menu;
 import Model.account.player.Bot;
-import Model.account.player.CGI;
 import Model.account.player.GameInterFace;
 import Model.account.player.Player;
+import network.client.Client;
 
 import java.lang.reflect.InvocationTargetException;
-import java.net.Socket;
 import java.util.Scanner;
 
 public class Game {
-    public static Account[] accounts = {Account.getDefaultAccount(), Account.getDefaultAccount()};
-    public static Menu menu;
-    public static Battle battle = Battle.getMenu();
+    private static Account[] accounts = {Account.getDefaultAccount(), Account.getDefaultAccount()};
     public static boolean hasLoggedIn = false;
     public static Scanner scanner = new Scanner(System.in);
 
-    public static Class userGI;
-    public static Class botGI;
-    public static Class defaultGI;
+    private static Class userGI;
+    private static Class botGI;
+    private static Class defaultGI;
 
-    public static Socket client;
-
-
+    private static Client client;
 
 
+    public static void setFirstAccount(Account account) {
+        accounts[0] = account;
+    }
+    public static void setSecondAccount(Account account) {
+        accounts[1] = account;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    public static Account getAccount(int i){
+        return accounts[i];
+    }
 
     public static Class getDefaultGI() {
         return defaultGI;
@@ -57,22 +47,19 @@ public class Game {
     public static Class getBotGI() {
         return botGI;
     }
-
-
-
-
     public static void setBotGI(Class botGI) {
         Game.botGI = botGI;
     }
+
+
     public static void setGI(Player player) {
         try {
-            if (player instanceof Bot){
-                GameInterFace GI=(GameInterFace) botGI.getConstructor().newInstance();
+            if (player instanceof Bot) {
+                GameInterFace GI = (GameInterFace) botGI.getConstructor().newInstance();
                 GI.setPlayer(player);
                 player.setGI(GI);
-            }
-            else {
-                GameInterFace GI=(GameInterFace) userGI.getConstructor().newInstance();
+            } else {
+                GameInterFace GI = (GameInterFace) userGI.getConstructor().newInstance();
                 GI.setPlayer(player);
                 player.setGI(GI);
                 player.setGI(GI);
@@ -81,15 +68,24 @@ public class Game {
             e.printStackTrace();
         }
     }
-    public static void setDefaultGI(Player player){
+    public static void setDefaultGI(Player player) {
         try {
-            GameInterFace GI=(GameInterFace) userGI.getConstructor().newInstance();
+            GameInterFace GI = (GameInterFace) userGI.getConstructor().newInstance();
             GI.setPlayer(player);
             player.setGI(GI);
             player.setGI(GI);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public static Client getClient() {
+        return client;
+    }
+
+    public static void setClient(Client client) {
+        Game.client = client;
     }
 }
 

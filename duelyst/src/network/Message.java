@@ -1,23 +1,25 @@
 package network;
 
+import java.util.ArrayList;
+
 public class Message {
     private String text;
-    private Object[] carry;
+    private ArrayList<Object> carry=new ArrayList<>();
 
     public Message(String text) {
         this.text = text;
     }
 
-    public Message(String text, Object... carry) {
-        this.text = text;
-        this.carry = carry;
+
+    public void addCarry(Object carry) {
+        this.carry.add(carry);
     }
 
     public String getText() {
         return text;
     }
 
-    public Object[] getCarry() {
+    public ArrayList<Object> getCarry() {
         return carry;
     }
 }
