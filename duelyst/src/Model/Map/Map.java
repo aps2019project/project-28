@@ -4,11 +4,10 @@ import Model.Primary;
 import Model.item.Collectable;
 import Model.item.Flag;
 import exeption.InvalidCellException;
-import org.spockframework.util.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 import java.util.Random;
 
 public class Map {
