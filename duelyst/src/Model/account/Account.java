@@ -3,7 +3,9 @@ package Model.account;
 import Controller.Game;
 import Model.Primary;
 import Model.account.player.Player;
+import Model.mediator.AccountMediator;
 import com.gilecode.yagson.YaGson;
+import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
 
 import java.io.*;
@@ -19,52 +21,34 @@ public class Account {
             ,new Account("mster_yoda","level_2","AI")
             ,new Account("thanos","level_3","AI")};
 
-    protected static int unique = 0;
-    protected static final int INITIAL_MONEY = 99999999;
+    private static int unique = 0;
+    private static final int INITIAL_MONEY = 99999999;
+
+    private static AccountMediator accountMediator;
+
 
     protected Player player;
     protected String name;
     protected String username;
     protected String password;
     protected int ID;
-    protected int money;//unit :derik
+    private int money;//unit :derik
     protected Collection collection = new Collection();
-    protected ArrayList<Match> matchHistory;
-    protected int wins;
-    protected int storyModeSPX;
+    private ArrayList<Match> matchHistory;
+    private int wins;
+    private int storyModeSPX;
     private String avatar;
 
 
 
 
-    public static void addNewAccount(Account account) {
-        if (account == null) return;
-        if (Account.hasAccount(account)) return;
-        Account.getAccounts().add(account);
-        YaGson gson = new YaGson();
-        try {
-            FileWriter fileWriter = new FileWriter("Account.json", true);
-            gson.toJson(account, fileWriter);
-            fileWriter.write("\n");
-            fileWriter.close();
-        } catch (IOException e) {
-        }
+
+    public static void addNewAccount(Account account) throws AccountAlreadyExistsException {
+        accountMediator.addNewAccount(account);
     }
 
     public static void save() {
-        YaGson gson = new YaGson();
-        File file = new File("Account.json");
-        file.delete();
-        for (Account account:
-                Primary.accounts) {
-            try{
-                FileWriter fileWriter = new FileWriter("Account.json", true);
-                account.player=null;
-                gson.toJson(account, fileWriter);
-                fileWriter.write("\n");
-                fileWriter.close();
-            } catch (IOException ignored) {}
-        }
+        accountMediator.save();
     }
 
     public static Account getDefaultAccount(){
@@ -83,17 +67,11 @@ public class Account {
     }
 
     public static Account getAccount(String username) throws InvalidAccountException {
-        for (Account account : Account.getAccounts()) {
-            if (account.getUsername().equals(username)) return account;
-        }
-        throw new InvalidAccountException();
+        return accountMediator.getAccount(username);
     }
 
     public static Account getAccount(int ID) throws InvalidAccountException {
-        for (Account account : Account.getAccounts()) {
-            if (account.getID() == ID) return account;
-        }
-        throw new InvalidAccountException();
+        return accountMediator.getAccount(ID);
     }
 
     public static boolean hasAccount(String username) {
@@ -105,26 +83,8 @@ public class Account {
         }
     }
 
-    public static boolean hasAccount(Account account) {
-        try {
-            Account.getAccount(account.getUsername());
-            return true;
-        } catch (InvalidAccountException e) {
-            return false;
-        }
-    }
-
-
     public static ArrayList<Account> getAccounts() {
-        return Primary.accounts;
-    }
-
-    public static int getUnique() {
-        return unique;
-    }
-
-    public static void setUnique(int unique) {
-        Account.unique = unique;
+        return accountMediator.getAccounts();
     }
 
     public static void updateAccounts() {
@@ -246,5 +206,9 @@ public class Account {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public static void setAccountMediator(AccountMediator accountMediator) {
+        Account.accountMediator = accountMediator;
     }
 }
