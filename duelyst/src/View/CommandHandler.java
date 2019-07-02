@@ -32,7 +32,6 @@ public class CommandHandler {
             } else if (MenuHandler.getCurrentMenu() instanceof ShopMenu){
                 ShopMenuCommandHandler(word);
             }else if(MenuHandler.getCurrentMenu() instanceof Battle){
-                System.err.println("battleCommandHandling");
                 BattleCommandHandler(word,command);
             }else if(MenuHandler.getCurrentMenu() instanceof ChooseBattleModeMenu){
                 ChooseBattleModeMenuCommandHandler(word);

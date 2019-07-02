@@ -9,6 +9,7 @@ import Model.account.player.GameInterFace;
 import Model.account.player.Player;
 
 import java.lang.reflect.InvocationTargetException;
+import java.net.Socket;
 import java.util.Scanner;
 
 public class Game {
@@ -22,30 +23,47 @@ public class Game {
     public static Class botGI;
     public static Class defaultGI;
 
+    public static Socket client;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static Class getDefaultGI() {
         return defaultGI;
     }
-
     public static void setDefaultGI(Class defaultGI) {
         Game.defaultGI = defaultGI;
     }
-
     public static Class getUserGI() {
         return userGI;
     }
-
     public static void setUserGI(Class GI) {
         Game.userGI = GI;
     }
-
     public static Class getBotGI() {
         return botGI;
     }
 
+
+
+
     public static void setBotGI(Class botGI) {
         Game.botGI = botGI;
     }
-
     public static void setGI(Player player) {
         try {
             if (player instanceof Bot){

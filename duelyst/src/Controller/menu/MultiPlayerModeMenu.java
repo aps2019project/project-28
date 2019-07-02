@@ -33,9 +33,12 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
         if (account.getPassword().equals(password)) {
             Game.accounts[0]=this.account;
             Game.accounts[1] = account;
-            Battle.getMenu().setPlayer(Game.accounts[0].getPlayer(), Game.accounts[1].getPlayer());
-            showDeckSelector(this.account);
-
+//            Battle.getMenu().setPlayer(Game.accounts[0].getPlayer(), Game.accounts[1].getPlayer());
+            try {
+                showDeckSelector(this.account);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         } else {
             throw new WrongPassException();
         }
