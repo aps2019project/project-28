@@ -29,8 +29,8 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
     }
 
     public void   setAI(int level) {
-        Game.accounts[1]= Account.AI[level];
-        Game.accounts[1].setPlayer(new AI(Game.accounts[1],2,2,Game.accounts[0].getPlayer()));
+        Game.setSecondAccount(Account.AI[level]);
+        Game.getAccount(1).setPlayer(new AI(Game.getAccount(1),2,2,Game.getAccount(0).getPlayer()));
         MenuHandler.enterMenu(Battle.getMenu());
     }
 

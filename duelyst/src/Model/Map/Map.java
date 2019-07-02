@@ -3,8 +3,8 @@ package Model.Map;
 import Model.Primary;
 import Model.item.Collectable;
 import Model.item.Flag;
+import com.sun.istack.internal.Nullable;
 import exeption.InvalidCellException;
-import org.spockframework.util.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;

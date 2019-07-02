@@ -14,20 +14,20 @@ public class ClassicMode implements GameMode {
 
     @Override
     public boolean checkState() {
-        if (Game.accounts[0].getPlayer().getDeck().getHero() == null) return true;
-        if (Game.accounts[1].getPlayer().getDeck().getHero() == null) return true;
+        if (Game.getAccount(0).getPlayer().getDeck().getHero() == null) return true;
+        if (Game.getAccount(1).getPlayer().getDeck().getHero() == null) return true;
         return false;
     }
 
     @Override
     public void handleWin() {
-        if(Game.accounts[0].getPlayer().getDeck().getHero() == null){
-            Game.accounts[1].setWins(Game.accounts[1].getWins() + 1);
-            Game.accounts[1].setMoney(Game.accounts[1].getMoney() + ClassicMode.prize);
+        if(Game.getAccount(0).getPlayer().getDeck().getHero() == null){
+            Game.getAccount(1).setWins(Game.getAccount(1).getWins() + 1);
+            Game.getAccount(1).setMoney(Game.getAccount(1).getMoney() + ClassicMode.prize);
         }
-        else if(Game.accounts[1].getPlayer().getDeck().getHero() == null){
-            Game.accounts[0].setWins(Game.accounts[0].getWins() + 1);
-            Game.accounts[0].setMoney(Game.accounts[0].getMoney() + ClassicMode.prize);
+        else if(Game.getAccount(1).getPlayer().getDeck().getHero() == null){
+            Game.getAccount(0).setWins(Game.getAccount(0).getWins() + 1);
+            Game.getAccount(0).setMoney(Game.getAccount(0).getMoney() + ClassicMode.prize);
         }
         //Account.save();
     }

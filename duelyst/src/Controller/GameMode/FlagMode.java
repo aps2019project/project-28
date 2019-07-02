@@ -15,12 +15,12 @@ public class FlagMode implements GameMode {
     @Override
     public boolean checkState() {
         for(int i=0;i<2;i++){
-            if(Game.accounts[i].getPlayer().hasFlag())
-                Game.accounts[i].getPlayer().setFlagInteger( Game.accounts[i].getPlayer().getFlagInteger() + 1);
+            if(Game.getAccount(i).getPlayer().hasFlag())
+                Game.getAccount(i).getPlayer().setFlagInteger( Game.getAccount(i).getPlayer().getFlagInteger() + 1);
             else
-                Game.accounts[i].getPlayer().setFlagInteger(0);
+                Game.getAccount(i).getPlayer().setFlagInteger(0);
 
-            if(Game.accounts[i].getPlayer().getFlagInteger() >= 6)
+            if(Game.getAccount(i).getPlayer().getFlagInteger() >= 6)
                 return true;
         }
         return false;
@@ -29,13 +29,12 @@ public class FlagMode implements GameMode {
     @Override
     public void handleWin() {
         for (int i = 0; i < 2; i++) {
-            if (Game.accounts[i].getPlayer().getFlagInteger() >=6) {
-                Game.accounts[i].setMoney(Game.accounts[i].getMoney() + prize);
-                Game.accounts[i].setWins(Game.accounts[i].getWins() + 1);
-//                return;
+            if (Game.getAccount(i).getPlayer().getFlagInteger() >=6) {
+                Game.getAccount(i).setMoney(Game.getAccount(i).getMoney() + prize);
+                Game.getAccount(i).setWins(Game.getAccount(i).getWins() + 1);
             }
         }
-        //Account.save();
+        Account.save();
     }
 
     @Override
@@ -61,16 +60,6 @@ public class FlagMode implements GameMode {
         player.setFlag(false);
     }
 
-//    @Override
-//    public void generateMap() throws InvalidCellException, CellIsFullException {
-////        GameMode.CollectableGenerator();
-//
-//        Random random = new Random();
-//        int xf = random.nextInt(Map.HEIGHT);
-//        int yf = random.nextInt(Map.WIDTH);
-//
-//        Battle.getMenu().getMap().getCell(xf, yf).setFlag(true);
-//  }
 }
 
 

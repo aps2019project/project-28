@@ -8,8 +8,10 @@ import Controller.menu.SignInMenu;
 import Model.Primary;
 import Model.account.Account;
 import Model.mediator.LocalAccountMediator;
+import network.client.Client;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,7 +22,7 @@ public class MenuHandler {
     private static ArrayList<Menu> lastMenus = new ArrayList<>();
     private static Account account;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         configLocal();
 //        configNetwork();
@@ -33,12 +35,18 @@ public class MenuHandler {
         }
 
 
-        View input = new ConsoleView();
-//        View input = new GraphicView();
+//        View input = new ConsoleView();
+        View input = new GraphicView();
         input.play(args);
     }
 
-    private static void configNetwork() {
+    private static void configNetwork() throws IOException {
+        // TODO: 7/2/19 bayad beshe network Mediator
+        Account.setAccountMediator(new LocalAccountMediator());
+
+
+        Game.setClient(new Client());
+
     }
 
     private static void configLocal() {
@@ -52,7 +60,7 @@ public class MenuHandler {
         MenuHandler.currentMenu.showMenu();
     }
     public static void nextMove() {
-        Game.accounts[Battle.getMenu().getTurn()].getPlayer().getGI().intervene();
+        Game.getAccount(Battle.getMenu().getTurn()).getPlayer().getGI().intervene();
     }
 
     public static Menu getCurrentMenu() {

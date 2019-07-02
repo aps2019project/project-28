@@ -23,6 +23,7 @@ import View.Listeners.OnHandPresentedListener;
 import View.MenuHandler;
 import exeption.*;
 
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -40,7 +41,6 @@ public class Battle extends Menu {
 
     private Match match;
     private GameMode gameMode;
-
 
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
 
@@ -61,16 +61,21 @@ public class Battle extends Menu {
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
-        this.match=new Match(Game.accounts[0],Game.accounts[1],this.gameMode);
+
+        this.map=null;
+
+
+        this.match=new Match(Game.getAccount(0),Game.getAccount(1),this.gameMode);
         this.ongoingSpells=new ArrayList<>();
 
-        if (Game.accounts[0].getCollection().getMainDeck() == null || Game.accounts[1].getCollection().getMainDeck() == null) {
+        if (Game.getAccount(0).getCollection().getMainDeck() == null || Game.getAccount(1).getCollection().getMainDeck() == null) {
             System.out.println("Please Select your Main Deck");
             return false;
         }
 
-        setPlayer(Game.accounts[0].getPlayer(), Game.accounts[1].getPlayer());
-        this.map = this.gameMode.generateMap();
+        setPlayer(Game.getAccount(0).getPlayer(), Game.getAccount(1).getPlayer());
+        if(this.map==null)
+            this.map = this.gameMode.generateMap();
 
         try {
             this.insert(this.player[0].getDeck().getHero(), this.map.getCell(Map.FIRST_HERO_X, Map.FIRST_HERO_Y));
@@ -92,6 +97,8 @@ public class Battle extends Menu {
             }
         }catch (InvalidCellException e) {e.printStackTrace();}
 
+
+
         return true;
     }
 
@@ -102,6 +109,9 @@ public class Battle extends Menu {
     }
 
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
+
+
+
         Card card = this.account.getPlayer().getHand().getCard(cardID);
 
         this.account.getPlayer().deploy(card, this.map.getCell(x, y),this.getEnemyPlayer());
@@ -174,7 +184,9 @@ public class Battle extends Menu {
     }
 
     public void select(int ID) throws InvalidCardException, InvalidItemException {
-        System.err.println();
+
+
+
         Deck deck = this.account.getPlayer().getDeck();
         // TODO: 2019-06-26 player chera hasItem dare ArshiA ya
         if (this.account.getPlayer().hasItem(ID)) {
@@ -197,6 +209,9 @@ public class Battle extends Menu {
     }
 
     public void move(int x, int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException {
+
+
+
         try {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
 
@@ -231,7 +246,7 @@ public class Battle extends Menu {
     }
 
     public void attack(int cardID) throws NoCardHasBeenSelectedException, InvalidCardException, DestinationOutOfreachException, CantAttackException, InvalidCellException {
-        System.err.println();
+
         Hermione myHermione = (Hermione) this.account.getPlayer().getSelectedCard();
         Hermione enemyCard = (Hermione) this.getEnemy(this.account).getDeck().getCard(cardID);
         myHermione.attack(enemyCard,false);
@@ -269,6 +284,8 @@ public class Battle extends Menu {
 
     public void attackCombo(int enemyCardId,int[] troopsId) throws CantAttackException, InvalidCardException {
 
+
+
         /*
         * extracting the cards
         * */
@@ -301,6 +318,8 @@ public class Battle extends Menu {
     }
 
     public void useSpecialPower(int x, int y) throws InvalidCellException, CantSpecialPowerCooldownException, InvalidCardException {
+
+
         Cell cell = map.getCell(x, y);
         this.account.getPlayer().getDeck().getHero().applySpecialPower(cell);
         handleDeaths();
@@ -309,8 +328,6 @@ public class Battle extends Menu {
 
     public void showHand() {
         System.err.println("debug");
-        if(this.account!=null)
-        System.out.println("this.account = " + this.account);
         Hand hand = this.account.getPlayer().getHand();
         for (OnHandPresentedListener presenter : Hand.getHandPresenters()) {
             presenter.showHand(hand);
@@ -338,6 +355,7 @@ public class Battle extends Menu {
     }
 
     public void endTurn() throws HandFullException, DeckIsEmptyException {
+
 
         /*updating hand*/
         this.account.getPlayer().getHand().updateHand();
@@ -402,21 +420,21 @@ public class Battle extends Menu {
         /*
          * saving the match
          * */
-        Game.accounts[0].saveMatch(this.match);
-        Game.accounts[1].saveMatch(this.match);
+        Game.getAccount(0).saveMatch(this.match);
+        Game.getAccount(1).saveMatch(this.match);
         Account.save();
 
 
         /*
         * destroying the players
         * */
-        Game.accounts[0].setPlayer(null);
-        Game.accounts[1].setPlayer(null);
+        Game.getAccount(0).setPlayer(null);
+        Game.getAccount(1).setPlayer(null);
 
         /*
         * handling the account for getting input and stuff
         * */
-        Game.accounts[1] = Account.getDefaultAccount();
+        Game.setSecondAccount(Account.getDefaultAccount());
         this.account = SignInMenu.getMenu().account;
         this.turn = 0;
 
@@ -513,7 +531,7 @@ public class Battle extends Menu {
         }
     }
 
-    public void setPlayer(Player firstPlayer, Player secondPlayer) {
+    private void setPlayer(Player firstPlayer, Player secondPlayer) {
 
         Game.setGI(firstPlayer);
         Game.setGI(secondPlayer);
@@ -545,7 +563,7 @@ public class Battle extends Menu {
     }
 
     public Map getMap() {
-        return map;
+        return this.map;
     }
 
     public Player getPlayer() {
