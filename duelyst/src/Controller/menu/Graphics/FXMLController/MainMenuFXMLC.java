@@ -53,9 +53,9 @@ public class MainMenuFXMLC extends FXMLController {
         battleMenuButton.setOnAction(e -> enterSubMenu((ChooseBattleModeMenu.getMenu()));
         craftButton.setOnAction(e -> {
             CraftingMenu.getMenu().getGraphic().init();
-            CraftingHeroMenu.getMenu().getGraphic().init();
-            CraftingMinionMenu.getMenu().getGraphic().init();
-            CraftingSpellMenu.getMenu().getGraphic().init();
+            CraftingMenu.getHeroMenu().getGraphic().init();
+            CraftingMenu.getMenu().getGraphic().init();
+            CraftingMenu.getMenu().getGraphic().init();
             enterSubMenu(CraftingMenu.getMenu());
         });
         saveButton.setOnAction(e -> Account.save());

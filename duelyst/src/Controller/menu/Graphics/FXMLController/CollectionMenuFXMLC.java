@@ -7,6 +7,7 @@ import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Spell;
 import Model.item.Usable;
+import View.MenuHandler;
 import exeption.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,17 +44,16 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         super.buildScene();
         Scene scene = menu.getGraphic().getScene();
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/CollectionMenu.css");
-        buildCardsVbox() ;
+        new Thread(this::buildCardsVbox).start() ;
         scrollPane.setContent(hermionesVbox);
-        buildItemsVbox();
-        buildDecksVbox();
+        new Thread(() -> {
+            buildItemsVbox();
+            buildDecksVbox();
+        }).start();
+
 
         GraphicsControls.setBackButtonOnPress(backButton);
-        backButton.setOnAction(e -> {
-//            ShopMenu.getMenu().save() ;
-//            MenuHandler.exitMenu();
 
-        });
         setTabPressedStuff();
         updateBalance();
     }
