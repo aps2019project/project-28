@@ -43,8 +43,8 @@ public class Account {
 
 
 
-    public static void addNewAccount(Account account) throws AccountAlreadyExistsException {
-        accountMediator.addNewAccount(account);
+    public static boolean addNewAccount(Account account) throws AccountAlreadyExistsException {
+        return accountMediator.addNewAccount(account);
     }
 
     public static void save() {

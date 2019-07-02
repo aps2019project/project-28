@@ -15,8 +15,8 @@ public class LocalAccountMediator implements AccountMediator{
 
 
     @Override
-    public void addNewAccount(Account account) throws AccountAlreadyExistsException {
-        if (account == null) return;
+    public boolean addNewAccount(Account account) throws AccountAlreadyExistsException {
+        if (account == null) return false;
 
         if (Account.hasAccount(account.getUsername()))
             throw new AccountAlreadyExistsException();
@@ -29,6 +29,7 @@ public class LocalAccountMediator implements AccountMediator{
             fileWriter.close();
         } catch (IOException e) {
         }
+        return true;
     }
 
     @Override

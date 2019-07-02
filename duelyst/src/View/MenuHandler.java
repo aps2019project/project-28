@@ -92,9 +92,9 @@ public class MenuHandler {
         MainMenu.getMenu().addSubMenu(ChooseBattleModeMenu.getMenu());
 
         GameModeMenu.getMenu().addSubMenu(SinglePlayerModeMenu.getMenu());
+        SinglePlayerModeMenu.getMenu().addSubMenu(StoryModeMenu.getMenu());
         GameModeMenu.getMenu().addSubMenu(MultiPlayerModeMenu.getMenu());
 
-        SinglePlayerModeMenu.getMenu().addSubMenu(StoryModeMenu.getMenu());
         SinglePlayerModeMenu.getMenu().addSubMenu(CustomModeMenu.getMenu());
 
 

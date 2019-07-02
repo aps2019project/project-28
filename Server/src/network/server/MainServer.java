@@ -9,7 +9,7 @@ import java.net.Socket;
 public class MainServer {
     private static final int DEFAULT_PORT=8000;
     private static ServerSocket server;
-    private static CommandHandler commandHandler;
+    private static CommandHandler commandHandler=new CommandHandler();
 
     public static void main(String[] args) throws IOException {
         server=new ServerSocket(DEFAULT_PORT);

@@ -3,10 +3,7 @@ package network.client;
 import Model.account.Account;
 import network.Message;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 
 public class Client {
@@ -16,6 +13,7 @@ public class Client {
 
     private Socket socket;
     private Account account;
+    private Auth authToken;
 
     public Client() throws IOException {
         this.socket=new Socket(HOST,DEFAULT_PORT);
@@ -28,11 +26,29 @@ public class Client {
         return this.socket.getOutputStream();
     }
 
+    public Auth getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuth(Auth authToken) {
+        this.authToken = authToken;
+    }
+
     public void send(Message message) {
+        message.setAuth(authToken);
         try(ObjectOutputStream out=new ObjectOutputStream(this.getOutputStream())){
             out.writeObject(message);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Message read() {
+        try(ObjectInputStream in=new ObjectInputStream(this.getInputStream())){
+            return (Message) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

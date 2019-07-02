@@ -42,7 +42,7 @@ public class SignInMenu extends Menu {
 
     public void creatAccount(String name, String username, String password) throws AccountAlreadyExistsException {
 
-        Account.addNewAccount(new Account(name,username,password));
+        if(!Account.addNewAccount(new Account(name, username, password)))return;
         try {
             logIn(username , password);
         } catch (InvalidAccountException e) {
