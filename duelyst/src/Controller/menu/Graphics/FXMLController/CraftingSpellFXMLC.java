@@ -4,6 +4,7 @@ import Controller.menu.Graphics.GraphicsControls;
 import Model.card.hermione.AttackType;
 import Model.card.hermione.SPATime;
 import Model.card.spell.Spell;
+import Model.card.spell.SpellAction.Action;
 import Model.card.spell.Target;
 import Model.card.spell.Targets.*;
 import javafx.fxml.FXML;
@@ -84,6 +85,11 @@ public class CraftingSpellFXMLC extends FXMLController {
                 TargetOwnHeroRow.getTargetInstance(),
                 TargetEnemyHeroColumn.getTargetInstance(),
                 Target3RandomEnemy.getTargetInstance()
+        };
+        String[] actionNames = {
+                "Dispel" ,
+                "PowerBuff AP" ,
+                "PO"
         };
     }
 

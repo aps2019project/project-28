@@ -122,9 +122,9 @@ public class GraphicView extends Application implements View{
         CraftingMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMenu.fxml");
         Battle.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/Battle.fxml");
         CraftingMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMenu.fxml");
-        CraftingHeroMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingHero.fxml");
-        CraftingMinionMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMinion.fxml");
-        CraftingSpellMenu.getMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingSpell.fxml");
+        CraftingMenu.getHeroMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingHero.fxml");
+        CraftingMenu.getMinionMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingMinion.fxml");
+        CraftingMenu.getSpellMenu().getGraphic().setRootPath("Controller/menu/Graphics/FXMLs/CraftingSpell.fxml");
     }
 
     public void play(String...args) {

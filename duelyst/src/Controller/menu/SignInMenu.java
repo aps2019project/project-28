@@ -75,7 +75,7 @@ public class SignInMenu extends Menu {
                     CollectionMenu.getMenu().getGraphic().init();
                 }
             }.start();
-            MenuHandler.setCurrentMenu(menu.enter(MainMenu.getMenu()));
+            MenuHandler.enterMenu(MainMenu.getMenu());
         } else {
             throw new WrongPassException();
         }
