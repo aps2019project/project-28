@@ -17,7 +17,6 @@ public class ConsoleView implements View{
     @Override
     public void play(String... args) {
         setGIs();
-        ;
         MenuHandler.startMenus();
         while(true){
             MenuHandler.showMenu();

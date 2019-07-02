@@ -31,11 +31,13 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
     public void selectUser(String username,String password) throws InvalidAccountException, WrongPassException {
         Account account = Account.getAccount(username);
         if (account.getPassword().equals(password)) {
-            Game.accounts[0]=this.account;
-            Game.accounts[1] = account;
-            Battle.getMenu().setPlayer(Game.accounts[0].getPlayer(), Game.accounts[1].getPlayer());
-            showDeckSelector(this.account);
-
+            Game.setFirstAccount(this.account);
+            Game.setSecondAccount(account);
+            try {
+                showDeckSelector(this.account);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         } else {
             throw new WrongPassException();
         }
@@ -61,7 +63,7 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
     public void selectDeck(Account account, Deck deck) {
         account.getCollection().setMainDeck(deck);
         if (account != this.account) MenuHandler.enterMenu(ChooseBattleModeMenu.getMenu().enter());
-        else showDeckSelector(Game.accounts[1]);
+        else showDeckSelector(Game.getAccount(1));
     }
 
     public void addLeaderBoardClickedListener(OnLeaderBoardClickedListener presenter) {

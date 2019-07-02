@@ -26,13 +26,13 @@ public class Domination implements GameMode {
     @Override
     public void handleWin() {
         for(int i=0;i<2 ;i++){
-            if(Game.accounts[i].getPlayer().getFlagInteger()>numberOfFlags/2){
-                Game.accounts[i].setMoney(Game.accounts[i].getMoney() + prize);
+            if(Game.getAccount(i).getPlayer().getFlagInteger()>numberOfFlags/2){
+                Game.getAccount(i).setMoney(Game.getAccount(i).getMoney() + prize);
                 System.err.println("debug");
-                Game.accounts[i].setWins(Game.accounts[i].getWins() + 1);
+                Game.getAccount(i).setWins(Game.getAccount(i).getWins() + 1);
             }
         }
-        //Account.save();
+        Account.save();
 
     }
 

@@ -26,11 +26,11 @@ public class CustomModeMenu extends Menu implements DeckSelectorHavingMenu{
     public void selectDeck(String deckName) throws InvalidDeckException {
         Deck deck=this.account.getCollection().getDeckByName(deckName);
 
-        Game.accounts[1]=Account.AI[0];
+        Game.setSecondAccount(Account.AI[0]);
 
         Account.AI[0].clearCollection();
         Account.AI[0].getCollection().forcePushDeck(deck);
-        Account.AI[0].setPlayer(new AI(Game.accounts[1],2,2,Game.accounts[0].getPlayer()));
+        Account.AI[0].setPlayer(new AI(Game.getAccount(1),2,2,Game.getAccount(0).getPlayer()));
 
         MenuHandler.enterMenu(this.enter(Battle.getMenu()));
     }
