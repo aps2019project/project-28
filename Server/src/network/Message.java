@@ -59,13 +59,13 @@ public class Message{
         return new Message("Done!");
     }
 
-    @Override
-    public String toString() {
-        StringBuilder s=new StringBuilder();
-        s.append("TEXT : "+this.text+
-                "\n KEY: "+this.getAuthToken());
-        this.carry.forEach(s::append);
-        return s.toString();
-
-    }
+//    @Override
+//    public String toString() {
+//        StringBuilder s=new StringBuilder();
+//        s.append("TEXT : "+this.text+
+//                "\n KEY: "+this.getAuthToken());
+//        this.carry.forEach(s::append);
+//        return s.toString();
+//
+//    }
 }

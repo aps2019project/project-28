@@ -23,29 +23,12 @@
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Model/mediator/LocalSignInMenuMediator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/mediator/NetSignInMenuMediator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/mediator/NetworkMediator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/mediator/SignInMenuMediator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Account.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Account.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Controller/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Controller/menu/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Controller/menu/SignInMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Controller/menu/SignInMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Model/mediator/AccountMediator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/mediator/AccountMediator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Model/mediator/LocalAccountMediator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/mediator/LocalAccountMediator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/View/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/View/MenuHandler.java" afterDir="false" />
+    <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="reFactor&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       Has and get methods">
       <change beforePath="$PROJECT_DIR$/../Server/src/View/MessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/View/MessageHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/src/network/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/network/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/network/server/MainServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/network/server/MainServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/SignInMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/SignInMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Primary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Primary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/mediator/LocalAccountMediator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/mediator/LocalAccountMediator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ConsoleView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ConsoleView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/network/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/Auth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/network/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/client/Client.java" afterDir="false" />
     </list>
     <list id="fe5b7bb0-3439-4162-ba6c-e3c0328c746b" name="graphics menus stated" comment="" />
     <list id="2ccedc21-7ab1-40fc-b8e1-27c76405ed63" name="Revert &quot;graphics menus stated&quot;" comment="Revert &quot;graphics menus stated&quot;&#10;&#10;This reverts commit 4a5465b9" />
@@ -60,20 +43,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/menu/SignInMenu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="53" column="31" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="51" column="12" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="32" />
+            <state relative-caret-position="210">
+              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
               <folding>
                 <element signature="e#1781#1782#0" expanded="true" />
                 <element signature="e#1839#1840#0" expanded="true" />
@@ -96,44 +70,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="194" lean-forward="true" selection-start-line="194" selection-end-line="194" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/network/client/Client.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="67" column="75" selection-start-line="67" selection-start-column="75" selection-end-line="67" selection-end-column="75" />
-              <folding>
-                <element signature="e#630#631#0" expanded="true" />
-                <element signature="e#666#667#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/CommandHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="285" column="21" selection-start-line="285" selection-start-column="21" selection-end-line="285" selection-end-column="21" />
+            <state relative-caret-position="132">
+              <caret line="243" selection-start-line="243" selection-end-line="243" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/View/ConsoleView.java">
+        <entry file="file://$PROJECT_DIR$/src/Controller/menu/ShopMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="22" column="107" selection-start-line="22" selection-start-column="107" selection-end-line="22" selection-end-column="107" />
+            <state relative-caret-position="269">
+              <caret line="94" column="52" lean-forward="true" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="353">
+              <caret line="227" column="70" selection-start-line="227" selection-start-column="70" selection-end-line="227" selection-end-column="70" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/card/Card.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="124">
+              <caret line="111" selection-start-line="111" selection-end-line="111" />
+              <folding>
+                <element signature="e#2972#2973#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -141,7 +111,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/mediator/NetSignInMenuMediator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
+            <state relative-caret-position="525">
               <caret line="25" column="64" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -151,23 +121,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/mediator/NetworkMediator.java">
+        <entry file="file://$PROJECT_DIR$/src/Model/mediator/NetAccountMediator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="-249">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/network/Message.java">
+        <entry file="file://$PROJECT_DIR$/src/Model/mediator/AccountMediator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#846#847#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="231">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -175,8 +141,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="45" column="26" selection-end-line="253" />
+            <state relative-caret-position="972">
+              <caret line="251" column="5" lean-forward="true" selection-start-line="251" selection-start-column="5" selection-end-line="251" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -196,12 +162,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>MainMenu.css</find>
-      <find>err.println</find>
-      <find>costume</find>
-      <find>println</find>
-      <find>deckSelectorHaving</find>
-      <find>MenuHandler.currentMenu =</find>
       <find>backButton.set</find>
       <find>backButton.setOnAction</find>
       <find>currentMenu</find>
@@ -226,6 +186,12 @@
       <find>implements Serializable</find>
       <find>Menuhandler {</find>
       <find>SignInMenu ex</find>
+      <find>NetAccount</find>
+      <find>Account {</find>
+      <find>we just ran out of rakhsh. im sorry!</find>
+      <find>Me lord! we just ran out of</find>
+      <find>ShopMenu ex</find>
+      <find>buy</find>
     </findStrings>
     <replaceStrings>
       <replace>getTargetInstance</replace>
@@ -264,7 +230,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/CollectionSpell.css" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/CollectionCardSpell.fxml" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/CollectionCardItem.fxml" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/CollectionItem.css" />
@@ -297,13 +262,11 @@
         <option value="$PROJECT_DIR$/src/Model/Map/Map.java" />
         <option value="$PROJECT_DIR$/src/exeption/network/ConnectionInerruptedException.java" />
         <option value="$PROJECT_DIR$/src/network/client/Auth.java" />
-        <option value="$PROJECT_DIR$/src/View/CommandHandler.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/SignInMenuFXMLC.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Menu.java" />
         <option value="$PROJECT_DIR$/src/Model/account/Account.java" />
         <option value="$PROJECT_DIR$/src/network/Message.java" />
         <option value="$PROJECT_DIR$/src/network/Auth.java" />
-        <option value="$PROJECT_DIR$/src/Model/mediator/AccountMediator.java" />
         <option value="$PROJECT_DIR$/src/Model/mediator/LocalAccountMediator.java" />
         <option value="$PROJECT_DIR$/src/Model/mediator/SignInMenuMediator.java" />
         <option value="$PROJECT_DIR$/src/Model/mediator/LoaclSignInMenuMediator.java" />
@@ -314,6 +277,9 @@
         <option value="$PROJECT_DIR$/src/network/client/Client.java" />
         <option value="$PROJECT_DIR$/src/Model/mediator/NetSignInMenuMediator.java" />
         <option value="$PROJECT_DIR$/src/Model/Primary.java" />
+        <option value="$PROJECT_DIR$/src/Model/mediator/AccountMediator.java" />
+        <option value="$PROJECT_DIR$/src/View/CommandHandler.java" />
+        <option value="$PROJECT_DIR$/src/Model/account/Collection.java" />
         <option value="$PROJECT_DIR$/src/View/MenuHandler.java" />
       </list>
     </option>
@@ -585,14 +551,7 @@
       <workItem from="1560238835250" duration="6032000" />
       <workItem from="1560332117096" duration="21773000" />
       <workItem from="1561648778689" duration="7190000" />
-      <workItem from="1562062434773" duration="24229000" />
-    </task>
-    <task id="LOCAL-00082" summary="working on stun">
-      <created>1557911660392</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1557911660392</updated>
+      <workItem from="1562062434773" duration="27671000" />
     </task>
     <task id="LOCAL-00083" summary="stun and some structural stuff in buffs are done">
       <created>1557915345482</created>
@@ -930,11 +889,18 @@
       <option name="project" value="LOCAL" />
       <updated>1562094545644</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="reFactor&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        Has and get methods">
+      <created>1562148708455</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1562148708455</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="219255000" />
+    <option name="totallyTimeSpent" value="222697000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -949,7 +915,7 @@
     <frame x="0" y="-36" width="1920" height="1116" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.226254" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.226254" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -959,10 +925,10 @@
       <window_info id="Learn" order="7" weight="0.32977587" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32633054" />
-      <window_info anchor="bottom" auto_hide="true" id="Debug" order="2" sideWeight="0.4994664" weight="0.57394004" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4994664" weight="0.5222337" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.49839914" visible="true" weight="0.3867632" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.49839914" visible="true" weight="0.42606" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3259177" />
       <window_info anchor="bottom" id="TeamCity" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49893278" weight="0.32264736" />
@@ -1030,8 +996,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="safe commit&#10;&#10;written by ArshiA&#10;&#10;updates:" />
-    <MESSAGE value="update collection&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        now every time we play the collection cards would         be updated" />
     <MESSAGE value="graphic basis&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        cellAffect graphics" />
     <MESSAGE value="multiPlayer in progress" />
     <MESSAGE value="fixed the mouse problem" />
@@ -1055,7 +1019,9 @@
     <MESSAGE value="im done with git" />
     <MESSAGE value="NetAccountMediator&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       NetAccountMediator.creatAccount" />
     <MESSAGE value="NetAccountMediator&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="NetAccountMediator&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       finished" />
+    <MESSAGE value="reFactor&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       Has and get methods" />
+    <MESSAGE value="reFactor&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        Has and get methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="reFactor&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        Has and get methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1084,38 +1050,54 @@
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/View/CommandHandler.java</url>
+          <line>243</line>
+          <properties />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="this.shop.getCollection().hasCard(name)" language="JAVA" />
+        <watch expression="collectionCard.getName()" language="JAVA" />
+        <watch expression="collectionCard.getName().toLowerCase()" language="JAVA" />
+        <watch expression="name.toLowerCase()" language="JAVA" />
+        <watch expression="collectionCard.getName().toLowerCase().equals(name.toLowerCase())" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>collectionCard.getName().toLowerCase().equals(name.toLowerCase())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>name.toLowerCase()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>collectionCard.getName().toLowerCase()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>collectionCard.getName()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>this.shop.getCollection().hasCard(name)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/GraveYardMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/GraveYard.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="77" selection-start-line="1" selection-start-column="77" selection-end-line="1" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/ShopMenu.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="78" selection-start-line="1" selection-start-column="78" selection-end-line="1" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/DeckSelectorFXMLC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="69" column="76" selection-start-line="69" selection-start-column="76" selection-end-line="69" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/DeckSelector.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -1387,34 +1369,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/mediator/AccountMediator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/mediator/NetAccountMediator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="57" column="30" lean-forward="true" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/mediator/LocalSignInMenuMediator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="45" column="26" selection-end-line="253" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1453,23 +1411,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/mediator/NetSignInMenuMediator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="25" column="64" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/CommandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="285" column="21" selection-start-line="285" selection-start-column="21" selection-end-line="285" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/network/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -1491,10 +1432,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/mediator/NetSignInMenuMediator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="64" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/mediator/NetAccountMediator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-249">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/mediator/AccountMediator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="972">
+          <caret line="251" column="5" lean-forward="true" selection-start-line="251" selection-start-column="5" selection-end-line="251" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Shop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="e#1322#1323#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/card/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="111" selection-start-line="111" selection-end-line="111" />
+          <folding>
+            <element signature="e#2972#2973#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="227" column="70" selection-start-line="227" selection-start-column="70" selection-end-line="227" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/CommandHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="243" selection-start-line="243" selection-end-line="243" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/ShopMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="94" column="52" lean-forward="true" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="51" column="12" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="32" />
+        <state relative-caret-position="210">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
           <folding>
             <element signature="e#1781#1782#0" expanded="true" />
             <element signature="e#1839#1840#0" expanded="true" />

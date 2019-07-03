@@ -13,18 +13,8 @@ import java.util.ArrayList;
 public class MessageHandler {
     public Message handleMessage(Message message){
         if(message.getAuthToken()!=null && !message.getAuthToken().authenticate())return Message.getFailedMessage();
-        String menu =message.getMenu();
         System.out.println("message = " + message.getText());
-        if(menu.equals(SignInMenu.getMenu().getName())){
-            return SignInMenuCommandHandler(message);
-        }
-        return null;
-    }
 
-
-
-    private static Message SignInMenuCommandHandler(Message message) {
-        SignInMenu menu= SignInMenu.getMenu();
         String text=message.getText();
         ArrayList<Object> carry = message.getCarry();
 
@@ -38,7 +28,6 @@ public class MessageHandler {
                 respond = makeExceptionMessage(e);
             }
         }else if(text.equals("save")){
-            // TODO: 7/2/19 change save implementation
             Account.save((Account)carry.get(0));
             respond=Message.getDoneMessage();
         }else if(text.equals("getAccount : username")){
