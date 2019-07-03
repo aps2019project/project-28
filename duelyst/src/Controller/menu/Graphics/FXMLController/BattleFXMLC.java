@@ -23,6 +23,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -47,6 +48,7 @@ public class BattleFXMLC extends FXMLController {
     public Label opponentPlayerInfo;
     public Label errorLable;
     public TextField nextCardOnHandInfo;
+    public Label turn;
     @FXML
     private AnchorPane frame;
     @FXML
@@ -143,18 +145,40 @@ public class BattleFXMLC extends FXMLController {
     @Override
     public void updateScene() {
         super.updateScene();
-        moveTargets();
-        moveAndAttackSource();
+        turn.setText(Battle.getMenu().getPlayer().getDeck().getHero().getName());
+        updateHand();
+        handDrag();
+        handDrop();
+
         attackTargets();
         updateMana();
-        updateHand();
         updateMap();
-//        specialPowerSource();
-//        specialPowerTarget();
         updateInfo();
     }
 
-    private void moveTargets() {
+    private void handDrag() {
+        //card[0] = nextCardOnHand
+        for (int i = 1 ; i <= Hand.SIZE ; i++){
+            Card card = getCardOnHand(i - 1);
+            if(card != null){
+                String x = card.getName() + (card instanceof Minion);
+                System.err.print(x);
+                ImageView cardView = (ImageView) handFrame.getChildren().get(i);
+                System.err.println(cardView.getId());
+                cardView.setOnDragDetected(e -> {
+                    Dragboard db = cardView.startDragAndDrop(TransferMode.ANY);
+                    ClipboardContent content = new ClipboardContent();
+                    if(card instanceof Hermione)
+                        content.putImage(new Image(((Hermione)card).getGraphics().getUnitGifs()));
+                    else if(card instanceof Spell)
+                        content.putImage(new Image(((Spell)card).getSpellGraphics().getIconGif()));
+                    db.setContent(content);
+                    e.consume();
+                });
+            }
+        }
+    }
+    private void handDrop() {
         for (int i = 0 ; i < 9 ; i++) {
             for (int j = 0 ; j < 5 ; j++) {
                 try {
@@ -168,8 +192,6 @@ public class BattleFXMLC extends FXMLController {
                                 if (!cell.hasItem() && !cell.hasFlag()) {
                                     event.acceptTransferModes(TransferMode.ANY);
                                 }
-                            } else if (map.getChildren().contains(source)) {
-                                event.acceptTransferModes(TransferMode.ANY);
                             }
                             event.consume();
                         }
@@ -181,7 +203,7 @@ public class BattleFXMLC extends FXMLController {
                         public void handle(DragEvent event) {
                             ImageView source = (ImageView) event.getGestureSource();
                             if (handFrame.getChildren().contains(source)) {
-                                Card card = getCardOnHand(GridPane.getColumnIndex(source));
+                                Card card = getCardOnHand(GridPane.getColumnIndex(source) - 1);
                                 if (card != null) {
                                     try {
                                         Battle.getMenu().insert(card.getCardID(), finalI, finalJ);
@@ -193,23 +215,8 @@ public class BattleFXMLC extends FXMLController {
                                         e.printStackTrace();
                                     }
                                 }
-                            } else if (map.getChildren().contains(source)) {
-                                try {
-                                    Hermione hermione = (Hermione) Battle.getMenu().getMap().getCell(GridPane.getColumnIndex(source), GridPane.getRowIndex(source)).getCardOnCell();
-                                    Battle.getMenu().select(hermione);
-                                        Battle.getMenu().move(finalI, finalJ);
-                                } catch (InvalidCardException | InvalidCellException | NoCardHasBeenSelectedException | InvalidItemException e) {
-                                    e.printStackTrace();
-                                } catch (MoveTrunIsOverException e) {
-                                    errorLable.setText("Your move turn is over");
-                                } catch (DestinationIsFullException e) {
-                                    errorLable.setText("There's already a card there!");
-                                } catch (DestinationOutOfreachException e) {
-                                    errorLable.setText("Too far darlin', too far!");
-                                } catch (CardCantBeMovedException e) {
-                                    errorLable.setText("card cant be moved!");
-                                }
                             }
+                            event.consume();
                             updateScene();
                         }
                     });
@@ -217,6 +224,88 @@ public class BattleFXMLC extends FXMLController {
             }
         }
     }
+    private void updateHand(){
+        Card[] handCards = Battle.getMenu().getPlayer().getHand().getCards();
+        for (int i = 0 ; i < Hand.SIZE ;  i++) {
+            ImageView card = (ImageView) handFrame.getChildren().get(i + 1);
+            Label mana = (Label) handManaFrame.getChildren().get(i + 5);
+            if(handCards[i] != null) {
+                //ax
+                if(handCards[i] instanceof Minion) {
+                    card.setImage(new Image(((Minion)handCards[i]).getGraphics().getIcon()));
+                }
+                else if(handCards[i] instanceof Spell) {
+                    card.setImage(new Image(((Spell)handCards[i]).getSpellGraphics().getIcon()));
+                }
+                final Animation animation = new SpriteAnimation(
+                        card,
+                        Duration.millis(2000),
+                        5, 1,
+                        100, 0,
+                        50, 50
+                );
+                animation.setCycleCount(Animation.INDEFINITE);
+                animation.play();
+                //mana
+                mana.setText(Integer.toString(handCards[i].getManaPoint()));
+            }
+            else {
+                card.setImage(null);
+                mana.setText(null);
+            }
+        }
+        Card nextCard = Battle.getMenu().getPlayer().getHand().getNextCard();
+        if(nextCard != null){
+            if(nextCard instanceof Minion) nextCardOnHand.setImage(new Image(((Minion)nextCard).getGraphics().getIcon()));
+            else if(nextCard instanceof Spell) nextCardOnHand.setImage(new Image(((Spell)nextCard).getSpellGraphics().getIcon()));
+            final Animation animation = new SpriteAnimation(
+                    nextCardOnHand,
+                    Duration.millis(2000),
+                    5, 1,
+                    100, 0,
+                    50, 50
+            );
+            animation.setCycleCount(Animation.INDEFINITE);
+            animation.play();
+        }
+        else {
+            nextCardOnHand.setImage(null);
+        }
+        handOnHover();
+    }
+    private void handOnHover(){
+        for (int i = 0 ; i <= Hand.SIZE ; i++) {
+            ImageView card = (ImageView) handFrame.getChildren().get(i);
+            int finalI = i;
+            card.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    TextField info = (TextField) handInfo.getChildren().get(finalI);
+                    Card card;
+                    if(finalI == 0) card = Battle.getMenu().getPlayer().getHand().getNextCard();
+                    else card = getCardOnHand(finalI - 1);
+                    if(card != null) {
+                        info.getStyleClass().add("infoEntered");
+                        info.setText(card.getName());
+                    }
+                    else {
+                        info.getStyleClass().remove("infoEntered");
+                        info.setText(null);
+                    }
+                }
+            });
+            card.setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    TextField info = (TextField) handInfo.getChildren().get(finalI);
+                    info.getStyleClass().remove("infoEntered");
+                    info.setText(null);
+                }
+            });
+        }
+    }
+
+
     private void attackTargets(){
         for (int i = 0 ; i < 9 ; i++){
             for( int j = 0 ; j < 5 ; j++){
@@ -255,44 +344,6 @@ public class BattleFXMLC extends FXMLController {
                         });
                     }
                 } catch (InvalidCellException e) { e.printStackTrace(); }
-            }
-        }
-    }
-    private void moveAndAttackSource() {
-        for (int i = 0 ; i < 9 ; i++) {
-            for (int j = 0 ; j < 5 ; j++) {
-                try {
-                    Hermione hermione = Battle.getMenu().getMap().getCell(i, j).getCardOnCell();
-                    if(hermione != null){
-                        ImageView hermioneView = getCell(hermione.getLocation().getX(), hermione.getLocation().getY());
-                        hermioneView.setOnDragDetected(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent event) {
-                                Dragboard db = hermioneView.startDragAndDrop(TransferMode.ANY);
-                                ClipboardContent content = new ClipboardContent();
-                                content.putImage(new Image(hermione.getGraphics().getUnitGifs()));
-                                db.setContent(content);
-                                event.consume();
-                            }
-                        });
-                    }
-                } catch (InvalidCellException e) { e.printStackTrace(); }
-            }
-        }
-        for (int i = 0 ; i < Hand.SIZE ; i++){
-            Card card = getCardOnHand(i);
-            if(card != null){
-                ImageView cardView = (ImageView) handFrame.getChildren().get(i);
-                cardView.setOnDragDetected(e -> {
-                        Dragboard db = cardView.startDragAndDrop(TransferMode.ANY);
-                        ClipboardContent content = new ClipboardContent();
-                        if(card instanceof Hermione)
-                            content.putImage(new Image(((Hermione)card).getGraphics().getUnitGifs()));
-                        else if(card instanceof Spell)
-                            content.putImage(new Image(((Spell)card).getSpellGraphics().getIconGif()));
-                        db.setContent(content);
-                        e.consume();
-                });
             }
         }
     }
@@ -335,6 +386,7 @@ public class BattleFXMLC extends FXMLController {
             }
         });
     }
+
     private void specialPowerTarget(){
         for (int i = 0 ; i < 9 ; i++){
             for(int j = 0 ; j < 5 ; j++){
@@ -370,90 +422,14 @@ public class BattleFXMLC extends FXMLController {
             }
         }
     }
+
     private void updateInfo(){
         ownPlayerInfo.setText(Battle.getMenu().getOwnPLayer().getDeck().getHero().getName() + "\n"
                 + "HealthPoint : "+ Battle.getMenu().getOwnPLayer().getDeck().getHero().getHealthPoint());
         opponentPlayerInfo.setText(Battle.getMenu().getOpponentPlayer().getDeck().getHero().getName() + "\n"
                 + "HealthPoint : "+ Battle.getMenu().getOpponentPlayer().getDeck().getHero().getHealthPoint());
     }
-    private void updateHand(){
-        Card[] playerHandCards = Battle.getMenu().getPlayer().getHand().getCards();
-        for (int i = 0 ; i < Hand.SIZE ;  i++) {
-            if(playerHandCards[i] != null) {
-                ImageView card = (ImageView) handFrame.getChildren().get(i);
-                if(playerHandCards[i] instanceof Minion)
-                    card.setImage(new Image(((Minion)playerHandCards[i]).getGraphics().getIcon()));
-                else if(playerHandCards[i] instanceof Spell)
-                card.setImage(new Image(((Spell)playerHandCards[i]).getSpellGraphics().getIcon()));
-                final Animation animation = new SpriteAnimation(
-                        card,
-                        Duration.millis(2000),
-                        5, 1,
-                        100, 0,
-                        50, 50
-                );
-                animation.setCycleCount(Animation.INDEFINITE);
-                animation.play();
 
-                Label mana = (Label) handManaFrame.getChildren().get(i + 5);
-                mana.setText(Integer.toString(playerHandCards[i].getManaPoint()));
-            }
-        }
-       Card nextCard = Battle.getMenu().getPlayer().getHand().getNextCard();
-        if(nextCard != null){
-            if(nextCard instanceof Minion) nextCardOnHand.setImage(new Image(((Minion)nextCard).getGraphics().getIcon()));
-            else if(nextCard instanceof Spell) nextCardOnHand.setImage(new Image(((Spell)nextCard).getSpellGraphics().getIcon()));
-            final Animation animation = new SpriteAnimation(
-                    nextCardOnHand,
-                    Duration.millis(2000),
-                    5, 1,
-                    100, 0,
-                    50, 50
-            );
-            animation.setCycleCount(Animation.INDEFINITE);
-            animation.play();
-        }
-        handOnHover();
-    }
-    private void handOnHover(){
-        for (Node child : handFrame.getChildren()) {
-            ImageView image = (ImageView) child;
-            image.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    int i = handFrame.getChildren().indexOf(child);
-                    TextField info = (TextField) handInfo.getChildren().get(i);
-                    Card card = getCardOnHand(i);
-                    info.getStyleClass().add("infoEntered");
-                    info.setText(card.getName());
-                }
-            });
-            image.setOnMouseExited(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    int i = handFrame.getChildren().indexOf(child);
-                    TextField info = (TextField) handInfo.getChildren().get(i);
-                    info.getStyleClass().remove("infoEntered");
-                    info.setText("");
-                }
-            });
-        }
-        nextCardOnHand.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Card card = Battle.getMenu().getPlayer().getHand().getNextCard();
-                nextCardOnHandInfo.getStyleClass().add("infoEntered");
-                nextCardOnHandInfo.setText(card.getName());
-            }
-        });
-        nextCardOnHand.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nextCardOnHandInfo.getStyleClass().remove("infoEntered");
-                nextCardOnHandInfo.setText("");
-            }
-        });
-    }
     private void updateMana(){
         String manaURL = "resources/ui/icon_mana.png";
         String inactiveManaURL = "resources/ui/icon_mana_inactive.png";
@@ -472,6 +448,7 @@ public class BattleFXMLC extends FXMLController {
             ((ImageView)enemyMana.getChildren().get(i)).setImage(new Image(inactiveManaURL));
         }
     }
+
     private void updateMap(){
         try {
             for (int i = 0 ; i < 9 ; i++){

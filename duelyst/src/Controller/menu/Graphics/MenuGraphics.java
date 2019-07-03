@@ -42,22 +42,19 @@ public class MenuGraphics {
         this.group = new Group();
         this.scene=new Scene(this.group, this.bounds.getWidth(), this.bounds.getHeight());
         try {
-            System.out.println(this.menu.getGraphic().getRootPath());
-            System.err.println();
+//            System.out.println(this.menu.getGraphic().getRootPath());
+//            System.err.println();
             FXMLLoader rootLoader= new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
 //            this.root= FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
             this.root=rootLoader.load();
-
             this.controller=rootLoader.getController();
             this.controller.setMenu(this.menu);
             this.controller.buildScene();
-
             this.scene.setRoot(this.root);
         }catch (IOException ignored) {
             ignored.printStackTrace();
             System.err.println("couldn't load the fxml file");
         }
-
     }
 
     public void enter() {

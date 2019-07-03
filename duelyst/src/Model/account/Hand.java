@@ -71,9 +71,8 @@ public class Hand {
         }
     }
 
-    public void handleHand(Card card) throws DeckIsEmptyException, HandFullException {
+    public void handleHand(Card card){
         removeCard(card);
-        addCard();
     }
 
     public static ArrayList<OnHandPresentedListener> getHandPresenters() {
@@ -85,7 +84,9 @@ public class Hand {
     }
 
     public Card getCard(int cardID) throws InvalidCardException {
+//        System.err.println("you want this" + cardID);
         for (Card card : this.cards) {
+//            System.err.println("we have this :"+card.getName()+card.getCardID());
             if (card.getCardID() == cardID) return card;
         }
         throw new InvalidCardException();

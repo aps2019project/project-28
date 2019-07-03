@@ -74,7 +74,6 @@ public class ShopMenu extends Menu {
 
     public void buy(String name) throws CardExistException, ItemExistExeption, InvalidCardException,
             NotEnoughMoneyException, FullCollectionException, InvalidItemException {
-        System.err.println(name);
         if (!this.shop.getCollection().hasCard(name) && !this.shop.getCollection().hasItem(name)) {
             throw new InvalidCardException();
         }

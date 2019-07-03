@@ -2,6 +2,7 @@ package Model;
 
 import Controller.menu.Battle;
 import Controller.menu.Graphics.FXMLController.BattleFXMLC;
+import Model.Graphics.HermioneGraphics;
 import Model.Graphics.Listeners.*;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
@@ -58,14 +59,14 @@ public class Primary {
     public  static  ArrayList<Card> cards = new ArrayList<>();
     public static ArrayList<Account> accounts = new ArrayList<>();
 
-
-    public static void getItems(){
-        items.addAll(usables);
-        items.addAll(collectables);
-    }
-
     public static void main(String[] args) throws IOException{
         Primary.Json();
+        Primary.graphicsJson();
+        writeJson(spells, "Spell.json");
+        writeJson(minions, "Minion.json" );
+        writeJson(heroes, "Hero.json");
+        writeJson(usables, "Usables.json");
+        writeJson(collectables, "Collectables.json");
     }
 
     public static void getHeroes() throws FileNotFoundException {
@@ -155,7 +156,9 @@ public class Primary {
         cards.addAll(spells);
     }
 
-    public static void pre() throws IOException, DeckAlreadyHasThisItemException, DeckAlreadyHasAHeroException, FullDeckException, DeckAlreadyHasThisCardException {
+    public static void getItems(){
+        items.addAll(usables);
+        items.addAll(collectables);
     }
 
     public static void setDefaultDeck(Deck deck) throws IOException {
@@ -195,13 +198,9 @@ public class Primary {
         getCollectables();
         getCards();
         getItems();
-
         getAccounts();
         Account.updateAccounts();
-        ;
         generateAI();
-
-
     }
 
     private static void generateAI() throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
@@ -309,7 +308,7 @@ public class Primary {
         fileWriter.close();
     }
 
-    public static void Json() throws IOException {
+    private static void Json(){
         //Spell
         spells.add(new Spell("Total Disarm", 1000, 0, -1, 1, "disarm till the end",
                 TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction()));
@@ -353,9 +352,6 @@ public class Primary {
                 TargetHeroSurroundings.getTargetInstance(), ActionKillMinion.getAction()));
         spells.add(new Spell("Shock", 1200, 1, 2, 0, "an enemy card will be stuned, duration : 2",
                 TargetEnemyCard.getTargetInstance(), ActionStun.getAction()));
-
-        writeJson(spells, "Spell.json");
-
         //Minion
         SpecialPower nullSpecialPower =  new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
                 null, ActionVoid.getAction());
@@ -522,9 +518,7 @@ public class Primary {
                 6, new Melee(), 0, new SpecialPower("Arzhangs SpecialPower", 0, 0, 0, 0, "",
                 null, ActionCombo.getAction())
                 , SPATime.COMBO, "SPActionCombo"));
-        writeJson(minions, "Minion.json" );
         //Hero
-        ArrayList<Hero> heroes = new ArrayList<>();
         heroes.add(new Hero("White Demon", 8000, 50, 4, new Melee(), 0,
                 new SpecialPower("White Demon", 0, 1, -1, 4, "",
                         TargetSingleCell.getTargetInstance(), ActionChangeAPBuff.getAction())
@@ -563,9 +557,6 @@ public class Primary {
                 0, 0, "a hybrid hero with a special power of  holy buffs continuously"));
         heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4, nullSpecialPower
                , 0, 0, "just a hybrid hero"));
-
-        writeJson(heroes, "Hero.json");
-
         //item
         usables.add(new Usable("Wisdom Crown", 300, 3, 1, "increases mana first 3 turn",
                 TargetSingleCell.getTargetInstance(), ItemActionExtraMana.getItemAction()));
@@ -589,9 +580,7 @@ public class Primary {
                 TargetOwnCard.getTargetInstance(), ItemActionChangeAPBuff.getItemAction()));
         usables.add(new Usable("‌Baptism", 20000, 2, 0, "every minion when spawns gets holy buff, duration : 2",
                 TargetOwnMinion.getTargetInstance(), ItemActionBaptism.getItemAction()));
-
-        writeJson(usables, "Usables.json");
-
+        //collectable
         collectables.add(new Collectable("NooshDaru", 1, 6, "increases health point of a random card 6 units",
                 TargetRandomOwn.getTargetInstance(), ItemActionChangeHP.getItemAction()));
         collectables.add(new Collectable("Two Headed Arrow", 1, 2, "increases attack point of random ranged or hybrid 2 units",
@@ -610,9 +599,19 @@ public class Primary {
                 TargetRandomOwn.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Chineese Sword", 1, 5, "5 attack points for melee",
                 TargetMelee.getTargetInstance(), ItemActionChangeAP.getItemAction()));
-        writeJson(collectables, "Collectables.json");
     }
+    private static void graphicsJson(){
+        for (Hero hero : heroes) {
+            hero.getGraphics().setUnits("resources/units/boss_candypanda.png");
+            hero.getGraphics().setUnitGifs("resources/unit_gifs/boss_borealjuggernaut_breathing.gif");
+        }
 
+        for (Minion minion : minions) {
+            minion.getGraphics().setUnits("resources/units/boss_candypanda.png");
+            minion.getGraphics().setUnitGifs("resources/unit_gifs/boss_borealjuggernaut_breathing.gif");
+        }
+
+    }
     private static <E> void writeJson(ArrayList<E> arrays, String path) throws IOException {
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(path, false);
@@ -624,24 +623,12 @@ public class Primary {
         fileWriter.close();
     }
 
-    public static void initGraphics() throws FileNotFoundException {
-        setHermionesAvatars();
+    public static void initGraphics(){
         setGraphicsForHermiones();
         setIconForCards();
         setAccountAvatars();
         setItemListeners();
         setItemGraphics();
-    }
-
-    public static void setHermionesAvatars() throws FileNotFoundException {
-        for (Hero hero : heroes) {
-            hero.getGraphics().setUnits("resources/units/boss_andromeda.png");
-            hero.getGraphics().setUnitGifs("resources/unit_gifs/boss_andromeda_breathing.gif");
-        }
-        for (Minion minion : minions) {
-            minion.getGraphics().setUnits("resources/units/boss_andromeda.png");
-            minion.getGraphics().setUnitGifs("resources/unit_gifs/boss_andromeda_breathing.gif");
-        }
     }
 
     private static void setGraphicsForHermiones(){
@@ -660,6 +647,7 @@ public class Primary {
             public void show(Cell cell){
                 BattleFXMLC controller = (BattleFXMLC)Battle.getMenu().getGraphic().getController();
                 ImageView imageView = controller.getCell(cell.getX(), cell.getY());
+                System.err.println(Primary.heroes.get(0).getGraphics().getUnits());
                 imageView.setImage(new Image(hermione.getGraphics().getUnits()));
                 final Animation animation = new SpriteAnimation(
                     imageView,

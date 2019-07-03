@@ -107,21 +107,16 @@ public class Battle extends Menu {
 
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
         Card card = this.account.getPlayer().getHand().getCard(cardID);
-
         if (card instanceof Hermione) {
-
             this.account.getPlayer().deploy(card, this.map.getCell(x, y));
             this.account.getPlayer().changeMana((-1) * card.getManaPoint());
-
-            try { this.account.getPlayer().getHand().handleHand(card);
-            } catch (DeckIsEmptyException | HandFullException ignored) { ignored.printStackTrace(); }
-
+            this.account.getPlayer().getHand().handleHand(card);
         } else if (card instanceof Spell) {
             try {
                 ((Spell) card).deploy(this.account.getPlayer(), Battle.getMenu().getEnemy(this.account), Battle.getMenu().getMap().getCell(x, y));
                 this.account.getPlayer().changeMana((-1) * card.getManaPoint());
                 this.account.getPlayer().getHand().handleHand(card);
-            } catch (InvalidCellException | HandFullException | DeckIsEmptyException ignored) { ignored.printStackTrace();}
+            } catch (InvalidCellException ignored) { ignored.printStackTrace();}
         }
         // TODO: 5/5/19 one more exception  (read the doc)
         handleDeaths();
@@ -182,7 +177,6 @@ public class Battle extends Menu {
     }
 
     public void select(int ID) throws InvalidCardException, InvalidItemException {
-        System.err.println();
         Deck deck = this.account.getPlayer().getDeck();
         // TODO: 2019-06-26 player chera hasItem dare ArshiA ya
         if (this.account.getPlayer().hasItem(ID)) {
@@ -239,7 +233,6 @@ public class Battle extends Menu {
     }
 
     public void attack(int cardID) throws NoCardHasBeenSelectedException, InvalidCardException, DestinationOutOfreachException, CantAttackException, InvalidCellException {
-        System.err.println();
         Hermione myHermione = (Hermione) this.account.getPlayer().getSelectedCard();
         Hermione enemyCard = (Hermione) this.getEnemy(this.account).getDeck().getCard(cardID);
         myHermione.attack(enemyCard,false);
@@ -368,7 +361,7 @@ public class Battle extends Menu {
 
         this.account = this.getEnemy(this.account).getUser();
         swapPlayers();
-        System.err.println(this.account.getName() + " , " + this.getEnemy(this.account).getUser().getName());
+//        System.err.println(this.account.getName() + " , " + this.getEnemy(this.account).getUser().getName());
         /*handling Mana*/
         this.account.getPlayer().setMaxMana(MAX_MANA_PER_TURN[Integer.min(turn, MAX_MANA_PER_TURN.length - 1)]);
         this.account.getPlayer().reFillMana();
@@ -505,7 +498,6 @@ public class Battle extends Menu {
 
     public void showCollectable() {
         for (Collectable collectable : this.account.getPlayer().getCollectables()) {
-            System.err.println(collectable.getName());
             for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
                 presenter.showItemDetail(collectable);
             }
