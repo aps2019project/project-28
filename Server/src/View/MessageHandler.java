@@ -4,6 +4,7 @@ import Controller.menu.SignInMenu;
 import Model.account.Account;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
+import exeption.WrongPassException;
 import network.Auth;
 import network.Message;
 
@@ -11,7 +12,9 @@ import java.util.ArrayList;
 
 public class MessageHandler {
     public Message handleMessage(Message message){
+        if(message.getAuthToken()!=null && !message.getAuthToken().authenticate())return Message.getFailedMessage();
         String menu =message.getMenu();
+        System.out.println("message = " + message.getText());
         if(menu.equals(SignInMenu.getMenu().getName())){
             return SignInMenuCommandHandler(message);
         }
@@ -32,7 +35,6 @@ public class MessageHandler {
             try {
                 Account.addNewAccount((String) carry.get(0),(String)carry.get(1), (String) carry.get(2));
                 respond=Message.getDoneMessage();
-                respond.setAuth(new Auth());
             } catch (AccountAlreadyExistsException e) {
                 respond = makeExceptionMessage(e);
             }
@@ -63,6 +65,21 @@ public class MessageHandler {
             System.err.println(accounts.size());
             respond=Message.getDoneMessage();
             respond.addCarry(accounts);
+        }else if(text.equals("Log in")){
+            try {
+                SignInMenu.getMenu().logIn((String)carry.get(0), (String) carry.get(1));
+                Account account=Account.getAccount((String)carry.get(0));
+                respond=Message.getDoneMessage();
+                respond.addCarry(account);
+                respond.addCarry(Auth.generateAuth((String) carry.get(0)));
+                System.err.println("debug");
+                System.out.println("respond = " + respond.getAuthToken());
+                System.out.println("respond = " + respond.getCarry().get(0));
+            } catch (InvalidAccountException | WrongPassException e) {
+                respond=makeExceptionMessage(e);
+            }
+            System.out.println("respond.getCarry() = " + respond.getCarry());
+            System.out.println("respond.getCarry().get(0).getUsername() = " + ((Account)respond.getCarry().get(0)).getUsername());
         }
         return respond;
     }

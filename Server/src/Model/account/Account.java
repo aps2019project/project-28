@@ -15,11 +15,11 @@ import java.util.Comparator;
 
 public class Account {
 
-    private static final Account defaultAccount = new Account("Duelyst","SAF","Pass the fucking word");
-    public static final Account[] AI={new Account("EL_DUELYSTA","Costum","AI")
-            ,new Account("sheraider","level_1","AI")
-            ,new Account("mster_yoda","level_2","AI")
-            ,new Account("thanos","level_3","AI")};
+    private static final Account defaultAccount = new Account("Duelyst", "SAF", "Pass the fucking word");
+    public static final Account[] AI = {new Account("EL_DUELYSTA", "Costum", "AI")
+            , new Account("sheraider", "level_1", "AI")
+            , new Account("mster_yoda", "level_2", "AI")
+            , new Account("thanos", "level_3", "AI")};
 
     private static int unique = 0;
     private static final int INITIAL_MONEY = 99999999;
@@ -40,23 +40,30 @@ public class Account {
     private String avatar;
 
 
+    public static boolean addNewAccount(Account account) throws AccountAlreadyExistsException {
+        try {
+            return accountMediator.addNewAccount(account);
+        } catch (AccountAlreadyExistsException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
 
-
-    public static void addNewAccount(String name,String username,String password) throws AccountAlreadyExistsException {
-        addNewAccount(new Account(name,username,password));
-    }
-
-        public static void addNewAccount(Account account) throws AccountAlreadyExistsException {
-        accountMediator.addNewAccount(account);
     }
 
     public static void save() {
-        accountMediator.save();
+        try {
+            accountMediator.save();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public static Account getDefaultAccount(){
+    public static Account getDefaultAccount() {
         return Account.defaultAccount;
     }
+
     public Account(String name, String username, String password) {
         this.name = name;
         this.username = username;
@@ -70,11 +77,25 @@ public class Account {
     }
 
     public static Account getAccount(String username) throws InvalidAccountException {
-        return accountMediator.getAccount(username);
+        try {
+            return accountMediator.getAccount(username);
+        } catch (InvalidAccountException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static Account getAccount(int ID) throws InvalidAccountException {
-        return accountMediator.getAccount(ID);
+        try {
+            return accountMediator.getAccount(ID);
+        } catch (InvalidAccountException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static boolean hasAccount(String username) {
@@ -87,11 +108,28 @@ public class Account {
     }
 
     public static ArrayList<Account> getAccounts() {
-        return accountMediator.getAccounts();
+        try {
+            return accountMediator.getAccounts();
+        } catch (Exception e) {
+            e.printStackTrace();
+            while (true) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+//            return null;
+        }
     }
 
     public static void updateAccounts() {
-        Account.getAccounts().forEach(acc->acc.getCollection().updateCollection());
+        System.err.println("debug");
+        Account.getAccounts().forEach(acc -> acc.getCollection().updateCollection());
+    }
+
+    public static void addNewAccount(String name, String username, String password) throws AccountAlreadyExistsException {
+        addNewAccount(new Account(name, username, password));
     }
 
     public String getName() {
@@ -178,7 +216,7 @@ public class Account {
 
 
     public Player getPlayer() {
-        if (this.player == null){
+        if (this.player == null) {
             this.player = new Player(this, 2, 2);
             Game.setDefaultGI(player);
         }
@@ -196,10 +234,10 @@ public class Account {
     }
 
     public void clearCollection() {
-        this.collection=new Collection();
+        this.collection = new Collection();
     }
 
-    public void saveMatch(Match match){
+    public void saveMatch(Match match) {
         this.matchHistory.add(match);
     }
 

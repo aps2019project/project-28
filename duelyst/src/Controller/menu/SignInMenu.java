@@ -2,6 +2,7 @@ package Controller.menu;
 
 import Controller.Game;
 import Controller.menu.Graphics.FXMLController.LeaderBoardHavingFXMLC;
+import Model.mediator.SignInMenuMediator;
 import View.Listeners.OnLeaderBoardClickedListener;
 import Model.account.Account;
 import View.MenuHandler;
@@ -17,6 +18,8 @@ public class SignInMenu extends Menu {
 
     private Account temporaryAccount;
     private ArrayList<OnLeaderBoardClickedListener> leaderBoardPresenters;
+
+    private SignInMenuMediator signInMenuMediator;
 
     private SignInMenu(String name) {
         super(name);
@@ -43,31 +46,19 @@ public class SignInMenu extends Menu {
     public void creatAccount(String name, String username, String password) throws AccountAlreadyExistsException, InvalidAccountException, WrongPassException {
         System.err.println("debug");
         if(!Account.addNewAccount(new Account(name, username, password)))return;
-//        try {
             logIn(username , password);
-//        } catch (InvalidAccountException e) {
-//            System.err.println("InvalidAccount after creating an account and then trying to login ! \n " +
-//                    "signInMenu : 137");
-//        } catch (WrongPassException e) {
-//            System.err.println("WrongPassword after creating an account and then trying to login ! \n " +
-//                    "signInMenu : 137");
-//        }
-    }
+}
 
     public void logIn(String username, String password) throws InvalidAccountException, WrongPassException {
-        System.err.println("debug");
-        Account account = Account.getAccount(username);
-        if (account.getPassword().equals(password)) {
-            Game.setFirstAccount(account);
-            Game.hasLoggedIn = true;
-            this.account=account;
-            MenuHandler.setAccount(account);
-            // TODO: 6/30/19 in ro azin ja bardar or not
-
-            MenuHandler.enterMenu(menu.enter(MainMenu.getMenu()));
-        } else {
-            throw new WrongPassException();
+        try {
+            signInMenuMediator.logIn(username,password);
+        }catch (InvalidAccountException |WrongPassException e){
+          throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
         }
+        MenuHandler.enterMenu(SignInMenu.getMenu().enter(MainMenu.getMenu()));
     }
 
     public void logOut() {
@@ -95,5 +86,9 @@ public class SignInMenu extends Menu {
         super.help();
         System.out.println("4)create account [name] [user name] [password]     5)login [user name] [password]    6)show leaderboard");
         System.out.println("5)save     6)logout    ");
+    }
+
+    public void setSignInMenuMediator(SignInMenuMediator signInMenuMediator) {
+        this.signInMenuMediator = signInMenuMediator;
     }
 }

@@ -8,6 +8,7 @@ import Controller.menu.SignInMenu;
 import Model.Primary;
 import Model.account.Account;
 import Model.mediator.LocalAccountMediator;
+import Model.mediator.LocalSignInMenuMediator;
 import network.server.MainServer;
 import sample.Main;
 
@@ -49,6 +50,7 @@ public class MenuHandler {
 
     private static void configLocal() {
         Account.setAccountMediator(new LocalAccountMediator());
+        SignInMenu.getMenu().setSignInMenuMediator(new LocalSignInMenuMediator());
     }
 
     public static void startMenus() {

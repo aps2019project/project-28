@@ -191,11 +191,15 @@ public class Primary {
         getCards();
         getItems();
 
+//        configAccouts();
+
+
+    }
+
+    public static void configAccouts() throws IOException, DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
         getAccounts();
         Account.updateAccounts();
         generateAI();
-
-
     }
 
     private static void generateAI() throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {

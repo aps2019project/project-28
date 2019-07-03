@@ -64,7 +64,10 @@ public class Client {
     public Message read() {
         YaGson json = new YaGson();
         try {
-            return json.fromJson(this.getInput().nextLine(), Message.class);
+            Message message = json.fromJson(this.getInput().nextLine(), Message.class);
+            System.out.println("message.getText() = " + message.getText());
+            System.out.println("message.getAuthToken() = " + message.getAuthToken());
+            return message;
         } catch (IOException e) {
             e.printStackTrace();
         }

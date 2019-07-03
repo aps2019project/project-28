@@ -5,6 +5,7 @@ import Model.account.Account;
 import com.gilecode.yagson.YaGson;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
+import exeption.WrongPassException;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -69,4 +70,5 @@ public class LocalAccountMediator implements AccountMediator{
     public ArrayList<Account> getAccounts()  {
         return Primary.accounts;
     }
+
 }

@@ -19,6 +19,9 @@ public class ConsoleView implements View{
         setGIs();
         MenuHandler.startMenus();
         while(true){
+            try {
+                System.out.println("Game.getClient().getAuthToken() = " + Game.getClient().getAuthToken());
+            }catch (Exception e){}
             MenuHandler.showMenu();
             MenuHandler.nextMove();
         }

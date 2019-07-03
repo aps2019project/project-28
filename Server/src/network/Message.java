@@ -5,7 +5,7 @@ import Controller.menu.Menu;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Message implements Serializable {
+public class Message{
     private String text;
     private ArrayList<Object> carry=new ArrayList<>();
     private Auth authToken=null;

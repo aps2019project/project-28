@@ -7,14 +7,15 @@ import Controller.menu.*;
 import Controller.menu.SignInMenu;
 import Model.Primary;
 import Model.account.Account;
+import Model.mediator.LocalSignInMenuMediator;
 import Model.mediator.LocalAccountMediator;
 import Model.mediator.NetAccountMediator;
+import Model.mediator.NetSignInMenuMediator;
 import network.client.Client;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class MenuHandler {
@@ -27,27 +28,38 @@ public class MenuHandler {
 
 //        configLocal();
         configNetwork();
+
+
         initMenus();
 
 
-        View input = new ConsoleView();
-//        View input = new GraphicView();
+//        View input = new ConsoleView();
+        View input = new GraphicView();
+
         input.play(args);
     }
 
     private static void configNetwork() throws IOException {
         // TODO: 7/2/19 bayad beshe network Mediator
         Account.setAccountMediator(new NetAccountMediator());
-
+        SignInMenu.getMenu().setSignInMenuMediator(new NetSignInMenuMediator());
 
         Game.setClient(new Client());
+
+        try {
+            Primary.preprocess();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     private static void configLocal() {
         Account.setAccountMediator(new LocalAccountMediator());
+        SignInMenu.getMenu().setSignInMenuMediator(new LocalSignInMenuMediator());
         try {
             Primary.preprocess();
+            Primary.configAccouts();
         } catch (Exception e) {
             e.printStackTrace();
         }
