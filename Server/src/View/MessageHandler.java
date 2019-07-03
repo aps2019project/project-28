@@ -30,7 +30,6 @@ public class MessageHandler {
 
         Message respond = Message.getFailedMessage();
         System.out.println("text = " + text);
-        System.err.println("debug");
         if(text.equals("createAccount")){
             try {
                 Account.addNewAccount((String) carry.get(0),(String)carry.get(1), (String) carry.get(2));
@@ -40,7 +39,7 @@ public class MessageHandler {
             }
         }else if(text.equals("save")){
             // TODO: 7/2/19 change save implementation
-            Account.save();
+            Account.save((Account)carry.get(0));
             respond=Message.getDoneMessage();
         }else if(text.equals("getAccount : username")){
             try {
@@ -72,14 +71,9 @@ public class MessageHandler {
                 respond=Message.getDoneMessage();
                 respond.addCarry(account);
                 respond.addCarry(Auth.generateAuth((String) carry.get(0)));
-                System.err.println("debug");
-                System.out.println("respond = " + respond.getAuthToken());
-                System.out.println("respond = " + respond.getCarry().get(0));
             } catch (InvalidAccountException | WrongPassException e) {
                 respond=makeExceptionMessage(e);
             }
-            System.out.println("respond.getCarry() = " + respond.getCarry());
-            System.out.println("respond.getCarry().get(0).getUsername() = " + ((Account)respond.getCarry().get(0)).getUsername());
         }
         return respond;
     }

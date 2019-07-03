@@ -252,4 +252,13 @@ public class Account {
     public static void setAccountMediator(AccountMediator accountMediator) {
         Account.accountMediator = accountMediator;
     }
+    public static void save(Account account){
+        int i=0;
+        for (Account acc: Account.getAccounts()) {
+            if(acc.getUsername().equals(account.getUsername()))break;
+            i++;
+        }
+        Account.getAccounts().set(i,account);
+        Account.save();
+    }
 }

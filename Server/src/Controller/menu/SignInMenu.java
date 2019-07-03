@@ -55,7 +55,7 @@ public class SignInMenu extends Menu {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        MenuHandler.enterMenu(SignInMenu.getMenu().enter(MainMenu.getMenu()));
+        MenuHandler.enterMenu(SignInMenu.getMenu().enter(MainMenu.getMenu()));
     }
 
     public void logOut() {

@@ -35,6 +35,7 @@ public class MainServer {
 
     private static void handleMessage(Message message, Client client) {
         Message respond=messageHandler.handleMessage(message);
+        System.out.println(respond);
             client.write(respond);
 
     }

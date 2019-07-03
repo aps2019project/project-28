@@ -241,11 +241,11 @@ public class CommandHandler {
         }else if(word[0].equals("buy")){
             String name = getName(word , 1);
             try {
+                System.err.println("debug");
                 menu.buy(name);
             } catch (CardExistException e) {
                 System.out.println("You already have this Card. it is not wise to buy a same card twice");
-            } catch (InvalidCardException e) {
-                System.err.println("hhhhhhhhhhhhhhhhhhhhh");
+            } catch (InvalidCardException | InvalidItemException e) {
                 System.out.println("Me lord! we just ran out of " + name + ". im sorry!");
             } catch (ItemExistExeption itemExistExeption) {
                 System.out.println("You already have this Item. it is not wise to buy a same item twice");
@@ -254,8 +254,6 @@ public class CommandHandler {
                 System.out.println("Empty your collection a little bit by selling some cards and try again");
             } catch (NotEnoughMoneyException e) {
                 System.out.println("Oops you are not as reach as you thought!");
-            } catch (InvalidItemException e) {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
             }
         }else if(word[0].equals("sell")){
             String name = getName(word , 1);

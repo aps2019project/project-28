@@ -184,7 +184,8 @@ public class Collection {
 
     public boolean hasCard(String name) {
         for (Card collectionCard : cards) {
-            if (collectionCard.getName().equals(name)) {
+            System.err.println(collectionCard.getName());
+            if (collectionCard.getName().toLowerCase().equals(name.toLowerCase())) {
                 return true;
             }
         }
@@ -204,7 +205,7 @@ public class Collection {
     public Card getCard(String name) throws InvalidCardException {
         for (Card card :
                 cards) {
-            if (card.getName().equals(name)) {
+            if (card.getName().toLowerCase().equals(name.toLowerCase())) {
                 return card;
             }
         }
@@ -224,7 +225,7 @@ public class Collection {
     public boolean hasItem(String name) {
         for (Usable item :
                 usables) {
-            if (item.getName().equals(name)) {
+            if (item.getName().toLowerCase().equals(name.toLowerCase())) {
                 return true;
             }
         }
@@ -254,7 +255,7 @@ public class Collection {
     public Usable getItem(String name) throws InvalidItemException {
         for (Usable item :
                 usables) {
-            if (item.getName().equals(name)) {
+            if (item.getName().toLowerCase().equals(name.toLowerCase())) {
                 return item;
             }
         }
