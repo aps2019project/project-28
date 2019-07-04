@@ -66,6 +66,8 @@ public class Battle extends Menu {
 
 
         this.match=new Match(Game.getAccount(0),Game.getAccount(1),this.gameMode);
+        System.err.println("debug");
+
         this.ongoingSpells=new ArrayList<>();
 
         if (Game.getAccount(0).getCollection().getMainDeck() == null || Game.getAccount(1).getCollection().getMainDeck() == null) {

@@ -202,7 +202,7 @@ public class Primary {
         generateAI();
     }
 
-    private static void generateAI() throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
+    public static void generateAI() throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
         //level 1
         Account.AI[1].clearCollection();
         Deck deck = new Deck("AIDeck",Account.AI[1].getCollection());

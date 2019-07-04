@@ -26,6 +26,7 @@ public class MainServer {
 
     private static void communicate(Client client){
         while(true){
+            System.err.println("debug");
                 Message message= client.read();
                 System.err.println("message read");
                 System.out.println("message.getText() = " + message.getText());

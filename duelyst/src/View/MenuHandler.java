@@ -33,8 +33,8 @@ public class MenuHandler {
         initMenus();
 
 
-//        View input = new ConsoleView();
-        View input = new GraphicView();
+        View input = new ConsoleView();
+//        View input = new GraphicView();
 
         input.play(args);
     }
@@ -48,6 +48,7 @@ public class MenuHandler {
 
         try {
             Primary.preprocess();
+            Primary.generateAI();
         } catch (Exception e) {
             e.printStackTrace();
         }

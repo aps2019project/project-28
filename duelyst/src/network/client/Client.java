@@ -5,6 +5,7 @@ import View.MenuHandler;
 import com.gilecode.yagson.YaGson;
 import network.Auth;
 import network.Message;
+import sample.Main;
 
 import java.io.*;
 import java.net.Socket;
@@ -14,6 +15,9 @@ public class Client {
 
     private static final String HOST = "127.0.0.1";
     private static final int DEFAULT_PORT = 8000;
+
+    private static final int SEND_SIZE=100;
+    private static final String END_MESSAGE = "ARSHIA_FATTEME_SAEE";
 
     private Socket socket;
     private Account account;
@@ -49,25 +53,44 @@ public class Client {
     }
 
     public void write(Message message) {
+        System.out.println("message = " + message);
         message.setAuth(authToken);
         message.setMenu(MenuHandler.getCurrentMenu());
         YaGson json = new YaGson();
         String string = json.toJson(message);
+        try{
+            Account acc= (Account) json.fromJson(string,Message.class).getCarry().get(0);
+            System.out.println("acc.getUsername() = " + acc.getUsername());
+        }catch (Exception e){
+            System.err.println("natunesttttttttttttttttttttttttttttttttt");
+            e.printStackTrace();
+        }
+        System.out.println("_____________________________________");
+        System.out.println("string.length() = " + string.length());
         try {
-            this.getOutput().println(string);
+            for(int i=0;i<= string.length()/SEND_SIZE;i++){
+//                System.err.println(i);
+                String sendable=string.substring(i*SEND_SIZE,Integer.min((i+1)*SEND_SIZE,string.length()))+"\n";
+
+                this.getOutput().println(sendable);
+            }
+            this.getOutput().println(END_MESSAGE);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
     public Message read() {
         YaGson json = new YaGson();
         try {
-            Message message = json.fromJson(this.getInput().nextLine(), Message.class);
-            System.out.println("message.getText() = " + message.getText());
-            System.out.println("message.getAuthToken() = " + message.getAuthToken());
-            return message;
+            StringBuilder readable=new StringBuilder();
+            while(true){
+                String s=this.getInput().nextLine();
+                if(s.equals(END_MESSAGE))break;
+                readable.append(s);
+            }
+
+            return json.fromJson(readable.toString(), Message.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

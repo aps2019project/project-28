@@ -9,6 +9,7 @@ import exeption.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class Collection {
 
@@ -19,6 +20,24 @@ public class Collection {
     private Account owner;
     private Deck mainDeck;
     public static final int MAX_USABLES = 3;
+
+//    public static Collection getSerializable(Collection collection) {
+//        /*
+//         * this method return a serializable version of collection
+//         * use method buildCollection to get a real version of collection from the serializable version of it
+//         * */
+//        Serialized serialized=new Serialized();
+//        ArrayList<Integer>cardId=new ArrayList<>();
+//        collection.getCards().forEach(card -> cardId.add(card.getID()));
+//
+//        ArrayList<Serialized>decks=new ArrayList<>();
+//        collection.getDecks().forEach(deck -> decks.add(Deck.getSerializable(deck)));
+//
+//        ArrayList<Integer>itemId=new ArrayList<>();
+//        collection.getItems().forEach(item->itemId.add(item.getID()));
+//        //// TODO: 7/3/19
+//    }
+
 
     public boolean hasDeck(String name) {
         for (Deck deck :

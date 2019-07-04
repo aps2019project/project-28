@@ -3,10 +3,12 @@ package Model.account;
 import Controller.Game;
 import Model.Primary;
 import Model.account.player.Player;
+import Model.item.Collectable;
 import Model.mediator.AccountMediator;
 import com.gilecode.yagson.YaGson;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
+import javafx.util.Pair;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -75,6 +77,23 @@ public class Account {
         this.wins = 0;
         this.storyModeSPX = 0;
     }
+
+//    private Serialized getSerializable(Account account){
+//        /*
+//        * this method return a serializable version of account
+//        * use method buildAccount to get a real version of account from the serializable version of it
+//        * */
+//
+//        Serialized serialized=new Serialized();
+//        serialized.add(new Pair<>("name",account.getName()));
+//        serialized.add(new Pair<>("username",account.getUsername()));
+//        serialized.add(new Pair<>("password",account.getPassword()));
+//        serialized.add(new Pair<>("id",account.getID()));
+//        serialized.add(new Pair<>("money",account.getMoney()));
+//        serialized.add(new Pair<>("wins",account.getWins()));
+//        serialized.add(new Pair<>("Collection",Collection.getSerializable(account.getCollection())));
+//        return serialized;
+//    }
 
     public static Account getAccount(String username) throws InvalidAccountException {
         try {
@@ -261,4 +280,5 @@ public class Account {
         Account.getAccounts().set(i,account);
         Account.save();
     }
+
 }
