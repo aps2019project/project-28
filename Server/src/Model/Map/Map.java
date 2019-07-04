@@ -20,8 +20,8 @@ public class Map {
     public static final int SECOND_HERO_Y=2;
     public static final int MAX_COLLECTABLE_ON_MAP=3;
 
-    private static final int[]dx={-1,-1, 0, 1,1,1,0,-1};
-    private static final int[]dy={ 0,-1,-1,-1,0,1,1, 1};
+    private static final int[]dx={-1,0,1,0};
+    private static final int[]dy={0,-1,0,1};
 
     private Cell[][] board = new Cell[Map.WHIDTH + 1][Map.HEIGHT + 1];
     private ArrayList<Flag> flags;
