@@ -23,18 +23,12 @@
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="reFactor&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       Has and get methods">
-      <change afterPath="$PROJECT_DIR$/../Server/src/Model/account/Serialized.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/Account.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Account.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/Collection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/Collection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/network/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/network/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/network/server/MainServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/network/server/MainServer.java" afterDir="false" />
+    <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Battle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Primary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Primary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/network/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/menu/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/ShopMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/account/Collection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/account/Collection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/account/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/account/Shop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/CommandHandler.java" afterDir="false" />
     </list>
     <list id="fe5b7bb0-3439-4162-ba6c-e3c0328c746b" name="graphics menus stated" comment="" />
     <list id="2ccedc21-7ab1-40fc-b8e1-27c76405ed63" name="Revert &quot;graphics menus stated&quot;" comment="Revert &quot;graphics menus stated&quot;&#10;&#10;This reverts commit 4a5465b9" />
@@ -50,108 +44,30 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
+        <entry file="file://$PROJECT_DIR$/src/Model/account/Shop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-220">
-              <caret line="57" column="39" lean-forward="true" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
+            <state relative-caret-position="360">
+              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
               <folding>
-                <element signature="e#1781#1782#0" expanded="true" />
-                <element signature="e#1839#1840#0" expanded="true" />
-                <element signature="e#1875#1876#0" expanded="true" />
-                <element signature="e#1925#1926#0" expanded="true" />
-                <element signature="e#1961#1962#0" expanded="true" />
-                <element signature="e#2052#2053#0" expanded="true" />
-                <element signature="e#2095#2096#0" expanded="true" />
-                <element signature="e#2129#2130#0" expanded="true" />
-                <element signature="e#2361#2362#0" expanded="true" />
-                <element signature="e#2407#2408#0" expanded="true" />
-                <element signature="e#2449#2450#0" expanded="true" />
-                <element signature="e#2479#2480#0" expanded="true" />
-                <element signature="e#2533#2534#0" expanded="true" />
-                <element signature="e#2578#2579#0" expanded="true" />
-                <element signature="method#initMenus#0;class#MenuHandler#0" />
+                <element signature="method#getInstance#0;class#Shop#0" />
+                <element signature="e#820#821#0" expanded="true" />
+                <element signature="e#918#919#0" expanded="true" />
+                <element signature="e#870#871#0" expanded="true" />
+                <element signature="e#976#977#0" expanded="true" />
+                <element signature="method#buy#0;class#Shop#0" />
+                <element signature="method#fillCollection#0;class#Shop#0" />
+                <element signature="e#4161#4162#0" expanded="true" />
+                <element signature="e#4194#4195#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+        <entry file="file://$PROJECT_DIR$/src/View/CommandHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="204" column="10" selection-start-line="204" selection-start-column="10" selection-end-line="204" selection-end-column="10" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/network/client/Client.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
-              <folding>
-                <element signature="method#sendTaskDone#0;class#Client#0" />
-                <element signature="method#sendTaskFailed#0;class#Client#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/StoryModeFXMLC.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/menu/StoryModeMenu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="30" column="36" lean-forward="true" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/menu/Battle.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="73" selection-start-line="73" selection-end-line="73" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="173" selection-start-line="173" selection-end-line="173" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4483#4484#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Game.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
-              <folding>
-                <element signature="e#695#696#0" expanded="true" />
-                <element signature="e#732#733#0" expanded="true" />
-                <element signature="e#908#909#0" expanded="true" />
-                <element signature="e#2494#2495#0" expanded="true" />
-                <element signature="e#2523#2524#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="5448">
+              <caret line="228" column="54" selection-start-line="228" selection-start-column="54" selection-end-line="228" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -159,8 +75,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/menu/ShopMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="94" column="52" lean-forward="true" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
+            <state relative-caret-position="399">
+              <caret line="92" column="8" lean-forward="true" selection-start-line="92" selection-start-column="8" selection-end-line="94" selection-end-column="9" />
+              <folding>
+                <element signature="e#3626#3627#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -168,9 +87,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="157" selection-start-line="157" selection-end-line="157" />
+            <state relative-caret-position="217">
+              <caret line="63" column="65" selection-start-line="63" selection-start-column="65" selection-end-line="63" selection-end-column="65" />
               <folding>
+                <element signature="e#4571#4572#0" expanded="true" />
                 <element signature="e#4602#4603#0" expanded="true" />
               </folding>
             </state>
@@ -189,8 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Cursor</find>
-      <find>ImageView</find>
       <find>menus -&gt;</find>
       <find>count</find>
       <find>bacl</find>
@@ -211,14 +129,16 @@
       <find>Account {</find>
       <find>we just ran out of rakhsh. im sorry!</find>
       <find>Me lord! we just ran out of</find>
-      <find>buy</find>
-      <find>ShopMenu ex</find>
       <find>Client</find>
       <find>Client {</find>
       <find>setAI</find>
       <find>Battle ex</find>
       <find>menuHandler {</find>
       <find>init</find>
+      <find>buy</find>
+      <find>ShopMenu ex</find>
+      <find>Map {</find>
+      <find>CardNotP</find>
     </findStrings>
     <replaceStrings>
       <replace>getTargetInstance</replace>
@@ -257,8 +177,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/CollectionCardItem.fxml" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/CollectionItem.css" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/ItemCardFXMLC.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CollectionCardHermioneFXMLC.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CollectionCardItemFXMLC.java" />
@@ -285,7 +203,6 @@
         <option value="$PROJECT_DIR$/src/Model/card/hermione/Minion.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CraftingMenuFXML.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/MainMenuFXMLC.java" />
-        <option value="$PROJECT_DIR$/src/Model/Map/Map.java" />
         <option value="$PROJECT_DIR$/src/exeption/network/ConnectionInerruptedException.java" />
         <option value="$PROJECT_DIR$/src/network/client/Auth.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/SignInMenuFXMLC.java" />
@@ -302,12 +219,15 @@
         <option value="$PROJECT_DIR$/src/Controller/menu/SignInMenu.java" />
         <option value="$PROJECT_DIR$/src/Model/mediator/NetSignInMenuMediator.java" />
         <option value="$PROJECT_DIR$/src/Model/mediator/AccountMediator.java" />
-        <option value="$PROJECT_DIR$/src/View/CommandHandler.java" />
-        <option value="$PROJECT_DIR$/src/Model/account/Collection.java" />
         <option value="$PROJECT_DIR$/src/network/client/Client.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Battle.java" />
         <option value="$PROJECT_DIR$/src/Model/Primary.java" />
         <option value="$PROJECT_DIR$/src/View/MenuHandler.java" />
+        <option value="$PROJECT_DIR$/src/Model/Map/Map.java" />
+        <option value="$PROJECT_DIR$/src/Model/account/Collection.java" />
+        <option value="$PROJECT_DIR$/src/Controller/menu/ShopMenu.java" />
+        <option value="$PROJECT_DIR$/src/View/CommandHandler.java" />
+        <option value="$PROJECT_DIR$/src/Model/account/Shop.java" />
       </list>
     </option>
   </component>
@@ -578,21 +498,7 @@
       <workItem from="1560238835250" duration="6032000" />
       <workItem from="1560332117096" duration="21773000" />
       <workItem from="1561648778689" duration="7190000" />
-      <workItem from="1562062434773" duration="33615000" />
-    </task>
-    <task id="LOCAL-00083" summary="stun and some structural stuff in buffs are done">
-      <created>1557915345482</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1557915345482</updated>
-    </task>
-    <task id="LOCAL-00084" summary="handled arshia's problem with my beautiful AI">
-      <created>1557919428599</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1557919428599</updated>
+      <workItem from="1562062434773" duration="43361000" />
     </task>
     <task id="LOCAL-00085" summary="handled arshia's problem with my beautiful AI">
       <created>1557919694522</created>
@@ -923,11 +829,25 @@
       <option name="project" value="LOCAL" />
       <updated>1562148708455</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="huge data transfer&#10;&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       Warlord is now avalable!!!!">
+      <created>1562223213874</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1562223213874</updated>
+    </task>
+    <task id="LOCAL-00133" summary="minor change&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       Map.dx and Map.dy">
+      <created>1562237171030</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1562237171030</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="228641000" />
+    <option name="totallyTimeSpent" value="238387000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -952,10 +872,10 @@
       <window_info id="Learn" order="7" weight="0.32977587" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32633054" />
-      <window_info active="true" anchor="bottom" id="Debug" order="2" sideWeight="0.4994664" visible="true" weight="0.11789038" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4994664" weight="0.62254393" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49839914" weight="0.42606" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.49839914" visible="true" weight="0.031023785" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3259177" />
       <window_info anchor="bottom" id="TeamCity" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49893278" weight="0.32264736" />
@@ -1023,8 +943,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="graphic basis&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        cellAffect graphics" />
-    <MESSAGE value="multiPlayer in progress" />
     <MESSAGE value="fixed the mouse problem" />
     <MESSAGE value="singleplayer should be ready ! i'm waiting for their response !" />
     <MESSAGE value="deckSelector is done :)" />
@@ -1048,7 +966,9 @@
     <MESSAGE value="NetAccountMediator&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       finished" />
     <MESSAGE value="reFactor&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       Has and get methods" />
     <MESSAGE value="reFactor&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        Has and get methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="reFactor&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;        Has and get methods" />
+    <MESSAGE value="huge data transfer&#10;&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       Warlord is now avalable!!!!" />
+    <MESSAGE value="minor change&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       Map.dx and Map.dy" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor change&#10;&#10;written by ArshiA&#10;&#10;updates:&#10;       Map.dx and Map.dy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1264,16 +1184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Map/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="103" column="13" selection-start-line="103" selection-start-column="13" selection-end-line="103" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/account/player/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1446,16 +1356,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Shop.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-          <folding>
-            <element signature="e#1322#1323#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/card/Card.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
@@ -1466,20 +1366,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/CommandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="243" selection-start-line="243" selection-end-line="243" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/ShopMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="94" column="52" lean-forward="true" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/network/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
@@ -1487,6 +1373,39 @@
           <folding>
             <element signature="method#sendTaskDone#0;class#Client#0" />
             <element signature="method#sendTaskFailed#0;class#Client#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="78" column="41" lean-forward="true" selection-start-line="78" selection-start-column="41" selection-end-line="78" selection-end-column="41" />
+          <folding>
+            <element signature="e#1781#1782#0" expanded="true" />
+            <element signature="e#1839#1840#0" expanded="true" />
+            <element signature="e#1875#1876#0" expanded="true" />
+            <element signature="e#1925#1926#0" expanded="true" />
+            <element signature="e#1961#1962#0" expanded="true" />
+            <element signature="e#2052#2053#0" expanded="true" />
+            <element signature="e#2129#2130#0" expanded="true" />
+            <element signature="e#2361#2362#0" expanded="true" />
+            <element signature="e#2407#2408#0" expanded="true" />
+            <element signature="e#2449#2450#0" expanded="true" />
+            <element signature="e#2479#2480#0" expanded="true" />
+            <element signature="e#2533#2534#0" expanded="true" />
+            <element signature="e#2578#2579#0" expanded="true" />
+            <element signature="method#initMenus#0;class#MenuHandler#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="204" column="10" selection-start-line="204" selection-start-column="10" selection-end-line="204" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1505,17 +1424,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Battle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="e#695#696#0" expanded="true" />
-            <element signature="e#732#733#0" expanded="true" />
-            <element signature="e#908#909#0" expanded="true" />
-            <element signature="e#2494#2495#0" expanded="true" />
-            <element signature="e#2523#2524#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="143">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
         </state>
       </provider>
     </entry>
@@ -1530,53 +1442,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
+    <entry file="file://$PROJECT_DIR$/src/Controller/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="157" selection-start-line="157" selection-end-line="157" />
+        <state relative-caret-position="229">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
           <folding>
-            <element signature="e#4602#4603#0" expanded="true" />
+            <element signature="e#695#696#0" expanded="true" />
+            <element signature="e#732#733#0" expanded="true" />
+            <element signature="e#908#909#0" expanded="true" />
+            <element signature="e#2494#2495#0" expanded="true" />
+            <element signature="e#2523#2524#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Battle.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/Map/Map.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="204" column="10" selection-start-line="204" selection-start-column="10" selection-end-line="204" selection-end-column="10" />
+        <state relative-caret-position="431">
+          <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-220">
-          <caret line="57" column="39" lean-forward="true" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
+        <state relative-caret-position="217">
+          <caret line="63" column="65" selection-start-line="63" selection-start-column="65" selection-end-line="63" selection-end-column="65" />
           <folding>
-            <element signature="e#1781#1782#0" expanded="true" />
-            <element signature="e#1839#1840#0" expanded="true" />
-            <element signature="e#1875#1876#0" expanded="true" />
-            <element signature="e#1925#1926#0" expanded="true" />
-            <element signature="e#1961#1962#0" expanded="true" />
-            <element signature="e#2052#2053#0" expanded="true" />
-            <element signature="e#2095#2096#0" expanded="true" />
-            <element signature="e#2129#2130#0" expanded="true" />
-            <element signature="e#2361#2362#0" expanded="true" />
-            <element signature="e#2407#2408#0" expanded="true" />
-            <element signature="e#2449#2450#0" expanded="true" />
-            <element signature="e#2479#2480#0" expanded="true" />
-            <element signature="e#2533#2534#0" expanded="true" />
-            <element signature="e#2578#2579#0" expanded="true" />
-            <element signature="method#initMenus#0;class#MenuHandler#0" />
+            <element signature="e#4571#4572#0" expanded="true" />
+            <element signature="e#4602#4603#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/ShopMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="92" column="8" lean-forward="true" selection-start-line="92" selection-start-column="8" selection-end-line="94" selection-end-column="9" />
+          <folding>
+            <element signature="e#3626#3627#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/CommandHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5448">
+          <caret line="228" column="54" selection-start-line="228" selection-start-column="54" selection-end-line="228" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Shop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+          <folding>
+            <element signature="method#getInstance#0;class#Shop#0" />
+            <element signature="e#820#821#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+            <element signature="e#870#871#0" expanded="true" />
+            <element signature="e#976#977#0" expanded="true" />
+            <element signature="method#buy#0;class#Shop#0" />
+            <element signature="method#fillCollection#0;class#Shop#0" />
+            <element signature="e#4161#4162#0" expanded="true" />
+            <element signature="e#4194#4195#0" expanded="true" />
           </folding>
         </state>
       </provider>

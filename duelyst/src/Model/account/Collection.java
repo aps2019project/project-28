@@ -1,10 +1,12 @@
 package Model.account;
 
 import Model.Primary;
+import Model.card.OnCardDetailsPresentedListener;
 import View.Listeners.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
+import View.Listeners.OnItemDetailPresentedListener;
 import exeption.*;
 
 import java.io.IOException;
@@ -57,6 +59,23 @@ public class Collection {
         this.setItems(newItems);
         this.getDecks().forEach(Deck::updateDeck);
     }
+
+
+    public void search(String name) throws InvalidCardException, InvalidItemException {
+        if (this.hasCard(name)) {
+            Card card = this.getCard(name);
+            for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
+                presenter.showCardDetail(card);
+            }
+        } else if (this.hasItem(name)) {
+            Item item = this.getItem(name);
+            for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
+                presenter.showItemDetail(item);
+            }
+        }
+        throw new InvalidCardException();
+    }
+
 
     public void importDeck(String name) throws InvalidDeckException {
         if(doesDefaultDeckExist(name)){
