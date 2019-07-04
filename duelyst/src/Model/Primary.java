@@ -28,8 +28,7 @@ import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import com.sun.scenario.effect.impl.prism.PrImage;
 import exeption.*;
-import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
+import javafx.animation.*;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -38,6 +37,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 import java.io.*;
@@ -719,17 +721,10 @@ public class Primary {
             @Override
             public void show(Cell cell) {
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
-                ImageView imageView = battle.getCell(cell.getX(), cell.getY());
-                final Animation animation = new SpriteAnimation(
-                        imageView,
-                        Duration.millis(2000),
-                        8, 1,
-                        1024/10 , 0,
-                        1024/10, 1024/10
-                );
-                imageView.setImage(new Image(hermione.getGraphics().getUnits()));
-                animation.setCycleCount(Animation.INDEFINITE);
-                animation.play();
+                Cell start = hermione.getLocation();
+                ImageView source = battle.getCell(start.getX(), start.getY());
+                source.setImage(null);
+                hermione.getGraphics().onSpawn(cell);
             }
         });
 

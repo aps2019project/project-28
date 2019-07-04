@@ -2,6 +2,7 @@ package Controller.menu.Graphics;
 
 import Controller.menu.MainMenu;
 import View.MenuHandler;
+import groovyjarjarantlr.debug.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -47,12 +48,9 @@ public class GraphicsControls {
     public static void setCellStyle(String cellStyle, Rectangle rectangle, ImageView imageView){
         String enteredStyle = cellStyle + "Entered";
         if(!rectangle.getStyleClass().contains(cellStyle)) rectangle.setStyle(cellStyle);
-
        imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
-                rectangle.getStyleClass().add(enteredStyle);
-            }
+            public void handle(MouseEvent event) { rectangle.getStyleClass().add(enteredStyle); }
         });
         imageView.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
@@ -60,7 +58,6 @@ public class GraphicsControls {
                 rectangle.getStyleClass().remove(enteredStyle);
             }
         });
-
     }
 
 

@@ -6,6 +6,7 @@ import Controller.menu.MainMenu;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
 import Model.account.Hand;
+import Model.account.player.GGI;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Minion;
@@ -80,27 +81,39 @@ public class BattleFXMLC extends FXMLController {
        endTurn.setOnMousePressed(new EventHandler<MouseEvent>() {
            @Override
            public void handle(MouseEvent event) {
-               try {
-                   Battle.getMenu().endTurn();
-                   updateScene();
-               } catch (HandFullException | DeckIsEmptyException e) { e.printStackTrace(); }
+               if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
+                   try {
+                       Battle.getMenu().endTurn();
+                       updateScene();
+                   } catch (HandFullException | DeckIsEmptyException e) {
+                       e.printStackTrace();
+                   }
+               }
            }
        });
         menuButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                MenuHandler.setCurrentMenu(MainMenu.getMenu());
-                //todo: end game bezan
+                if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
+                    MenuHandler.setCurrentMenu(MainMenu.getMenu());
+                    //todo: end game bezan
+                }
             }
         });
 
-        graveYard.setOnMousePressed(e -> GraveYardFXMLC.makeNewScene(menu.getAccount()));
+        graveYard.setOnMousePressed(e ->{
+            if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
+                GraveYardFXMLC.makeNewScene(menu.getAccount());
+            }
+        });
 
         showCollectableButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                showCollectable.getStyleClass().add("showCollectableEntered");
-                Battle.getMenu().showCollectable();
+                if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
+                    showCollectable.getStyleClass().add("showCollectableEntered");
+                    Battle.getMenu().showCollectable();
+                }
             }
         });
         showCollectable.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -145,12 +158,16 @@ public class BattleFXMLC extends FXMLController {
     @Override
     public void updateScene() {
         super.updateScene();
-        turn.setText(Battle.getMenu().getPlayer().getDeck().getHero().getName());
+        if(Battle.getMenu().getPlayer().getGI() instanceof GGI){
+            turn.setText(Battle.getMenu().getPlayer().getDeck().getHero().getName());
+        }
+        else {
+            turn.setText(Battle.getMenu().getOpponentPlayer().getDeck().getHero().getName());
+        }
         updateHand();
-        handDrag();
-        handDrop();
-
-        attackTargets();
+        moveStart();
+        attackDrag();
+        attackDrop();
         updateMana();
         updateMap();
         updateInfo();
@@ -272,6 +289,8 @@ public class BattleFXMLC extends FXMLController {
             nextCardOnHand.setImage(null);
         }
         handOnHover();
+        handDrag();
+        handDrop();
     }
     private void handOnHover(){
         for (int i = 0 ; i <= Hand.SIZE ; i++) {
@@ -304,42 +323,87 @@ public class BattleFXMLC extends FXMLController {
             });
         }
     }
+    private Card getCardOnHand(int index){
+        return Battle.getMenu().getPlayer().getHand().getCards()[index];
+    }
 
 
-    private void attackTargets(){
+    private void moveStart(){
         for (int i = 0 ; i < 9 ; i++){
-            for( int j = 0 ; j < 5 ; j++){
+            for (int j = 0 ; j < 5 ; j++){
                 try {
                     Cell cell = Battle.getMenu().getMap().getCell(i, j);
-                    if(cell.getCardOnCell() != null) {
-                        ImageView attackTarget = getCell(i, j);
-                        attackTarget.setOnDragOver(new EventHandler<DragEvent>() {
+                    ImageView cellView = getCell(i, j);
+                    if (cell.getCardOnCell() != null) {
+                    int finalI = i;
+                    int finalJ = j;
+                    cellView.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             @Override
-                            public void handle(DragEvent event) {
+                            public void handle(MouseEvent event) {
                                 try {
-                                    ImageView attackSource = (ImageView) event.getGestureSource();
-                                    Cell attackerCell = Battle.getMenu().getMap().getCell(GridPane.getColumnIndex(attackSource), GridPane.getRowIndex(attackSource));
-                                    if (attackerCell.getCardOnCell() != null) {
-                                        event.acceptTransferModes(TransferMode.ANY);
-                                    }
-                                    event.consume();
-                                } catch (InvalidCellException e) { e.printStackTrace(); }
+                                    Battle.getMenu().select(cell.getCardOnCell().getCardID());
+                                    getRectangle(finalI, finalJ).getStyleClass().add("cellSelected");
+                                    moveEnd(finalI, finalJ);
+                                    removeEvent(this);
+                                } catch (InvalidCardException | InvalidItemException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         });
+                    }
+                } catch(InvalidCellException e){ e.printStackTrace(); }
+            }
+        }
+    }
+    private void moveEnd(int iStart, int jStart){
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                ImageView cell = getCell(i, j);
+                int finalI = i;
+                int finalJ = j;
+                EventHandler<MouseEvent> click = new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        try {
+                            Battle.getMenu().move(finalI, finalJ);
+                            getRectangle(iStart, jStart).getStyleClass().remove("cellSelected");
+                            removeEvent(this);
+                            moveStart();
+                            updateScene();
+                        } catch (Exception e) {
+                        }
+                    }
+                };
+                cell.setOnMouseClicked(click);
+            }
+        }
+    }
+    private void removeEvent(EventHandler click) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                ImageView cell = getCell(i , j);
+                cell.removeEventHandler(MouseEvent.MOUSE_CLICKED, click);
+            }
+        }
+    }
+
+    private void attackDrag(){
+        for (int i = 0 ; i < 9 ; i++){
+            for ( int j = 0 ; j < 5 ; j++){
+                try {
+                    if(Battle.getMenu().getMap().getCell(i, j).getCardOnCell() != null){
+                        ImageView cell = getCell(i, j);
                         int finalI = i;
                         int finalJ = j;
-                        attackTarget.setOnDragDropped(new EventHandler<DragEvent>() {
+                        cell.setOnDragDetected(new EventHandler<MouseEvent>() {
                             @Override
-                            public void handle(DragEvent event) {
+                            public void handle(MouseEvent e) {
                                 try {
-                                    ImageView attackSource = (ImageView) event.getGestureSource();
-                                    Hermione attacker = Battle.getMenu().getMap().getCell(GridPane.getColumnIndex(attackSource), GridPane.getRowIndex(attackSource)).getCardOnCell();
-                                    Hermione attacked = Battle.getMenu().getMap().getCell(finalI, finalJ).getCardOnCell();
-                                    Battle.getMenu().select(attacker);
-                                    Battle.getMenu().attack(attacked.getCardID());
-                                } catch (InvalidCellException | CantAttackException |
-                                        NoCardHasBeenSelectedException | InvalidCardException |
-                                        DestinationOutOfreachException | InvalidItemException e) { e.printStackTrace(); }
+                                Dragboard db = cell.startDragAndDrop(TransferMode.ANY);
+                                ClipboardContent content = new ClipboardContent();
+                                content.putImage(new Image(Battle.getMenu().getMap().getCell(finalI, finalJ).getCardOnCell().getGraphics().getUnitGifs()));
+                                db.setContent(content);
+                                } catch (InvalidCellException e1) {}
                             }
                         });
                     }
@@ -347,6 +411,94 @@ public class BattleFXMLC extends FXMLController {
             }
         }
     }
+    private void attackDrop(){
+        for (int i = 0 ; i < 9 ; i++){
+            for( int j = 0 ; j < 5 ; j++) {
+                try {
+                    if(Battle.getMenu().getMap().getCell(i, j).getCardOnCell() != null){
+                        ImageView cell = getCell(i ,j);
+                        cell.setOnDragOver(new EventHandler<DragEvent>() {
+                            @Override
+                            public void handle(DragEvent event) {
+                                ImageView source = (ImageView) event.getGestureSource();
+                                if(map.getChildren().contains(source)) {
+                                    event.acceptTransferModes(TransferMode.ANY);
+                                }
+                                event.consume();
+                            }
+                        });
+                        int finalI = i;
+                        int finalJ = j;
+                        cell.setOnDragDropped(new EventHandler<DragEvent>() {
+                            @Override
+                            public void handle(DragEvent event) {
+                                try {
+                                    ImageView source = (ImageView) event.getGestureSource();
+                                    Hermione attacker = Battle.getMenu().getMap().getCell(GridPane.getColumnIndex(source), GridPane.getRowIndex(source))
+                                        .getCardOnCell();
+                                    Battle.getMenu().select(attacker.getCardID());
+                                    Battle.getMenu().attack(Battle.getMenu().getMap().getCell(finalI, finalJ).getCardOnCell().getCardID());
+                                    event.consume();
+                                    updateScene();
+                                } catch (InvalidCellException | InvalidCardException | InvalidItemException | NoCardHasBeenSelectedException e) {e.printStackTrace(); }
+                                catch (DestinationOutOfreachException e) {
+                                    errorLable.setText("destination Out of Reach");
+                                    e.printStackTrace();
+                                } catch (CantAttackException e) {
+                                    errorLable.setText("cant attack");
+                                }
+                            }
+                        });
+                    }
+                } catch (InvalidCellException ignored) {}
+            }
+        }
+    }
+
+    private void updateInfo(){
+        ownPlayerInfo.setText(Battle.getMenu().getOwnPLayer().getDeck().getHero().getName() + "\n"
+                + "HealthPoint : "+ Battle.getMenu().getOwnPLayer().getDeck().getHero().getHealthPoint());
+        opponentPlayerInfo.setText(Battle.getMenu().getOpponentPlayer().getDeck().getHero().getName() + "\n"
+                + "HealthPoint : "+ Battle.getMenu().getOpponentPlayer().getDeck().getHero().getHealthPoint());
+    }
+    private void updateMana(){
+        String manaURL = "resources/ui/icon_mana.png";
+        String inactiveManaURL = "resources/ui/icon_mana_inactive.png";
+        int mana = Battle.getMenu().getOwnPLayer().getMana();
+        for (int i = 0 ; i < mana ; i++){
+            ((ImageView)playerMana.getChildren().get(i)).setImage(new Image(manaURL));
+        }
+        for (int i = mana ; i < 9 ; i++){
+            ((ImageView)playerMana.getChildren().get(i)).setImage(new Image(inactiveManaURL));
+        }
+        int enemyManaNumber = Battle.getMenu().getOpponentPlayer().getMana();
+        for (int i = 0 ; i < enemyManaNumber ; i++){
+            ((ImageView)enemyMana.getChildren().get(i)).setImage(new Image(manaURL));
+        }
+        for (int i = enemyManaNumber ; i < 9 ; i++){
+            ((ImageView)enemyMana.getChildren().get(i)).setImage(new Image(inactiveManaURL));
+        }
+    }
+    private void updateMap(){
+        try {
+            for (int i = 0 ; i < 9 ; i++){
+                for (int j = 0 ; j < 5 ; j++){
+                    Cell cell = Battle.getMenu().getMap().getCell(i, j);
+                    if(cell.getCardOnCell() == null){
+                        getCell(i, j).setImage(null);
+                    }
+                    if(cell.hasItem()){
+                        getCell(i , j).setImage(new Image(Battle.getMenu().getMap().getCell(i, j).getCollectable().getItemGraphics().getAvatar()));
+                    }
+                    if(cell.hasFlag()){
+                        getCell(i, j).setImage(new Image("resources/ui/collection_card_rarity_rare@2x.png"));
+                    }
+                }
+            }
+        } catch (InvalidCellException e) { e.printStackTrace(); }
+    }
+
+
     private void specialPowerSource(){
         ownSP.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
@@ -386,7 +538,6 @@ public class BattleFXMLC extends FXMLController {
             }
         });
     }
-
     private void specialPowerTarget(){
         for (int i = 0 ; i < 9 ; i++){
             for(int j = 0 ; j < 5 ; j++){
@@ -423,55 +574,6 @@ public class BattleFXMLC extends FXMLController {
         }
     }
 
-    private void updateInfo(){
-        ownPlayerInfo.setText(Battle.getMenu().getOwnPLayer().getDeck().getHero().getName() + "\n"
-                + "HealthPoint : "+ Battle.getMenu().getOwnPLayer().getDeck().getHero().getHealthPoint());
-        opponentPlayerInfo.setText(Battle.getMenu().getOpponentPlayer().getDeck().getHero().getName() + "\n"
-                + "HealthPoint : "+ Battle.getMenu().getOpponentPlayer().getDeck().getHero().getHealthPoint());
-    }
-
-    private void updateMana(){
-        String manaURL = "resources/ui/icon_mana.png";
-        String inactiveManaURL = "resources/ui/icon_mana_inactive.png";
-        int mana = Battle.getMenu().getOwnPLayer().getMana();
-        for (int i = 0 ; i < mana ; i++){
-            ((ImageView)playerMana.getChildren().get(i)).setImage(new Image(manaURL));
-        }
-        for (int i = mana ; i < 9 ; i++){
-            ((ImageView)playerMana.getChildren().get(i)).setImage(new Image(inactiveManaURL));
-        }
-        int enemyManaNumber = Battle.getMenu().getOpponentPlayer().getMana();
-        for (int i = 0 ; i < enemyManaNumber ; i++){
-            ((ImageView)enemyMana.getChildren().get(i)).setImage(new Image(manaURL));
-        }
-        for (int i = enemyManaNumber ; i < 9 ; i++){
-            ((ImageView)enemyMana.getChildren().get(i)).setImage(new Image(inactiveManaURL));
-        }
-    }
-
-    private void updateMap(){
-        try {
-            for (int i = 0 ; i < 9 ; i++){
-                for (int j = 0 ; j < 5 ; j++){
-                    Cell cell = Battle.getMenu().getMap().getCell(i, j);
-                    if(cell.getCardOnCell() == null){
-                        getCell(i, j).setImage(null);
-                    }
-                    if(cell.hasItem()){
-                        getCell(i , j).setImage(new Image(Battle.getMenu().getMap().getCell(i, j).getCollectable().getItemGraphics().getAvatar()));
-                    }
-                    if(cell.hasFlag()){
-                        getCell(i, j).setImage(new Image("resources/ui/collection_card_rarity_rare@2x.png"));
-                    }
-                }
-            }
-        } catch (InvalidCellException e) { e.printStackTrace(); }
-    }
-
-    private Card getCardOnHand(int index){
-        return Battle.getMenu().getPlayer().getHand().getCards()[index];
-    }
-
     public ImageView getCell(int x , int y){
         for (Node node : map.getChildren()) {
             if (GridPane.getColumnIndex(node) == x && GridPane.getRowIndex(node) == y) {
@@ -481,7 +583,6 @@ public class BattleFXMLC extends FXMLController {
         }
         return null;
     }
-
     private Rectangle getRectangle(int x, int y){
         for(Node node : map.getChildren()){
             if(GridPane.getColumnIndex(node) == x && GridPane.getRowIndex(node) == y){
