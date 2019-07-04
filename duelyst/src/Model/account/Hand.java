@@ -15,7 +15,7 @@ public class Hand {
     private ArrayList<Card> deck = new ArrayList<>();
     private static ArrayList<OnHandPresentedListener> handPresenters = new ArrayList<>();
     public static final int SIZE = 5;
-    private Card[] cards = new Card[SIZE];
+    private ArrayList<Card> cards = new ArrayList<>();
     private Card nextCard;
 
     public Hand(Deck deck) {
@@ -27,27 +27,23 @@ public class Hand {
             this.deck.add(card);
         }
         for (int i = 0; i < SIZE; i++) {
-            this.cards[i] = this.deck.get(i);
+            this.cards.add(this.deck.get(i));
         }
         this.nextCard = this.deck.get(SIZE);
     }
 
     public void updateHand() throws DeckIsEmptyException, HandFullException {
-        for (int i = 0; i < SIZE; i++) {
-            if (cards[i] == null) {
-                this.addCard();
-            }
+        if(cards.size() < SIZE){
+            this.addCard();
         }
     }
 
     private void addCard() throws DeckIsEmptyException, HandFullException {
         if (nextCard != null) {
-            for (int i = 0; i < SIZE; i++) {
-                if (cards[i] == null) {
-                    cards[i] = nextCard;
-                    setNextCard();
-                    return;
-                }
+            if(cards.size() < SIZE){
+                cards.add(nextCard);
+                setNextCard();
+                return;
             }
             throw new HandFullException();
         }
@@ -63,11 +59,8 @@ public class Hand {
     }
 
     private void removeCard(Card card) {
-        for (int i = 0; i < SIZE; i++) {
-            if (cards[i].equals(card)) {
-                cards[i] = null;
-                return;
-            }
+        if(cards.size() > 0){
+            cards.remove(card);
         }
     }
 
@@ -96,7 +89,7 @@ public class Hand {
         return nextCard;
     }
 
-    public Card[] getCards() {
+    public ArrayList<Card> getCards() {
         return cards;
     }
 }

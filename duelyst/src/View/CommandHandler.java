@@ -263,6 +263,8 @@ public class CommandHandler {
                 menu.sell(name);
             } catch (InvalidCardException e) {
                 System.out.println("Smart Move But you cant sell a Card/Item that you dont have");
+            } catch (InvalidItemException e) {
+                e.printStackTrace();
             }
         }
     }

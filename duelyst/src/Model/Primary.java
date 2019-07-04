@@ -8,6 +8,7 @@ import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
 import Model.account.Account;
 import Model.account.Deck;
+import Model.account.Shop;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
@@ -44,6 +45,7 @@ import javafx.util.Duration;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.toRadians;
@@ -64,11 +66,26 @@ public class Primary {
     public static void main(String[] args) throws IOException{
         Primary.Json();
         Primary.graphicsJson();
-        writeJson(spells, "Spell.json");
-        writeJson(minions, "Minion.json" );
-        writeJson(heroes, "Hero.json");
-        writeJson(usables, "Usables.json");
-        writeJson(collectables, "Collectables.json");
+        writeJson("Spell.json", spells);
+        writeJson("Minion.json", minions);
+        writeJson("Hero.json", heroes);
+        writeJson("Usables.json", usables);
+        writeJson("Collectables.json",collectables);
+        writeJson("Shop.json", Shop.getInstance());
+    }
+
+    public static Shop getShop() throws FileNotFoundException {
+        YaGson gson = new YaGson();
+        BufferedReader reader = new BufferedReader(new FileReader("Shop.json"));
+        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+        while (jsonStreamParser.hasNext()) {
+            JsonElement jsonElement = jsonStreamParser.next();
+            if (jsonElement.isJsonObject()) {
+                Shop shop = gson.fromJson(jsonElement, Shop.class);
+                return shop;
+            }
+        }
+        return null;
     }
 
     public static void getHeroes() throws FileNotFoundException {
@@ -614,7 +631,7 @@ public class Primary {
         }
 
     }
-    private static <E> void writeJson(ArrayList<E> arrays, String path) throws IOException {
+    private static <E> void writeJson(String path, E... arrays) throws IOException {
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(path, false);
         for (E e:

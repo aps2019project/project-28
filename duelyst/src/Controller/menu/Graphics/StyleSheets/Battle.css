@@ -44,11 +44,7 @@
 }
 
 .specialPower{
-     -fx-image: url("../../../../resources/ui/collection_card_rarity_legendary.png");
-}
-
-.specialPowerDragged{
-  -fx-image: url("../../../../resources/ui/collection_card_rarity_epic.png");
+     -fx-image: url("../../../../resources/ui/collection_card_rarity_epic.png");
 }
 
 .specialPowerDisabled{

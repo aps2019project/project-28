@@ -36,7 +36,6 @@ public abstract class Item {
         this.target = target;
         this.perk = perk;
         this.duration = duration;
-        this.itemID = Card.uniqueID++;
         this.info = info;
     }
 
