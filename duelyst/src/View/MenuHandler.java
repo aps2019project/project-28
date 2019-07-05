@@ -14,7 +14,6 @@ import Model.mediator.NetSignInMenuMediator;
 import network.client.Client;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 
 
@@ -60,7 +59,7 @@ public class MenuHandler {
         SignInMenu.getMenu().setSignInMenuMediator(new LocalSignInMenuMediator());
         try {
             Primary.preprocess();
-            Primary.configAccouts();
+            Primary.configAccounts();
         } catch (Exception e) {
             e.printStackTrace();
         }

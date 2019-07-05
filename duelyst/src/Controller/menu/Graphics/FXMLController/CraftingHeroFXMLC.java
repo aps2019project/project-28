@@ -1,14 +1,10 @@
 package Controller.menu.Graphics.FXMLController;
 
-import Controller.menu.CraftingMenu;
 import Controller.menu.Graphics.GraphicsControls;
-import Model.account.Shop;
 import Model.card.hermione.*;
 import Model.card.spell.SpecialPower;
 import Model.card.spell.SpecialPowerActions.SPActionAP;
 import Model.card.spell.Spell;
-import Model.card.spell.SpellAction.Action;
-import Model.card.spell.Target;
 import Model.card.spell.Targets.TargetEnemyHero;
 import exeption.CardExistException;
 import javafx.fxml.FXML;
@@ -17,11 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.ChoiceBoxListCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 public class CraftingHeroFXMLC extends FXMLController {
 

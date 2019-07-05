@@ -1,12 +1,12 @@
 package Controller.menu;
 
 import Model.account.Account;
+import Model.account.Shop;
 import View.Listeners.OnCollectionPresentedListener;
 import View.Listeners.OnSearchClickedListener;
 import View.Listeners.OnSearchCollectionClickedListener;
 import View.Listeners.OnShowClickedListener;
 import Model.account.Collection;
-import Model.account.Shop;
 import exeption.*;
 
 import java.util.ArrayList;

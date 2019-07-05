@@ -261,7 +261,7 @@ public class CommandHandler {
             String name = getName(word , 1);
             try {
                 menu.sell(name);
-            } catch (InvalidCardException e) {
+            } catch (InvalidCardException | InvalidItemException e) {
                 System.out.println("Smart Move But you cant sell a Card/Item that you dont have");
             }
         }

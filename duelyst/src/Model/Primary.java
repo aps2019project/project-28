@@ -7,6 +7,7 @@ import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
 import Model.account.Account;
 import Model.account.Deck;
+import Model.account.Shop;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
@@ -43,22 +44,22 @@ public class Primary {
 
     public static ArrayList<String> defaultNames = new ArrayList<>();
     public static ArrayList<Deck> defaultDecks = new ArrayList<>();
-    public static ArrayList<Item>  items= new ArrayList<>();
+    public static ArrayList<Item> items = new ArrayList<>();
     public static ArrayList<Spell> spells = new ArrayList<>();
     public static ArrayList<Minion> minions = new ArrayList<>();
     public static ArrayList<Hero> heroes = new ArrayList<>();
     public static ArrayList<Usable> usables = new ArrayList<>();
     public static ArrayList<Collectable> collectables = new ArrayList<>();
-    public  static  ArrayList<Card> cards = new ArrayList<>();
+    public static ArrayList<Card> cards = new ArrayList<>();
     public static ArrayList<Account> accounts = new ArrayList<>();
 
 
-    public static void getItems(){
+    public static void getItems() {
         items.addAll(usables);
         items.addAll(collectables);
     }
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         Primary.Json();
     }
 
@@ -132,7 +133,7 @@ public class Primary {
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Account.json"));
         JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
-        if(jsonStreamParser.hasNext()) {
+        if (jsonStreamParser.hasNext()) {
             while (jsonStreamParser.hasNext()) {
                 JsonElement jsonElement = jsonStreamParser.next();
                 if (jsonElement.isJsonObject()) {
@@ -143,7 +144,7 @@ public class Primary {
         reader.close();
     }
 
-    public static  void getCards(){
+    public static void getCards() {
         cards.addAll(heroes);
         cards.addAll(minions);
         cards.addAll(spells);
@@ -154,7 +155,7 @@ public class Primary {
     }
 
     public static void setDefaultDeck(Deck deck) throws IOException {
-        File file  = new File("Decks"+ File.separator + deck.getName() +".json");
+        File file = new File("Decks" + File.separator + deck.getName() + ".json");
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(file, false);
         gson.toJson(deck, fileWriter);
@@ -168,10 +169,10 @@ public class Primary {
             YaGson gson = new YaGson();
             BufferedReader reader = new BufferedReader(new FileReader(deck));
             JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
-            if(jsonStreamParser.hasNext()){
-                while (jsonStreamParser.hasNext()){
+            if (jsonStreamParser.hasNext()) {
+                while (jsonStreamParser.hasNext()) {
                     JsonElement jsonElement = jsonStreamParser.next();
-                    if(jsonElement.isJsonObject()){
+                    if (jsonElement.isJsonObject()) {
                         Deck defaulfDeck = gson.fromJson(jsonElement, Deck.class);
                         defaultDecks.add(defaulfDeck);
                         defaultNames.add(defaulfDeck.getName());
@@ -182,7 +183,7 @@ public class Primary {
         }
     }
 
-    public static void preprocess() throws Exception{
+    public static void preprocess() throws Exception {
         getHeroes();
         getMinions();
         getSpells();
@@ -191,12 +192,12 @@ public class Primary {
         getCards();
         getItems();
 
-//        configAccouts();
+//        configAccounts();
 
 
     }
 
-    public static void configAccouts() throws IOException, DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
+    public static void configAccounts() throws IOException, DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
         getAccounts();
         Account.updateAccounts();
         generateAI();
@@ -205,92 +206,92 @@ public class Primary {
     public static void generateAI() throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
         //level 1
         Account.AI[1].clearCollection();
-        Deck deck = new Deck("AIDeck",Account.AI[1].getCollection());
-                deck.addCardToDeck(Primary.heroes.get(0));
+        Deck deck = new Deck("AIDeck", Account.AI[1].getCollection());
+        deck.addCardToDeck(Primary.heroes.get(0));
 
-                deck.addCardToDeck(Primary.minions.get(0));
-                deck.addCardToDeck(Primary.minions.get(8));
-                deck.addCardToDeck(Primary.minions.get(10));
-                deck.addCardToDeck(Primary.minions.get(15));
-                deck.addCardToDeck(Primary.minions.get(12));
-                deck.addCardToDeck(Primary.minions.get(16));
-                deck.addCardToDeck(Primary.minions.get(17));
-                deck.addCardToDeck(Primary.minions.get(20));
-                deck.addCardToDeck(Primary.minions.get(21));
-                deck.addCardToDeck(Primary.minions.get(25));
-                deck.addCardToDeck(Primary.minions.get(33));
-                deck.addCardToDeck(Primary.minions.get(35));
+        deck.addCardToDeck(Primary.minions.get(0));
+        deck.addCardToDeck(Primary.minions.get(8));
+        deck.addCardToDeck(Primary.minions.get(10));
+        deck.addCardToDeck(Primary.minions.get(15));
+        deck.addCardToDeck(Primary.minions.get(12));
+        deck.addCardToDeck(Primary.minions.get(16));
+        deck.addCardToDeck(Primary.minions.get(17));
+        deck.addCardToDeck(Primary.minions.get(20));
+        deck.addCardToDeck(Primary.minions.get(21));
+        deck.addCardToDeck(Primary.minions.get(25));
+        deck.addCardToDeck(Primary.minions.get(33));
+        deck.addCardToDeck(Primary.minions.get(35));
 
-                deck.addCardToDeck(Primary.spells.get(0));
-                deck.addCardToDeck(Primary.spells.get(6));
-                deck.addCardToDeck(Primary.spells.get(9));
-                deck.addCardToDeck(Primary.spells.get(10));
-                deck.addCardToDeck(Primary.spells.get(11));
-                deck.addCardToDeck(Primary.spells.get(17));
-                deck.addCardToDeck(Primary.spells.get(19));
+        deck.addCardToDeck(Primary.spells.get(0));
+        deck.addCardToDeck(Primary.spells.get(6));
+        deck.addCardToDeck(Primary.spells.get(9));
+        deck.addCardToDeck(Primary.spells.get(10));
+        deck.addCardToDeck(Primary.spells.get(11));
+        deck.addCardToDeck(Primary.spells.get(17));
+        deck.addCardToDeck(Primary.spells.get(19));
 
-                deck.addItemToDeck(Primary.usables.get(0));
+        deck.addItemToDeck(Primary.usables.get(0));
 
-                Account.AI[1].getCollection().forcePushDeck(deck);
-         //level 2
+        Account.AI[1].getCollection().forcePushDeck(deck);
+        //level 2
         Account.AI[2].clearCollection();
-        deck = new Deck("AIDeck",Account.AI[2].getCollection());
+        deck = new Deck("AIDeck", Account.AI[2].getCollection());
 
-                deck.addCardToDeck(Primary.heroes.get(4));
+        deck.addCardToDeck(Primary.heroes.get(4));
 
-                deck.addCardToDeck(Primary.minions.get(1));
-                deck.addCardToDeck(Primary.minions.get(2));
-                deck.addCardToDeck(Primary.minions.get(4));
-                deck.addCardToDeck(Primary.minions.get(7));
-                deck.addCardToDeck(Primary.minions.get(11));
-                deck.addCardToDeck(Primary.minions.get(14));
+        deck.addCardToDeck(Primary.minions.get(1));
+        deck.addCardToDeck(Primary.minions.get(2));
+        deck.addCardToDeck(Primary.minions.get(4));
+        deck.addCardToDeck(Primary.minions.get(7));
+        deck.addCardToDeck(Primary.minions.get(11));
+        deck.addCardToDeck(Primary.minions.get(14));
 //                    deck.addCardToDeck(Primary.minions.get(14));
-                deck.addCardToDeck(Primary.minions.get(18));
-                deck.addCardToDeck(Primary.minions.get(22));
-                deck.addCardToDeck(Primary.minions.get(26));
-                deck.addCardToDeck(Primary.minions.get(29));
-                deck.addCardToDeck(Primary.minions.get(32));
-                deck.addCardToDeck(Primary.minions.get(34));
+        deck.addCardToDeck(Primary.minions.get(18));
+        deck.addCardToDeck(Primary.minions.get(22));
+        deck.addCardToDeck(Primary.minions.get(26));
+        deck.addCardToDeck(Primary.minions.get(29));
+        deck.addCardToDeck(Primary.minions.get(32));
+        deck.addCardToDeck(Primary.minions.get(34));
 
-                deck.addCardToDeck(Primary.spells.get(1));
-                deck.addCardToDeck(Primary.spells.get(2));
-                deck.addCardToDeck(Primary.spells.get(4));
-                deck.addCardToDeck(Primary.spells.get(7));
-                deck.addCardToDeck(Primary.spells.get(8));
-                deck.addCardToDeck(Primary.spells.get(12));
-                deck.addCardToDeck(Primary.spells.get(18));
+        deck.addCardToDeck(Primary.spells.get(1));
+        deck.addCardToDeck(Primary.spells.get(2));
+        deck.addCardToDeck(Primary.spells.get(4));
+        deck.addCardToDeck(Primary.spells.get(7));
+        deck.addCardToDeck(Primary.spells.get(8));
+        deck.addCardToDeck(Primary.spells.get(12));
+        deck.addCardToDeck(Primary.spells.get(18));
 
-                deck.addItemToDeck(Primary.usables.get(9));
+        deck.addItemToDeck(Primary.usables.get(9));
 
-                Account.AI[2].getCollection().forcePushDeck(deck);
+        Account.AI[2].getCollection().forcePushDeck(deck);
 
         Account.AI[3].clearCollection();
-        deck=new Deck("AIDeck",Account.AI[3].getCollection());
-                deck.addCardToDeck(Primary.heroes.get(6));
+        deck = new Deck("AIDeck", Account.AI[3].getCollection());
+        deck.addCardToDeck(Primary.heroes.get(6));
 
-                deck.addCardToDeck(Primary.minions.get(5));
-                deck.addCardToDeck(Primary.minions.get(6));
-                deck.addCardToDeck(Primary.minions.get(9));
-                deck.addCardToDeck(Primary.minions.get(13));
+        deck.addCardToDeck(Primary.minions.get(5));
+        deck.addCardToDeck(Primary.minions.get(6));
+        deck.addCardToDeck(Primary.minions.get(9));
+        deck.addCardToDeck(Primary.minions.get(13));
 //                deck.addCardToDeck(Primary.minions.get(15));
-                deck.addCardToDeck(Primary.minions.get(15));
-                deck.addCardToDeck(Primary.minions.get(19));
-                deck.addCardToDeck(Primary.minions.get(23));
-                deck.addCardToDeck(Primary.minions.get(24));
-                deck.addCardToDeck(Primary.minions.get(27));
-                deck.addCardToDeck(Primary.minions.get(28));
-                deck.addCardToDeck(Primary.minions.get(30));
-                deck.addCardToDeck(Primary.minions.get(33));
+        deck.addCardToDeck(Primary.minions.get(15));
+        deck.addCardToDeck(Primary.minions.get(19));
+        deck.addCardToDeck(Primary.minions.get(23));
+        deck.addCardToDeck(Primary.minions.get(24));
+        deck.addCardToDeck(Primary.minions.get(27));
+        deck.addCardToDeck(Primary.minions.get(28));
+        deck.addCardToDeck(Primary.minions.get(30));
+        deck.addCardToDeck(Primary.minions.get(33));
 
-                deck.addCardToDeck(Primary.spells.get(4));
-                deck.addCardToDeck(Primary.spells.get(9));
-                deck.addCardToDeck(Primary.spells.get(11));
-                deck.addCardToDeck(Primary.spells.get(13));
-                deck.addCardToDeck(Primary.spells.get(14));
-                deck.addCardToDeck(Primary.spells.get(15));
-                deck.addCardToDeck(Primary.spells.get(16));
+        deck.addCardToDeck(Primary.spells.get(4));
+        deck.addCardToDeck(Primary.spells.get(9));
+        deck.addCardToDeck(Primary.spells.get(11));
+        deck.addCardToDeck(Primary.spells.get(13));
+        deck.addCardToDeck(Primary.spells.get(14));
+        deck.addCardToDeck(Primary.spells.get(15));
+        deck.addCardToDeck(Primary.spells.get(16));
 
-                deck.addItemToDeck(Primary.usables.get(4));
+        deck.addItemToDeck(Primary.usables.get(4));
         Account.AI[3].getCollection().forcePushDeck(deck);
 
     }
@@ -325,9 +326,9 @@ public class Primary {
                 TargetEnemyHero.getTargetInstance(), ActionChangeHP.getAction()));
         spells.add(new Spell("Poison Lake", 900, 5, 1, 0, "poisonCell, duration : 1",
                 TargetThreeByThree.getTargetInstance(), ActionPoisonCell.getAction()));
-        Spell maddness = new Spell("Madness", 650, 0, 3, 4,"increases Attack Point 4 units, duration : 3, but the card will be disarmed",
-                TargetOwnCard.getTargetInstance(), ActionChangeAPBuff.getAction()) ;
-        maddness.addAction(ActionDisarm.getAction() , 0 , 1 );
+        Spell maddness = new Spell("Madness", 650, 0, 3, 4, "increases Attack Point 4 units, duration : 3, but the card will be disarmed",
+                TargetOwnCard.getTargetInstance(), ActionChangeAPBuff.getAction());
+        maddness.addAction(ActionDisarm.getAction(), 0, 1);
         spells.add(maddness);
         spells.add(new Spell("All Disarm", 2000, 9, 1, 0, "all of enemy cards will be disarmed, duration : 1",
                 TargetAllEnemyCards.getTargetInstance(), ActionDisarm.getAction()));
@@ -343,7 +344,7 @@ public class Primary {
                 TargetAllOwnCards.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("All Attack", 1500, 4, 1, -6, "attacks all enemy cards by 6 units",
                 TargetAllEnemyCards.getTargetInstance(), ActionChangeHP.getAction()));
-        spells.add(new Spell("Weakening", 1000, 1, 1, -4,"gives an enemy minion a weakness buff, it decreases attack point 4 units",
+        spells.add(new Spell("Weakening", 1000, 1, 1, -4, "gives an enemy minion a weakness buff, it decreases attack point 4 units",
                 TargetEnemyMinion.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("Sacrifice", 1600, 2, 1, -6, "gives an own minion a power buff, it increases attack point 8 units , it gives weakness buff too, it decreases health point 6 units",
                 new TargetOwnMinion(), ActionSacrifice.getAction()));
@@ -355,61 +356,61 @@ public class Primary {
         writeJson(spells, "Spell.json");
 
         //Minion
-        SpecialPower nullSpecialPower =  new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+        SpecialPower nullSpecialPower = new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
                 null, ActionVoid.getAction());
 
         minions.add(new Minion("Persian Archer", 300, 2, 6,
                 4, new Range(), 7, nullSpecialPower
-               , SPATime.NULL, "just an ordinary range minion"));
+                , SPATime.NULL, "just an ordinary range minion"));
         minions.add(new Minion("Persian Swordsman", 400, 2, 6,
                 4, new Melee(), 0,
                 new SpecialPower("Persian SwordsMan SpecialPower", 0, 0, 0, 0, "",
                         TargetEnemyCard.getTargetInstance(), ActionStun.getAction()), SPATime.ATTACK, "while attacking, enemy's card will be stunned"));
         minions.add(new Minion("Persian Lancer", 500, 1, 5,
                 3, new Hybrid(), 3, nullSpecialPower
-               , SPATime.NULL, "just an ordinary hybrid minion"));
+                , SPATime.NULL, "just an ordinary hybrid minion"));
         minions.add(new Minion("Persian Horseman", 200, 4, 10,
                 6, new Melee(), 0, nullSpecialPower
-               , SPATime.NULL, "just an ordinary melee minion"));
+                , SPATime.NULL, "just an ordinary melee minion"));
         minions.add(new Minion("Persian Warrior", 600, 9, 24,
                 6, new Melee(), 0,
                 new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, -5, "",
                         TargetEnemyCard.getTargetInstance(), SPActionPersianChamp.getSpecialPower()), SPATime.ATTACK, "be tedad dafati ke dar nobat haye qabl be yek niru hamle karde, 5 vahed bishtar be an zarbe vared mikonad"));
         //TODO in Actionesh chie?
-        minions.add(new Minion("Persian General",800, 7, 12,
+        minions.add(new Minion("Persian General", 800, 7, 12,
                 4, new Melee(), 0,
                 new SpecialPower("Persian General SpecialPower", 0, 0, 0, 0, "",
                         null, ActionCombo.getAction()), SPATime.COMBO, "SPActionCombo"));
         minions.add(new Minion("Turanian Archer", 500, 1, 3,
                 4, new Range(), 5, nullSpecialPower
-               , SPATime.NULL, "just an ordinary range minion"));
+                , SPATime.NULL, "just an ordinary range minion"));
         minions.add(new Minion("Turanian Slinger", 600, 1, 4,
                 2, new Range(), 7, nullSpecialPower
-             , SPATime.NULL, "just an ordinary range minion"));
+                , SPATime.NULL, "just an ordinary range minion"));
         minions.add(new Minion("Turanian Lancer", 600, 1, 4,
                 4, new Hybrid(), 3, nullSpecialPower
-               , SPATime.NULL, "just an ordinary hybrid minion"));
+                , SPATime.NULL, "just an ordinary hybrid minion"));
 
         SpecialPower turanianSpy = new SpecialPower("Turanian Spy SpecialPower", 0, 0, 1, 0, "",
                 TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction());
-        turanianSpy.addAction(ActionDeployPoison.getAction(), 0 ,4);
-        minions.add( new Minion("Turanian SPY", 700, 4, 6,
+        turanianSpy.addAction(ActionDeployPoison.getAction(), 0, 4);
+        minions.add(new Minion("Turanian SPY", 700, 4, 6,
                 6, new Melee(), 0, turanianSpy,
                 SPATime.ATTACK, "enemy's card will be disarmed for 1 turn and will be poisoned for 4 turns"));
 
         minions.add(new Minion("Turanian MaceBearer", 450, 2, 3,
                 10, new Melee(), 0, nullSpecialPower
-               , SPATime.NULL, "just a melee minion"));
-        minions.add(new Minion("Turanian Prince",800, 6, 6,
+                , SPATime.NULL, "just a melee minion"));
+        minions.add(new Minion("Turanian Prince", 800, 6, 6,
                 10, new Melee(), 0,
                 new SpecialPower("Turanian Prince", 0, 0, 0, 0, "",
                         null, ActionCombo.getAction()), SPATime.COMBO, "combo"));
         minions.add(new Minion("Black Demon", 300, 9, 14,
                 10, new Hybrid(), 7, nullSpecialPower
-               , SPATime.NULL, "just a hybrid minion"));
+                , SPATime.NULL, "just a hybrid minion"));
         minions.add(new Minion("Stone Thrower Giant", 300, 9, 12,
                 12, new Range(), 7, nullSpecialPower
-                ,null, "just a range minion"));
+                , null, "just a range minion"));
         minions.add(new Minion("Eagle", 200, 2, 0,
                 2, new Range(), 3,
                 new SpecialPower("Eagle SpecialPower", 0, 0, 0, 10, "",
@@ -417,7 +418,7 @@ public class Primary {
 
         minions.add(new Minion("Hog Rider Demon", 300, 6, 16,
                 8, new Melee(), 0, nullSpecialPower
-              , SPATime.NULL, "just a melee minion"));
+                , SPATime.NULL, "just a melee minion"));
         minions.add(new Minion("One Eye Giant", 500, 7, 12,
                 11, new Hybrid(), 3,
                 new SpecialPower("One Eye Giant SpecialPower", 0, 0, 0, -2, "",
@@ -428,8 +429,8 @@ public class Primary {
                         TargetEnemyCard.getTargetInstance(), ActionDeployPoison.getAction()), SPATime.ATTACK, "enemy's card will be poisoned, duration : 3"));
         minions.add(new Minion("Fire Dragon", 250, 5, 9,
                 5, new Range(), 4, nullSpecialPower
-               , SPATime.NULL,"just an ordinary range minion"));
-        minions.add(new Minion("Fierce Lion",600, 2, 1,
+                , SPATime.NULL, "just an ordinary range minion"));
+        minions.add(new Minion("Fierce Lion", 600, 2, 1,
                 8, new Melee(), 0,
                 new SpecialPower("Fierce Lion SpecialPower", 0, 0, 0, 0, "",
                         TargetEnemyCard.getTargetInstance(), ActionDispel.getAction()), SPATime.ATTACK, "holy buff doesn't effect its attack"));
@@ -442,7 +443,7 @@ public class Primary {
                 2, new Melee(), 0,
                 new SpecialPower("White Wolf SpecialPower", 0, 0, 2, -6, "",
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units, next turn, minion's health point will be decreased 4 units"));//unhanddeled
-        minions.add(new Minion("Leopard",400, 4, 6,
+        minions.add(new Minion("Leopard", 400, 4, 6,
                 2, new Melee(), 0,
                 new SpecialPower("Leopard SpecialPower", 0, 0, 1, -8, "",
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 8 units"));
@@ -451,19 +452,19 @@ public class Primary {
                 new SpecialPower("Wolf SpecialPower", 0, 0, 0, -6, "",
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
 
-        SpecialPower theWizard =  new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
+        SpecialPower theWizard = new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
                 RandomMinionInSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
         theWizard.addAction(ActionChangeHPBuff.getAction(), -1, 1);
         minions.add(new Minion("The Wizard", 550, 4, 5,
                 4, new Range(), 3, theWizard, SPATime.PASSIVE
-                ,"gives own and minions surrounded a power buff, increases attack point 2 units + a weakness buff, decreases health point 1 unit for one turn"));
+                , "gives own and minions surrounded a power buff, increases attack point 2 units + a weakness buff, decreases health point 1 unit for one turn"));
 
         SpecialPower theGreatWizard = new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2, "",
                 OwnMinionAndItsSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
         theGreatWizard.addAction(ActionDeployHollyBuff.getAction(), 0, -1);
-        minions.add(new Minion("The Great Wizard",550, 6, 6,
+        minions.add(new Minion("The Great Wizard", 550, 6, 6,
                 6, new Range(), 5, theGreatWizard
-                ,SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
+                , SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
 
         minions.add(new Minion("Genie", 500, 5, 10,
                 4, new Range(), 4,
@@ -494,8 +495,8 @@ public class Primary {
                 , SPATime.NULL, "just a range minion"));
         minions.add(new Minion("Great Giant", 600, 9, 30,
                 8, new Hybrid(), 2, nullSpecialPower
-              , SPATime.NULL, "just a hybrid minion"));
-        minions.add(new Minion("Two Headed Giant",550, 4, 10,
+                , SPATime.NULL, "just a hybrid minion"));
+        minions.add(new Minion("Two Headed Giant", 550, 4, 10,
                 4, new Melee(), 0,
                 new SpecialPower("Two Headed Giant SpecialPower", 0, 0, 1, 0, "",
                         TargetEnemyCard.getTargetInstance(), ActionDispelPositives.getAction()), SPATime.ATTACK, "every card that it attacks will be diarmed"));
@@ -512,15 +513,15 @@ public class Primary {
                 5, new Melee(), 0,
                 new SpecialPower("Siavash SpecialPower", 0, 0, 0, -6, "",
                         TargetEnemyHero.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks enemy's hero 6 points, on death"));
-        minions.add(new Minion("Eurymedon",600, 5, 10,
+        minions.add(new Minion("Eurymedon", 600, 5, 10,
                 4, new Melee(), 0,
                 new SpecialPower("Eurymedon SpecialPower", 0, 0, 0, 0, "",
                         null, ActionCombo.getAction()), SPATime.COMBO, "SPActionCombo"));
-        minions.add(new Minion("Arzhang Div",600, 3, 6,
+        minions.add(new Minion("Arzhang Div", 600, 3, 6,
                 6, new Melee(), 0, new SpecialPower("Arzhangs SpecialPower", 0, 0, 0, 0, "",
                 null, ActionCombo.getAction())
                 , SPATime.COMBO, "SPActionCombo"));
-        writeJson(minions, "Minion.json" );
+        writeJson(minions, "Minion.json");
         //Hero
         ArrayList<Hero> heroes = new ArrayList<>();
         heroes.add(new Hero("White Demon", 8000, 50, 4, new Melee(), 0,
@@ -560,7 +561,7 @@ public class Primary {
                         TargetSingleCell.getTargetInstance(), ActionDeployHollyBuff.getAction()),
                 0, 0, "a hybrid hero with a special power of  holy buffs continuously"));
         heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4, nullSpecialPower
-               , 0, 0, "just a hybrid hero"));
+                , 0, 0, "just a hybrid hero"));
 
         writeJson(heroes, "Hero.json");
 
@@ -598,7 +599,7 @@ public class Primary {
                 TargetRandomOwnMinion.getTargetInstance(), ItemActionExir.getItemAction()));
         collectables.add(new Collectable("Mana's Majoon", 1, 3, "gives 3 extra mana the next turn",
                 TargetSingleCell.getTargetInstance(), ItemActionManaGiver.getItemAction()));
-        collectables.add(new Collectable("RooEnTan's Majoon",2,10, "10 holy buffs, duration : 2, for a random own card",
+        collectables.add(new Collectable("RooEnTan's Majoon", 2, 10, "10 holy buffs, duration : 2, for a random own card",
                 TargetRandomOwn.getTargetInstance(), ItemActionHolyBuff.getItemAction()));
         collectables.add(new Collectable("Death's Curse", 0, 8, "8 attack points on nearest enemy card for a random minion ",
                 TargetRandomOwnMinion.getTargetInstance(), ItemActionMinionRandomAttacker.getItemAction()));
@@ -614,7 +615,7 @@ public class Primary {
     private static <E> void writeJson(ArrayList<E> arrays, String path) throws IOException {
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(path, false);
-        for (E e:
+        for (E e :
                 arrays) {
             gson.toJson(e, fileWriter);
             fileWriter.write("\n");
@@ -642,7 +643,7 @@ public class Primary {
         }
     }
 
-    private static void setGraphicsForHermiones(){
+    private static void setGraphicsForHermiones() {
         for (Hero hero : heroes) {
             setGraphicForHermione(hero);
         }
@@ -655,32 +656,32 @@ public class Primary {
 
         hermione.getGraphics().addSpawnListener(new OnSpawnListener() {
             @Override
-            public void show(Cell cell){
-                BattleFXMLC controller = (BattleFXMLC)Battle.getMenu().getGraphic().getController();
+            public void show(Cell cell) {
+                BattleFXMLC controller = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
                 ImageView imageView = controller.getCell(cell.getX(), cell.getY());
                 imageView.setImage(new Image(hermione.getGraphics().getUnits()));
                 final Animation animation = new SpriteAnimation(
-                    imageView,
-                    Duration.millis(2000),
-                    8, 1,
-                    0, 0,
-                    1024/10, 1024/10
-            );
-            animation.setCycleCount(Animation.INDEFINITE);
-            animation.play();
+                        imageView,
+                        Duration.millis(2000),
+                        8, 1,
+                        0, 0,
+                        1024 / 10, 1024 / 10
+                );
+                animation.setCycleCount(Animation.INDEFINITE);
+                animation.play();
             }
         });
 
         hermione.getGraphics().addAttackListenr(new OnAttackListener() {//todo fix this shit
             @Override
-            public void show(Hermione enemyCard){
+            public void show(Hermione enemyCard) {
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
                 final Animation animation = new SpriteAnimation(
-                        battle.getCell(hermione.getLocation().getX(),hermione.getLocation().getY()),
+                        battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
                         Duration.millis(2000),
                         8, 1,
-                        2*1024/10 , 0,
-                        1024/10, 1024/10
+                        2 * 1024 / 10, 0,
+                        1024 / 10, 1024 / 10
                 );
                 animation.setCycleCount(1);
                 animation.play();
@@ -701,8 +702,8 @@ public class Primary {
                         battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
                         Duration.millis(2000),
                         8, 1,
-                        4*1024/10 , 0,
-                        1024/10, 1024/10
+                        4 * 1024 / 10, 0,
+                        1024 / 10, 1024 / 10
                 );
                 animation.setCycleCount(2);
                 animation.play();
@@ -711,14 +712,14 @@ public class Primary {
 
         hermione.getGraphics().addDeathListener(new OnDeathListener() {
             @Override
-            public void show(){
+            public void show() {
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
                 final Animation animation = new SpriteAnimation(
                         battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
                         Duration.millis(2000),
                         8, 1,
-                        1024/10 , 0,
-                        1024/10, 1024/10
+                        1024 / 10, 0,
+                        1024 / 10, 1024 / 10
                 );
                 animation.setCycleCount(1);
                 animation.play();
@@ -734,8 +735,8 @@ public class Primary {
                         imageView,
                         Duration.millis(2000),
                         8, 1,
-                        1024/10 , 0,
-                        1024/10, 1024/10
+                        1024 / 10, 0,
+                        1024 / 10, 1024 / 10
                 );
                 imageView.setImage(new Image(hermione.getGraphics().getUnits()));
                 animation.setCycleCount(Animation.INDEFINITE);
@@ -750,8 +751,8 @@ public class Primary {
             }
         });
     }
-        
-    private static void setIconForCards(){
+
+    private static void setIconForCards() {
         for (Spell spell : spells) {
             spell.getSpellGraphics().setIcon("resources/icons/artifact_boss_frostarmor.png");
             spell.getSpellGraphics().setIconGif("resources/ui/icon_gold.png");
@@ -762,7 +763,7 @@ public class Primary {
         }
     }
 
-    private static void setAccountAvatars(){
+    private static void setAccountAvatars() {
         for (Account account : accounts) {
             account.setAvatar("resources/profile_icons/f3_f6_bundle_icon-2.png");
         }
@@ -771,12 +772,12 @@ public class Primary {
         }
     }
 
-    private static void setItemListeners(){
+    private static void setItemListeners() {
         for (Collectable collectable : collectables) {
             collectable.addNewOnItemDeatilPresentedListener(new OnItemDetailPresentedListener() {
                 @Override
                 public void showItemDetail(Item item) {
-                    if(!hasItem(item.getName())){
+                    if (!hasItem(item.getName())) {
                         Label textField = new Label(item.getName());
                         textField.getStyleClass().add("showItemLable");
                         BattleFXMLC battleFXMLC = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
@@ -788,7 +789,7 @@ public class Primary {
                 private boolean hasItem(String name) {
                     BattleFXMLC battleFXMLC = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
                     for (Node child : battleFXMLC.showCollectable.getChildren()) {
-                        if(((Label)child).getText().compareTo(name) == 0){
+                        if (((Label) child).getText().compareTo(name) == 0) {
                             return true;
                         }
                     }
@@ -798,12 +799,28 @@ public class Primary {
         }
     }
 
-    private static void setItemGraphics(){
+    private static void setItemGraphics() {
         for (Collectable collectable : collectables) {
             collectable.getItemGraphics().setAvatar("resources/arena/card_fade_particles.png");
         }
     }
 
+    public static Shop getShop() throws FileNotFoundException {
+        YaGson gson = new YaGson();
+        BufferedReader reader = null;
+        System.err.println("mikham be khunam--------------------------------------------------------------------------------------");
+        reader = new BufferedReader(new FileReader("Shop.json"));
+        System.err.println("khnudam ta cheshet dar ad--------------------------------------------------------------------------------------");
+        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+        while (jsonStreamParser.hasNext()) {
+            JsonElement jsonElement = jsonStreamParser.next();
+            if (jsonElement.isJsonObject()) {
+                Shop shop = gson.fromJson(jsonElement, Shop.class);
+                return shop;
+            }
+        }
+        return null;
+    }
 
 
 }

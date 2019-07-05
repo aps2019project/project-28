@@ -58,20 +58,18 @@ public class Client {
         message.setMenu(MenuHandler.getCurrentMenu());
         YaGson json = new YaGson();
         String string = json.toJson(message);
-        try{
-            Account acc= (Account) json.fromJson(string,Message.class).getCarry().get(0);
-            System.out.println("acc.getUsername() = " + acc.getUsername());
-        }catch (Exception e){
-            System.err.println("natunesttttttttttttttttttttttttttttttttt");
-            e.printStackTrace();
-        }
+//        try{
+//            Account acc= (Account) json.fromJson(string,Message.class).getCarry().get(0);
+//            System.out.println("acc.getUsername() = " + acc.getUsername());
+//        }catch (Exception e){
+//            System.err.println("natunesttttttttttttttttttttttttttttttttt");
+//            e.printStackTrace();
+//        }
         System.out.println("_____________________________________");
         System.out.println("string.length() = " + string.length());
         try {
             for(int i=0;i<= string.length()/SEND_SIZE;i++){
-//                System.err.println(i);
                 String sendable=string.substring(i*SEND_SIZE,Integer.min((i+1)*SEND_SIZE,string.length()))+"\n";
-
                 this.getOutput().println(sendable);
             }
             this.getOutput().println(END_MESSAGE);

@@ -1,15 +1,16 @@
 package Model.account;
 
 import Model.Primary;
+import Model.card.OnCardDetailsPresentedListener;
 import View.Listeners.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
+import View.Listeners.OnItemDetailPresentedListener;
 import exeption.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 public class Collection {
 
@@ -20,24 +21,6 @@ public class Collection {
     private Account owner;
     private Deck mainDeck;
     public static final int MAX_USABLES = 3;
-
-//    public static Collection getSerializable(Collection collection) {
-//        /*
-//         * this method return a serializable version of collection
-//         * use method buildCollection to get a real version of collection from the serializable version of it
-//         * */
-//        Serialized serialized=new Serialized();
-//        ArrayList<Integer>cardId=new ArrayList<>();
-//        collection.getCards().forEach(card -> cardId.add(card.getID()));
-//
-//        ArrayList<Serialized>decks=new ArrayList<>();
-//        collection.getDecks().forEach(deck -> decks.add(Deck.getSerializable(deck)));
-//
-//        ArrayList<Integer>itemId=new ArrayList<>();
-//        collection.getItems().forEach(item->itemId.add(item.getID()));
-//        //// TODO: 7/3/19
-//    }
-
 
     public boolean hasDeck(String name) {
         for (Deck deck :
@@ -77,6 +60,23 @@ public class Collection {
         this.getDecks().forEach(Deck::updateDeck);
     }
 
+
+    public void search(String name) throws InvalidCardException, InvalidItemException {
+        if (this.hasCard(name)) {
+            Card card = this.getCard(name);
+            for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
+                presenter.showCardDetail(card);
+            }
+        } else if (this.hasItem(name)) {
+            Item item = this.getItem(name);
+            for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
+                presenter.showItemDetail(item);
+            }
+        }
+        throw new InvalidCardException();
+    }
+
+
     public void importDeck(String name) throws InvalidDeckException {
         if(doesDefaultDeckExist(name)){
             if(!hasDefaultDeck(name)){
@@ -89,9 +89,9 @@ public class Collection {
                     throw new  InvalidDeckException();
                 }
             }
-        else{
-            System.err.println("u already have this deck");
-            throw new InvalidDeckException();
+            else{
+                System.err.println("u already have this deck");
+                throw new InvalidDeckException();
             }
         }
         else{
@@ -203,7 +203,8 @@ public class Collection {
 
     public boolean hasCard(String name) {
         for (Card collectionCard : cards) {
-            if (collectionCard.getName().equals(name)) {
+            System.err.println(collectionCard.getName());
+            if (collectionCard.getName().toLowerCase().equals(name.toLowerCase())) {
                 return true;
             }
         }
@@ -223,7 +224,7 @@ public class Collection {
     public Card getCard(String name) throws InvalidCardException {
         for (Card card :
                 cards) {
-            if (card.getName().equals(name)) {
+            if (card.getName().toLowerCase().equals(name.toLowerCase())) {
                 return card;
             }
         }
@@ -243,7 +244,7 @@ public class Collection {
     public boolean hasItem(String name) {
         for (Usable item :
                 usables) {
-            if (item.getName().equals(name)) {
+            if (item.getName().toLowerCase().equals(name.toLowerCase())) {
                 return true;
             }
         }
@@ -273,7 +274,7 @@ public class Collection {
     public Usable getItem(String name) throws InvalidItemException {
         for (Usable item :
                 usables) {
-            if (item.getName().equals(name)) {
+            if (item.getName().toLowerCase().equals(name.toLowerCase())) {
                 return item;
             }
         }
@@ -329,7 +330,7 @@ public class Collection {
 
     public void addCardToCollection(Card card) throws CardExistException {
         if (!this.hasCard(card)) {
-           this.cards.add(card);
+            this.cards.add(card);
             return;
         }
         throw new CardExistException();
