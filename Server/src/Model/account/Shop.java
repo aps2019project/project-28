@@ -7,28 +7,35 @@ import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
 import Model.item.Item;
 import Model.item.Usable;
+import Model.mediator.ShopMediator;
 import exeption.*;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
 
-public class Shop {
+public class Shop implements ShopMediator{
 
     private static int INITIAL_AMOUNT=10;
-    private static Shop ourInstance = new Shop();
+    private static Shop ourInstance;
+
+    static {
+        try {
+            System.err.println("WTF!-----------------------------------");
+            ourInstance = Primary.getShop();
+            System.err.println("WTF!-----------------------------------");
+        } catch (FileNotFoundException e) { e.printStackTrace(); }
+    }
     private Collection collection = new Collection();
 
     Map<Integer,Integer>cards=new HashMap<>();//cardId,amount
     Map<Integer,Integer>items=new HashMap<>();//itemId,amount
 
     public static Shop getInstance() {
-
         return ourInstance;
     }
-    private Shop() {
 
-
+    public Shop() {
         fillCollection();
         fillCards();
         fillItems();
@@ -76,6 +83,7 @@ public class Shop {
     }
 
     private Item buyItem(String name) throws ItemDoesntExistException {
+        System.err.println("debug");
         if(!this.hasItem(name))throw new ItemDoesntExistException();
         try {
             Item item=this.getItem(name);

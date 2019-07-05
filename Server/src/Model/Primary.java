@@ -7,6 +7,7 @@ import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
 import Model.account.Account;
 import Model.account.Deck;
+import Model.account.Shop;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
@@ -800,6 +801,22 @@ public class Primary {
         }
     }
 
+    public static Shop getShop() throws FileNotFoundException {
+        YaGson gson = new YaGson();
+        BufferedReader reader = null;
+        System.err.println("mikham be khunam--------------------------------------------------------------------------------------");
+        reader = new BufferedReader(new FileReader("Shop.json"));
+        System.err.println("khnudam ta cheshet dar ad--------------------------------------------------------------------------------------");
+        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+        while (jsonStreamParser.hasNext()) {
+            JsonElement jsonElement = jsonStreamParser.next();
+            if (jsonElement.isJsonObject()) {
+                Shop shop = gson.fromJson(jsonElement, Shop.class);
+                return shop;
+            }
+        }
+        return null;
+    }
 
 
 }
