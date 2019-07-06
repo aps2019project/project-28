@@ -2,13 +2,11 @@ package Model;
 
 import Controller.menu.Battle;
 import Controller.menu.Graphics.FXMLController.BattleFXMLC;
-import Model.Graphics.HermioneGraphics;
 import Model.Graphics.Listeners.*;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
 import Model.account.Account;
 import Model.account.Deck;
-import Model.account.Shop;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
@@ -22,33 +20,24 @@ import Model.card.spell.Targets.*;
 import Model.item.Collectable;
 import Model.item.Item;
 import Model.item.ItemActions.*;
-import Model.item.OnItemDetailPresentedListener;
+import View.Listeners.OnItemDetailPresentedListener;
 import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
-import com.sun.scenario.effect.impl.prism.PrImage;
 import exeption.*;
-import javafx.animation.*;
+import javafx.animation.Animation;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.toRadians;
 
 public class Primary {
 
@@ -63,29 +52,14 @@ public class Primary {
     public  static  ArrayList<Card> cards = new ArrayList<>();
     public static ArrayList<Account> accounts = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException{
-        Primary.Json();
-        Primary.graphicsJson();
-        writeJson("Spell.json", spells);
-        writeJson("Minion.json", minions);
-        writeJson("Hero.json", heroes);
-        writeJson("Usables.json", usables);
-        writeJson("Collectables.json",collectables);
-        writeJson("Shop.json", Shop.getInstance());
+
+    public static void getItems(){
+        items.addAll(usables);
+        items.addAll(collectables);
     }
 
-    public static Shop getShop() throws FileNotFoundException {
-        YaGson gson = new YaGson();
-        BufferedReader reader = new BufferedReader(new FileReader("Shop.json"));
-        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
-        while (jsonStreamParser.hasNext()) {
-            JsonElement jsonElement = jsonStreamParser.next();
-            if (jsonElement.isJsonObject()) {
-                Shop shop = gson.fromJson(jsonElement, Shop.class);
-                return shop;
-            }
-        }
-        return null;
+    public static void main(String[] args) throws IOException{
+        Primary.Json();
     }
 
     public static void getHeroes() throws FileNotFoundException {
@@ -175,9 +149,7 @@ public class Primary {
         cards.addAll(spells);
     }
 
-    public static void getItems(){
-        items.addAll(usables);
-        items.addAll(collectables);
+    public static void pre() throws IOException, DeckAlreadyHasThisItemException, DeckAlreadyHasAHeroException, FullDeckException, DeckAlreadyHasThisCardException {
     }
 
     public static void setDefaultDeck(Deck deck) throws IOException {
@@ -217,9 +189,13 @@ public class Primary {
         getCollectables();
         getCards();
         getItems();
+
         getAccounts();
         Account.updateAccounts();
+        ;
         generateAI();
+
+
     }
 
     private static void generateAI() throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
@@ -327,7 +303,7 @@ public class Primary {
         fileWriter.close();
     }
 
-    private static void Json(){
+    public static void Json() throws IOException {
         //Spell
         spells.add(new Spell("Total Disarm", 1000, 0, -1, 1, "disarm till the end",
                 TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction()));
@@ -371,6 +347,9 @@ public class Primary {
                 TargetHeroSurroundings.getTargetInstance(), ActionKillMinion.getAction()));
         spells.add(new Spell("Shock", 1200, 1, 2, 0, "an enemy card will be stuned, duration : 2",
                 TargetEnemyCard.getTargetInstance(), ActionStun.getAction()));
+
+        writeJson(spells, "Spell.json");
+
         //Minion
         SpecialPower nullSpecialPower =  new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
                 null, ActionVoid.getAction());
@@ -438,7 +417,7 @@ public class Primary {
         minions.add(new Minion("One Eye Giant", 500, 7, 12,
                 11, new Hybrid(), 3,
                 new SpecialPower("One Eye Giant SpecialPower", 0, 0, 0, -2, "",
-                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks surrounding minions 2 points, on death"));
+                        TargetRandomEnemyMinionInSurrounding.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks surrounding minions 2 points, on death"));
         minions.add(new Minion("Venomous Snake", 300, 4, 5,
                 6, new Range(), 4,
                 new SpecialPower("VenomousSnake", 0, 0, 0, 3, "",
@@ -469,7 +448,7 @@ public class Primary {
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
 
         SpecialPower theWizard =  new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
-                RandomMinionInSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
+                TargetRandomEnemyMinionInSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
         theWizard.addAction(ActionChangeHPBuff.getAction(), -1, 1);
         minions.add(new Minion("The Wizard", 550, 4, 5,
                 4, new Range(), 3, theWizard, SPATime.PASSIVE
@@ -537,7 +516,9 @@ public class Primary {
                 6, new Melee(), 0, new SpecialPower("Arzhangs SpecialPower", 0, 0, 0, 0, "",
                 null, ActionCombo.getAction())
                 , SPATime.COMBO, "SPActionCombo"));
+        writeJson(minions, "Minion.json" );
         //Hero
+        ArrayList<Hero> heroes = new ArrayList<>();
         heroes.add(new Hero("White Demon", 8000, 50, 4, new Melee(), 0,
                 new SpecialPower("White Demon", 0, 1, -1, 4, "",
                         TargetSingleCell.getTargetInstance(), ActionChangeAPBuff.getAction())
@@ -576,6 +557,9 @@ public class Primary {
                 0, 0, "a hybrid hero with a special power of  holy buffs continuously"));
         heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4, nullSpecialPower
                , 0, 0, "just a hybrid hero"));
+
+        writeJson(heroes, "Hero.json");
+
         //item
         usables.add(new Usable("Wisdom Crown", 300, 3, 1, "increases mana first 3 turn",
                 TargetSingleCell.getTargetInstance(), ItemActionExtraMana.getItemAction()));
@@ -599,7 +583,9 @@ public class Primary {
                 TargetOwnCard.getTargetInstance(), ItemActionChangeAPBuff.getItemAction()));
         usables.add(new Usable("‌Baptism", 20000, 2, 0, "every minion when spawns gets holy buff, duration : 2",
                 TargetOwnMinion.getTargetInstance(), ItemActionBaptism.getItemAction()));
-        //collectable
+
+        writeJson(usables, "Usables.json");
+
         collectables.add(new Collectable("NooshDaru", 1, 6, "increases health point of a random card 6 units",
                 TargetRandomOwn.getTargetInstance(), ItemActionChangeHP.getItemAction()));
         collectables.add(new Collectable("Two Headed Arrow", 1, 2, "increases attack point of random ranged or hybrid 2 units",
@@ -618,20 +604,10 @@ public class Primary {
                 TargetRandomOwn.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Chineese Sword", 1, 5, "5 attack points for melee",
                 TargetMelee.getTargetInstance(), ItemActionChangeAP.getItemAction()));
+        writeJson(collectables, "Collectables.json");
     }
-    private static void graphicsJson(){
-        for (Hero hero : heroes) {
-            hero.getGraphics().setUnits("resources/units/boss_candypanda.png");
-            hero.getGraphics().setUnitGifs("resources/unit_gifs/boss_borealjuggernaut_breathing.gif");
-        }
 
-        for (Minion minion : minions) {
-            minion.getGraphics().setUnits("resources/units/boss_candypanda.png");
-            minion.getGraphics().setUnitGifs("resources/unit_gifs/boss_borealjuggernaut_breathing.gif");
-        }
-
-    }
-    private static <E> void writeJson(String path, E... arrays) throws IOException {
+    private static <E> void writeJson(ArrayList<E> arrays, String path) throws IOException {
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(path, false);
         for (E e:
@@ -642,12 +618,24 @@ public class Primary {
         fileWriter.close();
     }
 
-    public static void initGraphics(){
+    public static void initGraphics() throws FileNotFoundException {
+        setHermionesAvatars();
         setGraphicsForHermiones();
         setIconForCards();
         setAccountAvatars();
         setItemListeners();
         setItemGraphics();
+    }
+
+    public static void setHermionesAvatars() throws FileNotFoundException {
+        for (Hero hero : heroes) {
+            hero.getGraphics().setUnits("resources/units/boss_andromeda.png");
+            hero.getGraphics().setUnitGifs("resources/unit_gifs/boss_andromeda_breathing.gif");
+        }
+        for (Minion minion : minions) {
+            minion.getGraphics().setUnits("resources/units/boss_andromeda.png");
+            minion.getGraphics().setUnitGifs("resources/unit_gifs/boss_andromeda_breathing.gif");
+        }
     }
 
     private static void setGraphicsForHermiones(){
@@ -666,7 +654,6 @@ public class Primary {
             public void show(Cell cell){
                 BattleFXMLC controller = (BattleFXMLC)Battle.getMenu().getGraphic().getController();
                 ImageView imageView = controller.getCell(cell.getX(), cell.getY());
-                System.err.println(Primary.heroes.get(0).getGraphics().getUnits());
                 imageView.setImage(new Image(hermione.getGraphics().getUnits()));
                 final Animation animation = new SpriteAnimation(
                     imageView,
@@ -738,10 +725,17 @@ public class Primary {
             @Override
             public void show(Cell cell) {
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
-                Cell start = hermione.getLocation();
-                ImageView source = battle.getCell(start.getX(), start.getY());
-                source.setImage(null);
-                hermione.getGraphics().onSpawn(cell);
+                ImageView imageView = battle.getCell(cell.getX(), cell.getY());
+                final Animation animation = new SpriteAnimation(
+                        imageView,
+                        Duration.millis(2000),
+                        8, 1,
+                        1024/10 , 0,
+                        1024/10, 1024/10
+                );
+                imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                animation.setCycleCount(Animation.INDEFINITE);
+                animation.play();
             }
         });
 

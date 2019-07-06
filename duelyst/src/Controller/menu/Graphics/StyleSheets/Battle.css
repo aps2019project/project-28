@@ -8,21 +8,15 @@
 }
 
 .cell{
-     -fx-fill: #ffffff70;
+     -fx-fill: ffffff70;
      -fx-width: 20;
      -fx-height: 25;
 }
 
 .cellEntered{
-    -fx-fill: #ffffff97;
+    -fx-fill: ffffff97;
     -fx-width: 20;
     -fx-height: 25;
-}
-
-.cellSelected{
-     -fx-fill: #3d73e097;
-     -fx-width: 20;
-     -fx-height: 25;
 }
 
 .mana{
@@ -44,7 +38,11 @@
 }
 
 .specialPower{
-     -fx-image: url("../../../../resources/ui/collection_card_rarity_epic.png");
+     -fx-image: url("../../../../resources/ui/collection_card_rarity_legendary.png");
+}
+
+.specialPowerDragged{
+  -fx-image: url("../../../../resources/ui/collection_card_rarity_epic.png");
 }
 
 .specialPowerDisabled{

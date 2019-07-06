@@ -1,7 +1,6 @@
 package Model.account;
 
 import Model.Primary;
-import Model.card.OnCardDetailsPresentedListener;
 import View.Listeners.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
@@ -58,23 +57,6 @@ public class Collection {
         this.setItems(newItems);
         this.getDecks().forEach(Deck::updateDeck);
     }
-
-
-    public void search(String name) throws InvalidCardException, InvalidItemException {
-        if (this.hasCard(name)) {
-            Card card = this.getCard(name);
-            for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
-                presenter.showCardDetail(card);
-            }
-        } else if (this.hasItem(name)) {
-            Item item = this.getItem(name);
-//            for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
-//                presenter.showItemDetail(item);
-//            }
-        }
-        throw new InvalidCardException();
-    }
-
 
     public void importDeck(String name) throws InvalidDeckException {
         if(doesDefaultDeckExist(name)){
@@ -202,8 +184,7 @@ public class Collection {
 
     public boolean hasCard(String name) {
         for (Card collectionCard : cards) {
-            System.err.println(collectionCard.getName());
-            if (collectionCard.getName().toLowerCase().equals(name.toLowerCase())) {
+            if (collectionCard.getName().equals(name)) {
                 return true;
             }
         }
@@ -223,7 +204,7 @@ public class Collection {
     public Card getCard(String name) throws InvalidCardException {
         for (Card card :
                 cards) {
-            if (card.getName().toLowerCase().equals(name.toLowerCase())) {
+            if (card.getName().equals(name)) {
                 return card;
             }
         }
@@ -243,7 +224,7 @@ public class Collection {
     public boolean hasItem(String name) {
         for (Usable item :
                 usables) {
-            if (item.getName().toLowerCase().equals(name.toLowerCase())) {
+            if (item.getName().equals(name)) {
                 return true;
             }
         }
@@ -273,7 +254,7 @@ public class Collection {
     public Usable getItem(String name) throws InvalidItemException {
         for (Usable item :
                 usables) {
-            if (item.getName().toLowerCase().equals(name.toLowerCase())) {
+            if (item.getName().equals(name)) {
                 return item;
             }
         }

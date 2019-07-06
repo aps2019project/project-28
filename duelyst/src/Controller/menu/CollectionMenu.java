@@ -12,8 +12,7 @@ import View.Listeners.OnDeckSelectorClickedListener;
 import com.gilecode.yagson.YaGson;
 import exeption.*;
 
-public class
-CollectionMenu extends Menu implements DeckSelectorHavingMenu{
+public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
 
     private static CollectionMenu menu;
     private Collection tempCollection;
