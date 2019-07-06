@@ -1,11 +1,19 @@
 package Controller.menu.Graphics;
 
+import Controller.menu.Graphics.FXMLController.CollectionCardHermioneFXMLC;
+import Controller.menu.Graphics.FXMLController.SearchBarFXMLC;
 import View.MenuHandler;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class GraphicsControls {
     //will set the buttons styleID and handles the change for when it's pressed !
@@ -57,6 +65,20 @@ public class GraphicsControls {
             }
         });
 
+    }
+
+    public static SearchBarFXMLC addSearchBar(VBox vbox , Class clas){
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(clas.getClassLoader().getResource(
+                "Controller/menu/Graphics/FXMLs/CollectionCardHermione.fxml")));
+        try {
+            Parent root = loader.load();
+            vbox.getChildren().add(root);
+            return loader.getController();
+        }catch(Exception e) {
+            System.err.println("unexpected Exception in loading the search bar !");
+            e.printStackTrace();
+        }
+        return null ;
     }
 
 

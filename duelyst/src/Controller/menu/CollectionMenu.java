@@ -71,6 +71,7 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
         }
     }
 
+
     public Deck createNewDeck(String deckName) throws DeckAlreadyExistException {
         if (this.tempCollection.hasDeck(deckName)) throw new DeckAlreadyExistException();
         return this.tempCollection.addNewDeck(deckName);

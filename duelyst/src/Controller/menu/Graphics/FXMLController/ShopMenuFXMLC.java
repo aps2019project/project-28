@@ -1,6 +1,8 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.Graphics.GraphicsControls;
+import Controller.menu.ShopMenu;
+import Model.account.Shop;
 import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
@@ -13,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -28,9 +31,13 @@ public class ShopMenuFXMLC extends FXMLController {
     private Label balance ;
     @FXML
     private ScrollPane scrollPane ;
+    @FXML
+    private VBox theRoot ;
     private VBox cardsVbox = new VBox() , itemsVbox = new VBox() ;
     private List<Card> cards = new ArrayList<>();
     private List<Item> items = new ArrayList<>();
+    private int selectedTab ;
+    private SearchBarFXMLC searchBarFXMLC ;
 
     @Override
     public void buildScene() {
@@ -42,11 +49,101 @@ public class ShopMenuFXMLC extends FXMLController {
         new Thread(this::makeItemsVBox);
 
         GraphicsControls.setBackButtonOnPress(backButton);
-        backButton.setOnAction(e -> {
+//        backButton.setOnAction(e -> {
 //            ShopMenu.getMenu().save() ;
-            MenuHandler.exitMenu();
-        });
+//            MenuHandler.exitMenu();
+//        });
 
+        theRoot.getChildren().remove(scrollPane);
+        searchBarFXMLC = GraphicsControls.addSearchBar(theRoot , this.getClass());
+        theRoot.getChildren().add(scrollPane);
+        searchBarFXMLC.getFindButton().setOnAction(e -> search());
+
+
+        setTabPressedStuff();
+
+    }
+
+    private void search() {
+        String search = searchBarFXMLC.getSearchText();
+        VBox v ;
+        if (search.isEmpty()) {
+            if (selectedTab == 1) v = cardsVbox ;
+            else v = itemsVbox ;
+            scrollPane.setContent(v);
+            return ;
+        }
+
+        v = new VBox() ;
+        v.setSpacing(15);
+        for (Card card : Shop.getInstance().getCollection().getCards()){
+            if (card.getName().contains(search)){
+                makeCardCard(card , v);
+            }
+        }
+        for (Usable item : menu.getAccount().getCollection().getItems()){
+            if (item.getName().contains(search)){
+                makeItemCard(item , v);
+            }
+        }
+    }
+
+
+    public void updateBalance() {
+        balance.setText("Balance : " + menu.getAccount().getMoney() + "$");
+    }
+
+    private void makeCardsVBox() {
+        cardsVbox.setSpacing(15);
+        for (Card cart : Card.getCards()) {
+            if (!cards.contains(cart)) {
+                cards.add(cart);
+                makeCardCard(cart , cardsVbox);
+            }
+        }
+    }
+
+    private void makeCardCard(Card cart , VBox vbox) {
+        FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                "Controller/menu/Graphics/FXMLs/CardCard.fxml")));
+        try {
+            Parent card = rootLoader.load();
+            CardCardFXMLC fxmlc = rootLoader.getController();
+            fxmlc.buildCardCard(cart, menu.getAccount(), this);
+            vbox.getChildren().add(card);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void makeItemsVBox() {
+        itemsVbox.setSpacing(15);
+
+        for (Item item : Usable.getItems()){
+            if (item instanceof Usable && (!items.contains(item))){
+                items.add(item);
+                makeItemCard((Usable) item , itemsVbox);
+            }
+        }
+
+    }
+
+    private void makeItemCard(Usable item, VBox vbox) {
+        FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                "Controller/menu/Graphics/FXMLs/ItemCard.fxml")));
+        try {
+            Parent card = rootLoader.load();
+            ItemCardFXMLC fxmlc = rootLoader.getController();
+            fxmlc.builditemCard(item, menu.getAccount() , this);
+            vbox.getChildren().add(card);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void setTabPressedStuff() {
         tabPressed(cardTab);
         cardTab.setOnMousePressed(e -> tabPressed(cardTab));
         itemTab.setOnMousePressed(e -> tabPressed(itemTab));
@@ -64,52 +161,6 @@ public class ShopMenuFXMLC extends FXMLController {
         });
         scrollPane.setPadding(new Insets(0 , 60 , 0 , 60));
         updateBalance();
-
-    }
-
-    public void updateBalance() {
-        balance.setText("Balance : " + menu.getAccount().getMoney() + "$");
-    }
-
-    private void makeCardsVBox() {
-        cardsVbox.setSpacing(15);
-        for (Card cart : Card.getCards()) {
-            if (!cards.contains(cart)) {
-                cards.add(cart);
-                FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
-                        "Controller/menu/Graphics/FXMLs/CardCard.fxml")));
-                try {
-                    Parent card = rootLoader.load();
-                    CardCardFXMLC fxmlc = rootLoader.getController();
-                    fxmlc.buildCardCard(cart, menu.getAccount(), this);
-                    cardsVbox.getChildren().add(card);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-
-    private void makeItemsVBox() {
-        itemsVbox.setSpacing(15);
-
-        for (Item item : Usable.getItems()){
-            if (item instanceof Usable && (!items.contains(item))){
-                items.add(item);
-                FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
-                        "Controller/menu/Graphics/FXMLs/ItemCard.fxml")));
-                try {
-                    Parent card = rootLoader.load();
-                    ItemCardFXMLC fxmlc = rootLoader.getController();
-                    fxmlc.builditemCard((Usable)item , menu.getAccount() , this);
-                    itemsVbox.getChildren().add(card);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
     }
 
     private void tabPressed(Button tab) {
