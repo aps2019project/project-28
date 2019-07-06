@@ -178,15 +178,13 @@ public class BattleFXMLC extends FXMLController {
     }
 
     private void updateTurn() {
-        if(Battle.getMenu().getPlayer() == Battle.getMenu().getAccount().getPlayer()){
-            firstPlayerTurn.getStyleClass().add("turnEnable");
-            secondPlayerTurn.getStyleClass().remove("turnEnable");
-            secondPlayerTurn.getStyleClass().add("turnDisable");
+        if(Battle.getMenu().getTurn() % 2 == 0){
+            firstPlayerTurn.setImage(new Image("resources/profile_icons/borders/gold@2x.png"));
+            secondPlayerTurn.setImage(new Image("resources/profile_icons/borders/silver@2x.png"));
         }
         else {
-            secondPlayerTurn.getStyleClass().add("turnEnable");
-            firstPlayerTurn.getStyleClass().remove("turnEnable");
-            firstPlayerTurn.getStyleClass().add("turnDisable");
+            secondPlayerTurn.setImage(new Image("resources/profile_icons/borders/gold@2x.png"));
+            firstPlayerTurn.setImage(new Image("resources/profile_icons/borders/silver@2x.png"));
         }
     }
 

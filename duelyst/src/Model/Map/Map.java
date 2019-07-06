@@ -4,7 +4,7 @@ import Model.Primary;
 import Model.item.Collectable;
 import Model.item.Flag;
 import exeption.InvalidCellException;
-import org.jetbrains.annotations.Nullable;
+import org.spockframework.util.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -101,7 +101,6 @@ public class Map {
         return getCell(cell.getX(),cell.getY());
     }
 
-    @Nullable
     public ArrayList<Cell> getPath(Cell start,Cell end,int maxTurns){
         ArrayList<Cell>retVal=this.findPath(start,end,0,maxTurns);
         if(retVal!=null)
