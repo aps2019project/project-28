@@ -8,13 +8,14 @@ import exeption.HandFullException;
 import exeption.InvalidCardException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Hand {
 
     private ArrayList<Card> deck = new ArrayList<>();
     private static ArrayList<OnHandPresentedListener> handPresenters = new ArrayList<>();
     public static final int SIZE = 5;
-    private Card[] cards = new Card[SIZE];
+    private ArrayList<Card> cards = new ArrayList<>();
     private Card nextCard;
 
     public Hand(Deck deck) {
@@ -26,27 +27,23 @@ public class Hand {
             this.deck.add(card);
         }
         for (int i = 0; i < SIZE; i++) {
-            this.cards[i] = this.deck.get(i);
+            this.cards.add(this.deck.get(i));
         }
         this.nextCard = this.deck.get(SIZE);
     }
 
     public void updateHand() throws DeckIsEmptyException, HandFullException {
-        for (int i = 0; i < SIZE; i++) {
-            if (cards[i] == null) {
-                this.addCard();
-            }
+        if(cards.size() < SIZE){
+            this.addCard();
         }
     }
 
     private void addCard() throws DeckIsEmptyException, HandFullException {
         if (nextCard != null) {
-            for (int i = 0; i < SIZE; i++) {
-                if (cards[i] == null) {
-                    cards[i] = nextCard;
-                    setNextCard();
-                    return;
-                }
+            if(cards.size() < SIZE){
+                cards.add(nextCard);
+                setNextCard();
+                return;
             }
             throw new HandFullException();
         }
@@ -62,18 +59,13 @@ public class Hand {
     }
 
     private void removeCard(Card card) {
-        for (int i = 0; i < SIZE; i++) {
-            if (cards[i].equals(card)) {
-                cards[i] = null;
-                return;
-            }
+        if(cards.size() > 0){
+            cards.remove(card);
         }
     }
 
-    public void handleHand(Card card) throws DeckIsEmptyException, HandFullException {
-        System.err.println("debug");
+    public void handleHand(Card card){
         removeCard(card);
-        addCard();
     }
 
     public static ArrayList<OnHandPresentedListener> getHandPresenters() {
@@ -85,8 +77,10 @@ public class Hand {
     }
 
     public Card getCard(int cardID) throws InvalidCardException {
+//        System.err.println("you want this" + cardID);
         for (Card card : this.cards) {
-            if (card.getID() == cardID) return card;
+//            System.err.println("we have this :"+card.getName()+card.getCardID());
+            if (card.getCardID() == cardID) return card;
         }
         throw new InvalidCardException();
     }
@@ -95,7 +89,7 @@ public class Hand {
         return nextCard;
     }
 
-    public Card[] getCards() {
+    public ArrayList<Card> getCards() {
         return cards;
     }
 }

@@ -13,7 +13,6 @@ public class CommandHandler {
     }
 
 
-
     //commandHandler
     public  void handleCommand(String command) {
         command=command.toLowerCase();
@@ -34,7 +33,6 @@ public class CommandHandler {
             } else if (MenuHandler.getCurrentMenu() instanceof ShopMenu){
                 ShopMenuCommandHandler(word);
             }else if(MenuHandler.getCurrentMenu() instanceof Battle){
-                System.err.println("battleCommandHandling");
                 BattleCommandHandler(word,command);
             }else if(MenuHandler.getCurrentMenu() instanceof ChooseBattleModeMenu){
                 ChooseBattleModeMenuCommandHandler(word);
@@ -103,7 +101,6 @@ public class CommandHandler {
             try {
                 menu.selectDeck(word[2]);
             } catch (InvalidDeckException e) {
-                System.err.println(word[2]);
                 System.out.println("Couldnt find the deck");
             }
         }
@@ -206,7 +203,6 @@ public class CommandHandler {
         }else if(word[0].equals("select") && word[1].equals("deck")){
             String name = getName(word , 2) ;
             try {
-                System.err.println(name);
                 menu.selectDeck(name);
             } catch (InvalidDeckException e) {
                 System.out.println("Couldn't find the Deck!");
@@ -248,7 +244,6 @@ public class CommandHandler {
             } catch (CardExistException e) {
                 System.out.println("You already have this Card. it is not wise to buy a same card twice");
             } catch (InvalidCardException e) {
-                System.err.println("hhhhhhhhhhhhhhhhhhhhh");
                 System.out.println("Me lord! we just ran out of " + name + ". im sorry!");
             } catch (ItemExistExeption itemExistExeption) {
                 System.out.println("You already have this Item. it is not wise to buy a same item twice");
@@ -258,7 +253,7 @@ public class CommandHandler {
             } catch (NotEnoughMoneyException e) {
                 System.out.println("Oops you are not as reach as you thought!");
             } catch (InvalidItemException e) {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
+                e.printStackTrace();
             }
         }else if(word[0].equals("sell")){
             String name = getName(word , 1);
@@ -266,6 +261,8 @@ public class CommandHandler {
                 menu.sell(name);
             } catch (InvalidCardException e) {
                 System.out.println("Smart Move But you cant sell a Card/Item that you dont have");
+            } catch (InvalidItemException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -312,12 +309,6 @@ public class CommandHandler {
         Battle menu = (Battle) MenuHandler.getCurrentMenu();
 
         menu.getMatch().addCommand(command,menu.getTurn());
-
-        System.err.println("word:");
-        for (int i = 0; i < word.length; i++) {
-            System.err.print(word[i]);
-        }
-
         if (word[0].equals("game") && word[1].equals("info")) {
             menu.gameInfo();
         } else if (word[0].equals("show") && word.length > 1) {
@@ -353,7 +344,6 @@ public class CommandHandler {
                 System.out.println("im afraid that you dont acquire this item");
             }
         } else if (word[0].equals("move") && word[1].equals("to")) {
-            System.err.println();
             try {
                 menu.move(Integer.parseInt(word[2]), Integer.parseInt(word[3]));
             } catch (NoCardHasBeenSelectedException e) {
@@ -422,8 +412,6 @@ public class CommandHandler {
             }
         }else if(word[0].equals("end") && word[1].equals("turn")){
             try {
-
-                System.err.println("end turn");
                 menu.endTurn();
             } catch (HandFullException | DeckIsEmptyException ignored) {
                 // :D

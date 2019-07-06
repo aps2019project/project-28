@@ -13,13 +13,14 @@ import Model.account.player.GGI;
 import Model.card.Card;
 import Model.Primary;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+
+import java.awt.*;
 
 
 public class GraphicView extends Application implements View{
@@ -31,17 +32,13 @@ public class GraphicView extends Application implements View{
     public static void setScene(Scene scene) {
         GraphicView.stage.setScene(scene);
         stage.show();
-
     }
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         setGIs();
         Primary.initGraphics();
-
-
         //TODO just so there is another deck you know !
         {
             Account.getAccount("a").getCollection().addNewDeck("aDeck");
@@ -49,16 +46,13 @@ public class GraphicView extends Application implements View{
             Account.getAccount("a").getCollection().getDeckByName("aDeck").addCardToDeck(Card.getCard("simorgh"));
 //            Account.getAccount("a").getCollection().getDeckByName("aDeck").validateDeck();
         }
-
         configStage(primaryStage);
-
         //TODO -> handle exit button
         stage.setOnCloseRequest(e -> {
             try {
                 stop();
             } catch (Exception ignored) {}
         });
-
         initializeGraphicMenu();
         MenuHandler.startMenus();
         new Thread(() -> {
@@ -67,7 +61,6 @@ public class GraphicView extends Application implements View{
                 MenuHandler.nextMove();
             }
         }).start();
-
     }
 
     private void configStage(Stage primaryStage) {
@@ -77,7 +70,6 @@ public class GraphicView extends Application implements View{
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.setResizable(false);
         stage.setFullScreenExitHint("");
-        stage.setOnHiding(event -> System.exit(0));
     }
     private static void initializeGraphicMenu() {
         setRootPaths();

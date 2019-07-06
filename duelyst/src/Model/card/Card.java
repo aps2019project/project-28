@@ -12,7 +12,6 @@ public abstract class Card {
     private static ArrayList<Card> cards= Primary.cards;
 
     public static int uniqueID =0;
-
     protected Collection superCollection;
     private int cardID;
     private String name;
@@ -23,7 +22,6 @@ public abstract class Card {
     private CardGraphics cardGraphics;
 
     public Card( String name, int price, int manaPoint, String info) {
-        this.cardID = uniqueID++;
         this.name = name;
         this.price = price;
         this.manaPoint = manaPoint;

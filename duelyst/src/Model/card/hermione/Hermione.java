@@ -33,7 +33,7 @@ public abstract class Hermione extends Card {
     protected BuffEffectsOnHermione buffEffects = new BuffEffectsOnHermione(this);
     protected Spell SpecialPower;
     protected ArrayList<Buff> appliedBuffs=new ArrayList<>() ;
-    protected HermioneGraphics graphics = new HermioneGraphics(this);
+    protected HermioneGraphics graphics;
 
     public Hermione(String name, int price, int manaPoint, int healthPoint, int attackPoint
             , Spell specialPower, AttackType attackType, int range, String info) {
@@ -45,6 +45,7 @@ public abstract class Hermione extends Card {
         this.attackType = attackType;
         this.range = range;
         this.originalHealthPoint = this.healthPoint;
+        this.graphics = new HermioneGraphics(this);
     }
 
 

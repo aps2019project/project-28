@@ -1,6 +1,7 @@
 package Controller.menu;
 
 import Controller.Game;
+import Controller.GameMode.ClassicMode;
 import Controller.GameMode.GameMode;
 import Model.Map.Cell;
 import Model.account.player.Player;
@@ -18,7 +19,7 @@ import Model.card.hermione.Minion;
 import Model.card.hermione.SPATime;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
-import View.Listeners.OnItemDetailPresentedListener;
+import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnHandPresentedListener;
 import View.MenuHandler;
 import exeption.*;
@@ -39,7 +40,9 @@ public class Battle extends Menu {
     private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
 
     private Match match;
-    private GameMode gameMode;
+    // TODO: 6/27/19 in khat e Zr age menu ha OK shode lazem nist new she
+
+    private GameMode gameMode=new ClassicMode();
 
 
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
@@ -104,18 +107,17 @@ public class Battle extends Menu {
 
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
         Card card = this.account.getPlayer().getHand().getCard(cardID);
-
-        this.account.getPlayer().deploy(card, this.map.getCell(x, y),this.getEnemyPlayer());
-
-        if (card instanceof Hermione)
-            this.getMap().getCell(x,y).setCardOnCell((Hermione) card);
-
-        try {
+        if (card instanceof Hermione) {
+            this.account.getPlayer().deploy(card, this.map.getCell(x, y));
+            this.account.getPlayer().changeMana((-1) * card.getManaPoint());
             this.account.getPlayer().getHand().handleHand(card);
-        } catch (DeckIsEmptyException | HandFullException e) {
-            e.printStackTrace();
+        } else if (card instanceof Spell) {
+            try {
+                ((Spell) card).deploy(this.account.getPlayer(), Battle.getMenu().getEnemy(this.account), Battle.getMenu().getMap().getCell(x, y));
+                this.account.getPlayer().changeMana((-1) * card.getManaPoint());
+                this.account.getPlayer().getHand().handleHand(card);
+            } catch (InvalidCellException ignored) { ignored.printStackTrace();}
         }
-
         // TODO: 5/5/19 one more exception  (read the doc)
         handleDeaths();
     }
@@ -165,9 +167,9 @@ public class Battle extends Menu {
                 select(((Item) obj).getID());
             else if(obj instanceof Card) {
                 if(obj instanceof Hermione)
-                select(((Hermione) obj).getID());
+                select(((Hermione) obj).getCardID());
                 if(obj instanceof Spell)
-                    select(((Spell)obj).getID());
+                    select(((Spell)obj).getCardID());
             }
             return;
         }
@@ -175,7 +177,6 @@ public class Battle extends Menu {
     }
 
     public void select(int ID) throws InvalidCardException, InvalidItemException {
-        System.err.println();
         Deck deck = this.account.getPlayer().getDeck();
         // TODO: 2019-06-26 player chera hasItem dare ArshiA ya
         if (this.account.getPlayer().hasItem(ID)) {
@@ -184,7 +185,7 @@ public class Battle extends Menu {
         } else if (deck.hasCard(ID)) {
             //// TODO: 6/8/19 instance of
             for (Minion minion : this.account.getPlayer().getMinionsInGame()) {
-                if (minion.getID() == ID) {
+                if (minion.getCardID() == ID) {
                     this.account.getPlayer().setSelectedCard(minion);
                     return;
                 }
@@ -232,7 +233,6 @@ public class Battle extends Menu {
     }
 
     public void attack(int cardID) throws NoCardHasBeenSelectedException, InvalidCardException, DestinationOutOfreachException, CantAttackException, InvalidCellException {
-        System.err.println();
         Hermione myHermione = (Hermione) this.account.getPlayer().getSelectedCard();
         Hermione enemyCard = (Hermione) this.getEnemy(this.account).getDeck().getCard(cardID);
         myHermione.attack(enemyCard,false);
@@ -305,13 +305,9 @@ public class Battle extends Menu {
         Cell cell = map.getCell(x, y);
         this.account.getPlayer().getDeck().getHero().applySpecialPower(cell);
         handleDeaths();
-
     }
 
     public void showHand() {
-        System.err.println("debug");
-        if(this.account!=null)
-        System.out.println("this.account = " + this.account);
         Hand hand = this.account.getPlayer().getHand();
         for (OnHandPresentedListener presenter : Hand.getHandPresenters()) {
             presenter.showHand(hand);
@@ -321,8 +317,6 @@ public class Battle extends Menu {
 
     @Deprecated
     private void handleDeaths() {
-        // TODO: 6/6/19 Fatteme marg ha ok budan aya? grave yard o ina
-        //
 //        for (int i = 0; i < 2; i++) {
 //            ArrayList<Minion> deadMinions = new ArrayList<>();
 //            for (Minion minion : this.player[i].getMinionsInGame()) {
@@ -364,7 +358,7 @@ public class Battle extends Menu {
 
         this.account = this.getEnemy(this.account).getUser();
         swapPlayers();
-        System.err.println(this.account.getName() + " , " + this.getEnemy(this.account).getUser().getName());
+//        System.err.println(this.account.getName() + " , " + this.getEnemy(this.account).getUser().getName());
         /*handling Mana*/
         this.account.getPlayer().setMaxMana(MAX_MANA_PER_TURN[Integer.min(turn, MAX_MANA_PER_TURN.length - 1)]);
         this.account.getPlayer().reFillMana();
@@ -421,7 +415,7 @@ public class Battle extends Menu {
         /*
         * getting out of battle
         * */
-        MenuHandler.enterMenu(MainMenu.getMenu());
+        MenuHandler.setCurrentMenu(MainMenu.getMenu());
     }
 
     private void swapPlayers() {
@@ -501,7 +495,6 @@ public class Battle extends Menu {
 
     public void showCollectable() {
         for (Collectable collectable : this.account.getPlayer().getCollectables()) {
-            System.err.println(collectable.getName());
             for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
                 presenter.showItemDetail(collectable);
             }
