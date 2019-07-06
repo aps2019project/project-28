@@ -8,7 +8,7 @@ import exeption.InvalidCardException;
 import java.util.ArrayList;
 
 public abstract class Card {
-    private static ArrayList<Card> cards= Primary.cards;
+    private static ArrayList<Card> cards = Primary.cards;
 
     public static int uniqueID =0;
     protected Collection superCollection;
@@ -26,6 +26,7 @@ public abstract class Card {
         this.manaPoint = manaPoint;
         this.info = info;
         this.cardGraphics = new CardGraphics();
+//        this.cardID = uniqueID++;
     }
 
     public void setSuperCollection(Collection superCollection) {

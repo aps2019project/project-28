@@ -17,7 +17,12 @@ import java.util.function.Consumer;
 public class Shop {
 
     private static int INITIAL_AMOUNT=10;
-    private static Shop ourInstance = new Shop();
+    private static Shop ourInstance;
+    {
+        try {
+            ourInstance = Primary.getShop();
+        } catch (FileNotFoundException e) { e.printStackTrace(); }
+    }
     private Collection collection = new Collection();
 
     Map<Integer,Integer>cards=new HashMap<>();//cardId,amount
@@ -27,13 +32,12 @@ public class Shop {
         return ourInstance;
     }
 
-    private Shop() {
+    public Shop() {
         try {
-            ourInstance = Primary.getShop();
             fillCollection();
             fillCards();
             fillItems();
-        } catch (FileNotFoundException e) { e.printStackTrace(); }
+        }catch (Exception e){}
     }
 
     private void fillItems() {

@@ -194,6 +194,11 @@ public class AI extends Bot {
     @Override
     public void doYourMove() {
         this.play();
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         System.out.println("_____________________________________");
         System.out.println("AI output is : " + this.output);
         System.out.println("=====================================");

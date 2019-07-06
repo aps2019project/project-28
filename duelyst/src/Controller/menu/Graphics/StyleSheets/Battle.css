@@ -74,3 +74,11 @@
     -fx-font-size: 20.0;
     -fx-alignment: "CENTER";
 }
+
+.turnDisable{
+    -fx-image: url("../../../../resources/profile_icons/borders/silver@2x.png");
+}
+
+.turnEnable{
+    -fx-image: url("../../../../resources/profile_icons/borders/gold@2x.png");
+}

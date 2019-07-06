@@ -28,8 +28,12 @@ import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import com.sun.scenario.effect.impl.prism.PrImage;
+import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import exeption.*;
 import javafx.animation.*;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -47,8 +51,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static java.lang.Math.abs;
-import static java.lang.Math.toRadians;
+import static java.lang.Math.*;
 
 public class Primary {
 
@@ -66,12 +69,12 @@ public class Primary {
     public static void main(String[] args) throws IOException{
         Primary.Json();
         Primary.graphicsJson();
-        writeJson("Spell.json", spells);
-        writeJson("Minion.json", minions);
-        writeJson("Hero.json", heroes);
-        writeJson("Usables.json", usables);
-        writeJson("Collectables.json",collectables);
-        writeJson("Shop.json", Shop.getInstance());
+//        writeJson(spells,"Spell.json");
+        writeJson(minions,"Minion.json");
+        writeJson(heroes,"Hero.json");
+//        writeJson(usables,"Usables.json");
+//        writeJson(collectables,"Collectables.json");
+//        writeSingle(Shop.getInstance(), "Shop.json");
     }
 
     public static Shop getShop() throws FileNotFoundException {
@@ -217,8 +220,10 @@ public class Primary {
         getCollectables();
         getCards();
         getItems();
+        loadDefaultDecks();
         getAccounts();
         Account.updateAccounts();
+
         generateAI();
     }
 
@@ -226,7 +231,8 @@ public class Primary {
         //level 1
         Account.AI[1].clearCollection();
         Deck deck = new Deck("AIDeck",Account.AI[1].getCollection());
-                deck.addCardToDeck(Primary.heroes.get(0));
+        System.err.println("debug");
+               deck.addCardToDeck(Primary.heroes.get(0));
 
                 deck.addCardToDeck(Primary.minions.get(0));
                 deck.addCardToDeck(Primary.minions.get(8));
@@ -346,7 +352,7 @@ public class Primary {
         spells.add(new Spell("Poison Lake", 900, 5, 1, 0, "poisonCell, duration : 1",
                 TargetThreeByThree.getTargetInstance(), ActionPoisonCell.getAction()));
         Spell maddness = new Spell("Madness", 650, 0, 3, 4,"increases Attack Point 4 units, duration : 3, but the card will be disarmed",
-                TargetOwnCard.getTargetInstance(), ActionChangeAPBuff.getAction()) ;
+                TargetOwnCard.getTargetInstance(), ActionChangeAPBuff.getAction());
         maddness.addAction(ActionDisarm.getAction() , 0 , 1 );
         spells.add(maddness);
         spells.add(new Spell("All Disarm", 2000, 9, 1, 0, "all of enemy cards will be disarmed, duration : 1",
@@ -621,17 +627,18 @@ public class Primary {
     }
     private static void graphicsJson(){
         for (Hero hero : heroes) {
-            hero.getGraphics().setUnits("resources/units/boss_candypanda.png");
-            hero.getGraphics().setUnitGifs("resources/unit_gifs/boss_borealjuggernaut_breathing.gif");
+            hero.getGraphics().setUnits("resources/units/boss_borealjuggernaut.png", 1020/8, 1210/10, 8, 10);
+            hero.getGraphics().setUnitGifs("resources/units/boss_borealjuggernaut_single.png");
         }
 
         for (Minion minion : minions) {
-            minion.getGraphics().setUnits("resources/units/boss_candypanda.png");
-            minion.getGraphics().setUnitGifs("resources/unit_gifs/boss_borealjuggernaut_breathing.gif");
+            minion.getGraphics().setUnits("resources/units/boss_candypanda.png", 1024/10, 802/8, 10, 8);
+            minion.getGraphics().setUnitGifs("resources/units/boss_candyPanda_single.png");
+//            ("resources/units/boss_gol.png", 1970/14, 1020/7, 14, 7
         }
 
     }
-    private static <E> void writeJson(String path, E... arrays) throws IOException {
+    private static <E> void writeJson(ArrayList<E> arrays, String path) throws IOException {
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(path, false);
         for (E e:
@@ -639,6 +646,13 @@ public class Primary {
             gson.toJson(e, fileWriter);
             fileWriter.write("\n");
         }
+        fileWriter.close();
+    }
+    private static void writeSingle(Object obj, String path) throws IOException {
+        YaGson gson = new YaGson();
+        FileWriter fileWriter = new FileWriter(path, false);
+        gson.toJson(obj, fileWriter);
+        fileWriter.write("\n");
         fileWriter.close();
     }
 
@@ -666,14 +680,13 @@ public class Primary {
             public void show(Cell cell){
                 BattleFXMLC controller = (BattleFXMLC)Battle.getMenu().getGraphic().getController();
                 ImageView imageView = controller.getCell(cell.getX(), cell.getY());
-                System.err.println(Primary.heroes.get(0).getGraphics().getUnits());
                 imageView.setImage(new Image(hermione.getGraphics().getUnits()));
                 final Animation animation = new SpriteAnimation(
                     imageView,
                     Duration.millis(2000),
-                    8, 1,
+                    hermione.getGraphics().getRow(), 1,
                     0, 0,
-                    1024/10, 1024/10
+                    hermione.getGraphics().getUnitWidth(), hermione.getGraphics().getUnitHeight()
             );
             animation.setCycleCount(Animation.INDEFINITE);
             animation.play();
@@ -687,9 +700,9 @@ public class Primary {
                 final Animation animation = new SpriteAnimation(
                         battle.getCell(hermione.getLocation().getX(),hermione.getLocation().getY()),
                         Duration.millis(2000),
-                        8, 1,
-                        2*1024/10 , 0,
-                        1024/10, 1024/10
+                        hermione.getGraphics().getRow(), 1,
+                        2 *hermione.getGraphics().getUnitWidth() , 0,
+                        hermione.getGraphics().getUnitWidth(), hermione.getGraphics().getUnitHeight()
                 );
                 animation.setCycleCount(1);
                 animation.play();
@@ -709,9 +722,9 @@ public class Primary {
                 final Animation animation = new SpriteAnimation(
                         battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
                         Duration.millis(2000),
-                        8, 1,
-                        4*1024/10 , 0,
-                        1024/10, 1024/10
+                        hermione.getGraphics().getRow(), 1,
+                        4*hermione.getGraphics().getUnitWidth() , 0,
+                        hermione.getGraphics().getUnitWidth(), hermione.getGraphics().getUnitHeight()
                 );
                 animation.setCycleCount(2);
                 animation.play();
@@ -725,9 +738,9 @@ public class Primary {
                 final Animation animation = new SpriteAnimation(
                         battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
                         Duration.millis(2000),
-                        8, 1,
-                        1024/10 , 0,
-                        1024/10, 1024/10
+                        hermione.getGraphics().getRow(), 1,
+                        hermione.getGraphics().getUnitWidth(), 0,
+                        hermione.getGraphics().getUnitWidth(), hermione.getGraphics().getUnitHeight()
                 );
                 animation.setCycleCount(1);
                 animation.play();
@@ -739,9 +752,72 @@ public class Primary {
             public void show(Cell cell) {
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
                 Cell start = hermione.getLocation();
+                ArrayList<Cell> path = Battle.getMenu().getMap().getPath(start, cell, 2);
+                PathTransition first = move(start, path.get(0));
+                if(path.size() > 1){
+                    first.setOnFinished(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            battle.removeFromScene(first.getNode());
+                            PathTransition second = move(path.get(0), path.get(1));
+                            second.setOnFinished(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    battle.removeFromScene(second.getNode());
+                                    ImageView imageView = battle.getCell(cell.getX(), cell.getY());
+                                    imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                                    final Animation animation = new SpriteAnimation(
+                                            imageView,
+                                            Duration.millis(2000),
+                                            hermione.getGraphics().getRow(), 1,
+                                            0, 0,
+                                            hermione.getGraphics().getUnitWidth(), hermione.getGraphics().getUnitHeight()
+                                    );
+                                    animation.setCycleCount(Animation.INDEFINITE);
+                                    animation.play();
+                                }
+                            });
+                        }
+                    });
+                }
+                else {
+                    first.setOnFinished(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            battle.removeFromScene(first.getNode());
+                            ImageView imageView = battle.getCell(cell.getX(), cell.getY());
+                            imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                            final Animation animation = new SpriteAnimation(
+                                    imageView,
+                                    Duration.millis(2000),
+                                    hermione.getGraphics().getRow(), 1,
+                                    0, 0,
+                                    hermione.getGraphics().getUnitWidth(), hermione.getGraphics().getUnitHeight()
+                            );
+                            animation.setCycleCount(Animation.INDEFINITE);
+                            animation.play();
+                        }
+                    });
+                }
+
+            }
+            private PathTransition move(Cell start, Cell end){
+                BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                Path path = new Path(new MoveTo(battle.getX(start.getX()), battle.getY(start.getY())),
+                        new LineTo(battle.getX(end.getX()), battle.getY(end.getY())));
+                path.setVisible(false);
+                battle.addToScene(path);
+                ImageView imageView = new ImageView(new Image(hermione.getGraphics().getUnitGifs()));
+                imageView.setTranslateX(start.getX() * battle.getCellWidth());
+                imageView.setTranslateY((start.getY() - .5) * battle.getCellHeight());
+                imageView.setFitWidth(battle.getCellWidth());
+                imageView.setFitHeight(battle.getCellHeight());
+                battle.addToScene(imageView);
+                PathTransition pathTransition = new PathTransition(Duration.seconds(3), path, imageView);
+                pathTransition.play();
                 ImageView source = battle.getCell(start.getX(), start.getY());
                 source.setImage(null);
-                hermione.getGraphics().onSpawn(cell);
+                return pathTransition;
             }
         });
 
@@ -766,10 +842,10 @@ public class Primary {
 
     private static void setAccountAvatars(){
         for (Account account : accounts) {
-            account.setAvatar("resources/profile_icons/f3_f6_bundle_icon-2.png");
+            account.setAvatar("resources/dialogue/speech_portrait_abyssian@2x.png");
         }
         for (Account account : Account.AI) {
-            account.setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
+            account.setAvatar("resources/dialogue/speech_portrait_calibero@2x.png");
         }
     }
 

@@ -5,6 +5,7 @@ import Controller.menu.Menu;
 import Model.Graphics.Listeners.*;
 import Model.Map.Cell;
 import Model.card.hermione.Hermione;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,10 @@ public class HermioneGraphics extends SpellGraphics {
     private ArrayList<OnSpeacialPowerAppliedListeners> SPApliedListenrs = new ArrayList<>();
     private ArrayList<OnCardSelectedListener> selectedListeners = new ArrayList<>();
     private String units;
+    private double unitWidth;
+    private double unitHeight;
+    private int row;
+    private int column;
     private String unitGifs;
 
     // TODO: 6/11/19 onCardSelected where to use
@@ -87,8 +92,12 @@ public class HermioneGraphics extends SpellGraphics {
         this.selectedListeners.add(cardSelectedListener);
     }
 
-    public void setUnits(String units) {
+    public void setUnits(String units, double unitWidth, double unitHeight, int column, int row) {
         this.units = units;
+        this.unitWidth = unitWidth;
+        this.unitHeight = unitHeight;
+        this.column = column;
+        this.row = row;
     }
 
     public String getUnits() {
@@ -101,5 +110,21 @@ public class HermioneGraphics extends SpellGraphics {
 
     public void setUnitGifs(String unitGifs) {
         this.unitGifs = unitGifs;
+    }
+
+    public double getUnitHeight() {
+        return unitHeight;
+    }
+
+    public double getUnitWidth() {
+        return unitWidth;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
     }
 }

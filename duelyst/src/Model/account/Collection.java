@@ -2,6 +2,7 @@ package Model.account;
 
 import Model.Primary;
 import Model.card.OnCardDetailsPresentedListener;
+import Model.item.OnItemDetailPresentedListener;
 import View.Listeners.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
@@ -68,9 +69,9 @@ public class Collection {
             }
         } else if (this.hasItem(name)) {
             Item item = this.getItem(name);
-//            for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
-//                presenter.showItemDetail(item);
-//            }
+            for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
+                presenter.showItemDetail(item);
+            }
         }
         throw new InvalidCardException();
     }
@@ -105,6 +106,7 @@ public class Collection {
             Primary.defaultDecks.add(deck);
             Primary.defaultNames.add(name);
             Primary.setDefaultDeck(deck);
+
         }
     }
 

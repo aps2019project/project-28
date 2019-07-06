@@ -105,7 +105,7 @@ public class Battle extends Menu {
         this.map.getCell(cell).setCardOnCell(hermione);
     }
 
-    public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
+    public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException, HandFullException, DeckIsEmptyException {
         Card card = this.account.getPlayer().getHand().getCard(cardID);
         if (card instanceof Hermione) {
             this.account.getPlayer().deploy(card, this.map.getCell(x, y));
@@ -379,6 +379,7 @@ public class Battle extends Menu {
         // TODO: 5/5/19 other stuff maybe?
 
 
+        this.getGraphic().getController().updateScene();
         /*checkState*/
         if (this.gameMode.checkState()) {
             handleBattleFinish();

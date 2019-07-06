@@ -96,7 +96,7 @@ public abstract class Menu {
     }
 
     public void addMenuClickListener(OnMenuClickedListener presenter) {
-        System.err.println("presenter?");
+//        System.err.println("presenter?");
 //        if(this.menuPresenters.size()>0)
 //            throw new NullPointerException();
         this.menuPresenters.add(presenter);

@@ -37,6 +37,7 @@ public abstract class Item {
         this.perk = perk;
         this.duration = duration;
         this.info = info;
+//        this.itemID = Card.uniqueID++;
     }
 
     public static Item getItem(int itemID) throws InvalidItemException {

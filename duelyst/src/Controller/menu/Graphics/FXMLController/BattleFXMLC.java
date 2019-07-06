@@ -14,6 +14,7 @@ import Model.card.spell.Spell;
 import View.MenuHandler;
 import exeption.*;
 import javafx.animation.Animation;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -26,6 +27,7 @@ import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
@@ -52,13 +54,12 @@ public class BattleFXMLC extends FXMLController {
     public Label errorLable;
     public TextField nextCardOnHandInfo;
     public Label turn;
-    @FXML
-    private AnchorPane frame;
-    @FXML
-    private GridPane map;
-    @FXML
+    public ImageView firstPlayerTurn;
+    public ImageView secondPlayerTurn;
+    public HBox mapBox;
+    public AnchorPane frame;
+    public GridPane map;
     public GridPane handFrame;
-    @FXML
     public GridPane handManaFrame;
 
     @Override
@@ -161,25 +162,38 @@ public class BattleFXMLC extends FXMLController {
     @Override
     public void updateScene() {
         super.updateScene();
-        if(Battle.getMenu().getPlayer().getGI() instanceof GGI){
-            turn.setText(Battle.getMenu().getPlayer().getDeck().getHero().getName());
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run() {
+                updateTurn();
+                updateHand();
+                moveStart();
+                attackDrag();
+                attackDrop();
+                updateMana();
+                updateMap();
+                updateInfo();
+            }
+        });
+    }
+
+    private void updateTurn() {
+        if(Battle.getMenu().getPlayer() == Battle.getMenu().getAccount().getPlayer()){
+            firstPlayerTurn.getStyleClass().add("turnEnable");
+            secondPlayerTurn.getStyleClass().remove("turnEnable");
+            secondPlayerTurn.getStyleClass().add("turnDisable");
         }
         else {
-            turn.setText(Battle.getMenu().getOpponentPlayer().getDeck().getHero().getName());
+            secondPlayerTurn.getStyleClass().add("turnEnable");
+            firstPlayerTurn.getStyleClass().remove("turnEnable");
+            firstPlayerTurn.getStyleClass().add("turnDisable");
         }
-        updateHand();
-        moveStart();
-        attackDrag();
-        attackDrop();
-        updateMana();
-        updateMap();
-        updateInfo();
     }
 
     private void handDrag() {
-        ArrayList<Card> handCards = Battle.getMenu().getPlayer().getHand().getCards();
-        for (int i = 0 ; i < handCards.size() ; i++){
-            Card card = handCards.get(i);
+        Card[] handCards = Battle.getMenu().getPlayer().getHand().getCards();
+        for (int i = 0 ; i < handCards.length ; i++){
+            Card card = handCards[i];
             ImageView cardView = (ImageView) handFrame.getChildren().get(i);
             System.err.println(cardView.getId());
             cardView.setOnDragDetected(e -> {
@@ -233,6 +247,10 @@ public class BattleFXMLC extends FXMLController {
                                         errorLable.setText("Lets collect some mana first!");
                                     } catch (InvalidCardException | InvalidCellException e) {
                                         e.printStackTrace();
+                                    } catch (HandFullException e) {
+                                        e.printStackTrace();
+                                    } catch (DeckIsEmptyException e) {
+                                        e.printStackTrace();
                                     }
                                 }
                             }
@@ -264,15 +282,15 @@ public class BattleFXMLC extends FXMLController {
         }
     }
     private void updateHand(){
-        ArrayList<Card> handCards = Battle.getMenu().getPlayer().getHand().getCards();
-        for (int i = 0 ; i < handCards.size() ;  i++) {
+        Card[] handCards = Battle.getMenu().getPlayer().getHand().getCards();
+        for (int i = 0 ; i < handCards.length ;  i++) {
             ImageView card = (ImageView) handFrame.getChildren().get(i);
             Label mana = (Label) handManaFrame.getChildren().get(i + 5);
-            if(handCards.get(i) instanceof Minion) {
-                card.setImage(new Image(((Minion)handCards.get(i)).getGraphics().getIcon()));
+            if(handCards[i] instanceof Minion) {
+                card.setImage(new Image(((Minion)handCards[i]).getGraphics().getIcon()));
             }
-            else if(handCards.get(i) instanceof Spell) {
-                card.setImage(new Image(((Spell)handCards.get(i)).getSpellGraphics().getIcon()));
+            else if(handCards[i] instanceof Spell) {
+                card.setImage(new Image(((Spell)handCards[i]).getSpellGraphics().getIcon()));
             }
             final Animation animation = new SpriteAnimation(
                     card,
@@ -284,7 +302,7 @@ public class BattleFXMLC extends FXMLController {
             animation.setCycleCount(Animation.INDEFINITE);
             animation.play();
             //mana
-            mana.setText(Integer.toString(handCards.get(i).getManaPoint()));
+            mana.setText(Integer.toString(handCards[i].getManaPoint()));
         }
         Card nextCard = Battle.getMenu().getPlayer().getHand().getNextCard();
         if(nextCard != null){
@@ -308,8 +326,8 @@ public class BattleFXMLC extends FXMLController {
         drop();
     }
     private void handOnHover(){
-        ArrayList<Card> handCards = Battle.getMenu().getPlayer().getHand().getCards();
-        for (int i = 0 ; i <handCards.size() ; i++) {
+        Card[] handCards = Battle.getMenu().getPlayer().getHand().getCards();
+        for (int i = 0 ; i <handCards.length ; i++) {
             ImageView card = (ImageView) handFrame.getChildren().get(i);
             int finalI = i;
             card.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -362,7 +380,7 @@ public class BattleFXMLC extends FXMLController {
 
     }
     private Card getCardOnHand(int index){
-        return Battle.getMenu().getPlayer().getHand().getCards().get(index);
+        return Battle.getMenu().getPlayer().getHand().getCards()[index];
     }
 
 
@@ -598,11 +616,28 @@ public class BattleFXMLC extends FXMLController {
         this.frame.getChildren().removeAll(nodes);
     }
 
+    public double getMapX(){
+        return mapBox.getLayoutX() + 70;
+    }
+    public double getMapY(){
+        return mapBox.getLayoutY();
+    }
     public double getMapWidth() {
         return map.getWidth();
     }
-
+    public double getCellWidth(){
+        return getMapWidth()/9;
+    }
     public double getMapHeight(){
         return map.getHeight();
+    }
+    public double getCellHeight(){
+        return getMapHeight()/5;
+    }
+    public double getX(int x){
+        return getMapX() + ( x + .5 ) * getCellWidth();
+    }
+    public double getY(int y){
+        return getMapY() + (y + .5) * getCellHeight();
     }
 }

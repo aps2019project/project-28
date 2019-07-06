@@ -46,7 +46,7 @@ public class Buff {
     public void deploy(Player player , Hermione target ) throws InvalidCellException{
         this.player = player;
         this.target = target ;
-        System.err.println("asd");
+//        System.err.println("asd");
         if (target.getAppliedBuffs() == null) System.err.println("Error ! call Saee ! and tell him that Hermione's applied " +
                 "buffs are null again ! - _ -");
         target.getAppliedBuffs().add(this);

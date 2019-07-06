@@ -24,6 +24,7 @@ public class MenuHandler {
             Primary.preprocess();
             initMenus();
         } catch (Exception e) {
+            System.err.println("erorrrrrrrrrrrrr--------------------------------------------------");
             e.printStackTrace();
         }
 //        View input = new ConsoleView();
@@ -42,7 +43,6 @@ public class MenuHandler {
     }
 
     public static void nextMove() {
-        ;
 
         Game.accounts[Battle.getMenu().getTurn()].getPlayer().getGI().intervene();
     }
