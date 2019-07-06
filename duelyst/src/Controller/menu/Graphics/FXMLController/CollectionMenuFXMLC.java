@@ -6,6 +6,7 @@ import Model.account.Deck;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Spell;
+import Model.item.Item;
 import Model.item.Usable;
 import View.MenuHandler;
 import exeption.*;
@@ -35,8 +36,12 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     private Label balance ;
     @FXML
     private ScrollPane scrollPane ;
+    @FXML
+    private VBox theRoot ;
     private VBox hermionesVbox = new VBox() , spellsVbox = new VBox() , itemsVbox = new VBox() ,
             decksVbox = new VBox() , decksVbox2 = new VBox();
+    private int selectedTab ;
+    private SearchBarFXMLC searchBarFXMLC ;
 
 
     @Override
@@ -51,11 +56,46 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             buildDecksVbox();
         }).start();
 
-
         GraphicsControls.setBackButtonOnPress(backButton);
 
         setTabPressedStuff();
         updateBalance();
+
+        theRoot.getChildren().remove(scrollPane);
+        searchBarFXMLC = GraphicsControls.addSearchBar(theRoot , this.getClass());
+        theRoot.getChildren().add(scrollPane);
+
+        searchBarFXMLC.getFindButton().setOnAction(e -> search());
+    }
+
+    private void search() {
+        String search = searchBarFXMLC.getSearchText();
+        VBox v ;
+        if (search.isEmpty()) {
+            if (selectedTab == 1) v = hermionesVbox ;
+            else if (selectedTab == 2) v = spellsVbox ;
+            else if (selectedTab == 3) v = itemsVbox ;
+            else v = decksVbox ;
+            scrollPane.setContent(v);
+            return ;
+        }
+
+        v = new VBox() ;
+        v.setSpacing(15);
+
+        List<HBox> hermionehBoxes = new ArrayList<>();
+        List<HBox> spellHboxes = new ArrayList<>();
+        for (Card card : menu.getAccount().getCollection().getCards()){
+            if (card.getName().contains(search)){
+                makeCardCard(hermionehBoxes , spellHboxes , card ,v ,v);
+            }
+        }
+        List<HBox> itemHBoxes = new ArrayList<>();
+        for (Usable item : menu.getAccount().getCollection().getItems()){
+            if (item.getName().contains(search)){
+                makeItemCard(itemHBoxes , item , v);
+            }
+        }
     }
 
     private void setTabPressedStuff() {
@@ -74,6 +114,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             tabReleased(spellTab);
             tabReleased(decksTab);
             scrollPane.setContent(hermionesVbox);
+            selectedTab = 1 ;
         });
         itemTab.setOnAction(e -> {
             tabPressed(itemTab);
@@ -81,6 +122,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             tabReleased(spellTab);
             tabReleased(decksTab);
             scrollPane.setContent(itemsVbox);
+            selectedTab = 3 ;
         });
         spellTab.setOnAction(e -> {
             tabPressed(spellTab);
@@ -88,6 +130,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             tabReleased(itemTab);
             tabReleased(decksTab);
             scrollPane.setContent(spellsVbox);
+            selectedTab = 2 ;
         });
         decksTab.setOnAction(e -> {
             tabPressed(decksTab);
@@ -95,6 +138,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             tabReleased(itemTab);
             tabReleased(spellTab);
             scrollPane.setContent(decksVbox);
+            selectedTab = 4 ;
         });
     }
 
@@ -102,31 +146,35 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         List<HBox> hermionehBoxes = new ArrayList<>();
         List<HBox> spellHboxes = new ArrayList<>();
         for (Card card : menu.getAccount().getCollection().getCards()){
-            if (card instanceof Hermione){
-                Hermione h = (Hermione)card ;
-                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
-                        "Controller/menu/Graphics/FXMLs/CollectionCardHermione.fxml")));
-                try {
-                    Parent root = loader.load();
-                    CollectionCardHermioneFXMLC fxmlc = loader.getController();
-                    fxmlc.buildCardCard(h);
-                    setUpTheHbox(root , hermionesVbox , hermionehBoxes);
-                }catch (IOException ignored) {
-                    System.err.println("could'nt load the collectionHermioneCard");
-                }
+            makeCardCard(hermionehBoxes, spellHboxes, card , hermionesVbox , spellsVbox);
+        }
+    }
+
+    private void makeCardCard(List<HBox> hermionehBoxes, List<HBox> spellHboxes, Card card , VBox vboxHermione , VBox vboxSpell) {
+        if (card instanceof Hermione){
+            Hermione h = (Hermione)card ;
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                    "Controller/menu/Graphics/FXMLs/CollectionCardHermione.fxml")));
+            try {
+                Parent root = loader.load();
+                CollectionCardHermioneFXMLC fxmlc = loader.getController();
+                fxmlc.buildCardCard(h);
+                setUpTheHbox(root , vboxHermione  , hermionehBoxes);
+            }catch (IOException ignored) {
+                System.err.println("could'nt load the collectionHermioneCard");
             }
-            else if (card instanceof Spell){
-                Spell s = (Spell) card ;
-                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
-                        "Controller/menu/Graphics/FXMLs/CollectionCardSpell.fxml")));
-                try {
-                    Parent root = loader.load();
-                    CollectionCardSpellFXMLC fxmlc = loader.getController();
-                    fxmlc.buildCardCard(s);
-                    setUpTheHbox(root , spellsVbox , spellHboxes);
-                }catch (IOException ignored) {
-                    System.err.println("could'nt load the collectionSpellCard");
-                }
+        }
+        else if (card instanceof Spell){
+            Spell s = (Spell) card ;
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                    "Controller/menu/Graphics/FXMLs/CollectionCardSpell.fxml")));
+            try {
+                Parent root = loader.load();
+                CollectionCardSpellFXMLC fxmlc = loader.getController();
+                fxmlc.buildCardCard(s);
+                setUpTheHbox(root , vboxSpell , spellHboxes);
+            }catch (IOException ignored) {
+                System.err.println("could'nt load the collectionSpellCard");
             }
         }
     }
@@ -134,16 +182,20 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     private void buildItemsVbox() {
         List<HBox> hBoxes = new ArrayList<>();
         for (Usable usabel : menu.getAccount().getCollection().getUsables()){
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
-                    "Controller/menu/Graphics/FXMLs/CollectionCardItem.fxml")));
-            try {
-                Parent root = loader.load();
-                CollectionCardItemFXMLC fxmlc = loader.getController();
-                fxmlc.buildCardCard(usabel);
-                setUpTheHbox(root , itemsVbox , hBoxes);
-            }catch (IOException ignored) {
-                System.err.println("could'nt load the collectionSpellCard");
-            }
+            makeItemCard(hBoxes, usabel , itemsVbox);
+        }
+    }
+
+    private void makeItemCard(List<HBox> hBoxes, Usable usabel , VBox vbox) {
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                "Controller/menu/Graphics/FXMLs/CollectionCardItem.fxml")));
+        try {
+            Parent root = loader.load();
+            CollectionCardItemFXMLC fxmlc = loader.getController();
+            fxmlc.buildCardCard(usabel);
+            setUpTheHbox(root , vbox , hBoxes);
+        }catch (IOException ignored) {
+            System.err.println("could'nt load the collectionSpellCard");
         }
     }
 
