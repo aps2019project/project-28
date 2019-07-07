@@ -21,7 +21,6 @@ public class Account {
 
     protected static int unique = 0;
     protected static final int INITIAL_MONEY = 99999999;
-
     protected Player player;
     protected String name;
     protected String username;
@@ -33,8 +32,6 @@ public class Account {
     protected int wins;
     protected int storyModeSPX;
     private String avatar;
-
-
 
 
     public static void addNewAccount(Account account) {
@@ -70,6 +67,7 @@ public class Account {
     public static Account getDefaultAccount(){
         return Account.defaultAccount;
     }
+
     public Account(String name, String username, String password) {
         this.name = name;
         this.username = username;
