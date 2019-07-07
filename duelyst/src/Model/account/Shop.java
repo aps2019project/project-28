@@ -1,12 +1,17 @@
 package Model.account;
 
 import Model.Primary;
+import Model.card.Card;
 import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
+import Model.item.Item;
 import Model.item.Usable;
-import exeption.CardExistException;
-import exeption.ItemExistExeption;
+import exeption.*;
+
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Shop {
 
@@ -19,7 +24,7 @@ public class Shop {
     }
     private Collection collection = new Collection();
 
-    Map<Integer,Integer>cards=new HashMap<>();//cardId,amount
+    Map<Integer,Integer> cards=new HashMap<>();//cardId,amount
     Map<Integer,Integer>items=new HashMap<>();//itemId,amount
 
     public static Shop getInstance() {

@@ -7,6 +7,7 @@ import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
 import Model.account.Account;
 import Model.account.Deck;
+import Model.account.Shop;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
@@ -28,6 +29,8 @@ import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import com.sun.scenario.effect.impl.prism.PrImage;
 import exeption.*;
 import javafx.animation.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -617,6 +620,7 @@ public class Primary {
         collectables.add(new Collectable("Chineese Sword", 1, 5, "5 attack points for melee",
                 TargetMelee.getTargetInstance(), ItemActionChangeAP.getItemAction()));
     }
+
     private static void graphicsJson(){
         for (Hero hero : heroes) {
             hero.getGraphics().setUnits("resources/units/boss_borealjuggernaut.png", 1020/8, 1210/10, 8, 10);
@@ -630,7 +634,7 @@ public class Primary {
         }
 
     }
-    private static <E> void writeJson(String path, E... arrays) throws IOException {
+    private static <E> void writeJson(ArrayList<E> arrays, String path) throws IOException {
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(path, false);
         for (E e:
@@ -649,23 +653,11 @@ public class Primary {
     }
 
     public static void initGraphics() throws FileNotFoundException {
-        setHermionesAvatars();
         setGraphicsForHermiones();
         setIconForCards();
         setAccountAvatars();
         setItemListeners();
         setItemGraphics();
-    }
-
-    public static void setHermionesAvatars() throws FileNotFoundException {
-        for (Hero hero : heroes) {
-            hero.getGraphics().setUnits("resources/units/boss_andromeda.png");
-            hero.getGraphics().setUnitGifs("resources/unit_gifs/boss_andromeda_breathing.gif");
-        }
-        for (Minion minion : minions) {
-            minion.getGraphics().setUnits("resources/units/boss_andromeda.png");
-            minion.getGraphics().setUnitGifs("resources/unit_gifs/boss_andromeda_breathing.gif");
-        }
     }
 
     private static void setGraphicsForHermiones(){

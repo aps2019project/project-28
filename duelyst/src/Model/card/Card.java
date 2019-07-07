@@ -37,11 +37,6 @@ public abstract class Card {
         return card.getClass()+":";
     }
 
-
-    public static String gererateID(Card card){
-        return card.getClass()+":";
-    }
-
     public void setSuperCollection(Collection superCollection) {
         this.superCollection = superCollection;
     }
