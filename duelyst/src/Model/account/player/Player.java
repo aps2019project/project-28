@@ -43,7 +43,7 @@ public class Player {
     private int flagInteger=0;
 
     private GameInterFace GI;
-    protected ScannerWrapper outputStream=new ScannerWrapper();
+    protected ScannerWrapper inputStream =new ScannerWrapper();
 
 
 
@@ -202,12 +202,12 @@ public class Player {
 
 
 
-    public Scanner getOutputStream() {
-        if(this.outputStream==null || this.outputStream.scanner==null){
-            this.outputStream = new ScannerWrapper();
-            this.outputStream.scanner = Game.scanner;
+    public Scanner getInputStream() {
+        if(this.inputStream ==null || this.inputStream.scanner==null){
+            this.inputStream = new ScannerWrapper();
+            this.inputStream.scanner = Game.scanner;
         }
-        return outputStream.scanner;
+        return inputStream.scanner;
 
     }
 }

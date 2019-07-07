@@ -1,10 +1,10 @@
 package View;
 
+import Controller.menu.ShopMenu;
 import Controller.menu.SignInMenu;
 import Model.account.Account;
-import exeption.AccountAlreadyExistsException;
-import exeption.InvalidAccountException;
-import exeption.WrongPassException;
+import Model.account.Shop;
+import exeption.*;
 import network.Auth;
 import network.Message;
 
@@ -20,49 +20,101 @@ public class MessageHandler {
 
         Message respond = Message.getFailedMessage();
         System.out.println("text = " + text);
-        if(text.equals("createAccount")){
-            try {
-                Account.addNewAccount((String) carry.get(0),(String)carry.get(1), (String) carry.get(2));
+        switch (text) {
+
+            //account requests
+            case "createAccount":
+                try {
+                    Account.addNewAccount((String) carry.get(0), (String) carry.get(1), (String) carry.get(2));
+                    respond = Message.getDoneMessage();
+                } catch (AccountAlreadyExistsException e) {
+                    respond = makeExceptionMessage(e);
+                }
+                break;
+            case "save":
+                Account.save((Account) carry.get(0));
+                respond = Message.getDoneMessage();
+                break;
+            case "getAccount : username":
+                try {
+                    Account account = Account.getAccount((String) carry.get(0));
+                    respond = Message.getDoneMessage();
+                    respond.addCarry(account);
+                    return respond;
+                } catch (InvalidAccountException e) {
+                    respond = makeExceptionMessage(e);
+                }
+                break;
+            case "getAccount : id":
+                try {
+                    Account account = Account.getAccount((Integer) carry.get(0));
+                    respond = Message.getDoneMessage();
+                    respond.addCarry(account);
+                } catch (InvalidAccountException e) {
+                    respond = makeExceptionMessage(e);
+                }
+                break;
+            case "getAccounts":
+                System.err.println("understood!");
+                ArrayList<Account> accounts = Account.getAccounts();
+                System.err.println(accounts.size());
+                respond = Message.getDoneMessage();
+                respond.addCarry(accounts);
+                break;
+            //SignInMenu requests
+            case "Log in":
+                try {
+                    SignInMenu.getMenu().logIn((String) carry.get(0), (String) carry.get(1));
+                    Account account = Account.getAccount((String) carry.get(0));
+                    respond = Message.getDoneMessage();
+                    respond.addCarry(account);
+                    respond.addCarry(Auth.generateAuth((String) carry.get(0)));
+                } catch (InvalidAccountException | WrongPassException e) {
+                    respond = makeExceptionMessage(e);
+                }
+                break;
+
+            //shop requests:
+            case "has card":
                 respond=Message.getDoneMessage();
-            } catch (AccountAlreadyExistsException e) {
-                respond = makeExceptionMessage(e);
-            }
-        }else if(text.equals("save")){
-            Account.save((Account)carry.get(0));
-            respond=Message.getDoneMessage();
-        }else if(text.equals("getAccount : username")){
-            try {
-                Account account = Account.getAccount((String) carry.get(0));
+                respond.addCarry(Shop.getInstance().hasCard((String) carry.get(0)));
+                break;
+            case "has item":
                 respond=Message.getDoneMessage();
-                respond.addCarry(account);
-                return respond;
-            } catch (InvalidAccountException e) {
-                respond=makeExceptionMessage(e);
-            }
-        }else if(text.equals("getAccount : id")){
-            try {
-                Account account = Account.getAccount((Integer) carry.get(0));
+                respond.addCarry(Shop.getInstance().hasItem((String) carry.get(0)));
+                break;
+            case "get card":
+                try {
+                    respond=Message.getDoneMessage();
+                    respond.addCarry(Shop.getInstance().getCard((String) carry.get(0)));
+                } catch (InvalidCardException e) {
+                    respond=makeExceptionMessage(e);
+                }
+                break;
+            case "get item":
+                try {
+                    respond=Message.getDoneMessage();
+                    respond.addCarry(Shop.getInstance().getItem((String) carry.get(0)));
+                } catch (InvalidItemException e) {
+                    respond=makeExceptionMessage(e);
+                }
+                break;
+            case "buy":
                 respond=Message.getDoneMessage();
-                respond.addCarry(account);
-            } catch (InvalidAccountException e) {
-                respond=makeExceptionMessage(e);
-            }
-        }else if(text.equals("getAccounts")){
-            System.err.println("understood!");
-            ArrayList<Account> accounts = Account.getAccounts();
-            System.err.println(accounts.size());
-            respond=Message.getDoneMessage();
-            respond.addCarry(accounts);
-        }else if(text.equals("Log in")){
-            try {
-                SignInMenu.getMenu().logIn((String)carry.get(0), (String) carry.get(1));
-                Account account=Account.getAccount((String)carry.get(0));
+                respond.addCarry(Shop.getInstance().buy((String) carry.get(0)));
+                break;
+            case "sell":
+                try {
+                    respond=Message.getDoneMessage();
+                    Shop.getInstance().sell((String) carry.get(0));
+                } catch (InvalidCardException | InvalidItemException e) {
+                    respond=makeExceptionMessage(e);
+                }
+                break;
+            case "get collection":
                 respond=Message.getDoneMessage();
-                respond.addCarry(account);
-                respond.addCarry(Auth.generateAuth((String) carry.get(0)));
-            } catch (InvalidAccountException | WrongPassException e) {
-                respond=makeExceptionMessage(e);
-            }
+                respond.addCarry(Shop.getInstance().getCollection());
+
         }
         return respond;
     }

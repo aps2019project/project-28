@@ -11,6 +11,8 @@ import Model.account.Shop;
 import Model.mediator.LocalAccountMediator;
 import Model.mediator.LocalShopMediator;
 import Model.mediator.LocalSignInMenuMediator;
+import exeption.InvalidAccountException;
+import network.server.BattleServerHandler;
 import network.server.MainServer;
 import sample.Main;
 
@@ -31,11 +33,22 @@ public class MenuHandler {
 
         initMenus();
 
+        try {
+            Account.getAccount("uzumaki").getCollection().forcePushDeck(Account.AI[1].getCollection().getMainDeck());
+            Account.getAccount("uchiha").getCollection().forcePushDeck(Account.AI[2].getCollection().getMainDeck());
+        } catch (InvalidAccountException e) {
+            e.printStackTrace();
+        }
+
 
         View input = new ConsoleView();
+        input.setGIs();
 //        View input = new GraphicView();
 
 //        input.play(args);
+
+        BattleServerHandler battleServerHandler=new BattleServerHandler();
+        new Thread(battleServerHandler::init).start();
         MainServer.main(null);
     }
 

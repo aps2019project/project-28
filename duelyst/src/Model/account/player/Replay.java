@@ -17,19 +17,25 @@ public class Replay extends Bot {
         super(user, maxMana, mana);
         this.match=match;
     }
+
+    @Override
+    protected void play() {
+        // TODO: 7/6/19 asdasfsdfasdfa
+    }
+
     public void doYourMove(){
         Command command=match.getNextCommand();
 //        Thread.sleep();
     }
 
     @Override
-    public Scanner getOutputStream() {
-        if (this.outputStream != null && this.outputStream.scanner != null) this.outputStream.scanner.close();
+    public Scanner getInputStream() {
+        if (this.inputStream != null && this.inputStream.scanner != null) this.inputStream.scanner.close();
 
-        this.outputStream = new ScannerWrapper();
-        this.outputStream.scanner = new Scanner(output);
+        this.inputStream = new ScannerWrapper();
+        this.inputStream.scanner = new Scanner(output);
 
-        return this.outputStream.scanner;
+        return this.inputStream.scanner;
     }
 }
 

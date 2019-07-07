@@ -258,8 +258,9 @@ public class CommandHandler {
         }else if(word[0].equals("sell")){
             String name = getName(word , 1);
             try {
+                System.err.println("debug");
                 menu.sell(name);
-            } catch (InvalidCardException  | InvalidItemException ae) {
+            } catch (InvalidCardException  | InvalidItemException e) {
                 System.out.println("Smart Move But you cant sell a Card/Item that you dont have");
             }
         }

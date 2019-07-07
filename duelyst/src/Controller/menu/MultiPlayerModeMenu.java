@@ -4,12 +4,14 @@ import Controller.Game;
 import Controller.menu.Graphics.FXMLController.LeaderBoardHavingFXMLC;
 import Model.account.Account;
 import Model.account.Deck;
+import Model.mediator.MultiPlayerMenuMediator;
 import View.Listeners.OnDeckSelectorClickedListener;
 import View.Listeners.OnLeaderBoardClickedListener;
 import View.MenuHandler;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu {
@@ -17,9 +19,12 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
     private OnDeckSelectorClickedListener deckSelectorListener ;
     private OnLeaderBoardClickedListener leaderBoardPresenters;
 
+    private MultiPlayerMenuMediator mediator;
+
     private MultiPlayerModeMenu(String name) {
         super(name);
     }
+
 
     public static MultiPlayerModeMenu getMenu(){
         if(MultiPlayerModeMenu.menu==null){
@@ -29,19 +34,17 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
     }
 
     public void selectUser(String username,String password) throws InvalidAccountException, WrongPassException {
-        Account account = Account.getAccount(username);
-        if (account.getPassword().equals(password)) {
-            Game.setFirstAccount(this.account);
-            Game.setSecondAccount(account);
-            try {
-                showDeckSelector(this.account);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        } else {
-            throw new WrongPassException();
+        if(this.account.getCollection().getMainDeck()==null)
+            System.out.println("throw new MainDeckNotSelectedException()------------------------------------------");
+        System.out.println("this.account.getCollection().getMainDeck() = " + this.account.getCollection().getMainDeck());
+        try {
+            this.mediator.selectUser(username,password);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        MenuHandler.enterMenu(Battle.getMenu());
     }
+
 
     @Override
     public void help() {
@@ -81,5 +84,9 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
 
         leaderBoardPresenters.show(accounts , (LeaderBoardHavingFXMLC)getGraphic().getController());
 
+    }
+
+    public void setMediator(MultiPlayerMenuMediator mediator) {
+        this.mediator = mediator;
     }
 }

@@ -4,6 +4,7 @@ import Model.account.Account;
 import Model.account.player.Bot;
 import Model.account.player.GameInterFace;
 import Model.account.player.Player;
+import network.client.BattleClient;
 import network.client.Client;
 
 import java.lang.reflect.InvocationTargetException;
@@ -19,6 +20,7 @@ public class Game {
     private static Class defaultGI;
 
     private static Client client;
+    private static network.client.BattleClient battleClient;
 
 
     public static void setFirstAccount(Account account) {
@@ -83,9 +85,17 @@ public class Game {
     public static Client getClient() {
         return client;
     }
-
     public static void setClient(Client client) {
         Game.client = client;
+    }
+
+    public static BattleClient getBattleClient() {
+        if(battleClient==null)battleClient=new BattleClient(Game.getAccount(0));
+        return battleClient;
+    }
+
+    public static void setBattleClient(BattleClient battleClient) {
+        Game.battleClient = battleClient;
     }
 }
 

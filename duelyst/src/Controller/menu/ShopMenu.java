@@ -2,6 +2,7 @@ package Controller.menu;
 
 import Model.account.Account;
 import Model.account.Shop;
+import Model.mediator.ShopMediator;
 import View.Listeners.OnCollectionPresentedListener;
 import View.Listeners.OnSearchClickedListener;
 import View.Listeners.OnSearchCollectionClickedListener;
@@ -14,8 +15,8 @@ import java.util.ArrayList;
 public class ShopMenu extends Menu {
 
     private static ShopMenu menu;
-    Shop shop = Shop.getInstance();
-    Collection tempCollection;
+    private Shop shop = Shop.getInstance();
+    private Collection tempCollection;
     private ArrayList<OnSearchClickedListener> searchClickedListeners;
     private ArrayList<OnSearchCollectionClickedListener> searchCollectionClickedListeners;
     private ArrayList<OnShowClickedListener> showClickedListeners;
@@ -79,6 +80,7 @@ public class ShopMenu extends Menu {
             }
         }
         this.shop.buy(name);
+        Account.save();
     }
 
     public void sell(String name) throws InvalidCardException, InvalidItemException {
@@ -87,6 +89,8 @@ public class ShopMenu extends Menu {
         tempCollection.removeFromCollection(name);
         this.account.setMoney(this.account.getMoney() + this.shop.getCard(name).getPrice());
         this.shop.sell(name);
+
+        Account.save();
     }
 
     public void show() {//shows the items and cards in shop

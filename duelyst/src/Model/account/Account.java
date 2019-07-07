@@ -1,14 +1,11 @@
 package Model.account;
 
 import Controller.Game;
-import Model.Primary;
 import Model.account.player.Player;
 import Model.mediator.AccountMediator;
-import com.gilecode.yagson.YaGson;
 import exeption.AccountAlreadyExistsException;
 import exeption.InvalidAccountException;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,7 +21,7 @@ public class Account {
     private static int unique = 0;
     private static final int INITIAL_MONEY = 99999999;
 
-    private static AccountMediator accountMediator;
+    private static AccountMediator mediator;
 
 
     protected Player player;
@@ -45,7 +42,7 @@ public class Account {
 
     public static boolean addNewAccount(Account account) throws AccountAlreadyExistsException {
         try {
-            return accountMediator.addNewAccount(account);
+            return mediator.addNewAccount(account);
         } catch (AccountAlreadyExistsException e) {
             throw e;
         } catch (Exception e) {
@@ -57,7 +54,7 @@ public class Account {
 
     public static void save() {
         try {
-            accountMediator.save();
+            mediator.save();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,7 +77,7 @@ public class Account {
 
     public static Account getAccount(String username) throws InvalidAccountException {
         try {
-            return accountMediator.getAccount(username);
+            return mediator.getAccount(username);
         } catch (InvalidAccountException e) {
             throw e;
         } catch (Exception e) {
@@ -91,7 +88,7 @@ public class Account {
 
     public static Account getAccount(int ID) throws InvalidAccountException {
         try {
-            return accountMediator.getAccount(ID);
+            return mediator.getAccount(ID);
         } catch (InvalidAccountException e) {
             throw e;
         } catch (Exception e) {
@@ -111,7 +108,7 @@ public class Account {
 
     public static ArrayList<Account> getAccounts() {
         try {
-            return accountMediator.getAccounts();
+            return mediator.getAccounts();
         } catch (Exception e) {
             e.printStackTrace();
             while (true){
@@ -247,7 +244,7 @@ public class Account {
         this.avatar = avatar;
     }
 
-    public static void setAccountMediator(AccountMediator accountMediator) {
-        Account.accountMediator = accountMediator;
+    public static void setMediator(AccountMediator mediator) {
+        Account.mediator = mediator;
     }
 }

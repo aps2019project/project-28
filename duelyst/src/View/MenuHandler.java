@@ -7,10 +7,8 @@ import Controller.menu.*;
 import Controller.menu.SignInMenu;
 import Model.Primary;
 import Model.account.Account;
-import Model.mediator.LocalSignInMenuMediator;
-import Model.mediator.LocalAccountMediator;
-import Model.mediator.NetAccountMediator;
-import Model.mediator.NetSignInMenuMediator;
+import Model.account.Shop;
+import Model.mediator.*;
 import network.client.Client;
 
 import java.io.IOException;
@@ -32,18 +30,20 @@ public class MenuHandler {
         initMenus();
 
 
-        View input = new ConsoleView();
-//        View input = new GraphicView();
+//        View input = new ConsoleView();
+        View input = new GraphicView();
 
         input.play(args);
     }
 
     private static void configNetwork() throws IOException {
         // TODO: 7/2/19 bayad beshe network Mediator
-        Account.setAccountMediator(new NetAccountMediator());
-        SignInMenu.getMenu().setSignInMenuMediator(new NetSignInMenuMediator());
-
+        Account.setMediator(new OnlineAccountMediator());
+        SignInMenu.getMenu().setSignInMenuMediator(new OnlineSignInMenuMediator());
+        Shop.getInstance().setShopMediator(new OnlineShopMediator());
+        MultiPlayerModeMenu.getMenu().setMediator(new OnlineMultiPlayerMenuMediator());
         Game.setClient(new Client());
+        Battle.getMenu().setMediator(new OnlineBattleMediator());
 
         try {
             Primary.preprocess();
@@ -55,14 +55,18 @@ public class MenuHandler {
     }
 
     private static void configLocal() {
-        Account.setAccountMediator(new LocalAccountMediator());
-        SignInMenu.getMenu().setSignInMenuMediator(new LocalSignInMenuMediator());
+        Account.setMediator(new OffLineAccountMediator());
+        SignInMenu.getMenu().setSignInMenuMediator(new OfflineSignInMenuMediator());
+        MultiPlayerModeMenu.getMenu().setMediator(new OfflineMultiPlayerMenuMediator());
+        Battle.getMenu().setMediator(new OfflineBattleMediator());
         try {
             Primary.preprocess();
             Primary.configAccounts();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //it is important for this line to be after Primary.preProcess()
+        Shop.getInstance().setShopMediator(new OfflineShopMediator());
     }
 
     public static void startMenus() {

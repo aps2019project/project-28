@@ -23,7 +23,6 @@ public class AI extends Bot {
     // 4: attack with hero ,and then : minions : select-move-select-attack
     private Map map;
     private Player enemy;
-    public String output;
 
     public AI(Account user, int maxMana, int mana, Player enemy) {
         super(user, maxMana, mana);
@@ -31,7 +30,8 @@ public class AI extends Bot {
         this.enemy=enemy;
     }
 
-    private void play() {
+    @Override
+    protected void play() {
         move++;
         String command;
         map = Battle.getMenu().getMap();
@@ -193,19 +193,12 @@ public class AI extends Bot {
 
     @Override
     public void doYourMove() {
-        this.play();
+        super.doYourMove();
         System.out.println("_____________________________________");
         System.out.println("AI output is : " + this.output);
         System.out.println("=====================================");
         if (output == null || output.isEmpty()) output=("dude output is empty !");
     }
-    @Override
-    public Scanner getOutputStream() {
-        if (this.outputStream != null && this.outputStream.scanner != null) this.outputStream.scanner.close();
 
-        this.outputStream = new ScannerWrapper();
-        this.outputStream.scanner = new Scanner(output);
 
-        return this.outputStream.scanner;
-    }
 }
