@@ -306,7 +306,7 @@
                       <TextField prefHeight="83.0" prefWidth="136.0" styleClass="info" GridPane.columnIndex="3" GridPane.rowIndex="0" />
                       <TextField prefHeight="83.0" prefWidth="136.0" styleClass="info" GridPane.columnIndex="2" GridPane.rowIndex="0" />
                       <TextField prefHeight="83.0" prefWidth="136.0" styleClass="info" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                  <TextField fx:id="nextCardOnHandInfo" prefHeight="62.0" prefWidth="141.0" styleClass="info" />
+                      <TextField fx:id="nextCardOnHandInfo" prefHeight="62.0" prefWidth="141.0" styleClass="info" />
                   </children>
               </GridPane>
               <GridPane fx:id="handFrame" prefHeight="140.0" prefWidth="833.0" styleClass="cardBackground">
@@ -322,13 +322,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   </rowConstraints>
                   <children>
-                      <ImageView fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="5" GridPane.rowIndex="0" />
-                      <ImageView fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="4" GridPane.rowIndex="0" />
-                      <ImageView fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-                      <ImageView fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                      <ImageView fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            
-                                                  <ImageView fitHeight="160.0" fitWidth="163.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                      <ImageView id="0" fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+                      <ImageView id="1" fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                      <ImageView id="2" fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                      <ImageView id="3" fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                      <ImageView id="4" fitHeight="125.0" fitWidth="141.0" layoutX="10.0" layoutY="10.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="cardBackground" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                      <ImageView id="5" fitHeight="160.0" fitWidth="163.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../../../../resources/ui/replace_background.png" />
                         </image>
@@ -350,17 +349,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                    <image>
-                        <Image url="@../../../../resources/ui/icon_mana.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                    <image>
-                        <Image url="@../../../../resources/ui/icon_mana.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="0">
                     <image>
                         <Image url="@../../../../resources/ui/icon_mana.png" />
                     </image>
@@ -370,16 +359,26 @@
                         <Image url="@../../../../resources/ui/icon_mana.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="0">
+                <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="0">
                     <image>
                         <Image url="@../../../../resources/ui/icon_mana.png" />
                     </image>
                 </ImageView>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="42.0" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="42.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="42.0" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="42.0" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="42.0" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <image>
+                        <Image url="@../../../../resources/ui/icon_mana.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <image>
+                        <Image url="@../../../../resources/ui/icon_mana.png" />
+                    </image>
+                </ImageView>
+                <Label id="0" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="42.0" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                <Label id="1" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="42.0" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                <Label id="2" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="42.0" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <Label id="3" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="42.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label id="4" alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="42.0" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             </children>
         </GridPane>
       <Label fx:id="errorLable" prefHeight="40.0" prefWidth="400.0" textFill="RED" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="30.0" />

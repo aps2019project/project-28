@@ -16,7 +16,7 @@ import java.util.Map;
 public class Shop {
 
     private static int INITIAL_AMOUNT=10;
-    private static Shop ourInstance;
+    private static Shop ourInstance ;/*= new Shop();*/
     {
         try {
             ourInstance = Primary.getShop();

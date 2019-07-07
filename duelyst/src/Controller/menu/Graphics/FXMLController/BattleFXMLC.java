@@ -192,23 +192,28 @@ public class BattleFXMLC extends FXMLController {
         for (int i = 0 ; i < handCards.length ;  i++) {
             ImageView card = (ImageView) handFrame.getChildren().get(i);
             Label mana = (Label) handManaFrame.getChildren().get(i + 5);
-            if(handCards[i] instanceof Minion) {
-                card.setImage(new Image(((Minion)handCards[i]).getGraphics().getIcon()));
+            if(handCards[i] != null) {
+                if (handCards[i] instanceof Minion) {
+                    card.setImage(new Image(((Minion) handCards[i]).getGraphics().getIcon()));
+                } else if (handCards[i] instanceof Spell) {
+                    card.setImage(new Image(((Spell) handCards[i]).getSpellGraphics().getIcon()));
+                }
+                final Animation animation = new SpriteAnimation(
+                        card,
+                        Duration.millis(2000),
+                        5, 1,
+                        100, 0,
+                        50, 50
+                );
+                animation.setCycleCount(Animation.INDEFINITE);
+                animation.play();
+                //mana
+                mana.setText(Integer.toString(handCards[i].getManaPoint()));
             }
-            else if(handCards[i] instanceof Spell) {
-                card.setImage(new Image(((Spell)handCards[i]).getSpellGraphics().getIcon()));
+            else {
+                card.setImage(null);
+                mana.setText(null);
             }
-            final Animation animation = new SpriteAnimation(
-                    card,
-                    Duration.millis(2000),
-                    5, 1,
-                    100, 0,
-                    50, 50
-            );
-            animation.setCycleCount(Animation.INDEFINITE);
-            animation.play();
-            //mana
-            mana.setText(Integer.toString(handCards[i].getManaPoint()));
         }
         Card nextCard = Battle.getMenu().getPlayer().getHand().getNextCard();
         if(nextCard != null){
@@ -232,56 +237,56 @@ public class BattleFXMLC extends FXMLController {
     private void handOnHover(){
         Card[] handCards = Battle.getMenu().getPlayer().getHand().getCards();
         for (int i = 0 ; i <handCards.length ; i++) {
-            ImageView card = (ImageView) handFrame.getChildren().get(i);
-            int finalI = i;
-            card.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            if(handCards[i] != null) {
+                ImageView card = (ImageView) handFrame.getChildren().get(i);
+                int finalI = i;
+                card.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        TextField info = (TextField) handInfo.getChildren().get(finalI);
+                        Card card = handCards[finalI];
+                        if (card != null) {
+                            info.getStyleClass().add("infoEntered");
+                            info.setText(card.getName());
+                        } else {
+                            info.getStyleClass().remove("infoEntered");
+                            info.setText(null);
+                        }
+                    }
+                });
+                card.setOnMouseExited(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        TextField info = (TextField) handInfo.getChildren().get(finalI);
+                        info.getStyleClass().remove("infoEntered");
+                        info.setText(null);
+                    }
+                });
+            }
+        }
+        if(Battle.getMenu().getPlayer().getHand().getNextCard() != null) {
+            nextCardOnHandInfo.setOnMouseEntered(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    TextField info = (TextField) handInfo.getChildren().get(finalI);
-                    Card card = getCardOnHand(finalI);
-                    if(card != null) {
+                    TextField info = nextCardOnHandInfo;
+                    Card nextCard = Battle.getMenu().getPlayer().getHand().getNextCard();
+                    if (nextCard != null) {
                         info.getStyleClass().add("infoEntered");
-                        info.setText(card.getName());
-                    }
-                    else {
+                        info.setText(nextCard.getName());
+                    } else {
                         info.getStyleClass().remove("infoEntered");
                         info.setText(null);
                     }
                 }
             });
-            card.setOnMouseExited(new EventHandler<MouseEvent>() {
+            nextCardOnHandInfo.setOnMouseExited(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    TextField info = (TextField) handInfo.getChildren().get(finalI);
-                    info.getStyleClass().remove("infoEntered");
-                    info.setText(null);
+                    nextCardOnHandInfo.getStyleClass().remove("infoEntered");
+                    nextCardOnHandInfo.setText(null);
                 }
             });
         }
-        nextCardOnHandInfo.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                TextField info = nextCardOnHandInfo;
-                Card nextCard = Battle.getMenu().getPlayer().getHand().getNextCard();
-                if(nextCard != null){
-                    info.getStyleClass().add("infoEntered");
-                    info.setText(nextCard.getName());
-                }
-                else {
-                    info.getStyleClass().remove("infoEntered");
-                    info.setText(null);
-                }
-            }
-        });
-        nextCardOnHandInfo.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nextCardOnHandInfo.getStyleClass().remove("infoEntered");
-                nextCardOnHandInfo.setText(null);
-            }
-        });
-
-
     }
     private Card getCardOnHand(int index){
         return Battle.getMenu().getPlayer().getHand().getCards()[index];
@@ -501,7 +506,7 @@ public class BattleFXMLC extends FXMLController {
                         public void handle(DragEvent event) {
                             Node source = (Node) event.getGestureSource();
                             if (handFrame.getChildren().contains(source)) {
-                                Card card = getCardOnHand(GridPane.getColumnIndex(source) - 1);
+                                Card card = getCardOnHand(handFrame.getChildren().indexOf(source));
                                 if (card != null) {
                                     try {
                                         Battle.getMenu().insert(card.getID(), finalI, finalJ);
