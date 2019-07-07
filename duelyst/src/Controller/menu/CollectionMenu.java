@@ -48,7 +48,7 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
 
     public void save() {
         this.account.setCollection(this.tempCollection);
-        //Account.save();
+        Account.save();
     }
 
     public void showCollection() {
@@ -134,7 +134,10 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
     }
 
     public boolean isTheCardInTheDeck(Card card){
-        if (selectedDeck == null) return false ;
+        if (selectedDeck == null) {
+            System.err.println("selected deck is null");
+            return false ;
+        }
         return selectedDeck.hasCard(card) ;
     }
     public boolean isTheItemInTheDeck(Item item){
@@ -165,7 +168,7 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
     @Override
     public void selectDeck(Account account, Deck deck) {
         account.getCollection().getDecks().remove(deck);
-        //Account.save();
+        Account.save();
     }
 
     @Override

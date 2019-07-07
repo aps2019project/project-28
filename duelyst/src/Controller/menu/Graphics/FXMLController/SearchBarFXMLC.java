@@ -38,4 +38,7 @@ public class SearchBarFXMLC {
         bar.setText("");
     }
 
+    public void build() {
+        x.setOnAction(e -> xButtonClicked());
+    }
 }

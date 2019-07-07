@@ -69,11 +69,13 @@ public class GraphicsControls {
 
     public static SearchBarFXMLC addSearchBar(VBox vbox , Class clas){
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(clas.getClassLoader().getResource(
-                "Controller/menu/Graphics/FXMLs/CollectionCardHermione.fxml")));
+                "Controller/menu/Graphics/FXMLs/SearchBar.fxml")));
         try {
             Parent root = loader.load();
             vbox.getChildren().add(root);
-            return loader.getController();
+            SearchBarFXMLC fxmlc =  loader.getController();
+            fxmlc.build();
+            return fxmlc ;
         }catch(Exception e) {
             System.err.println("unexpected Exception in loading the search bar !");
             e.printStackTrace();
