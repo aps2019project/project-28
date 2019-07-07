@@ -23,9 +23,7 @@ public abstract class Menu {
     private ArrayList<OnMenuClickedListener> menuPresenters;
     private ArrayList<String> patterns;
     private MenuGraphics graphic=new MenuGraphics(this);
-
-
-                protected String rootPath ;
+    protected String rootPath ;
 
 
 
@@ -82,7 +80,7 @@ public abstract class Menu {
     }
 
     public boolean init(Menu parentMenu) {
-        this.setParentMenu(parentMenu);
+        if(this.parentMenu == null) this.setParentMenu(parentMenu);
         this.setAccount(parentMenu.account);
         return true;
     }

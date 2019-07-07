@@ -48,7 +48,6 @@ public class ShopMenuFXMLC extends FXMLController {
         new Thread(this::makeCardsVBox).start();
         scrollPane.setContent(cardsVbox);
         new Thread(this::makeItemsVBox);
-
         GraphicsControls.setBackButtonOnPress(backButton);
         backButton.setOnAction(e -> {
             ShopMenu.getMenu().save() ;
@@ -171,7 +170,7 @@ public class ShopMenuFXMLC extends FXMLController {
     }
 
     private void tabPressed(Button tab) {
-        ShopMenu.getMenu().save() ;
+//        ShopMenu.getMenu().save() ;
         tab.getStyleClass().add("tab-button-selected");
     }
 

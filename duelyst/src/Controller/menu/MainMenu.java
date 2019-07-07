@@ -14,4 +14,9 @@ public class MainMenu extends Menu {
         return menu;
     }
 
+    @Override
+    public boolean init(Menu parentMenu) {
+        return super.init(parentMenu);
+
+    }
 }

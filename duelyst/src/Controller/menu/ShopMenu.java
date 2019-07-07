@@ -19,8 +19,8 @@ import java.util.ArrayList;
 public class ShopMenu extends Menu {
 
     private static ShopMenu menu;
-    Shop shop = Shop.getInstance();
-    Collection tempCollection;
+    private Shop shop = Shop.getInstance();
+    private Collection tempCollection;
     private ArrayList<OnSearchClickedListener> searchClickedListeners;
     private ArrayList<OnSearchCollectionClickedListener> searchCollectionClickedListeners;
     private ArrayList<OnShowClickedListener> showClickedListeners;
@@ -39,7 +39,8 @@ public class ShopMenu extends Menu {
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
-        tempCollection = this.account.getCollection();
+//        System.err.println("debug");
+        this.tempCollection = this.account.getCollection();
         return true;
     }
 
