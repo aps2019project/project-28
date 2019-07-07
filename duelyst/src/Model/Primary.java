@@ -66,12 +66,12 @@ public class Primary {
     public static void main(String[] args) throws IOException{
         Primary.Json();
         Primary.graphicsJson();
-//        writeJson(spells,"Spell.json");
+        writeJson(spells,"Spell.json");
         writeJson(minions,"Minion.json");
         writeJson(heroes,"Hero.json");
-//        writeJson(usables,"Usables.json");
-//        writeJson(collectables,"Collectables.json");
-//        writeSingle(Shop.getInstance(), "Shop.json");
+        writeJson(usables,"Usables.json");
+        writeJson(collectables,"Collectables.json");
+        writeSingle(Shop.getInstance(), "Shop.json");
     }
 
     public static Shop getShop() throws FileNotFoundException {
@@ -217,7 +217,7 @@ public class Primary {
         getCollectables();
         getCards();
         getItems();
-        loadDefaultDecks();
+//        loadDefaultDecks();
         getAccounts();
         Account.updateAccounts();
         generateAI();
@@ -468,7 +468,6 @@ public class Primary {
                 1, new Melee(), 0,
                 new SpecialPower("Wolf SpecialPower", 0, 0, 0, -6, "",
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
-
         SpecialPower theWizard =  new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
                 TargetRandomEnemyMinionInSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
         theWizard.addAction(ActionChangeHPBuff.getAction(), -1, 1);
@@ -652,7 +651,7 @@ public class Primary {
         fileWriter.close();
     }
 
-    public static void initGraphics() throws FileNotFoundException {
+    public static void initGraphics() {
         setGraphicsForHermiones();
         setIconForCards();
         setAccountAvatars();
