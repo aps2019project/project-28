@@ -29,7 +29,7 @@ public abstract class Card {
         this.manaPoint = manaPoint;
         this.info = info;
         this.cardGraphics = new CardGraphics();
-//        this.cardID = uniqueID++;
+        this.cardID = uniqueID++;
     }
 
 

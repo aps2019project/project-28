@@ -39,7 +39,7 @@ public abstract class Item {
         this.duration = duration;
         this.itemID = Card.uniqueID++;
         this.info = info;
-//        this.itemID = Card.uniqueID++;
+        this.itemID = Card.uniqueID++;
     }
 
     public static Item getItem(int itemID) throws InvalidItemException {

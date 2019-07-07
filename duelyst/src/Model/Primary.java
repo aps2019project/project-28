@@ -64,13 +64,13 @@ public class Primary {
     public static ArrayList<Account> accounts = new ArrayList<>();
 
     public static void main(String[] args) throws IOException{
-        Primary.Json();
-        Primary.graphicsJson();
-        writeJson(spells,"Spell.json");
-        writeJson(minions,"Minion.json");
-        writeJson(heroes,"Hero.json");
-        writeJson(usables,"Usables.json");
-        writeJson(collectables,"Collectables.json");
+//        Primary.Json();
+//        Primary.graphicsJson();
+//        writeJson(spells,"Spell.json");
+//        writeJson(minions,"Minion.json");
+//        writeJson(heroes,"Hero.json");
+//        writeJson(usables,"Usables.json");
+//        writeJson(collectables,"Collectables.json");
         writeSingle(Shop.getInstance(), "Shop.json");
     }
 
