@@ -4,6 +4,7 @@ import Controller.menu.Battle;
 import Controller.menu.Graphics.GraphicsControls;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
+import Model.account.Account;
 import Model.account.player.GGI;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
@@ -11,9 +12,13 @@ import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
 import Model.item.Collectable;
 import Model.item.Item;
+import View.MenuHandler;
 import exeption.*;
 import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -24,10 +29,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
+import sun.tools.jstat.Alignment;
 
 public class BattleFXMLC extends FXMLController {
 
@@ -111,32 +121,17 @@ public class BattleFXMLC extends FXMLController {
                 if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
                     showCollectable.getStyleClass().add("showCollectableEntered");
                     Battle.getMenu().showCollectable();
+                    updateScene();
                 }
             }
         });
-        showCollectable.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                for (Node child : showCollectable.getChildren()) {
-                    Label itemLable = (Label)child;
-                    itemLable.setOnDragDetected(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            Dragboard db = itemLable.startDragAndDrop(TransferMode.ANY);
-                            ClipboardContent content = new ClipboardContent();
-                            content.putString(itemLable.getText());
-                            db.setContent(content);
-                            event.consume();
-                        }
-                    });
-                }
-            }
-        });
+
         showCollectable.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 showCollectable.getStyleClass().remove("showCollectableEntered");
                 showCollectable.getChildren().clear();
+                updateScene();
             }
         });
     }
@@ -172,6 +167,36 @@ public class BattleFXMLC extends FXMLController {
                     moveStart();
                     drop();
                 }
+            }
+        });
+    }
+
+    public void finish(Account winner){
+        ImageView endGameBack = new ImageView("resources/maps/battlemap1_middleground.png");
+        Label endGame = new Label();
+        endGame.setFont(Font.font("Didot", 40.0));
+        endGame.setTextAlignment(TextAlignment.CENTER);
+//        endGame.getStyleClass().add("endGame");
+        endGameBack.setFitWidth(frame.getMinWidth());
+        endGameBack.setFitHeight(frame.getMinHeight());
+        endGame.setMinWidth(frame.getMinWidth());
+        endGame.setMinHeight(frame.getMinHeight());
+        endGame.setLayoutX(frame.getMinWidth()/3);
+        endGame.setLayoutY(frame.getMinHeight()/1.5);
+        if(Battle.getMenu().getAccount().equals(winner)){
+            endGame.setTextFill(Color.rgb(0, 255, 200));
+            endGame.setText("Congrats! YOU WON!");
+        }
+        else {
+            endGame.setTextFill(Color.rgb(255, 100, 61 ));
+            endGame.setText("Ooops! YOU LOST!");
+        }
+        PauseTransition pauseTransition = new PauseTransition(Duration.seconds(3));
+        pauseTransition.play();
+        pauseTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //todo exit
             }
         });
     }
@@ -336,6 +361,8 @@ public class BattleFXMLC extends FXMLController {
                             moveStart();
                             updateScene();
                         } catch (Exception e) {
+                            error("cant move!");
+                            updateScene();
                         }
                     }
                 };
@@ -382,15 +409,22 @@ public class BattleFXMLC extends FXMLController {
             for (int i = 0 ; i < 9 ; i++){
                 for (int j = 0 ; j < 5 ; j++){
                     Cell cell = Battle.getMenu().getMap().getCell(i, j);
+                    ImageView cellView = getCell(i, j);
+                    Rectangle cellRect = getRectangle(i, j);
                     if(cell.getCardOnCell() == null){
-                        getCell(i, j).setImage(null);
+                        cellView.setImage(null);
                     }
                     if(cell.hasItem()){
-                        getCell(i , j).setImage(new Image(Battle.getMenu().getMap().getCell(i, j).getCollectable().getItemGraphics().getAvatar()));
+                        cellView.setImage(new Image(Battle.getMenu().getMap().getCell(i, j).getCollectable().getItemGraphics().getAvatar()));
                     }
                     if(cell.hasFlag()){
-                        getCell(i, j).setImage(new Image("resources/ui/collection_card_rarity_rare@2x.png"));
+                        cellView.setImage(new Image("resources/ui/collection_card_rarity_rare@2x.png"));
                     }
+                    if(cell.getCellAffect().size() > 0){
+                        cellView.setImage(new Image("resources/ui/icon_heal.png"));
+                    }
+                    cellRect.getStyleClass().remove("cellSelected");
+                    cellRect.getStyleClass().remove("specialPowerInserted");
                 }
             }
         } catch (InvalidCellException e) { e.printStackTrace();}
@@ -402,7 +436,6 @@ public class BattleFXMLC extends FXMLController {
         for (int i = 0 ; i < handCards.length ; i++){
             Card card = handCards[i];
             ImageView cardView = (ImageView) handFrame.getChildren().get(i);
-            System.err.println(cardView.getId());
             cardView.setOnDragDetected(e -> {
                 Dragboard db = cardView.startDragAndDrop(TransferMode.ANY);
                 ClipboardContent content = new ClipboardContent();
@@ -423,7 +456,7 @@ public class BattleFXMLC extends FXMLController {
                     public void handle(MouseEvent event) {
                         Dragboard db = item.startDragAndDrop(TransferMode.ANY);
                         ClipboardContent content = new ClipboardContent();
-                        content.putImage(new Image("resources/free_card_of_the_day/random_core_gem.png"));
+                        content.putImage(new Image("resources/icons/artifact_f1_skywindglaives_single.png"));
                         db.setContent(content);
                         event.consume();
                     }
@@ -466,16 +499,6 @@ public class BattleFXMLC extends FXMLController {
                 event.consume();
             }
         });
-//        opponentSP.setOnDragDetected(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                Dragboard db = opponentSP.startDragAndDrop(TransferMode.ANY);
-//                ClipboardContent content = new ClipboardContent();
-//                content.putImage(opponentSP.getImage());
-//                db.setContent(content);
-//                event.consume();
-//            }
-//        });
     }
     private void drop() {
         for (int i = 0 ; i < 9 ; i++) {
@@ -512,14 +535,10 @@ public class BattleFXMLC extends FXMLController {
                                         Battle.getMenu().insert(card.getID(), finalI, finalJ);
                                         updateScene();
                                     } catch (DestinationIsFullException e) {
-                                        errorLable.setText("there's already a card there!");
+                                        error("there's already a card there!");
                                     } catch (NotEnoughManaException e) {
-                                        errorLable.setText("Lets collect some mana first!");
-                                    } catch (InvalidCardException | InvalidCellException e) {
-                                        e.printStackTrace();
-                                    } catch (HandFullException e) {
-                                        e.printStackTrace();
-                                    } catch (DeckIsEmptyException e) {
+                                        error("Lets collect some mana first!");
+                                    } catch (InvalidCardException | InvalidCellException | HandFullException | DeckIsEmptyException e) {
                                         e.printStackTrace();
                                     }
                                 }
@@ -530,11 +549,11 @@ public class BattleFXMLC extends FXMLController {
                                         Battle.getMenu().useSpecialPower(finalI, finalJ);
                                         updateScene();
                                     } catch (CantSpecialPowerCooldownException e) {
-                                        errorLable.setText("coolDown exeption");
+                                        error("coolDown exeption");
                                     } catch (InvalidCardException e) {
-                                        errorLable.setText("wrong card");
+                                        error("wrong card");
                                     } catch (InvalidCellException e) {
-                                        errorLable.setText("wrong cell");
+                                        error("wrong cell");
                                     }
                                 }
                             }
@@ -545,11 +564,11 @@ public class BattleFXMLC extends FXMLController {
                                     Battle.getMenu().select(attacker.getID());
                                     Battle.getMenu().attack(Battle.getMenu().getMap().getCell(finalI, finalJ).getCardOnCell().getID());
                                 } catch (CantAttackException e) {
-                                    errorLable.setText("cant attack");
+                                    error("cant attack");
                                 } catch (InvalidItemException | InvalidCellException | InvalidCardException | NoCardHasBeenSelectedException e) {
                                     e.printStackTrace();
                                 } catch (DestinationOutOfreachException e) {
-                                    errorLable.setText("destination out of reach!");
+                                    error("destination out of reach!");
                                 }
                             }
                             else if(showCollectable.getChildren().contains(source)){
@@ -558,8 +577,10 @@ public class BattleFXMLC extends FXMLController {
                                     Item item = Collectable.getItem(itemLable.getText());
                                     Battle.getMenu().select(item.getID());
                                     Battle.getMenu().useItem(finalI, finalJ);
-                                } catch (InvalidItemException | NoItemHasBeenSelectedException | InvalidCellException | InvalidCardException e) {
+                                } catch (InvalidItemException | NoItemHasBeenSelectedException | InvalidCardException e) {
                                     e.printStackTrace();
+                                }catch (InvalidCellException e){
+                                    error("the cell is not valid");
                                 }
                             }
                             event.consume();
@@ -571,6 +592,17 @@ public class BattleFXMLC extends FXMLController {
         }
     }
 
+    private void error(String error){
+        errorLable.setText(error);
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2), errorLable);
+        fadeTransition.play();
+        fadeTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                errorLable.setText(null);
+            }
+        });
+    }
 
     public ImageView getCell(int x , int y){
         for (Node node : map.getChildren()) {

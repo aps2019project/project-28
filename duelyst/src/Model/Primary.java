@@ -39,6 +39,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -734,7 +735,7 @@ public class Primary {
             }
         });
 
-        hermione.getGraphics().addAttackListenr(new OnAttackListener() {//todo fix this shit
+        hermione.getGraphics().addAttackListenr(new OnAttackListener() {
             @Override
             public void show(Hermione enemyCard){
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
@@ -866,9 +867,18 @@ public class Primary {
         hermione.getGraphics().addSpecialPowerAppliedListener(new OnSpeacialPowerAppliedListeners() {
             @Override
             public void show(Cell cell) {
+                System.err.println("specialPower applied");
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
                 Rectangle cellView = battle.getRectangle(cell.getX(), cell.getY());
                 cellView.getStyleClass().add("specialPowerInserted");
+                PauseTransition pauseTransition = new PauseTransition(Duration.seconds(2));
+                pauseTransition.play();
+                pauseTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        cellView.getStyleClass().remove("specialPowerInserted");
+                    }
+                });
             }
         });
     }

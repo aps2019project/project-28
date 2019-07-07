@@ -102,22 +102,23 @@ public class Battle extends Menu {
         System.out.println("hermione.getGraphics() = " + hermione.getGraphics());
         hermione.spawn(cell);
         this.map.getCell(cell).setCardOnCell(hermione);
+
     }
 
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException, HandFullException, DeckIsEmptyException {
         Card card = this.account.getPlayer().getHand().getCard(cardID);
-        if (card instanceof Hermione) {
-            this.account.getPlayer().deploy(card, this.map.getCell(x, y), this.getEnemyPlayer());
-            this.account.getPlayer().changeMana((-1) * card.getManaPoint());
-            this.account.getPlayer().getHand().removeCard(card);
-        } else if (card instanceof Spell) {
-            try {
-                ((Spell) card).deploy(this.account.getPlayer(), Battle.getMenu().getEnemy(this.account), Battle.getMenu().getMap().getCell(x, y));
+            if (card instanceof Hermione) {
+                this.account.getPlayer().deploy(card, this.map.getCell(x, y), this.getEnemyPlayer());
                 this.account.getPlayer().changeMana((-1) * card.getManaPoint());
                 this.account.getPlayer().getHand().removeCard(card);
-            } catch (InvalidCellException ignored) {
-                ignored.printStackTrace();
-            }
+            } else if (card instanceof Spell) {
+                try {
+                    ((Spell) card).deploy(this.account.getPlayer(), Battle.getMenu().getEnemy(this.account), Battle.getMenu().getMap().getCell(x, y));
+                    this.account.getPlayer().changeMana((-1) * card.getManaPoint());
+                    this.account.getPlayer().getHand().removeCard(card);
+                } catch (InvalidCellException ignored) {
+                    ignored.printStackTrace();
+                }
 //
 //            this.account.getPlayer().deploy(card, this.map.getCell(x, y), this.getEnemyPlayer());
 //
@@ -130,8 +131,8 @@ public class Battle extends Menu {
 //                e.printStackTrace();
 //            }
 //            // TODO: 5/5/19 one more exception  (read the doc)
-            handleDeaths();
-        }
+                handleDeaths();
+            }
     }
 
     public void gameInfo() {
@@ -316,7 +317,6 @@ public class Battle extends Menu {
         Cell cell = map.getCell(x, y);
         this.account.getPlayer().getDeck().getHero().applySpecialPower(cell);
         handleDeaths();
-
     }
 
     public void showHand() {
@@ -409,7 +409,7 @@ public class Battle extends Menu {
         * giving the prize
         * */
         this.gameMode.handleWin();
-
+//        ((BattleFXMLC)this.getGraphic().getController()).finish();
         /*
          * saving the match
          * */

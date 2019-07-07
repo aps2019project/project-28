@@ -26,9 +26,10 @@
 }
 
 .specialPowerInserted{
-    -fx-background-image: url("../../../../resources/ui/specialPowerApplied.png");
+     -fx-fill: #99700097;
+        -fx-width: 20;
+        -fx-height: 25;
 }
-
 
 .mana{
     -fx-image: url("../../../../resources/ui/icon_mana.png");
