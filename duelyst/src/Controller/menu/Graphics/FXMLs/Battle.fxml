@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -27,8 +28,15 @@
           <RowConstraints maxHeight="131.22122192382812" minHeight="10.0" percentHeight="40.0" prefHeight="117.86283874511719" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-                <ImageView fx:id="firstPlayer" fitHeight="180.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="firstPlayerTurn" fitHeight="207.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true" styleClass="turnDisable" />
+            <Group GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <children>
+                      <ImageView fx:id="firstPlayer" fitHeight="174.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="firstPlayerTurn" fitHeight="168.0" fitWidth="169.0" layoutX="10.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" styleClass="turnDisable" />
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Group>
             <Group GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <children>
                   <ImageView blendMode="ADD" fitHeight="135.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true" styleClass="playerInfo" />
@@ -79,8 +87,8 @@
           <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-                <ImageView fx:id="secondPlayer" fitHeight="180.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <ImageView fx:id="secondPlayerTurn" fitHeight="207.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" styleClass="turnDisable" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                <ImageView fx:id="secondPlayer" fitHeight="166.0" fitWidth="169.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <ImageView fx:id="secondPlayerTurn" fitHeight="166.0" fitWidth="169.0" pickOnBounds="true" preserveRatio="true" styleClass="turnDisable" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                 <GridPane fx:id="enemyMana" alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="289.0" rotate="170.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

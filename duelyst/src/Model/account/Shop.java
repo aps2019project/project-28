@@ -45,13 +45,13 @@ public class Shop {
     }
 
     private void fillCards() {
-        this.collection.getCards().forEach(card -> cards.put(card.getCardID(),INITIAL_AMOUNT));
+        this.collection.getCards().forEach(card -> cards.put(card.getID(),INITIAL_AMOUNT));
     }
 
     public boolean hasCard(String name){
         if(!this.collection.hasCard(name))return false;
         try {
-            if (this.cards.get(this.collection.getCard(name).getCardID())==0)return false;
+            if (this.cards.get(this.collection.getCard(name).getID())==0)return false;
         } catch (InvalidCardException e) {e.printStackTrace();}
         return true;
     }
@@ -75,7 +75,7 @@ public class Shop {
         if(!this.hasCard(name))throw new CardDeoesntExistException();
         try {
             Card card=this.getCard(name);
-            this.cards.put(card.getCardID(),this.cards.get(card.getCardID())-1);
+            this.cards.put(card.getID(),this.cards.get(card.getID())-1);
             return card;
         } catch (InvalidCardException e) { e.printStackTrace(); }
         return null;
@@ -114,7 +114,7 @@ public class Shop {
 
     private boolean sellCard(String name) throws InvalidCardException {
         Card card=this.collection.getCard(name);
-        this.cards.put(card.getCardID(),this.cards.get(card.getCardID())+1);
+        this.cards.put(card.getID(),this.cards.get(card.getID())+1);
         return true;
     }
     private boolean sellItem(String name) throws InvalidItemException {

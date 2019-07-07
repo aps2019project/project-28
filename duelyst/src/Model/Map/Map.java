@@ -4,8 +4,6 @@ import Model.Primary;
 import Model.item.Collectable;
 import Model.item.Flag;
 import exeption.InvalidCellException;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;

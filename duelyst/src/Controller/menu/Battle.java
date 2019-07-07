@@ -105,7 +105,7 @@ public class Battle extends Menu {
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException, HandFullException, DeckIsEmptyException {
         Card card = this.account.getPlayer().getHand().getCard(cardID);
         if (card instanceof Hermione) {
-            this.account.getPlayer().deploy(card, this.map.getCell(x, y));
+            this.account.getPlayer().deploy(card, this.map.getCell(x, y), this.getEnemyPlayer());
             this.account.getPlayer().changeMana((-1) * card.getManaPoint());
             this.account.getPlayer().getHand().handleHand(card);
         } else if (card instanceof Spell) {
@@ -113,20 +113,23 @@ public class Battle extends Menu {
                 ((Spell) card).deploy(this.account.getPlayer(), Battle.getMenu().getEnemy(this.account), Battle.getMenu().getMap().getCell(x, y));
                 this.account.getPlayer().changeMana((-1) * card.getManaPoint());
                 this.account.getPlayer().getHand().handleHand(card);
-            } catch (InvalidCellException ignored) { ignored.printStackTrace();}
-
-        this.account.getPlayer().deploy(card, this.map.getCell(x, y),this.getEnemyPlayer());
-
-        if (card instanceof Hermione)
-            this.getMap().getCell(x,y).setCardOnCell((Hermione) card);
-
-        try {
-            this.account.getPlayer().getHand().handleHand(card);
-        } catch (DeckIsEmptyException | HandFullException e) {
-            e.printStackTrace();
+            } catch (InvalidCellException ignored) {
+                ignored.printStackTrace();
+            }
+//
+//            this.account.getPlayer().deploy(card, this.map.getCell(x, y), this.getEnemyPlayer());
+//
+//            if (card instanceof Hermione)
+//                this.getMap().getCell(x, y).setCardOnCell((Hermione) card);
+//
+//            try {
+//                this.account.getPlayer().getHand().handleHand(card);
+//            } catch (DeckIsEmptyException | HandFullException e) {
+//                e.printStackTrace();
+//            }
+//            // TODO: 5/5/19 one more exception  (read the doc)
+            handleDeaths();
         }
-        // TODO: 5/5/19 one more exception  (read the doc)
-        handleDeaths();
     }
 
     public void gameInfo() {

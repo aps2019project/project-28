@@ -22,8 +22,6 @@ public class MainMenuFXMLC extends FXMLController {
     private Button craftButton , saveButton;
 
 
-
-
     @Override
     public void buildScene() {
         super.buildScene();
@@ -50,7 +48,7 @@ public class MainMenuFXMLC extends FXMLController {
             ShopMenu.getMenu().getGraphic().getController().buildScene();
             enterSubMenu(ShopMenu.getMenu());
         });
-        battleMenuButton.setOnAction(e -> enterSubMenu((ChooseBattleModeMenu.getMenu()));
+        battleMenuButton.setOnAction(e -> enterSubMenu((ChooseBattleModeMenu.getMenu())));
         craftButton.setOnAction(e -> {
             CraftingMenu.getMenu().getGraphic().init();
             CraftingMenu.getHeroMenu().getGraphic().init();

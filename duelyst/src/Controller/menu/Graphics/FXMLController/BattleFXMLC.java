@@ -98,8 +98,8 @@ public class BattleFXMLC extends FXMLController {
             @Override
             public void handle(MouseEvent event) {
                 if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
-                    MenuHandler.setCurrentMenu(MainMenu.getMenu());
-                    //todo: end game bezan
+//                    MenuHandler.setCurrentMenu(MainMenu.getMenu());
+//                    //todo: end game bezan
                 }
             }
         });
@@ -178,13 +178,15 @@ public class BattleFXMLC extends FXMLController {
     }
 
     private void updateTurn() {
-        if(Battle.getMenu().getTurn() % 2 == 0){
-            firstPlayerTurn.setImage(new Image("resources/profile_icons/borders/gold@2x.png"));
-            secondPlayerTurn.setImage(new Image("resources/profile_icons/borders/silver@2x.png"));
+        if(Battle.getMenu().getPlayer() == Battle.getMenu().getAccount().getPlayer()){
+            firstPlayerTurn.getStyleClass().add("turnEnable");
+            secondPlayerTurn.getStyleClass().remove("turnEnable");
+            secondPlayerTurn.getStyleClass().add("turnDisable");
         }
         else {
-            secondPlayerTurn.setImage(new Image("resources/profile_icons/borders/gold@2x.png"));
-            firstPlayerTurn.setImage(new Image("resources/profile_icons/borders/silver@2x.png"));
+            secondPlayerTurn.getStyleClass().add("turnEnable");
+            firstPlayerTurn.getStyleClass().remove("turnEnable");
+            firstPlayerTurn.getStyleClass().add("turnDisable");
         }
     }
 
@@ -237,7 +239,7 @@ public class BattleFXMLC extends FXMLController {
                                 Card card = getCardOnHand(GridPane.getColumnIndex(source) - 1);
                                 if (card != null) {
                                     try {
-                                        Battle.getMenu().insert(card.getCardID(), finalI, finalJ);
+                                        Battle.getMenu().insert(card.getID(), finalI, finalJ);
                                         updateScene();
                                     } catch (DestinationIsFullException e) {
                                         errorLable.setText("there's already a card there!");
@@ -395,7 +397,7 @@ public class BattleFXMLC extends FXMLController {
                             @Override
                             public void handle(MouseEvent event) {
                                 try {
-                                    Battle.getMenu().select(cell.getCardOnCell().getCardID());
+                                    Battle.getMenu().select(cell.getCardOnCell().getID());
                                     getRectangle(finalI, finalJ).getStyleClass().add("cellSelected");
                                     moveEnd(finalI, finalJ);
                                     removeEvent(this);
@@ -490,8 +492,8 @@ public class BattleFXMLC extends FXMLController {
                                     ImageView source = (ImageView) event.getGestureSource();
                                     Hermione attacker = Battle.getMenu().getMap().getCell(GridPane.getColumnIndex(source), GridPane.getRowIndex(source))
                                         .getCardOnCell();
-                                    Battle.getMenu().select(attacker.getCardID());
-                                    Battle.getMenu().attack(Battle.getMenu().getMap().getCell(finalI, finalJ).getCardOnCell().getCardID());
+                                    Battle.getMenu().select(attacker.getID());
+                                    Battle.getMenu().attack(Battle.getMenu().getMap().getCell(finalI, finalJ).getCardOnCell().getID());
                                     event.consume();
                                     updateScene();
                                 } catch (InvalidCellException | InvalidCardException | InvalidItemException | NoCardHasBeenSelectedException e) {e.printStackTrace(); }

@@ -2,7 +2,7 @@ package Model.account;
 
 import Model.Primary;
 import Model.card.OnCardDetailsPresentedListener;
-import Model.item.OnItemDetailPresentedListener;
+import View.Listeners.OnItemDetailPresentedListener;
 import View.Listeners.OnCollectionPresentedListener;
 import Model.card.Card;
 import Model.item.Item;
