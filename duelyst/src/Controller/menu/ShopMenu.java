@@ -1,5 +1,6 @@
 package Controller.menu;
 
+import Model.Primary;
 import Model.account.Account;
 import View.Listeners.OnCollectionPresentedListener;
 import View.Listeners.OnSearchClickedListener;
@@ -129,7 +130,7 @@ public class ShopMenu extends Menu {
     public void save() {
         if (this.account == null) return ;
         this.account.setCollection(this.tempCollection);
-        Account.save();
+        Primary.saveAccounts();
     }
 
 

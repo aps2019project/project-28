@@ -1,5 +1,6 @@
 package Controller.menu;
 
+import Model.Primary;
 import Model.item.Usable;
 import View.Listeners.OnCollectionPresentedListener;
 import Model.account.*;
@@ -48,7 +49,7 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
 
     public void save() {
         this.account.setCollection(this.tempCollection);
-        Account.save();
+        Primary.saveAccounts();
     }
 
     public void showCollection() {
@@ -168,7 +169,7 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
     @Override
     public void selectDeck(Account account, Deck deck) {
         account.getCollection().getDecks().remove(deck);
-        Account.save();
+        Primary.saveAccounts();
     }
 
     @Override

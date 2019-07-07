@@ -3,6 +3,7 @@ package Controller.menu;
 import Controller.Game;
 import Controller.GameMode.GameMode;
 import Model.Map.Cell;
+import Model.Primary;
 import Model.account.player.Player;
 import Model.card.hermione.Hero;
 import Model.card.spell.Buff.Buff;
@@ -414,7 +415,7 @@ public class Battle extends Menu {
          * */
         Game.accounts[0].saveMatch(this.match);
         Game.accounts[1].saveMatch(this.match);
-        Account.save();
+        Primary.saveAccounts();
 
 
         /*

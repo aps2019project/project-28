@@ -3,6 +3,7 @@ package Controller.menu.Graphics.FXMLController;
 import Controller.menu.CollectionMenu;
 import Controller.menu.Graphics.GraphicsControls;
 import Controller.menu.ShopMenu;
+import Model.Primary;
 import Model.account.Account;
 import Model.account.Deck;
 import Model.card.Card;
@@ -415,7 +416,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     public void getPopupResult(String text) {
         try {
             Deck deck =((CollectionMenu)menu).createNewDeck(text);
-            Account.save();
+            Primary.saveAccounts();
             ((CollectionMenu)menu).setSelectedDeck(deck);
             buildDecksVbox();
             buildDecksVbox2();
