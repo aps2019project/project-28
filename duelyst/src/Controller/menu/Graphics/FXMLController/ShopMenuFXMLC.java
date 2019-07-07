@@ -38,6 +38,7 @@ public class ShopMenuFXMLC extends FXMLController {
     private List<Item> items = new ArrayList<>();
     private int selectedTab ;
     private SearchBarFXMLC searchBarFXMLC ;
+    private boolean hasSearchBar = false ;
 
     @Override
     public void buildScene() {
@@ -49,15 +50,18 @@ public class ShopMenuFXMLC extends FXMLController {
         new Thread(this::makeItemsVBox);
 
         GraphicsControls.setBackButtonOnPress(backButton);
-//        backButton.setOnAction(e -> {
-//            ShopMenu.getMenu().save() ;
-//            MenuHandler.exitMenu();
-//        });
+        backButton.setOnAction(e -> {
+            ShopMenu.getMenu().save() ;
+            MenuHandler.exitMenu();
+        });
 
-        theRoot.getChildren().remove(scrollPane);
-        searchBarFXMLC = GraphicsControls.addSearchBar(theRoot , this.getClass());
-        theRoot.getChildren().add(scrollPane);
-        searchBarFXMLC.getFindButton().setOnAction(e -> search());
+        if (!hasSearchBar) {
+            hasSearchBar = true ;
+            theRoot.getChildren().remove(scrollPane);
+            searchBarFXMLC = GraphicsControls.addSearchBar(theRoot, this.getClass());
+            theRoot.getChildren().add(scrollPane);
+            searchBarFXMLC.getFindButton().setOnAction(e -> search());
+        }
 
 
         setTabPressedStuff();
@@ -86,6 +90,7 @@ public class ShopMenuFXMLC extends FXMLController {
                 makeItemCard(item , v);
             }
         }
+        scrollPane.setContent(v);
     }
 
 
@@ -150,11 +155,13 @@ public class ShopMenuFXMLC extends FXMLController {
         cardTab.setOnMouseReleased(e -> tabReleased(cardTab));
         itemTab.setOnMouseReleased(e -> tabReleased(itemTab));
         cardTab.setOnAction(e -> {
+            selectedTab = 1 ;
             tabPressed(cardTab);
             tabReleased(itemTab);
             scrollPane.setContent(cardsVbox);
         });
         itemTab.setOnAction(e -> {
+            selectedTab = 2;
             tabPressed(itemTab);
             tabReleased(cardTab);
             scrollPane.setContent(itemsVbox);
@@ -164,7 +171,7 @@ public class ShopMenuFXMLC extends FXMLController {
     }
 
     private void tabPressed(Button tab) {
-//        ShopMenu.getMenu().save() ;
+        ShopMenu.getMenu().save() ;
         tab.getStyleClass().add("tab-button-selected");
     }
 
