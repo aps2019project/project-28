@@ -21,6 +21,7 @@ import Model.item.Collectable;
 import View.Listeners.OnItemDetailPresentedListener;
 import View.Listeners.OnHandPresentedListener;
 import View.MenuHandler;
+import Controller.menu.Graphics.FXMLController.*;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -107,12 +108,12 @@ public class Battle extends Menu {
         if (card instanceof Hermione) {
             this.account.getPlayer().deploy(card, this.map.getCell(x, y), this.getEnemyPlayer());
             this.account.getPlayer().changeMana((-1) * card.getManaPoint());
-            this.account.getPlayer().getHand().handleHand(card);
+            this.account.getPlayer().getHand().removeCard(card);
         } else if (card instanceof Spell) {
             try {
                 ((Spell) card).deploy(this.account.getPlayer(), Battle.getMenu().getEnemy(this.account), Battle.getMenu().getMap().getCell(x, y));
                 this.account.getPlayer().changeMana((-1) * card.getManaPoint());
-                this.account.getPlayer().getHand().handleHand(card);
+                this.account.getPlayer().getHand().removeCard(card);
             } catch (InvalidCellException ignored) {
                 ignored.printStackTrace();
             }
@@ -212,7 +213,6 @@ public class Battle extends Menu {
         try {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
 
-
             //conditions that are related to the map and not to the hermione
             if (this.getMap().getCell(x, y).isFull()) throw new DestinationIsFullException();
             if(this.getMap().getPath(hermione.getLocation(),new Cell(x,y),2)==null)throw new DestinationOutOfreachException();
@@ -236,7 +236,7 @@ public class Battle extends Menu {
 
             this.gameMode.getFlag(this.account.getPlayer(), hermione,
                     map.getCell(x, y));
-
+            this.getGraphic().getController().updateScene();
         } catch (ClassCastException e) {
             throw new CardCantBeMovedException();//because its Spell
         }

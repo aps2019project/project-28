@@ -38,30 +38,7 @@ public class Account {
         if (account == null) return;
         if (Account.hasAccount(account)) return;
         Account.getAccounts().add(account);
-        YaGson gson = new YaGson();
-        try {
-            FileWriter fileWriter = new FileWriter("Account.json", true);
-            gson.toJson(account, fileWriter);
-            fileWriter.write("\n");
-            fileWriter.close();
-        } catch (IOException e) {
-        }
-    }
-
-    public static void save() {
-        YaGson gson = new YaGson();
-        File file = new File("Account.json");
-        file.delete();
-        for (Account account:
-                Primary.accounts) {
-            try{
-                FileWriter fileWriter = new FileWriter("Account.json", true);
-                account.player=null;
-                gson.toJson(account, fileWriter);
-                fileWriter.write("\n");
-                fileWriter.close();
-            } catch (IOException ignored) {}
-        }
+        Primary.saveAccounts();
     }
 
     public static Account getDefaultAccount(){

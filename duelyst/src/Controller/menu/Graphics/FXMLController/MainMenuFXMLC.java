@@ -2,6 +2,7 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.*;
 import Controller.menu.Graphics.GraphicsControls;
+import Model.Primary;
 import Model.account.Account;
 import View.MenuHandler;
 import javafx.fxml.FXML;
@@ -60,7 +61,7 @@ public class MainMenuFXMLC extends FXMLController {
             enterSubMenu(CraftingMenu.getMenu());
         });
         battleMenuButton.setOnAction(e -> enterSubMenu(ChooseBattleModeMenu.getMenu()));
-        saveButton.setOnAction(e -> Account.save());
+        saveButton.setOnAction(e -> Primary.saveAccounts());
     }
 
     private void enterSubMenu(Menu subMenu){

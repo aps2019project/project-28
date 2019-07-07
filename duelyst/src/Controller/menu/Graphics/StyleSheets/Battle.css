@@ -8,16 +8,27 @@
 }
 
 .cell{
-     -fx-fill: ffffff70;
+     -fx-fill: #ffffff70;
      -fx-width: 20;
      -fx-height: 25;
 }
 
 .cellEntered{
-    -fx-fill: ffffff97;
+    -fx-fill: #ffffff97;
     -fx-width: 20;
     -fx-height: 25;
 }
+
+.cellSelected{
+    -fx-fill: #79c1ed97;
+    -fx-width: 20;
+    -fx-height: 25;
+}
+
+.specialPowerInserted{
+    -fx-background-image: url("../../../../resources/ui/specialPowerApplied.png");
+}
+
 
 .mana{
     -fx-image: url("../../../../resources/ui/icon_mana.png");

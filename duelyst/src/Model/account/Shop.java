@@ -24,8 +24,8 @@ public class Shop {
     }
     private Collection collection = new Collection();
 
-    Map<Integer,Integer> cards=new HashMap<>();//cardId,amount
-    Map<Integer,Integer>items=new HashMap<>();//itemId,amount
+    Map<Integer,Integer> cards = new HashMap<>();//cardId,amount
+    Map<Integer,Integer>items = new HashMap<>();//itemId,amount
 
     public static Shop getInstance() {
         return ourInstance;
@@ -121,8 +121,6 @@ public class Shop {
         this.items.put(item.getID(),this.items.get(item.getID())+1);
         return true;
     }
-
-
 
     private void fillCollection(){
         for (Hero hero: Primary.heroes) {

@@ -6,6 +6,7 @@ import Controller.menu.*;
 import Controller.menu.SignInMenu;
 import Model.Primary;
 import Model.account.Account;
+import Model.account.Shop;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

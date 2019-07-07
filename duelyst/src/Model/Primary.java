@@ -42,11 +42,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 import static java.lang.Math.*;
 
@@ -63,7 +65,7 @@ public class Primary {
     public  static  ArrayList<Card> cards = new ArrayList<>();
     public static ArrayList<Account> accounts = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws Exception {
 //        Primary.Json();
 //        Primary.graphicsJson();
 //        writeJson(spells,"Spell.json");
@@ -71,7 +73,9 @@ public class Primary {
 //        writeJson(heroes,"Hero.json");
 //        writeJson(usables,"Usables.json");
 //        writeJson(collectables,"Collectables.json");
-        writeSingle(Shop.getInstance(), "Shop.json");
+//        writeSingle(Shop.getInstance(), "Shop.json");
+        preprocess();
+        saveAccounts();
     }
 
     public static Shop getShop() throws FileNotFoundException {
@@ -313,7 +317,9 @@ public class Primary {
 
                 deck.addItemToDeck(Primary.usables.get(4));
         Account.AI[3].getCollection().forcePushDeck(deck);
-
+        for (Account account : Account.AI) {
+            account.setAvatar("resources/dialogue/speech_portrait_calibero@2x.png");
+        }
     }
 
     public static void saveCustomSpell(Spell costumSpell) throws IOException {
@@ -326,6 +332,23 @@ public class Primary {
             fileWriter.write("\n");
         }
         fileWriter.close();
+    }
+
+    public static void saveAccounts(){
+        YaGson gson = new YaGson();
+        File file = new File("Account.json");
+        file.delete();
+        Primary.setAccountAvatars();
+        for (Account account:
+                accounts) {
+            try{
+                FileWriter fileWriter = new FileWriter("Account.json", true);
+                account.setPlayer(null);
+                gson.toJson(account, fileWriter);
+                fileWriter.write("\n");
+                fileWriter.close();
+            } catch (IOException ignored) {}
+        }
     }
 
     public static void Json(){
@@ -620,7 +643,7 @@ public class Primary {
                 TargetMelee.getTargetInstance(), ItemActionChangeAP.getItemAction()));
     }
 
-    private static void graphicsJson(){
+    private static void graphicsJson() {
         for (Hero hero : heroes) {
             hero.getGraphics().setUnits("resources/units/boss_borealjuggernaut.png", 1020/8, 1210/10, 8, 10);
             hero.getGraphics().setUnitGifs("resources/units/boss_borealjuggernaut_single.png");
@@ -629,10 +652,21 @@ public class Primary {
         for (Minion minion : minions) {
             minion.getGraphics().setUnits("resources/units/boss_candypanda.png", 1024/10, 802/8, 10, 8);
             minion.getGraphics().setUnitGifs("resources/units/boss_candyPanda_single.png");
+            minion.getGraphics().setIcon("resources/icons/artifact_f2_bloodleechmask.png");
+            minion.getGraphics().setIconGif("resources/icons/artifact_f2_bloodleechmask_single.png");
 //            ("resources/units/boss_gol.png", 1970/14, 1020/7, 14, 7
         }
 
+        for (Spell spell : spells) {
+            spell.getSpellGraphics().setIcon("resources/icons/artifact_boss_frostarmor.png");
+            spell.getSpellGraphics().setIconGif("resources/icons/artifact_boss_frostarmor_single.png");
+        }
+
+        for (Collectable collectable : collectables) {
+            collectable.getItemGraphics().setAvatar("resources/arena/card_fade_particles.png");
+        }
     }
+
     private static <E> void writeJson(ArrayList<E> arrays, String path) throws IOException {
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(path, false);
@@ -643,6 +677,7 @@ public class Primary {
         }
         fileWriter.close();
     }
+
     private static void writeSingle(Object obj, String path) throws IOException {
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(path, false);
@@ -651,12 +686,23 @@ public class Primary {
         fileWriter.close();
     }
 
+    public static void setAccountAvatars(){
+        String[] paths = {"resources/dialogue/speech_portrait_abyssian@2x.png",
+                "resources/dialogue/speech_portrait_abyssianthird@2x.png",
+                "resources/dialogue/speech_portrait_boreal_juggernaut@2x.png",
+                "resources/dialogue/speech_portrait_draugar@2x.png",
+                "resources/dialogue/speech_portrait_shinkage_zendo@2x.png"};
+        for (Account account : accounts) {
+            if(account.getAvatar() == null) {
+                int rand = new Random().nextInt(5);
+                account.setAvatar(paths[rand]);
+            }
+        }
+    }
+
     public static void initGraphics() {
         setGraphicsForHermiones();
-        setIconForCards();
-        setAccountAvatars();
         setItemListeners();
-        setItemGraphics();
     }
 
     private static void setGraphicsForHermiones(){
@@ -707,6 +753,7 @@ public class Primary {
         hermione.getGraphics().addCardSelectedListener(new OnCardSelectedListener() {
             @Override
             public void show(String state) {
+
             }
         });
 
@@ -819,29 +866,11 @@ public class Primary {
         hermione.getGraphics().addSpecialPowerAppliedListener(new OnSpeacialPowerAppliedListeners() {
             @Override
             public void show(Cell cell) {
-
+                BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                Rectangle cellView = battle.getRectangle(cell.getX(), cell.getY());
+                cellView.getStyleClass().add("specialPowerInserted");
             }
         });
-    }
-        
-    private static void setIconForCards(){
-        for (Spell spell : spells) {
-            spell.getSpellGraphics().setIcon("resources/icons/artifact_boss_frostarmor.png");
-            spell.getSpellGraphics().setIconGif("resources/ui/icon_gold.png");
-        }
-        for (Minion minion : minions) {
-            minion.getGraphics().setIcon("resources/icons/artifact_boss_frostarmor.png");
-            minion.getGraphics().setIconGif("resources/ui/icon_gold.png");
-        }
-    }
-
-    private static void setAccountAvatars(){
-        for (Account account : accounts) {
-            account.setAvatar("resources/dialogue/speech_portrait_abyssian@2x.png");
-        }
-        for (Account account : Account.AI) {
-            account.setAvatar("resources/dialogue/speech_portrait_calibero@2x.png");
-        }
     }
 
     private static void setItemListeners(){
@@ -870,13 +899,5 @@ public class Primary {
             });
         }
     }
-
-    private static void setItemGraphics(){
-        for (Collectable collectable : collectables) {
-            collectable.getItemGraphics().setAvatar("resources/arena/card_fade_particles.png");
-        }
-    }
-
-
 
 }
