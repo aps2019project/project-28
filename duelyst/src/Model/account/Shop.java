@@ -1,18 +1,12 @@
 package Model.account;
 
 import Model.Primary;
-import Model.card.Card;
 import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
-import Model.item.Item;
 import Model.item.Usable;
-import exeption.*;
-
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Consumer;
+import exeption.CardExistException;
+import exeption.ItemExistExeption;
 
 public class Shop {
 
@@ -159,6 +153,8 @@ public class Shop {
     public Collection getCollection() {
         return collection;
     }
+
+
     public void setCollection(Collection save) {
         this.collection = save;
     }

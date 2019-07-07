@@ -58,7 +58,6 @@ public class SignInMenu extends Menu {
     }
 
     public void logIn(String username, String password) throws InvalidAccountException, WrongPassException {
-        System.err.println("debug");
         Account account = Account.getAccount(username);
         if (account.getPassword().equals(password)) {
             Game.accounts[0] = account;
@@ -75,6 +74,7 @@ public class SignInMenu extends Menu {
                     CollectionMenu.getMenu().getGraphic().init();
                 }
             }.start();
+            MenuHandler.enterMenu(MainMenu.getMenu());
         } else {
             throw new WrongPassException();
         }

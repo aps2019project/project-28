@@ -60,7 +60,7 @@ public class Player {
         this.deck = gson.fromJson(gson.toJson(user.getCollection().getMainDeck()), Deck.class);
         if(this.deck!=null){
             this.deck.setCollection(user.getCollection());
-//            this.deck.shuffle();
+            this.deck.shuffle();
             this.hand = new Hand(this.deck);
         }
     }

@@ -1,5 +1,6 @@
 package Model.account.player;
 
+
 public class GGI implements GameInterFace {
     private Player player;
 
@@ -7,7 +8,7 @@ public class GGI implements GameInterFace {
     public void intervene() {
         try {
             Thread.sleep(1000);
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

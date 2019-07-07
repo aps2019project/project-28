@@ -1,10 +1,7 @@
 package Model.account;
 
-import Model.Primary;
 import Model.card.Card;
-import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
-import Model.card.hermione.Minion;
 import Model.item.Item;
 import Model.item.Usable;
 import View.Listeners.OnDeckPresentedListener;

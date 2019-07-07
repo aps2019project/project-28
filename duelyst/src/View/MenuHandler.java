@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
+
 public class MenuHandler {
 
     private static Menu currentMenu;
@@ -33,11 +34,13 @@ public class MenuHandler {
     public static void startMenus() {
         currentMenu = SignInMenu.getMenu().enter();
     }
+
+
+
     public static void showMenu() {
         MenuHandler.currentMenu.showMenu();
     }
     public static void nextMove() {
-
         Game.accounts[Battle.getMenu().getTurn()].getPlayer().getGI().intervene();
     }
 
@@ -55,12 +58,12 @@ public class MenuHandler {
     public static Account getAccount() {
         return account;
     }
-
     public static void setAccount(Account account) {
         MenuHandler.account = account;
     }
 
     private static void initMenus() {
+
         //az SignIn Menu mirim tuye MainMenu
 
         SignInMenu.getMenu().addSubMenu(MainMenu.getMenu());

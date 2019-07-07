@@ -16,13 +16,10 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
-import java.awt.*;
 
 
 public class GraphicView extends Application implements View{
@@ -34,13 +31,11 @@ public class GraphicView extends Application implements View{
     public static void setScene(Scene scene) {
         GraphicView.stage.setScene(scene);
         stage.show();
-
     }
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         setGIs();
         Primary.initGraphics();
         //TODO just so there is another deck you know !

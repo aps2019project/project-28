@@ -10,7 +10,7 @@ public class CGI implements GameInterFace {
 
     @Override
     public void intervene() {
-//        System.err.println("Console GI");
+        System.err.println("Console GI");
         this.player.doYourMove();
         while(!this.player.getOutputStream().hasNextLine()){}
 

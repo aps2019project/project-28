@@ -2,13 +2,11 @@ package Model;
 
 import Controller.menu.Battle;
 import Controller.menu.Graphics.FXMLController.BattleFXMLC;
-import Model.Graphics.HermioneGraphics;
 import Model.Graphics.Listeners.*;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
 import Model.account.Account;
 import Model.account.Deck;
-import Model.account.Shop;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
@@ -24,17 +22,12 @@ import Model.item.Item;
 import Model.item.ItemActions.*;
 import View.Listeners.OnItemDetailPresentedListener;
 import Model.item.Usable;
-import View.Listeners.OnItemDetailPresentedListener;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
 import com.sun.scenario.effect.impl.prism.PrImage;
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import exeption.*;
 import javafx.animation.*;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -224,7 +217,6 @@ public class Primary {
         loadDefaultDecks();
         getAccounts();
         Account.updateAccounts();
-
         generateAI();
     }
 
@@ -232,8 +224,7 @@ public class Primary {
         //level 1
         Account.AI[1].clearCollection();
         Deck deck = new Deck("AIDeck",Account.AI[1].getCollection());
-        System.err.println("debug");
-               deck.addCardToDeck(Primary.heroes.get(0));
+                deck.addCardToDeck(Primary.heroes.get(0));
 
                 deck.addCardToDeck(Primary.minions.get(0));
                 deck.addCardToDeck(Primary.minions.get(8));
@@ -334,7 +325,7 @@ public class Primary {
         fileWriter.close();
     }
 
-    private static void Json(){
+    public static void Json(){
         //Spell
         spells.add(new Spell("Total Disarm", 1000, 0, -1, 1, "disarm till the end",
                 TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction()));
@@ -445,7 +436,7 @@ public class Primary {
         minions.add(new Minion("One Eye Giant", 500, 7, 12,
                 11, new Hybrid(), 3,
                 new SpecialPower("One Eye Giant SpecialPower", 0, 0, 0, -2, "",
-        TargetRandomEnemyMinionInSurrounding.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks surrounding minions 2 points, on death"));
+                        TargetRandomEnemyMinionInSurrounding.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks surrounding minions 2 points, on death"));
         minions.add(new Minion("Venomous Snake", 300, 4, 5,
                 6, new Range(), 4,
                 new SpecialPower("VenomousSnake", 0, 0, 0, 3, "",
@@ -639,7 +630,7 @@ public class Primary {
         }
 
     }
-    private static <E> void writeJson(ArrayList<E> arrays, String path) throws IOException {
+    private static <E> void writeJson(String path, E... arrays) throws IOException {
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(path, false);
         for (E e:
@@ -657,12 +648,24 @@ public class Primary {
         fileWriter.close();
     }
 
-    public static void initGraphics(){
+    public static void initGraphics() throws FileNotFoundException {
+        setHermionesAvatars();
         setGraphicsForHermiones();
         setIconForCards();
         setAccountAvatars();
         setItemListeners();
         setItemGraphics();
+    }
+
+    public static void setHermionesAvatars() throws FileNotFoundException {
+        for (Hero hero : heroes) {
+            hero.getGraphics().setUnits("resources/units/boss_andromeda.png");
+            hero.getGraphics().setUnitGifs("resources/unit_gifs/boss_andromeda_breathing.gif");
+        }
+        for (Minion minion : minions) {
+            minion.getGraphics().setUnits("resources/units/boss_andromeda.png");
+            minion.getGraphics().setUnitGifs("resources/unit_gifs/boss_andromeda_breathing.gif");
+        }
     }
 
     private static void setGraphicsForHermiones(){
