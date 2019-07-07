@@ -7,7 +7,9 @@ import Controller.menu.*;
 import Controller.menu.SignInMenu;
 import Model.Primary;
 import Model.account.Account;
+import Model.account.Shop;
 import Model.mediator.LocalAccountMediator;
+import Model.mediator.LocalShopMediator;
 import Model.mediator.LocalSignInMenuMediator;
 import network.server.MainServer;
 import sample.Main;
@@ -27,12 +29,7 @@ public class MenuHandler {
         configLocal();
 //        configNetwork();
 
-        try {
-            Primary.preprocess();
-            initMenus();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        initMenus();
 
 
         View input = new ConsoleView();
@@ -51,6 +48,12 @@ public class MenuHandler {
     private static void configLocal() {
         Account.setAccountMediator(new LocalAccountMediator());
         SignInMenu.getMenu().setSignInMenuMediator(new LocalSignInMenuMediator());
+        try {
+            Primary.preprocess();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Shop.getInstance().setShopMediator(new LocalShopMediator());
     }
 
     public static void startMenus() {

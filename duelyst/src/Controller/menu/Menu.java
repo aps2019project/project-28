@@ -15,7 +15,7 @@ import stuff.Resources;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Menu   {
+public abstract class Menu {
 
     protected Account account;
     private String name;

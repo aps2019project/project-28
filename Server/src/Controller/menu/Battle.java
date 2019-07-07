@@ -411,7 +411,7 @@ public class Battle extends Menu {
 
     }
 
-    private void handleBattleFinish() {
+    public void handleBattleFinish() {
         /*
         * giving the prize
         * */

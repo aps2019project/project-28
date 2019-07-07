@@ -7,6 +7,7 @@ import Model.account.player.Player;
 import Model.card.hermione.Hero;
 import Model.card.spell.Buff.Buff;
 import Model.item.Item;
+import Model.mediator.BattleMediator;
 import View.Listeners.OnGameCardsPresentedListenr;
 import View.Listeners.OnGameInfoPresentedListener;
 import Model.Map.Map;
@@ -23,7 +24,6 @@ import View.Listeners.OnHandPresentedListener;
 import View.MenuHandler;
 import exeption.*;
 
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -32,21 +32,23 @@ public class Battle extends Menu {
     private static Battle menu;
 
     private Map map;
-    private Player[] player = new Player[2];
+    public Player[] player = new Player[2];
     private Player ownPLayer;
     private Player opponentPlayer;
-    private int turn = 0;
+    public int turn = 0;
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
     private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
 
     private Match match;
     private GameMode gameMode;
 
+    private BattleMediator mediator;
+
     private ArrayList<OnGameInfoPresentedListener> gameInfoPresenters = new ArrayList<>();
 
     private ArrayList<OnGameCardsPresentedListenr> cardsPresenters = new ArrayList<>();
 
-    private Battle(String name) {
+    public Battle(String name) {
         super(name);
     }
 
@@ -58,15 +60,16 @@ public class Battle extends Menu {
         return menu;
     }
 
+
     @Override
     public boolean init(Menu parentMenu) {
+        System.err.println("debug");
         super.init(parentMenu);
 
         this.map=null;
 
 
-        this.match=new Match(Game.getAccount(0),Game.getAccount(1),this.gameMode);
-        System.err.println("debug");
+//        this.match=new Match(Game.getAccount(0),Game.getAccount(1),this.gameMode);
 
         this.ongoingSpells=new ArrayList<>();
 
@@ -76,35 +79,14 @@ public class Battle extends Menu {
         }
 
         setPlayer(Game.getAccount(0).getPlayer(), Game.getAccount(1).getPlayer());
-        if(this.map==null)
-            this.map = this.gameMode.generateMap();
 
-        try {
-            this.insert(this.player[0].getDeck().getHero(), this.map.getCell(Map.FIRST_HERO_X, Map.FIRST_HERO_Y));
-            this.insert(this.player[1].getDeck().getHero(), this.map.getCell(Map.SECOND_HERO_X, Map.SECOND_HERO_Y));
-        } catch (NullPointerException e){
-            e.printStackTrace();
-            System.out.println("\n");
-            if (this.player[1] == null) System.err.println("player 1 is null");
-            else if (this.player[1].getDeck() == null) System.err.println("deck is null !");
-            else if (this.player[1].getDeck().getHero() == null) System.err.println("hero is null");
-            else if (this.map == null) System.err.println("map is null !");
-            else {
-                try {
-                    if (this.map.getCell(Map.SECOND_HERO_X, Map.SECOND_HERO_Y) == null) System.err.println("getCell is null");
-                } catch (InvalidCellException ex) {
-                    ex.printStackTrace();
-                }
-                System.out.println("\n\n\n");
-            }
-        }catch (InvalidCellException e) {e.printStackTrace();}
-
-
+        this.mediator.init();
 
         return true;
     }
 
-    private void insert(Hermione hermione, Cell cell) throws InvalidCellException {
+    public void insert(Hermione hermione, Cell cell) throws InvalidCellException {
+        /*force insert*/
         System.out.println("hermione.getGraphics() = " + hermione.getGraphics());
         hermione.spawn(cell);
         this.map.getCell(cell).setCardOnCell(hermione);
@@ -112,7 +94,7 @@ public class Battle extends Menu {
 
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
 
-
+        this.mediator.insert(cardID,x,y);
 
         Card card = this.account.getPlayer().getHand().getCard(cardID);
 
@@ -187,7 +169,7 @@ public class Battle extends Menu {
 
     public void select(int ID) throws InvalidCardException, InvalidItemException {
 
-
+        this.mediator.select(ID);
 
         Deck deck = this.account.getPlayer().getDeck();
         // TODO: 2019-06-26 player chera hasItem dare ArshiA ya
@@ -211,8 +193,7 @@ public class Battle extends Menu {
     }
 
     public void move(int x, int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException {
-
-
+        this.mediator.move(x,y);
 
         try {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
@@ -248,39 +229,11 @@ public class Battle extends Menu {
     }
 
     public void attack(int cardID) throws NoCardHasBeenSelectedException, InvalidCardException, DestinationOutOfreachException, CantAttackException, InvalidCellException {
+        this.mediator.attack(cardID);
 
         Hermione myHermione = (Hermione) this.account.getPlayer().getSelectedCard();
         Hermione enemyCard = (Hermione) this.getEnemy(this.account).getDeck().getCard(cardID);
         myHermione.attack(enemyCard,false);
-        handleDeaths();
-    }
-
-    public void kill(Hermione hermione) throws InvalidCardException {
-
-
-        if (hermione instanceof Hero) {
-            this.playerOf(hermione).getDeck().killHero();
-        }else{
-            try {
-                this.map.getCell(hermione.getLocation()).setFlag(hermione.hasFlag());
-                this.map.getCell(hermione.getLocation()).clear();
-            } catch (InvalidCellException e) {
-                e.printStackTrace();
-            }
-
-            this.gameMode.handleDeath(this.playerOf(hermione), (Minion) hermione);
-
-            this.playerOf(hermione).getMinionsInGame().remove(hermione);
-            this.playerOf(hermione).getDeck().moveToGraveYard(hermione);
-        }
-        // TODO: 6/5/19 fatteme after making the unit test check when we kill a minion or hero at any condition(direct attack /counter attack/spell affects....)
-        // TODO: 6/5/19 do they go to grave yard or not and the maps get clear or not and announce me
-
-        try {
-            Battle.getMenu().getMap().getCell(hermione.getLocation()).setFull(false);
-        } catch (InvalidCellException e) {
-            e.printStackTrace();
-        }
         handleDeaths();
     }
 
@@ -320,12 +273,45 @@ public class Battle extends Menu {
     }
 
     public void useSpecialPower(int x, int y) throws InvalidCellException, CantSpecialPowerCooldownException, InvalidCardException {
-
-
+        this.mediator.useSpecialPower(x,y);
         Cell cell = map.getCell(x, y);
         this.account.getPlayer().getDeck().getHero().applySpecialPower(cell);
         handleDeaths();
 
+    }
+
+    public void useItem(int x, int y) throws InvalidCellException, NoItemHasBeenSelectedException {
+        this.mediator.useItem(x,y);
+        this.account.getPlayer().getSelectedItem().deploy(Battle.getMenu().getMap().getCell(x, y));
+    }
+
+    public void kill(Hermione hermione) throws InvalidCardException {
+
+
+        if (hermione instanceof Hero) {
+            this.playerOf(hermione).getDeck().killHero();
+        }else{
+            try {
+                this.map.getCell(hermione.getLocation()).setFlag(hermione.hasFlag());
+                this.map.getCell(hermione.getLocation()).clear();
+            } catch (InvalidCellException e) {
+                e.printStackTrace();
+            }
+
+            this.gameMode.handleDeath(this.playerOf(hermione), (Minion) hermione);
+
+            this.playerOf(hermione).getMinionsInGame().remove(hermione);
+            this.playerOf(hermione).getDeck().moveToGraveYard(hermione);
+        }
+        // TODO: 6/5/19 fatteme after making the unit test check when we kill a minion or hero at any condition(direct attack /counter attack/spell affects....)
+        // TODO: 6/5/19 do they go to grave yard or not and the maps get clear or not and announce me
+
+        try {
+            Battle.getMenu().getMap().getCell(hermione.getLocation()).setFull(false);
+        } catch (InvalidCellException e) {
+            e.printStackTrace();
+        }
+        handleDeaths();
     }
 
     public void showHand() {
@@ -417,7 +403,7 @@ public class Battle extends Menu {
         /*
         * giving the prize
         * */
-        this.gameMode.handleWin();
+        this.mediator.handleBattleFinish();
 
         /*
          * saving the match
@@ -437,7 +423,8 @@ public class Battle extends Menu {
         * handling the account for getting input and stuff
         * */
         Game.setSecondAccount(Account.getDefaultAccount());
-        this.account = SignInMenu.getMenu().account;
+        this.account = SignInMenu.getMenu().getAccount();
+        Game.setFirstAccount(SignInMenu.getMenu().getAccount());
         this.turn = 0;
 
 
@@ -598,7 +585,6 @@ public class Battle extends Menu {
         this.turn = turn;
     }
 
-
     public void setGameInfoPresenters(ArrayList<OnGameInfoPresentedListener> gameInfoPresenters) {
         this.gameInfoPresenters = gameInfoPresenters;
     }
@@ -637,11 +623,6 @@ public class Battle extends Menu {
             presenter.showItemDetail(item);
         }
     }
-
-    public void useItem(int x, int y) throws InvalidCellException, NoItemHasBeenSelectedException {
-        this.account.getPlayer().getSelectedItem().deploy(Battle.getMenu().getMap().getCell(x, y));
-    }
-
     public Player playerOf(Hermione hermione) throws InvalidCardException {
         for (int i = 0; i < 2; i++) {
 
@@ -681,5 +662,13 @@ public class Battle extends Menu {
 
     public Player getOpponentPlayer() {
         return opponentPlayer;
+    }
+
+    public void setMap(Map map) {
+        this.map=map;
+    }
+
+    public void setMediator(BattleMediator mediator) {
+        this.mediator = mediator;
     }
 }

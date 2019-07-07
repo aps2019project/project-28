@@ -208,4 +208,8 @@ public class AI extends Bot {
 
         return this.outputStream.scanner;
     }
+
+    public void setEnemy(Player enemy) {
+        this.enemy = enemy;
+    }
 }
