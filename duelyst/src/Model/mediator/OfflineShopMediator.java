@@ -28,7 +28,6 @@ public class OfflineShopMediator implements ShopMediator {
         fillCollection();
         fillCards();
         fillItems();
-        System.err.println("debug");
     }
 
     private void fillCollection(){

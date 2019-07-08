@@ -654,7 +654,7 @@ public class Battle extends Menu {
             presenter.showItemDetail(item);
         }
     }
-    public Player playerOf(Hermione hermione) throws InvalidCardException {
+    public Player playerOf(Hermione hermione){
         for (int i = 0; i < 2; i++) {
 
             //checking for hero

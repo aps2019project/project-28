@@ -151,9 +151,9 @@ public class BattleFXMLC extends FXMLController {
     @Override
     public void updateScene() {
         super.updateScene();
-//        Platform.runLater(new Runnable(){
-//            @Override
-//            public void run() {
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run() {
                 updateTurn();
                 updateHand();
                 updateInfo();
@@ -166,8 +166,8 @@ public class BattleFXMLC extends FXMLController {
                     moveStart();
                     drop();
                 }
-//            }
-//        });
+            }
+        });
     }
 
     public void finish(){
@@ -537,7 +537,7 @@ public class BattleFXMLC extends FXMLController {
                                         error("there's already a card there!");
                                     } catch (NotEnoughManaException e) {
                                         error("Lets collect some mana first!");
-                                    } catch (InvalidCardException | InvalidCellException | HandFullException | DeckIsEmptyException e) {
+                                    } catch (InvalidCardException | InvalidCellException e) {
                                         e.printStackTrace();
                                     }
                                 }

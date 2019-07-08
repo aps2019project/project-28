@@ -408,10 +408,6 @@ public class CommandHandler {
                 System.out.println("cant spwan/deploy card on the selected destination");
             } catch (InvalidCellException e) {
                 System.out.println("Im afraid our little word doesnt have enough space for your ambitions");
-            } catch (HandFullException e) {
-                e.printStackTrace();
-            } catch (DeckIsEmptyException e) {
-                e.printStackTrace();
             }
         } else if (word[0].equals("use")) {
             try {

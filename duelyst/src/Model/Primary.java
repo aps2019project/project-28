@@ -68,16 +68,17 @@ public class Primary {
     public static ArrayList<Account> accounts = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
-               preprocess();
-//        Primary.graphicsJson();
+        preprocess();
 //        Primary.Json();
+//        Primary.graphicsJson();
 ////        writeJson(spells,"Spell.json");
 //        writeJson(minions,"Minion.json");
 //        writeJson(heroes,"Hero.json");
 //        writeJson(usables,"Usables.json");
 //        writeJson(collectables,"Collectables.json");
-        writeSingle(Shop.getInstance(), "Shop.json");
-//        saveAccounts();
+//        Shop shop = new Shop();
+//        writeSingle(shop, "Shop.json");
+////        saveAccounts();
     }
 
     public static Shop getShop() throws FileNotFoundException {
@@ -223,7 +224,7 @@ public class Primary {
         getCollectables();
         getCards();
         getItems();
-        loadDefaultDecks();
+//        loadDefaultDecks();
 
 //        configAccounts();
 

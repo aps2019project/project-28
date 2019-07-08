@@ -7,6 +7,7 @@ import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
 import Model.item.Item;
 import Model.item.Usable;
+import Model.mediator.OfflineShopMediator;
 import Model.mediator.ShopMediator;
 import exeption.*;
 
@@ -14,18 +15,20 @@ import java.io.FileNotFoundException;
 
 public class Shop {
 
-    private static Shop ourInstance;
+    private static Shop ourInstance = new Shop();
 
     static {
         try {
-            System.err.println("WTF!-----------------------------------");
             ourInstance = Primary.getShop();
-            System.err.println("WTF!-----------------------------------");
         } catch (FileNotFoundException e) { e.printStackTrace(); }
     }
     private Collection collection = new Collection();
 
     private ShopMediator shopMediator;
+
+//    public Shop(){
+//        this.setShopMediator(new OfflineShopMediator());
+//    }
 
     public static Shop getInstance() {
         if(ourInstance==null)ourInstance=new Shop();
