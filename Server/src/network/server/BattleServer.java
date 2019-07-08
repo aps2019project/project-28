@@ -33,7 +33,6 @@ public class BattleServer {
         initBattleMenu();
         sendMap();
         while (true) {
-                                                                                                                        System.err.println("debug");
                                                                                                                         System.out.println("turn() = " + Battle.getMenu().getTurn());
                                                                                                                         System.out.println("Username = " + client[Battle.getMenu().getTurn()].getAccount().getUsername());
             Message message = client[Battle.getMenu().getTurn()].read();
