@@ -35,10 +35,20 @@
                      </font>
                   </Text>
                   <ChoiceBox fx:id="action" prefHeight="84.0" prefWidth="399.0" />
+                  <TextField fx:id="perk" alignment="CENTER" prefHeight="81.0" prefWidth="339.0" promptText="Perk">
+                     <font>
+                        <Font name="Verdana Bold" size="33.0" />
+                     </font>
+                  </TextField>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1183.0" spacing="50.0">
                <children>
+                  <TextField fx:id="duration" alignment="CENTER" prefHeight="98.0" prefWidth="341.0" promptText="Duration">
+                     <font>
+                        <Font name="Verdana Bold" size="33.0" />
+                     </font>
+                  </TextField>
                   <TextField fx:id="manapoint" alignment="CENTER" prefHeight="98.0" prefWidth="341.0" promptText="Mana Point">
                      <font>
                         <Font name="Verdana Bold" size="33.0" />

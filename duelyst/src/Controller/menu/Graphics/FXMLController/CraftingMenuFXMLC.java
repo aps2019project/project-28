@@ -35,12 +35,15 @@ public class CraftingMenuFXMLC extends FXMLController {
 
 
         hero.setOnAction(e -> {
+            CraftingMenu.getHeroMenu().getGraphic().init();
             MenuHandler.enterMenu(CraftingMenu.getHeroMenu());
         });
         spell.setOnAction(e -> {
+            CraftingMenu.getSpellMenu().getGraphic().init();
             MenuHandler.enterMenu(CraftingMenu.getSpellMenu());
         });
         minion.setOnAction(e -> {
+            CraftingMenu.getMinionMenu().getGraphic().init();
             MenuHandler.enterMenu(CraftingMenu.getMinionMenu());
         });
 

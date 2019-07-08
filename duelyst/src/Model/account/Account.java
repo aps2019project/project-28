@@ -123,8 +123,7 @@ public class Account {
     }
 
     public static void updateAccounts() {
-        System.err.println("debug");
-        Account.getAccounts().forEach(acc->acc.getCollection().updateCollection());
+        Primary.accounts.forEach(account -> account.getCollection().updateCollection());
     }
 
     public String getName() {
@@ -229,7 +228,7 @@ public class Account {
     }
 
     public void clearCollection() {
-        this.collection=new Collection();
+        this.collection = new Collection();
     }
 
     public void saveMatch(Match match){

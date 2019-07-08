@@ -8,6 +8,7 @@ import Model.Map.Cell;
 import Model.account.Account;
 import Model.account.Deck;
 import Model.account.Shop;
+import Model.account.player.GGI;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
@@ -26,19 +27,32 @@ import Model.item.Usable;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
+import com.sun.scenario.effect.impl.prism.PrImage;
 import exeption.*;
-import javafx.animation.Animation;
+import javafx.animation.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
-import static java.lang.Math.abs;
+import static java.lang.Math.*;
 
 public class Primary {
 
@@ -53,14 +67,31 @@ public class Primary {
     public static ArrayList<Card> cards = new ArrayList<>();
     public static ArrayList<Account> accounts = new ArrayList<>();
 
-
-    public static void getItems() {
-        items.addAll(usables);
-        items.addAll(collectables);
+    public static void main(String[] args) throws Exception {
+               preprocess();
+//        Primary.graphicsJson();
+//        Primary.Json();
+////        writeJson(spells,"Spell.json");
+//        writeJson(minions,"Minion.json");
+//        writeJson(heroes,"Hero.json");
+//        writeJson(usables,"Usables.json");
+//        writeJson(collectables,"Collectables.json");
+        writeSingle(Shop.getInstance(), "Shop.json");
+//        saveAccounts();
     }
 
-    public static void main(String[] args) throws IOException {
-        Primary.Json();
+    public static Shop getShop() throws FileNotFoundException {
+        YaGson gson = new YaGson();
+        BufferedReader reader = new BufferedReader(new FileReader("Shop.json"));
+        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
+        while (jsonStreamParser.hasNext()) {
+            JsonElement jsonElement = jsonStreamParser.next();
+            if (jsonElement.isJsonObject()) {
+                Shop shop = gson.fromJson(jsonElement, Shop.class);
+                return shop;
+            }
+        }
+        return null;
     }
 
     public static void getHeroes() throws FileNotFoundException {
@@ -133,7 +164,7 @@ public class Primary {
         YaGson gson = new YaGson();
         BufferedReader reader = new BufferedReader(new FileReader("Account.json"));
         JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
-        if (jsonStreamParser.hasNext()) {
+        if(jsonStreamParser.hasNext()) {
             while (jsonStreamParser.hasNext()) {
                 JsonElement jsonElement = jsonStreamParser.next();
                 if (jsonElement.isJsonObject()) {
@@ -144,18 +175,19 @@ public class Primary {
         reader.close();
     }
 
-    public static void getCards() {
+    public static  void getCards(){
         cards.addAll(heroes);
         cards.addAll(minions);
         cards.addAll(spells);
     }
 
-    public static void pre() throws IOException, DeckAlreadyHasThisItemException, DeckAlreadyHasAHeroException, FullDeckException, DeckAlreadyHasThisCardException {
-
+    public static void getItems(){
+        items.addAll(usables);
+        items.addAll(collectables);
     }
 
     public static void setDefaultDeck(Deck deck) throws IOException {
-        File file = new File("Decks" + File.separator + deck.getName() + ".json");
+        File file  = new File("Decks"+ File.separator + deck.getName() +".json");
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(file, false);
         gson.toJson(deck, fileWriter);
@@ -169,10 +201,10 @@ public class Primary {
             YaGson gson = new YaGson();
             BufferedReader reader = new BufferedReader(new FileReader(deck));
             JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
-            if (jsonStreamParser.hasNext()) {
-                while (jsonStreamParser.hasNext()) {
+            if(jsonStreamParser.hasNext()){
+                while (jsonStreamParser.hasNext()){
                     JsonElement jsonElement = jsonStreamParser.next();
-                    if (jsonElement.isJsonObject()) {
+                    if(jsonElement.isJsonObject()){
                         Deck defaulfDeck = gson.fromJson(jsonElement, Deck.class);
                         defaultDecks.add(defaulfDeck);
                         defaultNames.add(defaulfDeck.getName());
@@ -191,6 +223,7 @@ public class Primary {
         getCollectables();
         getCards();
         getItems();
+        loadDefaultDecks();
 
 //        configAccounts();
 
@@ -293,7 +326,9 @@ public class Primary {
 
         deck.addItemToDeck(Primary.usables.get(4));
         Account.AI[3].getCollection().forcePushDeck(deck);
-
+        for (Account account : Account.AI) {
+            account.setAvatar("resources/dialogue/speech_portrait_calibero@2x.png");
+        }
     }
 
     public static void saveCustomSpell(Spell costumSpell) throws IOException {
@@ -308,7 +343,24 @@ public class Primary {
         fileWriter.close();
     }
 
-    public static void Json() throws IOException {
+    public static void saveAccounts(){
+        YaGson gson = new YaGson();
+        File file = new File("Account.json");
+        file.delete();
+        Primary.setAccountAvatars();
+        for (Account account:
+                accounts) {
+            try{
+                FileWriter fileWriter = new FileWriter("Account.json", true);
+                account.setPlayer(null);
+                gson.toJson(account, fileWriter);
+                fileWriter.write("\n");
+                fileWriter.close();
+            } catch (IOException ignored) {}
+        }
+    }
+
+    public static void Json(){
         //Spell
         spells.add(new Spell("Total Disarm", 1000, 0, -1, 1, "disarm till the end",
                 TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction()));
@@ -326,9 +378,9 @@ public class Primary {
                 TargetEnemyHero.getTargetInstance(), ActionChangeHP.getAction()));
         spells.add(new Spell("Poison Lake", 900, 5, 1, 0, "poisonCell, duration : 1",
                 TargetThreeByThree.getTargetInstance(), ActionPoisonCell.getAction()));
-        Spell maddness = new Spell("Madness", 650, 0, 3, 4, "increases Attack Point 4 units, duration : 3, but the card will be disarmed",
+        Spell maddness = new Spell("Madness", 650, 0, 3, 4,"increases Attack Point 4 units, duration : 3, but the card will be disarmed",
                 TargetOwnCard.getTargetInstance(), ActionChangeAPBuff.getAction());
-        maddness.addAction(ActionDisarm.getAction(), 0, 1);
+        maddness.addAction(ActionDisarm.getAction() , 0 , 1 );
         spells.add(maddness);
         spells.add(new Spell("All Disarm", 2000, 9, 1, 0, "all of enemy cards will be disarmed, duration : 1",
                 TargetAllEnemyCards.getTargetInstance(), ActionDisarm.getAction()));
@@ -344,7 +396,7 @@ public class Primary {
                 TargetAllOwnCards.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("All Attack", 1500, 4, 1, -6, "attacks all enemy cards by 6 units",
                 TargetAllEnemyCards.getTargetInstance(), ActionChangeHP.getAction()));
-        spells.add(new Spell("Weakening", 1000, 1, 1, -4, "gives an enemy minion a weakness buff, it decreases attack point 4 units",
+        spells.add(new Spell("Weakening", 1000, 1, 1, -4,"gives an enemy minion a weakness buff, it decreases attack point 4 units",
                 TargetEnemyMinion.getTargetInstance(), ActionChangeAPBuff.getAction()));
         spells.add(new Spell("Sacrifice", 1600, 2, 1, -6, "gives an own minion a power buff, it increases attack point 8 units , it gives weakness buff too, it decreases health point 6 units",
                 new TargetOwnMinion(), ActionSacrifice.getAction()));
@@ -352,87 +404,84 @@ public class Primary {
                 TargetHeroSurroundings.getTargetInstance(), ActionKillMinion.getAction()));
         spells.add(new Spell("Shock", 1200, 1, 2, 0, "an enemy card will be stuned, duration : 2",
                 TargetEnemyCard.getTargetInstance(), ActionStun.getAction()));
-
-        writeJson(spells, "Spell.json");
-
         //Minion
-        SpecialPower nullSpecialPower = new SpecialPower("null SpecialPower", 0, 0, 0, 0, "it DOESNT have special power",
+        SpecialPower nullSpecialPower =  new SpecialPower("null SpecialPower", 0, 0, 1, 0, "it DOESNT have special power",
                 null, ActionVoid.getAction());
 
         minions.add(new Minion("Persian Archer", 300, 2, 6,
                 4, new Range(), 7, nullSpecialPower
-                , SPATime.NULL, "just an ordinary range minion"));
+               , SPATime.NULL, "just an ordinary range minion"));
         minions.add(new Minion("Persian Swordsman", 400, 2, 6,
                 4, new Melee(), 0,
-                new SpecialPower("Persian SwordsMan SpecialPower", 0, 0, 0, 0, "",
+                new SpecialPower("Persian SwordsMan SpecialPower", 0, 0, 1, 0, "",
                         TargetEnemyCard.getTargetInstance(), ActionStun.getAction()), SPATime.ATTACK, "while attacking, enemy's card will be stunned"));
         minions.add(new Minion("Persian Lancer", 500, 1, 5,
                 3, new Hybrid(), 3, nullSpecialPower
-                , SPATime.NULL, "just an ordinary hybrid minion"));
+               , SPATime.NULL, "just an ordinary hybrid minion"));
         minions.add(new Minion("Persian Horseman", 200, 4, 10,
                 6, new Melee(), 0, nullSpecialPower
-                , SPATime.NULL, "just an ordinary melee minion"));
+               , SPATime.NULL, "just an ordinary melee minion"));
         minions.add(new Minion("Persian Warrior", 600, 9, 24,
                 6, new Melee(), 0,
-                new SpecialPower("Persian Warrior SpecialPower", 0, 0, 0, -5, "",
+                new SpecialPower("Persian Warrior SpecialPower", 0, 0, 1, -5, "",
                         TargetEnemyCard.getTargetInstance(), SPActionPersianChamp.getSpecialPower()), SPATime.ATTACK, "be tedad dafati ke dar nobat haye qabl be yek niru hamle karde, 5 vahed bishtar be an zarbe vared mikonad"));
         //TODO in Actionesh chie?
-        minions.add(new Minion("Persian General", 800, 7, 12,
+        minions.add(new Minion("Persian General",800, 7, 12,
                 4, new Melee(), 0,
-                new SpecialPower("Persian General SpecialPower", 0, 0, 0, 0, "",
+                new SpecialPower("Persian General SpecialPower", 0, 0, 1, 0, "",
                         null, ActionCombo.getAction()), SPATime.COMBO, "SPActionCombo"));
         minions.add(new Minion("Turanian Archer", 500, 1, 3,
                 4, new Range(), 5, nullSpecialPower
-                , SPATime.NULL, "just an ordinary range minion"));
+               , SPATime.NULL, "just an ordinary range minion"));
         minions.add(new Minion("Turanian Slinger", 600, 1, 4,
                 2, new Range(), 7, nullSpecialPower
-                , SPATime.NULL, "just an ordinary range minion"));
+             , SPATime.NULL, "just an ordinary range minion"));
         minions.add(new Minion("Turanian Lancer", 600, 1, 4,
                 4, new Hybrid(), 3, nullSpecialPower
-                , SPATime.NULL, "just an ordinary hybrid minion"));
+               , SPATime.NULL, "just an ordinary hybrid minion"));
 
         SpecialPower turanianSpy = new SpecialPower("Turanian Spy SpecialPower", 0, 0, 1, 0, "",
                 TargetEnemyCard.getTargetInstance(), ActionDisarm.getAction());
-        turanianSpy.addAction(ActionDeployPoison.getAction(), 0, 4);
-        minions.add(new Minion("Turanian SPY", 700, 4, 6,
+        turanianSpy.addAction(ActionDeployPoison.getAction(), 0 ,4);
+        minions.add( new Minion("Turanian SPY", 700, 4, 6,
                 6, new Melee(), 0, turanianSpy,
                 SPATime.ATTACK, "enemy's card will be disarmed for 1 turn and will be poisoned for 4 turns"));
 
         minions.add(new Minion("Turanian MaceBearer", 450, 2, 3,
                 10, new Melee(), 0, nullSpecialPower
-                , SPATime.NULL, "just a melee minion"));
-        minions.add(new Minion("Turanian Prince", 800, 6, 6,
+               , SPATime.NULL, "just a melee minion"));
+        minions.add(new Minion("Turanian Prince",800, 6, 6,
                 10, new Melee(), 0,
-                new SpecialPower("Turanian Prince", 0, 0, 0, 0, "",
+                new SpecialPower("Turanian Prince", 0, 0, 1, 0, "",
                         null, ActionCombo.getAction()), SPATime.COMBO, "combo"));
         minions.add(new Minion("Black Demon", 300, 9, 14,
                 10, new Hybrid(), 7, nullSpecialPower
-                , SPATime.NULL, "just a hybrid minion"));
+               , SPATime.NULL, "just a hybrid minion"));
         minions.add(new Minion("Stone Thrower Giant", 300, 9, 12,
                 12, new Range(), 7, nullSpecialPower
-                , null, "just a range minion"));
+                ,null, "just a range minion"));
         minions.add(new Minion("Eagle", 200, 2, 0,
                 2, new Range(), 3,
-                new SpecialPower("Eagle SpecialPower", 0, 0, 0, 10, "",
+                new SpecialPower("Eagle SpecialPower", 0, 0, 1, 10, "",
                         TargetSingleCell.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.PASSIVE, "has power buff, increases health point 10 units"));
 
         minions.add(new Minion("Hog Rider Demon", 300, 6, 16,
                 8, new Melee(), 0, nullSpecialPower
-                , SPATime.NULL, "just a melee minion"));
+              , SPATime.NULL, "just a melee minion"));
         minions.add(new Minion("One Eye Giant", 500, 7, 12,
                 11, new Hybrid(), 3,
-                new SpecialPower("One Eye Giant SpecialPower", 0, 0, 0, -2, "",
-                        RandomMinionInSurrounding.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks surrounding minions 2 points, on death"));
+                new SpecialPower("One Eye Giant SpecialPower", 0, 0, 1, -2, "",
+                        TargetRandomEnemyMinionInSurrounding.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks surrounding minions 2 points, on death"));
         minions.add(new Minion("Venomous Snake", 300, 4, 5,
                 6, new Range(), 4,
-                new SpecialPower("VenomousSnake", 0, 0, 0, 3, "",
+                new SpecialPower("VenomousSnake", 0, 0, 1, 3, "",
                         TargetEnemyCard.getTargetInstance(), ActionDeployPoison.getAction()), SPATime.ATTACK, "enemy's card will be poisoned, duration : 3"));
         minions.add(new Minion("Fire Dragon", 250, 5, 9,
                 5, new Range(), 4, nullSpecialPower
-                , SPATime.NULL, "just an ordinary range minion"));
-        minions.add(new Minion("Fierce Lion", 600, 2, 1,
+               , SPATime.NULL,"just an ordinary range minion"));
+        minions.add(new Minion("Fierce Lion",600, 2, 1,
                 8, new Melee(), 0,
-                new SpecialPower("Fierce Lion SpecialPower", 0, 0, 0, 0, "",
+                new SpecialPower("Fierce Lion SpecialPower", 0, 0, 1, 0, "",
                         TargetEnemyCard.getTargetInstance(), ActionDispel.getAction()), SPATime.ATTACK, "holy buff doesn't effect its attack"));
         //todo fateme
         minions.add(new Minion("Giant Snake", 500, 8, 14,
@@ -443,28 +492,27 @@ public class Primary {
                 2, new Melee(), 0,
                 new SpecialPower("White Wolf SpecialPower", 0, 0, 2, -6, "",
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units, next turn, minion's health point will be decreased 4 units"));//unhanddeled
-        minions.add(new Minion("Leopard", 400, 4, 6,
+        minions.add(new Minion("Leopard",400, 4, 6,
                 2, new Melee(), 0,
                 new SpecialPower("Leopard SpecialPower", 0, 0, 1, -8, "",
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 8 units"));
         minions.add(new Minion("Wolf", 400, 3, 6,
                 1, new Melee(), 0,
-                new SpecialPower("Wolf SpecialPower", 0, 0, 0, -6, "",
+                new SpecialPower("Wolf SpecialPower", 0, 0, 1, -6, "",
                         TargetEnemyMinion.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.ATTACK, "when it attacks a minion, next turn, minion's health point will be decreased 6 units"));
-
-        SpecialPower theWizard = new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
-                RandomMinionInSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
+        SpecialPower theWizard =  new SpecialPower("The Wizard SpecialPower", 0, 0, 1, 2, "",
+                TargetRandomEnemyMinionInSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
         theWizard.addAction(ActionChangeHPBuff.getAction(), -1, 1);
         minions.add(new Minion("The Wizard", 550, 4, 5,
                 4, new Range(), 3, theWizard, SPATime.PASSIVE
-                , "gives own and minions surrounded a power buff, increases attack point 2 units + a weakness buff, decreases health point 1 unit for one turn"));
+                ,"gives own and minions surrounded a power buff, increases attack point 2 units + a weakness buff, decreases health point 1 unit for one turn"));
 
         SpecialPower theGreatWizard = new SpecialPower("The Great Wizard SpecialPower", 0, 0, -1, 2, "",
                 OwnMinionAndItsSurrounding.getTargetInstance(), ActionChangeAPBuff.getAction());
         theGreatWizard.addAction(ActionDeployHollyBuff.getAction(), 0, -1);
-        minions.add(new Minion("The Great Wizard", 550, 6, 6,
+        minions.add(new Minion("The Great Wizard",550, 6, 6,
                 6, new Range(), 5, theGreatWizard
-                , SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
+                ,SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
 
         minions.add(new Minion("Genie", 500, 5, 10,
                 4, new Range(), 4,
@@ -495,8 +543,8 @@ public class Primary {
                 , SPATime.NULL, "just a range minion"));
         minions.add(new Minion("Great Giant", 600, 9, 30,
                 8, new Hybrid(), 2, nullSpecialPower
-                , SPATime.NULL, "just a hybrid minion"));
-        minions.add(new Minion("Two Headed Giant", 550, 4, 10,
+              , SPATime.NULL, "just a hybrid minion"));
+        minions.add(new Minion("Two Headed Giant",550, 4, 10,
                 4, new Melee(), 0,
                 new SpecialPower("Two Headed Giant SpecialPower", 0, 0, 1, 0, "",
                         TargetEnemyCard.getTargetInstance(), ActionDispelPositives.getAction()), SPATime.ATTACK, "every card that it attacks will be diarmed"));
@@ -511,19 +559,17 @@ public class Primary {
                         TargetSingleCell.getTargetInstance(), ActionDeployHollyBuff.getAction()), SPATime.PASSIVE, "12 holy buffs continuously"));
         minions.add(new Minion("Siavash", 350, 4, 8,
                 5, new Melee(), 0,
-                new SpecialPower("Siavash SpecialPower", 0, 0, 0, -6, "",
+                new SpecialPower("Siavash SpecialPower", 0, 0, 1, -6, "",
                         TargetEnemyHero.getTargetInstance(), ActionChangeHPBuff.getAction()), SPATime.DEATH, "attacks enemy's hero 6 points, on death"));
-        minions.add(new Minion("Eurymedon", 600, 5, 10,
+        minions.add(new Minion("Eurymedon",600, 5, 10,
                 4, new Melee(), 0,
-                new SpecialPower("Eurymedon SpecialPower", 0, 0, 0, 0, "",
+                new SpecialPower("Eurymedon SpecialPower", 0, 0, 1, 0, "",
                         null, ActionCombo.getAction()), SPATime.COMBO, "SPActionCombo"));
-        minions.add(new Minion("Arzhang Div", 600, 3, 6,
+        minions.add(new Minion("Arzhang Div",600, 3, 6,
                 6, new Melee(), 0, new SpecialPower("Arzhangs SpecialPower", 0, 0, 0, 0, "",
                 null, ActionCombo.getAction())
                 , SPATime.COMBO, "SPActionCombo"));
-        writeJson(minions, "Minion.json");
         //Hero
-        ArrayList<Hero> heroes = new ArrayList<>();
         heroes.add(new Hero("White Demon", 8000, 50, 4, new Melee(), 0,
                 new SpecialPower("White Demon", 0, 1, -1, 4, "",
                         TargetSingleCell.getTargetInstance(), ActionChangeAPBuff.getAction())
@@ -561,10 +607,7 @@ public class Primary {
                         TargetSingleCell.getTargetInstance(), ActionDeployHollyBuff.getAction()),
                 0, 0, "a hybrid hero with a special power of  holy buffs continuously"));
         heroes.add(new Hero("Rostam", 8000, 55, 7, new Hybrid(), 4, nullSpecialPower
-                , 0, 0, "just a hybrid hero"));
-
-        writeJson(heroes, "Hero.json");
-
+               , 0, 0, "just a hybrid hero"));
         //item
         usables.add(new Usable("Wisdom Crown", 300, 3, 1, "increases mana first 3 turn",
                 TargetSingleCell.getTargetInstance(), ItemActionExtraMana.getItemAction()));
@@ -588,9 +631,7 @@ public class Primary {
                 TargetOwnCard.getTargetInstance(), ItemActionChangeAPBuff.getItemAction()));
         usables.add(new Usable("‌Baptism", 20000, 2, 0, "every minion when spawns gets holy buff, duration : 2",
                 TargetOwnMinion.getTargetInstance(), ItemActionBaptism.getItemAction()));
-
-        writeJson(usables, "Usables.json");
-
+        //collectable
         collectables.add(new Collectable("NooshDaru", 1, 6, "increases health point of a random card 6 units",
                 TargetRandomOwn.getTargetInstance(), ItemActionChangeHP.getItemAction()));
         collectables.add(new Collectable("Two Headed Arrow", 1, 2, "increases attack point of random ranged or hybrid 2 units",
@@ -599,7 +640,7 @@ public class Primary {
                 TargetRandomOwnMinion.getTargetInstance(), ItemActionExir.getItemAction()));
         collectables.add(new Collectable("Mana's Majoon", 1, 3, "gives 3 extra mana the next turn",
                 TargetSingleCell.getTargetInstance(), ItemActionManaGiver.getItemAction()));
-        collectables.add(new Collectable("RooEnTan's Majoon", 2, 10, "10 holy buffs, duration : 2, for a random own card",
+        collectables.add(new Collectable("RooEnTan's Majoon",2,10, "10 holy buffs, duration : 2, for a random own card",
                 TargetRandomOwn.getTargetInstance(), ItemActionHolyBuff.getItemAction()));
         collectables.add(new Collectable("Death's Curse", 0, 8, "8 attack points on nearest enemy card for a random minion ",
                 TargetRandomOwnMinion.getTargetInstance(), ItemActionMinionRandomAttacker.getItemAction()));
@@ -609,13 +650,42 @@ public class Primary {
                 TargetRandomOwn.getTargetInstance(), ItemActionChangeAP.getItemAction()));
         collectables.add(new Collectable("Chineese Sword", 1, 5, "5 attack points for melee",
                 TargetMelee.getTargetInstance(), ItemActionChangeAP.getItemAction()));
-        writeJson(collectables, "Collectables.json");
+    }
+
+    private static void graphicsJson() {
+        for (Hero hero : heroes) {
+            hero.getGraphics().setUnits("resources/units/boss_borealjuggernaut.png",
+                    10, 20 ,
+                    1200, 975,
+                    10, 8);
+            hero.getGraphics().setUnitGifs("resources/units/boss_borealjuggernaut_single.png");
+        }
+
+        for (Minion minion : minions) {
+            minion.getGraphics().setUnits("resources/units/boss_candypanda.png",
+                    10, 20,
+                    810, 1002,
+                    8, 10);
+            minion.getGraphics().setUnitGifs("resources/units/boss_candyPanda_single.png");
+            minion.getGraphics().setIcon("resources/icons/artifact_f2_bloodleechmask.png");
+            minion.getGraphics().setIconGif("resources/icons/artifact_f2_bloodleechmask_single.png");
+//            ("resources/units/boss_gol.png", 1970/14, 1020/7, 14, 7
+        }
+
+        for (Spell spell : spells) {
+            spell.getSpellGraphics().setIcon("resources/icons/artifact_boss_frostarmor.png");
+            spell.getSpellGraphics().setIconGif("resources/icons/artifact_boss_frostarmor_single.png");
+        }
+
+        for (Collectable collectable : collectables) {
+            collectable.getItemGraphics().setAvatar("resources/arena/card_fade_particles.png");
+        }
     }
 
     private static <E> void writeJson(ArrayList<E> arrays, String path) throws IOException {
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter(path, false);
-        for (E e :
+        for (E e:
                 arrays) {
             gson.toJson(e, fileWriter);
             fileWriter.write("\n");
@@ -623,27 +693,34 @@ public class Primary {
         fileWriter.close();
     }
 
-    public static void initGraphics() throws FileNotFoundException {
-        setHermionesAvatars();
+    private static void writeSingle(Object obj, String path) throws IOException {
+        YaGson gson = new YaGson();
+        FileWriter fileWriter = new FileWriter(path, false);
+        gson.toJson(obj, fileWriter);
+        fileWriter.write("\n");
+        fileWriter.close();
+    }
+
+    public static void setAccountAvatars(){
+        String[] paths = {"resources/dialogue/speech_portrait_abyssian@2x.png",
+                "resources/dialogue/speech_portrait_abyssianthird@2x.png",
+                "resources/dialogue/speech_portrait_boreal_juggernaut@2x.png",
+                "resources/dialogue/speech_portrait_draugar@2x.png",
+                "resources/dialogue/speech_portrait_shinkage_zendo@2x.png"};
+        for (Account account : accounts) {
+            if(account.getAvatar() == null) {
+                int rand = new Random().nextInt(5);
+                account.setAvatar(paths[rand]);
+            }
+        }
+    }
+
+    public static void initGraphics() {
         setGraphicsForHermiones();
-        setIconForCards();
-        setAccountAvatars();
         setItemListeners();
-        setItemGraphics();
     }
 
-    public static void setHermionesAvatars() throws FileNotFoundException {
-        for (Hero hero : heroes) {
-            hero.getGraphics().setUnits("resources/units/boss_andromeda.png");
-            hero.getGraphics().setUnitGifs("resources/unit_gifs/boss_andromeda_breathing.gif");
-        }
-        for (Minion minion : minions) {
-            minion.getGraphics().setUnits("resources/units/boss_andromeda.png");
-            minion.getGraphics().setUnitGifs("resources/unit_gifs/boss_andromeda_breathing.gif");
-        }
-    }
-
-    private static void setGraphicsForHermiones() {
+    private static void setGraphicsForHermiones(){
         for (Hero hero : heroes) {
             setGraphicForHermione(hero);
         }
@@ -653,35 +730,46 @@ public class Primary {
     }
 
     private static void setGraphicForHermione(Hermione hermione) {
-
         hermione.getGraphics().addSpawnListener(new OnSpawnListener() {
             @Override
-            public void show(Cell cell) {
-                BattleFXMLC controller = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
+            public void show(Cell cell){
+                BattleFXMLC controller = (BattleFXMLC)Battle.getMenu().getGraphic().getController();
                 ImageView imageView = controller.getCell(cell.getX(), cell.getY());
                 imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 final Animation animation = new SpriteAnimation(
                         imageView,
                         Duration.millis(2000),
-                        8, 1,
-                        0, 0,
-                        1024 / 10, 1024 / 10
+                        hermione.getGraphics().getRow(), 1,
+                        hermione.getGraphics().getUnitX() , hermione.getGraphics().getUnitY(),
+                        hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitHeight() / hermione.getGraphics().getRow()
                 );
                 animation.setCycleCount(Animation.INDEFINITE);
                 animation.play();
             }
         });
 
-        hermione.getGraphics().addAttackListenr(new OnAttackListener() {//todo fix this shit
+        hermione.getGraphics().addAttackListenr(new OnAttackListener() {
             @Override
-            public void show(Hermione enemyCard) {
+            public void show(Hermione enemyCard){
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                ImageView imageView = battle.getCell(hermione.getLocation().getX(),hermione.getLocation().getY());
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 final Animation animation = new SpriteAnimation(
-                        battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
+                        imageView,
                         Duration.millis(2000),
-                        8, 1,
-                        2 * 1024 / 10, 0,
-                        1024 / 10, 1024 / 10
+                        hermione.getGraphics().getRow(), 1,
+                        hermione.getGraphics().getUnitX() + 2 * hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitY(),
+                        hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitHeight() / hermione.getGraphics().getRow()
                 );
                 animation.setCycleCount(1);
                 animation.play();
@@ -691,6 +779,7 @@ public class Primary {
         hermione.getGraphics().addCardSelectedListener(new OnCardSelectedListener() {
             @Override
             public void show(String state) {
+
             }
         });
 
@@ -698,12 +787,19 @@ public class Primary {
             @Override
             public void show() {
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                ImageView imageView =   battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY());
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 final Animation animation = new SpriteAnimation(
-                        battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
+                        imageView,
                         Duration.millis(2000),
-                        8, 1,
-                        4 * 1024 / 10, 0,
-                        1024 / 10, 1024 / 10
+                        hermione.getGraphics().getRow(), 1,
+                        hermione.getGraphics().getUnitX() + 4 * hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitY(),
+                        hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitHeight() / hermione.getGraphics().getRow()
                 );
                 animation.setCycleCount(2);
                 animation.play();
@@ -712,14 +808,21 @@ public class Primary {
 
         hermione.getGraphics().addDeathListener(new OnDeathListener() {
             @Override
-            public void show() {
+            public void show(){
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                ImageView imageView = battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY());
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 final Animation animation = new SpriteAnimation(
-                        battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
+                        imageView,
                         Duration.millis(2000),
-                        8, 1,
-                        1024 / 10, 0,
-                        1024 / 10, 1024 / 10
+                        hermione.getGraphics().getRow(), 1,
+                        hermione.getGraphics().getUnitX() + hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitY(),
+                        hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitHeight() / hermione.getGraphics().getRow()
                 );
                 animation.setCycleCount(1);
                 animation.play();
@@ -730,54 +833,114 @@ public class Primary {
             @Override
             public void show(Cell cell) {
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
-                ImageView imageView = battle.getCell(cell.getX(), cell.getY());
-                final Animation animation = new SpriteAnimation(
-                        imageView,
-                        Duration.millis(2000),
-                        8, 1,
-                        1024 / 10, 0,
-                        1024 / 10, 1024 / 10
-                );
-                imageView.setImage(new Image(hermione.getGraphics().getUnits()));
-                animation.setCycleCount(Animation.INDEFINITE);
-                animation.play();
+                Cell start = hermione.getLocation();
+                ArrayList<Cell> path = Battle.getMenu().getMap().getPath(start, cell, 2);
+                PathTransition first = move(start, path.get(0));
+                if(path.size() > 1){
+                    first.setOnFinished(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            battle.removeFromScene(first.getNode());
+                            PathTransition second = move(path.get(0), path.get(1));
+                            second.setOnFinished(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    battle.removeFromScene(second.getNode());
+                                    ImageView imageView = battle.getCell(cell.getX(), cell.getY());
+                                    imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                                    if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                                        imageView.setScaleX(-1);
+                                        imageView.setScaleY(1);
+                                    }
+                                    final Animation animation = new SpriteAnimation(
+                                            imageView,
+                                            Duration.millis(2000),
+                                            hermione.getGraphics().getRow(), 1,
+                                            hermione.getGraphics().getUnitX() , hermione.getGraphics().getUnitY(),
+                                            hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                                            hermione.getGraphics().getUnitHeight() / hermione.getGraphics().getRow()
+                                    );
+                                    animation.setCycleCount(Animation.INDEFINITE);
+                                    animation.play();
+                                }
+                            });
+                        }
+                    });
+                }
+                else {
+                    first.setOnFinished(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            battle.removeFromScene(first.getNode());
+                            ImageView imageView = battle.getCell(cell.getX(), cell.getY());
+                            imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                            if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                                imageView.setScaleX(-1);
+                                imageView.setScaleY(1);
+                            }
+                            final Animation animation = new SpriteAnimation(
+                                    imageView,
+                                    Duration.millis(2000),
+                                    hermione.getGraphics().getRow(), 1,
+                                    hermione.getGraphics().getUnitX() , hermione.getGraphics().getUnitY(),
+                                    hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                                    hermione.getGraphics().getUnitHeight() / hermione.getGraphics().getRow()
+                            );
+                            animation.setCycleCount(Animation.INDEFINITE);
+                            animation.play();
+                        }
+                    });
+                }
+
+            }
+            private PathTransition move(Cell start, Cell end){
+                BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                Path path = new Path(new MoveTo(battle.getX(start.getX()), battle.getY(start.getY())),
+                        new LineTo(battle.getX(end.getX()), battle.getY(end.getY())));
+                path.setVisible(false);
+                battle.addToScene(path);
+                ImageView imageView = new ImageView(new Image(hermione.getGraphics().getUnitGifs()));
+                imageView.setTranslateX(start.getX() * battle.getCellWidth());
+                imageView.setTranslateY((start.getY() - .5) * battle.getCellHeight());
+                imageView.setFitWidth(battle.getCellWidth());
+                imageView.setFitHeight(battle.getCellHeight());
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
+                battle.addToScene(imageView);
+                PathTransition pathTransition = new PathTransition(Duration.seconds(3), path, imageView);
+                pathTransition.play();
+                ImageView source = battle.getCell(start.getX(), start.getY());
+                source.setImage(null);
+                return pathTransition;
             }
         });
-
         hermione.getGraphics().addSpecialPowerAppliedListener(new OnSpeacialPowerAppliedListeners() {
             @Override
             public void show(Cell cell) {
-
+                System.err.println("specialPower applied");
+                BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                Rectangle cellView = battle.getRectangle(cell.getX(), cell.getY());
+                cellView.getStyleClass().add("specialPowerInserted");
+                PauseTransition pauseTransition = new PauseTransition(Duration.seconds(2));
+                pauseTransition.play();
+                pauseTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        cellView.getStyleClass().remove("specialPowerInserted");
+                    }
+                });
             }
         });
     }
 
-    private static void setIconForCards() {
-        for (Spell spell : spells) {
-            spell.getSpellGraphics().setIcon("resources/icons/artifact_boss_frostarmor.png");
-            spell.getSpellGraphics().setIconGif("resources/ui/icon_gold.png");
-        }
-        for (Minion minion : minions) {
-            minion.getGraphics().setIcon("resources/icons/artifact_boss_frostarmor.png");
-            minion.getGraphics().setIconGif("resources/ui/icon_gold.png");
-        }
-    }
-
-    private static void setAccountAvatars() {
-        for (Account account : accounts) {
-            account.setAvatar("resources/profile_icons/f3_f6_bundle_icon-2.png");
-        }
-        for (Account account : Account.AI) {
-            account.setAvatar("resources/profile_icons/f3_f6_bundle_icon.png");
-        }
-    }
-
-    private static void setItemListeners() {
+    private static void setItemListeners(){
         for (Collectable collectable : collectables) {
             collectable.addNewOnItemDeatilPresentedListener(new OnItemDetailPresentedListener() {
                 @Override
                 public void showItemDetail(Item item) {
-                    if (!hasItem(item.getName())) {
+                    if(!hasItem(item.getName())){
                         Label textField = new Label(item.getName());
                         textField.getStyleClass().add("showItemLable");
                         BattleFXMLC battleFXMLC = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
@@ -789,7 +952,7 @@ public class Primary {
                 private boolean hasItem(String name) {
                     BattleFXMLC battleFXMLC = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
                     for (Node child : battleFXMLC.showCollectable.getChildren()) {
-                        if (((Label) child).getText().compareTo(name) == 0) {
+                        if(((Label)child).getText().compareTo(name) == 0){
                             return true;
                         }
                     }
@@ -798,29 +961,5 @@ public class Primary {
             });
         }
     }
-
-    private static void setItemGraphics() {
-        for (Collectable collectable : collectables) {
-            collectable.getItemGraphics().setAvatar("resources/arena/card_fade_particles.png");
-        }
-    }
-
-    public static Shop getShop() throws FileNotFoundException {
-        YaGson gson = new YaGson();
-        BufferedReader reader = null;
-        System.err.println("mikham be khunam--------------------------------------------------------------------------------------");
-        reader = new BufferedReader(new FileReader("Shop.json"));
-        System.err.println("khnudam ta cheshet dar ad--------------------------------------------------------------------------------------");
-        JsonStreamParser jsonStreamParser = new JsonStreamParser(reader);
-        while (jsonStreamParser.hasNext()) {
-            JsonElement jsonElement = jsonStreamParser.next();
-            if (jsonElement.isJsonObject()) {
-                Shop shop = gson.fromJson(jsonElement, Shop.class);
-                return shop;
-            }
-        }
-        return null;
-    }
-
 
 }

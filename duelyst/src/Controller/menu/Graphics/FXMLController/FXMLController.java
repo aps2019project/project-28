@@ -49,6 +49,7 @@ public class FXMLController {
         * */
         this.menu.getGraphic().getScene().setOnMouseEntered(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
         this.menu.getGraphic().getScene().setOnMouseMoved(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
+        this.menu.getGraphic().getScene().setOnMouseClicked(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
     }
 
     public void enterScene(){

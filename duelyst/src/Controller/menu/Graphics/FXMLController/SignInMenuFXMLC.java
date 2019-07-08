@@ -38,11 +38,6 @@ public class SignInMenuFXMLC extends FXMLController implements LeaderBoardHaving
 
 
     @Override
-    public void init() {
-        super.init();
-    }
-
-    @Override
     public  void buildScene() {
         super.buildScene();
 

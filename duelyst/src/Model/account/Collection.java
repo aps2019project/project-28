@@ -203,7 +203,6 @@ public class Collection {
 
     public boolean hasCard(String name) {
         for (Card collectionCard : cards) {
-            System.err.println(collectionCard.getName());
             if (collectionCard.getName().toLowerCase().equals(name.toLowerCase())) {
                 return true;
             }

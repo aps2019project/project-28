@@ -24,6 +24,7 @@ public class SignInMenu extends Menu {
     private SignInMenu(String name) {
         super(name);
         this.leaderBoardPresenters = new ArrayList<>();
+        this.rootPath = "Scenes/SignInMenu.fxml";
     }
 
 
@@ -68,6 +69,9 @@ public class SignInMenu extends Menu {
     }
 
     public void save() {
+        //not used
+        Account.addNewAccount(temporaryAccount);
+        temporaryAccount = null;
     }
 
     public void showLeaderBoard() {

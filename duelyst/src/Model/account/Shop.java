@@ -2,13 +2,17 @@ package Model.account;
 
 import Model.Primary;
 import Model.card.Card;
+import Model.card.hermione.Hero;
+import Model.card.hermione.Minion;
+import Model.card.spell.Spell;
+import Model.item.Item;
 import Model.item.Usable;
 import Model.mediator.ShopMediator;
 import exeption.*;
 
 import java.io.FileNotFoundException;
 
-public class Shop{
+public class Shop {
 
     private static Shop ourInstance;
 

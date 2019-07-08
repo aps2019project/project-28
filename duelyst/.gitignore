@@ -26,7 +26,8 @@ hs_err_pid*
 #our ignores:
 
 #Fatteme:
-
+    .idea/*
+    .idea/encodings.xml
 #ArshiA:
 
        out/*
