@@ -24,37 +24,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="changed some backgrounds !">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Graphics/ImageViewSprite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../UML.uxf" beforeDir="false" afterPath="$PROJECT_DIR$/../UML.uxf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/duelyst.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/duelyst.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_gilecode_yagson_yagson_0_5_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/com_gilecode_yagson_yagson_0_5_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Account.json" beforeDir="false" afterPath="$PROJECT_DIR$/Account.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Collectables.json" beforeDir="false" afterPath="$PROJECT_DIR$/Collectables.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hero.json" beforeDir="false" afterPath="$PROJECT_DIR$/Hero.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minion.json" beforeDir="false" afterPath="$PROJECT_DIR$/Minion.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Spell.json" beforeDir="false" afterPath="$PROJECT_DIR$/Spell.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usables.json" beforeDir="false" afterPath="$PROJECT_DIR$/Usables.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameMode/ClassicMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameMode/ClassicMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameMode/Domination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameMode/Domination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameMode/FlagMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameMode/FlagMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Battle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/BattleFXMLC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/BattleFXMLC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CraftingHermioneFXMLC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CraftingHermioneFXMLC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/SearchBarFXMLC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/SearchBarFXMLC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/SearchBar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/SearchBar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/Battle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/Battle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Identifiable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Identifiable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Primary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Primary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/hermione/Hermione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/hermione/Hermione.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/network/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/network/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/network/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../readme.txt" afterDir="false" />
     </list>
     <list id="fe5b7bb0-3439-4162-ba6c-e3c0328c746b" name="graphics menus stated" comment="" />
@@ -70,18 +42,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Model/account/player/Player.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/BattleFXMLC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+            <state relative-caret-position="69">
+              <caret line="213" selection-start-line="213" selection-end-line="213" />
               <folding>
-                <element signature="class#Player#0" />
-                <element signature="e#1994#1995#0" expanded="true" />
-                <element signature="e#2021#2022#0" expanded="true" />
-                <element signature="e#5350#5351#0" expanded="true" />
-                <element signature="e#5386#5387#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="31" column="7" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+              <folding>
+                <element signature="e#1021#1022#0" expanded="true" />
+                <element signature="e#1110#1111#0" expanded="true" />
+                <element signature="e#1616#1617#0" expanded="true" />
+                <element signature="e#1661#1662#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-11410">
+              <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -155,7 +147,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="2eb6d87aa39047fc0d4d3bff846df182d0eea88c" />
+        <entry key="$PROJECT_DIR$/.." value="2c325ca4db1f03f37c68347a543f5a80ff62b47c" />
       </map>
     </option>
     <option name="PUSH_TAGS">
@@ -209,13 +201,13 @@
         <option value="$PROJECT_DIR$/src/Controller/GameMode/ClassicMode.java" />
         <option value="$PROJECT_DIR$/src/Controller/GameMode/FlagMode.java" />
         <option value="$PROJECT_DIR$/src/Controller/GameMode/Domination.java" />
-        <option value="$PROJECT_DIR$/src/Model/Primary.java" />
         <option value="$PROJECT_DIR$/src/Model/card/hermione/Hermione.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/StyleSheets/Battle.css" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Battle.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/BattleFXMLC.java" />
         <option value="$PROJECT_DIR$/src/View/MenuHandler.java" />
         <option value="$PROJECT_DIR$/src/Model/Graphics/HermioneGraphics.java" />
+        <option value="$PROJECT_DIR$/src/Model/Primary.java" />
       </list>
     </option>
   </component>
@@ -248,6 +240,19 @@
               <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
               <item name="duelyst" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="Graphics" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
@@ -464,13 +469,6 @@
       <workItem from="1560238835250" duration="6032000" />
       <workItem from="1560332117096" duration="21773000" />
       <workItem from="1561648778689" duration="7190000" />
-    </task>
-    <task id="LOCAL-00091" summary="AI Works Now :)">
-      <created>1559655216419</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1559655216441</updated>
     </task>
     <task id="LOCAL-00092" summary="All Minion SpecialPowers are now available and ready to be added :)">
       <created>1559758226410</created>
@@ -808,7 +806,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562536117024</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="changed some backgrounds !">
+      <created>1562571197534</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1562571197535</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -826,7 +831,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1411" height="877" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09729334" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24506219" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -839,13 +844,13 @@
       <window_info anchor="bottom" auto_hide="true" id="Debug" order="2" sideWeight="0.49928367" weight="0.040312093" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49856734" visible="true" weight="0.19115734" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49856734" weight="0.19115734" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3259177" />
       <window_info anchor="bottom" id="TeamCity" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49893278" weight="0.093628086" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50143266" side_tool="true" weight="0.43433028" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49786553" weight="0.46293887" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49786553" weight="0.24187256" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49786553" visible="true" weight="0.30819246" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32899868" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
@@ -965,11 +970,11 @@
     <MESSAGE value="show collectable" />
     <MESSAGE value="works fine" />
     <MESSAGE value="idk" />
-    <MESSAGE value="changed some backgrounds !" />
     <MESSAGE value="dorost krdne save shop" />
     <MESSAGE value="beautiful sazi" />
     <MESSAGE value="spriteanimation fixing" />
-    <option name="LAST_COMMIT_MESSAGE" value="spriteanimation fixing" />
+    <MESSAGE value="changed some backgrounds !" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed some backgrounds !" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -1091,7 +1096,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Graphics/ImageViewSprite.java" />
     <entry file="file://$PROJECT_DIR$/src/Model/Graphics/SpriteAnimation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -1266,29 +1270,6 @@
         <state relative-caret-position="-4873" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-          <folding>
-            <element signature="e#1021#1022#0" expanded="true" />
-            <element signature="e#1110#1111#0" expanded="true" />
-            <element signature="e#1616#1617#0" expanded="true" />
-            <element signature="e#1661#1662#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/BattleFXMLC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1696">
-          <caret line="106" column="40" selection-start-line="106" selection-start-column="40" selection-end-line="106" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/card/hermione/Hermione.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
@@ -1297,13 +1278,6 @@
             <element signature="e#7580#7581#0" expanded="true" />
             <element signature="e#7611#7612#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="740" column="46" selection-start-line="740" selection-start-column="46" selection-end-line="740" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -1385,6 +1359,41 @@
             <element signature="e#5350#5351#0" expanded="true" />
             <element signature="e#5386#5387#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="31" column="7" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+          <folding>
+            <element signature="e#1021#1022#0" expanded="true" />
+            <element signature="e#1110#1111#0" expanded="true" />
+            <element signature="e#1616#1617#0" expanded="true" />
+            <element signature="e#1661#1662#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/BattleFXMLC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="213" selection-start-line="213" selection-end-line="213" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Graphics/ImageViewSprite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11410">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
         </state>
       </provider>
     </entry>

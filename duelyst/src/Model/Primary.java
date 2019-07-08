@@ -2,7 +2,6 @@ package Model;
 
 import Controller.menu.Battle;
 import Controller.menu.Graphics.FXMLController.BattleFXMLC;
-import Model.Graphics.ImageViewSprite;
 import Model.Graphics.Listeners.*;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
