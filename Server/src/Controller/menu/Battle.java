@@ -65,9 +65,9 @@ public class Battle extends Menu {
         this.map=null;
 
 
+        System.err.println();
         this.match=new Match(Game.getAccount(0),Game.getAccount(1),this.gameMode);
         this.ongoingSpells=new ArrayList<>();
-
         if (Game.getAccount(0).getCollection().getMainDeck() == null || Game.getAccount(1).getCollection().getMainDeck() == null) {
             System.out.println("Please Select your Main Deck");
             return false;
@@ -103,7 +103,6 @@ public class Battle extends Menu {
     }
 
     private void insert(Hermione hermione, Cell cell) throws InvalidCellException {
-        System.out.println("hermione.getGraphics() = " + hermione.getGraphics());
         hermione.spawn(cell);
         this.map.getCell(cell).setCardOnCell(hermione);
     }

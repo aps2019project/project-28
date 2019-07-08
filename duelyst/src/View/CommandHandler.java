@@ -110,7 +110,6 @@ public class CommandHandler {
         if(word[0].equals("select") && word[1].equals("user")){
             try {
                 menu.selectUser(word[2],word[3]);
-                MenuHandler.enterMenu(menu.enter(Battle.getMenu()));
             } catch (InvalidAccountException e) {
                 System.out.println("this account doesnt exist");
             } catch (WrongPassException e) {
@@ -310,7 +309,7 @@ public class CommandHandler {
     private static void BattleCommandHandler(String[] word,String command) {
         Battle menu = (Battle) MenuHandler.getCurrentMenu();
 
-        menu.getMatch().addCommand(command,menu.getTurn());
+//        menu.getMatch().addCommand(command,menu.getTurn());
 
         System.err.println("word:");
         for (int i = 0; i < word.length; i++) {

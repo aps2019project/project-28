@@ -14,6 +14,7 @@ public class OnlinePlayer extends Bot {
 
     public OnlinePlayer(Account user, int maxMana, int mana, Scanner serverInput) {
         super(user, maxMana, mana);
+        System.err.println("debug");
         in=(serverInput);
     }
 
@@ -23,6 +24,7 @@ public class OnlinePlayer extends Bot {
 
     @Override
     protected void play() {
+        System.err.println("debug");
         Message message = Game.getBattleClient().read();
         this.output= (String) message.getCarry().get(0);
     }

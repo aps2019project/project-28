@@ -5,25 +5,25 @@ import Controller.GameMode.GameMode;
 import Controller.menu.Battle;
 import Controller.menu.MainMenu;
 import Model.account.player.AI;
-import View.MenuHandler;
 import exeption.*;
 import network.Message;
 import network.client.Client;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BattleServer {
-    Client []client=new Client[2];
+    Client[] client = new Client[2];
 
     ServerSocket socket;
     GameMode gameMode;
 
     public BattleServer(Client client1, Client client2, GameMode gameMode) throws IOException {
-        socket=new ServerSocket(0);
+        socket = new ServerSocket(0);
         this.client[0] = client1;
         this.client[1] = client2;
-        this.gameMode=gameMode;
+        this.gameMode = gameMode;
     }
 
 
@@ -31,20 +31,38 @@ public class BattleServer {
         System.err.println();
         setAccounts();
         initBattleMenu();
-        while(true){
-            Message message= client[Battle.getMenu().getTurn()].read();
-            if(message.getText().equals("playerMove")){
-                client[(Battle.getMenu().getTurn()+1)%2].write(message);
+        sendMap();
+        while (true) {
+            System.err.println("debug");
+            Message message = client[Battle.getMenu().getTurn()].read();
+            System.out.println("Battle.getMenu().getTurn() = " + Battle.getMenu().getTurn());
+            System.out.println("message = " + message.getText());
+            System.out.println("message.getCarry().get(0) = " + message.getCarry().get(0));
+            if (message.getText().equals("playerMove")) {
+                client[(Battle.getMenu().getTurn() + 1) % 2].write(message);
                 handleCommand(message);
-            }else if(message.getText().equals("finish")){
-                Battle.getMenu().handleBattleFinish();
-                break;
-            }else  if(message.getText().equals("init")){
-                message=new Message("init");
-                message.addCarry(Battle.getMenu().getMap());
-                client[Battle.getMenu().getTurn()].write(message);
+                Battle.getMenu().showMenu();
             }
         }
+    }
+
+    private void sendMap() {
+            System.out.println("client[0].getAccount().getUsername() = " + client[0].getAccount().getUsername());
+            Message message = client[0].read();
+            System.out.println("message.getText() = " + message.getText());
+            if (message.getText().equals("init")) {
+                message = new Message("init");
+                message.addCarry(Battle.getMenu().getMap());
+                client[0].write(message);
+            }
+            System.out.println("client[1].getAccount().getUsername() = " + client[1].getAccount().getUsername());
+            message = client[1].read();
+            System.out.println("message.getText() = " + message.getText());
+            if (message.getText().equals("init")) {
+                message = new Message("init");
+                message.addCarry(Battle.getMenu().getMap());
+                client[1].write(message);
+            }
     }
 
     private void handleCommand(Message message) {
@@ -69,6 +87,7 @@ public class BattleServer {
         } else if (word[0].equals("move") && word[1].equals("to")) {
             System.err.println();
             try {
+                System.err.println();
                 menu.move(Integer.parseInt(word[2]), Integer.parseInt(word[3]));
             } catch (NoCardHasBeenSelectedException e) {
                 System.out.println("please select a card first");
@@ -106,11 +125,11 @@ public class BattleServer {
         } else if (word[0].equals("use") && word[1].equals("special") && word[2].equals("power")) {
             try {
                 menu.useSpecialPower(Integer.parseInt(word[3]), Integer.parseInt(word[4]));
-            }catch(InvalidCellException e){
+            } catch (InvalidCellException e) {
                 System.out.println("sorry but you have to pick a different cell");
-            }catch (InvalidCardException e){
+            } catch (InvalidCardException e) {
                 System.out.println("sorry ! invalid card");
-            }catch (CantSpecialPowerCooldownException e){
+            } catch (CantSpecialPowerCooldownException e) {
                 System.out.println("sorry but you have to cool down first man !");
             }
         } else if (word[0].equals("insert")) {
@@ -134,7 +153,7 @@ public class BattleServer {
             } catch (NoItemHasBeenSelectedException e) {
                 System.out.println("please select an item first");
             }
-        }else if(word[0].equals("end") && word[1].equals("turn")){
+        } else if (word[0].equals("end") && word[1].equals("turn")) {
             try {
 
                 System.err.println("end turn");
@@ -146,26 +165,21 @@ public class BattleServer {
     }
 
     private void initBattleMenu() {
-        AI AI0=new AI(client[0].getAccount(),2,2,null);
-        AI AI1=new AI(client[1].getAccount(),2,2,null);
-        client[0].getAccount().setPlayer(AI0);
-        client[1].getAccount().setPlayer(AI1);
-        AI0.setEnemy(AI1);
-        AI1.setEnemy(AI0);
 
         Game.setFirstAccount(client[0].getAccount());
         Game.setSecondAccount(client[1].getAccount());
         Battle.getMenu().setGameMode(this.gameMode);
         Battle.getMenu().init(MainMenu.getMenu());
+        Battle.getMenu().setAccount(Game.getAccount(0));
     }
 
     private void setAccounts() {
-        Message message1=new Message("server Port");
+        Message message1 = new Message("server Port");
         message1.addCarry(client[1].getAccount());
         message1.addCarry(0);
         client[0].write(message1);
 
-        Message message2=new Message("server Port");
+        Message message2 = new Message("server Port");
         message2.addCarry(client[0].getAccount());
         message2.addCarry(1);
         client[1].write(message2);

@@ -45,6 +45,8 @@ public class OnlineBattleMediator implements BattleMediator {
         Game.getBattleClient().write(message);
 
         message = Game.getBattleClient().read();
+        System.out.println("----------------------------------------------------------");
+        System.out.println("message.getCarry().get(0) = " + message.getCarry().get(0));
 
         try {
             if (!NetworkMediator.isValid(message)) return false;

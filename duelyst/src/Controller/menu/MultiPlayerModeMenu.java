@@ -38,6 +38,7 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
             System.out.println("throw new MainDeckNotSelectedException()------------------------------------------");
         System.out.println("this.account.getCollection().getMainDeck() = " + this.account.getCollection().getMainDeck());
         try {
+            System.err.println();
             this.mediator.selectUser(username,password);
         } catch (IOException e) {
             e.printStackTrace();
