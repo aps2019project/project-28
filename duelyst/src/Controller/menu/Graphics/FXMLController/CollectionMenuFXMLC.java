@@ -2,11 +2,16 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.CollectionMenu;
 import Controller.menu.Graphics.GraphicsControls;
+import Controller.menu.ShopMenu;
+import Model.Primary;
+import Model.account.Account;
 import Model.account.Deck;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.spell.Spell;
+import Model.item.Item;
 import Model.item.Usable;
+import View.MenuHandler;
 import exeption.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,8 +39,13 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     private Label balance ;
     @FXML
     private ScrollPane scrollPane ;
+    @FXML
+    private VBox theRoot ;
     private VBox hermionesVbox = new VBox() , spellsVbox = new VBox() , itemsVbox = new VBox() ,
             decksVbox = new VBox() , decksVbox2 = new VBox();
+    private int selectedTab ;
+    private SearchBarFXMLC searchBarFXMLC ;
+    private boolean hasSearchBar = false ;
 
 
     @Override
@@ -43,19 +53,58 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         super.buildScene();
         Scene scene = menu.getGraphic().getScene();
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/CollectionMenu.css");
-        buildCardsVbox() ;
+        buildCardsVbox();
         scrollPane.setContent(hermionesVbox);
-        buildItemsVbox();
-        buildDecksVbox();
+        new Thread(() -> {
+            buildItemsVbox();
+            buildDecksVbox();
+        }).start();
 
         GraphicsControls.setBackButtonOnPress(backButton);
-        backButton.setOnAction(e -> {
-//            ShopMenu.getMenu().save() ;
-//            MenuHandler.exitMenu();
 
-        });
         setTabPressedStuff();
         updateBalance();
+
+
+        if (!hasSearchBar) {
+            hasSearchBar = true ;
+            theRoot.getChildren().remove(scrollPane);
+            searchBarFXMLC = GraphicsControls.addSearchBar(theRoot, this.getClass());
+            theRoot.getChildren().add(scrollPane);
+            searchBarFXMLC.getFindButton().setOnAction(e -> search());
+        }
+    }
+
+
+    private void search() {
+        String search = searchBarFXMLC.getSearchText();
+        VBox v ;
+        if (search.isEmpty()) {
+            if (selectedTab == 1) v = hermionesVbox ;
+            else if (selectedTab == 2) v = spellsVbox ;
+            else if (selectedTab == 3) v = itemsVbox ;
+            else v = decksVbox ;
+            scrollPane.setContent(v);
+            return ;
+        }
+
+        v = new VBox() ;
+        v.setSpacing(15);
+
+        List<HBox> hermionehBoxes = new ArrayList<>();
+        List<HBox> spellHboxes = new ArrayList<>();
+        for (Card card : menu.getAccount().getCollection().getCards()){
+            if (card.getName().toLowerCase().contains(search.toLowerCase())){
+                makeCardCard(hermionehBoxes , spellHboxes , card ,v ,v);
+            }
+        }
+        List<HBox> itemHBoxes = new ArrayList<>();
+        for (Usable item : menu.getAccount().getCollection().getItems()){
+            if (item.getName().contains(search)){
+                makeItemCard(itemHBoxes , item , v);
+            }
+        }
+        scrollPane.setContent(v);
     }
 
     private void setTabPressedStuff() {
@@ -74,6 +123,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             tabReleased(spellTab);
             tabReleased(decksTab);
             scrollPane.setContent(hermionesVbox);
+            selectedTab = 1 ;
         });
         itemTab.setOnAction(e -> {
             tabPressed(itemTab);
@@ -81,6 +131,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             tabReleased(spellTab);
             tabReleased(decksTab);
             scrollPane.setContent(itemsVbox);
+            selectedTab = 3 ;
         });
         spellTab.setOnAction(e -> {
             tabPressed(spellTab);
@@ -88,6 +139,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             tabReleased(itemTab);
             tabReleased(decksTab);
             scrollPane.setContent(spellsVbox);
+            selectedTab = 2 ;
         });
         decksTab.setOnAction(e -> {
             tabPressed(decksTab);
@@ -95,38 +147,45 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             tabReleased(itemTab);
             tabReleased(spellTab);
             scrollPane.setContent(decksVbox);
+            selectedTab = 4 ;
         });
     }
 
     private void buildCardsVbox() {
         List<HBox> hermionehBoxes = new ArrayList<>();
         List<HBox> spellHboxes = new ArrayList<>();
+        if (menu.getAccount() == null) System.out.println("account");
+        if (menu.getAccount().getCollection() == null) System.out.println("collection");
         for (Card card : menu.getAccount().getCollection().getCards()){
-            if (card instanceof Hermione){
-                Hermione h = (Hermione)card ;
-                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
-                        "Controller/menu/Graphics/FXMLs/CollectionCardHermione.fxml")));
-                try {
-                    Parent root = loader.load();
-                    CollectionCardHermioneFXMLC fxmlc = loader.getController();
-                    fxmlc.buildCardCard(h);
-                    setUpTheHbox(root , hermionesVbox , hermionehBoxes);
-                }catch (IOException ignored) {
-                    System.err.println("could'nt load the collectionHermioneCard");
-                }
+            makeCardCard(hermionehBoxes, spellHboxes, card , hermionesVbox , spellsVbox);
+        }
+    }
+
+    private void makeCardCard(List<HBox> hermionehBoxes, List<HBox> spellHboxes, Card card , VBox vboxHermione , VBox vboxSpell) {
+        if (card instanceof Hermione){
+            Hermione h = (Hermione)card ;
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                    "Controller/menu/Graphics/FXMLs/CollectionCardHermione.fxml")));
+            try {
+                Parent root = loader.load();
+                CollectionCardHermioneFXMLC fxmlc = loader.getController();
+                fxmlc.buildCardCard(h);
+                setUpTheHbox(root , vboxHermione  , hermionehBoxes);
+            }catch (IOException ignored) {
+                System.err.println("could'nt load the collectionHermioneCard");
             }
-            else if (card instanceof Spell){
-                Spell s = (Spell) card ;
-                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
-                        "Controller/menu/Graphics/FXMLs/CollectionCardSpell.fxml")));
-                try {
-                    Parent root = loader.load();
-                    CollectionCardSpellFXMLC fxmlc = loader.getController();
-                    fxmlc.buildCardCard(s);
-                    setUpTheHbox(root , spellsVbox , spellHboxes);
-                }catch (IOException ignored) {
-                    System.err.println("could'nt load the collectionSpellCard");
-                }
+        }
+        else if (card instanceof Spell){
+            Spell s = (Spell) card ;
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                    "Controller/menu/Graphics/FXMLs/CollectionCardSpell.fxml")));
+            try {
+                Parent root = loader.load();
+                CollectionCardSpellFXMLC fxmlc = loader.getController();
+                fxmlc.buildCardCard(s);
+                setUpTheHbox(root , vboxSpell , spellHboxes);
+            }catch (IOException ignored) {
+                System.err.println("could'nt load the collectionSpellCard");
             }
         }
     }
@@ -134,16 +193,20 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     private void buildItemsVbox() {
         List<HBox> hBoxes = new ArrayList<>();
         for (Usable usabel : menu.getAccount().getCollection().getUsables()){
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
-                    "Controller/menu/Graphics/FXMLs/CollectionCardItem.fxml")));
-            try {
-                Parent root = loader.load();
-                CollectionCardItemFXMLC fxmlc = loader.getController();
-                fxmlc.buildCardCard(usabel);
-                setUpTheHbox(root , itemsVbox , hBoxes);
-            }catch (IOException ignored) {
-                System.err.println("could'nt load the collectionSpellCard");
-            }
+            makeItemCard(hBoxes, usabel , itemsVbox);
+        }
+    }
+
+    private void makeItemCard(List<HBox> hBoxes, Usable usabel , VBox vbox) {
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(
+                "Controller/menu/Graphics/FXMLs/CollectionCardItem.fxml")));
+        try {
+            Parent root = loader.load();
+            CollectionCardItemFXMLC fxmlc = loader.getController();
+            fxmlc.buildCardCard(usabel);
+            setUpTheHbox(root , vbox , hBoxes);
+        }catch (IOException ignored) {
+            System.err.println("could'nt load the collectionSpellCard");
         }
     }
 
@@ -162,9 +225,9 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         newDeck.setPrefWidth(160);
         newDeck.setPrefHeight(70);
         Button deleteDeck = new Button("Delete Deck");
-        newDeck.setFont(new Font("verdana" , 13));
-        newDeck.setPrefWidth(160);
-        newDeck.setPrefHeight(70);
+        deleteDeck.setFont(new Font("verdana" , 13));
+        deleteDeck.setPrefWidth(160);
+        deleteDeck.setPrefHeight(70);
         GraphicsControls.setButtonStyle("menu-button" , newDeck , deleteDeck);
         newDeck.setOnAction(e -> newDeck());
         deleteDeck.setOnAction(e -> deleteDeck());
@@ -263,20 +326,35 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             vbox.getChildren().add(hbox);
         }
         hbox = hBoxes.get(hBoxes.size()-1);
-        hbox.getChildren().add(card);
+        try {
+            hbox.getChildren().add(card);
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
 
     }
 
     private void setTheButton(Usable item, Button button) {
-        if (((CollectionMenu)menu).isTheItemInTheDeck(item)){
+        if (!((CollectionMenu)menu).isTheItemInTheDeck(item)){
             button.setText("Add");
             button.setOnAction(e -> {
                 try {
-                    ((CollectionMenu)menu).addItemToDeck(item);
+                    ((CollectionMenu)menu).addToDeck(item.getID(),((CollectionMenu)menu).getSelectedDeck().getName());
+                    setTheButton(item , button);
                 } catch (FullDeckException ex) {
                     Popup.popup("The selected Deck is full!");
                 } catch (DeckAlreadyHasThisItemException ex) {
                     Popup.popup("This deck already has this Item !");
+                    ex.printStackTrace();
+                } catch (InvalidItemException ex) {
+                    ex.printStackTrace();
+                } catch (DeckAlreadyHasAHeroException ex) {
+                    ex.printStackTrace();
+                } catch (InvalidCardException ex) {
+                    ex.printStackTrace();
+                } catch (DeckAlreadyHasThisCardException ex) {
+                    ex.printStackTrace();
+                } catch (InvalidDeckException ex) {
                     ex.printStackTrace();
                 }
             });
@@ -284,26 +362,30 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             button.setText("Remove");
             button.setOnAction(e->{
                 try {
-                    ((CollectionMenu)menu).removeFromDeck(item.getID());
+                    ((CollectionMenu)menu).removeFromDeck(item.getID(), ((CollectionMenu)menu).getSelectedDeck().getName());
                 } catch (InvalidItemException ex) {
                     Popup.popup("This item does not exist on this deck !");
-                } catch (InvalidCardException ignored) {}
+                } catch (InvalidCardException ignored) {} catch (InvalidDeckException ex) {
+                    ex.printStackTrace();
+                }
             });
         }
     }
 
     private void setTheButton(Button button , Card card) {
-        if (((CollectionMenu) menu).isTheCardInTheDeck(card)) {
+        if (!((CollectionMenu) menu).isTheCardInTheDeck(card)) {
             button.setText("Add");
             button.setOnAction(e -> {
                 try {
-                    ((CollectionMenu) menu).addCardToDeck(card);
+                    ((CollectionMenu) menu).addToDeck(card.getID(),  ((CollectionMenu)menu).getSelectedDeck().getName());
+                    setTheButton(button , card);
                 } catch (FullDeckException ex) {
                     Popup.popup("The selected Deck is full!");
                 } catch (DeckAlreadyHasAHeroException ex) {
                     Popup.popup("This deck already has a Hero!");
                 } catch (DeckAlreadyHasThisCardException ex) {
                     Popup.popup("This deck already has this card !");
+                } catch (InvalidItemException | InvalidCardException | DeckAlreadyHasThisItemException | InvalidDeckException ex) {
                     ex.printStackTrace();
                 }
             });
@@ -311,16 +393,16 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             button.setText("Remove");
             button.setOnAction(e -> {
                 try {
-                    ((CollectionMenu) menu).removeFromDeck(card.getID());
+                    ((CollectionMenu) menu).removeFromDeck(card.getID(), ((CollectionMenu)menu).getSelectedDeck().getName());
                 } catch (InvalidCardException ex) {
                     Popup.popup("This card does not exist on this deck !");
                 } catch (InvalidItemException ignored) {
+                } catch (InvalidDeckException ex) {
+                    ex.printStackTrace();
                 }
             });
         }
     }
-
-
 
     private void deleteDeck() {
         ((CollectionMenu)menu).showDeckSelector(menu.getAccount());
@@ -332,7 +414,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
 
 
     private void tabPressed(Button tab) {
-//        ShopMenu.getMenu().save() ;
+//        CollectionMenu.getMenu().save() ;
         tab.getStyleClass().add("tab-button-selected");
         updateBalance();
     }
@@ -351,10 +433,10 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     public void getPopupResult(String text) {
         try {
             Deck deck =((CollectionMenu)menu).createNewDeck(text);
-            //Account.save();
+//            Primary.saveAccounts();
+            ((CollectionMenu)menu).setSelectedDeck(deck);
             buildDecksVbox();
             buildDecksVbox2();
-            ((CollectionMenu)menu).setSelectedDeck(deck);
             scrollPane.setContent(decksVbox2);
         } catch (DeckAlreadyExistException e) {
             PopupInput.popup("this deck name already exists !" , this);

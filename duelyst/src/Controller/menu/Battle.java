@@ -3,6 +3,7 @@ package Controller.menu;
 import Controller.Game;
 import Controller.GameMode.GameMode;
 import Model.Map.Cell;
+import Model.Primary;
 import Model.account.player.Player;
 import Model.card.hermione.Hero;
 import Model.card.spell.Buff.Buff;
@@ -22,6 +23,7 @@ import Model.item.Collectable;
 import View.Listeners.OnItemDetailPresentedListener;
 import View.Listeners.OnHandPresentedListener;
 import View.MenuHandler;
+import Controller.menu.Graphics.FXMLController.*;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ public class Battle extends Menu {
     public int turn = 0;
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
     private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
-
+    public Account winner;
     private Match match;
     private GameMode gameMode;
 
@@ -221,7 +223,6 @@ public class Battle extends Menu {
         try {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
 
-
             //conditions that are related to the map and not to the hermione
             if (this.getMap().getCell(x, y).isFull()) throw new DestinationIsFullException();
             if(this.getMap().getPath(hermione.getLocation(),new Cell(x,y),2)==null)throw new DestinationOutOfreachException();
@@ -246,6 +247,7 @@ public class Battle extends Menu {
             this.gameMode.getFlag(this.account.getPlayer(), hermione,
                     map.getCell(x, y));
 
+            this.getGraphic().getController().updateScene();
         } catch (ClassCastException e) {
             throw new CardCantBeMovedException();//because its Spell
         }
@@ -391,7 +393,7 @@ public class Battle extends Menu {
 
         this.account = this.getEnemy(this.account).getUser();
         swapPlayers();
-        System.err.println(this.account.getName() + " , " + this.getEnemy(this.account).getUser().getName());
+//        System.err.println(this.account.getName() + " , " + this.getEnemy(this.account).getUser().getName());
         /*handling Mana*/
         this.account.getPlayer().setMaxMana(MAX_MANA_PER_TURN[Integer.min(turn, MAX_MANA_PER_TURN.length - 1)]);
         this.account.getPlayer().reFillMana();
@@ -412,6 +414,7 @@ public class Battle extends Menu {
         // TODO: 5/5/19 other stuff maybe?
 
 
+        this.getGraphic().getController().updateScene();
         /*checkState*/
         if (this.gameMode.checkState()) {
             handleBattleFinish();
@@ -426,7 +429,7 @@ public class Battle extends Menu {
         * giving the prize
         * */
         this.mediator.handleBattleFinish();
-
+        //        ((BattleFXMLC)this.getGraphic().getController()).finish();
         /*
          * saving the match
          * */
@@ -651,7 +654,7 @@ public class Battle extends Menu {
             presenter.showItemDetail(item);
         }
     }
-    public Player playerOf(Hermione hermione) throws InvalidCardException {
+    public Player playerOf(Hermione hermione){
         for (int i = 0; i < 2; i++) {
 
             //checking for hero
@@ -666,7 +669,7 @@ public class Battle extends Menu {
                 }
             }
         }
-        throw new InvalidCardException();
+        return null;
     }
 
     public Player enemyPlayerOf(Hermione hermione) throws InvalidCardException {

@@ -2,7 +2,9 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.*;
 import Controller.menu.Graphics.GraphicsControls;
+import Model.Primary;
 import Model.account.Account;
+import Model.account.Collection;
 import View.MenuHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -43,16 +45,28 @@ public class MainMenuFXMLC extends FXMLController {
 
 
         collectionMenuButton.setOnAction(e -> {
-            CollectionMenu.getMenu().getGraphic().init();
+            try {
+                CollectionMenu.getMenu().getGraphic().getController().buildScene();
+            }catch(NullPointerException ignored){
+                CollectionMenu.getMenu().getGraphic().init();
+            }
             enterSubMenu(CollectionMenu.getMenu());
         });
         shopMenuButton.setOnAction(e -> {
-            ShopMenu.getMenu().getGraphic().init();
+            ShopMenu.getMenu().getGraphic().getController().buildScene();
             enterSubMenu(ShopMenu.getMenu());
         });
+
+        battleMenuButton.setOnAction(e -> enterSubMenu(GameModeMenu.getMenu()));
+        craftButton.setOnAction(e -> {
+            CraftingMenu.getMenu().getGraphic().init();
+            CraftingMenu.getHeroMenu().getGraphic().init();
+            CraftingMenu.getMenu().getGraphic().init();
+            CraftingMenu.getMenu().getGraphic().init();
+            enterSubMenu(CraftingMenu.getMenu());
+        });
         battleMenuButton.setOnAction(e -> enterSubMenu(ChooseBattleModeMenu.getMenu()));
-        craftButton.setOnAction(e -> enterSubMenu(CraftingMenu.getMenu()));
-        saveButton.setOnAction(e -> Account.save());
+        saveButton.setOnAction(e -> Primary.saveAccounts());
     }
 
     private void enterSubMenu(Menu subMenu){

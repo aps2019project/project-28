@@ -29,7 +29,6 @@ public class ClassicMode implements GameMode {
             Game.getAccount(0).setWins(Game.getAccount(0).getWins() + 1);
             Game.getAccount(0).setMoney(Game.getAccount(0).getMoney() + ClassicMode.prize);
         }
-        //Account.save();
     }
 
     @Override

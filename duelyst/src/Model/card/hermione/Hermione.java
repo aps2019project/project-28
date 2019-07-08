@@ -1,6 +1,7 @@
 package Model.card.hermione;
 
 import Controller.menu.Battle;
+import Controller.menu.Graphics.FXMLController.BattleFXMLC;
 import Model.Graphics.HermioneGraphics;
 import Model.Map.Cell;
 import Model.Map.Map;
@@ -10,6 +11,7 @@ import Model.card.spell.SpecialPower;
 import Model.card.spell.Spell;
 import exeption.*;
 
+import javax.print.event.PrintJobAttributeListener;
 import java.util.ArrayList;
 
 public abstract class Hermione extends Card {
@@ -132,14 +134,14 @@ public abstract class Hermione extends Card {
     public boolean move(int x, int y) throws MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, CardCantBeMovedException, DestinationIsFullException {
 
         // TODO: 2019-06-26 move cell begire va location ro cell bezare ke be battle kari nadashte bashe
-        ;
         if (!canMove(x, y)) return false;
-        System.err.println("debugg");
+//        System.err.println("debugg");
         /*
         * handling the graphics
         * */
-        this.getGraphics().onMove(new Cell(x,y));
 
+
+        this.getGraphics().onMove(new Cell(x,y));
 
         this.setLocation(Battle.getMenu().getMap().getCell(x, y));
 

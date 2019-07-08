@@ -42,14 +42,7 @@ public abstract class Item {
         this.duration = duration;
         this.itemID = Card.uniqueID++;
         this.info = info;
-
-    }
-
-    public static int gererateID(Item item){
-        String toBeHashed = "";
-        if(item instanceof Usable)toBeHashed="usable:"+item.getName();
-        if(item instanceof Collectable)toBeHashed="collectable:"+item.getName();
-        return toBeHashed.hashCode();
+//        this.itemID = Card.uniqueID++;
     }
 
     public static Item getItem(int itemID) throws InvalidItemException {
@@ -71,7 +64,7 @@ public abstract class Item {
 
     public static Item getItem(String name) throws InvalidItemException {
         for (Item item : Item.getItems()) {
-            if (item.getName().toLowerCase().equals(name)) return item;
+            if (item.getName().toLowerCase().equals(name.toLowerCase())) return item;
         }
         throw new InvalidItemException();
     }

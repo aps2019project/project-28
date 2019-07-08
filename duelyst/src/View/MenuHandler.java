@@ -23,15 +23,15 @@ public class MenuHandler {
 
     public static void main(String[] args) throws IOException {
 
-//        configLocal();
-        configNetwork();
+        configLocal();
+//        configNetwork();
 
 
         initMenus();
 
 
-        View input = new ConsoleView();
-//        View input = new GraphicView();
+//        View input = new ConsoleView();
+        View input = new GraphicView();
 
         input.play(args);
     }
@@ -71,11 +71,15 @@ public class MenuHandler {
     public static void startMenus() {
         currentMenu = SignInMenu.getMenu().enter();
     }
+
+
+
     public static void showMenu() {
         MenuHandler.currentMenu.showMenu();
     }
     public static void nextMove() {
         Game.getAccount(Battle.getMenu().getTurn()).getPlayer().getGI().intervene();
+        currentMenu.getGraphic().getController().updateScene();
     }
 
     public static Menu getCurrentMenu() {
@@ -92,12 +96,12 @@ public class MenuHandler {
     public static Account getAccount() {
         return account;
     }
-
     public static void setAccount(Account account) {
         MenuHandler.account = account;
     }
 
     private static void initMenus() {
+
         //az SignIn Menu mirim tuye MainMenu
 
         SignInMenu.getMenu().addSubMenu(MainMenu.getMenu());
@@ -107,9 +111,9 @@ public class MenuHandler {
         MainMenu.getMenu().addSubMenu(ChooseBattleModeMenu.getMenu());
 
         GameModeMenu.getMenu().addSubMenu(SinglePlayerModeMenu.getMenu());
-        SinglePlayerModeMenu.getMenu().addSubMenu(StoryModeMenu.getMenu());
         GameModeMenu.getMenu().addSubMenu(MultiPlayerModeMenu.getMenu());
 
+        SinglePlayerModeMenu.getMenu().addSubMenu(StoryModeMenu.getMenu());
         SinglePlayerModeMenu.getMenu().addSubMenu(CustomModeMenu.getMenu());
 
 

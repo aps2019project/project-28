@@ -26,9 +26,7 @@ public class Hero extends Hermione {
     @Override
     public void applySpecialPower(Cell cell) throws InvalidCellException, InvalidCardException , CantSpecialPowerCooldownException {
         if (this.remainCoolDOwnTime != cooldown) throw new CantSpecialPowerCooldownException() ;
-
         super.applySpecialPower(cell);
-
         this.SpecialPower.deploy(Battle.getMenu().getPlayer(), Battle.getMenu().getEnemyPlayer(), cell);
         this.decreaseRemainCoolDown();
     }

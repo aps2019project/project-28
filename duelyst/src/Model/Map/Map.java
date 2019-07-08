@@ -3,7 +3,6 @@ package Model.Map;
 import Model.Primary;
 import Model.item.Collectable;
 import Model.item.Flag;
-import com.sun.istack.internal.Nullable;
 import exeption.InvalidCellException;
 
 import java.util.ArrayList;
@@ -25,6 +24,7 @@ public class Map {
 
 
     private Cell[][] board = new Cell[Map.WHIDTH + 1][Map.HEIGHT + 1];
+    private ArrayList<Flag> flags;
 
 
     public static int getManhattanDistance(Cell start, Cell end) {
@@ -101,7 +101,6 @@ public class Map {
         return getCell(cell.getX(),cell.getY());
     }
 
-    @Nullable
     public ArrayList<Cell> getPath(Cell start,Cell end,int maxTurns){
         ArrayList<Cell>retVal=this.findPath(start,end,0,maxTurns);
         if(retVal!=null)

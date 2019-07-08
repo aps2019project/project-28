@@ -5,7 +5,6 @@ import View.MenuHandler;
 import com.gilecode.yagson.YaGson;
 import network.Auth;
 import network.Message;
-import sample.Main;
 
 import java.io.*;
 import java.net.Socket;

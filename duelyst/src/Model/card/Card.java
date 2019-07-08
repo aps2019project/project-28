@@ -3,6 +3,7 @@ package Model.card;
 import Model.Graphics.CardGraphics;
 import Model.Primary;
 import Model.account.Collection;
+import exeption.CardExistException;
 import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
 import Model.card.spell.SpecialPower;
@@ -12,7 +13,7 @@ import exeption.InvalidCardException;
 import java.util.ArrayList;
 
 public abstract class Card {
-    private static ArrayList<Card> cards= Primary.cards;
+    private static ArrayList<Card> cards = Primary.cards;
 
     public static int uniqueID =0;
 
@@ -31,17 +32,7 @@ public abstract class Card {
         this.manaPoint = manaPoint;
         this.info = info;
         this.cardGraphics = new CardGraphics();
-        this.cardID=uniqueID++;
-    }
-
-
-    public static int gererateID(Card card){
-        System.out.println("card = " + card);
-        String toBeHashed = "";
-        if(card instanceof Hero)toBeHashed="hero:"+card.getName();
-        if(card instanceof Minion)toBeHashed="minion:"+card.getName();
-        if(card instanceof Spell)toBeHashed="spell:"+card.getName();
-        return toBeHashed.hashCode();
+//        this.cardID = uniqueID++;
     }
 
     public void setSuperCollection(Collection superCollection) {
@@ -80,7 +71,7 @@ public abstract class Card {
     }
     public static Card getCard(String name) throws InvalidCardException {
         for (Card card : Card.cards) {
-            if(card.getName().toLowerCase().equals(name))return card;
+            if(card.getName().toLowerCase().equals(name.toLowerCase()))return card;
         }
         throw new InvalidCardException();
     }
@@ -139,7 +130,7 @@ public abstract class Card {
     public boolean equals(Object obj) {
         if (!(obj instanceof Card)) return false ;
         Card card = (Card)obj ;
-        if (card.getName().equals(this.name)) return true ;
+        if (card.getName().toLowerCase().equals(this.name.toLowerCase())) return true ;
         return false ;
     }
 
@@ -151,8 +142,9 @@ public abstract class Card {
         this.cardGraphics = cardGraphics;
     }
 
-    public static void main(String[] args) {
-        System.out.println("\"\".hashCode() = " + "".hashCode());
+    public static void addCardToCards(Card card) throws CardExistException {
+        if (!cards.contains(card)) cards.add(card);
+        else throw new CardExistException();
     }
 }
 

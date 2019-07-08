@@ -3,6 +3,7 @@ package Controller.menu;
 import Model.account.Account;
 import Model.account.Shop;
 import Model.mediator.ShopMediator;
+import Model.Primary;
 import View.Listeners.OnCollectionPresentedListener;
 import View.Listeners.OnSearchClickedListener;
 import View.Listeners.OnSearchCollectionClickedListener;
@@ -35,7 +36,7 @@ public class ShopMenu extends Menu {
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
-        tempCollection = this.account.getCollection();
+        this.tempCollection = this.account.getCollection();
         return true;
     }
 
