@@ -153,8 +153,9 @@ public abstract class Menu {
         return name;
     }
 
-    public Menu exit() {
-        return parentMenu.enter();
+    public void exit() {
+        MenuHandler.exitMenu();
+//        return parentMenu.enter();
     }
 
     public MenuGraphics getGraphic() {

@@ -53,7 +53,7 @@ public class MenuHandler {
         currentMenu = currentMenu.enter(menu);
     }
     public static void exitMenu() {
-        MenuHandler.currentMenu = MenuHandler.currentMenu.exit();
+        MenuHandler.currentMenu.exit();
     }
 
     public static Account getAccount() {

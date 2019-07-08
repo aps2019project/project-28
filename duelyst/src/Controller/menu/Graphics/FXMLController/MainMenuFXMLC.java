@@ -44,6 +44,7 @@ public class MainMenuFXMLC extends FXMLController {
 
 
         collectionMenuButton.setOnAction(e -> {
+            if(CollectionMenu.getMenu().getGraphic().getController()==null) System.out.println("fuck meeeeeeee");
             CollectionMenu.getMenu().getGraphic().getController().buildScene();
             enterSubMenu(CollectionMenu.getMenu());
         });

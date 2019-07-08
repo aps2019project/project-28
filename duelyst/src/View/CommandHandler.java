@@ -78,7 +78,7 @@ public class CommandHandler {
         }else if(word[0].equals("exit")){
             if(MenuHandler.getCurrentMenu().getParentMenu()==null) System.out.println("This is the root menu!");
             else {
-                MenuHandler.enterMenu(MenuHandler.getCurrentMenu().exit());
+                MenuHandler.getCurrentMenu().exit();
                 return true;
             }
         }
