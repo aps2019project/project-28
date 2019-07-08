@@ -223,7 +223,7 @@ public class Primary {
         getCollectables();
         getCards();
         getItems();
-//        loadDefaultDecks();
+        loadDefaultDecks();
         getAccounts();
         Account.updateAccounts();
         generateAI();
