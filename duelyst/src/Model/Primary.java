@@ -729,7 +729,7 @@ public class Primary {
                 BattleFXMLC controller = (BattleFXMLC)Battle.getMenu().getGraphic().getController();
                 ImageView imageView = controller.getCell(cell.getX(), cell.getY());
                 imageView.setImage(new Image(hermione.getGraphics().getUnits()));
-                if(false) {
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
                     imageView.setScaleX(-1);
                     imageView.setScaleY(1);
                 }
@@ -750,8 +750,13 @@ public class Primary {
             @Override
             public void show(Hermione enemyCard){
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                ImageView imageView = battle.getCell(hermione.getLocation().getX(),hermione.getLocation().getY());
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 final Animation animation = new SpriteAnimation(
-                        battle.getCell(hermione.getLocation().getX(),hermione.getLocation().getY()),
+                        imageView,
                         Duration.millis(2000),
                         hermione.getGraphics().getRow(), 1,
                         hermione.getGraphics().getUnitX() + 2 * hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
@@ -775,8 +780,13 @@ public class Primary {
             @Override
             public void show() {
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                ImageView imageView =   battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY());
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 final Animation animation = new SpriteAnimation(
-                        battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
+                        imageView,
                         Duration.millis(2000),
                         hermione.getGraphics().getRow(), 1,
                         hermione.getGraphics().getUnitX() + 4 * hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
@@ -793,8 +803,13 @@ public class Primary {
             @Override
             public void show(){
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                ImageView imageView = battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY());
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 final Animation animation = new SpriteAnimation(
-                        battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
+                        imageView,
                         Duration.millis(2000),
                         hermione.getGraphics().getRow(), 1,
                         hermione.getGraphics().getUnitX() + hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
@@ -826,6 +841,10 @@ public class Primary {
                                     battle.removeFromScene(second.getNode());
                                     ImageView imageView = battle.getCell(cell.getX(), cell.getY());
                                     imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                                    if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                                        imageView.setScaleX(-1);
+                                        imageView.setScaleY(1);
+                                    }
                                     final Animation animation = new SpriteAnimation(
                                             imageView,
                                             Duration.millis(2000),
@@ -848,6 +867,10 @@ public class Primary {
                             battle.removeFromScene(first.getNode());
                             ImageView imageView = battle.getCell(cell.getX(), cell.getY());
                             imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                            if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                                imageView.setScaleX(-1);
+                                imageView.setScaleY(1);
+                            }
                             final Animation animation = new SpriteAnimation(
                                     imageView,
                                     Duration.millis(2000),
@@ -874,6 +897,10 @@ public class Primary {
                 imageView.setTranslateY((start.getY() - .5) * battle.getCellHeight());
                 imageView.setFitWidth(battle.getCellWidth());
                 imageView.setFitHeight(battle.getCellHeight());
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 battle.addToScene(imageView);
                 PathTransition pathTransition = new PathTransition(Duration.seconds(3), path, imageView);
                 pathTransition.play();
