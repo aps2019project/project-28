@@ -41,7 +41,7 @@ public class DeckSelectorFXMLC {
 //        deckSelector =this;
 //    }
 
-    public static void makeNewScene(Account account , DeckSelectorHavingMenu menu , String title) {
+    public static void makeNewScene(Account account , DeckSelectorHavingMenu menu , String title , boolean checkHero) {
         try {
             Parent root;
             String rootPath = "Controller/menu/Graphics/FXMLs/DeckSelector.fxml";
@@ -53,11 +53,11 @@ public class DeckSelectorFXMLC {
             if (title.isEmpty()) title = account.getName() + "! " + "Select your Legendary Deck" ;
 
             DeckSelectorFXMLC controller = rootLoader.getController();
-            controller.show(account,scene , menu , title);
+            controller.show(account,scene , menu , title, checkHero);
         }catch (Exception e){e.printStackTrace();}
     }
 
-    public void show(Account account , Scene scene ,DeckSelectorHavingMenu menu , String titleText) {
+    public void show(Account account , Scene scene ,DeckSelectorHavingMenu menu , String titleText , boolean checkHero) {
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
@@ -85,15 +85,8 @@ public class DeckSelectorFXMLC {
             HBox hbox = new HBox();
             hbox.setAlignment(Pos.CENTER_LEFT);
             Label label = new Label(index+"- " + deck.getName());
-            if (deck.getHero() != null) {
-                label.setText(label.getText() + " (" + deck.getHero().getName() + ")");
-                label.setOnMouseClicked(e -> {
-//                    account.getCollection().setMainDeck(deck);
-                    menu.selectDeck(account, deck);
-                    stage.close();
-                    System.err.println("debug");
-                });
-                label.setCursor(new ImageCursor(new Image(Resources.mouse_assist.getPath())));
+            if (deck.getHero() != null || !checkHero) {
+                select(account, menu, deck, label);
             }else{
                 label.setText(label.getText() + " ( No hero ! )");
                 label.setCursor(new ImageCursor(new Image(Resources.mouse_disabled.getPath())));
@@ -106,6 +99,18 @@ public class DeckSelectorFXMLC {
         scrollPane.setContent(vbox);
         stage.setScene(scene);
         stage.show() ;
+    }
+
+    private void select(Account account, DeckSelectorHavingMenu menu, Deck deck, Label label) {
+        if (deck.getHero() == null) label.setText(label.getText() + " ( No hero ! )");
+        else label.setText(label.getText() + " (" + deck.getHero().getName() + ")");
+        label.setOnMouseClicked(e -> {
+//                    account.getCollection().setMainDeck(deck);
+            menu.selectDeck(account, deck);
+            stage.close();
+            System.err.println("debug");
+        });
+        label.setCursor(new ImageCursor(new Image(Resources.mouse_assist.getPath())));
     }
 
 }

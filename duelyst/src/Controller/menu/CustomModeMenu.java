@@ -58,6 +58,6 @@ public class CustomModeMenu extends Menu implements DeckSelectorHavingMenu{
     @Override
     public void showDeckSelector(Account account) {
         String title = mainDeckSelected?"Choose your opponent's Deck !":"";
-        deckSelectorListener.show(account , this, title);
+        deckSelectorListener.show(account , this, title , true);
     }
 }

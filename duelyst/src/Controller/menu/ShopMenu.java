@@ -106,7 +106,12 @@ public class ShopMenu extends Menu {
         if (!this.account.getCollection().hasCard(name) && !this.account.getCollection().hasItem(name))
             throw new InvalidCardException();
 
-        tempCollection.removeFromCollection(name);
+        if (tempCollection == null ) System.out.println("what the actual fuck shopMenu 109");
+        try {
+            tempCollection.removeFromCollection(name);
+        }catch (NullPointerException ignored){
+            account.getCollection().removeFromCollection(name);
+        }
         this.account.setMoney(this.account.getMoney() + this.shop.getCollection().getCard(name).getPrice());
     }
 

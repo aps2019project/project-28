@@ -2,6 +2,7 @@ package Controller.menu.Graphics;
 
 import Controller.menu.Graphics.FXMLController.CollectionCardHermioneFXMLC;
 import Controller.menu.Graphics.FXMLController.SearchBarFXMLC;
+import Controller.menu.Graphics.FXMLController.SearchBarHaving;
 import View.MenuHandler;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -67,14 +68,14 @@ public class GraphicsControls {
 
     }
 
-    public static SearchBarFXMLC addSearchBar(VBox vbox , Class clas){
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(clas.getClassLoader().getResource(
+        public static SearchBarFXMLC addSearchBar(VBox vbox , SearchBarHaving menuController){
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(menuController.getClass().getClassLoader().getResource(
                 "Controller/menu/Graphics/FXMLs/SearchBar.fxml")));
         try {
             Parent root = loader.load();
             vbox.getChildren().add(root);
             SearchBarFXMLC fxmlc =  loader.getController();
-            fxmlc.build();
+            fxmlc.build(menuController);
             return fxmlc ;
         }catch(Exception e) {
             System.err.println("unexpected Exception in loading the search bar !");

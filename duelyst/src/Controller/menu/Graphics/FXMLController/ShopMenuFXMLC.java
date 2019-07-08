@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ShopMenuFXMLC extends FXMLController {
+public class ShopMenuFXMLC extends FXMLController implements SearchBarHaving {
 
     @FXML
     private Button backButton , cardTab , itemTab;
@@ -54,7 +54,7 @@ public class ShopMenuFXMLC extends FXMLController {
         if (!hasSearchBar) {
             hasSearchBar = true ;
             theRoot.getChildren().remove(scrollPane);
-            searchBarFXMLC = GraphicsControls.addSearchBar(theRoot, this.getClass());
+            searchBarFXMLC = GraphicsControls.addSearchBar(theRoot, this);
             theRoot.getChildren().add(scrollPane);
             searchBarFXMLC.getFindButton().setOnAction(e -> search());
         }
@@ -64,7 +64,8 @@ public class ShopMenuFXMLC extends FXMLController {
 
     }
 
-    private void search() {
+    @Override
+    public void search() {
         String search = searchBarFXMLC.getSearchText();
         VBox v ;
         if (search.isEmpty()) {

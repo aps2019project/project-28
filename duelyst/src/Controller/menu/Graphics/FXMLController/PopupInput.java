@@ -30,7 +30,7 @@ public class PopupInput {
             String rootPath = "Controller/menu/Graphics/FXMLs/PopupInput.fxml";
             FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(PopupInput.class.getClassLoader().getResource(rootPath)));
             root = rootLoader.load();
-            Scene scene = new Scene(root, 500, 200);
+            Scene scene = new Scene(root, 671, 200);
             scene.setOnMouseEntered(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
             scene.setOnMouseMoved(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
 

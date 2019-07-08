@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CollectionMenuFXMLC extends FXMLController implements PopupInputHaving {
+public class CollectionMenuFXMLC extends FXMLController implements PopupInputHaving , SearchBarHaving {
 
     @FXML
     private Button backButton , hermioneTab, itemTab , spellTab , decksTab;
@@ -43,7 +43,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     private VBox theRoot ;
     private VBox hermionesVbox = new VBox() , spellsVbox = new VBox() , itemsVbox = new VBox() ,
             decksVbox = new VBox() , decksVbox2 = new VBox();
-    private int selectedTab ;
+    private int selectedTab = 1 ;
     private SearchBarFXMLC searchBarFXMLC ;
     private boolean hasSearchBar = false ;
 
@@ -69,14 +69,14 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         if (!hasSearchBar) {
             hasSearchBar = true ;
             theRoot.getChildren().remove(scrollPane);
-            searchBarFXMLC = GraphicsControls.addSearchBar(theRoot, this.getClass());
+            searchBarFXMLC = GraphicsControls.addSearchBar(theRoot, this);
             theRoot.getChildren().add(scrollPane);
             searchBarFXMLC.getFindButton().setOnAction(e -> search());
         }
     }
 
-
-    private void search() {
+    @Override
+    public void search() {
         String search = searchBarFXMLC.getSearchText();
         VBox v ;
         if (search.isEmpty()) {
@@ -210,7 +210,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         }
     }
 
-    private void buildDecksVbox() {
+    public void buildDecksVbox() {
         decksVbox.getChildren().clear();
         decksVbox.setSpacing(15);
         decksVbox.getStylesheets().add("Controller/menu/Graphics/StyleSheets/Buttons.css") ;
@@ -233,7 +233,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         deleteDeck.setOnAction(e -> deleteDeck());
         firstRow.getChildren().addAll(newDeck , deleteDeck);
         decksVbox.getChildren().add(firstRow);
-        for (Deck deck : menu.getAccount().getCollection().getDecks()){
+        for (Deck deck : ((CollectionMenu)menu).getDecks()){
             HBox row = new HBox();
             row.setPrefHeight(70);
             row.setFillHeight(true);
@@ -363,6 +363,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             button.setOnAction(e->{
                 try {
                     ((CollectionMenu)menu).removeFromDeck(item.getID(), ((CollectionMenu)menu).getSelectedDeck().getName());
+                    setTheButton(item , button);
                 } catch (InvalidItemException ex) {
                     Popup.popup("This item does not exist on this deck !");
                 } catch (InvalidCardException ignored) {} catch (InvalidDeckException ex) {
@@ -394,6 +395,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             button.setOnAction(e -> {
                 try {
                     ((CollectionMenu) menu).removeFromDeck(card.getID(), ((CollectionMenu)menu).getSelectedDeck().getName());
+                    setTheButton(button , card);
                 } catch (InvalidCardException ex) {
                     Popup.popup("This card does not exist on this deck !");
                 } catch (InvalidItemException ignored) {
@@ -416,7 +418,6 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     private void tabPressed(Button tab) {
 //        CollectionMenu.getMenu().save() ;
         tab.getStyleClass().add("tab-button-selected");
-        updateBalance();
     }
 
     private void tabReleased(Button tab) {
