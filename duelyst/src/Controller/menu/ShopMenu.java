@@ -39,7 +39,6 @@ public class ShopMenu extends Menu {
     @Override
     public boolean init(Menu parentMenu) {
         super.init(parentMenu);
-//        System.err.println("debug");
         this.tempCollection = this.account.getCollection();
         return true;
     }

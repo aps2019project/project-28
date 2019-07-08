@@ -47,12 +47,13 @@ public class ShopMenuFXMLC extends FXMLController {
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/ShopMenu.css");
         new Thread(this::makeCardsVBox).start();
         scrollPane.setContent(cardsVbox);
-        new Thread(this::makeItemsVBox);
+        new Thread(this::makeItemsVBox).start();
+
         GraphicsControls.setBackButtonOnPress(backButton);
-        backButton.setOnAction(e -> {
-            ShopMenu.getMenu().save() ;
-            MenuHandler.exitMenu();
-        });
+//        backButton.setOnAction(e -> {
+//            ShopMenu.getMenu().save() ;
+//            MenuHandler.exitMenu();
+//        });
 
         if (!hasSearchBar) {
             hasSearchBar = true ;
@@ -99,7 +100,7 @@ public class ShopMenuFXMLC extends FXMLController {
 
     private void makeCardsVBox() {
         cardsVbox.setSpacing(15);
-        for (Card cart : Card.getCards()) {
+        for (Card cart : Shop.getInstance().getCollection().getCards()) {
             if (!cards.contains(cart)) {
                 cards.add(cart);
                 makeCardCard(cart , cardsVbox);
@@ -123,8 +124,7 @@ public class ShopMenuFXMLC extends FXMLController {
 
     private void makeItemsVBox() {
         itemsVbox.setSpacing(15);
-
-        for (Item item : Usable.getItems()){
+        for (Item item : Shop.getInstance().getCollection().getItems()){
             if (item instanceof Usable && (!items.contains(item))){
                 items.add(item);
                 makeItemCard((Usable) item , itemsVbox);
@@ -170,7 +170,6 @@ public class ShopMenuFXMLC extends FXMLController {
     }
 
     private void tabPressed(Button tab) {
-//        ShopMenu.getMenu().save() ;
         tab.getStyleClass().add("tab-button-selected");
     }
 

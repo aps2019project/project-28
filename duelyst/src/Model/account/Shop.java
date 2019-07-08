@@ -16,18 +16,18 @@ import java.util.Map;
 public class Shop {
 
     private static int INITIAL_AMOUNT=10;
-    private static Shop ourInstance ;/*= new Shop();*/
-    {
-        try {
-            ourInstance = Primary.getShop();
-        } catch (FileNotFoundException e) { e.printStackTrace(); }
-    }
+    private static Shop ourInstance;/*= new Shop();*/
     private Collection collection = new Collection();
 
     Map<Integer,Integer> cards = new HashMap<>();//cardId,amount
     Map<Integer,Integer>items = new HashMap<>();//itemId,amount
 
     public static Shop getInstance() {
+        if(ourInstance == null){
+            try {
+                ourInstance = Primary.getShop();
+            } catch (FileNotFoundException e) { e.printStackTrace(); }
+        }
         return ourInstance;
     }
 

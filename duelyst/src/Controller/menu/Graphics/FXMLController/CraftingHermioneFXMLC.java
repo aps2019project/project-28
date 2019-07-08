@@ -82,7 +82,7 @@ public class CraftingHermioneFXMLC extends FXMLController {
 
 
     protected void setUpSpecialPowers() {
-        for (Card card : Card.getCards()){
+        for (Card card : Card.getCards()){//todo
             if (card instanceof Spell){
                 specialPower.getItems().add(card.getName());
             }

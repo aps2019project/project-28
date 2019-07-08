@@ -139,8 +139,9 @@ public abstract class Hermione extends Card {
         /*
         * handling the graphics
         * */
-        this.getGraphics().onMove(new Cell(x,y));
 
+
+        this.getGraphics().onMove(new Cell(x,y));
 
         this.setLocation(Battle.getMenu().getMap().getCell(x, y));
 

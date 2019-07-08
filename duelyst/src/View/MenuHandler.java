@@ -41,8 +41,10 @@ public class MenuHandler {
     public static void showMenu() {
         MenuHandler.currentMenu.showMenu();
     }
+
     public static void nextMove() {
         Game.accounts[Battle.getMenu().getTurn()].getPlayer().getGI().intervene();
+        currentMenu.getGraphic().getController().updateScene();
     }
 
     public static Menu getCurrentMenu() {

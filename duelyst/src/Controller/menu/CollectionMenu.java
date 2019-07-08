@@ -169,7 +169,7 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
     @Override
     public void selectDeck(Account account, Deck deck) {
         account.getCollection().getDecks().remove(deck);
-        Primary.saveAccounts();
+//        Primary.saveAccounts();
     }
 
     @Override

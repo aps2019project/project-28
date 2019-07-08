@@ -39,7 +39,7 @@ public class Battle extends Menu {
     private int turn = 0;
     private ArrayList<Spell> ongoingSpells = new ArrayList<>();
     private static final int[] MAX_MANA_PER_TURN = {2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9};
-
+    public Account winner;
     private Match match;
     private GameMode gameMode;
 
@@ -238,6 +238,7 @@ public class Battle extends Menu {
 
             this.gameMode.getFlag(this.account.getPlayer(), hermione,
                     map.getCell(x, y));
+
             this.getGraphic().getController().updateScene();
         } catch (ClassCastException e) {
             throw new CardCantBeMovedException();//because its Spell

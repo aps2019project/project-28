@@ -397,7 +397,6 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
 
 
     private void tabPressed(Button tab) {
-        ShopMenu.getMenu().save() ;
         tab.getStyleClass().add("tab-button-selected");
         updateBalance();
     }
@@ -416,7 +415,6 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     public void getPopupResult(String text) {
         try {
             Deck deck =((CollectionMenu)menu).createNewDeck(text);
-            Primary.saveAccounts();
             ((CollectionMenu)menu).setSelectedDeck(deck);
             buildDecksVbox();
             buildDecksVbox2();

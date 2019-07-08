@@ -152,9 +152,9 @@ public class BattleFXMLC extends FXMLController {
     @Override
     public void updateScene() {
         super.updateScene();
-        Platform.runLater(new Runnable(){
-            @Override
-            public void run() {
+//        Platform.runLater(new Runnable(){
+//            @Override
+//            public void run() {
                 updateTurn();
                 updateHand();
                 updateInfo();
@@ -167,11 +167,11 @@ public class BattleFXMLC extends FXMLController {
                     moveStart();
                     drop();
                 }
-            }
-        });
+//            }
+//        });
     }
 
-    public void finish(Account winner){
+    public void finish(){
         ImageView endGameBack = new ImageView("resources/maps/battlemap1_middleground.png");
         Label endGame = new Label();
         endGame.setFont(Font.font("Didot", 40.0));
@@ -183,7 +183,7 @@ public class BattleFXMLC extends FXMLController {
         endGame.setMinHeight(frame.getMinHeight());
         endGame.setLayoutX(frame.getMinWidth()/3);
         endGame.setLayoutY(frame.getMinHeight()/1.5);
-        if(Battle.getMenu().getAccount().equals(winner)){
+        if(Battle.getMenu().getAccount().equals(Battle.getMenu().winner)){
             endGame.setTextFill(Color.rgb(0, 255, 200));
             endGame.setText("Congrats! YOU WON!");
         }
