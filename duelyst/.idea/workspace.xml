@@ -25,19 +25,8 @@
   <component name="ChangeListManager">
     <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="changed some backgrounds !">
       <change beforePath="$PROJECT_DIR$/../UML.uxf" beforeDir="false" afterPath="$PROJECT_DIR$/../UML.uxf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Account.json" beforeDir="false" afterPath="$PROJECT_DIR$/Account.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Battle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/CollectionMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/CollectionMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/BattleFXMLC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/BattleFXMLC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CollectionMenuFXMLC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CollectionMenuFXMLC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CraftingHermioneFXMLC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CraftingHermioneFXMLC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/ShopMenuFXMLC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/ShopMenuFXMLC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/ShopMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Primary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Primary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/account/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/account/Shop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/card/hermione/Hermione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/card/hermione/Hermione.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MenuHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../readme.txt" afterDir="false" />
     </list>
     <list id="fe5b7bb0-3439-4162-ba6c-e3c0328c746b" name="graphics menus stated" comment="" />
@@ -56,17 +45,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/menu/ShopMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
+            <state relative-caret-position="242">
+              <caret line="126" column="16" selection-start-line="126" selection-start-column="16" selection-end-line="126" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
+        <entry file="file://$PROJECT_DIR$/src/Controller/menu/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="677">
-              <caret line="204" column="19" selection-start-line="204" selection-start-column="19" selection-end-line="204" selection-end-column="19" />
+            <state relative-caret-position="469">
+              <caret line="155" column="16" selection-start-line="155" selection-start-column="16" selection-end-line="155" selection-end-column="16" />
+              <folding>
+                <element signature="e#4340#4341#0" expanded="true" />
+                <element signature="e#4378#4379#0" expanded="true" />
+                <element signature="e#4537#4538#0" expanded="true" />
+                <element signature="e#4591#4592#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,44 +69,52 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/ShopMenuFXMLC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1232">
-              <caret line="100" column="17" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/card/Card.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CraftingHermioneFXMLC.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1152">
-              <caret line="84" column="48" selection-start-line="84" selection-start-column="48" selection-end-line="84" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/account/Shop.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="161">
+              <caret line="116" selection-start-line="116" selection-end-line="116" />
               <folding>
-                <element signature="e#1064#1065#0" expanded="true" />
-                <element signature="e#1162#1163#0" expanded="true" />
-                <element signature="e#1194#1195#0" expanded="true" />
-                <element signature="e#1292#1293#0" expanded="true" />
-                <element signature="e#4787#4788#0" expanded="true" />
-                <element signature="e#4820#4821#0" expanded="true" />
-                <element signature="e#4871#4872#0" expanded="true" />
-                <element signature="e#4909#4910#0" expanded="true" />
+                <element signature="e#2868#2869#0" expanded="true" />
+                <element signature="e#2950#2951#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="201" selection-start-line="201" selection-end-line="201" />
+              <folding>
+                <element signature="e#3922#3923#0" expanded="true" />
+                <element signature="e#3955#3956#0" expanded="true" />
+                <element signature="e#4011#4012#0" expanded="true" />
+                <element signature="e#4055#4056#0" expanded="true" />
+                <element signature="e#5040#5041#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
+              <folding>
+                <element signature="e#1484#1485#0" expanded="true" />
+                <element signature="e#1530#1531#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="65">
+              <caret line="353" selection-start-line="353" selection-end-line="353" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,19 +124,37 @@
         <entry file="file://$PROJECT_DIR$/Account.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="80">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/src.zip!/java/io/Writer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1264">
-              <caret line="79" column="25" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
+            <state relative-caret-position="73">
+              <caret line="156" selection-start-line="156" selection-end-line="156" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="73">
+              <caret line="839" selection-start-line="839" selection-end-line="839" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#31039#31040#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/yagson-0.5.jar!/com/gilecode/yagson/YaGson.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
             </state>
           </provider>
         </entry>
@@ -150,7 +171,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>endTUrn</find>
       <find>opponentPlayerInfo</find>
       <find>AI ex</find>
       <find>generateAI</find>
@@ -180,6 +200,7 @@
       <find>saveAccounts</find>
       <find>backButton</find>
       <find>save</find>
+      <find>exit</find>
     </findStrings>
     <replaceStrings>
       <replace>getTargetInstance</replace>
@@ -245,7 +266,6 @@
         <option value="$PROJECT_DIR$/Shop.json" />
         <option value="$PROJECT_DIR$/src/Model/account/Account.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/MainMenu.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/Menu.java" />
         <option value="$PROJECT_DIR$/src/Controller/GameMode/GameMode.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/Battle.fxml" />
         <option value="$PROJECT_DIR$/src/Model/card/hermione/Hero.java" />
@@ -262,12 +282,13 @@
         <option value="$PROJECT_DIR$/src/Controller/menu/Battle.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/CollectionMenu.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CollectionMenuFXMLC.java" />
-        <option value="$PROJECT_DIR$/Account.json" />
         <option value="$PROJECT_DIR$/src/Model/Primary.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CraftingHermioneFXMLC.java" />
         <option value="$PROJECT_DIR$/src/Model/account/Shop.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/ShopMenu.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/ShopMenuFXMLC.java" />
+        <option value="$PROJECT_DIR$/src/Controller/menu/Menu.java" />
+        <option value="$PROJECT_DIR$/Account.json" />
       </list>
     </option>
   </component>
@@ -541,13 +562,6 @@
       <workItem from="1560238835250" duration="6032000" />
       <workItem from="1560332117096" duration="21773000" />
       <workItem from="1561648778689" duration="7190000" />
-    </task>
-    <task id="LOCAL-00094" summary="updated AI and did some TODOs">
-      <created>1559770435925</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1559770435925</updated>
     </task>
     <task id="LOCAL-00095" summary="cleaned up a lil bit more finished up my TODOs ^_^">
       <created>1559771281508</created>
@@ -885,7 +899,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562571533605</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="shop making ok">
+      <created>1562588175150</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1562588175152</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -902,7 +923,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25071633" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -914,10 +934,10 @@
       <window_info id="Learn" order="7" weight="0.32977587" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32633054" />
-      <window_info anchor="bottom" auto_hide="true" id="Debug" order="2" sideWeight="0.49928367" weight="0.12743823" />
+      <window_info anchor="bottom" auto_hide="true" id="Debug" order="2" sideWeight="0.49928367" weight="0.66579974" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49856734" weight="0.420026" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.49856734" visible="true" weight="0.3953186" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3259177" />
       <window_info anchor="bottom" id="TeamCity" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49893278" weight="0.093628086" />
@@ -1022,7 +1042,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="deckSelector is done :)" />
     <MESSAGE value="changed up some other stuff (such as the coolness of the leaderboard !)" />
     <MESSAGE value="battle-singlePlayer-story-modeWhatEver-selectDeck-andPLAYYYY" />
     <MESSAGE value="except for custom , all game modes are available" />
@@ -1047,14 +1066,15 @@
     <MESSAGE value="beautiful sazi" />
     <MESSAGE value="spriteanimation fixing" />
     <MESSAGE value="changed some backgrounds !" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed some backgrounds !" />
+    <MESSAGE value="shop making ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="shop making ok" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/ShopMenuFXMLC.java</url>
-          <line>128</line>
+          <line>118</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
@@ -1071,36 +1091,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/duelyst (copy).iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Graphics/Listeners/OnSpawnListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Map/Cell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding>
-            <element signature="e#922#923#0" expanded="true" />
-            <element signature="e#955#956#0" expanded="true" />
-            <element signature="e#1472#1473#0" expanded="true" />
-            <element signature="e#1502#1503#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/StuffEffectsOnPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/menu/MainMenu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -1401,17 +1391,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1691">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3955#3956#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/View/CommandHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4">
@@ -1423,29 +1402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="39" column="53" lean-forward="true" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
-          <folding>
-            <element signature="e#1484#1485#0" expanded="true" />
-            <element signature="e#1556#1557#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1984">
-          <caret line="144" selection-start-line="144" selection-end-line="144" />
-          <folding>
-            <element signature="e#4378#4379#0" expanded="true" />
-            <element signature="e#4537#4538#0" expanded="true" />
-            <element signature="e#4578#4579#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1491,26 +1447,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1264">
-          <caret line="79" column="25" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Shop.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4338" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/ShopMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
@@ -1520,17 +1459,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Account.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/account/Shop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="544">
+          <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
           <folding>
             <element signature="e#1064#1065#0" expanded="true" />
             <element signature="e#1162#1163#0" expanded="true" />
@@ -1544,10 +1476,107 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/src.zip!/java/lang/ClassLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="487" selection-start-line="487" selection-end-line="487" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="839" selection-start-line="839" selection-end-line="839" />
+          <folding>
+            <element signature="e#31039#31040#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/yagson-0.5.jar!/com/gilecode/yagson/YaGson.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/src.zip!/java/io/Writer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="156" selection-start-line="156" selection-end-line="156" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="353" selection-start-line="353" selection-end-line="353" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="201" selection-start-line="201" selection-end-line="201" />
+          <folding>
+            <element signature="e#3922#3923#0" expanded="true" />
+            <element signature="e#3955#3956#0" expanded="true" />
+            <element signature="e#4011#4012#0" expanded="true" />
+            <element signature="e#4055#4056#0" expanded="true" />
+            <element signature="e#5040#5041#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
+          <folding>
+            <element signature="e#1484#1485#0" expanded="true" />
+            <element signature="e#1530#1531#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="155" column="16" selection-start-line="155" selection-start-column="16" selection-end-line="155" selection-end-column="16" />
+          <folding>
+            <element signature="e#4340#4341#0" expanded="true" />
+            <element signature="e#4378#4379#0" expanded="true" />
+            <element signature="e#4537#4538#0" expanded="true" />
+            <element signature="e#4591#4592#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/ShopMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="126" column="16" selection-start-line="126" selection-start-column="16" selection-end-line="126" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Account.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/ShopMenuFXMLC.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1232">
-          <caret line="100" column="17" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
+        <state relative-caret-position="161">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+          <folding>
+            <element signature="e#2868#2869#0" expanded="true" />
+            <element signature="e#2950#2951#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
