@@ -43,7 +43,6 @@ public class MenuGraphics {
         this.scene=new Scene(this.group, this.bounds.getWidth(), this.bounds.getHeight());
         try {
             System.out.println(this.menu.getGraphic().getRootPath());
-            System.err.println();
             FXMLLoader rootLoader= new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
 //            this.root= FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(this.rootPath)));
             this.root=rootLoader.load();

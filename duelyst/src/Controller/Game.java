@@ -4,6 +4,7 @@ import Model.account.Account;
 import Model.account.player.Bot;
 import Model.account.player.GameInterFace;
 import Model.account.player.Player;
+import Model.mediator.BattleMediator;
 import network.client.BattleClient;
 import network.client.Client;
 
@@ -20,8 +21,7 @@ public class Game {
     private static Class defaultGI;
 
     private static Client client;
-    private static network.client.BattleClient battleClient;
-
+    private static BattleClient battleClient;
 
     public static void setFirstAccount(Account account) {
         accounts[0] = account;
@@ -97,5 +97,6 @@ public class Game {
     public static void setBattleClient(BattleClient battleClient) {
         Game.battleClient = battleClient;
     }
+
 }
 

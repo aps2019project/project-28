@@ -91,7 +91,6 @@ public class DeckSelectorFXMLC {
 //                    account.getCollection().setMainDeck(deck);
                     menu.selectDeck(account, deck);
                     stage.close();
-                    System.err.println("debug");
                 });
                 label.setCursor(new ImageCursor(new Image(Resources.mouse_assist.getPath())));
             }else{

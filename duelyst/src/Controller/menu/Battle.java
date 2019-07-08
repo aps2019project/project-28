@@ -366,8 +366,7 @@ public class Battle extends Menu {
     }
 
     public void endTurn() throws HandFullException, DeckIsEmptyException {
-
-
+        this.mediator.endTurn();
         /*updating hand*/
         this.account.getPlayer().getHand().updateHand();
 
@@ -412,7 +411,6 @@ public class Battle extends Menu {
 
         // TODO: 5/5/19 other stuff maybe?
 
-        this.mediator.endTurn();
 
         /*checkState*/
         if (this.gameMode.checkState()) {
@@ -457,6 +455,12 @@ public class Battle extends Menu {
         /*
         * getting out of battle
         * */
+        try {
+            SignInMenu.getMenu().setAccount(Account.getAccount(Battle.getMenu().getAccount().getUsername()));
+            MainMenu.getMenu().setAccount(Account.getAccount(Battle.getMenu().getAccount().getUsername()));
+        } catch (InvalidAccountException e) {
+            e.printStackTrace();
+        }
         MenuHandler.enterMenu(MainMenu.getMenu());
     }
 
@@ -694,5 +698,10 @@ public class Battle extends Menu {
 
     public void setMediator(BattleMediator mediator) {
         this.mediator = mediator;
+    }
+
+    @Override
+    public void exit() {
+
     }
 }

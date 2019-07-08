@@ -66,7 +66,7 @@ public class BattleServerHandler {
         System.out.println("second attepmpt");
         System.out.println("last attepmpt");
         if(gameMode instanceof ClassicMode)classicModeClients.add(client);
-        else if(gameMode instanceof FlagMode)classicModeClients.add(client);
+        else if(gameMode instanceof FlagMode)flagModeClients.add(client);
         else if(gameMode instanceof Domination)dominationClients.add(client);
         System.out.println("couldnt add");
     }
@@ -83,7 +83,7 @@ public class BattleServerHandler {
                     System.out.println("making a battle server");
                     BattleServer battleServer= new BattleServer(client1,client2,gameMode);
                     System.out.println("starting the battle server");
-                    battleServer.startBattle();
+                    new Thread(battleServer::startBattle).start();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

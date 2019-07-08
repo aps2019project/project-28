@@ -134,7 +134,6 @@ public abstract class Hermione extends Card {
         // TODO: 2019-06-26 move cell begire va location ro cell bezare ke be battle kari nadashte bashe
         ;
         if (!canMove(x, y)) return false;
-        System.err.println("debugg");
         /*
         * handling the graphics
         * */

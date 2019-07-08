@@ -129,7 +129,6 @@ public abstract class Menu {
     }
 
     public void exit() {
-        System.err.println("Debug");
         MenuHandler.enterMenu(this.parentMenu);
     }
 

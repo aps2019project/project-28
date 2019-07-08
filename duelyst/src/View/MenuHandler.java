@@ -44,7 +44,6 @@ public class MenuHandler {
         MultiPlayerModeMenu.getMenu().setMediator(new OnlineMultiPlayerMenuMediator());
         Game.setClient(new Client());
         Battle.getMenu().setMediator(new OnlineBattleMediator());
-
         try {
             Primary.preprocess();
             Primary.generateAI();

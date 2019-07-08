@@ -34,7 +34,7 @@ public class MenuHandler {
         initMenus();
 
         try {
-            Account.getAccount("uzumaki").getCollection().forcePushDeck(Account.AI[1].getCollection().getMainDeck());
+            Account.getAccount("uzumaki").getCollection().forcePushDeck(Account.AI[2].getCollection().getMainDeck());
             Account.getAccount("uchiha").getCollection().forcePushDeck(Account.AI[1].getCollection().getMainDeck());
         } catch (InvalidAccountException e) {
             e.printStackTrace();

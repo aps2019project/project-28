@@ -33,18 +33,44 @@ public class BattleServer {
         initBattleMenu();
         sendMap();
         while (true) {
-            System.err.println("debug");
+                                                                                                                        System.err.println("debug");
+                                                                                                                        System.out.println("turn() = " + Battle.getMenu().getTurn());
+                                                                                                                        System.out.println("Username = " + client[Battle.getMenu().getTurn()].getAccount().getUsername());
             Message message = client[Battle.getMenu().getTurn()].read();
-            System.out.println("Battle.getMenu().getTurn() = " + Battle.getMenu().getTurn());
-            System.out.println("message = " + message.getText());
-            System.out.println("message.getCarry().get(0) = " + message.getCarry().get(0));
+                                                                                                                        System.out.println("message = " + message.getText());
+                                                                                                                        System.out.println("carry = " + message.getCarry().get(0));
             if (message.getText().equals("playerMove")) {
-                client[(Battle.getMenu().getTurn() + 1) % 2].write(message);
+                                                                                                                        System.out.println("fucking next turn = " + (Battle.getMenu().getTurn() + 1) % 2);
+                client[(1-Battle.getMenu().getTurn())].write(message);
                 handleCommand(message);
                 Battle.getMenu().showMenu();
+            }else if(message.getText().equals("finish")){
+                Battle.getMenu().handleBattleFinish();
+
             }
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void sendMap() {
             System.out.println("client[0].getAccount().getUsername() = " + client[0].getAccount().getUsername());
@@ -64,7 +90,6 @@ public class BattleServer {
                 client[1].write(message);
             }
     }
-
     private void handleCommand(Message message) {
 
         String[] word = ((String) message.getCarry().get(0)).split(" ");
@@ -87,7 +112,6 @@ public class BattleServer {
         } else if (word[0].equals("move") && word[1].equals("to")) {
             System.err.println();
             try {
-                System.err.println();
                 menu.move(Integer.parseInt(word[2]), Integer.parseInt(word[3]));
             } catch (NoCardHasBeenSelectedException e) {
                 System.out.println("please select a card first");
@@ -163,7 +187,6 @@ public class BattleServer {
             }
         }
     }
-
     private void initBattleMenu() {
 
         Game.setFirstAccount(client[0].getAccount());
@@ -172,7 +195,6 @@ public class BattleServer {
         Battle.getMenu().init(MainMenu.getMenu());
         Battle.getMenu().setAccount(Game.getAccount(0));
     }
-
     private void setAccounts() {
         Message message1 = new Message("server Port");
         message1.addCarry(client[1].getAccount());

@@ -2,6 +2,7 @@ package Controller.menu;
 
 import Controller.Game;
 import Model.Map.Map;
+import Model.account.player.OnlinePlayer;
 import Model.mediator.BattleMediator;
 import Model.mediator.NetworkMediator;
 import exeption.*;
@@ -11,30 +12,37 @@ public class OnlineBattleMediator implements BattleMediator {
 
     @Override
     public void insert(int cardID, int x, int y){
+        if(Battle.getMenu().getAccount().getPlayer() instanceof OnlinePlayer) return;
         sendPlayerMove("insert card " + cardID + " in " + x + " " + y);
     }
     @Override
     public void select(int ID) {
+        if(Battle.getMenu().getAccount().getPlayer() instanceof OnlinePlayer) return;
         sendPlayerMove("select "+ID);
     }
     @Override
     public void move(int x, int y){
+        if(Battle.getMenu().getAccount().getPlayer() instanceof OnlinePlayer) return;
         sendPlayerMove("move to "+x+" "+y);
     }
     @Override
     public void attack(int cardID) {
+        if(Battle.getMenu().getAccount().getPlayer() instanceof OnlinePlayer) return;
         sendPlayerMove("attack "+cardID);
     }
     @Override
     public void useSpecialPower(int x, int y){
+        if(Battle.getMenu().getAccount().getPlayer() instanceof OnlinePlayer) return;
         sendPlayerMove("Use special power "+x+" "+y);
     }
     @Override
     public void useItem(int x, int y){
+        if(Battle.getMenu().getAccount().getPlayer() instanceof OnlinePlayer) return;
         sendPlayerMove("use "+x+" "+y);
     }
     @Override
     public void endTurn() {
+        if(Battle.getMenu().getAccount().getPlayer() instanceof OnlinePlayer) return;
         sendPlayerMove("end turn");
     }
 

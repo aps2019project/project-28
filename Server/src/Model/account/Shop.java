@@ -72,7 +72,6 @@ public class Shop{
     }
 
     public boolean buy(String name){
-        System.err.println("debug");
         try {
             return this.shopMediator.buy(name);
         } catch (Exception e) {

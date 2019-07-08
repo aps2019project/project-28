@@ -26,18 +26,18 @@ public class MainServer {
 
     private static void communicate(Client client){
         while(true){
-            System.err.println("debug");
+//            System.err.println("debug");
                 Message message= client.read();
-                System.err.println("message read");
-                System.out.println("message.getText() = " + message.getText());
+//                System.err.println("message read");
+//                System.out.println("message.getText() = " + message.getText());
                 handleMessage(message,client);
             }
     }
 
     private static void handleMessage(Message message, Client client) {
         Message respond=messageHandler.handleMessage(message);
-        System.out.println("respont vaghT mikhay benevisish");
-        System.out.println("respond = " + respond);
+//        System.out.println("respont vaghT mikhay benevisish");
+//        System.out.println("respond = " + respond);
             client.write(respond);
 
     }

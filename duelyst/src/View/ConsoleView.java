@@ -21,7 +21,7 @@ public class ConsoleView implements View{
         while(true){
             try {
                 System.out.println("Game.getClient().getAuthToken() = " + Game.getClient().getAuthToken());
-            }catch (Exception e){}
+            }catch (Exception ignored){}
             MenuHandler.showMenu();
             MenuHandler.nextMove();
         }

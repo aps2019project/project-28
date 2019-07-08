@@ -65,7 +65,6 @@ public class Battle extends Menu {
         this.map=null;
 
 
-        System.err.println();
         this.match=new Match(Game.getAccount(0),Game.getAccount(1),this.gameMode);
         this.ongoingSpells=new ArrayList<>();
         if (Game.getAccount(0).getCollection().getMainDeck() == null || Game.getAccount(1).getCollection().getMainDeck() == null) {
@@ -326,7 +325,6 @@ public class Battle extends Menu {
     }
 
     public void showHand() {
-        System.err.println("debug");
         Hand hand = this.account.getPlayer().getHand();
         for (OnHandPresentedListener presenter : Hand.getHandPresenters()) {
             presenter.showHand(hand);

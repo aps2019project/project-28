@@ -28,7 +28,6 @@ public class LocalShopMediator implements ShopMediator {
         fillCollection();
         fillCards();
         fillItems();
-        System.err.println("debug");
     }
 
     private void fillCollection(){
@@ -111,7 +110,6 @@ public class LocalShopMediator implements ShopMediator {
     }
 
     private Item buyItem(String name) throws ItemDoesntExistException {
-        System.err.println("debug");
         if(!this.hasItem(name))throw new ItemDoesntExistException();
         try {
             Item item=this.getItem(name);

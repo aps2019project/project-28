@@ -60,6 +60,7 @@ public class Client {
     }
 
     public void write(Message message) {
+        System.out.println("drm mineVsam ha havaset bashe___________________________________________________________________________________");
         System.out.println("message = " + message);
         message.setAuth(authToken);
         message.setMenu(MenuHandler.getCurrentMenu());
@@ -69,7 +70,7 @@ public class Client {
         System.out.println("string.length() = " + string.length());
         try {
             for(int i=0;i<= string.length()/SEND_SIZE;i++){
-                String sendable=string.substring(i*SEND_SIZE,Integer.min((i+1)*SEND_SIZE,string.length()))+"\n";
+                String sendable=string.substring(i*SEND_SIZE,Integer.min((i+1)*SEND_SIZE,string.length()));
                 this.getOutput().println(sendable);
             }
             this.getOutput().println(END_MESSAGE);
