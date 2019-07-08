@@ -627,7 +627,7 @@ public class Battle extends Menu {
         this.account.getPlayer().getSelectedItem().deploy(Battle.getMenu().getMap().getCell(x, y));
     }
 
-    public Player playerOf(Hermione hermione) throws InvalidCardException {
+    public Player playerOf(Hermione hermione) {
         for (int i = 0; i < 2; i++) {
 
             //checking for hero
@@ -642,7 +642,7 @@ public class Battle extends Menu {
                 }
             }
         }
-        throw new InvalidCardException();
+        return null;
     }
 
     public Player enemyPlayerOf(Hermione hermione) throws InvalidCardException {

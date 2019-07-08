@@ -8,6 +8,7 @@ import Model.Map.Cell;
 import Model.account.Account;
 import Model.account.Deck;
 import Model.account.Shop;
+import Model.account.player.GGI;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.*;
@@ -67,14 +68,14 @@ public class Primary {
     public static ArrayList<Account> accounts = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
+               preprocess();
+        Primary.graphicsJson();
 //        Primary.Json();
-//        Primary.graphicsJson();
 //        writeJson(spells,"Spell.json");
-//        writeJson(minions,"Minion.json");
-//        writeJson(heroes,"Hero.json");
+        writeJson(minions,"Minion.json");
+        writeJson(heroes,"Hero.json");
 //        writeJson(usables,"Usables.json");
 //        writeJson(collectables,"Collectables.json");
-//               preprocess();
 //        writeSingle(Shop.getInstance(), "Shop.json");
 //        saveAccounts();
     }
@@ -646,12 +647,18 @@ public class Primary {
 
     private static void graphicsJson() {
         for (Hero hero : heroes) {
-            hero.getGraphics().setUnits("resources/units/boss_borealjuggernaut.png", 1020/8, 1210/10, 8, 10);
+            hero.getGraphics().setUnits("resources/units/boss_borealjuggernaut.png",
+                    10, 20 ,
+                    1200, 975,
+                    10, 8);
             hero.getGraphics().setUnitGifs("resources/units/boss_borealjuggernaut_single.png");
         }
 
         for (Minion minion : minions) {
-            minion.getGraphics().setUnits("resources/units/boss_candypanda.png", 1024/10, 802/8, 10, 8);
+            minion.getGraphics().setUnits("resources/units/boss_candypanda.png",
+                    10, 20,
+                    810, 1002,
+                    8, 10);
             minion.getGraphics().setUnitGifs("resources/units/boss_candyPanda_single.png");
             minion.getGraphics().setIcon("resources/icons/artifact_f2_bloodleechmask.png");
             minion.getGraphics().setIconGif("resources/icons/artifact_f2_bloodleechmask_single.png");
@@ -716,22 +723,26 @@ public class Primary {
     }
 
     private static void setGraphicForHermione(Hermione hermione) {
-
         hermione.getGraphics().addSpawnListener(new OnSpawnListener() {
             @Override
             public void show(Cell cell){
                 BattleFXMLC controller = (BattleFXMLC)Battle.getMenu().getGraphic().getController();
                 ImageView imageView = controller.getCell(cell.getX(), cell.getY());
                 imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 final Animation animation = new SpriteAnimation(
-                    imageView,
-                    Duration.millis(2000),
-                    hermione.getGraphics().getRow(), 1,
-                    0, 0,
-                    hermione.getGraphics().getUnitWidth(), hermione.getGraphics().getUnitHeight()
-            );
-            animation.setCycleCount(Animation.INDEFINITE);
-            animation.play();
+                        imageView,
+                        Duration.millis(2000),
+                        hermione.getGraphics().getRow(), 1,
+                        hermione.getGraphics().getUnitX() , hermione.getGraphics().getUnitY(),
+                        hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitHeight() / hermione.getGraphics().getRow()
+                );
+                animation.setCycleCount(Animation.INDEFINITE);
+                animation.play();
             }
         });
 
@@ -739,12 +750,19 @@ public class Primary {
             @Override
             public void show(Hermione enemyCard){
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                ImageView imageView = battle.getCell(hermione.getLocation().getX(),hermione.getLocation().getY());
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 final Animation animation = new SpriteAnimation(
-                        battle.getCell(hermione.getLocation().getX(),hermione.getLocation().getY()),
+                        imageView,
                         Duration.millis(2000),
                         hermione.getGraphics().getRow(), 1,
-                        2 *hermione.getGraphics().getUnitWidth() , 0,
-                        hermione.getGraphics().getUnitWidth(), hermione.getGraphics().getUnitHeight()
+                        hermione.getGraphics().getUnitX() + 2 * hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitY(),
+                        hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitHeight() / hermione.getGraphics().getRow()
                 );
                 animation.setCycleCount(1);
                 animation.play();
@@ -762,12 +780,19 @@ public class Primary {
             @Override
             public void show() {
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                ImageView imageView =   battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY());
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 final Animation animation = new SpriteAnimation(
-                        battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
+                        imageView,
                         Duration.millis(2000),
                         hermione.getGraphics().getRow(), 1,
-                        4*hermione.getGraphics().getUnitWidth() , 0,
-                        hermione.getGraphics().getUnitWidth(), hermione.getGraphics().getUnitHeight()
+                        hermione.getGraphics().getUnitX() + 4 * hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitY(),
+                        hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitHeight() / hermione.getGraphics().getRow()
                 );
                 animation.setCycleCount(2);
                 animation.play();
@@ -778,12 +803,19 @@ public class Primary {
             @Override
             public void show(){
                 BattleFXMLC battle = (BattleFXMLC) hermione.getGraphics().getBattleMenu().getGraphic().getController();
+                ImageView imageView = battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY());
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 final Animation animation = new SpriteAnimation(
-                        battle.getCell(hermione.getLocation().getX(), hermione.getLocation().getY()),
+                        imageView,
                         Duration.millis(2000),
                         hermione.getGraphics().getRow(), 1,
-                        hermione.getGraphics().getUnitWidth(), 0,
-                        hermione.getGraphics().getUnitWidth(), hermione.getGraphics().getUnitHeight()
+                        hermione.getGraphics().getUnitX() + hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitY(),
+                        hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                        hermione.getGraphics().getUnitHeight() / hermione.getGraphics().getRow()
                 );
                 animation.setCycleCount(1);
                 animation.play();
@@ -809,12 +841,17 @@ public class Primary {
                                     battle.removeFromScene(second.getNode());
                                     ImageView imageView = battle.getCell(cell.getX(), cell.getY());
                                     imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                                    if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                                        imageView.setScaleX(-1);
+                                        imageView.setScaleY(1);
+                                    }
                                     final Animation animation = new SpriteAnimation(
                                             imageView,
                                             Duration.millis(2000),
                                             hermione.getGraphics().getRow(), 1,
-                                            0, 0,
-                                            hermione.getGraphics().getUnitWidth(), hermione.getGraphics().getUnitHeight()
+                                            hermione.getGraphics().getUnitX() , hermione.getGraphics().getUnitY(),
+                                            hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                                            hermione.getGraphics().getUnitHeight() / hermione.getGraphics().getRow()
                                     );
                                     animation.setCycleCount(Animation.INDEFINITE);
                                     animation.play();
@@ -830,12 +867,17 @@ public class Primary {
                             battle.removeFromScene(first.getNode());
                             ImageView imageView = battle.getCell(cell.getX(), cell.getY());
                             imageView.setImage(new Image(hermione.getGraphics().getUnits()));
+                            if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                                imageView.setScaleX(-1);
+                                imageView.setScaleY(1);
+                            }
                             final Animation animation = new SpriteAnimation(
                                     imageView,
                                     Duration.millis(2000),
                                     hermione.getGraphics().getRow(), 1,
-                                    0, 0,
-                                    hermione.getGraphics().getUnitWidth(), hermione.getGraphics().getUnitHeight()
+                                    hermione.getGraphics().getUnitX() , hermione.getGraphics().getUnitY(),
+                                    hermione.getGraphics().getUnitWidth() / hermione.getGraphics().getColumn(),
+                                    hermione.getGraphics().getUnitHeight() / hermione.getGraphics().getRow()
                             );
                             animation.setCycleCount(Animation.INDEFINITE);
                             animation.play();
@@ -855,6 +897,10 @@ public class Primary {
                 imageView.setTranslateY((start.getY() - .5) * battle.getCellHeight());
                 imageView.setFitWidth(battle.getCellWidth());
                 imageView.setFitHeight(battle.getCellHeight());
+                if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
+                    imageView.setScaleX(-1);
+                    imageView.setScaleY(1);
+                }
                 battle.addToScene(imageView);
                 PathTransition pathTransition = new PathTransition(Duration.seconds(3), path, imageView);
                 pathTransition.play();

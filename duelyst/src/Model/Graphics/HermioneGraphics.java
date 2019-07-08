@@ -19,6 +19,8 @@ public class HermioneGraphics extends SpellGraphics {
     private ArrayList<OnSpeacialPowerAppliedListeners> SPApliedListenrs = new ArrayList<>();
     private ArrayList<OnCardSelectedListener> selectedListeners = new ArrayList<>();
     private String units;
+    private double unitX;
+    private double unitY;
     private double unitWidth;
     private double unitHeight;
     private int row;
@@ -92,8 +94,10 @@ public class HermioneGraphics extends SpellGraphics {
         this.selectedListeners.add(cardSelectedListener);
     }
 
-    public void setUnits(String units, double unitWidth, double unitHeight, int column, int row) {
+    public void setUnits(String units,double unitX, double unitY, double unitWidth, double unitHeight, int column, int row) {
         this.units = units;
+        this.unitX = unitX;
+        this.unitY = unitY;
         this.unitWidth = unitWidth;
         this.unitHeight = unitHeight;
         this.column = column;
@@ -126,5 +130,21 @@ public class HermioneGraphics extends SpellGraphics {
 
     public int getColumn() {
         return column;
+    }
+
+    public void setUnitX(double unitX) {
+        this.unitX = unitX;
+    }
+
+    public void setUnitY(double unitY) {
+        this.unitY = unitY;
+    }
+
+    public double getUnitX() {
+        return unitX;
+    }
+
+    public double getUnitY() {
+        return unitY;
     }
 }
