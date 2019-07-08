@@ -105,7 +105,6 @@ public class DeckSelectorFXMLC {
         if (deck.getHero() == null) label.setText(label.getText() + " ( No hero ! )");
         else label.setText(label.getText() + " (" + deck.getHero().getName() + ")");
         label.setOnMouseClicked(e -> {
-//                    account.getCollection().setMainDeck(deck);
             menu.selectDeck(account, deck);
             stage.close();
             System.err.println("debug");

@@ -85,30 +85,24 @@ public class BattleFXMLC extends FXMLController {
     @Override
     public void buildScene() {
         super.buildScene();
-       endTurn.setOnMousePressed(new EventHandler<MouseEvent>() {
-           @Override
-           public void handle(MouseEvent event) {
-               if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
-                   try {
-                       Battle.getMenu().endTurn();
-                       updateScene();
-                   } catch (HandFullException | DeckIsEmptyException e) {
-                       e.printStackTrace();
-                   }
+       endTurn.setOnMousePressed(e ->  {
+           if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
+               try {
+                   Battle.getMenu().endTurn();
+                   updateScene();
+               } catch (HandFullException | DeckIsEmptyException ex) {
+                   ex.printStackTrace();
                }
            }
        });
-        menuButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
+        menuButton.setOnAction(e -> {
+            if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
 //                    MenuHandler.setCurrentMenu(MainMenu.getMenu());
 //                    //todo: end game bezan
-                }
             }
         });
 
-        graveYard.setOnMousePressed(e ->{
+        graveYard.setOnAction(e ->{
             if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
                 GraveYardFXMLC.makeNewScene(menu.getAccount());
             }

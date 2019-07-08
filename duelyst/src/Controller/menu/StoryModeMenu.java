@@ -37,7 +37,6 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
     @Override
     public void selectDeck(Account account, Deck deck) {
         account.getCollection().setMainDeck(deck);
-
         this.enter(Battle.getMenu());
     }
 
