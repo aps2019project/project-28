@@ -154,6 +154,8 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     private void buildCardsVbox() {
         List<HBox> hermionehBoxes = new ArrayList<>();
         List<HBox> spellHboxes = new ArrayList<>();
+        if (menu.getAccount() == null) System.out.println("account");
+        if (menu.getAccount().getCollection() == null) System.out.println("collection");
         for (Card card : menu.getAccount().getCollection().getCards()){
             makeCardCard(hermionehBoxes, spellHboxes, card , hermionesVbox , spellsVbox);
         }
@@ -223,9 +225,9 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         newDeck.setPrefWidth(160);
         newDeck.setPrefHeight(70);
         Button deleteDeck = new Button("Delete Deck");
-        newDeck.setFont(new Font("verdana" , 13));
-        newDeck.setPrefWidth(160);
-        newDeck.setPrefHeight(70);
+        deleteDeck.setFont(new Font("verdana" , 13));
+        deleteDeck.setPrefWidth(160);
+        deleteDeck.setPrefHeight(70);
         GraphicsControls.setButtonStyle("menu-button" , newDeck , deleteDeck);
         newDeck.setOnAction(e -> newDeck());
         deleteDeck.setOnAction(e -> deleteDeck());
@@ -397,6 +399,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
 
 
     private void tabPressed(Button tab) {
+//        CollectionMenu.getMenu().save() ;
         tab.getStyleClass().add("tab-button-selected");
         updateBalance();
     }
@@ -415,6 +418,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     public void getPopupResult(String text) {
         try {
             Deck deck =((CollectionMenu)menu).createNewDeck(text);
+//            Primary.saveAccounts();
             ((CollectionMenu)menu).setSelectedDeck(deck);
             buildDecksVbox();
             buildDecksVbox2();

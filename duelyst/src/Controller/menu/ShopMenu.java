@@ -122,9 +122,9 @@ public class ShopMenu extends Menu {
     }
 
     @Override
-    public Menu exit() {
+    public void exit() {
         this.save();
-        return super.exit();
+        super.exit();
     }
 
     public void save() {

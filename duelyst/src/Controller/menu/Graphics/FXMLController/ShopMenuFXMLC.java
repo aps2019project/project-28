@@ -45,10 +45,9 @@ public class ShopMenuFXMLC extends FXMLController {
         super.buildScene();
         Scene scene = menu.getGraphic().getScene();
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/ShopMenu.css");
-        new Thread(this::makeCardsVBox).start();
+        makeCardsVBox();
         scrollPane.setContent(cardsVbox);
-        new Thread(this::makeItemsVBox).start();
-
+        makeItemsVBox();
         GraphicsControls.setBackButtonOnPress(backButton);
 //        backButton.setOnAction(e -> {
 //            ShopMenu.getMenu().save() ;

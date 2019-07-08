@@ -129,9 +129,9 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
     }
 
     @Override
-    public Menu exit() {
+    public void exit() {
         this.save();
-        return super.exit();
+        super.exit();
     }
 
     public boolean isTheCardInTheDeck(Card card){
@@ -139,6 +139,7 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
             System.err.println("selected deck is null");
             return false ;
         }
+        System.err.println(selectedDeck.getName());
         return selectedDeck.hasCard(card) ;
     }
     public boolean isTheItemInTheDeck(Item item){

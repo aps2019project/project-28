@@ -51,6 +51,8 @@ public class CardCardFXMLC {
             hp.setText(hp.getText() + h.getHealthPoint());
             if (h instanceof Hero) heroStamp.setImage(hero_stamp);
         }
+        if (account.getCollection() == null)
+            System.out.println("fatt3m3 why is the account's Collection null ? notice me sinpie");
         for (Card c : account.getCollection().getCards()){
             if (c.equals(card)) {
                 exists = true ;
