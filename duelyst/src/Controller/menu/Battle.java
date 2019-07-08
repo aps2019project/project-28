@@ -109,7 +109,6 @@ public class Battle extends Menu {
         Card card = this.account.getPlayer().getHand().getCard(cardID);
             if (card instanceof Hermione) {
                 this.account.getPlayer().deploy(card, this.map.getCell(x, y), this.getEnemyPlayer());
-                this.account.getPlayer().changeMana((-1) * card.getManaPoint());
                 this.account.getPlayer().getHand().removeCard(card);
             } else if (card instanceof Spell) {
                 try {
