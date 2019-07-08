@@ -1,6 +1,7 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.CollectionMenu;
+import Controller.menu.DeckSelectorHavingMenu;
 import Controller.menu.Graphics.GraphicsControls;
 import Controller.menu.ShopMenu;
 import Model.Primary;
@@ -11,6 +12,8 @@ import Model.card.hermione.Hermione;
 import Model.card.spell.Spell;
 import Model.item.Item;
 import Model.item.Usable;
+import View.Listeners.OnDeckSelector2ClickedListener;
+import View.Listeners.OnDeckSelectorClickedListener;
 import View.MenuHandler;
 import exeption.*;
 import javafx.fxml.FXML;
@@ -31,7 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CollectionMenuFXMLC extends FXMLController implements PopupInputHaving , SearchBarHaving {
+public class CollectionMenuFXMLC extends FXMLController implements PopupInputHaving , SearchBarHaving, DeckSelectorHavingMenu2 {
+
+    private OnDeckSelector2ClickedListener onDeckSelector2ClickedListener ;
 
     @FXML
     private Button backButton , hermioneTab, itemTab , spellTab , decksTab;
@@ -214,27 +219,46 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         decksVbox.getChildren().clear();
         decksVbox.setSpacing(15);
         decksVbox.getStylesheets().add("Controller/menu/Graphics/StyleSheets/Buttons.css") ;
-
-        HBox firstRow = new HBox();
-        firstRow.setPrefHeight(70);
-        firstRow.setFillHeight(true);
-        firstRow.setStyle("-fx-background-color:#50505050 ; ");
-        firstRow.setAlignment(Pos.CENTER);
-        Button newDeck = new Button("New Deck");
-        newDeck.setFont(new Font("verdana" , 13));
-        newDeck.setPrefWidth(160);
-        newDeck.setPrefHeight(70);
-        Button deleteDeck = new Button("Delete Deck");
-        deleteDeck.setFont(new Font("verdana" , 13));
-        deleteDeck.setPrefWidth(160);
-        deleteDeck.setPrefHeight(70);
-        GraphicsControls.setButtonStyle("menu-button" , newDeck , deleteDeck);
-        newDeck.setOnAction(e -> newDeck());
-        deleteDeck.setOnAction(e -> deleteDeck());
-        firstRow.getChildren().addAll(newDeck , deleteDeck);
-        decksVbox.getChildren().add(firstRow);
+        //first row
+        {
+            HBox firstRow = new HBox();
+            firstRow.setPrefHeight(70);
+            firstRow.setFillHeight(true);
+            firstRow.setStyle("-fx-background-color:#50505050 ; ");
+            firstRow.setAlignment(Pos.CENTER);
+            Button newDeck = new Button("New Deck");
+            newDeck.setFont(new Font("verdana", 13));
+            newDeck.setPrefWidth(160);
+            newDeck.setPrefHeight(70);
+            Button deleteDeck = new Button("Delete Deck");
+            deleteDeck.setFont(new Font("verdana", 13));
+            deleteDeck.setPrefWidth(160);
+            deleteDeck.setPrefHeight(70);
+            GraphicsControls.setButtonStyle("menu-button", newDeck, deleteDeck);
+            newDeck.setOnAction(e -> newDeck());
+            deleteDeck.setOnAction(e -> deleteDeck());
+            firstRow.getChildren().addAll(newDeck, deleteDeck);
+            decksVbox.getChildren().add(firstRow);
+        }
+        //second row
+        {
+            HBox secondRow = new HBox();
+            secondRow.setPrefHeight(70);
+            secondRow.setFillHeight(true);
+            secondRow.setStyle("-fx-background-color:#50505050 ; ");
+            secondRow.setAlignment(Pos.CENTER);
+            Button imp = new Button("Import deck") ;
+            imp.setFont(new Font("verdana" , 13));
+            imp.setPrefWidth(160);
+            imp.setPrefHeight(70);
+            imp.setOnAction(e -> showDeckSelector2(Primary.getDefaultDecks()));
+            GraphicsControls.setButtonStyle("menu-button", imp);
+            secondRow.getChildren().add(imp);
+            decksVbox.getChildren().add(secondRow);
+        }
         for (Deck deck : ((CollectionMenu)menu).getDecks()){
             HBox row = new HBox();
+            row.setSpacing(50);
             row.setPrefHeight(70);
             row.setFillHeight(true);
             row.setStyle("-fx-background-color:#50505050 ; ");
@@ -243,13 +267,26 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             button.setFont(new Font("verdana" , 13));
             button.setPrefWidth(160);
             button.setPrefHeight(70);
+            Button exp = new Button("Export");
+            exp.setFont(new Font("verdana" , 13));
+            exp.setPrefWidth(160);
+            exp.setPrefHeight(70);
             GraphicsControls.setButtonStyle("deck-button" , button);
+            GraphicsControls.setButtonStyle("battleMenuButton" , exp);
             button.setOnAction(e -> {
                 ((CollectionMenu)menu).setSelectedDeck(deck) ;
                 buildDecksVbox2();
                 scrollPane.setContent(decksVbox2);
             });
-            row.getChildren().add(button);
+            exp.setOnAction(e -> {
+                try {
+                    menu.getAccount().getCollection().exportDeck(deck.getName());
+                } catch (InvalidDeckException | IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            row.getChildren().addAll(button , exp);
             decksVbox.getChildren().add(row);
         }
 
@@ -444,4 +481,22 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         }
     }
 
+    @Override
+    public void selectDeck2(Deck deck) {
+        try {
+            menu.getAccount().getCollection().importDeck(deck.getName());
+        } catch (InvalidDeckException e) {
+            Popup.popup("Invalid Deck for some reason");
+        }
+    }
+
+    @Override
+    public void setDeckSelector2Listener(OnDeckSelector2ClickedListener ds) {
+        onDeckSelector2ClickedListener = ds ;
+    }
+
+    @Override
+    public void showDeckSelector2(List<Deck> decks) {
+        onDeckSelector2ClickedListener.show(decks , this , "Which one do you want") ;
+    }
 }

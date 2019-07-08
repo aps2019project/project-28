@@ -49,6 +49,8 @@ public class MainMenuFXMLC extends FXMLController {
                 CollectionMenu.getMenu().getGraphic().getController().buildScene();
             }catch(NullPointerException ignored){
                 CollectionMenu.getMenu().getGraphic().init();
+                ((CollectionMenuFXMLC)CollectionMenu.getMenu().getGraphic().getController())
+                        .setDeckSelector2Listener(DeckSelector2FXMLC::makeNewScene);
             }
             enterSubMenu(CollectionMenu.getMenu());
         });

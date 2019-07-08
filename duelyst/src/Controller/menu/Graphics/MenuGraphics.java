@@ -1,5 +1,7 @@
 package Controller.menu.Graphics;
 
+import Controller.menu.Graphics.FXMLController.CollectionMenuFXMLC;
+import Controller.menu.Graphics.FXMLController.DeckSelector2FXMLC;
 import Controller.menu.Graphics.FXMLController.FXMLController;
 import Controller.menu.Menu;
 import View.GraphicView;

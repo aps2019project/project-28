@@ -1,6 +1,8 @@
 package Controller.menu;
 
 import Controller.Game;
+import Controller.menu.Graphics.FXMLController.CollectionMenuFXMLC;
+import Controller.menu.Graphics.FXMLController.DeckSelector2FXMLC;
 import Controller.menu.Graphics.FXMLController.LeaderBoardHavingFXMLC;
 import View.Listeners.OnLeaderBoardClickedListener;
 import Model.account.Account;
@@ -72,6 +74,8 @@ public class SignInMenu extends Menu {
                 public void run() {
                     ShopMenu.getMenu().getGraphic().init();
                     CollectionMenu.getMenu().getGraphic().init();
+                    ((CollectionMenuFXMLC)CollectionMenu.getMenu().getGraphic().getController())
+                            .setDeckSelector2Listener(DeckSelector2FXMLC::makeNewScene);
                 }
             }.start();
             MenuHandler.enterMenu(MainMenu.getMenu());

@@ -183,7 +183,16 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
     }
 
     public List<Deck> getDecks(){
-        System.out.println(tempCollection.getDecks().size());
+        updateTempCollectionDecks() ;
         return tempCollection.getDecks();
     }
+
+    private void updateTempCollectionDecks() {
+        for (Deck deck : account.getCollection().getDecks()){
+            if (!tempCollection.getDecks().contains(deck))
+                tempCollection.getDecks().add(deck);
+        }
+    }
+
+
 }
