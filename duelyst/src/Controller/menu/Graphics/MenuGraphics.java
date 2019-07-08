@@ -56,6 +56,8 @@ public class MenuGraphics {
         }catch (IOException ignored) {
             ignored.printStackTrace();
             System.err.println("couldn't load the fxml file");
+        }catch (Exception e){
+            System.err.println("couldn't load the fxml file but it's not IOException");
         }
 
     }

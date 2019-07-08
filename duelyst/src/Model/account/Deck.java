@@ -48,8 +48,8 @@ public class Deck {
 
         try {
             this.hero= (Hero) this.collection.getCard(this.hero.getID());
-        } catch (InvalidCardException ignored) {
-            ignored.printStackTrace();
+        } catch (InvalidCardException | NullPointerException ignored) {
+//            ignored.printStackTrace();
         }
 
         this.setItems(newItems);
@@ -90,10 +90,10 @@ public class Deck {
     }
 
     public boolean hasCard(Card wantedCard) {
-        for (Card card :
-                cards) {
-            if (card.equals(wantedCard))
+        for (Card card : cards) {
+            if (card.equals(wantedCard)) {
                 return true;
+            }
         }
         return false;
     }

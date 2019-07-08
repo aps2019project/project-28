@@ -49,10 +49,7 @@ public class ShopMenuFXMLC extends FXMLController {
         scrollPane.setContent(cardsVbox);
         makeItemsVBox();
         GraphicsControls.setBackButtonOnPress(backButton);
-//        backButton.setOnAction(e -> {
-//            ShopMenu.getMenu().save() ;
-//            MenuHandler.exitMenu();
-//        });
+
 
         if (!hasSearchBar) {
             hasSearchBar = true ;
@@ -80,7 +77,7 @@ public class ShopMenuFXMLC extends FXMLController {
         v = new VBox() ;
         v.setSpacing(15);
         for (Card card : Shop.getInstance().getCollection().getCards()){
-            if (card.getName().contains(search)){
+            if (card.getName().toLowerCase().contains(search.toLowerCase())){
                 makeCardCard(card , v);
             }
         }
@@ -93,7 +90,7 @@ public class ShopMenuFXMLC extends FXMLController {
     }
 
 
-    public void updateBalance() {
+    void updateBalance() {
         balance.setText("Balance : " + menu.getAccount().getMoney() + "$");
     }
 

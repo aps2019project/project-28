@@ -132,7 +132,7 @@ public abstract class Card {
     public boolean equals(Object obj) {
         if (!(obj instanceof Card)) return false ;
         Card card = (Card)obj ;
-        if (card.getName().equals(this.name)) return true ;
+        if (card.getName().toLowerCase().equals(this.name.toLowerCase())) return true ;
         return false ;
     }
 

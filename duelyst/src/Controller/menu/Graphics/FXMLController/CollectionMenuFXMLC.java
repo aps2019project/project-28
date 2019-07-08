@@ -335,15 +335,26 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     }
 
     private void setTheButton(Usable item, Button button) {
-        if (((CollectionMenu)menu).isTheItemInTheDeck(item)){
+        if (!((CollectionMenu)menu).isTheItemInTheDeck(item)){
             button.setText("Add");
             button.setOnAction(e -> {
                 try {
-                    ((CollectionMenu)menu).addItemToDeck(item);
+                    ((CollectionMenu)menu).addToDeck(item.getID(),((CollectionMenu)menu).getSelectedDeck().getName());
+                    setTheButton(item , button);
                 } catch (FullDeckException ex) {
                     Popup.popup("The selected Deck is full!");
                 } catch (DeckAlreadyHasThisItemException ex) {
                     Popup.popup("This deck already has this Item !");
+                    ex.printStackTrace();
+                } catch (InvalidItemException ex) {
+                    ex.printStackTrace();
+                } catch (DeckAlreadyHasAHeroException ex) {
+                    ex.printStackTrace();
+                } catch (InvalidCardException ex) {
+                    ex.printStackTrace();
+                } catch (DeckAlreadyHasThisCardException ex) {
+                    ex.printStackTrace();
+                } catch (InvalidDeckException ex) {
                     ex.printStackTrace();
                 }
             });
@@ -351,26 +362,30 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             button.setText("Remove");
             button.setOnAction(e->{
                 try {
-                    ((CollectionMenu)menu).removeFromDeck(item.getID());
+                    ((CollectionMenu)menu).removeFromDeck(item.getID(), ((CollectionMenu)menu).getSelectedDeck().getName());
                 } catch (InvalidItemException ex) {
                     Popup.popup("This item does not exist on this deck !");
-                } catch (InvalidCardException ignored) {}
+                } catch (InvalidCardException ignored) {} catch (InvalidDeckException ex) {
+                    ex.printStackTrace();
+                }
             });
         }
     }
 
     private void setTheButton(Button button , Card card) {
-        if (((CollectionMenu) menu).isTheCardInTheDeck(card)) {
+        if (!((CollectionMenu) menu).isTheCardInTheDeck(card)) {
             button.setText("Add");
             button.setOnAction(e -> {
                 try {
-                    ((CollectionMenu) menu).addCardToDeck(card);
+                    ((CollectionMenu) menu).addToDeck(card.getID(),  ((CollectionMenu)menu).getSelectedDeck().getName());
+                    setTheButton(button , card);
                 } catch (FullDeckException ex) {
                     Popup.popup("The selected Deck is full!");
                 } catch (DeckAlreadyHasAHeroException ex) {
                     Popup.popup("This deck already has a Hero!");
                 } catch (DeckAlreadyHasThisCardException ex) {
                     Popup.popup("This deck already has this card !");
+                } catch (InvalidItemException | InvalidCardException | DeckAlreadyHasThisItemException | InvalidDeckException ex) {
                     ex.printStackTrace();
                 }
             });
@@ -378,16 +393,16 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             button.setText("Remove");
             button.setOnAction(e -> {
                 try {
-                    ((CollectionMenu) menu).removeFromDeck(card.getID());
+                    ((CollectionMenu) menu).removeFromDeck(card.getID(), ((CollectionMenu)menu).getSelectedDeck().getName());
                 } catch (InvalidCardException ex) {
                     Popup.popup("This card does not exist on this deck !");
                 } catch (InvalidItemException ignored) {
+                } catch (InvalidDeckException ex) {
+                    ex.printStackTrace();
                 }
             });
         }
     }
-
-
 
     private void deleteDeck() {
         ((CollectionMenu)menu).showDeckSelector(menu.getAccount());

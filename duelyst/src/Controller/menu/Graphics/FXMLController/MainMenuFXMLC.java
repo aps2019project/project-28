@@ -4,6 +4,7 @@ import Controller.menu.*;
 import Controller.menu.Graphics.GraphicsControls;
 import Model.Primary;
 import Model.account.Account;
+import Model.account.Collection;
 import View.MenuHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -44,8 +45,11 @@ public class MainMenuFXMLC extends FXMLController {
 
 
         collectionMenuButton.setOnAction(e -> {
-            if(CollectionMenu.getMenu().getGraphic().getController()==null) System.out.println("fuck meeeeeeee");
-            CollectionMenu.getMenu().getGraphic().getController().buildScene();
+            try {
+                CollectionMenu.getMenu().getGraphic().getController().buildScene();
+            }catch(NullPointerException ignored){
+                CollectionMenu.getMenu().getGraphic().init();
+            }
             enterSubMenu(CollectionMenu.getMenu());
         });
         shopMenuButton.setOnAction(e -> {

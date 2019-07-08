@@ -48,6 +48,7 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
     }
 
     public void save() {
+        if (this.account == null) return ;
         this.account.setCollection(this.tempCollection);
         Primary.saveAccounts();
     }
@@ -72,7 +73,6 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
         }
     }
 
-
     public Deck createNewDeck(String deckName) throws DeckAlreadyExistException {
         if (this.tempCollection.hasDeck(deckName)) throw new DeckAlreadyExistException();
         return this.tempCollection.addNewDeck(deckName);
@@ -87,7 +87,6 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
             FullDeckException, InvalidCardException, DeckAlreadyHasThisItemException, InvalidDeckException, InvalidItemException {
         this.tempCollection.getDeckByName(deckName).addToDeck(ID);
     }
-
 
     public void removeFromDeck(int ID, String deckName) throws InvalidCardException, InvalidItemException, InvalidDeckException {
         this.tempCollection.getDeckByName(deckName).removeFromDeck(ID);
@@ -139,7 +138,6 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
             System.err.println("selected deck is null");
             return false ;
         }
-        System.err.println(selectedDeck.getName());
         return selectedDeck.hasCard(card) ;
     }
     public boolean isTheItemInTheDeck(Item item){
@@ -150,21 +148,9 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
     public void setSelectedDeck(Deck selectedDeck) {
         this.selectedDeck = selectedDeck;
     }
-    public void addCardToDeck(Card card) throws DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException {
-        if (selectedDeck != null){
-            selectedDeck.addCardToDeck(card);
-        }
-    }
 
-    public void removeFromDeck(int id) throws InvalidCardException, InvalidItemException {
-        if (selectedDeck != null){
-            selectedDeck.removeFromDeck(id);
-        }
-    }
-
-    public void addItemToDeck(Usable item) throws FullDeckException, DeckAlreadyHasThisItemException {
-        if (selectedDeck != null)
-            selectedDeck.addItemToDeck(item);
+    public Deck getSelectedDeck() {
+        return selectedDeck;
     }
 
     @Override
