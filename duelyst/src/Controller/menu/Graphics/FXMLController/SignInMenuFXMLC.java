@@ -56,10 +56,7 @@ public class SignInMenuFXMLC extends FXMLController implements LeaderBoardHaving
         Scene scene = this.menu.getGraphic().getScene();
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/SignInMenu.css");
 
-//        System.out.println(getClass().getResource("music_codex.mp3").getPath());
-//        File f = new File("src/resources/music/music_codex.mp3");
         try {
-//            Media music = new Media("src/resources/music/music_codex.mp3");
             Media music = new Media(Paths.get("src/resources/music/music_codex.m4a").toUri().toString());
             mediaPlayer = new MediaPlayer(music);
             mediaPlayer.setCycleCount(-1);

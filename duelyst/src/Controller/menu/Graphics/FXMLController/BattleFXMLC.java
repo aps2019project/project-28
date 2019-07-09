@@ -91,22 +91,29 @@ public class BattleFXMLC extends FXMLController {
 
     @Override
     public void buildScene() {
+
         super.buildScene();
-       endTurn.setOnMousePressed(e ->  {
+       endTurn.setOnAction(new EventHandler<ActionEvent>() {
+           @Override
+           public void handle(ActionEvent actionEvent) {
+           System.out.println("Battle.getMenu().getPlayer().getGI() = " + Battle.getMenu().getPlayer().getGI());
            if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
+               System.err.println("end turn 1");
                try {
                    Battle.getMenu().endTurn();
+                   System.err.println("end turn 2");
                    updateScene();
                } catch (HandFullException | DeckIsEmptyException ex) {
                    ex.printStackTrace();
                }
            }
-       });
+           }});
         menuButton.setOnAction(e -> {
             if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
 //                    MenuHandler.setCurrentMenu(MainMenu.getMenu());
 //                    //todo: end game bezan
                 ((SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController()).playMusic(true);
+                mediaPlayer.pause();
             }
         });
 
@@ -137,7 +144,6 @@ public class BattleFXMLC extends FXMLController {
         });
 
         try {
-//            Media music = new Media("src/resources/music/music_codex.mp3");
             Media music = new Media(Paths.get("src/resources/music/music_battlemap_risensun2.m4a").toUri().toString());
             mediaPlayer = new MediaPlayer(music);
             mediaPlayer.setCycleCount(-1);
