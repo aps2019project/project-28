@@ -86,7 +86,6 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
     private void play() {
         try {
             ((MultiPlayerModeMenu)menu).selectUser("" , "");
-            //TODO arshia thread this shit !
             play.setText("Cancel");
             play.setTextFill(Color.RED);
             play.setOnAction(e2 -> cancel());
@@ -96,7 +95,7 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
     }
 
     private void cancel() {
-        //TODO Arschia !
+        MultiPlayerModeMenu.getMenu().cancel();
         play.setText("Cancel");
         play.setTextFill(Color.RED);
         play.setOnAction(e2 -> play());

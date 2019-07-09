@@ -57,5 +57,7 @@ public class OnlineMultiPlayerMenuMediator implements MultiPlayerMenuMediator {
     @Override
     public void cancel() {
         connectionThread.interrupt();
+        System.err.println("hey yo shit i canceled");
+        Game.setBattleClient(null);
     }
 }
