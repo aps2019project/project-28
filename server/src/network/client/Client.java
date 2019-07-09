@@ -118,4 +118,8 @@ public class Client {
     public void setAccount(Account account) {
         this.account = account;
     }
+
+    public Socket getSocket() {
+        return socket;
+    }
 }
