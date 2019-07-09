@@ -5,6 +5,7 @@ import Controller.menu.Battle;
 import Controller.menu.*;
 //import SignInMenu;
 import Controller.menu.SignInMenu;
+import Model.mediator.OnlineBattleMediator;
 import Model.Primary;
 import Model.account.Account;
 import Model.account.Shop;
@@ -38,11 +39,14 @@ public class MenuHandler {
 
     private static void configNetwork() throws IOException {
         // TODO: 7/2/19 bayad beshe network Mediator
+        Game.setClient(new Client());
+        Game.setChatRoomClient(new Client(8585));
+
+
         Account.setMediator(new OnlineAccountMediator());
         SignInMenu.getMenu().setSignInMenuMediator(new OnlineSignInMenuMediator());
         Shop.getInstance().setShopMediator(new OnlineShopMediator());
         MultiPlayerModeMenu.getMenu().setMediator(new OnlineMultiPlayerMenuMediator());
-        Game.setClient(new Client());
         Battle.getMenu().setMediator(new OnlineBattleMediator());
         try {
             Primary.preprocess();

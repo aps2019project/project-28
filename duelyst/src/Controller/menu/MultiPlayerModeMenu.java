@@ -10,6 +10,7 @@ import View.Listeners.OnLeaderBoardClickedListener;
 import View.MenuHandler;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
+import network.ChatMSG;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,7 +46,13 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
         }
         MenuHandler.enterMenu(Battle.getMenu());
     }
+    public void sendMessage(String text){
+        this.mediator.sendMessage(text);
+    }
 
+    public ArrayList<ChatMSG> getChats(){
+        return this.mediator.getChats();
+    }
 
     @Override
     public void help() {

@@ -22,6 +22,7 @@ public class Game {
 
     private static Client client;
     private static BattleClient battleClient;
+    private static Client chatRoomClient;
 
     public static void setFirstAccount(Account account) {
         accounts[0] = account;
@@ -98,5 +99,12 @@ public class Game {
         Game.battleClient = battleClient;
     }
 
+    public static Client getChatRoomClient() {
+        return chatRoomClient;
+    }
+
+    public static void setChatRoomClient(Client chatRoomClient) {
+        Game.chatRoomClient = chatRoomClient;
+    }
 }
 

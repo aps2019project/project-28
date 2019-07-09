@@ -9,7 +9,6 @@ import View.MenuHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import sample.Main;
 
 public class MainMenuFXMLC extends FXMLController {
 

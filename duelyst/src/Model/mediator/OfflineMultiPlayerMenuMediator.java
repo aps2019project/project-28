@@ -4,6 +4,9 @@ import Controller.Game;
 import Model.account.Account;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
+import network.ChatMSG;
+
+import java.util.ArrayList;
 
 public class OfflineMultiPlayerMenuMediator implements MultiPlayerMenuMediator {
 
@@ -15,5 +18,15 @@ public class OfflineMultiPlayerMenuMediator implements MultiPlayerMenuMediator {
             throw new WrongPassException();
         }
         Game.setSecondAccount(account);
+    }
+
+    @Override
+    public void sendMessage(String text) {
+
+    }
+
+    @Override
+    public ArrayList<ChatMSG> getChats() {
+        return null;
     }
 }

@@ -1,12 +1,9 @@
 package Model.account.player;
 
 import Controller.Game;
-import Controller.menu.Battle;
-import Controller.menu.OnlineBattleMediator;
 import Model.account.Account;
 import network.Message;
 
-import java.io.InputStream;
 import java.util.Scanner;
 
 public class OnlinePlayer extends Bot {

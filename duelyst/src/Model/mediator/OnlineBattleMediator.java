@@ -1,6 +1,7 @@
-package Controller.menu;
+package Model.mediator;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.Map.Map;
 import Model.account.player.OnlinePlayer;
 import Model.mediator.BattleMediator;
