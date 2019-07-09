@@ -31,4 +31,6 @@ public interface ShopMediator {
     void search(String name) throws InvalidCardException, InvalidItemException;
 
     Collection getCollection() throws Exception;
+
+    int getRemain(String name);
 }

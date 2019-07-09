@@ -114,7 +114,10 @@ public class MessageHandler {
             case "get collection":
                 respond=Message.getDoneMessage();
                 respond.addCarry(Shop.getInstance().getCollection());
-
+                break;
+            case "get Remain":
+                respond=Message.getDoneMessage();
+                respond.addCarry(Shop.getInstance().getRemain((String) carry.get(0)));
         }
         return respond;
     }

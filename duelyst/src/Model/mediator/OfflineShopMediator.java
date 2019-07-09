@@ -19,8 +19,8 @@ public class OfflineShopMediator implements ShopMediator {
     private static final int INITIAL_AMOUNT = 10;
     private Collection collection = new Collection();
 
-    private Map<Integer,Integer> cards=new HashMap<>();//cardId,amount
-    private Map<Integer,Integer>items=new HashMap<>();//itemId,amount
+    private Map<Integer, Integer> cards = new HashMap<>();//cardId,amount
+    private Map<Integer, Integer> items = new HashMap<>();//itemId,amount
 
 
     @Override
@@ -30,8 +30,8 @@ public class OfflineShopMediator implements ShopMediator {
         fillItems();
     }
 
-    private void fillCollection(){
-        for (Hero hero: Primary.heroes) {
+    private void fillCollection() {
+        for (Hero hero : Primary.heroes) {
             try {
                 collection.addCardToCollection(hero);
             } catch (CardExistException e) {
@@ -39,13 +39,14 @@ public class OfflineShopMediator implements ShopMediator {
             }
         }
 
-        for (Minion minion: Primary.minions) {
+        for (Minion minion : Primary.minions) {
             try {
                 collection.addCardToCollection(minion);
-            } catch (CardExistException e) {}
+            } catch (CardExistException e) {
+            }
         }
 
-        for (Usable item: Primary.usables) {
+        for (Usable item : Primary.usables) {
             try {
                 collection.addItemToCollection(item);
             } catch (ItemExistExeption itemExistExeption) {
@@ -53,38 +54,43 @@ public class OfflineShopMediator implements ShopMediator {
             }
         }
 
-        for (Spell spell:
+        for (Spell spell :
                 Primary.spells) {
             try {
                 collection.addCardToCollection(spell);
-            } catch (CardExistException e) {}
+            } catch (CardExistException e) {
+            }
         }
     }
 
     private void fillItems() {
-        this.collection.getItems().forEach(item -> items.put(item.getID(),INITIAL_AMOUNT));
+        this.collection.getItems().forEach(item -> items.put(item.getID(), INITIAL_AMOUNT));
     }
 
     private void fillCards() {
-        this.collection.getCards().forEach(card -> cards.put(card.getID(),INITIAL_AMOUNT));
+        this.collection.getCards().forEach(card -> cards.put(card.getID(), INITIAL_AMOUNT));
     }
 
 
     @Override
-    public boolean hasCard(String name){
-        if(!this.collection.hasCard(name))return false;
+    public boolean hasCard(String name) {
+        if (!this.collection.hasCard(name)) return false;
         try {
-            if (this.cards.get(this.collection.getCard(name).getID())==0)return false;
-        } catch (InvalidCardException e) {e.printStackTrace();}
+            if (this.cards.get(this.collection.getCard(name).getID()) == 0) return false;
+        } catch (InvalidCardException e) {
+            e.printStackTrace();
+        }
         return true;
     }
 
     @Override
-    public boolean hasItem(String name){
-        if(!this.collection.hasItem(name))return false;
+    public boolean hasItem(String name) {
+        if (!this.collection.hasItem(name)) return false;
         try {
-            if(this.items.get(this.collection.getItem(name).getID())==0)return false;
-        } catch (InvalidItemException e) {e.printStackTrace();}
+            if (this.items.get(this.collection.getItem(name).getID()) == 0) return false;
+        } catch (InvalidItemException e) {
+            e.printStackTrace();
+        }
         return true;
     }
 
@@ -99,40 +105,48 @@ public class OfflineShopMediator implements ShopMediator {
     }
 
     private Card buyCard(String name) throws CardDeoesntExistException {
-        if(!this.hasCard(name))throw new CardDeoesntExistException();
+        if (!this.hasCard(name)) throw new CardDeoesntExistException();
         try {
-            Card card=this.getCard(name);
-            this.cards.put(card.getID(),this.cards.get(card.getID())-1);
+            Card card = this.getCard(name);
+            this.cards.put(card.getID(), this.cards.get(card.getID()) - 1);
             System.out.println("cards.get(card.getID()) = " + cards.get(card.getID()));
             return card;
-        } catch (InvalidCardException e) { e.printStackTrace(); }
+        } catch (InvalidCardException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     private Item buyItem(String name) throws ItemDoesntExistException {
         System.err.println("debug");
-        if(!this.hasItem(name))throw new ItemDoesntExistException();
+        if (!this.hasItem(name)) throw new ItemDoesntExistException();
         try {
-            Item item=this.getItem(name);
-            this.items.put(item.getID(),this.items.get(item.getID())-1);
+            Item item = this.getItem(name);
+            this.items.put(item.getID(), this.items.get(item.getID()) - 1);
             return item;
-        }catch (InvalidItemException e) { e.printStackTrace(); }
+        } catch (InvalidItemException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
 
     @Override
-    public boolean buy(String name){
-        boolean isSuccessful=false;
+    public boolean buy(String name) {
+        boolean isSuccessful = false;
 
         try {
             buyCard(name);
-            isSuccessful=true;
-        } catch (CardDeoesntExistException e) { e.printStackTrace(); }
+            isSuccessful = true;
+        } catch (CardDeoesntExistException e) {
+            e.printStackTrace();
+        }
         try {
             buyItem(name);
-            isSuccessful=true;
-        } catch (ItemDoesntExistException e) { e.printStackTrace(); }
+            isSuccessful = true;
+        } catch (ItemDoesntExistException e) {
+            e.printStackTrace();
+        }
 
         return isSuccessful;
     }
@@ -161,19 +175,32 @@ public class OfflineShopMediator implements ShopMediator {
         return this.collection;
     }
 
+    @Override
+    public int getRemain(String name) {
+        if (this.hasCard(name)) {
+            try {
+                return this.cards.get(this.getCollection().getCard(name).getID());
+            } catch (InvalidCardException ignored) {
+            }
+        } else if (this.hasItem(name)) {
+            try {
+                return this.items.get(this.getCollection().getItem(name).getID());
+            } catch (InvalidItemException ignored) {}
+        }
+        return 0;
+    }
+
     private boolean sellCard(String name) throws InvalidCardException {
-        Card card=this.collection.getCard(name);
-        this.cards.put(card.getID(),this.cards.get(card.getID())+1);
+        Card card = this.collection.getCard(name);
+        this.cards.put(card.getID(), this.cards.get(card.getID()) + 1);
         return true;
     }
+
     private boolean sellItem(String name) throws InvalidItemException {
-        Item item=this.collection.getItem(name);
-        this.items.put(item.getID(),this.items.get(item.getID())+1);
+        Item item = this.collection.getItem(name);
+        this.items.put(item.getID(), this.items.get(item.getID()) + 1);
         return true;
     }
-
-
-
 
 
 }

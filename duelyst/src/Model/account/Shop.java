@@ -118,4 +118,8 @@ public class Shop {
         this.shopMediator = shopMediator;
         this.shopMediator.init();
     }
+
+    public int getRemain(String name) {
+        return this.shopMediator.getRemain(name);
+    }
 }

@@ -172,6 +172,20 @@ public class OfflineShopMediator implements ShopMediator {
         return true;
     }
 
+    @Override
+    public int getRemain(String name) {
+        if (this.hasCard(name)) {
+            try {
+                return this.cards.get(this.getCollection().getCard(name).getID());
+            } catch (InvalidCardException ignored) {
+            }
+        } else if (this.hasItem(name)) {
+            try {
+                return this.items.get(this.getCollection().getItem(name).getID());
+            } catch (InvalidItemException ignored) {}
+        }
+        return 0;
+    }
 
 
 

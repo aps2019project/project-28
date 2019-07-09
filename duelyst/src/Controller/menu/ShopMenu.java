@@ -58,7 +58,6 @@ public class ShopMenu extends Menu {
 
     public void buy(String name) throws CardExistException, ItemExistExeption, InvalidCardException,
             NotEnoughMoneyException, FullCollectionException, InvalidItemException {
-
         if (!this.shop.hasCard(name) && !this.shop.hasItem(name)) {
             throw new InvalidCardException();
         }
@@ -99,6 +98,11 @@ public class ShopMenu extends Menu {
             presenter.show(this.shop.getCollection(),"SHOP");
         }
     }
+
+    public int getRemain(String name){
+        return this.shop.getRemain(name);
+    }
+
 
     @Override
     public Menu enter(Menu subMenu) {

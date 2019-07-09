@@ -111,4 +111,20 @@ public class OnlineShopMediator implements ShopMediator {
 
         return (Collection) message.getCarry().get(0);
     }
+
+    @Override
+    public int getRemain(String name) {
+        Message message=new Message("get Remain");
+        message.addCarry(name);
+
+        Game.getClient().write(message);
+
+        message = Game.getClient().read();
+        try {
+            if (!NetworkMediator.isValid(message))return 0;
+        } catch (Exception e) {
+            return 0;
+        }
+        return (int) message.getCarry().get(0);
+    }
 }

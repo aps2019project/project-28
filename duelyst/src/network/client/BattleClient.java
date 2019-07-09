@@ -2,6 +2,7 @@ package network.client;
 
 import Controller.Game;
 import Controller.menu.Battle;
+import Controller.menu.OnlineBattleMediator;
 import Controller.menu.SignInMenu;
 import Model.account.Account;
 import Model.account.player.OnlinePlayer;
@@ -40,5 +41,6 @@ public class BattleClient extends Client{
         }else{
             Game.setSecondAccount(account);
         }
+        Battle.getMenu().setMediator(new OnlineBattleMediator());
     }
 }
