@@ -1,8 +1,0 @@
-.card-root{
-    -fx-background-color: #30303050;
-    -fx-background-size: 100% 100%;
-}
-.card-image{
-    -fx-background-image: url("../../../../resources/images/cardImageBackground.png");
-    -fx-background-size: 100% 100%;
-}
