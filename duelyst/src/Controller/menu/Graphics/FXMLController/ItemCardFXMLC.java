@@ -21,7 +21,7 @@ public class ItemCardFXMLC {
     @FXML
     private ImageView imageView ;
     @FXML
-    private Label name , price , exist;
+    private Label name , price , exist , remaining;
     private boolean exists = false ;
     @FXML
     private Button buy;
@@ -35,6 +35,9 @@ public class ItemCardFXMLC {
         Image itemBackground = new Image("resources/card_backgrounds/card_back_agenor.png");
 
         name.setText(item.getName());
+        int rem = ShopMenu.getMenu().getRemain(item.getName()) ;
+        remaining.setText("Remaining : " + rem);
+        if (rem == 0) remaining.setTextFill(Color.RED);
         price.setText("Price : " + item.getPrice()+"$");
         GraphicsControls.setButtonStyle("shopping-button" , buy);
         for (Usable c : account.getCollection().getUsables()){
@@ -50,7 +53,7 @@ public class ItemCardFXMLC {
 //        }catch(NullPointerException e){
             imageView.setImage(itemBackground);
 //        }
-        if (account.getMoney() >= item.getPrice() && !exists){
+        if (account.getMoney() >= item.getPrice() && !exists && rem>0){
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_card.getPath())));
         }else{
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_disabled.getPath())));
@@ -75,6 +78,7 @@ public class ItemCardFXMLC {
             ShopMenu.getMenu().buy(item.getName());
             exists = true ;
             existanceCheck();
+            updateRemaining(item) ;
             fxmlc.updateBalance();
         }catch(FullCollectionException e){
             Popup.popup("You can't have any more items in your collection ! try selling some!");
@@ -89,6 +93,12 @@ public class ItemCardFXMLC {
         } catch (CardExistException e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateRemaining(Item item) {
+        int rem = ShopMenu.getMenu().getRemain(item.getName()) ;
+        remaining.setText("Remaining : " + rem);
+        if (rem == 0) remaining.setTextFill(Color.RED);
     }
 
     public Button getButton() {

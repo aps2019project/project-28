@@ -25,14 +25,12 @@ public class CardCardFXMLC {
     @FXML
     private ImageView imageView , heroStamp;
     @FXML
-    private Label name , price , ap , hp , exist;
+    private Label name , price , ap , hp , exist , remaining;
     private boolean exists = false ;
     @FXML
     private Button buy;
     @FXML
     private HBox firstHbox ;
-    @FXML
-    private AnchorPane pane ;
     @FXML
     private VBox vbox ;
 
@@ -44,6 +42,9 @@ public class CardCardFXMLC {
 
         name.setText(card.getName());
         price.setText("Price : " + card.getPrice()+"$");
+        int rem = ShopMenu.getMenu().getRemain(card.getName()) ;
+        remaining.setText("Remaining : " + rem);
+        if (rem == 0) remaining.setTextFill(Color.RED);
         GraphicsControls.setButtonStyle("shopping-button" , buy);
         if (card instanceof Spell){
             vbox.getChildren().remove(firstHbox);
@@ -68,7 +69,7 @@ public class CardCardFXMLC {
 //        }catch(NullPointerException e){
         imageView.setImage(cardBackground);
 //        }
-        if (account.getMoney() >= card.getPrice() && !exists){
+        if (account.getMoney() >= card.getPrice() && !exists && rem > 0){
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_card.getPath())));
         }else{
             buy.setCursor(new ImageCursor(new Image(Resources.mouse_disabled.getPath())));
