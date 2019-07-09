@@ -30,6 +30,7 @@ public class ChatRoomServer {
     private static void communicate(Client client) {
         while (true){
             Message message=client.read();
+
             ChatMSG msg = (ChatMSG) message.getCarry().get(0);
             updateChatRoom(msg);
         }
