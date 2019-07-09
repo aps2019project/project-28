@@ -1,7 +1,9 @@
 package Model.mediator;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Controller.menu.SignInMenu;
+import View.MenuHandler;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
 import network.ChatMSG;
@@ -14,6 +16,7 @@ public class OnlineMultiPlayerMenuMediator implements MultiPlayerMenuMediator {
 
     ArrayList<ChatMSG> chats=new ArrayList<>();
 
+    Thread connectionThread;
     public OnlineMultiPlayerMenuMediator() {
         new Thread(() -> {
             while (true){
@@ -27,7 +30,15 @@ public class OnlineMultiPlayerMenuMediator implements MultiPlayerMenuMediator {
     @Override
     public void selectUser(String username, String password) throws InvalidAccountException, WrongPassException, IOException {
         /*username and password are ignored*/
-        Game.getBattleClient().connect();
+        connectionThread=new Thread(() -> {
+            try {
+                Game.getBattleClient().connect();
+                MenuHandler.enterMenu(Battle.getMenu());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        connectionThread.start();
     }
 
     @Override
@@ -41,5 +52,12 @@ public class OnlineMultiPlayerMenuMediator implements MultiPlayerMenuMediator {
     @Override
     public ArrayList<ChatMSG> getChats() {
         return chats;
+    }
+
+    @Override
+    public void cancel() {
+        connectionThread.interrupt();
+        System.err.println("hey yo shit i canceled");
+        Game.setBattleClient(null);
     }
 }

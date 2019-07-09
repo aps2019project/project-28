@@ -13,4 +13,6 @@ public interface MultiPlayerMenuMediator {
     void sendMessage(String text);
 
     ArrayList<ChatMSG> getChats();
+
+    void cancel();
 }

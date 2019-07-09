@@ -81,14 +81,11 @@ public class Client {
         YaGson json = new YaGson();
         try {
             StringBuilder readable=new StringBuilder();
-            int i=0;
             while(true){
                 String s=this.getInput().nextLine();
                 if(s.equals(END_MESSAGE))break;
                 readable.append(s);
-                i++;
             }
-            System.out.println("i = " + i);
             return json.fromJson(readable.toString(), Message.class);
         } catch (IOException e) {
             e.printStackTrace();

@@ -7,6 +7,7 @@ import exeption.InvalidAccountException;
 import exeption.WrongPassException;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -30,6 +31,7 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
     @FXML
     private TextField textBox ;
     private VBox content = new VBox();
+    private int index = 0 ;
 
 
     @Override
@@ -39,6 +41,7 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
 
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/MultiPlayerMenu.css");
         scrollPane.setContent(content);
+        content.setAlignment(Pos.BOTTOM_CENTER);
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
         scrollPane.vvalueProperty().bind(content.heightProperty());
@@ -61,16 +64,23 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
             String text = textBox.getText();
             if (e.getCode() == KeyCode.ENTER && !text.isEmpty()){
                 ((MultiPlayerModeMenu)menu).sendMessage(text);
+                textBox.setText("");
             }
         });
     }
 
     private void buildContent() {
-        ArrayList<ChatMSG> msgs = ((MultiPlayerModeMenu)menu).getChats() ;
-        for (ChatMSG msg : msgs){
-            Node msgNode =  MessageFXMLC.MakeMessage(msg);
-            if (!content.getChildren().contains(msgNode))
-                content.getChildren().add(msgNode);
+        try {
+            ArrayList<ChatMSG> msgs = ((MultiPlayerModeMenu) menu).getChats();
+            if (msgs.size() > index) {
+                for (ChatMSG msg : msgs.subList(index, msgs.size())) {
+                    Node msgNode = MessageFXMLC.MakeMessage(msg);
+                    content.getChildren().add(msgNode);
+                }
+                index = msgs.size();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -78,7 +88,7 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
     private void play() {
         try {
             ((MultiPlayerModeMenu)menu).selectUser("" , "");
-            play.setText("Cancel");
+            play.setText("CANCEL");
             play.setTextFill(Color.RED);
             play.setOnAction(e2 -> cancel());
         } catch (InvalidAccountException | WrongPassException ex) {
@@ -87,8 +97,8 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
     }
 
     private void cancel() {
-        //TODO Arschia !
-        play.setText("Cancel");
+        MultiPlayerModeMenu.getMenu().cancel();
+        play.setText("PLAY");
         play.setTextFill(Color.RED);
         play.setOnAction(e2 -> play());
     }

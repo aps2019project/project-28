@@ -59,7 +59,6 @@ public class Client {
         String string = json.toJson(message);
         try {
             for(int i=0;i<= string.length()/SEND_SIZE;i++){
-                System.err.println(i);
                 String sendable=string.substring(i*SEND_SIZE,Integer.min((i+1)*SEND_SIZE,string.length()));
 
                 this.getOutput().println(sendable);
