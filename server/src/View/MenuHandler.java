@@ -49,7 +49,7 @@ public class MenuHandler {
 //        input.play(args);
         BattleServerHandler battleServerHandler=new BattleServerHandler();
         new Thread(battleServerHandler::init).start();
-        new Thread(() -> ChatRoomServer.main(args));
+        ChatRoomServer.main(args);
         MainServer.main(null);
     }
 
