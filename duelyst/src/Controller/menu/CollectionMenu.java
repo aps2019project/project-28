@@ -14,6 +14,7 @@ import View.Listeners.OnDeckSelectorClickedListener;
 import com.gilecode.yagson.YaGson;
 import exeption.*;
 
+import java.io.IOException;
 import java.util.List;
 
 public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
@@ -182,8 +183,17 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
         onDeckSelectorClickedListener.show(menu.getAccount(), this , "Which deck do you wish to remove?", false);
     }
 
+    public void importDeck(String name) throws InvalidDeckException {
+        this.tempCollection.importDeck(name);
+    }
+
+    public void exportDeck(String name) throws IOException, InvalidDeckException {
+        this.tempCollection.exportDeck(name);
+    }
+
     public List<Deck> getDecks(){
 //        return tempCollection.getDecks();
+        this.account.getCollection().getDecks().forEach(a -> System.err.println(a.getName()));
         return account.getCollection().getDecks();
     }
 

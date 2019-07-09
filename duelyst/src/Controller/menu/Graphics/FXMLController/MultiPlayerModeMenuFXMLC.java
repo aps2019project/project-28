@@ -88,7 +88,7 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
     private void play() {
         try {
             ((MultiPlayerModeMenu)menu).selectUser("" , "");
-            play.setText("Cancel");
+            play.setText("CANCEL");
             play.setTextFill(Color.RED);
             play.setOnAction(e2 -> cancel());
         } catch (InvalidAccountException | WrongPassException ex) {
@@ -98,7 +98,7 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
 
     private void cancel() {
         MultiPlayerModeMenu.getMenu().cancel();
-        play.setText("Cancel");
+        play.setText("PLAY");
         play.setTextFill(Color.RED);
         play.setOnAction(e2 -> play());
     }
