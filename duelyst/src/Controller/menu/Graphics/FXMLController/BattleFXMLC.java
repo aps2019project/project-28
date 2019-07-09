@@ -111,7 +111,6 @@ public class BattleFXMLC extends FXMLController {
         menuButton.setOnAction(e -> {
             if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
 //                    MenuHandler.setCurrentMenu(MainMenu.getMenu());
-//                    //todo: end game bezan
                 ((SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController()).playMusic(true);
                 mediaPlayer.pause();
             }
@@ -160,6 +159,10 @@ public class BattleFXMLC extends FXMLController {
         super.enterScene();
         try {
             mediaPlayer.play();
+        }catch (Exception e){
+            System.err.println("couldnt load the music");
+        }
+        try {
             ((SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController()).playMusic(false);
             firstPlayer.setImage(new Image(Battle.getMenu().getPlayer().getUser().getAvatar()));
             secondPlayer.setImage(new Image(Battle.getMenu().getEnemyPlayer().getUser().getAvatar()));

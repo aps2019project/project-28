@@ -71,9 +71,7 @@ public class Hand {
     }
 
     public void handleHand(Card card) throws DeckIsEmptyException, HandFullException {
-        System.err.println("debug");
         removeCard(card);
-        addCard();
     }
 
     public static ArrayList<OnHandPresentedListener> getHandPresenters() {
