@@ -1,5 +1,6 @@
 package Controller.menu.Graphics.FXMLController;
 
+import Model.Primary;
 import Model.card.Card;
 import Model.card.hermione.*;
 import Model.card.spell.Spell;
@@ -29,7 +30,8 @@ public class CraftingMinionFXMLC extends CraftingHermioneFXMLC {
             Spell sp = (Spell) Card.getCard(specialPower.getValue());
             Minion minion = new Minion(name.getText(), Integer.parseInt(cost.getText()),Integer.parseInt(manapoint.getText()) ,Integer.parseInt(hp.getText()) , Integer.parseInt(ap.getText()),
                     new Melee() , Integer.parseInt(range.getText()) , sp , SPATime.DEATH , "Custom Minion");
-            Card.addCardToCards(minion);
+            Primary.saveCustomHermione(minion);
+            menu.exit();
         } catch (CardExistException e) {
             Popup.popup("sorry but a card with this name already exists in your Collection");
         }catch (Exception e){

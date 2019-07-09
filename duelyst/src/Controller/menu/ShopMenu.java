@@ -105,6 +105,7 @@ public class ShopMenu extends Menu {
     }
 
     public void sell(String name) throws InvalidCardException, InvalidItemException {
+        System.err.println("debug");
         if (!this.account.getCollection().hasCard(name) && !this.account.getCollection().hasItem(name))
             throw new InvalidCardException();
         tempCollection.removeFromCollection(name);

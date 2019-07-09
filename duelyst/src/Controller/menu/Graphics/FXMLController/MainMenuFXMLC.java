@@ -9,6 +9,7 @@ import View.MenuHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import sample.Main;
 
 public class MainMenuFXMLC extends FXMLController {
 
@@ -45,6 +46,7 @@ public class MainMenuFXMLC extends FXMLController {
 
 
         collectionMenuButton.setOnAction(e -> {
+            ShopMenu.getMenu().init(MainMenu.getMenu());
             try {
                 CollectionMenu.getMenu().getGraphic().getController().buildScene();
             }catch(NullPointerException ignored){
@@ -79,6 +81,6 @@ public class MainMenuFXMLC extends FXMLController {
     }
 
     private void enterSubMenu(Menu subMenu){
-        MenuHandler.enterMenu(menu.enter(subMenu));
+        MenuHandler.enterMenu(subMenu);
     }
 }
