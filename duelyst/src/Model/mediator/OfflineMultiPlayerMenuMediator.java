@@ -1,7 +1,9 @@
 package Model.mediator;
 
 import Controller.Game;
+import Controller.menu.Battle;
 import Model.account.Account;
+import View.MenuHandler;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
 import network.ChatMSG;
@@ -18,6 +20,7 @@ public class OfflineMultiPlayerMenuMediator implements MultiPlayerMenuMediator {
             throw new WrongPassException();
         }
         Game.setSecondAccount(account);
+        MenuHandler.enterMenu(Battle.getMenu());
     }
 
     @Override
@@ -28,5 +31,10 @@ public class OfflineMultiPlayerMenuMediator implements MultiPlayerMenuMediator {
     @Override
     public ArrayList<ChatMSG> getChats() {
         return null;
+    }
+
+    @Override
+    public void cancel() {
+
     }
 }

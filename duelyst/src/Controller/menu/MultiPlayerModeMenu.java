@@ -43,8 +43,12 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        MenuHandler.enterMenu(Battle.getMenu());
     }
+
+    public void cancel(){
+        this.mediator.cancel();
+    }
+
     public void sendMessage(String text){
         this.mediator.sendMessage(text);
     }
