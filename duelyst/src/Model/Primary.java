@@ -229,11 +229,7 @@ public class Primary {
         getCollectables();
         getCards();
         getItems();
-//        loadDefaultDecks();
-
-//        configAccounts();
-
-
+        loadDefaultDecks();
     }
 
     public static void configAccounts() throws IOException, DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
@@ -338,20 +334,15 @@ public class Primary {
     }
 
     public static void saveCustomSpell(Spell costumSpell) throws IOException {
+        System.err.println(costumSpell.getName());
         spells.add(costumSpell);
         try {
             Shop.getInstance().getCollection().addCardToCollection(costumSpell);
         } catch (CardExistException e) {
             e.printStackTrace();
         }
-        YaGson gson = new YaGson();
-        FileWriter fileWriter = new FileWriter("Spell.json", false);
-        for (Spell spell :
-                spells) {
-            gson.toJson(spell, fileWriter);
-            fileWriter.write("\n");
-        }
-        fileWriter.close();
+        writeJson(spells, "Spell.json");
+        writeSingle(Shop.getInstance(), "Shop.json");
     }
 
     public static void saveCustomHermione(Hermione hermione) throws IOException, CardExistException {

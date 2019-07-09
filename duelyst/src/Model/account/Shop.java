@@ -22,7 +22,7 @@ public class Shop {
             ourInstance = Primary.getShop();
         } catch (FileNotFoundException e) { e.printStackTrace(); }
     }
-    private Collection collection = new Collection();
+//    private Collection collection = new Collection();
 
     private ShopMediator shopMediator;
 

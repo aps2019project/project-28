@@ -80,7 +80,7 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
                 index = msgs.size();
             }
         }catch(Exception e){
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
