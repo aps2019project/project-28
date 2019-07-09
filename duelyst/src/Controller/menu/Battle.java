@@ -62,7 +62,6 @@ public class Battle extends Menu {
         return menu;
     }
 
-
     @Override
     public boolean init(Menu parentMenu) {
         System.err.println("debug");
@@ -428,28 +427,21 @@ public class Battle extends Menu {
         /*
         * giving the prize
         * */
-        this.mediator.handleBattleFinish();
-        //        ((BattleFXMLC)this.getGraphic().getController()).finish();
+        this.gameMode.handleWin();
+//        ((BattleFXMLC)this.getGraphic().getController()).finish();
         /*
          * saving the match
          * */
-        Game.getAccount(0).saveMatch(this.match);
-        Game.getAccount(1).saveMatch(this.match);
-        Account.save();
+        Game.accounts[0].saveMatch(this.match);
+        Game.accounts[1].saveMatch(this.match);
+        Primary.saveAccounts();
 
-
-        /*
-        * destroying the players
-        * */
-        Game.getAccount(0).setPlayer(null);
-        Game.getAccount(1).setPlayer(null);
 
         /*
         * handling the account for getting input and stuff
         * */
-        Game.setSecondAccount(Account.getDefaultAccount());
-        this.account = SignInMenu.getMenu().getAccount();
-        Game.setFirstAccount(SignInMenu.getMenu().getAccount());
+        Game.accounts[1] = Account.getDefaultAccount();
+        this.account = SignInMenu.getMenu().account;
         this.turn = 0;
 
 
@@ -458,12 +450,6 @@ public class Battle extends Menu {
         /*
         * getting out of battle
         * */
-        try {
-            SignInMenu.getMenu().setAccount(Account.getAccount(Battle.getMenu().getAccount().getUsername()));
-            MainMenu.getMenu().setAccount(Account.getAccount(Battle.getMenu().getAccount().getUsername()));
-        } catch (InvalidAccountException e) {
-            e.printStackTrace();
-        }
         MenuHandler.enterMenu(MainMenu.getMenu());
     }
 
@@ -583,7 +569,7 @@ public class Battle extends Menu {
     }
 
     public Map getMap() {
-        return this.map;
+        return map;
     }
 
     public Player getPlayer() {
@@ -615,6 +601,7 @@ public class Battle extends Menu {
     public void setTurn(int turn) {
         this.turn = turn;
     }
+
 
     public void setGameInfoPresenters(ArrayList<OnGameInfoPresentedListener> gameInfoPresenters) {
         this.gameInfoPresenters = gameInfoPresenters;

@@ -81,7 +81,7 @@ public class GraveYardFXMLC {
                 try {
                     Parent root = loader.load();
                     CollectionCardHermioneFXMLC fxmlc = loader.getController();
-                    fxmlc.buildCardCard(h);
+                    fxmlc.buildCardCard(h , false);
                     setUpTheHbox(root , vbox , hBoxes);
                 }catch (IOException ignored) {
                     System.err.println("could'nt load the collectionHermioneCard");

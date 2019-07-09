@@ -1,5 +1,6 @@
 package Controller.menu;
 
+import Controller.menu.Graphics.FXMLController.CollectionMenuFXMLC;
 import Model.Primary;
 import Model.item.Usable;
 import View.Listeners.OnCollectionPresentedListener;
@@ -12,6 +13,8 @@ import View.Listeners.OnDeckPresentedListener;
 import View.Listeners.OnDeckSelectorClickedListener;
 import com.gilecode.yagson.YaGson;
 import exeption.*;
+
+import java.util.List;
 
 public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
 
@@ -138,7 +141,12 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
             System.err.println("selected deck is null");
             return false ;
         }
-        return selectedDeck.hasCard(card) ;
+        try {
+            return this.tempCollection.getDeckByName(selectedDeck.getName()).hasCard(card) ;
+        } catch (InvalidDeckException e) {
+            e.printStackTrace();
+        }
+        return false ;
     }
     public boolean isTheItemInTheDeck(Item item){
         if (selectedDeck == null) return false ;
@@ -155,7 +163,12 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
 
     @Override
     public void selectDeck(Account account, Deck deck) {
-        account.getCollection().getDecks().remove(deck);
+        try {
+            deleteDeck(deck.getName());
+            ((CollectionMenuFXMLC)getGraphic().getController()).buildDecksVbox();
+        } catch (InvalidDeckException e) {
+            e.printStackTrace();
+        }
 //        Primary.saveAccounts();
     }
 
@@ -166,6 +179,20 @@ public class CollectionMenu extends Menu implements DeckSelectorHavingMenu{
 
     @Override
     public void showDeckSelector(Account account) {
-        onDeckSelectorClickedListener.show(menu.getAccount(), this , "Which deck do you wish to remove?");
+        onDeckSelectorClickedListener.show(menu.getAccount(), this , "Which deck do you wish to remove?", false);
     }
+
+    public List<Deck> getDecks(){
+        updateTempCollectionDecks() ;
+        return tempCollection.getDecks();
+    }
+
+    private void updateTempCollectionDecks() {
+        for (Deck deck : account.getCollection().getDecks()){
+            if (!tempCollection.getDecks().contains(deck))
+                tempCollection.getDecks().add(deck);
+        }
+    }
+
+
 }

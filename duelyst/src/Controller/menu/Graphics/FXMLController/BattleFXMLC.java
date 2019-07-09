@@ -2,6 +2,7 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.Battle;
 import Controller.menu.Graphics.GraphicsControls;
+import Controller.menu.SignInMenu;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
 import Model.account.Account;
@@ -32,11 +33,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
+
+import java.nio.file.Paths;
 
 public class BattleFXMLC extends FXMLController {
 
@@ -65,6 +71,7 @@ public class BattleFXMLC extends FXMLController {
     public GridPane map;
     public GridPane handFrame;
     public GridPane handManaFrame;
+    private MediaPlayer mediaPlayer ;
 
     @Override
     public void init() {//setStyles
@@ -84,31 +91,33 @@ public class BattleFXMLC extends FXMLController {
 
     @Override
     public void buildScene() {
+
         super.buildScene();
-       endTurn.setOnMousePressed(new EventHandler<MouseEvent>() {
+       endTurn.setOnAction(new EventHandler<ActionEvent>() {
            @Override
-           public void handle(MouseEvent event) {
-               if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
-                   try {
-                       Battle.getMenu().endTurn();
-                       updateScene();
-                   } catch (HandFullException | DeckIsEmptyException e) {
-                       e.printStackTrace();
-                   }
+           public void handle(ActionEvent actionEvent) {
+           System.out.println("Battle.getMenu().getPlayer().getGI() = " + Battle.getMenu().getPlayer().getGI());
+           if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
+               System.err.println("end turn 1");
+               try {
+                   Battle.getMenu().endTurn();
+                   System.err.println("end turn 2");
+                   updateScene();
+               } catch (HandFullException | DeckIsEmptyException ex) {
+                   ex.printStackTrace();
                }
            }
-       });
-        menuButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
+           }});
+        menuButton.setOnAction(e -> {
+            if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
 //                    MenuHandler.setCurrentMenu(MainMenu.getMenu());
 //                    //todo: end game bezan
-                }
+                ((SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController()).playMusic(true);
+                mediaPlayer.pause();
             }
         });
 
-        graveYard.setOnMousePressed(e ->{
+        graveYard.setOnAction(e ->{
             if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
                 GraveYardFXMLC.makeNewScene(menu.getAccount());
             }
@@ -133,12 +142,25 @@ public class BattleFXMLC extends FXMLController {
                 updateScene();
             }
         });
+
+        try {
+            Media music = new Media(Paths.get("src/resources/music/music_battlemap_risensun2.m4a").toUri().toString());
+            mediaPlayer = new MediaPlayer(music);
+            mediaPlayer.setCycleCount(-1);
+            MediaView mediaView = new MediaView(mediaPlayer);
+            frame.getChildren().add(mediaView);
+        }catch (Exception ignored){
+            System.err.println("couldn't load the music file");
+        }
+
     }
 
     @Override
     public void enterScene() {
         super.enterScene();
         try {
+            mediaPlayer.play();
+            ((SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController()).playMusic(false);
             firstPlayer.setImage(new Image(Battle.getMenu().getPlayer().getUser().getAvatar()));
             secondPlayer.setImage(new Image(Battle.getMenu().getEnemyPlayer().getUser().getAvatar()));
         }catch (Exception e){

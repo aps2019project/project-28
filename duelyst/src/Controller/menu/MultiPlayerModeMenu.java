@@ -60,7 +60,7 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
 
     @Override
     public void showDeckSelector(Account account) {
-        deckSelectorListener.show(account , this , "");
+        deckSelectorListener.show(account , this , "" , true);
     }
 
     @Override

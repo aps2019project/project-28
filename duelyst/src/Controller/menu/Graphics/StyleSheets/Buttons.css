@@ -8,15 +8,19 @@
 }
 .button1{
     -fx-background-image: url("../../../../resources/ui/button_primary.png");
+    -fx-background-size: 100% 100%;
  }
 .button1Clicked{
     -fx-background-image: url("../../../../resources/ui/button_primary_glow.png");
+    -fx-background-size: 100% 100%;
 }
 .button2{
     -fx-background-image: url("../../../../resources/ui/button_secondary.png");
+    -fx-background-size: 100% 100%;
 }
 .button2Clicked{
     -fx-background-image: url("../../../../resources/ui/button_secondary_glow.png");
+    -fx-background-size: 100% 100%;
 }
 
 .menu-button{
@@ -51,25 +55,31 @@
 }
 .battleMenuButton{
     -fx-background-image: url("../../../../resources/ui/button_primary_left.png");
+    -fx-background-size: 100% 100%;
 }
 
 .battleMenuButtonClicked{
     -fx-background-image: url("../../../../resources/ui/button_primary_left_glow.png");
+    -fx-background-size: 100% 100%;
 }
 .graveYardButton{
     -fx-background-image: url("../../../../resources/ui/button_primary_right.png");
+    -fx-background-size: 100% 100%;
 }
 
 .graveYardButtonClicked{
     -fx-background-image: url("../../../../resources/ui/button_primary_right_glow.png");
+    -fx-background-size: 100% 100%;
 }
 
 .showCollectableButton{
     -fx-background-image: url("../../../../resources/ui/button_primary.png");
+    -fx-background-size: 100% 100%;
 }
 
 .showCollectableButtonClicked{
     -fx-background-image: url("../../../../resources/ui/button_primary_glow.png");
+    -fx-background-size: 100% 100%;
 }
 
 .shopping-button{

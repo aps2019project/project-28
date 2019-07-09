@@ -8,6 +8,7 @@ import Model.card.Card;
 import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
 import Model.card.spell.Spell;
+import exeption.InvalidCardException;
 import javafx.animation.Animation;
 import javafx.fxml.FXML;
 import javafx.scene.ImageCursor;
@@ -61,9 +62,7 @@ public class CollectionCardHermioneFXMLC {
         GraphicsControls.setButtonStyle("shopping-button" ,sellButton);
         sellButton.setOnAction(e -> {
             try {
-                ShopMenu.getMenu().sell(card.getName());
-                pane.getChildren().clear() ;
-                pane.setStyle("-fx-opacity: 0.0");
+                sellAction(card);
             }catch(Exception ex){
                 System.err.println("error occurred while trying to sell the card !");
                 ex.printStackTrace();
@@ -81,4 +80,24 @@ public class CollectionCardHermioneFXMLC {
     public Button getButton(){
         return sellButton;
     }
+
+    public void buildCardCard(Hermione card , CollectionMenuFXMLC fxmlc) {
+        buildCardCard(card);
+        sellButton.setOnAction(e -> {
+            try {
+                sellAction(card);
+                fxmlc.updateBalance();
+            }catch(Exception ex){
+                System.err.println("error occurred while trying to sell the card !");
+                ex.printStackTrace();
+            }
+        });
+    }
+
+    private void sellAction(Hermione card) throws InvalidCardException {
+        ShopMenu.getMenu().sell(card.getName());
+        pane.getChildren().clear();
+        pane.setStyle("-fx-opacity: 0.0");
+    }
+
 }

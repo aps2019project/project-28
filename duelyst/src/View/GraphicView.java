@@ -83,6 +83,7 @@ public class GraphicView extends Application implements View{
         StoryModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
         CustomModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
         MultiPlayerModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
+        CollectionMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
     }
 
     private static void initGraphics() {

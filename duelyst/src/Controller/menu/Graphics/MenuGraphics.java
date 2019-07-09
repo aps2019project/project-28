@@ -1,5 +1,7 @@
 package Controller.menu.Graphics;
 
+import Controller.menu.Graphics.FXMLController.CollectionMenuFXMLC;
+import Controller.menu.Graphics.FXMLController.DeckSelector2FXMLC;
 import Controller.menu.Graphics.FXMLController.FXMLController;
 import Controller.menu.Menu;
 import View.GraphicView;
@@ -53,11 +55,12 @@ public class MenuGraphics {
             this.controller.buildScene();
 
             this.scene.setRoot(this.root);
-        }catch (IOException ignored) {
-            ignored.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
             System.err.println("couldn't load the fxml file");
         }catch (Exception e){
             System.err.println("couldn't load the fxml file but it's not IOException");
+            e.printStackTrace();
         }
 
     }

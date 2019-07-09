@@ -1,6 +1,7 @@
 package Controller.menu;
 
 import Controller.Game;
+import Controller.menu.Graphics.FXMLController.CollectionMenuFXMLC;
 import Controller.menu.Graphics.FXMLController.LeaderBoardHavingFXMLC;
 import Model.mediator.SignInMenuMediator;
 import View.Listeners.OnLeaderBoardClickedListener;
