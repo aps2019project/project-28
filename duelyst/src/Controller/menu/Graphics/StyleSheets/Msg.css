@@ -1,0 +1,5 @@
+.root{
+    -fx-background-color: transparent;
+    -fx-background-image:  url("../../../../resources/images/msg.png");
+    -fx-background-size: 100% 100%;
+}

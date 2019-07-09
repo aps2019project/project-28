@@ -5,28 +5,31 @@ import Controller.menu.Graphics.GraphicsControls;
 import View.MenuHandler;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
+import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import network.ChatMSG;
 
-public class MultiPlayerModeMenuFXMLC extends FXMLController implements LeaderBoardHavingFXMLC {
+import java.util.ArrayList;
+
+public class MultiPlayerModeMenuFXMLC extends FXMLController {
 
     @FXML
-    private Button signInButton;
+    private Button play, setDeck , backButton ;
     @FXML
-    private Button showLeaderBoard ;
+    private ScrollPane scrollPane ;
     @FXML
-    private Button backButton;
-    @FXML
-    private TextField usernameInput ;
-    @FXML
-    private PasswordField passwordField ;
-
-
+    private TextField textBox ;
+    private VBox content = new VBox();
 
 
     @Override
@@ -35,45 +38,58 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController implements LeaderBo
         Scene scene = menu.getGraphic().getScene();
 
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/MultiPlayerMenu.css");
-
-
-        signInButton.setOnAction(e -> signInButtonClicked());
+        scrollPane.setContent(content);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+        scrollPane.vvalueProperty().bind(content.heightProperty());
+        GraphicsControls.setButtonStyle("menu-button" , play , setDeck);
         GraphicsControls.setBackButtonOnPress(backButton);
 
-        scene.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.ENTER){
-                signInButtonClicked();
+        play.setOnAction(e -> play());
+        setDeck.setOnAction(e -> ((MultiPlayerModeMenu)menu).showDeckSelector(menu.getAccount()));
+        buildContent();
+        new AnimationTimer() {
+            private long lastUpade = 0;
+            @Override
+            public void handle(long now) {
+                if (now - lastUpade >= 2000_000_000)
+                    buildContent();
+            }
+        }.start();
+
+        textBox.setOnKeyPressed(e -> {
+            String text = textBox.getText();
+            if (e.getCode() == KeyCode.ENTER && !text.isEmpty()){
+                ((MultiPlayerModeMenu)menu).sendMessage(text);
             }
         });
-
-        GraphicsControls.setButtonStyle( "button1",signInButton);
-        GraphicsControls.setButtonStyle( "menu-button",showLeaderBoard);
-        showLeaderBoard.setOnAction(e -> ((MultiPlayerModeMenu)menu).showLeaderBoard());
-
-        signInButton.setOnAction(e -> signInButtonClicked());
     }
 
-    private void signInButtonClicked() {
-        if (usernameInput.getText()!=null && !usernameInput.getText().isEmpty()){
-            if (passwordField.getText()!=null && !passwordField.getText().isEmpty()){
-                try {
-                    ((MultiPlayerModeMenu)menu).selectUser(usernameInput.getText() , passwordField.getText());
-                }catch(InvalidAccountException e1){
-                    usernameInput.setText("");
-                    passwordField.setText("");
-                    usernameInput.setPromptText("incorrect username");
-                }catch (WrongPassException e2){
-                    passwordField.setText("");
-                    passwordField.setPromptText("wrong password");
-                }
-            } else passwordField.getStyleClass().add("wrong-text-field");
-        } else usernameInput.getStyleClass().add("wrong-text-field");
-
+    private void buildContent() {
+        ArrayList<ChatMSG> msgs = ((MultiPlayerModeMenu)menu).getChats() ;
+        for (ChatMSG msg : msgs){
+            Node msgNode =  MessageFXMLC.MakeMessage(msg);
+            if (!content.getChildren().contains(msgNode))
+                content.getChildren().add(msgNode);
+        }
     }
 
 
-    @Override
-    public void setUsernameInput(String username) {
-        usernameInput.setText(username);
+    private void play() {
+        try {
+            ((MultiPlayerModeMenu)menu).selectUser("" , "");
+            play.setText("Cancel");
+            play.setTextFill(Color.RED);
+            play.setOnAction(e2 -> cancel());
+        } catch (InvalidAccountException | WrongPassException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void cancel() {
+        //TODO Arschia !
+        play.setText("Cancel");
+        play.setTextFill(Color.RED);
+        play.setOnAction(e2 -> play());
     }
 }

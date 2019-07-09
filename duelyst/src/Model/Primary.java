@@ -69,7 +69,7 @@ public class Primary {
     public static ArrayList<Account> accounts = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
-        preprocess();
+//        preprocess();
 //        Primary.Json();
 //        Primary.graphicsJson();
 ////        writeJson(spells,"Spell.json");
@@ -79,7 +79,8 @@ public class Primary {
 //        writeJson(collectables,"Collectables.json");
 //        Shop shop = new Shop();
 //        writeSingle(shop, "Shop.json");
-////        saveAccounts();
+//        setAccountAvatars();
+//        saveAccounts();
     }
 
     public static Shop getShop() throws FileNotFoundException {

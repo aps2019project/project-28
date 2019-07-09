@@ -79,7 +79,6 @@ public class GraphicView extends Application implements View{
 
     private static void setListeners() {
         SignInMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC::makeNewScene);
-        MultiPlayerModeMenu.getMenu().addLeaderBoardClickedListener(LeaderBoardFXMLC::makeNewScene);
         StoryModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
         CustomModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
         MultiPlayerModeMenu.getMenu().setDeckSelectorListener(DeckSelectorFXMLC::makeNewScene);
