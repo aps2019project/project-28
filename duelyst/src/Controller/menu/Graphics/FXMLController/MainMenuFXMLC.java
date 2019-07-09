@@ -51,12 +51,19 @@ public class MainMenuFXMLC extends FXMLController {
                 CollectionMenu.getMenu().getGraphic().init();
                 ((CollectionMenuFXMLC)CollectionMenu.getMenu().getGraphic().getController())
                         .setDeckSelector2Listener(DeckSelector2FXMLC::makeNewScene);
+                CollectionMenu.getMenu().getGraphic().getController().buildScene();
             }
             enterSubMenu(CollectionMenu.getMenu());
         });
         shopMenuButton.setOnAction(e -> {
-            ShopMenu.getMenu().getGraphic().getController().buildScene();
-            enterSubMenu(ShopMenu.getMenu());
+            try {
+                ShopMenu.getMenu().getGraphic().getController().buildScene();
+                enterSubMenu(ShopMenu.getMenu());
+            }catch(NullPointerException ignored){
+                ShopMenu.getMenu().getGraphic().init();
+                ShopMenu.getMenu().getGraphic().getController().buildScene();
+                enterSubMenu(ShopMenu.getMenu());
+            }
         });
 
         battleMenuButton.setOnAction(e -> enterSubMenu(GameModeMenu.getMenu()));

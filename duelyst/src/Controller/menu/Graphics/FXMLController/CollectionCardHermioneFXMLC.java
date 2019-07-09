@@ -9,6 +9,7 @@ import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
 import Model.card.spell.Spell;
 import exeption.InvalidCardException;
+import exeption.InvalidItemException;
 import javafx.animation.Animation;
 import javafx.fxml.FXML;
 import javafx.scene.ImageCursor;
@@ -95,7 +96,11 @@ public class CollectionCardHermioneFXMLC {
     }
 
     private void sellAction(Hermione card) throws InvalidCardException {
-        ShopMenu.getMenu().sell(card.getName());
+        try {
+            ShopMenu.getMenu().sell(card.getName());
+        } catch (InvalidItemException e) {
+            e.printStackTrace();
+        }
         pane.getChildren().clear();
         pane.setStyle("-fx-opacity: 0.0");
     }

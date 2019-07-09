@@ -157,10 +157,10 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     }
 
     private void buildCardsVbox() {
+        hermionesVbox.getChildren().clear() ;
+        spellsVbox.getChildren().clear() ;
         List<HBox> hermionehBoxes = new ArrayList<>();
         List<HBox> spellHboxes = new ArrayList<>();
-        if (menu.getAccount() == null) System.out.println("account");
-        if (menu.getAccount().getCollection() == null) System.out.println("collection");
         for (Card card : menu.getAccount().getCollection().getCards()){
             makeCardCard(hermionehBoxes, spellHboxes, card , hermionesVbox , spellsVbox);
         }
@@ -222,6 +222,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         //first row
         {
             HBox firstRow = new HBox();
+            firstRow.setMinHeight(70);
             firstRow.setPrefHeight(70);
             firstRow.setFillHeight(true);
             firstRow.setStyle("-fx-background-color:#50505050 ; ");
@@ -243,6 +244,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         //second row
         {
             HBox secondRow = new HBox();
+            secondRow.setMinHeight(70);
             secondRow.setPrefHeight(70);
             secondRow.setFillHeight(true);
             secondRow.setStyle("-fx-background-color:#50505050 ; ");
@@ -258,6 +260,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         }
         for (Deck deck : ((CollectionMenu)menu).getDecks()){
             HBox row = new HBox();
+            row.setMinHeight(70);
             row.setSpacing(50);
             row.setPrefHeight(70);
             row.setFillHeight(true);

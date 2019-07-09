@@ -432,15 +432,15 @@ public class Battle extends Menu {
         /*
          * saving the match
          * */
-        Game.accounts[0].saveMatch(this.match);
-        Game.accounts[1].saveMatch(this.match);
+        Game.getAccount(0).saveMatch(this.match);
+        Game.getAccount(1).saveMatch(this.match);
         Primary.saveAccounts();
 
 
         /*
         * handling the account for getting input and stuff
         * */
-        Game.accounts[1] = Account.getDefaultAccount();
+        Game.setSecondAccount(Account.getDefaultAccount());
         this.account = SignInMenu.getMenu().account;
         this.turn = 0;
 

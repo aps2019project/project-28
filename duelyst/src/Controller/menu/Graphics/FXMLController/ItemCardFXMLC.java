@@ -5,6 +5,7 @@ import Controller.menu.ShopMenu;
 import Model.account.Account;
 import Model.item.Item;
 import Model.item.Usable;
+import exeption.*;
 import javafx.fxml.FXML;
 import javafx.scene.ImageCursor;
 import javafx.scene.control.Button;
@@ -60,9 +61,9 @@ public class ItemCardFXMLC {
     }
 
     private void existanceCheck() {
-        if (!exists) exist.setText("You don't have this Item");
+        if (!exists) exist.setText("You don't have this thing!");
         else {
-            exist.setText("You own this item");
+            exist.setText("You own this thing!");
             buy.setDisable(true);
             buy.getStyleClass().remove("shopping-button");
             buy.getStyleClass().add("shopping-button-disabled");
@@ -75,8 +76,17 @@ public class ItemCardFXMLC {
             exists = true ;
             existanceCheck();
             fxmlc.updateBalance();
-        }catch(Exception e){
-            System.err.println("error has been occurred while buying Item in ItemCardFXMLC");
+        }catch(FullCollectionException e){
+            Popup.popup("You can't have any more items in your collection ! try selling some!");
+        } catch (ItemExistExeption itemExistExeption) {
+            itemExistExeption.printStackTrace();
+        } catch (InvalidItemException e) {
+            e.printStackTrace();
+        } catch (InvalidCardException e) {
+            e.printStackTrace();
+        } catch (NotEnoughMoneyException e) {
+           Popup.popup("get the F outta here you peasant !!!");
+        } catch (CardExistException e) {
             e.printStackTrace();
         }
     }

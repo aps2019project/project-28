@@ -98,26 +98,26 @@ public class OfflineShopMediator implements ShopMediator {
         return this.collection.getItem(name);
     }
 
-    private Card buyCard(String name) throws CardDeoesntExistException {
+    private void buyCard(String name) throws CardDeoesntExistException {
         if(!this.hasCard(name))throw new CardDeoesntExistException();
         try {
             Card card=this.getCard(name);
             this.cards.put(card.getID(),this.cards.get(card.getID())-1);
             System.out.println("cards.get(card.getID()) = " + cards.get(card.getID()));
-            return card;
+//            return card;
         } catch (InvalidCardException e) { e.printStackTrace(); }
-        return null;
+//        return null;
     }
 
-    private Item buyItem(String name) throws ItemDoesntExistException {
+    private void buyItem(String name) throws ItemDoesntExistException {
         System.err.println("debug");
         if(!this.hasItem(name))throw new ItemDoesntExistException();
         try {
             Item item=this.getItem(name);
             this.items.put(item.getID(),this.items.get(item.getID())-1);
-            return item;
+//            return item;
         }catch (InvalidItemException e) { e.printStackTrace(); }
-        return null;
+//        return null;
     }
 
 

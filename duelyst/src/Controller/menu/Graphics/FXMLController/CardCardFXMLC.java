@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import stuff.Resources;
 
@@ -32,6 +33,8 @@ public class CardCardFXMLC {
     private HBox firstHbox ;
     @FXML
     private AnchorPane pane ;
+    @FXML
+    private VBox vbox ;
 
     public void buildCardCard(Card card , Account account){
 
@@ -43,7 +46,7 @@ public class CardCardFXMLC {
         price.setText("Price : " + card.getPrice()+"$");
         GraphicsControls.setButtonStyle("shopping-button" , buy);
         if (card instanceof Spell){
-            pane.getChildren().remove(firstHbox);
+            vbox.getChildren().remove(firstHbox);
             heroStamp.setImage(spell_stamp);
         }else{
             Hermione h = (Hermione) card ;
@@ -82,9 +85,9 @@ public class CardCardFXMLC {
 
 
     private void existanceCheck() {
-        if (!exists) exist.setText("You don't have this Item");
+        if (!exists) exist.setText("You don't have this thing!");
         else {
-            exist.setText("You own this item");
+            exist.setText("You own this thing!");
             buy.setDisable(true);
             buy.getStyleClass().remove("shopping-button");
             buy.getStyleClass().add("shopping-button-disabled");

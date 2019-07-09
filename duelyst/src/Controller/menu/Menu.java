@@ -5,14 +5,8 @@ import View.Listeners.OnMenuClickedListener;
 import Model.account.Account;
 import View.MenuHandler;
 import exeption.InvalidSubMenuException;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import stuff.Resources;
-
-
 import java.util.ArrayList;
+
 
 public abstract class Menu {
 
