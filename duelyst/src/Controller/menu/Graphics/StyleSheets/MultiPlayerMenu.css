@@ -9,3 +9,10 @@
 .scroll-pane{
     -fx-background-color: #303849;
 }
+.text-field{
+    -fx-background-color: #202090AA;
+    -fx-text-fill: white;
+    -fx-border-color: red;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
