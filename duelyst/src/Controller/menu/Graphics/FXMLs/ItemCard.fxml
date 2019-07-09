@@ -33,6 +33,11 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
+                  <Label fx:id="remaining" prefHeight="103.0" prefWidth="337.0" text="Remaining : ">
+                     <font>
+                        <Font name="Verdana Bold" size="27.0" />
+                     </font>
+                  </Label>
                   <Button id="shopping-button" fx:id="buy" mnemonicParsing="false" prefHeight="94.0" prefWidth="237.0" stylesheets="@../StyleSheets/Buttons.css" text="BUY">
                      <font>
                         <Font name="Verdana Bold" size="52.0" />
