@@ -1,17 +1,14 @@
 package Controller.menu;
 
-import Model.Primary;
 import Model.account.Account;
+import Model.account.Shop;
+import Model.mediator.ShopMediator;
+import Model.Primary;
 import View.Listeners.OnCollectionPresentedListener;
 import View.Listeners.OnSearchClickedListener;
 import View.Listeners.OnSearchCollectionClickedListener;
 import View.Listeners.OnShowClickedListener;
 import Model.account.Collection;
-import Model.account.Shop;
-import Model.card.Card;
-import Model.card.OnCardDetailsPresentedListener;
-import Model.item.Item;
-import View.Listeners.OnItemDetailPresentedListener;
 import exeption.*;
 
 import java.util.ArrayList;
@@ -50,49 +47,31 @@ public class ShopMenu extends Menu {
     }
 
     public void search(String name) throws InvalidCardException, InvalidItemException {
-        searchInGivenCollection(name, this.shop.getCollection());
+        this.shop.search(name);
     }
 
     public void searchCollection(String name) throws InvalidCardException, InvalidItemException {
-        searchInGivenCollection(name, this.account.getCollection());
+        this.account.getCollection().search(name);
     }
 
-    private void searchInGivenCollection(String name, Collection collection) throws InvalidCardException,
-            InvalidItemException {
-        if (collection.hasCard(name)) {
-            Card card = collection.getCard(name);
-            for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {
-                presenter.showCardDetail(card);
-            }
-        } else if (collection.hasItem(name)) {
-            Item item = collection.getItem(name);
-            for (OnItemDetailPresentedListener presenter : Item.getItemDetailPresenters()) {
-                presenter.showItemDetail(item);
-            }
-        }
-        throw new InvalidCardException();
-    }
+
 
     public void buy(String name) throws CardExistException, ItemExistExeption, InvalidCardException,
             NotEnoughMoneyException, FullCollectionException, InvalidItemException {
-        System.err.println(name);
-        if (!this.shop.getCollection().hasCard(name) && !this.shop.getCollection().hasItem(name)) {
+        if (!this.shop.hasCard(name) && !this.shop.hasItem(name)) {
             throw new InvalidCardException();
         }
-        if (this.shop.getCollection().hasCard(name)) {
-            if (this.shop.getCollection().getCard(name).getPrice() > this.account.getMoney()) {
-                System.err.println(this.shop.getCollection().getCard(name).getPrice());
-                System.err.println(this.account.getMoney());
+        if (this.shop.hasCard(name)) {
+            if (this.shop.getCard(name).getPrice() > this.account.getMoney()) {
                 throw new NotEnoughMoneyException();
             }
             else {
-                tempCollection.addCardToCollection(this.shop.getCollection().getCard(name));
-                this.account.setMoney(this.account.getMoney() - this.shop.getCollection().getCard(name).getPrice());
+                tempCollection.addCardToCollection(this.shop.getCard(name));
+                this.account.setMoney(this.account.getMoney() - this.shop.getCard(name).getPrice());
             }
-
         }
-        else if (this.shop.getCollection().hasItem(name)) {
-            if (this.shop.getCollection().getItem(name).getPrice() > this.account.getMoney()) {
+        else if (this.shop.hasItem(name)) {
+            if (this.shop.getItem(name).getPrice() > this.account.getMoney()) {
                 throw new NotEnoughMoneyException();
             } else if (account.getCollection().getUsables().size() >= Collection.MAX_USABLES) {
                 throw new FullCollectionException();
@@ -105,7 +84,6 @@ public class ShopMenu extends Menu {
     }
 
     public void sell(String name) throws InvalidCardException, InvalidItemException {
-        System.err.println("debug");
         if (!this.account.getCollection().hasCard(name) && !this.account.getCollection().hasItem(name))
             throw new InvalidCardException();
         tempCollection.removeFromCollection(name);
@@ -121,6 +99,11 @@ public class ShopMenu extends Menu {
         }
     }
 
+    public int getRemain(String name){
+        return this.shop.getRemain(name);
+    }
+
+
     @Override
     public Menu enter(Menu subMenu) {
         return super.enter(subMenu);
@@ -135,7 +118,7 @@ public class ShopMenu extends Menu {
     public void save() {
         if (this.account == null) return ;
         this.account.setCollection(this.tempCollection);
-        Primary.saveAccounts();
+        Account.save();
     }
 
 

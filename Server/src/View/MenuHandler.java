@@ -8,13 +8,12 @@ import Controller.menu.SignInMenu;
 import Model.Primary;
 import Model.account.Account;
 import Model.account.Shop;
-import Model.mediator.LocalAccountMediator;
-import Model.mediator.LocalShopMediator;
-import Model.mediator.LocalSignInMenuMediator;
+import Model.mediator.OfflineAccountMediator;
+import Model.mediator.OfflineShopMediator;
+import Model.mediator.OfflineSignInMenuMediator;
 import exeption.InvalidAccountException;
 import network.server.BattleServerHandler;
 import network.server.MainServer;
-import sample.Main;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,28 +44,30 @@ public class MenuHandler {
         input.setGIs();
 //        View input = new GraphicView();
 
-//        input.play(args);
-
-        BattleServerHandler battleServerHandler=new BattleServerHandler();
-        new Thread(battleServerHandler::init).start();
-        MainServer.main(null);
+        input.play(args);
+//
+//        BattleServerHandler battleServerHandler=new BattleServerHandler();
+//        new Thread(battleServerHandler::init).start();
+//        MainServer.main(null);
     }
 
     private static void configNetwork() throws IOException {
         // TODO: 7/2/19 bayad beshe network Mediator
-        Account.setAccountMediator(new LocalAccountMediator());
+        Account.setMediator(new OfflineAccountMediator());
 
     }
 
     private static void configLocal() {
-        Account.setAccountMediator(new LocalAccountMediator());
-        SignInMenu.getMenu().setSignInMenuMediator(new LocalSignInMenuMediator());
+        Account.setMediator(new OfflineAccountMediator());
+        SignInMenu.getMenu().setSignInMenuMediator(new OfflineSignInMenuMediator());
         try {
             Primary.preprocess();
+            Primary.configAccounts();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Shop.getInstance().setShopMediator(new LocalShopMediator());
+        Shop.getInstance().setShopMediator(new OfflineShopMediator());
     }
 
     public static void startMenus() {

@@ -102,7 +102,7 @@ public abstract class Menu {
     }
 
     public Account getAccount() {
-        if (this.account == null) this.account = MenuHandler.getAccount() ;
+        if (this.account == null) this.account = SignInMenu.getMenu().getAccount() ;
         return this.account;
     }
 

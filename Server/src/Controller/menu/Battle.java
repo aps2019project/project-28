@@ -677,4 +677,8 @@ public class Battle extends Menu {
     public Player getOpponentPlayer() {
         return opponentPlayer;
     }
+
+    public void setMap(Map map) {
+        this.map=map;
+    }
 }

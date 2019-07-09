@@ -62,17 +62,18 @@ public class Battle extends Menu {
         return menu;
     }
 
+
     @Override
     public boolean init(Menu parentMenu) {
         System.err.println("debug");
         super.init(parentMenu);
 
-        this.map=null;
+        this.map = null;
 
 
 //        this.match=new Match(Game.getAccount(0),Game.getAccount(1),this.gameMode);
 
-        this.ongoingSpells=new ArrayList<>();
+        this.ongoingSpells = new ArrayList<>();
 
         if (Game.getAccount(0).getCollection().getMainDeck() == null || Game.getAccount(1).getCollection().getMainDeck() == null) {
             System.out.println("Please Select your Main Deck");
@@ -118,14 +119,14 @@ public class Battle extends Menu {
 
     public void insert(int cardID, int x, int y) throws InvalidCardException, NotEnoughManaException, DestinationIsFullException, InvalidCellException {
 
-        this.mediator.insert(cardID,x,y);
+        this.mediator.insert(cardID, x, y);
 
         Card card = this.account.getPlayer().getHand().getCard(cardID);
 
-        this.account.getPlayer().deploy(card, this.map.getCell(x, y),this.getEnemyPlayer());
+        this.account.getPlayer().deploy(card, this.map.getCell(x, y), this.getEnemyPlayer());
 
         if (card instanceof Hermione)
-            this.getMap().getCell(x,y).setCardOnCell((Hermione) card);
+            this.getMap().getCell(x, y).setCardOnCell((Hermione) card);
 
         try {
             this.account.getPlayer().getHand().handleHand(card);
@@ -177,14 +178,14 @@ public class Battle extends Menu {
 
     public void select(Object obj) throws InvalidCardException, InvalidItemException {
         Deck deck = this.account.getPlayer().getDeck();
-        if(deck.has(obj)){
-            if(obj instanceof Item)
+        if (deck.has(obj)) {
+            if (obj instanceof Item)
                 select(((Item) obj).getID());
-            else if(obj instanceof Card) {
-                if(obj instanceof Hermione)
-                select(((Hermione) obj).getID());
-                if(obj instanceof Spell)
-                    select(((Spell)obj).getID());
+            else if (obj instanceof Card) {
+                if (obj instanceof Hermione)
+                    select(((Hermione) obj).getID());
+                if (obj instanceof Spell)
+                    select(((Spell) obj).getID());
             }
             return;
         }
@@ -217,17 +218,18 @@ public class Battle extends Menu {
     }
 
     public void move(int x, int y) throws NoCardHasBeenSelectedException, CardCantBeMovedException, MoveTrunIsOverException, DestinationOutOfreachException, InvalidCellException, DestinationIsFullException {
-        this.mediator.move(x,y);
+        this.mediator.move(x, y);
 
         try {
             Hermione hermione = (Hermione) this.account.getPlayer().getSelectedCard();
 
             //conditions that are related to the map and not to the hermione
             if (this.getMap().getCell(x, y).isFull()) throw new DestinationIsFullException();
-            if(this.getMap().getPath(hermione.getLocation(),new Cell(x,y),2)==null)throw new DestinationOutOfreachException();
+            if (this.getMap().getPath(hermione.getLocation(), new Cell(x, y), 2) == null)
+                throw new DestinationOutOfreachException();
 
 
-            if(hermione.canMove(x,y))this.getMap().getCell(hermione.getLocation()).clear();
+            if (hermione.canMove(x, y)) this.getMap().getCell(hermione.getLocation()).clear();
             hermione.move(x, y);
 
 
@@ -246,7 +248,9 @@ public class Battle extends Menu {
             this.gameMode.getFlag(this.account.getPlayer(), hermione,
                     map.getCell(x, y));
 
-            this.getGraphic().getController().updateScene();
+            try {
+                this.getGraphic().getController().updateScene();
+            } catch (Exception ignored) {}
         } catch (ClassCastException e) {
             throw new CardCantBeMovedException();//because its Spell
         }
@@ -257,27 +261,28 @@ public class Battle extends Menu {
 
         Hermione myHermione = (Hermione) this.account.getPlayer().getSelectedCard();
         Hermione enemyCard = (Hermione) this.getEnemy(this.account).getDeck().getCard(cardID);
-        myHermione.attack(enemyCard,false);
+        myHermione.attack(enemyCard, false);
         handleDeaths();
     }
 
-    public void attackCombo(int enemyCardId,int[] troopsId) throws CantAttackException, InvalidCardException {
+    public void attackCombo(int enemyCardId, int[] troopsId) throws CantAttackException, InvalidCardException {
 
 
 
         /*
-        * extracting the cards
-        * */
-        Hermione enemyCard= (Hermione) this.getEnemyPlayer().getDeck().getCard(enemyCardId);
-        Hermione[]troops=new Hermione[troopsId.length];
-        for(int i=0;i<troops.length;i++)troops[i]= (Hermione) this.account.getPlayer().getDeck().getCard(troopsId[i]);
+         * extracting the cards
+         * */
+        Hermione enemyCard = (Hermione) this.getEnemyPlayer().getDeck().getCard(enemyCardId);
+        Hermione[] troops = new Hermione[troopsId.length];
+        for (int i = 0; i < troops.length; i++)
+            troops[i] = (Hermione) this.account.getPlayer().getDeck().getCard(troopsId[i]);
 
         /*if the first card can attack combo*/
-        if(!((Minion) troops[0]).getSPActivationTime().equals(SPATime.COMBO))return;
+        if (!((Minion) troops[0]).getSPActivationTime().equals(SPATime.COMBO)) return;
 
         /*
-        * checking to see if all of the troops can attack the enemy card
-        * */
+         * checking to see if all of the troops can attack the enemy card
+         * */
         for (Hermione troop : troops) {
             try {
                 troop.canAttack(enemyCard);
@@ -285,9 +290,9 @@ public class Battle extends Menu {
                 throw new CantAttackException();
             }
         }
-        for(int i=0;i<troops.length;i++){
+        for (int i = 0; i < troops.length; i++) {
             try {
-                troops[i].attack(enemyCard,(i!=0));
+                troops[i].attack(enemyCard, (i != 0));
             } catch (DestinationOutOfreachException | InvalidCellException ignored) {
             }
         }
@@ -297,7 +302,7 @@ public class Battle extends Menu {
     }
 
     public void useSpecialPower(int x, int y) throws InvalidCellException, CantSpecialPowerCooldownException, InvalidCardException {
-        this.mediator.useSpecialPower(x,y);
+        this.mediator.useSpecialPower(x, y);
         Cell cell = map.getCell(x, y);
         this.account.getPlayer().getDeck().getHero().applySpecialPower(cell);
         handleDeaths();
@@ -305,7 +310,7 @@ public class Battle extends Menu {
     }
 
     public void useItem(int x, int y) throws InvalidCellException, NoItemHasBeenSelectedException {
-        this.mediator.useItem(x,y);
+        this.mediator.useItem(x, y);
         this.account.getPlayer().getSelectedItem().deploy(Battle.getMenu().getMap().getCell(x, y));
     }
 
@@ -314,7 +319,7 @@ public class Battle extends Menu {
 
         if (hermione instanceof Hero) {
             this.playerOf(hermione).getDeck().killHero();
-        }else{
+        } else {
             try {
                 this.map.getCell(hermione.getLocation()).setFlag(hermione.hasFlag());
                 this.map.getCell(hermione.getLocation()).clear();
@@ -403,17 +408,19 @@ public class Battle extends Menu {
         try {
             this.player[0].getDeck().getHero().handleCoolDown();
             this.player[1].getDeck().getHero().handleCoolDown();
-        } catch (NullPointerException ignored) {}
+        } catch (NullPointerException ignored) {
+        }
 
         // handle cellAffects
         for (Cell cell : map.getCells()) {
-            if (cell != null)  cell.checkCellAffects();
+            if (cell != null) cell.checkCellAffects();
         }
 
         // TODO: 5/5/19 other stuff maybe?
 
-
-        this.getGraphic().getController().updateScene();
+        try {
+            this.getGraphic().getController().updateScene();
+        }catch (Exception ignored){}
         /*checkState*/
         if (this.gameMode.checkState()) {
             handleBattleFinish();
@@ -425,31 +432,44 @@ public class Battle extends Menu {
 
     private void handleBattleFinish() {
         /*
-        * giving the prize
-        * */
-        this.gameMode.handleWin();
-//        ((BattleFXMLC)this.getGraphic().getController()).finish();
+         * giving the prize
+         * */
+        this.mediator.handleBattleFinish();
+        //        ((BattleFXMLC)this.getGraphic().getController()).finish();
         /*
          * saving the match
          * */
         Game.getAccount(0).saveMatch(this.match);
         Game.getAccount(1).saveMatch(this.match);
-        Primary.saveAccounts();
+        Account.save();
 
 
         /*
-        * handling the account for getting input and stuff
-        * */
+         * destroying the players
+         * */
+        Game.getAccount(0).setPlayer(null);
+        Game.getAccount(1).setPlayer(null);
+
+        /*
+         * handling the account for getting input and stuff
+         * */
         Game.setSecondAccount(Account.getDefaultAccount());
-        this.account = SignInMenu.getMenu().account;
+        this.account = SignInMenu.getMenu().getAccount();
+        Game.setFirstAccount(SignInMenu.getMenu().getAccount());
         this.turn = 0;
 
 
 
 
         /*
-        * getting out of battle
-        * */
+         * getting out of battle
+         * */
+        try {
+            SignInMenu.getMenu().setAccount(Account.getAccount(Battle.getMenu().getAccount().getUsername()));
+            MainMenu.getMenu().setAccount(Account.getAccount(Battle.getMenu().getAccount().getUsername()));
+        } catch (InvalidAccountException e) {
+            e.printStackTrace();
+        }
         MenuHandler.enterMenu(MainMenu.getMenu());
     }
 
@@ -490,7 +510,8 @@ public class Battle extends Menu {
         turn++;
 
         if (this.getPlayer().getDeck().getHero() == null) System.err.println("hero is null");
-        else if (this.getPlayer().getDeck().getHero().getBuffEffects() == null) System.err.println("buffeffects are null");
+        else if (this.getPlayer().getDeck().getHero().getBuffEffects() == null)
+            System.err.println("buffeffects are null");
         this.getPlayer().getDeck().getHero().getBuffEffects().handleOnNewTurn();
 
         //TODO arshia karaye marbut be turn e jadid o inja bokon (mana o updateHand o ina)
@@ -500,7 +521,6 @@ public class Battle extends Menu {
         }
         this.account.getPlayer().getDeck().getHero().setActionTurn(0);
         handleBuffs("beginning");
-
 
 
     }
@@ -569,7 +589,7 @@ public class Battle extends Menu {
     }
 
     public Map getMap() {
-        return map;
+        return this.map;
     }
 
     public Player getPlayer() {
@@ -601,7 +621,6 @@ public class Battle extends Menu {
     public void setTurn(int turn) {
         this.turn = turn;
     }
-
 
     public void setGameInfoPresenters(ArrayList<OnGameInfoPresentedListener> gameInfoPresenters) {
         this.gameInfoPresenters = gameInfoPresenters;
@@ -641,12 +660,13 @@ public class Battle extends Menu {
             presenter.showItemDetail(item);
         }
     }
-    public Player playerOf(Hermione hermione){
+
+    public Player playerOf(Hermione hermione) {
         for (int i = 0; i < 2; i++) {
 
             //checking for hero
-            if(hermione instanceof Hermione){
-                if(this.player[i].getDeck().getHero().equals(hermione))return this.player[i];
+            if (hermione instanceof Hermione) {
+                if (this.player[i].getDeck().getHero().equals(hermione)) return this.player[i];
             }
 
             //checking in minions
@@ -664,7 +684,7 @@ public class Battle extends Menu {
         return this.player[0];
     }
 
-    public static Battle newGame(GameMode gameMode){
+    public static Battle newGame(GameMode gameMode) {
         Battle.menu.setGameMode(gameMode);
         Battle.menu.init(Battle.menu.getParentMenu());
         return Battle.menu;
@@ -683,7 +703,7 @@ public class Battle extends Menu {
     }
 
     public void setMap(Map map) {
-        this.map=map;
+        this.map = map;
     }
 
     public void setMediator(BattleMediator mediator) {

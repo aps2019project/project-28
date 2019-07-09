@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pane" maxHeight="500.0" maxWidth="800.0" prefHeight="200.0" prefWidth="500.0" styleClass="root" stylesheets="@../StyleSheets/Popup.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.Popup">
+   <children>
+      <Text fx:id="textBox" layoutX="72.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="354.4020690917969">
+         <font>
+            <Font name="Verdana Bold" size="21.0" />
+         </font>
+      </Text>
+      <Button fx:id="ok" layoutX="223.0" layoutY="128.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="90.0" stylesheets="@../StyleSheets/Buttons.css" text="ok">
+         <font>
+            <Font name="Verdana Bold" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

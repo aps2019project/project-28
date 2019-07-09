@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.CraftingSpellFXMLC">
+   <children>
+      <Button fx:id="backButton" alignment="CENTER" layoutX="4.0" layoutY="6.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="106.0" styleClass="back-button" stylesheets="@../StyleSheets/Buttons.css" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <VBox fx:id="vbox" alignment="TOP_CENTER" fillWidth="false" layoutX="64.0" layoutY="47.0" prefHeight="391.0" prefWidth="1186.0" spacing="15.0" AnchorPane.bottomAnchor="159.0" AnchorPane.rightAnchor="30.0">
+         <children>
+            <TextField fx:id="name" alignment="CENTER" prefHeight="73.0" prefWidth="486.0" promptText="Name">
+               <font>
+                  <Font name="Verdana Bold" size="35.0" />
+               </font>
+            </TextField>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1183.0" spacing="50.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Target : " wrappingWidth="167.0272216796875">
+                     <font>
+                        <Font name="Verdana Bold" size="32.0" />
+                     </font>
+                  </Text>
+                  <ChoiceBox fx:id="target" prefHeight="84.0" prefWidth="399.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1183.0" spacing="50.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Action : " wrappingWidth="167.0272216796875">
+                     <font>
+                        <Font name="Verdana Bold" size="32.0" />
+                     </font>
+                  </Text>
+                  <ChoiceBox fx:id="action" prefHeight="84.0" prefWidth="399.0" />
+                  <TextField fx:id="perk" alignment="CENTER" prefHeight="81.0" prefWidth="339.0" promptText="Perk">
+                     <font>
+                        <Font name="Verdana Bold" size="33.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1183.0" spacing="50.0">
+               <children>
+                  <TextField fx:id="duration" alignment="CENTER" prefHeight="98.0" prefWidth="341.0" promptText="Duration">
+                     <font>
+                        <Font name="Verdana Bold" size="33.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="manapoint" alignment="CENTER" prefHeight="98.0" prefWidth="341.0" promptText="Mana Point">
+                     <font>
+                        <Font name="Verdana Bold" size="33.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="cost" alignment="CENTER" prefHeight="98.0" prefWidth="339.0" promptText="Cost">
+                     <font>
+                        <Font name="Verdana Bold" size="33.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+         </children></VBox>
+      <Button fx:id="craft" layoutX="419.0" layoutY="651.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="228.0" styleClass="shopping-button" stylesheets="@../StyleSheets/Buttons.css" text="Craft" AnchorPane.bottomAnchor="45.0">
+         <font>
+            <Font name="Verdana Bold" size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="reset" layoutX="686.0" layoutY="651.0" mnemonicParsing="false" prefHeight="107.0" prefWidth="225.0" styleClass="shopping-button" stylesheets="@../StyleSheets/Buttons.css" text="Reset" AnchorPane.bottomAnchor="42.0">
+         <font>
+            <Font name="Verdana Bold" size="27.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

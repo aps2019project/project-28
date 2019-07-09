@@ -23,8 +23,8 @@ public class MenuHandler {
 
     public static void main(String[] args) throws IOException {
 
-        configLocal();
-//        configNetwork();
+//        configLocal();
+        configNetwork();
 
 
         initMenus();
@@ -54,7 +54,7 @@ public class MenuHandler {
     }
 
     private static void configLocal() {
-        Account.setMediator(new OffLineAccountMediator());
+        Account.setMediator(new OfflineAccountMediator());
         SignInMenu.getMenu().setSignInMenuMediator(new OfflineSignInMenuMediator());
         MultiPlayerModeMenu.getMenu().setMediator(new OfflineMultiPlayerMenuMediator());
         Battle.getMenu().setMediator(new OfflineBattleMediator());
@@ -79,7 +79,9 @@ public class MenuHandler {
     }
     public static void nextMove() {
         Game.getAccount(Battle.getMenu().getTurn()).getPlayer().getGI().intervene();
-        currentMenu.getGraphic().getController().updateScene();
+        try {
+            currentMenu.getGraphic().getController().updateScene();
+        }catch (Exception ignored){}
     }
 
     public static Menu getCurrentMenu() {

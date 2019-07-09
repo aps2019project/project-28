@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1160.0" styleClass="card-root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.CardCardFXMLC">
+   <children>
+      <VBox layoutX="10.0" layoutY="9.0" prefHeight="394.0" prefWidth="627.0">
+         <children>
+            <Label id="name" fx:id="name" prefHeight="70.0" prefWidth="627.0" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="46.0" />
+               </font>
+            </Label>
+            <HBox fx:id="firstHbox" prefHeight="74.0" prefWidth="627.0">
+               <children>
+                  <Label fx:id="ap" prefHeight="74.0" prefWidth="340.0" text="Attack Point :" textFill="#00c32a">
+                     <font>
+                        <Font name="Verdana Bold" size="33.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="hp" prefHeight="74.0" prefWidth="318.0" text="Health Point :" textFill="#bf0000">
+                     <font>
+                        <Font name="Verdana Bold" size="33.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Label fx:id="price" prefHeight="81.0" prefWidth="627.0" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="33.0" />
+               </font>
+            </Label>
+            <Label fx:id="exist" prefHeight="91.0" prefWidth="627.0" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="33.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="buy" mnemonicParsing="false" prefHeight="94.0" prefWidth="237.0" styleClass="shopping-button" stylesheets="@../StyleSheets/Buttons.css" text="BUY">
+                     <font>
+                        <Font name="Verdana Bold" size="52.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <ImageView fx:id="heroStamp" fitHeight="139.0" fitWidth="214.0" layoutX="659.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" rotate="-33.7" />
+      <ImageView fx:id="imageView" fitHeight="369.0" fitWidth="300.0" layoutX="837.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+   </children>
+</AnchorPane>

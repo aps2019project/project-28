@@ -4,6 +4,7 @@ import Controller.Game;
 import Model.account.player.AI;
 import Model.account.Account;
 import Model.account.Deck;
+import Model.mediator.OfflineBattleMediator;
 import View.Listeners.OnDeckSelectorClickedListener;
 import View.MenuHandler;
 
@@ -32,11 +33,13 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
         Game.setSecondAccount(Account.AI[level]);
         Game.getAccount(1).setPlayer(new AI(Game.getAccount(1),2,2,Game.getAccount(0).getPlayer()));
         //MenuHandler.enterMenu(Battle.getMenu());
+        Battle.getMenu().setMediator(new OfflineBattleMediator());
     }
 
     @Override
     public void selectDeck(Account account, Deck deck) {
         account.getCollection().setMainDeck(deck);
+
         this.enter(Battle.getMenu());
     }
 
