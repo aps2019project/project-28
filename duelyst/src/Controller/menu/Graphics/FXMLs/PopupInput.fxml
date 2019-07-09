@@ -5,19 +5,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="pane" maxHeight="500.0" maxWidth="800.0" prefHeight="200.0" prefWidth="500.0" style="-fx-background-size: 100% 100%;" styleClass="root" stylesheets="@../StyleSheets/Popup.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.PopupInput">
+<AnchorPane fx:id="pane" maxHeight="500.0" maxWidth="800.0" prefHeight="200.0" prefWidth="671.0" style="-fx-background-size: 100% 100%;" styleClass="root" stylesheets="@../StyleSheets/Popup.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.PopupInput">
    <children>
-      <Button fx:id="ok" layoutX="194.0" layoutY="128.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="68.0" stylesheets="@../StyleSheets/Buttons.css" text="Ok">
+      <Button fx:id="ok" layoutX="293.0" layoutY="147.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="68.0" stylesheets="@../StyleSheets/Buttons.css" text="Ok">
          <font>
             <Font name="Verdana Bold" size="17.0" />
          </font>
       </Button>
-      <TextField fx:id="textField" alignment="CENTER" layoutX="87.0" layoutY="52.0" prefHeight="27.0" prefWidth="334.0" text="shalgham">
+      <TextField fx:id="textField" alignment="CENTER" layoutX="194.0" layoutY="42.0" prefHeight="27.0" prefWidth="334.0" text="shalgham">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </TextField>
-      <Button fx:id="cancel" layoutX="254.0" layoutY="128.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="93.0" stylesheets="@../StyleSheets/Buttons.css" text="Cancel">
+      <Button fx:id="cancel" layoutX="369.0" layoutY="147.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="93.0" stylesheets="@../StyleSheets/Buttons.css" text="Cancel" AnchorPane.bottomAnchor="20.0">
          <font>
             <Font name="Verdana Bold" size="17.0" />
          </font>

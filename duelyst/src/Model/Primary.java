@@ -2,6 +2,7 @@ package Model;
 
 import Controller.menu.Battle;
 import Controller.menu.Graphics.FXMLController.BattleFXMLC;
+import Controller.menu.Graphics.FXMLController.Popup;
 import Model.Graphics.Listeners.*;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
@@ -198,6 +199,7 @@ public class Primary {
     public static void loadDefaultDecks() throws IOException {
         File folder = new File("Decks");
         File[] decks = folder.listFiles();
+        if (decks == null) return ;
         for (File deck : decks) {
             YaGson gson = new YaGson();
             BufferedReader reader = new BufferedReader(new FileReader(deck));
@@ -207,8 +209,10 @@ public class Primary {
                     JsonElement jsonElement = jsonStreamParser.next();
                     if(jsonElement.isJsonObject()){
                         Deck defaulfDeck = gson.fromJson(jsonElement, Deck.class);
-                        defaultDecks.add(defaulfDeck);
-                        defaultNames.add(defaulfDeck.getName());
+                        if (!defaultDecks.contains(defaulfDeck)) {
+                            defaultDecks.add(defaulfDeck);
+                            defaultNames.add(defaulfDeck.getName());
+                        }
                     }
                 }
             }
@@ -334,6 +338,11 @@ public class Primary {
 
     public static void saveCustomSpell(Spell costumSpell) throws IOException {
         spells.add(costumSpell);
+        try {
+            Shop.getInstance().getCollection().addCardToCollection(costumSpell);
+        } catch (CardExistException e) {
+            e.printStackTrace();
+        }
         YaGson gson = new YaGson();
         FileWriter fileWriter = new FileWriter("Spell.json", false);
         for (Spell spell :
@@ -342,6 +351,32 @@ public class Primary {
             fileWriter.write("\n");
         }
         fileWriter.close();
+    }
+
+    public static void saveCustomHermione(Hermione hermione) throws IOException, CardExistException {
+        Shop.getInstance().getCollection().addCardToCollection(hermione);
+        Card.addCardToCards(hermione);
+
+        if (hermione instanceof Hero) heroes.add((Hero)hermione);
+        else minions.add((Minion)hermione);
+        YaGson gson = new YaGson();
+        if (hermione instanceof Hero) {
+            FileWriter fileWriter = new FileWriter("Hero.json", false);
+            for (Hero hero :
+                    heroes) {
+                gson.toJson(hero, fileWriter);
+                fileWriter.write("\n");
+            }
+            fileWriter.close();
+        }else {
+            FileWriter fileWriter = new FileWriter("Minion.json", false);
+            for (Minion minion :
+                    minions) {
+                gson.toJson(minion, fileWriter);
+                fileWriter.write("\n");
+            }
+            fileWriter.close();
+        }
     }
 
     public static void saveAccounts(){
@@ -963,4 +998,12 @@ public class Primary {
         }
     }
 
+    public static ArrayList<Deck> getDefaultDecks() {
+        try {
+            loadDefaultDecks();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return defaultDecks;
+    }
 }

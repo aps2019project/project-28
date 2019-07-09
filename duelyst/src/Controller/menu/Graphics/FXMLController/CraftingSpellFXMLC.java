@@ -78,11 +78,12 @@ public class CraftingSpellFXMLC extends FXMLController {
         Target targ = targets[targetList.indexOf(target.getValue())] ;
         System.err.println("new Spell : " + act + " , " + targ);
         System.err.println(action.getValue() + " , " + target.getValue());
-        Spell spell = new Spell(name.getText(),  Integer.parseInt(cost.getText()) , Integer.parseInt(manapoint.getText()) ,
-                Integer.parseInt(duration.getText()) ,Integer.parseInt(perk.getText()) , "Custom Spell" ,
-                targ , act) ;
         try {
+            Spell spell = new Spell(name.getText(),  Integer.parseInt(cost.getText()) , Integer.parseInt(manapoint.getText()) ,
+                    Integer.parseInt(duration.getText()) ,Integer.parseInt(perk.getText()) , "Custom Spell" ,
+                    targ , act) ;
             Primary.saveCustomSpell(spell);
+            menu.exit();
         } catch (IOException e) {
             System.err.println("SaveCustomSpell has IOException some problems !");
             e.printStackTrace();

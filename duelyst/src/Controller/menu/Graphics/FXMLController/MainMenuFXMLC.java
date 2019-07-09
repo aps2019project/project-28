@@ -9,6 +9,7 @@ import View.MenuHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import sample.Main;
 
 public class MainMenuFXMLC extends FXMLController {
 
@@ -45,16 +46,26 @@ public class MainMenuFXMLC extends FXMLController {
 
 
         collectionMenuButton.setOnAction(e -> {
+            ShopMenu.getMenu().init(MainMenu.getMenu());
             try {
                 CollectionMenu.getMenu().getGraphic().getController().buildScene();
             }catch(NullPointerException ignored){
                 CollectionMenu.getMenu().getGraphic().init();
+                ((CollectionMenuFXMLC)CollectionMenu.getMenu().getGraphic().getController())
+                        .setDeckSelector2Listener(DeckSelector2FXMLC::makeNewScene);
+                CollectionMenu.getMenu().getGraphic().getController().buildScene();
             }
             enterSubMenu(CollectionMenu.getMenu());
         });
         shopMenuButton.setOnAction(e -> {
-            ShopMenu.getMenu().getGraphic().getController().buildScene();
-            enterSubMenu(ShopMenu.getMenu());
+            try {
+                ShopMenu.getMenu().getGraphic().getController().buildScene();
+                enterSubMenu(ShopMenu.getMenu());
+            }catch(NullPointerException ignored){
+                ShopMenu.getMenu().getGraphic().init();
+                ShopMenu.getMenu().getGraphic().getController().buildScene();
+                enterSubMenu(ShopMenu.getMenu());
+            }
         });
 
         battleMenuButton.setOnAction(e -> enterSubMenu(GameModeMenu.getMenu()));
@@ -70,6 +81,6 @@ public class MainMenuFXMLC extends FXMLController {
     }
 
     private void enterSubMenu(Menu subMenu){
-        MenuHandler.enterMenu(menu.enter(subMenu));
+        MenuHandler.enterMenu(subMenu);
     }
 }

@@ -1,6 +1,7 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.CollectionMenu;
+import Controller.menu.DeckSelectorHavingMenu;
 import Controller.menu.Graphics.GraphicsControls;
 import Controller.menu.ShopMenu;
 import Model.Primary;
@@ -11,6 +12,8 @@ import Model.card.hermione.Hermione;
 import Model.card.spell.Spell;
 import Model.item.Item;
 import Model.item.Usable;
+import View.Listeners.OnDeckSelector2ClickedListener;
+import View.Listeners.OnDeckSelectorClickedListener;
 import View.MenuHandler;
 import exeption.*;
 import javafx.fxml.FXML;
@@ -31,7 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CollectionMenuFXMLC extends FXMLController implements PopupInputHaving {
+public class CollectionMenuFXMLC extends FXMLController implements PopupInputHaving , SearchBarHaving, DeckSelectorHavingMenu2 {
+
+    private OnDeckSelector2ClickedListener onDeckSelector2ClickedListener ;
 
     @FXML
     private Button backButton , hermioneTab, itemTab , spellTab , decksTab;
@@ -43,7 +48,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     private VBox theRoot ;
     private VBox hermionesVbox = new VBox() , spellsVbox = new VBox() , itemsVbox = new VBox() ,
             decksVbox = new VBox() , decksVbox2 = new VBox();
-    private int selectedTab ;
+    private int selectedTab = 1 ;
     private SearchBarFXMLC searchBarFXMLC ;
     private boolean hasSearchBar = false ;
 
@@ -69,14 +74,14 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         if (!hasSearchBar) {
             hasSearchBar = true ;
             theRoot.getChildren().remove(scrollPane);
-            searchBarFXMLC = GraphicsControls.addSearchBar(theRoot, this.getClass());
+            searchBarFXMLC = GraphicsControls.addSearchBar(theRoot, this);
             theRoot.getChildren().add(scrollPane);
             searchBarFXMLC.getFindButton().setOnAction(e -> search());
         }
     }
 
-
-    private void search() {
+    @Override
+    public void search() {
         String search = searchBarFXMLC.getSearchText();
         VBox v ;
         if (search.isEmpty()) {
@@ -152,10 +157,10 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     }
 
     private void buildCardsVbox() {
+        hermionesVbox.getChildren().clear() ;
+        spellsVbox.getChildren().clear() ;
         List<HBox> hermionehBoxes = new ArrayList<>();
         List<HBox> spellHboxes = new ArrayList<>();
-        if (menu.getAccount() == null) System.out.println("account");
-        if (menu.getAccount().getCollection() == null) System.out.println("collection");
         for (Card card : menu.getAccount().getCollection().getCards()){
             makeCardCard(hermionehBoxes, spellHboxes, card , hermionesVbox , spellsVbox);
         }
@@ -210,31 +215,53 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         }
     }
 
-    private void buildDecksVbox() {
+    public void buildDecksVbox() {
         decksVbox.getChildren().clear();
         decksVbox.setSpacing(15);
         decksVbox.getStylesheets().add("Controller/menu/Graphics/StyleSheets/Buttons.css") ;
-
-        HBox firstRow = new HBox();
-        firstRow.setPrefHeight(70);
-        firstRow.setFillHeight(true);
-        firstRow.setStyle("-fx-background-color:#50505050 ; ");
-        firstRow.setAlignment(Pos.CENTER);
-        Button newDeck = new Button("New Deck");
-        newDeck.setFont(new Font("verdana" , 13));
-        newDeck.setPrefWidth(160);
-        newDeck.setPrefHeight(70);
-        Button deleteDeck = new Button("Delete Deck");
-        deleteDeck.setFont(new Font("verdana" , 13));
-        deleteDeck.setPrefWidth(160);
-        deleteDeck.setPrefHeight(70);
-        GraphicsControls.setButtonStyle("menu-button" , newDeck , deleteDeck);
-        newDeck.setOnAction(e -> newDeck());
-        deleteDeck.setOnAction(e -> deleteDeck());
-        firstRow.getChildren().addAll(newDeck , deleteDeck);
-        decksVbox.getChildren().add(firstRow);
-        for (Deck deck : menu.getAccount().getCollection().getDecks()){
+        //first row
+        {
+            HBox firstRow = new HBox();
+            firstRow.setMinHeight(70);
+            firstRow.setPrefHeight(70);
+            firstRow.setFillHeight(true);
+            firstRow.setStyle("-fx-background-color:#50505050 ; ");
+            firstRow.setAlignment(Pos.CENTER);
+            Button newDeck = new Button("New Deck");
+            newDeck.setFont(new Font("verdana", 13));
+            newDeck.setPrefWidth(160);
+            newDeck.setPrefHeight(70);
+            Button deleteDeck = new Button("Delete Deck");
+            deleteDeck.setFont(new Font("verdana", 13));
+            deleteDeck.setPrefWidth(160);
+            deleteDeck.setPrefHeight(70);
+            GraphicsControls.setButtonStyle("menu-button", newDeck, deleteDeck);
+            newDeck.setOnAction(e -> newDeck());
+            deleteDeck.setOnAction(e -> deleteDeck());
+            firstRow.getChildren().addAll(newDeck, deleteDeck);
+            decksVbox.getChildren().add(firstRow);
+        }
+        //second row
+        {
+            HBox secondRow = new HBox();
+            secondRow.setMinHeight(70);
+            secondRow.setPrefHeight(70);
+            secondRow.setFillHeight(true);
+            secondRow.setStyle("-fx-background-color:#50505050 ; ");
+            secondRow.setAlignment(Pos.CENTER);
+            Button imp = new Button("Import deck") ;
+            imp.setFont(new Font("verdana" , 13));
+            imp.setPrefWidth(160);
+            imp.setPrefHeight(70);
+            imp.setOnAction(e -> showDeckSelector2(Primary.getDefaultDecks()));
+            GraphicsControls.setButtonStyle("menu-button", imp);
+            secondRow.getChildren().add(imp);
+            decksVbox.getChildren().add(secondRow);
+        }
+        for (Deck deck : ((CollectionMenu)menu).getDecks()){
             HBox row = new HBox();
+            row.setMinHeight(70);
+            row.setSpacing(50);
             row.setPrefHeight(70);
             row.setFillHeight(true);
             row.setStyle("-fx-background-color:#50505050 ; ");
@@ -243,13 +270,26 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             button.setFont(new Font("verdana" , 13));
             button.setPrefWidth(160);
             button.setPrefHeight(70);
+            Button exp = new Button("Export");
+            exp.setFont(new Font("verdana" , 13));
+            exp.setPrefWidth(160);
+            exp.setPrefHeight(70);
             GraphicsControls.setButtonStyle("deck-button" , button);
+            GraphicsControls.setButtonStyle("battleMenuButton" , exp);
             button.setOnAction(e -> {
                 ((CollectionMenu)menu).setSelectedDeck(deck) ;
                 buildDecksVbox2();
                 scrollPane.setContent(decksVbox2);
             });
-            row.getChildren().add(button);
+            exp.setOnAction(e -> {
+                try {
+                    menu.getAccount().getCollection().exportDeck(deck.getName());
+                } catch (InvalidDeckException | IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+
+            row.getChildren().addAll(button , exp);
             decksVbox.getChildren().add(row);
         }
 
@@ -363,6 +403,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             button.setOnAction(e->{
                 try {
                     ((CollectionMenu)menu).removeFromDeck(item.getID(), ((CollectionMenu)menu).getSelectedDeck().getName());
+                    setTheButton(item , button);
                 } catch (InvalidItemException ex) {
                     Popup.popup("This item does not exist on this deck !");
                 } catch (InvalidCardException ignored) {} catch (InvalidDeckException ex) {
@@ -394,6 +435,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             button.setOnAction(e -> {
                 try {
                     ((CollectionMenu) menu).removeFromDeck(card.getID(), ((CollectionMenu)menu).getSelectedDeck().getName());
+                    setTheButton(button , card);
                 } catch (InvalidCardException ex) {
                     Popup.popup("This card does not exist on this deck !");
                 } catch (InvalidItemException ignored) {
@@ -416,7 +458,6 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     private void tabPressed(Button tab) {
 //        CollectionMenu.getMenu().save() ;
         tab.getStyleClass().add("tab-button-selected");
-        updateBalance();
     }
 
     private void tabReleased(Button tab) {
@@ -443,4 +484,22 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
         }
     }
 
+    @Override
+    public void selectDeck2(Deck deck) {
+        try {
+            menu.getAccount().getCollection().importDeck(deck.getName());
+        } catch (InvalidDeckException e) {
+            Popup.popup("Invalid Deck for some reason");
+        }
+    }
+
+    @Override
+    public void setDeckSelector2Listener(OnDeckSelector2ClickedListener ds) {
+        onDeckSelector2ClickedListener = ds ;
+    }
+
+    @Override
+    public void showDeckSelector2(List<Deck> decks) {
+        onDeckSelector2ClickedListener.show(decks , this , "Which one do you want") ;
+    }
 }

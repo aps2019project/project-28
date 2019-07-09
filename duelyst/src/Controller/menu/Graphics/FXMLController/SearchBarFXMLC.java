@@ -1,24 +1,9 @@
 package Controller.menu.Graphics.FXMLController;
 
-import Controller.menu.Graphics.GraphicsControls;
-import Controller.menu.ShopMenu;
-import Model.account.Account;
-import Model.card.Card;
-import Model.card.hermione.Hermione;
-import Model.card.hermione.Hero;
-import Model.card.spell.Spell;
 import javafx.fxml.FXML;
-import javafx.scene.ImageCursor;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
-import stuff.Resources;
-
+import javafx.scene.input.KeyCode;
 
 public class SearchBarFXMLC {
 
@@ -38,7 +23,12 @@ public class SearchBarFXMLC {
         bar.setText("");
     }
 
-    public void build() {
+    public void build(SearchBarHaving menuController) {
         x.setOnAction(e -> xButtonClicked());
+        bar.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER){
+                menuController.search();
+            }
+        });
     }
 }

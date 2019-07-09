@@ -143,7 +143,6 @@ public class Battle extends Menu {
             presenter.showGameInfo();
         }
     }
-
     public void showMyMinions() {
 
         System.out.println("HERO:");
@@ -158,7 +157,6 @@ public class Battle extends Menu {
         }
 
     }
-
     public void showMyOpponentMinion() {
         System.out.println("HERO:");
         for (OnGameCardsPresentedListenr presenter : Battle.getMenu().getCardsPresenters()) {
@@ -171,7 +169,6 @@ public class Battle extends Menu {
             }
         }
     }
-
     public void showCardInfo(int cardID) throws InvalidCardException {
         Card card = this.account.getPlayer().getDeck().getCard(cardID);
         for (OnCardDetailsPresentedListener presenter : Card.getCardDetailsPresenters()) {

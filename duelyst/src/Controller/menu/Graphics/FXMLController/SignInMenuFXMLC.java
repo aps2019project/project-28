@@ -14,7 +14,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 
 public class SignInMenuFXMLC extends FXMLController implements LeaderBoardHavingFXMLC{
 
@@ -35,6 +46,7 @@ public class SignInMenuFXMLC extends FXMLController implements LeaderBoardHaving
     private Button showLeaderBoard ;
 
     private TextField nameInput;
+    private MediaPlayer mediaPlayer ;
 
 
     @Override
@@ -43,6 +55,18 @@ public class SignInMenuFXMLC extends FXMLController implements LeaderBoardHaving
 
         Scene scene = this.menu.getGraphic().getScene();
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/SignInMenu.css");
+
+        try {
+            Media music = new Media(Paths.get("src/resources/music/music_codex.m4a").toUri().toString());
+            mediaPlayer = new MediaPlayer(music);
+            mediaPlayer.setCycleCount(-1);
+            mediaPlayer.setAutoPlay(true);
+            MediaView mediaView = new MediaView(mediaPlayer);
+            frame.getChildren().add(mediaView);
+        }catch (Exception ignored){
+            System.err.println("couldn't load the music file");
+        }
+
 
         signInButton.setOnAction(e -> signInButtonClicked());
         signUpButton.setOnAction(e -> signUpButtonClicked());
@@ -121,5 +145,17 @@ public class SignInMenuFXMLC extends FXMLController implements LeaderBoardHaving
 
     public void setUsernameInput(String username){
         this.usernameInput.setText(username);
+    }
+
+    public void playMusic(boolean f){
+        if (f){
+            try{
+                mediaPlayer.play();
+            }catch(Exception ignored){}
+        } else {
+            try{
+                mediaPlayer.pause();
+            }catch(Exception ignored){}
+        }
     }
 }

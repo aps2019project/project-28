@@ -1,10 +1,8 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.DeckSelectorHavingMenu;
-import Controller.menu.Menu;
 import Model.account.Account;
 import Model.account.Deck;
-import View.GraphicView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -21,9 +19,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import stuff.Resources;
 
+import java.util.List;
 import java.util.Objects;
 
-public class DeckSelectorFXMLC {
+public class DeckSelector2FXMLC {
 //    private static DeckSelectorFXMLC deckSelector;
     private Stage stage ;
     @FXML
@@ -41,23 +40,22 @@ public class DeckSelectorFXMLC {
 //        deckSelector =this;
 //    }
 
-    public static void makeNewScene(Account account , DeckSelectorHavingMenu menu , String title , boolean checkHero) {
+    public static void makeNewScene(List<Deck> decks , DeckSelectorHavingMenu2 menu , String title) {
         try {
             Parent root;
-            String rootPath = "Controller/menu/Graphics/FXMLs/DeckSelector.fxml";
-            FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(DeckSelectorFXMLC.class.getClassLoader().getResource(rootPath)));
+            String rootPath = "Controller/menu/Graphics/FXMLs/DeckSelector2.fxml";
+            FXMLLoader rootLoader = new FXMLLoader(Objects.requireNonNull(DeckSelector2FXMLC.class.getClassLoader().getResource(rootPath)));
             root = rootLoader.load();
             Scene scene = new Scene(root, 800, 500);
             scene.setOnMouseEntered(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
             scene.setOnMouseMoved(e -> scene.setCursor(new ImageCursor(new Image(Resources.mouse_auto.getPath()))));
-            if (title.isEmpty()) title = account.getName() + "! " + "Select your Legendary Deck" ;
 
-            DeckSelectorFXMLC controller = rootLoader.getController();
-            controller.show(account,scene , menu , title, checkHero);
+            DeckSelector2FXMLC controller = rootLoader.getController();
+            controller.show(decks,scene , menu , title);
         }catch (Exception e){e.printStackTrace();}
     }
 
-    public void show(Account account , Scene scene ,DeckSelectorHavingMenu menu , String titleText , boolean checkHero) {
+    public void show(List<Deck>  decks , Scene scene ,DeckSelectorHavingMenu2 menu , String titleText) {
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
@@ -81,16 +79,11 @@ public class DeckSelectorFXMLC {
         scrollPane.setFitToWidth(true);
 
         int index = 1;
-        for (Deck deck : account.getCollection().getDecks()){
+        for (Deck deck : decks){
             HBox hbox = new HBox();
             hbox.setAlignment(Pos.CENTER_LEFT);
             Label label = new Label(index+"- " + deck.getName());
-            if (deck.getHero() != null || !checkHero) {
-                select(account, menu, deck, label);
-            }else{
-                label.setText(label.getText() + " ( No hero ! )");
-                label.setCursor(new ImageCursor(new Image(Resources.mouse_disabled.getPath())));
-            }
+            select(decks, menu, deck, label);
             label.getStyleClass().add("nameLabel");
             hbox.getChildren().add(label);
             vbox.getChildren().add(hbox);
@@ -101,11 +94,9 @@ public class DeckSelectorFXMLC {
         stage.show() ;
     }
 
-    private void select(Account account, DeckSelectorHavingMenu menu, Deck deck, Label label) {
-        if (deck.getHero() == null) label.setText(label.getText() + " ( No hero ! )");
-        else label.setText(label.getText() + " (" + deck.getHero().getName() + ")");
+    private void select(List<Deck> decks , DeckSelectorHavingMenu2 menu, Deck deck, Label label) {
         label.setOnMouseClicked(e -> {
-            menu.selectDeck(account, deck);
+            menu.selectDeck2(deck);
             stage.close();
             System.err.println("debug");
         });

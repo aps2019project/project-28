@@ -32,8 +32,8 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
     public void   setAI(int level) {
         Game.setSecondAccount(Account.AI[level]);
         Game.getAccount(1).setPlayer(new AI(Game.getAccount(1),2,2,Game.getAccount(0).getPlayer()));
+        //MenuHandler.enterMenu(Battle.getMenu());
         Battle.getMenu().setMediator(new OfflineBattleMediator());
-        MenuHandler.enterMenu(Battle.getMenu());
     }
 
     @Override
@@ -47,7 +47,7 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
         deckSelectorListener = ds ;
     }
     public void showDeckSelector(Account account){
-        deckSelectorListener.show(account , getMenu() , "");
+        deckSelectorListener.show(account , getMenu() , "" , true);
     }
 
 }
