@@ -29,7 +29,7 @@
       </VBox>
       <VBox layoutX="396.0" layoutY="13.0" prefHeight="779.0" prefWidth="866.0" spacing="3.0" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="18.0">
          <children>
-            <ScrollPane fx:id="scrollPane" prefHeight="626.0" prefWidth="866.0" />
+            <ScrollPane fx:id="scrollPane" prefHeight="626.0" prefWidth="866.0" stylesheets="@../StyleSheets/MultiPlayerMenu.css" />
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
                   <TextField fx:id="textBox" prefHeight="96.0" prefWidth="867.0" promptText="type here ...">

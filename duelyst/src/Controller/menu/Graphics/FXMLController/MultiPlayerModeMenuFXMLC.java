@@ -7,6 +7,7 @@ import exeption.InvalidAccountException;
 import exeption.WrongPassException;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -40,6 +41,7 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
 
         scene.setUserAgentStylesheet("Controller/menu/Graphics/StyleSheets/MultiPlayerMenu.css");
         scrollPane.setContent(content);
+        content.setAlignment(Pos.BOTTOM_CENTER);
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
         scrollPane.vvalueProperty().bind(content.heightProperty());
