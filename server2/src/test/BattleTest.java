@@ -1,0 +1,6 @@
+package test;
+
+
+class BattleTest {
+
+}

@@ -1,0 +1,9 @@
+.card-root{
+    -fx-background-image: url("../../../../resources/card_backgrounds/craftable_unit.png");
+    -fx-background-color: transparent;
+    -fx-background-size: 100% 100%;
+}
+.card-image{
+    -fx-background-image: url("../../../../resources/images/cardImageBackground.png");
+    -fx-background-size: 100% 100%;
+}

@@ -109,6 +109,7 @@ public class CommandHandler {
         MultiPlayerModeMenu menu= (MultiPlayerModeMenu) MenuHandler.getCurrentMenu();
         if(word[0].equals("select") && word[1].equals("user")){
             try {
+                System.err.println("debug");
                 menu.selectUser(word[2],word[3]);
             } catch (InvalidAccountException e) {
                 System.out.println("this account doesnt exist");

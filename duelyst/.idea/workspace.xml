@@ -25,29 +25,178 @@
   <component name="ChangeListManager">
     <list default="true" id="00011eec-60df-413a-ae52-9f315721f14b" name="Default Changelist" comment="Online battle infrastructure&#10;(not yet complete)&#10;    &#10;written by ArshiA&#10;    &#10;updates:&#10;        Class BattleServer&#10;        Class BattleServerHandler">
       <change beforePath="$PROJECT_DIR$/../Server/Account.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Account.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Controller/GameMode/Domination.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Controller/GameMode/Domination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Collectables.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Collectables.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Hero.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Hero.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Minion.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Minion.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Shop.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Shop.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Spell.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Spell.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/Usables.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/Usables.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/src/Controller/menu/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Controller/menu/Battle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Controller/menu/Graphics/FXMLController/DeckSelectorFXMLC.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Controller/menu/Graphics/FXMLController/DeckSelectorFXMLC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Controller/menu/Graphics/MenuGraphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Controller/menu/Graphics/MenuGraphics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Controller/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Controller/menu/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Controller/menu/SignInMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Controller/menu/SignInMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/CardGraphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/CardGraphics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/HermioneGraphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/HermioneGraphics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/ItemGraphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/ItemGraphics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnAttackListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnAttackListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnCardSelectedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnCardSelectedListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnCellEffectedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnCellEffectedListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnDamageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnDamageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnDeathListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnDeathListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnMoveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnMoveListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnSpawnListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnSpawnListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnSpeacialPowerAppliedListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/Listeners/OnSpeacialPowerAppliedListeners.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/SpellGraphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/SpellGraphics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Graphics/SpriteAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Graphics/SpriteAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Map/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Map/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Map/CellAffectGraphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Map/CellAffectGraphics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Map/CellAffects.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Map/CellAffects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Map/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/Primary.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/Primary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/Collection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/Collection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/Deck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/Serialized.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/Shop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/StuffEffectsOnPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/StuffEffectsOnPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/player/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/player/AI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/player/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/player/Bot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/player/CGI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/player/CGI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/player/GGI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/player/GGI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/player/GameInterFace.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/player/GameInterFace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/account/player/Replay.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/account/player/Replay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/OnCardDetailsPresentedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/OnCardDetailsPresentedListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/hermione/AttackType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/hermione/AttackType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/hermione/BuffEffectsOnHermione.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/hermione/BuffEffectsOnHermione.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/hermione/Hermione.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/hermione/Hermione.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Model/mediator/LocalShopMediator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/mediator/LocalShopMediator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Model/mediator/LocalSignInMenuMediator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/mediator/LocalSignInMenuMediator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/hermione/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/hermione/Hero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/hermione/Hybrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/hermione/Hybrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/hermione/Melee.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/hermione/Melee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/hermione/Minion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/hermione/Minion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/hermione/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/hermione/Range.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/hermione/SPATime.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/hermione/SPATime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/Buff.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/Buff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActionAP.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActionAP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActionDisarm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActionDisarm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActionHP.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActionHP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActionHolly.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActionHolly.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActionPoison.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActionPoison.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActionStun.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActionStun.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Buff/BuffActions/BuffActions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/BuffTypes/BuffTypeContinuous.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/BuffTypes/BuffTypeContinuous.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/BuffTypes/BuffTypePassive.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/BuffTypes/BuffTypePassive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/BuffTypes/BuffTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/BuffTypes/BuffTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPower.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionAP.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionAP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionCombo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionCombo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionDisBuffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionDisBuffer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionHPBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionHPBuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionHolyBuffDiverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionHolyBuffDiverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionNextTurnDamager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionNextTurnDamager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionPersianChamp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionPersianChamp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionPoisoner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionPoisoner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionStunWhenAttacking.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionStunWhenAttacking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionTooranianSpy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionTooranianSpy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionUnholyer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionUnholyer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionWhiteWolf.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpecialPowerActions/SPActionWhiteWolf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Spell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionApplyFirecell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionApplyFirecell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionChangeAP.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionChangeAP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionChangeAPBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionChangeAPBuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionChangeHP.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionChangeHP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionChangeHPBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionChangeHPBuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionCombo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionCombo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionDeployHollyBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionDeployHollyBuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionDeployPoison.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionDeployPoison.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionDisarm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionDisarm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionDispel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionDispel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionDispelNegatives.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionDispelNegatives.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionDispelPositives.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionDispelPositives.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionGhazaBokhor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionGhazaBokhor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionHealthWithProfit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionHealthWithProfit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionHollyCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionHollyCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionKillMinion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionKillMinion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionPoisonCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionPoisonCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionSacrifice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionSacrifice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionStun.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionStun.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionVoid.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/SpellAction/ActionVoid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Target.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Target.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/OwnMinionAndItsSurrounding.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/OwnMinionAndItsSurrounding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/RandomMinionInSurrounding.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/Target3RandomEnemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/Target3RandomEnemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetAllCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetAllCards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetAllEnemyCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetAllEnemyCards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetAllMinionsInSurrounding.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetAllMinionsInSurrounding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetAllOwnCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetAllOwnCards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetAllOwnMinions.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetAllOwnMinions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetEnemyCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetEnemyCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetEnemyHero.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetEnemyHero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetEnemyHeroColumn.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetEnemyHeroColumn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetEnemyMinion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetEnemyMinion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetEnemyMinionswithin2ManhattanDistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetEnemyMinionswithin2ManhattanDistance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetEnemyRandomRangedAndHybridMinion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetEnemyRandomRangedAndHybridMinion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetHeroSurroundings.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetHeroSurroundings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetMelee.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetMelee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetOwnCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetOwnCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetOwnHero.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetOwnHero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetOwnHeroRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetOwnHeroRow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetOwnMinion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetOwnMinion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetOwnRandomRangedAndHybridMinion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetOwnRandomRangedAndHybridMinion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetRandom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetRandomEnemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetRandomEnemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetRandomOwn.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetRandomOwn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetRandomOwnMinion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetRandomOwnMinion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetRangedAndHybrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetRangedAndHybrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetSingleCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetSingleCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetSurroundings.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetSurroundings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetThreeByThree.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetThreeByThree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetTwoByTwo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/card/spell/Targets/TargetTwoByTwo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/Collectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/Collectable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/Flag.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/Flag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemAction2HornedArrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemAction2HornedArrow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemAction30chicken.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemAction30chicken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionAssasinationDagger.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionAssasinationDagger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionBaptism.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionBaptism.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionChangeAP.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionChangeAP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionChangeAPBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionChangeAPBuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionChangeHP.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionChangeHP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionChangeHPBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionChangeHPBuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionDamoolArch.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionDamoolArch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionDeathCurse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionDeathCurse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionDisArm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionDisArm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionExir.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionExir.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionExtraMana.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionExtraMana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionGiantSnake.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionGiantSnake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionHolyBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionHolyBuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionKingsWisdom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionKingsWisdom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionManaGiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionManaGiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionMinionRandomAttacker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionMinionRandomAttacker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionPoisonousDagger.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionPoisonousDagger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionRandomDamage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionRandomDamage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionShieldAF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionShieldAF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionjoonBaw.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/ItemActions/ItemActionjoonBaw.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/item/Usable.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/item/Usable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/mediator/LocalAccountMediator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/mediator/LocalShopMediator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Model/mediator/OfflineShopMediator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Model/mediator/LocalSignInMenuMediator.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/src/View/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/View/MenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/network/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/network/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/network/server/BattleServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/network/server/BattleServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/network/server/BattleServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/network/server/BattleServerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/network/server/MainServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/network/server/MainServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/network/Auth.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/network/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/network/client/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/network/config.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/network/server/BattleServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/network/server/BattleServerHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/network/server/MainServer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Account.json" beforeDir="false" afterPath="$PROJECT_DIR$/Account.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/menu/Battle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Battle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/menu/OnlineBattleMediator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/OnlineBattleMediator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/account/player/OnlinePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/account/player/OnlinePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ConsoleView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ConsoleView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/MainMenuFXMLC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/MainMenuFXMLC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/mediator/OffLineAccountMediator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/mediator/OfflineAccountMediator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/CommandHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MenuHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/network/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/client/Client.java" afterDir="false" />
     </list>
@@ -67,13 +216,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+            <state relative-caret-position="164">
+              <caret line="80" column="72" selection-start-line="80" selection-start-column="72" selection-end-line="80" selection-end-column="72" />
               <folding>
-                <element signature="e#2235#2236#0" expanded="true" />
-                <element signature="e#2285#2286#0" expanded="true" />
-                <element signature="e#2321#2322#0" expanded="true" />
-                <element signature="e#2412#2413#0" expanded="true" />
+                <element signature="e#2140#2141#0" expanded="true" />
+                <element signature="e#2198#2199#0" expanded="true" />
+                <element signature="e#2237#2238#0" expanded="true" />
+                <element signature="e#2287#2288#0" expanded="true" />
+                <element signature="e#2521#2522#0" expanded="true" />
+                <element signature="e#2555#2556#0" expanded="true" />
+                <element signature="e#2787#2788#0" expanded="true" />
+                <element signature="e#2833#2834#0" expanded="true" />
+                <element signature="e#2875#2876#0" expanded="true" />
+                <element signature="e#2905#2906#0" expanded="true" />
+                <element signature="e#2958#2959#0" expanded="true" />
+                <element signature="e#3003#3004#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,34 +239,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/menu/MultiPlayerModeMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="45" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="204">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/View/CommandHandler.java">
+        <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="297" column="19" lean-forward="true" selection-start-line="297" selection-start-column="19" selection-end-line="297" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/network/client/Client.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-119">
-              <caret line="64" column="35" lean-forward="true" selection-start-line="64" selection-start-column="35" selection-end-line="64" selection-end-column="35" />
+            <state relative-caret-position="120">
+              <caret line="176" selection-start-line="176" selection-end-line="176" />
               <folding>
-                <element signature="method#Client#1;class#Client#0" />
-                <element signature="method#getInput#0;class#Client#0" />
-                <element signature="method#getOutput#0;class#Client#0" />
-                <element signature="e#1324#1325#0" expanded="true" />
-                <element signature="e#1356#1357#0" expanded="true" />
-                <element signature="method#sendTaskDone#0;class#Client#0" />
-                <element signature="method#sendTaskFailed#0;class#Client#0" />
+                <element signature="e#5329#5330#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,49 +260,120 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="54" column="27" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="27" />
+            <state relative-caret-position="120">
+              <caret line="169" selection-start-line="169" selection-end-line="169" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4333#4334#0" expanded="true" />
-                <element signature="e#4366#4367#0" expanded="true" />
-                <element signature="e#6080#6081#0" expanded="true" />
-                <element signature="e#6123#6124#0" expanded="true" />
+                <element signature="e#1731#1732#0" expanded="true" />
+                <element signature="e#1776#1777#0" expanded="true" />
+                <element signature="e#3632#3633#0" expanded="true" />
+                <element signature="e#3659#3660#0" expanded="true" />
+                <element signature="e#3699#3700#0" expanded="true" />
+                <element signature="e#3731#3732#0" expanded="true" />
+                <element signature="e#3766#3767#0" expanded="true" />
+                <element signature="e#3797#3798#0" expanded="true" />
+                <element signature="e#3845#3846#0" expanded="true" />
+                <element signature="e#3885#3886#0" expanded="true" />
+                <element signature="e#3920#3921#0" expanded="true" />
+                <element signature="e#3951#3952#0" expanded="true" />
+                <element signature="e#3999#4000#0" expanded="true" />
+                <element signature="e#4039#4040#0" expanded="true" />
+                <element signature="e#4065#4066#0" expanded="true" />
+                <element signature="e#4090#4091#0" expanded="true" />
+                <element signature="e#4123#4124#0" expanded="true" />
+                <element signature="e#4151#4152#0" expanded="true" />
+                <element signature="e#4180#4181#0" expanded="true" />
+                <element signature="e#4208#4209#0" expanded="true" />
+                <element signature="e#4247#4248#0" expanded="true" />
+                <element signature="e#4281#4282#0" expanded="true" />
+                <element signature="e#4355#4356#0" expanded="true" />
+                <element signature="e#4411#4412#0" expanded="true" />
+                <element signature="e#4455#4456#0" expanded="true" />
+                <element signature="e#4504#4505#0" expanded="true" />
+                <element signature="e#4539#4540#0" expanded="true" />
+                <element signature="e#4605#4606#0" expanded="true" />
+                <element signature="e#4653#4654#0" expanded="true" />
+                <element signature="e#4681#4682#0" expanded="true" />
+                <element signature="e#4708#4709#0" expanded="true" />
+                <element signature="e#4745#4746#0" expanded="true" />
+                <element signature="e#4777#4778#0" expanded="true" />
+                <element signature="e#4813#4814#0" expanded="true" />
+                <element signature="e#4848#4849#0" expanded="true" />
+                <element signature="e#4901#4902#0" expanded="true" />
+                <element signature="e#4949#4950#0" expanded="true" />
+                <element signature="e#5440#5441#0" expanded="true" />
+                <element signature="e#5476#5477#0" expanded="true" />
+                <element signature="e#5730#5731#0" expanded="true" />
+                <element signature="e#5780#5781#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/View/CommandHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="356" column="21" selection-start-line="356" selection-start-column="21" selection-end-line="356" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Controller/menu/SignInMenu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="66" column="37" lean-forward="true" selection-start-line="66" selection-start-column="37" selection-end-line="66" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/menu/Battle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="461" column="20" selection-start-line="461" selection-start-column="20" selection-end-line="461" selection-end-column="20" />
+            <state relative-caret-position="14">
+              <caret line="425" column="11" lean-forward="true" selection-start-line="425" selection-start-column="11" selection-end-line="425" selection-end-column="11" />
               <folding>
-                <element signature="e#20827#20828#0" expanded="true" />
-                <element signature="e#20858#20859#0" expanded="true" />
+                <element signature="e#21519#21520#0" expanded="true" />
+                <element signature="e#21584#21585#0" expanded="true" />
+                <element signature="e#21654#21655#0" expanded="true" />
+                <element signature="e#21713#21714#0" expanded="true" />
+                <element signature="e#21781#21782#0" expanded="true" />
+                <element signature="e#21868#21869#0" expanded="true" />
+                <element signature="e#21955#21956#0" expanded="true" />
+                <element signature="e#22025#22026#0" expanded="true" />
+                <element signature="e#22964#22965#0" expanded="true" />
+                <element signature="e#23054#23055#0" expanded="true" />
+                <element signature="e#23186#23187#0" expanded="true" />
+                <element signature="e#23298#23299#0" expanded="true" />
+                <element signature="e#24665#24666#0" expanded="true" />
+                <element signature="e#24733#24734#0" expanded="true" />
+                <element signature="e#24811#24812#0" expanded="true" />
+                <element signature="e#24876#24877#0" expanded="true" />
+                <element signature="e#24972#24973#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/menu/OnlineBattleMediator.java">
+        <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/FXMLController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-153">
-              <caret line="44" column="22" lean-forward="true" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+            <state relative-caret-position="172">
+              <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/MenuGraphics.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="122" column="32" lean-forward="true" selection-start-line="122" selection-start-column="32" selection-end-line="122" selection-end-column="32" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#3276#3277#0" expanded="true" />
+                <element signature="e#3309#3310#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/View/ConsoleView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -168,22 +381,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/account/player/CGI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Model/account/player/OnlinePlayer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="38" column="8" lean-forward="true" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#599#600#0" expanded="true" />
-                <element signature="e#633#634#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="211">
+              <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -200,15 +399,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>help</find>
-      <find>Game</find>
-      <find>Menu {</find>
-      <find>CommandHandler {</find>
-      <find>M</find>
-      <find>multiPlayer</find>
-      <find>OnlineBattle</find>
-      <find>OfflineBattle</find>
-      <find>Console</find>
       <find>init</find>
       <find>MultiPlayerModeMenu e</find>
       <find>OnlineMulti</find>
@@ -220,7 +410,6 @@
       <find>MenuHandler</find>
       <find>MenuHandler {</find>
       <find>OnlinePl</find>
-      <find>Client {</find>
       <find>Game {</find>
       <find>OnlinePla</find>
       <find>OnlineBa</find>
@@ -229,7 +418,17 @@
       <find>finish</find>
       <find>Account {</find>
       <find>signInMenu ex</find>
+      <find>Client {</find>
+      <find>Primary {</find>
       <find>save</find>
+      <find>setUnit</find>
+      <find>Shop {</find>
+      <find>CommandHandler</find>
+      <find>SignInMenu</find>
+      <find>OfflineAcc</find>
+      <find>&quot;select</find>
+      <find>CommandHan</find>
+      <find>select</find>
     </findStrings>
     <replaceStrings>
       <replace>getTargetInstance</replace>
@@ -244,8 +443,8 @@
       <replace>Battle.getMenu().</replace>
     </replaceStrings>
     <dirStrings>
-      <dir>$PROJECT_DIR$/src/Model</dir>
       <dir>$PROJECT_DIR$/out</dir>
+      <dir>$PROJECT_DIR$/src/Model</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -272,10 +471,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/CraftingMenuFXML.java" />
-        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/MainMenuFXMLC.java" />
-        <option value="$PROJECT_DIR$/src/exeption/network/ConnectionInerruptedException.java" />
-        <option value="$PROJECT_DIR$/src/network/client/Auth.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/SignInMenuFXMLC.java" />
         <option value="$PROJECT_DIR$/src/network/Message.java" />
         <option value="$PROJECT_DIR$/src/network/Auth.java" />
@@ -297,7 +492,6 @@
         <option value="$PROJECT_DIR$/src/Model/mediator/NetShopMediator.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/ShopMenu.java" />
         <option value="$PROJECT_DIR$/src/Model/account/player/Replay.java" />
-        <option value="$PROJECT_DIR$/src/Model/account/Account.java" />
         <option value="$PROJECT_DIR$/src/Model/mediator/MultiPlayerModeMenuMediator.java" />
         <option value="$PROJECT_DIR$/src/Model/mediator/LocalMultiPlayerModeMenuMediator.java" />
         <option value="$PROJECT_DIR$/src/Model/mediator/OfflineMultiPlayerModeMenuMediator.java" />
@@ -311,17 +505,22 @@
         <option value="$PROJECT_DIR$/src/Model/mediator/OfflienBattleMediator.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Menu.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/MultiPlayerModeMenu.java" />
-        <option value="$PROJECT_DIR$/src/View/CommandHandler.java" />
         <option value="$PROJECT_DIR$/src/Model/mediator/BattleMediator.java" />
         <option value="$PROJECT_DIR$/src/Model/mediator/OfflineBattleMediator.java" />
         <option value="$PROJECT_DIR$/src/network/client/BattleClient.java" />
         <option value="$PROJECT_DIR$/src/View/ConsoleView.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/OnlineBattleMediator.java" />
         <option value="$PROJECT_DIR$/src/Controller/Game.java" />
-        <option value="$PROJECT_DIR$/src/View/MenuHandler.java" />
         <option value="$PROJECT_DIR$/src/Model/account/player/Player.java" />
         <option value="$PROJECT_DIR$/src/Model/account/player/OnlinePlayer.java" />
+        <option value="$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/MainMenuFXMLC.java" />
         <option value="$PROJECT_DIR$/src/network/client/Client.java" />
+        <option value="$PROJECT_DIR$/src/Model/account/Account.java" />
+        <option value="$PROJECT_DIR$/Shop.json" />
+        <option value="$PROJECT_DIR$/src/Model/mediator/OffLineAccountMediator.java" />
+        <option value="$PROJECT_DIR$/src/Model/mediator/OfflineAccountMediator.java" />
+        <option value="$PROJECT_DIR$/src/View/MenuHandler.java" />
+        <option value="$PROJECT_DIR$/src/View/CommandHandler.java" />
         <option value="$PROJECT_DIR$/src/Controller/menu/Battle.java" />
       </list>
     </option>
@@ -333,9 +532,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="960" />
     <option name="y" value="32" />
-    <option name="width" value="624" />
-    <option name="height" value="351" />
+    <option name="width" value="960" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -423,7 +623,31 @@
               <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
               <item name="duelyst" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
+              <item name="Graphics" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+              <item name="menu" type="462c0819:PsiDirectoryNode" />
+              <item name="Graphics" type="462c0819:PsiDirectoryNode" />
+              <item name="FXMLController" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="duelyst" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="mediator" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="duelyst" type="b2602c69:ProjectViewProjectNode" />
@@ -944,7 +1168,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311872000" />
+    <option name="totallyTimeSpent" value="319740000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -957,8 +1181,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="32" width="1920" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.25026682" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25026682" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -968,15 +1193,15 @@
       <window_info id="Learn" order="7" weight="0.32977587" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3259177" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49466383" weight="0.5539488" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49359658" weight="0.5539488" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.48986125" weight="0.57842046" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.48772678" visible="true" weight="0.96662956" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3259177" />
       <window_info anchor="bottom" id="TeamCity" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49893278" weight="0.3214683" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50533617" side_tool="true" weight="0.5539488" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="10" sideWeight="0.49786553" visible="true" weight="0.81312567" />
+      <window_info anchor="bottom" auto_hide="true" id="Event Log" order="9" sideWeight="0.5122732" side_tool="true" weight="0.6618465" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49573106" weight="0.08898777" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49786553" weight="0.32369298" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32899868" />
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
@@ -1114,25 +1339,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Controller/menu/ShopMenu.java</url>
-          <line>59</line>
+          <line>60</line>
           <properties />
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Model/account/Shop.java</url>
-          <line>74</line>
+          <line>81</line>
           <properties />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/View/CommandHandler.java</url>
-          <line>259</line>
+          <line>260</line>
           <properties />
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Controller/menu/Battle.java</url>
-          <line>145</line>
+          <line>148</line>
           <properties />
           <option name="timeStamp" value="45" />
         </line-breakpoint>
@@ -1141,6 +1366,18 @@
           <line>33</line>
           <properties />
           <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/MainMenuFXMLC.java</url>
+          <line>55</line>
+          <properties />
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/View/CommandHandler.java</url>
+          <line>111</line>
+          <properties />
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1195,98 +1432,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Model/mediator/OnlineShopMediator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="104" column="52" selection-start-line="104" selection-start-column="36" selection-end-line="104" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/mediator/OfflineShopMediator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="92" selection-end-line="180" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#hasItem#0;class#LocalShopMediator#0" />
-            <element signature="method#getCard#0;class#LocalShopMediator#0" />
-            <element signature="method#getItem#0;class#LocalShopMediator#0" />
-            <element signature="method#sellCard#0;class#LocalShopMediator#0" />
-            <element signature="method#sellItem#0;class#LocalShopMediator#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/mediator/ShopMediator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="20" selection-start-line="20" selection-end-line="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/ShopMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="72" column="30" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Shop.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="70" column="20" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/StuffEffectsOnPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/player/Replay.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/mediator/OffLineAccountMediator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/MultiPlayerModeMenuFXMLC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-420">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLs/MultiPlayerModeMenu.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="302" selection-start-line="8" selection-start-column="302" selection-end-line="8" selection-end-column="302" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/mediator/OnlineSignInMenuMediator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/account/Match.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -1308,13 +1453,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/mediator/OnlineAccountMediator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1440,54 +1578,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1554">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
-          <folding>
-            <element signature="e#2959#2960#0" expanded="true" />
-            <element signature="e#3003#3004#0" expanded="true" />
-            <element signature="e#3196#3197#0" expanded="true" />
-            <element signature="e#3234#3235#0" expanded="true" />
-            <element signature="e#3278#3279#0" expanded="true" />
-            <element signature="e#3309#3310#0" expanded="true" />
-            <element signature="e#3340#3341#0" expanded="true" />
-            <element signature="e#3367#3368#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/ConsoleOutput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2415">
-          <caret line="141" selection-start-line="141" selection-end-line="141" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/mediator/OnlineMultiPlayerMenuMediator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/ConsoleView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="220" column="14" selection-start-line="220" selection-start-column="14" selection-end-line="220" selection-end-column="14" />
-          <folding>
-            <element signature="e#5298#5299#0" expanded="true" />
-            <element signature="e#5329#5330#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1567,17 +1663,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/player/CGI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/account/player/OnlinePlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="38" column="8" lean-forward="true" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#599#600#0" expanded="true" />
@@ -1586,88 +1675,276 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-          <folding>
-            <element signature="e#2235#2236#0" expanded="true" />
-            <element signature="e#2285#2286#0" expanded="true" />
-            <element signature="e#2321#2322#0" expanded="true" />
-            <element signature="e#2412#2413#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/menu/OnlineBattleMediator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-153">
-          <caret line="44" column="22" lean-forward="true" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+          <caret line="44" column="22" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Battle.java">
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/ShopMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="461" column="20" selection-start-line="461" selection-start-column="20" selection-end-line="461" selection-end-column="20" />
+        <state relative-caret-position="183">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/MainMenuFXMLC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="90" column="22" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
           <folding>
-            <element signature="e#20827#20828#0" expanded="true" />
-            <element signature="e#20858#20859#0" expanded="true" />
+            <element signature="e#3458#3459#0" expanded="true" />
+            <element signature="e#3488#3489#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/menu/MultiPlayerModeMenu.java">
+    <entry file="file://$PROJECT_DIR$/src/View/ConsoleOutput.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="113">
+          <caret line="174" column="47" selection-start-line="174" selection-start-column="47" selection-end-line="174" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/mediator/OnlineAccountMediator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/network/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
-          <caret line="64" column="35" lean-forward="true" selection-start-line="64" selection-start-column="35" selection-end-line="64" selection-end-column="35" />
+        <state relative-caret-position="79">
+          <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
           <folding>
             <element signature="method#Client#1;class#Client#0" />
             <element signature="method#getInput#0;class#Client#0" />
             <element signature="method#getOutput#0;class#Client#0" />
-            <element signature="e#1324#1325#0" expanded="true" />
-            <element signature="e#1356#1357#0" expanded="true" />
             <element signature="method#sendTaskDone#0;class#Client#0" />
             <element signature="method#sendTaskFailed#0;class#Client#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/Primary.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="54" column="27" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4333#4334#0" expanded="true" />
-            <element signature="e#4366#4367#0" expanded="true" />
-            <element signature="e#6080#6081#0" expanded="true" />
-            <element signature="e#6123#6124#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="236">
+          <caret line="657" column="36" selection-start-line="657" selection-start-column="31" selection-end-line="657" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/CommandHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/Model/Graphics/HermioneGraphics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="297" column="19" lean-forward="true" selection-start-line="297" selection-start-column="19" selection-end-line="297" selection-end-column="19" />
+        <state>
+          <caret column="16" selection-start-column="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Shop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shop.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret column="3963" selection-end-line="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/menu/SignInMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="66" column="37" lean-forward="true" selection-start-line="66" selection-start-column="37" selection-end-line="66" selection-end-column="37" />
+        <state relative-caret-position="58">
+          <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/StoryModeFXMLC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/StoryModeMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/mediator/OfflineAccountMediator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="169" selection-start-line="169" selection-end-line="169" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1731#1732#0" expanded="true" />
+            <element signature="e#1776#1777#0" expanded="true" />
+            <element signature="e#3632#3633#0" expanded="true" />
+            <element signature="e#3659#3660#0" expanded="true" />
+            <element signature="e#3699#3700#0" expanded="true" />
+            <element signature="e#3731#3732#0" expanded="true" />
+            <element signature="e#3766#3767#0" expanded="true" />
+            <element signature="e#3797#3798#0" expanded="true" />
+            <element signature="e#3845#3846#0" expanded="true" />
+            <element signature="e#3885#3886#0" expanded="true" />
+            <element signature="e#3920#3921#0" expanded="true" />
+            <element signature="e#3951#3952#0" expanded="true" />
+            <element signature="e#3999#4000#0" expanded="true" />
+            <element signature="e#4039#4040#0" expanded="true" />
+            <element signature="e#4065#4066#0" expanded="true" />
+            <element signature="e#4090#4091#0" expanded="true" />
+            <element signature="e#4123#4124#0" expanded="true" />
+            <element signature="e#4151#4152#0" expanded="true" />
+            <element signature="e#4180#4181#0" expanded="true" />
+            <element signature="e#4208#4209#0" expanded="true" />
+            <element signature="e#4247#4248#0" expanded="true" />
+            <element signature="e#4281#4282#0" expanded="true" />
+            <element signature="e#4355#4356#0" expanded="true" />
+            <element signature="e#4411#4412#0" expanded="true" />
+            <element signature="e#4455#4456#0" expanded="true" />
+            <element signature="e#4504#4505#0" expanded="true" />
+            <element signature="e#4539#4540#0" expanded="true" />
+            <element signature="e#4605#4606#0" expanded="true" />
+            <element signature="e#4653#4654#0" expanded="true" />
+            <element signature="e#4681#4682#0" expanded="true" />
+            <element signature="e#4708#4709#0" expanded="true" />
+            <element signature="e#4745#4746#0" expanded="true" />
+            <element signature="e#4777#4778#0" expanded="true" />
+            <element signature="e#4813#4814#0" expanded="true" />
+            <element signature="e#4848#4849#0" expanded="true" />
+            <element signature="e#4901#4902#0" expanded="true" />
+            <element signature="e#4949#4950#0" expanded="true" />
+            <element signature="e#5440#5441#0" expanded="true" />
+            <element signature="e#5476#5477#0" expanded="true" />
+            <element signature="e#5730#5731#0" expanded="true" />
+            <element signature="e#5780#5781#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/Collection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="176" selection-start-line="176" selection-end-line="176" />
+          <folding>
+            <element signature="e#5329#5330#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/MultiPlayerModeMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ConsoleView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/MenuHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="80" column="72" selection-start-line="80" selection-start-column="72" selection-end-line="80" selection-end-column="72" />
+          <folding>
+            <element signature="e#2140#2141#0" expanded="true" />
+            <element signature="e#2198#2199#0" expanded="true" />
+            <element signature="e#2237#2238#0" expanded="true" />
+            <element signature="e#2287#2288#0" expanded="true" />
+            <element signature="e#2521#2522#0" expanded="true" />
+            <element signature="e#2555#2556#0" expanded="true" />
+            <element signature="e#2787#2788#0" expanded="true" />
+            <element signature="e#2833#2834#0" expanded="true" />
+            <element signature="e#2875#2876#0" expanded="true" />
+            <element signature="e#2905#2906#0" expanded="true" />
+            <element signature="e#2958#2959#0" expanded="true" />
+            <element signature="e#3003#3004#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/account/player/CGI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/CommandHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="356" column="21" selection-start-line="356" selection-start-column="21" selection-end-line="356" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/MenuGraphics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="122" column="32" lean-forward="true" selection-start-line="122" selection-start-column="32" selection-end-line="122" selection-end-column="32" />
+          <folding>
+            <element signature="e#3276#3277#0" expanded="true" />
+            <element signature="e#3309#3310#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Graphics/FXMLController/FXMLController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/menu/Battle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="425" column="11" lean-forward="true" selection-start-line="425" selection-start-column="11" selection-end-line="425" selection-end-column="11" />
+          <folding>
+            <element signature="e#21519#21520#0" expanded="true" />
+            <element signature="e#21584#21585#0" expanded="true" />
+            <element signature="e#21654#21655#0" expanded="true" />
+            <element signature="e#21713#21714#0" expanded="true" />
+            <element signature="e#21781#21782#0" expanded="true" />
+            <element signature="e#21868#21869#0" expanded="true" />
+            <element signature="e#21955#21956#0" expanded="true" />
+            <element signature="e#22025#22026#0" expanded="true" />
+            <element signature="e#22964#22965#0" expanded="true" />
+            <element signature="e#23054#23055#0" expanded="true" />
+            <element signature="e#23186#23187#0" expanded="true" />
+            <element signature="e#23298#23299#0" expanded="true" />
+            <element signature="e#24665#24666#0" expanded="true" />
+            <element signature="e#24733#24734#0" expanded="true" />
+            <element signature="e#24811#24812#0" expanded="true" />
+            <element signature="e#24876#24877#0" expanded="true" />
+            <element signature="e#24972#24973#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
