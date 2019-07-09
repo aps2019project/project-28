@@ -2,6 +2,7 @@ package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.Battle;
 import Controller.menu.Graphics.GraphicsControls;
+import Controller.menu.SignInMenu;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
 import Model.account.Account;
@@ -32,11 +33,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
+
+import java.nio.file.Paths;
 
 public class BattleFXMLC extends FXMLController {
 
@@ -65,6 +71,7 @@ public class BattleFXMLC extends FXMLController {
     public GridPane map;
     public GridPane handFrame;
     public GridPane handManaFrame;
+    private MediaPlayer mediaPlayer ;
 
     @Override
     public void init() {//setStyles
@@ -99,6 +106,7 @@ public class BattleFXMLC extends FXMLController {
             if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
 //                    MenuHandler.setCurrentMenu(MainMenu.getMenu());
 //                    //todo: end game bezan
+                ((SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController()).playMusic(true);
             }
         });
 
@@ -127,12 +135,26 @@ public class BattleFXMLC extends FXMLController {
                 updateScene();
             }
         });
+
+        try {
+//            Media music = new Media("src/resources/music/music_codex.mp3");
+            Media music = new Media(Paths.get("src/resources/music/music_battlemap_risensun2.m4a").toUri().toString());
+            mediaPlayer = new MediaPlayer(music);
+            mediaPlayer.setCycleCount(-1);
+            MediaView mediaView = new MediaView(mediaPlayer);
+            frame.getChildren().add(mediaView);
+        }catch (Exception ignored){
+            System.err.println("couldn't load the music file");
+        }
+
     }
 
     @Override
     public void enterScene() {
         super.enterScene();
         try {
+            mediaPlayer.play();
+            ((SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController()).playMusic(false);
             firstPlayer.setImage(new Image(Battle.getMenu().getPlayer().getUser().getAvatar()));
             secondPlayer.setImage(new Image(Battle.getMenu().getEnemyPlayer().getUser().getAvatar()));
         }catch (Exception e){

@@ -46,6 +46,7 @@ public class SignInMenuFXMLC extends FXMLController implements LeaderBoardHaving
     private Button showLeaderBoard ;
 
     private TextField nameInput;
+    private MediaPlayer mediaPlayer ;
 
 
     @Override
@@ -60,7 +61,7 @@ public class SignInMenuFXMLC extends FXMLController implements LeaderBoardHaving
         try {
 //            Media music = new Media("src/resources/music/music_codex.mp3");
             Media music = new Media(Paths.get("src/resources/music/music_codex.m4a").toUri().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(music);
+            mediaPlayer = new MediaPlayer(music);
             mediaPlayer.setCycleCount(-1);
             mediaPlayer.setAutoPlay(true);
             MediaView mediaView = new MediaView(mediaPlayer);
@@ -145,5 +146,17 @@ public class SignInMenuFXMLC extends FXMLController implements LeaderBoardHaving
 
     public void setUsernameInput(String username){
         this.usernameInput.setText(username);
+    }
+
+    public void playMusic(boolean f){
+        if (f){
+            try{
+                mediaPlayer.play();
+            }catch(Exception ignored){}
+        } else {
+            try{
+                mediaPlayer.pause();
+            }catch(Exception ignored){}
+        }
     }
 }
