@@ -13,8 +13,6 @@ import exeption.InvalidCardException;
 import java.util.ArrayList;
 
 public abstract class Card {
-    private static ArrayList<Card> cards = Primary.cards;
-
     public static int uniqueID =0;
 
     protected Collection superCollection;
@@ -56,7 +54,7 @@ public abstract class Card {
     }
 
     public static ArrayList<Card> getCards() {
-        return cards;
+        return Primary.cards;
     }
 
     public Collection getSuperCollection() {
@@ -64,13 +62,13 @@ public abstract class Card {
     }
 
     public static Card getCard(int cardID) throws InvalidCardException {
-        for (Card card : Card.cards) {
+        for (Card card : Primary.cards) {
             if(card.getID()==cardID)return card;
         }
         throw new InvalidCardException();
     }
     public static Card getCard(String name) throws InvalidCardException {
-        for (Card card : Card.cards) {
+        for (Card card : Primary.cards) {
             if(card.getName().toLowerCase().equals(name.toLowerCase()))return card;
         }
         throw new InvalidCardException();
@@ -143,7 +141,7 @@ public abstract class Card {
     }
 
     public static void addCardToCards(Card card) throws CardExistException {
-        if (!cards.contains(card)) cards.add(card);
+        if (!Primary.cards.contains(card)) Primary.cards.add(card);
         else throw new CardExistException();
     }
 }

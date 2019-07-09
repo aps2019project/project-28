@@ -334,7 +334,6 @@ public class Primary {
     }
 
     public static void saveCustomSpell(Spell costumSpell) throws IOException {
-        System.err.println(costumSpell.getName());
         spells.add(costumSpell);
         try {
             Shop.getInstance().getCollection().addCardToCollection(costumSpell);
@@ -346,29 +345,16 @@ public class Primary {
     }
 
     public static void saveCustomHermione(Hermione hermione) throws IOException, CardExistException {
-        Shop.getInstance().getCollection().addCardToCollection(hermione);
-        Card.addCardToCards(hermione);
-
-        if (hermione instanceof Hero) heroes.add((Hero)hermione);
-        else minions.add((Minion)hermione);
-        YaGson gson = new YaGson();
         if (hermione instanceof Hero) {
-            FileWriter fileWriter = new FileWriter("Hero.json", false);
-            for (Hero hero :
-                    heroes) {
-                gson.toJson(hero, fileWriter);
-                fileWriter.write("\n");
-            }
-            fileWriter.close();
-        }else {
-            FileWriter fileWriter = new FileWriter("Minion.json", false);
-            for (Minion minion :
-                    minions) {
-                gson.toJson(minion, fileWriter);
-                fileWriter.write("\n");
-            }
-            fileWriter.close();
+            heroes.add((Hero) hermione);
+            writeJson(heroes, "Hero.json");
         }
+        else {
+            minions.add((Minion)hermione);
+            writeJson(minions, "Minion.json");
+        }
+        Shop.getInstance().getCollection().addCardToCollection(hermione);
+        writeSingle(Shop.getInstance(), "Shop.json");
     }
 
     public static void saveAccounts(){

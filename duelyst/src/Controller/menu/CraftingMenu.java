@@ -50,7 +50,7 @@ public class CraftingMenu extends Menu {
 
 
         int price=getPriceForHero(HP, AP, attackType, range, SP, manaPoint, coolDown);
-        Hero hero=new Hero(name,price,HP,AP,attackType,range,SP,manaPoint,coolDown,info);
+        Hero hero = new Hero(name,price,HP,AP,attackType,range,SP,manaPoint,coolDown,info);
 
         Card card=hero;
         if(card.getPrice()<this.account.getMoney()){
