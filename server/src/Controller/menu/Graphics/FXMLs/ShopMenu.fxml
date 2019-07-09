@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.ShopMenuFXMLC">
+   <children>
+      <VBox fx:id="theRoot" prefHeight="799.0" prefWidth="1282.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1159.0" style="-fx-background-color: #30303030;">
+               <children>
+                  <Button fx:id="cardTab" mnemonicParsing="false" prefHeight="56.0" prefWidth="317.0" styleClass="tab-button" stylesheets="@../StyleSheets/Buttons.css" text="Cards">
+                     <font>
+                        <Font name="Verdana Bold" size="26.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="itemTab" mnemonicParsing="false" prefHeight="56.0" prefWidth="285.0" styleClass="tab-button" stylesheets="@../StyleSheets/Buttons.css" text="Items">
+                     <font>
+                        <Font name="Verdana Bold" size="26.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="balance" alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="406.0" text="Balance : ">
+                     <font>
+                        <Font name="Verdana Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="697.0" prefWidth="1280.0" stylesheets="@../StyleSheets/Card.css">
+               <padding>
+                  <Insets left="60.0" right="60.0" />
+               </padding>
+            </ScrollPane>
+         </children>
+      </VBox>
+         <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" prefHeight="95.0" prefWidth="106.0" styleClass="back-button" stylesheets="@../StyleSheets/Buttons.css" textAlignment="CENTER" />
+   </children>
+</AnchorPane>

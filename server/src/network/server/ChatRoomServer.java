@@ -11,16 +11,25 @@ import java.util.ArrayList;
 
 public class ChatRoomServer {
     private static ServerSocket server;
-    private static ArrayList<Client>clients=new ArrayList<>();
+    private static ArrayList<Client> clients = new ArrayList<>();
+
     public static void main(String[] args) {
         try {
-            server=new ServerSocket(8585);
-            while (true){
-                Socket socket=server.accept();
-                Client client=new Client(socket);
-                clients.add(client);
-                new Thread(() -> communicate(client)).start();
-            }
+            server = new ServerSocket(8585);
+            new Thread(() -> {
+                while (true) {
+                    try {
+                        Socket socket = server.accept();
+                        Client client = new Client(socket);
+                        clients.add(client);
+                        new Thread(() -> communicate(client)).start();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,18 +37,20 @@ public class ChatRoomServer {
     }
 
     private static void communicate(Client client) {
-        while (true){
-            Message message=client.read();
+        while (true) {
+            Message message = client.read();
+
             ChatMSG msg = (ChatMSG) message.getCarry().get(0);
             updateChatRoom(msg);
         }
     }
 
     private static void updateChatRoom(ChatMSG msg) {
-        synchronized (clients){
-            Message message=new Message("chat!");
+        synchronized (clients) {
+            Message message = new Message("chat!");
             message.addCarry(msg);
-            clients.forEach(c->c.write(message));
+            clients.forEach(c -> c.write(message));
         }
     }
+
 }

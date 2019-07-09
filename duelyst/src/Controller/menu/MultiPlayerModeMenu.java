@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu {
     private static MultiPlayerModeMenu menu;
     private OnDeckSelectorClickedListener deckSelectorListener ;
-    private OnLeaderBoardClickedListener leaderBoardPresenters;
 
     private MultiPlayerMenuMediator mediator;
 
@@ -73,25 +72,6 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
     @Override
     public void selectDeck(Account account, Deck deck) {
         account.getCollection().setMainDeck(deck);
-        if (account != this.account) MenuHandler.enterMenu(ChooseBattleModeMenu.getMenu().enter());
-        else showDeckSelector(Game.getAccount(1));
-    }
-
-    public void addLeaderBoardClickedListener(OnLeaderBoardClickedListener presenter) {
-        this.leaderBoardPresenters = presenter ;
-    }
-
-    public void showLeaderBoard() {
-        Account.sort();
-        ArrayList<Account> accounts = new ArrayList<>() ;
-        for (Account account : Account.getAccounts()){
-            if (account != menu.getAccount()){
-                accounts.add(account);
-            }
-        }
-
-        leaderBoardPresenters.show(accounts , (LeaderBoardHavingFXMLC)getGraphic().getController());
-
     }
 
     public void setMediator(MultiPlayerMenuMediator mediator) {
