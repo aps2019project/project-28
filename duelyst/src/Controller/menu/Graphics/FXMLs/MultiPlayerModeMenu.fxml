@@ -8,66 +8,41 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.menu.Graphics.FXMLController.MultiPlayerModeMenuFXMLC">
    <children>
-      <HBox alignment="CENTER" layoutX="690.0" layoutY="160.0" prefHeight="40.0" prefWidth="563.0" AnchorPane.bottomAnchor="507.0" AnchorPane.rightAnchor="27.0">
-         <children>
-            <Label styleClass="nameLabel" text="Player 2 , Sign in!" textFill="#ff8300">
-               <font>
-                  <Font name="Verdana Bold" size="39.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-      <VBox id="frame" fx:id="frame" layoutX="343.0" layoutY="200.0" prefHeight="465.0" prefWidth="563.0" spacing="10.0" styleClass="frame" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="34.0">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="15.0" />
-         </padding>
-         <children>
-            <TextField fx:id="usernameInput" prefHeight="67.0" prefWidth="553.0" promptText="Username">
-               <font>
-                  <Font name="Songti SC Bold" size="27.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets left="10.0" />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </TextField>
-            <PasswordField fx:id="passwordField" prefHeight="61.0" prefWidth="553.0" promptText="Password">
-               <font>
-                  <Font name="Songti SC Bold" size="27.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets left="10.0" />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </PasswordField>
-            <HBox alignment="CENTER" prefHeight="59.0" prefWidth="553.0" spacing="50.0">
-               <children>
-                  <Button id="signInButton" fx:id="signInButton" mnemonicParsing="false" prefHeight="57.0" prefWidth="178.0" styleClass="button1" stylesheets="@../StyleSheets/Buttons.css" text="Sign In" textFill="WHITE">
-                     <font>
-                        <Font name="Songti SC Bold" size="22.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="59.0" prefWidth="553.0" spacing="50.0">
-               <children>
-                  <Button id="showLeaderBoard" fx:id="showLeaderBoard" mnemonicParsing="false" prefHeight="57.0" prefWidth="178.0" styleClass="menu-button" stylesheets="@../StyleSheets/Buttons.css" text="Show LeaderBoard" style = "-fx-text-fill: GREEN ;">
-                     <font>
-                        <Font name="Songti SC Bold" size="17.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
       <Button fx:id="backButton" alignment="CENTER" layoutX="4.0" layoutY="6.0" mnemonicParsing="false" prefHeight="95.0" prefWidth="106.0" styleClass="back-button" stylesheets="@../StyleSheets/Buttons.css" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="Songti SC Bold" size="43.0" />
          </font>
       </Button>
+      <VBox alignment="CENTER" layoutX="43.0" layoutY="171.0" prefHeight="491.0" prefWidth="342.0" spacing="100.0" AnchorPane.bottomAnchor="138.0" AnchorPane.leftAnchor="43.0">
+         <children>
+            <Button fx:id="play" mnemonicParsing="false" prefHeight="88.0" prefWidth="235.0" text="PLAY" textFill="#00ff09">
+               <font>
+                  <Font name="Verdana Bold" size="43.0" />
+               </font>
+            </Button>
+            <Button fx:id="setDeck" mnemonicParsing="false" prefHeight="88.0" prefWidth="241.0" text="Set Main Deck">
+               <font>
+                  <Font name="Verdana Bold" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="396.0" layoutY="13.0" prefHeight="779.0" prefWidth="866.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="13.0">
+         <children>
+            <ScrollPane fx:id="scrollPane" prefHeight="688.0" prefWidth="866.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <children>
+                  <TextField fx:id="textBox" prefHeight="96.0" prefWidth="838.0" promptText="type here ...">
+                     <font>
+                        <Font name="Verdana" size="28.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

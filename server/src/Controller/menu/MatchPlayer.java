@@ -2,7 +2,6 @@ package Controller.menu;
 
 import Model.account.Command;
 import Model.account.Match;
-import View.CommandHandler;
 import View.ConsoleView;
 import View.MenuHandler;
 

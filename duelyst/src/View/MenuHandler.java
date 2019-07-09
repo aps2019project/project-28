@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class MenuHandler {
 
     private static Menu currentMenu;
-    private static ArrayList<Menu> lastMenus = new ArrayList<>();
     private static Account account;
 
     public static void main(String[] args) throws IOException {
@@ -92,7 +91,6 @@ public class MenuHandler {
         return currentMenu;
     }
     public static void enterMenu(Menu menu) {
-        if (MenuHandler.currentMenu != null) MenuHandler.lastMenus.add(MenuHandler.currentMenu);
         currentMenu = currentMenu.enter(menu);
     }
     public static void exitMenu() {
