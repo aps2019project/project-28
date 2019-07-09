@@ -7,6 +7,7 @@ import Model.card.Card;
 import Model.item.Item;
 import Model.item.Usable;
 import View.Listeners.OnItemDetailPresentedListener;
+import com.gilecode.yagson.YaGson;
 import exeption.*;
 
 import java.io.IOException;
@@ -82,7 +83,7 @@ public class Collection {
             if(!hasDefaultDeck(name)){
                 Deck defaultDeck = getDefaultDeck(name);
                 if (hasDefaultDecksCards(defaultDeck)){
-                    this.decks.add(defaultDeck);
+                    this.addNewDeck(defaultDeck);
                 }
                 else {
                     System.err.println("u dont have the cards");
@@ -297,6 +298,13 @@ public class Collection {
             return newDeck;
         }
         throw new DeckAlreadyExistException();
+    }
+
+    private void addNewDeck(Deck deck){
+        YaGson gson = new YaGson();
+        Deck newDeck = gson.fromJson(gson.toJson(deck), Deck.class);
+        newDeck.setCollection(this);
+        this.decks.add(newDeck);
     }
 
     public void deleteDeck(String name) throws InvalidDeckException {

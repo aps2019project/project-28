@@ -283,7 +283,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
             });
             exp.setOnAction(e -> {
                 try {
-                    menu.getAccount().getCollection().exportDeck(deck.getName());
+                    ((CollectionMenu)menu).exportDeck(deck.getName());
                 } catch (InvalidDeckException | IOException ex) {
                     ex.printStackTrace();
                 }
@@ -487,7 +487,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     @Override
     public void selectDeck2(Deck deck) {
         try {
-            menu.getAccount().getCollection().importDeck(deck.getName());
+            ((CollectionMenu)menu).importDeck(deck.getName());
         } catch (InvalidDeckException e) {
             Popup.popup("Invalid Deck for some reason");
         }
