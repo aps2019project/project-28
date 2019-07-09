@@ -30,6 +30,7 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
     @FXML
     private TextField textBox ;
     private VBox content = new VBox();
+    private int index = 0 ;
 
 
     @Override
@@ -61,16 +62,23 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
             String text = textBox.getText();
             if (e.getCode() == KeyCode.ENTER && !text.isEmpty()){
                 ((MultiPlayerModeMenu)menu).sendMessage(text);
+                textBox.setText("");
             }
         });
     }
 
     private void buildContent() {
-        ArrayList<ChatMSG> msgs = ((MultiPlayerModeMenu)menu).getChats() ;
-        for (ChatMSG msg : msgs){
-            Node msgNode =  MessageFXMLC.MakeMessage(msg);
-            if (!content.getChildren().contains(msgNode))
-                content.getChildren().add(msgNode);
+        try {
+            ArrayList<ChatMSG> msgs = ((MultiPlayerModeMenu) menu).getChats();
+            if (msgs.size() > index) {
+                for (ChatMSG msg : msgs.subList(index, msgs.size())) {
+                    Node msgNode = MessageFXMLC.MakeMessage(msg);
+                    content.getChildren().add(msgNode);
+                }
+                index = msgs.size();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -78,6 +86,7 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
     private void play() {
         try {
             ((MultiPlayerModeMenu)menu).selectUser("" , "");
+            //TODO arshia thread this shit !
             play.setText("Cancel");
             play.setTextFill(Color.RED);
             play.setOnAction(e2 -> cancel());

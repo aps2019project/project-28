@@ -1,9 +1,11 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.Menu;
+import View.MenuHandler;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 
 
 public class FXMLController {
@@ -50,6 +52,12 @@ public class FXMLController {
         this.menu.getGraphic().getScene().setOnMouseEntered(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
         this.menu.getGraphic().getScene().setOnMouseMoved(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
         this.menu.getGraphic().getScene().setOnMouseClicked(e -> this.menu.getGraphic().getScene().setCursor(new ImageCursor(new Image(this.menu.getGraphic().getMousePath()))));
+
+        menu.getGraphic().getScene().setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ESCAPE){
+                MenuHandler.exitMenu();
+            }
+        });
     }
 
     public void enterScene(){
