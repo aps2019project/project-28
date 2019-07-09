@@ -43,4 +43,5 @@ public class BattleClient extends Client{
         }
         Battle.getMenu().setMediator(new OnlineBattleMediator());
     }
+
 }

@@ -58,6 +58,11 @@ public class OnlineMultiPlayerMenuMediator implements MultiPlayerMenuMediator {
     public void cancel() {
         connectionThread.interrupt();
         System.err.println("hey yo shit i canceled");
+        try {
+            Game.getBattleClient().getSocket().close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Game.setBattleClient(null);
     }
 }
