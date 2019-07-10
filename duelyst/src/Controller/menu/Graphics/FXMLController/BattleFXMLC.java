@@ -313,7 +313,7 @@ public class BattleFXMLC extends FXMLController {
             }
         }
         if(Battle.getMenu().getPlayer().getHand().getNextCard() != null) {
-            nextCardOnHandInfo.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            nextCardOnHand.setOnMouseEntered(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     TextField info = nextCardOnHandInfo;
@@ -327,7 +327,7 @@ public class BattleFXMLC extends FXMLController {
                     }
                 }
             });
-            nextCardOnHandInfo.setOnMouseExited(new EventHandler<MouseEvent>() {
+            nextCardOnHand.setOnMouseExited(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     nextCardOnHandInfo.getStyleClass().remove("infoEntered");
@@ -441,10 +441,10 @@ public class BattleFXMLC extends FXMLController {
                         cellView.setImage(new Image(Battle.getMenu().getMap().getCell(i, j).getCollectable().getItemGraphics().getAvatar()));
                     }
                     if(cell.hasFlag()){
-                        cellView.setImage(new Image("resources/ui/collection_card_rarity_rare@2x.png"));
+                        cellView.setImage(new Image("resources/ui/flag.png"));
                     }
                     if(cell.getCellAffect().size() > 0){
-                        cellView.setImage(new Image("resources/ui/icon_heal.png"));
+                        cellView.setImage(new Image("resources/ui/replace_inner_ring.png"));
                     }
                     cellRect.getStyleClass().remove("cellSelected");
                     cellRect.getStyleClass().remove("specialPowerInserted");
