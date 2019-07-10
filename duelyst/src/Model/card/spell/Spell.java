@@ -124,7 +124,14 @@ public class Spell extends Card {
     }
 
     public int getIndexOfAction(Action action){
-        return actions.indexOf(action) ;
+        if  (actions.contains(action))
+            return actions.indexOf(action) ;
+        else {
+            System.err.println("action wasn't found in the actions list ! here's your action : " + action.getClass());
+            System.err.println("and here are the actions list :");
+            for (Action actio : actions) System.out.println("\t\t\t" + actio.getClass());
+            return 0 ;
+        }
     }
 
 

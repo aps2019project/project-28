@@ -44,7 +44,7 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
         content.setAlignment(Pos.BOTTOM_CENTER);
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
-        scrollPane.vvalueProperty().bind(content.heightProperty());
+//        scrollPane.vvalueProperty().bind(content.heightProperty());
         GraphicsControls.setButtonStyle("menu-button" , play , setDeck);
         GraphicsControls.setBackButtonOnPress(backButton);
 
