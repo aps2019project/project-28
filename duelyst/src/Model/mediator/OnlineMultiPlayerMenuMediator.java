@@ -6,6 +6,7 @@ import Controller.menu.SignInMenu;
 import View.MenuHandler;
 import exeption.InvalidAccountException;
 import exeption.WrongPassException;
+import javafx.application.Platform;
 import network.ChatMSG;
 import network.Message;
 
@@ -33,7 +34,12 @@ public class OnlineMultiPlayerMenuMediator implements MultiPlayerMenuMediator {
         connectionThread=new Thread(() -> {
             try {
                 Game.getBattleClient().connect();
-                MenuHandler.enterMenu(Battle.getMenu());
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        MenuHandler.enterMenu(Battle.getMenu());
+                    }
+                });
             } catch (Exception e) {
                 e.printStackTrace();
             }
