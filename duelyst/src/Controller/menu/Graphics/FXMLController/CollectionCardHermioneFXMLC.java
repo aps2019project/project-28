@@ -44,9 +44,10 @@ public class CollectionCardHermioneFXMLC {
             final Animation animation = new SpriteAnimation(
                     avatar,
                     Duration.millis(2000),
-                    8, 1,
-                    0, 0,
-                    1024/10, 1024/10
+                    card.getGraphics().getRow(), 1,
+                    card.getGraphics().getUnitX() , card.getGraphics().getUnitY(),
+                    card.getGraphics().getUnitWidth() / card.getGraphics().getColumn(),
+                    card.getGraphics().getUnitHeight() / card.getGraphics().getRow()
             );
             animation.setCycleCount(Animation.INDEFINITE);
             animation.play();

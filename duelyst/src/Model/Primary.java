@@ -69,11 +69,11 @@ public class Primary {
     public static ArrayList<Account> accounts = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
-//        preprocess();
+        preprocess();
 //        Primary.Json();
-//        Primary.graphicsJson();
-////        writeJson(spells,"Spell.json");
-//        writeJson(minions,"Minion.json");
+        Primary.graphicsJson();
+//        writeJson(spells,"Spell.json");
+        writeJson(minions,"Minion.json");
 //        writeJson(heroes,"Hero.json");
 //        writeJson(usables,"Usables.json");
 //        writeJson(collectables,"Collectables.json");
@@ -683,8 +683,100 @@ public class Primary {
             minion.getGraphics().setUnitGifs("resources/units/boss_candyPanda_single.png");
             minion.getGraphics().setIcon("resources/icons/artifact_f2_bloodleechmask.png");
             minion.getGraphics().setIconGif("resources/icons/artifact_f2_bloodleechmask_single.png");
-//            ("resources/units/boss_gol.png", 1970/14, 1020/7, 14, 7
         }
+
+        minions.get(0).getGraphics().setUnitGifs("resources/units/boss_candypanda_single.png");
+        minions.get(0).getGraphics().setUnits("resources/units/boss_candypanda.png",
+                10, 20,
+                810, 1002,
+                8, 10);
+        minions.get(1).getGraphics().setUnitGifs("resources/units/boss_decepticlesword_single.png");
+        minions.get(1).getGraphics().setUnits("resources/units/boss_decepticlesword.png",
+                0, 0,
+                413, 971,
+                5, 12);
+        minions.get(2).getGraphics().setUnitGifs("resources/units/boss_decepticlechassis_single.png");
+        minions.get(2).getGraphics().setUnits("resources/units/boss_decepticlechassis.png",
+                6, 0,
+                340, 980,
+                4, 12);
+        minions.get(3).getGraphics().setUnitGifs("resources/units/boss_decepticlehelm_single.png");
+        minions.get(3).getGraphics().setUnits("resources/units/boss_decepticlehelm.png",
+                8, 14,
+                323, 964,
+                4, 12);
+        minions.get(4).getGraphics().setUnitGifs("resources/units/boss_city_single.png");
+        minions.get(4).getGraphics().setUnits("resources/units/boss_city.png",
+                4, 0,
+                417, 974,
+                5, 12);
+        minions.get(5).getGraphics().setUnitGifs("resources/units/boss_decepticlewings_single.png");
+        minions.get(5).getGraphics().setUnits("resources/units/boss_decepticlewings.png",
+                0, 0,
+                405, 969,
+                5, 12);
+        minions.get(6).getGraphics().setUnitGifs("resources/units/boss_dissonance_single.png");
+        minions.get(6).getGraphics().setUnits("resources/units/boss_dissonance.png",
+                0, 0,
+                710, 1018,
+                7, 10);
+        minions.get(7).getGraphics().setUnitGifs("resources/units/boss_emp_single.png");
+        minions.get(7).getGraphics().setUnits("resources/units/boss_emp.png",
+                0, 12,
+                605, 1000,
+                6, 10);
+        minions.get(8).getGraphics().setUnitGifs("resources/units/boss_gol_single.png");
+        minions.get(8).getGraphics().setUnits("resources/units/boss_gol.png",
+                0, 24,
+                1954, 980,
+                14, 7);
+        minions.get(9).getGraphics().setUnitGifs("resources/units/boss_harmony_single.png");
+        minions.get(9).getGraphics().setUnits("resources/units/boss_harmony.png",
+                0, 2,
+                705, 1010,
+                7, 10);
+        minions.get(10).getGraphics().setUnitGifs("resources/units/boss_manaman_single.png");
+        minions.get(10).getGraphics().setUnits("resources/units/boss_manaman.png",
+                0, 0,
+                1005, 1018,
+                10, 10);
+        minions.get(11).getGraphics().setUnitGifs("resources/units/boss_oriasidol_single.png");
+        minions.get(11).getGraphics().setUnits("resources/units/boss_oriasidol.png",
+                6, 0,
+                595, 1024,
+                6, 10);
+        minions.get(12).getGraphics().setUnitGifs("resources/units/boss_paragon_single.png");
+        minions.get(12).getGraphics().setUnits("resources/units/boss_paragon.png",
+                9, 24,
+                1126, 996,
+                9, 8);
+        minions.get(13).getGraphics().setUnitGifs("resources/units/boss_protector_single.png");
+        minions.get(13).getGraphics().setUnits("resources/units/boss_protector.png",
+                0, 0,
+                411, 966,
+                5, 12);
+        minions.get(14).getGraphics().setUnitGifs("resources/units/boss_serpenti_single.png");
+        minions.get(14).getGraphics().setUnits("resources/units/boss_serpenti.png",
+                12, 14,
+                964, 975,
+                8, 8);
+        minions.get(15).getGraphics().setUnitGifs("resources/units/boss_shadowlord_single.png");
+        minions.get(15).getGraphics().setUnits("resources/units/boss_shadowlord.png",
+                0, 22,
+                1207, 955,
+                10, 8);
+        minions.get(16).getGraphics().setUnitGifs("resources/units/boss_shinkagezendo_single.png");
+        minions.get(16).getGraphics().setUnits("resources/units/boss_shinkagezendo.png",
+                10, 14,
+                1698, 930,
+                13, 7);
+        minions.get(17).getGraphics().setUnitGifs("resources/units/boss_skyfalltyrant_single.png");
+        minions.get(17).getGraphics().setUnits("resources/units/boss_skyfalltyrant.png",
+                0, 0,
+                713, 1011,
+                7, 10);
+
+
 
         for (Spell spell : spells) {
             spell.getSpellGraphics().setIcon("resources/icons/artifact_boss_frostarmor.png");
@@ -862,10 +954,6 @@ public class Primary {
                                     battle.removeFromScene(second.getNode());
                                     ImageView imageView = battle.getCell(cell.getX(), cell.getY());
                                     imageView.setImage(new Image(hermione.getGraphics().getUnits()));
-                                    if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
-                                        imageView.setScaleX(-1);
-                                        imageView.setScaleY(1);
-                                    }
                                     final Animation animation = new SpriteAnimation(
                                             imageView,
                                             Duration.millis(2000),
@@ -888,10 +976,6 @@ public class Primary {
                             battle.removeFromScene(first.getNode());
                             ImageView imageView = battle.getCell(cell.getX(), cell.getY());
                             imageView.setImage(new Image(hermione.getGraphics().getUnits()));
-                            if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
-                                imageView.setScaleX(-1);
-                                imageView.setScaleY(1);
-                            }
                             final Animation animation = new SpriteAnimation(
                                     imageView,
                                     Duration.millis(2000),

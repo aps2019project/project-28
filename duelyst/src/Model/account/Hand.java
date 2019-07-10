@@ -54,7 +54,7 @@ public class Hand {
     }
 
     private void setNextCard() {
-        if (deck.indexOf(nextCard) + 1 < Deck.CARD_SIZE) {
+        if (deck.indexOf(nextCard) + 1 < Deck.CARD_SIZE - 1) {
             this.nextCard = deck.get(deck.indexOf(nextCard) + 1);
         } else {
             this.nextCard = null;
@@ -63,9 +63,11 @@ public class Hand {
 
     public void removeCard(Card card) {
         for (int i = 0; i < SIZE; i++) {
-            if (cards[i].equals(card)) {
-                cards[i] = null;
-                return;
+            if(card != null) {
+                if (cards[i].equals(card)) {
+                    cards[i] = null;
+                    return;
+                }
             }
         }
     }
@@ -84,7 +86,9 @@ public class Hand {
 
     public Card getCard(int cardID) throws InvalidCardException {
         for (Card card : this.cards) {
-            if (card.getID() == cardID) return card;
+            if(card != null) {
+                if (card.getID() == cardID) return card;
+            }
         }
         throw new InvalidCardException();
     }
