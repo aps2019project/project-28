@@ -55,7 +55,7 @@ public class FXMLController {
 
         menu.getGraphic().getScene().setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ESCAPE){
-                MenuHandler.exitMenu();
+                menu.exit();
             }
         });
     }

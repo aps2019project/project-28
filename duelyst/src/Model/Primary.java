@@ -229,11 +229,7 @@ public class Primary {
         getCollectables();
         getCards();
         getItems();
-//        loadDefaultDecks();
-
-//        configAccounts();
-
-
+        loadDefaultDecks();
     }
 
     public static void configAccounts() throws IOException, DeckAlreadyHasAHeroException, DeckAlreadyHasThisCardException, FullDeckException, DeckAlreadyHasThisItemException {
@@ -344,40 +340,21 @@ public class Primary {
         } catch (CardExistException e) {
             e.printStackTrace();
         }
-        YaGson gson = new YaGson();
-        FileWriter fileWriter = new FileWriter("Spell.json", false);
-        for (Spell spell :
-                spells) {
-            gson.toJson(spell, fileWriter);
-            fileWriter.write("\n");
-        }
-        fileWriter.close();
+        writeJson(spells, "Spell.json");
+        writeSingle(Shop.getInstance(), "Shop.json");
     }
 
     public static void saveCustomHermione(Hermione hermione) throws IOException, CardExistException {
-        Shop.getInstance().getCollection().addCardToCollection(hermione);
-        Card.addCardToCards(hermione);
-
-        if (hermione instanceof Hero) heroes.add((Hero)hermione);
-        else minions.add((Minion)hermione);
-        YaGson gson = new YaGson();
         if (hermione instanceof Hero) {
-            FileWriter fileWriter = new FileWriter("Hero.json", false);
-            for (Hero hero :
-                    heroes) {
-                gson.toJson(hero, fileWriter);
-                fileWriter.write("\n");
-            }
-            fileWriter.close();
-        }else {
-            FileWriter fileWriter = new FileWriter("Minion.json", false);
-            for (Minion minion :
-                    minions) {
-                gson.toJson(minion, fileWriter);
-                fileWriter.write("\n");
-            }
-            fileWriter.close();
+            heroes.add((Hero) hermione);
+            writeJson(heroes, "Hero.json");
         }
+        else {
+            minions.add((Minion)hermione);
+            writeJson(minions, "Minion.json");
+        }
+        Shop.getInstance().getCollection().addCardToCollection(hermione);
+        writeSingle(Shop.getInstance(), "Shop.json");
     }
 
     public static void saveAccounts(){

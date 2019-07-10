@@ -68,9 +68,6 @@ public class Spell extends Card {
         this.actions = actions ;
         this.target = null;
         this.targetCells = targetCells ;
-        try {
-            Primary.saveCustomSpell(this);
-        } catch (IOException e) { e.printStackTrace(); }
     }
 
     public Spell(String name, int price , int manaPoint, ArrayList<Integer> durations , ArrayList<Integer> perks ,

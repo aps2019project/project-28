@@ -712,6 +712,8 @@ public class Battle extends Menu {
 
     @Override
     public void exit() {
-
+        super.exit();
+        ((BattleFXMLC)getGraphic().getController()).playMusic(false);
+        ((SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController()).playMusic(true);
     }
 }
