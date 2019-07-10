@@ -54,7 +54,7 @@ public class Hand {
     }
 
     private void setNextCard() {
-        if (deck.indexOf(nextCard) + 1 < Deck.CARD_SIZE) {
+        if (deck.indexOf(nextCard) + 1 < Deck.CARD_SIZE - 1) {
             this.nextCard = deck.get(deck.indexOf(nextCard) + 1);
         } else {
             this.nextCard = null;
