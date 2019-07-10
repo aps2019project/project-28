@@ -75,7 +75,7 @@ public class Player {
 
     private boolean canDeploy(Card card, Cell cell) throws NotEnoughManaException, DestinationIsFullException {
         if (this.mana < card.getManaPoint()) throw new NotEnoughManaException();
-        if (cell.isFull()) throw new DestinationIsFullException();
+        if (card instanceof Hermione && cell.isFull()) throw new DestinationIsFullException();
         return true;
     }
 

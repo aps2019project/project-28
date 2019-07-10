@@ -86,6 +86,7 @@ public class Client {
                 if(s.equals(END_MESSAGE))break;
                 readable.append(s);
             }
+
             return json.fromJson(readable.toString(), Message.class);
         } catch (IOException e) {
             e.printStackTrace();

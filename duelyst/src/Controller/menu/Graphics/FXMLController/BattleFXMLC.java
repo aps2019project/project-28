@@ -93,9 +93,8 @@ public class BattleFXMLC extends FXMLController {
     public void buildScene() {
 
         super.buildScene();
-       endTurn.setOnAction(new EventHandler<ActionEvent>() {
-           @Override
-           public void handle(ActionEvent actionEvent) {
+       endTurn.setOnAction(actionEvent -> {
+           System.out.println("Endidam");
            System.out.println("Battle.getMenu().getPlayer().getGI() = " + Battle.getMenu().getPlayer().getGI());
            if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
                System.err.println("end turn 1");
@@ -107,12 +106,12 @@ public class BattleFXMLC extends FXMLController {
                    ex.printStackTrace();
                }
            }
-           }});
+       });
+       endTurn.setDisable(false);
         menuButton.setOnAction(e -> {
             if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
 //                    MenuHandler.setCurrentMenu(MainMenu.getMenu());
-                ((SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController()).playMusic(true);
-                mediaPlayer.pause();
+               menu.exit();
             }
         });
 
@@ -122,9 +121,9 @@ public class BattleFXMLC extends FXMLController {
             }
         });
 
-        showCollectableButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+        showCollectableButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(ActionEvent event) {
                 if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
                     showCollectable.getStyleClass().add("showCollectableEntered");
                     Battle.getMenu().showCollectable();
@@ -663,6 +662,18 @@ public class BattleFXMLC extends FXMLController {
             }
         });
     }
+    public void playMusic(boolean f){
+        if (f){
+            try{
+                mediaPlayer.play();
+            }catch(Exception ignored){}
+        } else {
+            try{
+                mediaPlayer.pause();
+            }catch(Exception ignored){}
+        }
+    }
+
     private double getMapX(){
         return mapBox.getLayoutX() + 70;
     }
