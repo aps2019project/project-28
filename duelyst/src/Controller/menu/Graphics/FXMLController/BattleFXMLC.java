@@ -107,6 +107,7 @@ public class BattleFXMLC extends FXMLController {
                }
            }
        });
+       endTurn.setDisable(false);
         menuButton.setOnAction(e -> {
             if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
 //                    MenuHandler.setCurrentMenu(MainMenu.getMenu());

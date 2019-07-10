@@ -196,6 +196,7 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
     }
 
     private void buildItemsVbox() {
+        itemsVbox.getChildren().clear() ;
         List<HBox> hBoxes = new ArrayList<>();
         for (Usable usabel : menu.getAccount().getCollection().getUsables()){
             makeItemCard(hBoxes, usabel , itemsVbox);
@@ -426,6 +427,9 @@ public class CollectionMenuFXMLC extends FXMLController implements PopupInputHav
                     Popup.popup("This deck already has a Hero!");
                 } catch (DeckAlreadyHasThisCardException ex) {
                     Popup.popup("This deck already has this card !");
+                    for (Card c : ((CollectionMenu)menu).getSelectedDeck().getCards() ){
+                        System.out.println(c.getName());
+                    }
                 } catch (InvalidItemException | InvalidCardException | DeckAlreadyHasThisItemException | InvalidDeckException ex) {
                     ex.printStackTrace();
                 }
