@@ -17,6 +17,7 @@ public class Client {
 
     private static final int SEND_SIZE=200;
     private static final String END_MESSAGE = "ARSHIA_FATTEME_SAEE";
+    private static final String IGNORE_MESSAGE = "DOKHTAR_E_BANDARI_?_ARE_ARE_VALLA";
 
     private Socket socket;
     private Account account;
@@ -124,7 +125,25 @@ public class Client {
         this.socket = socket;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
     public Socket getSocket() {
         return socket;
+    }
+
+    public boolean isConnected(){
+        try {
+            this.getOutput().println(IGNORE_MESSAGE);
+            return true;
+        } catch (IOException e) {
+            System.err.println("handled error-------------------------------------------");
+            e.printStackTrace();
+            return false;
+        }
     }
 }

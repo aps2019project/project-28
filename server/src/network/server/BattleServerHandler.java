@@ -51,6 +51,7 @@ public class BattleServerHandler {
         System.out.println("(GameMode) message.getCarry().get(1) = " + (GameMode) message.getCarry().get(1));
         GameMode gameMode= (GameMode) message.getCarry().get(1);
         addToWaitList(client,gameMode);
+
     }
 
     private void startBattles() {
@@ -76,9 +77,12 @@ public class BattleServerHandler {
             if(clients.size()>=2){
                 System.out.println("staritng the battle !!!!!!!!");
                 Client client1=clients.poll();
-                if(client1.getSocket().isClosed())continue;
+                if(!client1.isConnected())continue;
                 Client client2=clients.poll();
-                if(client2.getSocket().isClosed())clients.add(client1);
+                if(!client2.isConnected()){
+                    clients.add(client1);
+                    continue;
+                }
                 System.out.println("client1.getAccount().getUsername() = " + client1.getAccount().getUsername());
                 System.out.println("client2.getAccount().getUsername() = " + client2.getAccount().getUsername());
                 try {

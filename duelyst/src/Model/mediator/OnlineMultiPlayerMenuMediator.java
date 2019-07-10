@@ -34,7 +34,7 @@ public class OnlineMultiPlayerMenuMediator implements MultiPlayerMenuMediator {
             try {
                 Game.getBattleClient().connect();
                 MenuHandler.enterMenu(Battle.getMenu());
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
@@ -58,11 +58,8 @@ public class OnlineMultiPlayerMenuMediator implements MultiPlayerMenuMediator {
     public void cancel() {
         connectionThread.interrupt();
         System.err.println("hey yo shit i canceled");
-        try {
-            Game.getBattleClient().getSocket().close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            Game.getBattleClient().close();
+
         Game.setBattleClient(null);
     }
 }

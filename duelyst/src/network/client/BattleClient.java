@@ -28,10 +28,21 @@ public class BattleClient extends Client{
         message.addCarry(Battle.getMenu().getGameMode());
         this.write(message);
 
+
+        /*
+        * server protocol for checking whether or not im still available
+        * */
         message = this.read();
+        if(message.getText().equals("are you ready?")){
+            message=new Message("yes");
+            this.write(message);
+        }
+
+
         /*
         * this message carry an  account
         * */
+        message=this.read();
         Account account= (Account) message.getCarry().get(0);
         int turn= (int) message.getCarry().get(1);
         account.setPlayer(new OnlinePlayer(account,2,2,this.getInput()));
@@ -42,6 +53,14 @@ public class BattleClient extends Client{
             Game.setSecondAccount(account);
         }
         Battle.getMenu().setMediator(new OnlineBattleMediator());
+    }
+    public void close(){
+        try {
+            this.getSocket().close();
+        } catch (IOException e) {
+            System.err.println("handeld error--------------------");
+            e.printStackTrace();
+        }
     }
 
 }
