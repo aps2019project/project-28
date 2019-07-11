@@ -420,6 +420,7 @@ public class Battle extends Menu {
         }catch (Exception ignored){}
         /*checkState*/
         if (this.gameMode.checkState()) {
+            System.err.println();
             handleBattleFinish();
         } else {
             nextTurn();
