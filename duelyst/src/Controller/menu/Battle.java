@@ -435,7 +435,6 @@ public class Battle extends Menu {
          * giving the prize
          * */
         this.mediator.handleBattleFinish();
-        //        ((BattleFXMLC)this.getGraphic().getController()).finish();
         /*
          * saving the match
          * */
@@ -470,7 +469,9 @@ public class Battle extends Menu {
         } catch (InvalidAccountException e) {
             e.printStackTrace();
         }
-        MenuHandler.enterMenu(MainMenu.getMenu());
+
+        ((BattleFXMLC)this.getGraphic().getController()).finish();
+//        MenuHandler.enterMenu(MainMenu.getMenu());
     }
 
     private void swapPlayers() {

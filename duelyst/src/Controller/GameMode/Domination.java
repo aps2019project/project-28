@@ -30,6 +30,8 @@ public class Domination implements GameMode {
                 Game.getAccount(i).setMoney(Game.getAccount(i).getMoney() + prize);
                 System.err.println("debug");
                 Game.getAccount(i).setWins(Game.getAccount(i).getWins() + 1);
+                Battle.getMenu().winner = Game.getAccount(i);
+
             }
         }
         Account.save();

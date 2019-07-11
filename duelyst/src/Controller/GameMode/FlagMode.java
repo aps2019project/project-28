@@ -32,6 +32,7 @@ public class FlagMode implements GameMode {
             if (Game.getAccount(i).getPlayer().getFlagInteger() >=6) {
                 Game.getAccount(i).setMoney(Game.getAccount(i).getMoney() + prize);
                 Game.getAccount(i).setWins(Game.getAccount(i).getWins() + 1);
+                Battle.getMenu().winner = Game.getAccount(i);
             }
         }
         Account.save();

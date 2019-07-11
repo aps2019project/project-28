@@ -44,9 +44,15 @@ public class MenuHandler {
 
         View input = new ConsoleView();
         input.setGIs();
-//        View input = new GraphicView();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                View input = new GraphicView();
+        input.play(args);
 
-//        input.play(args);
+            }
+        }).start();
+
         BattleServerHandler battleServerHandler=new BattleServerHandler();
         new Thread(battleServerHandler::init).start();
         ChatRoomServer.main(args);

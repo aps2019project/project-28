@@ -7,7 +7,6 @@ import Controller.menu.Battle;
 import Controller.menu.Menu;
 import Model.account.player.CGI;
 import Model.account.player.GGI;
-
 import java.util.Scanner;
 
 public class ConsoleView implements View{

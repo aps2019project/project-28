@@ -71,7 +71,7 @@ public class GraphicView extends Application implements View{
         stage.setFullScreenExitHint("");
         stage.setOnHiding(event -> System.exit(0));
     }
-    private static void initializeGraphicMenu() {
+    public static void initializeGraphicMenu() {
         setRootPaths();
         initGraphics();
         setListeners();

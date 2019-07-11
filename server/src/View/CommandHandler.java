@@ -260,7 +260,7 @@ public class CommandHandler {
             try {
                 System.err.println("debug");
                 menu.sell(name);
-            } catch (InvalidCardException | InvalidItemException e) {
+            } catch (InvalidCardException  | InvalidItemException e) {
                 System.out.println("Smart Move But you cant sell a Card/Item that you dont have");
             }
         }

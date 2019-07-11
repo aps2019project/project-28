@@ -1,10 +1,11 @@
 package Controller.menu.Graphics.FXMLController;
 
 import Controller.menu.Battle;
+import Controller.menu.*;
 import Controller.menu.Graphics.GraphicsControls;
+import Controller.menu.SignInMenu;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
-import Model.account.Account;
 import Model.account.player.GGI;
 import Model.card.Card;
 import Model.card.hermione.Hermione;
@@ -29,14 +30,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
+
+import java.nio.file.Paths;
 
 public class BattleFXMLC extends FXMLController {
 
@@ -65,6 +70,7 @@ public class BattleFXMLC extends FXMLController {
     public GridPane map;
     public GridPane handFrame;
     public GridPane handManaFrame;
+    private MediaPlayer mediaPlayer ;
 
     @Override
     public void init() {//setStyles
@@ -84,39 +90,34 @@ public class BattleFXMLC extends FXMLController {
 
     @Override
     public void buildScene() {
+
         super.buildScene();
-       endTurn.setOnMousePressed(new EventHandler<MouseEvent>() {
-           @Override
-           public void handle(MouseEvent event) {
-               if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
-                   try {
-                       Battle.getMenu().endTurn();
-                       updateScene();
-                   } catch (HandFullException | DeckIsEmptyException e) {
-                       e.printStackTrace();
-                   }
+       endTurn.setOnAction(actionEvent -> {
+           if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
+               try {
+                   Battle.getMenu().endTurn();
+                   updateScene();
+               } catch (HandFullException | DeckIsEmptyException ex) {
+                   ex.printStackTrace();
                }
            }
        });
-        menuButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
-//                    MenuHandler.setCurrentMenu(MainMenu.getMenu());
-//                    //todo: end game bezan
-                }
+       endTurn.setDisable(false);
+       menuButton.setOnAction(e -> {
+            if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
+               menu.enter(MainMenu.getMenu());
             }
         });
 
-        graveYard.setOnMousePressed(e ->{
+        graveYard.setOnAction(e ->{
             if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
                 GraveYardFXMLC.makeNewScene(menu.getAccount());
             }
         });
 
-        showCollectableButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+        showCollectableButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(ActionEvent event) {
                 if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
                     showCollectable.getStyleClass().add("showCollectableEntered");
                     Battle.getMenu().showCollectable();
@@ -133,11 +134,28 @@ public class BattleFXMLC extends FXMLController {
                 updateScene();
             }
         });
+
+        try {
+            Media music = new Media(Paths.get("resources/music/music_battlemap_risensun2.m4a").toUri().toString());
+            mediaPlayer = new MediaPlayer(music);
+            mediaPlayer.setCycleCount(-1);
+            MediaView mediaView = new MediaView(mediaPlayer);
+            frame.getChildren().add(mediaView);
+        }catch (Exception ignored){
+            System.err.println("couldn't load the music file");
+        }
+
     }
 
     @Override
     public void enterScene() {
         super.enterScene();
+        try {
+//            ((SignInMenuFXMLC)SignInMenu.getMenu().getGraphic().getController()).playMusic(false);
+//            mediaPlayer.play();
+        }catch (Exception e){
+            System.err.println("couldnt load the music");
+        }
         try {
             firstPlayer.setImage(new Image(Battle.getMenu().getPlayer().getUser().getAvatar()));
             secondPlayer.setImage(new Image(Battle.getMenu().getEnemyPlayer().getUser().getAvatar()));
@@ -159,43 +177,46 @@ public class BattleFXMLC extends FXMLController {
                 updateInfo();
                 updateMana();
                 updateMap();
-                if(Battle.getMenu().getTurn() % 2 == 0) {
-                    handDrag();
-                    collectableDrag();
-                    attackDrag();
-                    moveStart();
-                    drop();
-                }
+                handDrag();
+                collectableDrag();
+                attackDrag();
+                moveStart();
+                drop();
             }
         });
     }
 
     public void finish(){
-        ImageView endGameBack = new ImageView("resources/maps/battlemap1_middleground.png");
+        ImageView black = new ImageView("resources/play/play_background.jpg");
+        black.setFitWidth(frame.getWidth());
+        black.setFitHeight(frame.getHeight());
+        addToScene(black);
+        ImageView endGameBack = new ImageView("resources/play/play_mode_rift@2x.jpg");
         Label endGame = new Label();
+        addToScene(endGameBack);
+        addToScene(endGame);
         endGame.setFont(Font.font("Didot", 40.0));
         endGame.setTextAlignment(TextAlignment.CENTER);
-//        endGame.getStyleClass().add("endGame");
-        endGameBack.setFitWidth(frame.getMinWidth());
         endGameBack.setFitHeight(frame.getMinHeight());
+        endGameBack.setX(frame.getWidth()/ 4);
         endGame.setMinWidth(frame.getMinWidth());
         endGame.setMinHeight(frame.getMinHeight());
-        endGame.setLayoutX(frame.getMinWidth()/3);
-        endGame.setLayoutY(frame.getMinHeight()/1.5);
+        endGame.setLayoutX(frame.getWidth()/3);
+        endGame.setLayoutY(frame.getHeight()/1.5);
         if(Battle.getMenu().getAccount().equals(Battle.getMenu().winner)){
-            endGame.setTextFill(Color.rgb(0, 255, 200));
+            endGame.setTextFill(Color.rgb(255, 255, 255));
             endGame.setText("Congrats! YOU WON!");
         }
         else {
-            endGame.setTextFill(Color.rgb(255, 100, 61 ));
+            endGame.setTextFill(Color.rgb(0, 0, 0));
             endGame.setText("Ooops! YOU LOST!");
         }
-        PauseTransition pauseTransition = new PauseTransition(Duration.seconds(3));
+        PauseTransition pauseTransition = new PauseTransition(Duration.seconds(5));
         pauseTransition.play();
         pauseTransition.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //todo exit
+                MenuHandler.enterMenu(MainMenu.getMenu());
             }
         });
     }
@@ -289,7 +310,7 @@ public class BattleFXMLC extends FXMLController {
             }
         }
         if(Battle.getMenu().getPlayer().getHand().getNextCard() != null) {
-            nextCardOnHandInfo.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            nextCardOnHand.setOnMouseEntered(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     TextField info = nextCardOnHandInfo;
@@ -303,7 +324,7 @@ public class BattleFXMLC extends FXMLController {
                     }
                 }
             });
-            nextCardOnHandInfo.setOnMouseExited(new EventHandler<MouseEvent>() {
+            nextCardOnHand.setOnMouseExited(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     nextCardOnHandInfo.getStyleClass().remove("infoEntered");
@@ -413,14 +434,14 @@ public class BattleFXMLC extends FXMLController {
                     if(cell.getCardOnCell() == null){
                         cellView.setImage(null);
                     }
+                    if(cell.getCellAffect().size() > 0){
+                        cellView.setImage(new Image("resources/ui/replace_inner_ring.png"));
+                    }
                     if(cell.hasItem()){
                         cellView.setImage(new Image(Battle.getMenu().getMap().getCell(i, j).getCollectable().getItemGraphics().getAvatar()));
                     }
                     if(cell.hasFlag()){
-                        cellView.setImage(new Image("resources/ui/collection_card_rarity_rare@2x.png"));
-                    }
-                    if(cell.getCellAffect().size() > 0){
-                        cellView.setImage(new Image("resources/ui/icon_heal.png"));
+                        cellView.setImage(new Image("resources/ui/flag.png"));
                     }
                     cellRect.getStyleClass().remove("cellSelected");
                     cellRect.getStyleClass().remove("specialPowerInserted");
@@ -498,6 +519,16 @@ public class BattleFXMLC extends FXMLController {
                 event.consume();
             }
         });
+        opponentSP.setOnDragDetected(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Dragboard db = opponentSP.startDragAndDrop(TransferMode.ANY);
+                ClipboardContent content = new ClipboardContent();
+                content.putImage(opponentSP.getImage());
+                db.setContent(content);
+                event.consume();
+            }
+        });
     }
     private void drop() {
         for (int i = 0 ; i < 9 ; i++) {
@@ -509,7 +540,7 @@ public class BattleFXMLC extends FXMLController {
                         @Override
                         public void handle(DragEvent event) {
                             Node source = (Node) event.getGestureSource();
-                            if (source.getId() != null && source.getId().equals("ownSP")) {
+                            if (source.getId() != null && (source.getId().equals("ownSP") || source.getId().equals("opponentSP"))) {
                                 event.acceptTransferModes(TransferMode.ANY);
                             } else if (handFrame.getChildren().contains(source)) {
                                 if (!cell.hasItem() && !cell.hasFlag()) {
@@ -542,8 +573,7 @@ public class BattleFXMLC extends FXMLController {
                                     }
                                 }
                             }
-                            else if(source.getId()!= null && source.getId().equals("ownSP")){
-                                if(Battle.getMenu().getPlayer().equals(Battle.getMenu().getOwnPLayer())) {
+                            else if(source.getId()!= null && (source.getId().equals("ownSP") ||  source.getId().equals("opponentSP"))){
                                     try {
                                         Battle.getMenu().useSpecialPower(finalI, finalJ);
                                         updateScene();
@@ -554,7 +584,6 @@ public class BattleFXMLC extends FXMLController {
                                     } catch (InvalidCellException e) {
                                         error("wrong cell");
                                     }
-                                }
                             }
                             else if(map.getChildren().contains(source)){
                                 try {
@@ -638,6 +667,18 @@ public class BattleFXMLC extends FXMLController {
             }
         });
     }
+    public void playMusic(boolean f){
+        if (f){
+            try{
+                mediaPlayer.play();
+            }catch(Exception ignored){}
+        } else {
+            try{
+                mediaPlayer.pause();
+            }catch(Exception ignored){}
+        }
+    }
+
     private double getMapX(){
         return mapBox.getLayoutX() + 70;
     }

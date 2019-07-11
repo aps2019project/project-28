@@ -2,46 +2,38 @@ package Model;
 
 import Controller.menu.Battle;
 import Controller.menu.Graphics.FXMLController.BattleFXMLC;
-import Controller.menu.Graphics.FXMLController.Popup;
 import Model.Graphics.Listeners.*;
 import Model.Graphics.SpriteAnimation;
 import Model.Map.Cell;
 import Model.account.Account;
 import Model.account.Deck;
 import Model.account.Shop;
-import Model.account.player.GGI;
 import Model.card.Card;
 import Model.card.hermione.*;
-import Model.card.spell.*;
+import Model.card.spell.SpecialPower;
 import Model.card.spell.SpecialPowerActions.SPActionPersianChamp;
+import Model.card.spell.Spell;
 import Model.card.spell.SpellAction.*;
-import Model.card.spell.SpellAction.ActionChangeAPBuff;
-import Model.card.spell.SpellAction.ActionChangeHPBuff;
-import Model.card.spell.SpellAction.ActionDisarm;
-import Model.card.spell.SpellAction.ActionStun;
 import Model.card.spell.Targets.*;
 import Model.item.Collectable;
 import Model.item.Item;
 import Model.item.ItemActions.*;
-import View.Listeners.OnItemDetailPresentedListener;
 import Model.item.Usable;
+import View.Listeners.OnItemDetailPresentedListener;
 import com.gilecode.yagson.YaGson;
 import com.gilecode.yagson.com.google.gson.JsonElement;
 import com.gilecode.yagson.com.google.gson.JsonStreamParser;
-import com.sun.scenario.effect.impl.prism.PrImage;
 import exeption.*;
-import javafx.animation.*;
+import javafx.animation.Animation;
+import javafx.animation.PathTransition;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -50,10 +42,7 @@ import javafx.util.Duration;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
-
-import static java.lang.Math.*;
 
 public class Primary {
 
@@ -526,7 +515,7 @@ public class Primary {
         theGreatWizard.addAction(ActionDeployHollyBuff.getAction(), 0, -1);
         minions.add(new Minion("The Great Wizard",550, 6, 6,
                 6, new Range(), 5, theGreatWizard
-                ,SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
+                , SPATime.PASSIVE, "gives own and minions surrounded a continuous power buff, increases attack point 2 units + a continuous holy buff "));
 
         minions.add(new Minion("Genie", 500, 5, 10,
                 4, new Range(), 4,
@@ -839,7 +828,7 @@ public class Primary {
         hermione.getGraphics().addSpawnListener(new OnSpawnListener() {
             @Override
             public void show(Cell cell){
-                BattleFXMLC controller = (BattleFXMLC)Battle.getMenu().getGraphic().getController();
+                BattleFXMLC controller = (BattleFXMLC) Battle.getMenu().getGraphic().getController();
                 ImageView imageView = controller.getCell(cell.getX(), cell.getY());
                 imageView.setImage(new Image(hermione.getGraphics().getUnits()));
                 if(!(Battle.getMenu().playerOf(hermione).equals(Battle.getMenu().getAccount().getPlayer()))) {
