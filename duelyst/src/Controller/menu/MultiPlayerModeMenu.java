@@ -81,4 +81,10 @@ public class MultiPlayerModeMenu extends Menu implements DeckSelectorHavingMenu 
     public void setMediator(MultiPlayerMenuMediator mediator) {
         this.mediator = mediator;
     }
+
+    @Override
+    public void exit() {
+        this.mediator.cancel();
+        super.exit();
+    }
 }

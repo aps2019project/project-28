@@ -2,7 +2,9 @@ package Model.mediator;
 
 import Controller.Game;
 import Controller.menu.Battle;
+import Controller.menu.SignInMenu;
 import Model.Map.Map;
+import Model.account.Account;
 import Model.account.player.OnlinePlayer;
 import Model.mediator.BattleMediator;
 import Model.mediator.NetworkMediator;
@@ -72,10 +74,16 @@ public class OnlineBattleMediator implements BattleMediator {
 
     @Override
     public void handleBattleFinish() {
-        Message message=new Message("finish");
-        Game.getBattleClient().write(message);
-
+        try {
+            Game.setFirstAccount(Account.getAccount(Game.getAccount(0).getUsername()));
+            Game.setSecondAccount(Account.getAccount(Game.getAccount(1).getUsername()));
+        } catch (InvalidAccountException e) {
+            e.printStackTrace();
+        }
+        Game.clearBattleClient();
     }
+
+
 
     private void sendPlayerMove(String playerMove) {
         Message message = new Message("playerMove");

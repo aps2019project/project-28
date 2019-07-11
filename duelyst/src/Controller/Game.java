@@ -106,5 +106,9 @@ public class Game {
     public static void setChatRoomClient(Client chatRoomClient) {
         Game.chatRoomClient = chatRoomClient;
     }
+    public static void clearBattleClient() {
+        Game.getBattleClient().close();
+        Game.setBattleClient(null);
+    }
 }
 
