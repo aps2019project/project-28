@@ -85,7 +85,7 @@ public class DeckSelectorFXMLC {
             HBox hbox = new HBox();
             hbox.setAlignment(Pos.CENTER_LEFT);
             Label label = new Label(index+"- " + deck.getName());
-            if (deck.getHero() != null || !checkHero) {
+            if (deck.isValid() || !checkHero) {
                 select(account, menu, deck, label);
             }else{
                 label.setText(label.getText() + " ( No hero ! )");

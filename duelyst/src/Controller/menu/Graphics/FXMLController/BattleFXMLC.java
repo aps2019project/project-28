@@ -93,8 +93,7 @@ public class BattleFXMLC extends FXMLController {
     public void buildScene() {
 
         super.buildScene();
-       endTurn.setOnAction(actionEvent -> {
-           System.out.println("Endidam");
+        endTurn.setOnAction(actionEvent -> {
            System.out.println("Battle.getMenu().getPlayer().getGI() = " + Battle.getMenu().getPlayer().getGI());
            if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
                System.err.println("end turn 1");
@@ -107,7 +106,6 @@ public class BattleFXMLC extends FXMLController {
                }
            }
        });
-       endTurn.setDisable(false);
         menuButton.setOnAction(e -> {
             if(Battle.getMenu().getPlayer().getGI() instanceof GGI) {
 //                    MenuHandler.setCurrentMenu(MainMenu.getMenu());

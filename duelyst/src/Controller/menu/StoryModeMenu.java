@@ -7,6 +7,7 @@ import Model.account.Deck;
 import Model.mediator.OfflineBattleMediator;
 import View.Listeners.OnDeckSelectorClickedListener;
 import View.MenuHandler;
+import exeption.InvalidDeckException;
 
 public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
     private static StoryModeMenu menu;
@@ -34,12 +35,15 @@ public class StoryModeMenu extends Menu implements DeckSelectorHavingMenu {
         Game.setSecondAccount(Account.AI[level]);
         Game.getAccount(1).setPlayer(new AI(Game.getAccount(1),2,2,Game.getAccount(0).getPlayer()));
         Battle.getMenu().setMediator(new OfflineBattleMediator());
-        MenuHandler.enterMenu(Battle.getMenu());
     }
 
     @Override
     public void selectDeck(Account account, Deck deck) {
-        account.getCollection().setMainDeck(deck);
+        try {
+            account.getCollection().setMainDeck(deck.getName());
+        } catch (InvalidDeckException e) {
+            e.printStackTrace();
+        }
 
         this.enter(Battle.getMenu());
     }

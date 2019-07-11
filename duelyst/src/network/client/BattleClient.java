@@ -6,6 +6,7 @@ import Model.mediator.OnlineBattleMediator;
 import Controller.menu.SignInMenu;
 import Model.account.Account;
 import Model.account.player.OnlinePlayer;
+import View.MenuHandler;
 import network.Message;
 
 import java.io.IOException;
@@ -13,8 +14,8 @@ import java.net.Socket;
 
 public class BattleClient extends Client{
 
-    private final int PORT=8888;
-    private final String HOST="127.0.0.1";
+    private final int PORT= MenuHandler.getBattle_port();
+    private final String HOST=MenuHandler.getHost();
 
     public BattleClient(Account account) {
         super(account);
@@ -57,7 +58,7 @@ public class BattleClient extends Client{
     public void close(){
         try {
             this.getSocket().close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("handeld error--------------------");
             e.printStackTrace();
         }

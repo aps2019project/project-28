@@ -12,9 +12,6 @@ import java.util.Scanner;
 
 public class Client {
 
-    private static final String HOST = "127.0.0.1";
-    private static final int DEFAULT_PORT = 8000;
-
     private static final int SEND_SIZE=200;
     private static final String END_MESSAGE = "ARSHIA_FATTEME_SAEE";
     private static final String IGNORE_MESSAGE = "DOKHTAR_E_BANDARI_?_ARE_ARE_VALLA";
@@ -27,10 +24,10 @@ public class Client {
     private Scanner in;
 
     public Client() throws IOException {
-        this.socket = new Socket(HOST, DEFAULT_PORT);
+        this.socket = new Socket(MenuHandler.getHost(), MenuHandler.getMain_port());
     }
     public Client(int port) throws IOException {
-        this.socket = new Socket(HOST, port);
+        this.socket = new Socket(MenuHandler.getHost(), port);
     }
     public Client(Socket socket) {
         this.socket = socket;

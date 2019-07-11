@@ -48,6 +48,7 @@ public class MultiPlayerModeMenuFXMLC extends FXMLController {
         GraphicsControls.setButtonStyle("menu-button" , play , setDeck);
         GraphicsControls.setBackButtonOnPress(backButton);
 
+        play.setText("PLAY");
         play.setOnAction(e -> play());
         setDeck.setOnAction(e -> ((MultiPlayerModeMenu)menu).showDeckSelector(menu.getAccount()));
         buildContent();

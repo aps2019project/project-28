@@ -12,14 +12,18 @@ import Model.account.Shop;
 import Model.mediator.*;
 import network.client.Client;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class MenuHandler {
 
     private static Menu currentMenu;
     private static Account account;
+    private static String host ;
+    private static int main_port , battle_port , chat_port ;
 
     public static void main(String[] args) throws IOException {
 
@@ -30,16 +34,22 @@ public class MenuHandler {
         initMenus();
 
 
-        View input = new ConsoleView();
-//        View input = new GraphicView();
+//        View input = new ConsoleView();
+        View input = new GraphicView();
 
         input.play(args);
     }
 
     private static void configNetwork() throws IOException {
-        // TODO: 7/2/19 bayad beshe network Mediator
+
+        Scanner portReader = new Scanner (new FileReader("config.txt"));
+        host = portReader.nextLine();
+        main_port = portReader.nextInt();
+        battle_port = portReader.nextInt();
+        chat_port = portReader.nextInt();
+
         Game.setClient(new Client());
-        Game.setChatRoomClient(new Client(8585));
+        Game.setChatRoomClient(new Client(chat_port));
 
 
         Account.setMediator(new OnlineAccountMediator());
@@ -132,5 +142,41 @@ public class MenuHandler {
         CraftingMenu.getMenu().addSubMenu(CraftingMenu.getSpellMenu());
 
         currentMenu = SignInMenu.getMenu();
+    }
+
+    public static void setCurrentMenu(Menu currentMenu) {
+        MenuHandler.currentMenu = currentMenu;
+    }
+
+    public static int getMain_port() {
+        return main_port;
+    }
+
+    public static void setMain_port(int main_port) {
+        MenuHandler.main_port = main_port;
+    }
+
+    public static int getBattle_port() {
+        return battle_port;
+    }
+
+    public static void setBattle_port(int battle_port) {
+        MenuHandler.battle_port = battle_port;
+    }
+
+    public static int getChat_port() {
+        return chat_port;
+    }
+
+    public static void setChat_port(int chat_port) {
+        MenuHandler.chat_port = chat_port;
+    }
+
+    public static String getHost() {
+        return host;
+    }
+
+    public static void setHost(String host) {
+        MenuHandler.host = host;
     }
 }

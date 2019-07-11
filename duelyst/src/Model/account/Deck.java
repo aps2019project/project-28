@@ -125,6 +125,7 @@ public class Deck {
 
     public boolean validateDeck() throws InvalidDeckException {
 //        System.err.println(this.getHero().getName());
+        System.err.println(cards.size());
         if (cards.size() != CARD_SIZE) {
             System.err.println("card size problem");
             throw new InvalidDeckException();
@@ -138,6 +139,13 @@ public class Deck {
             throw new InvalidDeckException();
         }
         return true;
+    }
+    public boolean isValid() {
+        try {
+            return this.validateDeck();
+        } catch (InvalidDeckException e) {
+            return false;
+        }
     }
 
     public void shuffle() {
