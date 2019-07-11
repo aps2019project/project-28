@@ -334,14 +334,25 @@ public class Primary {
 
     public static void saveCustomSpell(Spell costumSpell) throws IOException {
         spells.add(costumSpell);
-        YaGson gson = new YaGson();
-        FileWriter fileWriter = new FileWriter("Spell.json", false);
-        for (Spell spell :
-                spells) {
-            gson.toJson(spell, fileWriter);
-            fileWriter.write("\n");
+        try {
+            Shop.getInstance().getCollection().addCardToCollection(costumSpell);
+        } catch (CardExistException e) {
+            e.printStackTrace();
         }
-        fileWriter.close();
+        writeJson(spells, "Spell.json");
+        writeSingle(Shop.getInstance(), "Shop.json");
+    }
+
+    public static void saveCustomHermione(Hermione hermione) throws IOException, CardExistException {
+        if (hermione instanceof Hero) {
+            heroes.add((Hero) hermione);
+            writeJson(heroes, "Hero.json");
+        }
+        else {
+            minions.add((Minion)hermione);
+            writeJson(minions, "Minion.json");
+        }
+        writeSingle(Shop.getInstance(), "Shop.json");
     }
 
     public static void saveAccounts(){

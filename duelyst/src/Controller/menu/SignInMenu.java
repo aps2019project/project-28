@@ -53,6 +53,7 @@ public class SignInMenu extends Menu {
     public void logIn(String username, String password) throws InvalidAccountException, WrongPassException {
         try {
             signInMenuMediator.logIn(username,password);
+
         }catch (InvalidAccountException |WrongPassException e){
           throw e;
         } catch (Exception e) {

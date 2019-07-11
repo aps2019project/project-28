@@ -17,11 +17,21 @@ public class OfflineSignInMenuMediator implements SignInMenuMediator {
         if (account.getPassword().equals(password)) {
             Game.setFirstAccount(account);
             Game.hasLoggedIn = true;
+            account.setOnline(true);
             SignInMenu.getMenu().setAccount(account);
             MenuHandler.setAccount(account);
             // TODO: 6/30/19 in ro azin ja bardar or not
         } else {
             throw new WrongPassException();
         }
+    }
+
+    @Override
+    public void logOut(Account account) {
+        try {
+            Account.getAccount(account.getName()).setOnline(false);
+        } catch (InvalidAccountException e) {
+            e.printStackTrace();
+        }catch(NullPointerException ignored){}
     }
 }

@@ -24,4 +24,9 @@ public class OfflineSignInMenuMediator implements SignInMenuMediator {
             throw new WrongPassException();
         }
     }
+
+    @Override
+    public void logOut(Account account) {
+
+    }
 }

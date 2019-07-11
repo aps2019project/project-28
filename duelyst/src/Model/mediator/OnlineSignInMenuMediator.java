@@ -31,4 +31,11 @@ public class OnlineSignInMenuMediator implements SignInMenuMediator {
         MenuHandler.setAccount(account);
 
     }
+
+    @Override
+    public void logOut(Account account) {
+        Message message=new Message("Log out");
+        message.addCarry(account);
+        Game.getClient().write(message);
+    }
 }

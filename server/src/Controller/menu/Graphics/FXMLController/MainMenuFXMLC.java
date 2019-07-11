@@ -54,7 +54,12 @@ public class MainMenuFXMLC extends FXMLController {
         });
         shopMenuButton.setOnAction(e -> {
             System.err.println();
-            ShopMenu.getMenu().getGraphic().getController().buildScene();
+            try {
+                ShopMenu.getMenu().getGraphic().getController().buildScene();
+            }catch (Exception err){
+                ShopMenu.getMenu().getGraphic().init();
+                ShopMenu.getMenu().getGraphic().getController().buildScene();
+            }
             enterSubMenu(ShopMenu.getMenu());
         });
 

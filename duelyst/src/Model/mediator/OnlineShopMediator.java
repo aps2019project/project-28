@@ -3,6 +3,7 @@ package Model.mediator;
 import Controller.Game;
 import Model.account.Collection;
 import Model.card.Card;
+import Model.card.hermione.Hermione;
 import Model.item.Usable;
 import exeption.InvalidCardException;
 import exeption.InvalidItemException;
@@ -125,6 +126,15 @@ public class OnlineShopMediator implements ShopMediator {
         } catch (Exception e) {
             return 0;
         }
+        System.out.println("message = " + message.getCarry().get(0));
         return (int) message.getCarry().get(0);
+    }
+
+    @Override
+    public void addCard(Card card) {
+        Message message = new Message("add card") ;
+        message.addCarry(card);
+        Game.getClient().write(message);
+        Game.getClient().read();
     }
 }

@@ -35,6 +35,7 @@ public class Account {
     private int wins;
     private int storyModeSPX;
     private String avatar;
+    private boolean isOnline = false ;
 
 
 
@@ -245,5 +246,13 @@ public class Account {
 
     public static void setMediator(AccountMediator mediator) {
         Account.mediator = mediator;
+    }
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean online) {
+        isOnline = online;
     }
 }

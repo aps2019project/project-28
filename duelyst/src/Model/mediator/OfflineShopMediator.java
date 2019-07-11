@@ -190,6 +190,11 @@ public class OfflineShopMediator implements ShopMediator {
         return 0;
     }
 
+    @Override
+    public void addCard(Card card) {
+
+    }
+
     private boolean sellCard(String name) throws InvalidCardException {
         Card card = this.collection.getCard(name);
         this.cards.put(card.getID(), this.cards.get(card.getID()) + 1);

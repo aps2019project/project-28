@@ -2,6 +2,7 @@ package Model.account;
 
 import Model.Primary;
 import Model.card.Card;
+import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
@@ -121,5 +122,9 @@ public class Shop {
 
     public int getRemain(String name) {
         return this.shopMediator.getRemain(name);
+    }
+
+    public void addCard(Card card) {
+        this.shopMediator.addCard(card) ;
     }
 }

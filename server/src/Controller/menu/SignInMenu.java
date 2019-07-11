@@ -60,7 +60,10 @@ public class SignInMenu extends Menu {
         }
         MenuHandler.enterMenu(SignInMenu.getMenu().enter(MainMenu.getMenu()));
     }
-
+    public void logOut(Account account) {
+        this.signInMenuMediator.logOut(account);
+        logOut();
+    }
     public void logOut() {
         Game.hasLoggedIn = false;
         this.account=null;

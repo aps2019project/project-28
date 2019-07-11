@@ -2,6 +2,7 @@ package Model.account;
 
 import Model.Primary;
 import Model.card.Card;
+import Model.card.hermione.Hermione;
 import Model.card.hermione.Hero;
 import Model.card.hermione.Minion;
 import Model.card.spell.Spell;
@@ -12,6 +13,7 @@ import Model.mediator.ShopMediator;
 import exeption.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Shop {
 
@@ -121,5 +123,21 @@ public class Shop {
 
     public int getRemain(String name) {
         return this.shopMediator.getRemain(name);
+    }
+
+    public void addCard(Card card){
+        if (card instanceof Spell){
+            try {
+                Primary.saveCustomSpell((Spell)card);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else if (card instanceof Hermione){
+            try {
+                Primary.saveCustomHermione((Hermione) card);
+            } catch (IOException | CardExistException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

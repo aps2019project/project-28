@@ -12,6 +12,7 @@ import Model.account.player.CGI;
 import Model.account.player.GGI;
 import Model.card.Card;
 import Model.Primary;
+import View.Listeners.OnLeaderBoardClickedListener;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
@@ -20,6 +21,8 @@ import javafx.scene.input.KeyCombination;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+
+import java.util.ArrayList;
 
 
 public class GraphicView extends Application implements View{

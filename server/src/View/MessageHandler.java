@@ -4,6 +4,7 @@ import Controller.menu.ShopMenu;
 import Controller.menu.SignInMenu;
 import Model.account.Account;
 import Model.account.Shop;
+import Model.card.Card;
 import exeption.*;
 import network.Auth;
 import network.Message;
@@ -74,6 +75,9 @@ public class MessageHandler {
                 }
                 break;
 
+            case "Log out":
+                SignInMenu.getMenu().logOut((Account) message.getCarry().get(0));
+                break ;
             //shop requests:
             case "has card":
                 respond=Message.getDoneMessage();
@@ -91,6 +95,14 @@ public class MessageHandler {
                     respond=makeExceptionMessage(e);
                 }
                 break;
+            case "add card" :
+                try{
+                    Shop.getInstance().addCard((Card) message.getCarry().get(0));
+                    respond=Message.getDoneMessage();
+                }catch (Exception er){
+                    er.printStackTrace();
+                }
+                break ;
             case "get item":
                 try {
                     respond=Message.getDoneMessage();
@@ -118,6 +130,7 @@ public class MessageHandler {
             case "get Remain":
                 respond=Message.getDoneMessage();
                 respond.addCarry(Shop.getInstance().getRemain((String) carry.get(0)));
+                break ;
         }
         return respond;
     }

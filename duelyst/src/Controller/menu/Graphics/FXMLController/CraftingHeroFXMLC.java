@@ -23,8 +23,6 @@ public class CraftingHeroFXMLC extends CraftingHermioneFXMLC {
                     new Melee(), Integer.parseInt(range.getText()), sp, 0, Integer.parseInt(cooldown.getText()), "Custom Hero");
             Primary.saveCustomHermione(hero);
             menu.exit();
-        } catch (CardExistException e) {
-            Popup.popup("sorry but a card with this name already exists in the Shop");
         } catch (Exception e) {
             Popup.popup("Invalid Information !!!");
             e.printStackTrace();

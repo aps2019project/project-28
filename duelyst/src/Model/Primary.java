@@ -334,27 +334,28 @@ public class Primary {
     }
 
     public static void saveCustomSpell(Spell costumSpell) throws IOException {
-        spells.add(costumSpell);
-        try {
-            Shop.getInstance().getCollection().addCardToCollection(costumSpell);
-        } catch (CardExistException e) {
-            e.printStackTrace();
-        }
-        writeJson(spells, "Spell.json");
-        writeSingle(Shop.getInstance(), "Shop.json");
+//        spells.add(costumSpell);
+//        try {
+//            Shop.getInstance().getCollection().addCardToCollection(costumSpell);
+//        } catch (CardExistException e) {
+//            e.printStackTrace();
+//        }
+//        writeJson(spells, "Spell.json");
+//        writeSingle(Shop.getInstance(), "Shop.json");
+        Shop.getInstance().addCard(costumSpell);
     }
 
-    public static void saveCustomHermione(Hermione hermione) throws IOException, CardExistException {
-        if (hermione instanceof Hero) {
-            heroes.add((Hero) hermione);
-            writeJson(heroes, "Hero.json");
-        }
-        else {
-            minions.add((Minion)hermione);
-            writeJson(minions, "Minion.json");
-        }
-        Shop.getInstance().getCollection().addCardToCollection(hermione);
-        writeSingle(Shop.getInstance(), "Shop.json");
+    public static void saveCustomHermione(Hermione hermione) throws IOException {
+//        if (hermione instanceof Hero) {
+//            heroes.add((Hero) hermione);
+//            writeJson(heroes, "Hero.json");
+//        }
+//        else {
+//            minions.add((Minion)hermione);
+//            writeJson(minions, "Minion.json");
+//        }
+        Shop.getInstance().addCard(hermione);
+//        writeSingle(Shop.getInstance(), "Shop.json");
     }
 
     public static void saveAccounts(){

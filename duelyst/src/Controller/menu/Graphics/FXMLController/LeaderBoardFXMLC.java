@@ -71,10 +71,11 @@ public class LeaderBoardFXMLC {
 
         int index = 1;
         for (Account account : accounts){
+            String status = account.isOnline() ? "Online" : "Offline" ;
             HBox hbox = new HBox();
             hbox.setAlignment(Pos.CENTER_LEFT);
             Label label = new Label(index+"- " + account.getName() + " (" + account.getUsername() + ")"
-                    + " Wins : " + account.getWins());
+                    + " Wins : " + account.getWins() + "\t" + status);
             label.getStyleClass().add("nameLabel");
             label.setOnMouseClicked(e -> {
                 fxmlc.setUsernameInput(account.getUsername());

@@ -3,6 +3,7 @@ package Model.mediator;
 import Model.account.Collection;
 import Model.account.Shop;
 import Model.card.Card;
+import Model.card.hermione.Hermione;
 import Model.item.Usable;
 import exeption.InvalidCardException;
 import exeption.InvalidItemException;
@@ -34,4 +35,5 @@ public interface ShopMediator {
 
     int getRemain(String name);
 
+    void addCard(Card card);
 }

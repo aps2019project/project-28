@@ -32,8 +32,6 @@ public class CraftingMinionFXMLC extends CraftingHermioneFXMLC {
                     new Melee() , Integer.parseInt(range.getText()) , sp , SPATime.DEATH , "Custom Minion");
             Primary.saveCustomHermione(minion);
             menu.exit();
-        } catch (CardExistException e) {
-            Popup.popup("sorry but a card with this name already exists in your Collection");
         }catch (Exception e){
             Popup.popup("Invalid Information !!!");
         }
