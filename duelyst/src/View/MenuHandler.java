@@ -91,7 +91,6 @@ public class MenuHandler {
         MenuHandler.currentMenu.showMenu();
     }
     public static void nextMove() {
-        System.err.println();
         Game.getAccount(Battle.getMenu().getTurn()).getPlayer().getGI().intervene();
         try {
             currentMenu.getGraphic().getController().updateScene();
