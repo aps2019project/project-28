@@ -29,8 +29,8 @@ public class MenuHandler {
 
     public static void main(String[] args) throws IOException {
 
-//        configLocal();
-        configNetwork();
+        configLocal();
+//        configNetwork();
 
         initMenus();
 

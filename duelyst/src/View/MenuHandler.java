@@ -23,15 +23,15 @@ public class MenuHandler {
 
     public static void main(String[] args) throws IOException {
 
-        configLocal();
-//        configNetwork();
+//        configLocal();
+        configNetwork();
 
 
         initMenus();
 
 
-//        View input = new ConsoleView();
-        View input = new GraphicView();
+        View input = new ConsoleView();
+//        View input = new GraphicView();
 
         input.play(args);
     }
@@ -81,6 +81,7 @@ public class MenuHandler {
         MenuHandler.currentMenu.showMenu();
     }
     public static void nextMove() {
+        System.err.println();
         Game.getAccount(Battle.getMenu().getTurn()).getPlayer().getGI().intervene();
         try {
             currentMenu.getGraphic().getController().updateScene();
